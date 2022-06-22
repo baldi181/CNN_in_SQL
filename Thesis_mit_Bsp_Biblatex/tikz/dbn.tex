@@ -1,0 +1,59 @@
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[minimum size=5mm,inner sep=0pt]
+\node (v1) at (1,.5) [circle,fill=white,draw] {};
+\node (v2) at (1.75,.5) [circle,fill=white,draw] {};
+\node (v3) at (2.5,.5) [circle,fill=white,draw] {};
+\node (v4) at (3.25,.5) [circle,fill=white,draw] {};
+\node (v5) at (4,.5) [circle,fill=white,draw] {};
+\begin{scope}[on background layer]
+\node (vA) [fit=(v1)(v2)(v3)(v4)(v5), minimum width=2cm, inner sep=2pt,fill=white,draw,rounded corners=5pt] {};
+\end{scope}
+\node (t1) at (0,.5) [] {$\textbf{v}$};
+\node (t2) at (1.5,1.25) [] {$Q(\textbf{h}^1|\textbf{v})$};
+\node (t3) at (3.5,1.25) [] {$P(\textbf{v}|\textbf{h}^1)$};
+
+\node (h1) at (1,2) [circle,fill=white,draw] {};
+\node (h2) at (1.75,2) [circle,fill=white,draw] {};
+\node (h3) at (2.5,2) [circle,fill=white,draw] {};
+\node (h4) at (3.25,2) [circle,fill=white,draw] {};
+\node (h5) at (4,2) [circle,fill=white,draw] {};
+\begin{scope}[on background layer]
+\node (hA) [fit=(h1)(h2)(h3)(h4)(h5), minimum width=2cm, inner sep=2pt,fill=white,draw,rounded corners=5pt] {};
+\end{scope}
+\node (t4) at (0,2) [] {$\textbf{h}^1$};
+\node (t5) at (1.5,2.75) [] {$Q(\textbf{h}^2|\textbf{h}^1)$};
+\node (t6) at (3.5,2.75) [] {$P(\textbf{h}^1|\textbf{h}^2)$};
+
+\draw[thick,->] (hA.300) -- (vA.60);
+\draw[thick,->,dotted] (vA.120) -- (hA.240);
+
+\node (h6) at (1,3.5) [circle,fill=white,draw] {};
+\node (h7) at (1.75,3.5) [circle,fill=white,draw] {};
+\node (h8) at (2.5,3.5) [circle,fill=white,draw] {};
+\node (h9) at (3.25,3.5) [circle,fill=white,draw] {};
+\node (h10) at (4,3.5) [circle,fill=white,draw] {};
+\begin{scope}[on background layer]
+\node (hB) [fit=(h6)(h7)(h8)(h9)(h10), minimum width=2cm, inner sep=2pt,fill=white,draw,rounded corners=5pt] {};
+\end{scope}
+\node (t7) at (0,3.5) [] {$\textbf{h}^2$};
+\node (t8) at (3.5,4.25) [] {$P(\textbf{h}^2,\textbf{h}^3)$};
+
+\draw[thick,->] (hB.300) -- (hA.60);
+\draw[thick,->,dotted] (hA.120) -- (hB.240);
+
+\node (h11) at (1,5) [circle,fill=white,draw] {};
+\node (h12) at (1.75,5) [circle,fill=white,draw] {};
+\node (h13) at (2.5,5) [circle,fill=white,draw] {};
+\node (h14) at (3.25,5) [circle,fill=white,draw] {};
+\node (h15) at (4,5) [circle,fill=white,draw] {};
+\begin{scope}[on background layer]
+\node (hC) [fit=(h11)(h12)(h13)(h14)(h15), minimum width=2cm, inner sep=2pt,fill=white,draw,rounded corners=5pt] {};
+\end{scope}
+\node (t9) at (0,5) [] {$\textbf{h}^3$};
+
+\draw[thick,<->] (hB) -- (hC);
+\end{tikzpicture}
+\caption{Beispiel eines mit TikZ erzeugten Bildes}
+\label{fig:tikz}
+\end{figure}

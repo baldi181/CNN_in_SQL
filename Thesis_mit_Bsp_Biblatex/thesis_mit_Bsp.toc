@@ -1,0 +1,70 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\babel@toc {ngerman}{}\relax 
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\nonumberline Abbildungsverzeichnis}{III}{chapter*.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\nonumberline Tabellenverzeichnis}{IV}{chapter*.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Algorithmenverzeichnis}{IV}{chapter*.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\nonumberline Verzeichnis der Listings}{VI}{chapter*.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Abkürzungsverzeichnis}{VII}{chapter*.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{Symbolverzeichnis}{VIII}{chapter*.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {1}Einleitung}{1}{chapter.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {2}Grundlagen}{2}{chapter.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {3}Grundlagen neuronaler Netze}{3}{chapter.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.1}Das Perzeptron}{3}{section.3.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.2}Multi-Layer-Perzeptron}{4}{section.3.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {3.3}Mehrschichtige Feed-Forward-Netze}{7}{section.3.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {4}Die Faltung}{8}{chapter.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.1}Die Faltungsoperation}{8}{section.4.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.2}Motivation der Faltung}{10}{section.4.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {5}Weiteres Kapitel}{12}{chapter.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.1}Umgebungen und Formeln}{12}{section.5.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.2}Aufzählung und Nummerierung}{13}{section.5.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.3}Tabellen}{13}{section.5.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.4}Bilder}{13}{section.5.4}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.4.1}Einzelnes Bild}{13}{subsection.5.4.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.4.2}Mehrere Bilder}{14}{subsection.5.4.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {5.5}TikZ}{14}{section.5.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.5.1}Einfache Grafiken}{15}{subsection.5.5.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {subsection}{\numberline {5.5.2}Graphen und ähnliches}{15}{subsection.5.5.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {6}Ein letztes Kapitel}{16}{chapter.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.1}Weiteres Korollar}{16}{section.6.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.2}Pseudocode}{16}{section.6.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {6.3}Zitate}{16}{section.6.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\nonumberline Literatur}{18}{chapter*.23}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\numberline {A}Anhang}{i}{appendix.A}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.1}Listings}{i}{section.A.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.2}Biber}{i}{section.A.2}%
+\defcounter {refsection}{0}\relax 
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
