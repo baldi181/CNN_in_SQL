@@ -1,0 +1,340 @@
+\documentclass[12pt,DIV=15,BCOR=15mm,twoside,headsepline,abstract=true,listof=totoc,bibliography=totoc]{scrreprt}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%% Uni Rostock Thesis Style %%%%%%%%%%%%%%%%%%%%
+%%% bei Problemen, Mail an susann.dittmer@uni-rostock.de
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% enthält schon viele wichtige Pakete
+\usepackage[mnf]{thesis_uro} %Fakultät wählen: uni (Standard),inf,msf,ief,mnf,mef,juf,wsf,auf,thf,phf
+
+\addbibresource{literatur.bib} %Bibliographiedateien laden
+
+%Definition von Umgebungen
+\newtheorem{kor}{Korollar}
+\newtheorem{hsatz}{Hilfssatz}
+\newtheorem{satz}{Satz}
+\newtheorem{prop}{Proposition}
+\newtheorem{defi}{Definition}
+\newtheorem{lem}{Lemma}
+\newtheorem{annahme}{Annahme}
+\newtheorem{problem}{Problem}
+\theoremstyle{remark}	%Styleänderung (Text aufrecht, ...)
+\newtheorem{bem}{Bemerkung}
+\newtheorem{bsp}{Beispiel}
+
+%Beispiel für eigene Kommandos
+\newcommand{\ol}{\overline} %Kurzform für \overline definiert 
+%\newcommand{\RR}{\mathbb{R}}
+%newcommand{\RRn}{\mathbb{R}^n}
+
+\newcommand{\RR}{\ensuremath{\mathbb{R}}}
+\newcommand{\Rnv}{\ensuremath{\mathbb{R}^{n}}}
+\newcommand{\Rnn}{\ensuremath{\mathbb{R}^{n\times n}}}
+
+\newcommand{\NN}{\ensuremath{\mathbb{N}}}
+
+\newcommand{\mK}{\ensuremath{\mathcal{K}}}
+\newcommand{\mKp}{\ensuremath{\mathcal{K}}^+}
+\newcommand{\Code}{\ensuremath{C^{\textnormal{dgl}}}}
+
+% Daten für die Titelseite
+\institut{Institut für Mathematik} %auskommentieren, wenn nicht benötigt
+\arbeit{Masterarbeit} %Bachelorarbeit, Masterarbeit oder Abschlussarbeit (wenn Staatsexamensarbeit geschrieben wird, kann man, z. B. bei Untertitel "Wissenschaftliche Abschlussarbeit\\ im Rahmen  des Ersten Staatsexamens" eintragen)
+\autor{Vorname Nachname}
+\betreuerGutachter{Name des Betreuers und ersten Gutachters\newline Universität Rostock\newline Fakultät} %hier \newline als Zeilenwechsel, da Tabelle mit \parbox im Hintergrund
+\gutachter{Name des zweiten Gutachters\newline Universität Musterstadt\newline Fakultät}				%dto.
+\date{12.08.2021}
+\matrNr{123\,45678}
+\titel{Titel der Arbeit,\\ bei Bedarf auch zweizeilig}
+\untertitel{Untertitel der Arbeit, auch mehrzeilig oder ganz weglassen.} %auskommentieren, wenn nicht benötigt
+
+\begin{document}
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+\mytitle   %hier werden Daten für die Titelseite gesetzt
+\end{titlepage}
+
+\zusammenfassung{
+  Platz für eine kurze Zusammenfassung.\\
+}
+\pagenumbering{Roman}
+\tableofcontents % Inhaltsverzeichnis
+\listoffigures
+\listoftables
+\addcontentsline{toc}{chapter}{Algorithmenverzeichnis}
+\listofalgorithms
+\lstlistoflistings
+
+% Abkürzungsverzeichnis --------ggfs auskommentieren
+\chapter*{Abkürzungsverzeichnis}
+\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}
+\input{abkuerzungen}
+
+% Symbolverzeichnis ------------ggfs auskommentieren
+\chapter*{Symbolverzeichnis}
+\addcontentsline{toc}{chapter}{Symbolverzeichnis}
+\input{symbole}
+\cleardoublepage
+\hypersetup{pageanchor=true}
+\pagenumbering{arabic}
+
+%mainmatter
+\input{einleitung.tex}
+\input{chapters/grundlagen.tex}
+\input{chapters/neuralnetworks.tex}
+\input{chapters/convolutionlayer.tex}
+
+\chapter{Weiteres Kapitel}
+Hier wird dies und das vorgestellt. Unter anderem Fußnoten.\footnote{Dies ist eine Fußnote.}
+\section{Umgebungen und Formeln}
+\begin{defi}\label{defi1}
+ \dots\ heißt \ac{rnn}. 
+\end{defi}
+\begin{bem}\label{bem1}
+Bei jeder weiteren Verwendung der Abkürzung wird nur die Kurzform angezeigt: \ac{rnn}.
+\end{bem}
+\begin{bem}\label{bem2}
+Die Verwendung des Symbolverzeichnisses ist analog der des Abkürzungsverzeichnisses, siehe \ac{cm}.
+\end{bem}
+\begin{annahme}\label{annahme1}
+Eine kluge Annahme \dots
+\end{annahme}
+\begin{hsatz}\label{hsatz1}
+Ein kluger Hilfssatz \dots
+\end{hsatz}
+\begin{satz}\label{satz1}
+Ein kluger Satz \dots
+\end{satz}
+\begin{kor}\label{kor1}
+Ein kluges Korollar \dots
+\end{kor}
+\begin{prop}\label{prop1}
+Eine kluge Proposition \dots
+\end{prop}
+\begin{problem}\label{problem1}
+Ein schweres Problem \dots
+\end{problem}
+\begin{bsp}\label{bsp1}
+Ein anschauliches Beispiel \dots
+\end{bsp}
+
+
+
+\begin{defi}\label{defi2}
+Seien $a,b\in\mathbb{C}$ definiere 
+\begin{equation}\label{eq1}
+a+b
+\end{equation}
+als  \dots
+\end{defi}
+
+Auf Formeln kann nun verwiesen werden (siehe \eqref{eq1}). Formeln können natürlich auch im normalen Text $a^2+b^2=c^2$ auftauchen. 
+
+
+\begin{empheq}[box=\colorbox{mycolor},right=\empheqrbrace \text{ohne Sinn}]{align}
+a^2+b^2&=c^2\\
+f&=b-a
+\end{empheq}
+\section{Aufzählung und Nummerierung}
+Für Literaturvereichnisse siehe Kapitel~\ref{ch:bib}, eine einfache Aufzählung geht so:
+\begin{itemize}
+ \item Eins
+ \item Zwei
+ \item Viele
+\end{itemize}
+
+
+\section{Tabellen}
+\begin{table}[ht]
+ \dots\ gibt es viele verschiedene, z.\,B.\ Tab.~\ref{tab:reservoir_segmentlabelling} und Tab.~\ref{tab:dlv_restr_all}. 
+\caption{Einfache Tabelle}
+\label{tab:reservoir_segmentlabelling}
+\centering
+  \begin{tabular}{ccrr}
+        \toprule
+             Column 1 & Column 2 & Column 3 & Column 4 \\
+            \midrule
+            Nein & Softmax & \SI{85,0}{\%} & \cellcolor{hellgrau} \SI{87,0}{\%} \\
+            Nein & Linear & \cellcolor{hellgrau} \SI{88,8}{\%} & \SI{85,9}{\%} \\
+            Ja & Softmax & \SI{80,0}{\%} & \cellcolor{hellgrau} \SI{89,1}{\%} \\
+            Ja & Linear& \SI{84,6}{\%} & \cellcolor{hellgrau} \SI{89,8}{\%} \\
+            \bottomrule
+  \end{tabular}
+\end{table} 
+
+\begin{table}[ht]
+\caption{Nicht mehr ganz so einfache Tabelle}\label{tab:dlv_restr_all}
+\centering
+ \begin{tabular}{llcccccc}
+  \hline\noalign{\smallskip}
+  	&source prior				&\multicolumn{2}{c}{\texttt{abs}}&\multicolumn{2}{c}{\texttt{prior}} & \multicolumn{2}{c}{\texttt{da}}\\	
+	&source posterior 			&\texttt{path}&	\texttt{ctc}&   \texttt{path}&	\texttt{ctc}&\texttt{path}&\texttt{ctc}\\
+	\noalign{\smallskip}
+	\hline
+	\noalign{\smallskip}
+	\multirow{ 2}{*}{gAP}	&\texttt{normed}	&94.81&	94.89&	95.36&	\textbf{95.42}&	94.99&	95.04\\
+				&\texttt{unnormed}	&94.77&	&	91.73&	91.87&	92.58&	\\%\hline
+	\noalign{\smallskip}
+	\multirow{ 2}{*}{mAP}	&\texttt{normed}	&89.71&	\textbf{89.90}&	89.58&  89.76&	89.63&89.82	\\
+				&\texttt{unnormed}	&89.42&	&	88.59&	88.89&	89.13&	\\
+	\noalign{\smallskip}
+	\multirow{ 2}{*}{gNDCG}	&\texttt{normed}	&96.72&	96.78&	96.78&	\textbf{96.83}&	96.73&96.77	\\
+				&\texttt{unnormed}	&96.69&	&	96.34&	96.41&	96.46	&\\
+	\noalign{\smallskip}
+	\multirow{ 2}{*}{mNDCG}	&\texttt{normed}	&90.77&	\textbf{90.97}&	90.66&  90.85&	90.70&90.89 \\
+				&\texttt{unnormed}	&90.61&	&	89.96&	90.25&	90.36& \\	
+	\hline
+ \end{tabular}
+\end{table}
+
+
+
+\section{Bilder}
+\subsection{Einzelnes Bild}
+\begin{figure}[ht]
+\centering
+\includegraphics[width=0.5\textwidth]{pics/SCHNECKE}
+\caption{Vektorgrafiken sind toll. Scrolle mal in mich rein!}
+\label{fig:schnecke}
+\end{figure}
+
+Das ist Text. Das ist Text. Das ist Text über Abb.~\ref{fig:schnecke}. Das ist Text.\footnote{Dieser Textteil
+ist von wesentlicher Bedeutung}
+
+\subsection{Mehrere Bilder}
+\begin{figure}[h!t]
+\centering
+\begin{subfigure}{0.4\textwidth}
+\includegraphics[width=\textwidth]{pics/SCHNECKE}
+\subcaption{Schnecke 1}
+\label{fig:schnecke:a}
+\end{subfigure}
+\qquad
+\begin{subfigure}{0.4\textwidth}
+\includegraphics[width=\textwidth]{pics/SCHNECKE}
+\subcaption{Schnecke 2}
+\label{fig:schnecke:b}
+\end{subfigure}
+\caption{Vergleich verschiedener Schnecken}
+\label{fig:seam}
+\end{figure}
+
+Die Schnecke aus Abb.~\ref{fig:schnecke:a} ist hübscher anzusehen als die aus Abb.~\ref{fig:schnecke:b}.
+
+\section{TikZ}
+TikZ bietet ein mächtiges Werkzeug Grafiken selber zu erzeugen.
+\subsection{Einfache Grafiken}
+Es gibt viele, viele Tutorials und Beispiele die leicht im Internet zu finden sind. Aber ein Beispiel sei an dieser Stelle trotzdem eingefügt, siehe Abb.~\ref{fig:tikz}.
+\input{tikz/dbn}
+\subsection{Graphen und ähnliches}
+Wer keine Lust hat z.\,B. Achsenbeschriftungen eines Matlab-Plots auf Font etc. des \LaTeX -Dokuments anzupassen, kann Datenreihen auch einfach mittels TikZ darstellen, siehe dazu Abb.~\ref{fig:ohstats}. Es ist natürlich auch möglich aus z.\,B. Matlab oder Gnuplot Tikz Grafiken zu exportieren!
+\input{tikz/ohstats}
+
+\chapter{Ein letztes Kapitel}
+\begin{kor}\label{kor2}
+Wird f\"{u}r die Festlegung  \dots
+\end{kor}
+\section{Weiteres Korollar}
+In diesem Abschnitt  \dots
+\begin{kor}\label{kor3}
+Wird f\"{u}r die Festlegung  \dots
+\end{kor}
+
+\begin{bem}\label{bem3}
+Eine vollst\"{a}ndige  \dots
+\end{bem}
+
+\section{Pseudocode}
+In vielen Fällen ist es notwendig, Programmteile als Pseudocode darzustellen. Algorithmus \ref{alg:pseudo} stellt ein einfaches Beispiel dar. Es gibt weitere Pakete zur Darstellung von Pseudocode, \texttt{algorithm} + \texttt{algpseudocode} sei an dieser Stelle erwähnt.
+
+\begin{algorithm}[ht]
+ \KwData{this text}
+ \KwResult{how to write algorithm with \LaTeX2e }
+ initialization\;
+ \While{not at end of this document}{
+  read current\;
+  \eIf{understand}{
+   go to next section\;
+   current section becomes this one\;
+   }{
+   go back to the beginning of current section\;
+  }
+ }
+ \caption{How to write algorithms}\label{alg:pseudo}
+\end{algorithm}
+
+
+\section{Zitate}
+\label{ch:bib}
+Umfangreichen Quellenangaben sollte man in einer Literaturdatenbank pflegen. Um diese in \LaTeX\ zu verwenden bietet sich das Paket biblatex mit dem Sortierprogramm
+ Biber an, da es gewisse Vorteile gegenüber dem klassischen Bib\TeX\ besitzt. 
+Die Verweise liegen in einer separaten Datei (hier: \texttt{literatur.bib}) und werden mit \begin{verbatim}\addbibresource{<nameDerDatei>}\end{verbatim} eingefügt. %Das jeweilige Aussehen bestimmt der Befehl: \begin{verbatim} \bibliographystyle{style} \end{verbatim}
+Zitiert wird dann mittels \begin{verbatim}\cite{key}\end{verbatim} was in unserem Beispiel dann so aussieht \cite{forster1983analysis}. 
+
+\noindent ACHTUNG: Beim ändern der {\texttt{.bib}}-Datei und/oder der Zitate muss mehrfach compiliert werden, damit die änderungen auch wirksam werden. Sicher geht man, wenn man die folgende Reihenfolge beachtet: 
+\begin{enumerate}
+ \item \LaTeX
+ \item Biber
+ \item \LaTeX
+ \item \LaTeX
+\end{enumerate}
+
+Eine genauere Beschreibung findet Ihr im Anhang \ref{sec:biber}.
+\appendix
+
+\printbibliography %hier Bibliographie ausgeben lassen
+
+%Wenn gewünscht Danksagung einfügen
+%\addchap*{Danksagungen}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%% Formalia %%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Muss in jedem Fall in die Arbeit!
+\eigenstaenigkeitserklaerung
+
+\cleardoublepage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\pagenumbering{roman}
+\chapter{Anhang}
+\section{Listings}
+
+\lstset{language=C}
+ \begin{lstlisting}[caption=C Code - direkt eingefügt, label=list:C]
+#include <stdio.h>
+#define N 10
+/* Block
+ * comment */
+
+int main()
+{
+    int i;
+
+    // Line comment.
+    puts("Hello world!");
+    
+    for (i = 0; i < N; i++)
+    {
+        puts("LaTeX is also great for programmers!");
+    }
+
+    return 0;
+}
+\end{lstlisting}
+
+
+
+
+\lstset{language=Java}
+
+
+\lstinputlisting[label=list:java,caption=Java Code - über externe Datei eingefügt]{code/HelloWorld.java}
+% \lstinputlisting[caption=Scheduler, language=C]{hello.c}
+
+\section{Biber}
+\label{sec:biber}
+\includepdf[pages={1-2},scale=.9]{AnleitungBibLatexBiber.pdf}
+
+
+\end{document}
