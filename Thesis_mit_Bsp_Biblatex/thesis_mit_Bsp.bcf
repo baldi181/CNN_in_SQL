@@ -2360,9 +2360,14 @@
     <bcf:citekey order="10">Goodfellow-et-al-2016</bcf:citekey>
     <bcf:citekey order="11">Goodfellow-et-al-2016</bcf:citekey>
     <bcf:citekey order="12">HORNIK1989359</bcf:citekey>
-    <bcf:citekey order="13">gruening</bcf:citekey>
-    <bcf:citekey order="14">goodfellow</bcf:citekey>
-    <bcf:citekey order="15">forster1983analysis</bcf:citekey>
+    <bcf:citekey order="13">gruen</bcf:citekey>
+    <bcf:citekey order="14">hornik1991approximation</bcf:citekey>
+    <bcf:citekey order="15">sonoda2017neural</bcf:citekey>
+    <bcf:citekey order="16">strauss</bcf:citekey>
+    <bcf:citekey order="17">strauss</bcf:citekey>
+    <bcf:citekey order="18">gruening</bcf:citekey>
+    <bcf:citekey order="19">goodfellow</bcf:citekey>
+    <bcf:citekey order="20">forster1983analysis</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">

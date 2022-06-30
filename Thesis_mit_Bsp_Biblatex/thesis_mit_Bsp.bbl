@@ -181,6 +181,35 @@
       \field{title}{Deep Learning}
       \field{year}{2016}
     \endentry
+    \entry{hornik1991approximation}{article}{}
+      \name{author}{1}{}{%
+        {{hash=bec8dd1340457a82c21b54971e4c9417}{%
+           family={Hornik},
+           familyi={H\bibinitperiod},
+           given={Kurt},
+           giveni={K\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{bec8dd1340457a82c21b54971e4c9417}
+      \strng{fullhash}{bec8dd1340457a82c21b54971e4c9417}
+      \strng{bibnamehash}{bec8dd1340457a82c21b54971e4c9417}
+      \strng{authorbibnamehash}{bec8dd1340457a82c21b54971e4c9417}
+      \strng{authornamehash}{bec8dd1340457a82c21b54971e4c9417}
+      \strng{authorfullhash}{bec8dd1340457a82c21b54971e4c9417}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Neural networks}
+      \field{number}{2}
+      \field{title}{Approximation capabilities of multilayer feedforward networks}
+      \field{volume}{4}
+      \field{year}{1991}
+      \field{pages}{251\bibrangedash 257}
+      \range{pages}{7}
+    \endentry
     \entry{HORNIK1989359}{article}{}
       \name{author}{3}{}{%
         {{hash=bec8dd1340457a82c21b54971e4c9417}{%
@@ -354,6 +383,40 @@
       \field{title}{Parallel distributed processing: explorations in the microstructure of cognition. Volume 1. Foundations}
       \field{year}{1986}
     \endentry
+    \entry{sonoda2017neural}{article}{}
+      \name{author}{2}{}{%
+        {{hash=2f21ece4e9535a03503a7186e62aec7f}{%
+           family={Sonoda},
+           familyi={S\bibinitperiod},
+           given={Sho},
+           giveni={S\bibinitperiod}}}%
+        {{hash=1b88ead033e20e6a71e3878c7bf0792b}{%
+           family={Murata},
+           familyi={M\bibinitperiod},
+           given={Noboru},
+           giveni={N\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{f0fadd4265855681690d6c40f79f0493}
+      \strng{fullhash}{f0fadd4265855681690d6c40f79f0493}
+      \strng{bibnamehash}{f0fadd4265855681690d6c40f79f0493}
+      \strng{authorbibnamehash}{f0fadd4265855681690d6c40f79f0493}
+      \strng{authornamehash}{f0fadd4265855681690d6c40f79f0493}
+      \strng{authorfullhash}{f0fadd4265855681690d6c40f79f0493}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Applied and Computational Harmonic Analysis}
+      \field{number}{2}
+      \field{title}{Neural network with unbounded activation functions is universal approximator}
+      \field{volume}{43}
+      \field{year}{2017}
+      \field{pages}{233\bibrangedash 268}
+      \range{pages}{36}
+    \endentry
     \entry{werbos1988generalization}{article}{}
       \name{author}{1}{}{%
         {{hash=3f6ba0fa8bc8542632efe7f31c9ee2e8}{%
@@ -386,9 +449,11 @@
   \enddatalist
   \missing{dayhoff1990neural}
   \missing{goodfellow}
+  \missing{gruen}
   \missing{gruening}
   \missing{pandya1995pattern}
   \missing{pao1989adaptive}
+  \missing{strauss}
   \missing{urbaniak2021quality}
 \endrefsection
 \endinput
