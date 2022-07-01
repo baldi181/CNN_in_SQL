@@ -7,6 +7,8 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{Algorithmenverzeichnis}{IV}{chapter*.3}%
 \defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\nonumberline List of Algorithms}{V}{chapter*.4}%
+\defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\nonumberline Verzeichnis der Listings}{VI}{chapter*.5}%
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{Abkürzungsverzeichnis}{VII}{chapter*.6}%
@@ -25,45 +27,45 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.3}Training neuronaler Netze}{7}{section.3.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.1}Neuronale Netze als universelle Schätzer}{7}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.1}Neuronale Netze als universelle Schätzer}{8}{subsection.3.3.1}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {3.3.2}Optimale Parameterwahl bei neuronalen Netzen}{9}{subsection.3.3.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {4}Die Faltung}{11}{chapter.4}%
+\contentsline {chapter}{\numberline {4}Die Faltung}{12}{chapter.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.1}Die Faltungsoperation}{11}{section.4.1}%
+\contentsline {section}{\numberline {4.1}Die Faltungsoperation}{12}{section.4.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.2}Motivation der Faltung}{13}{section.4.2}%
+\contentsline {section}{\numberline {4.2}Motivation der Faltung}{14}{section.4.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Weiteres Kapitel}{15}{chapter.5}%
+\contentsline {chapter}{\numberline {5}Weiteres Kapitel}{16}{chapter.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.1}Umgebungen und Formeln}{15}{section.5.1}%
+\contentsline {section}{\numberline {5.1}Umgebungen und Formeln}{16}{section.5.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.2}Aufzählung und Nummerierung}{16}{section.5.2}%
+\contentsline {section}{\numberline {5.2}Aufzählung und Nummerierung}{17}{section.5.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.3}Tabellen}{16}{section.5.3}%
+\contentsline {section}{\numberline {5.3}Tabellen}{17}{section.5.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.4}Bilder}{16}{section.5.4}%
+\contentsline {section}{\numberline {5.4}Bilder}{17}{section.5.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.4.1}Einzelnes Bild}{16}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.1}Einzelnes Bild}{17}{subsection.5.4.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.4.2}Mehrere Bilder}{17}{subsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.4.2}Mehrere Bilder}{18}{subsection.5.4.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.5}TikZ}{17}{section.5.5}%
+\contentsline {section}{\numberline {5.5}TikZ}{18}{section.5.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.5.1}Einfache Grafiken}{18}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.1}Einfache Grafiken}{19}{subsection.5.5.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.5.2}Graphen und ähnliches}{18}{subsection.5.5.2}%
+\contentsline {subsection}{\numberline {5.5.2}Graphen und ähnliches}{19}{subsection.5.5.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Ein letztes Kapitel}{19}{chapter.6}%
+\contentsline {chapter}{\numberline {6}Ein letztes Kapitel}{20}{chapter.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.1}Weiteres Korollar}{19}{section.6.1}%
+\contentsline {section}{\numberline {6.1}Weiteres Korollar}{20}{section.6.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.2}Pseudocode}{19}{section.6.2}%
+\contentsline {section}{\numberline {6.2}Pseudocode}{20}{section.6.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.3}Zitate}{19}{section.6.3}%
+\contentsline {section}{\numberline {6.3}Zitate}{20}{section.6.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline Literatur}{21}{chapter*.23}%
+\contentsline {chapter}{\nonumberline Literatur}{22}{chapter*.22}%
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {A}Anhang}{i}{appendix.A}%
 \defcounter {refsection}{0}\relax 

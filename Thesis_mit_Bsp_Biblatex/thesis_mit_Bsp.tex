@@ -6,7 +6,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % enthält schon viele wichtige Pakete
 \usepackage[mnf]{thesis_uro} %Fakultät wählen: uni (Standard),inf,msf,ief,mnf,mef,juf,wsf,auf,thf,phf
-
+\usepackage{algorithm}
+%\usepackage{algorithmic}
+\usepackage{algpseudocode}
 \addbibresource{literatur.bib} %Bibliographiedateien laden
 
 %Definition von Umgebungen
@@ -247,22 +249,42 @@ Eine vollst\"{a}ndige  \dots
 \section{Pseudocode}
 In vielen Fällen ist es notwendig, Programmteile als Pseudocode darzustellen. Algorithmus \ref{alg:pseudo} stellt ein einfaches Beispiel dar. Es gibt weitere Pakete zur Darstellung von Pseudocode, \texttt{algorithm} + \texttt{algpseudocode} sei an dieser Stelle erwähnt.
 
-\begin{algorithm}[ht]
- \KwData{this text}
- \KwResult{how to write algorithm with \LaTeX2e }
- initialization\;
- \While{not at end of this document}{
-  read current\;
-  \eIf{understand}{
-   go to next section\;
-   current section becomes this one\;
-   }{
-   go back to the beginning of current section\;
-  }
- }
- \caption{How to write algorithms}\label{alg:pseudo}
-\end{algorithm}
+%\begin{algorithm}[ht]
+% \KwData{this text}
+ %\KwResult{how to write algorithm with \LaTeX2e }
+ %initialization\;
+ %\While{not at end of this document}{
+ % read current\;
+ % \eIf{understand}{
+ %  go to next section\;
+ %  current section becomes this one\;
+%   }{
+%   go back to the beginning of current section\;
+%  }
+% }
+ %\caption{How to write algorithms}\label{alg:pseudo}
+%\end{algorithm}
 
+
+\begin{algorithm}
+\caption{An algorithm with caption}\label{alg:cap}
+\begin{algorithmic}
+\Require $n \geq 0$
+\Ensure $y = x^n$
+\State $y \gets 1$
+\State $X \gets x$
+\State $N \gets n$
+\While{$N \neq 0$}
+\If{$N$ is even}
+    \State $X \gets X \times X$
+    \State $N \gets \frac{N}{2}$  \Comment{This is a comment}
+\ElsIf{$N$ is odd}
+    \State $y \gets y \times X$
+    \State $N \gets N - 1$
+\EndIf
+\EndWhile
+\end{algorithmic}
+\end{algorithm}
 
 \section{Zitate}
 \label{ch:bib}

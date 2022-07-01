@@ -134,7 +134,24 @@ Um die Notation übersichtlich zu halten, bezeichne $\Psi^{W^{(k)},b^{(k)},\psi_
         \] 
     Die Eingabeschicht $\mathcal{S}_0$ besitzt keine Parameter $W$ und $b$ und besteht nur aus dem Eingabevektor $x \in \RR^{s_0}$. Die letzte Schicht $\Psi^{W^{(l)},b^{(l)},\psi_{l}}$ wird als Ausgabeschicht bezeichnet. Weiter werden die Schichten $\mathcal{S}_1, \ldots, \mathcal{S}_{l-1}$ als verdeckte Schichten definiert. Die Funktionsauswertung $\Lambda_l(x)$ für eine Eingabe $x$ wird Vorwärtsrechnung, engl. \textit{forward propagation}, genannt.
 \end{defi}
-Das MLP-Modell wird im weiteren Verlauf dieser Arbeit repräsentativ als Künstliches Neuronales Netz bezeichnet. Das zuvor angesprochene XOR-Problem kann nun beispielsweise mithilfe eines KNN bestehend aus zwei Schichten gelöst werden\cite{Goodfellow-et-al-2016}.
+
+\begin{algorithm}
+    \caption{Vorwärtsrechnung}\label{alg:ff}
+    \begin{algorithmic}
+    \Require $ \text{MLP} \; \Lambda_l, \text{Input} \; x_0 \in \RR^n$
+    \Ensure $y = \Lambda_l(x) \in \RR^m$
+    \State $x=x_0$
+    \For{$i=1, \ldots l}$
+    \State $u=W^{(i) \,T}x+b^{(i)}$
+    \State $x=\psi_i(u)$
+    \EndFor
+    \State $y=x$
+    \end{algorithmic}
+\end{algorithm}
+    
+
+
+Das MLP-Modell wird im weiteren Verlauf dieser Arbeit repräsentativ als Künstliches Neuronales Netz bezeichnet. Die Funktionsauswertung eines KNN wird im Algorithmus Vorwärtsrechnung \ref{alg:ff} festgehalten. Das zuvor angesprochene XOR-Problem kann nun beispielsweise mithilfe eines KNN bestehend aus zwei Schichten gelöst werden\cite{Goodfellow-et-al-2016}.
 Es lassen sich zwischen Modell- und Hyperparameter von KNN unterscheiden.
 
 \begin{defi}[Hyper- und Modellparameter]
@@ -159,18 +176,20 @@ Beim Klassifikationsproblem müssen bestimmte bedingte Wahrscheinlichkeiten, die
 \end{defi}
 
 Das Ziel beim Klassifikationsproblem ist die Approximation einer nicht bekannten Klassifikationsfunktion $f:D \rightarrow \mathcal{C}$ durch ein Modell $\tilde{f}: D \rightarrow \mathcal{C}$. 
-In dieser Arbeit werden dafür KNNs genutzt, welche als probabilistische Modelle auf folgende Weise genutzt werden. Auf der Ergebnismenge $\Omega= D \times \mathcal{C}$ sei die nicht bekannte gemeinsame (Wahrscheinlichkeits-) Verteilung $p_{Daten}(x,c)$, genannt Datenverteilung, gegeben. Ein Modell soll nun konstruiert werden, welches die posterior-Verteilung $p_{Daten}(\cdot \; | \; x)$ der Klassen schätzt. 
+In dieser Arbeit werden dafür KNNs genutzt, welche als probabilistische Modelle auf folgende Weise genutzt werden. Auf der Ergebnismenge $\Omega= D \times \mathcal{C}$ sei die nicht bekannte gemeinsame (Wahrscheinlichkeits-) Verteilung $p_{Daten}(x,c)$, genannt Datenverteilung, gegeben. Ein Modell soll nun konstruiert werden, welches die a posterior-Verteilung $p_{Daten}(\cdot \; | \; x)$ der Klassen schätzt. 
 
 In dieser Arbeit werden KNN so benutzt, dass die Klassenzugehörigkeit direkt anhand der Eingabe $x \in D$ geschätzt wird. Die Funktion $P_{Daten}: D \rightarrow [0,1]^m$ mit
 \begin{equation}
+    \label{eq:Pdaten}
     P_{Daten}(x):=\left(p_{Daten}(c_1 \; | \; x), \ldots, p_{Daten}(c_m \; | \; x)\right)^T \in \RR^m
 \end{equation} soll für alle $x \in D$ approximiert werden. Dazu wird die Funktion $P_{Modell}: D \rightarrow [0,1]^m$ mit 
 \begin{equation}
+    \label{eq:Pmodell}
     P_{Modell}(x;\mathcal{W}):=\left(p_{Modell}(c_1 \; | \; x; \mathcal{W}), \ldots, p_{Modell}(c_m \; | \; x; \mathcal{W})\right)^T \in \RR^m
 \end{equation}
  für alle $x \in D$ als Approximation genutzt, welche von den Modellparametern $\mathcal{W}$ abhängig ist. Die Klassifikationsfunktion des Modells ergibt sich als
 \begin{equation}
-    \label{f_modell}
+    \label{eq:f_modell}
     f_{Modell}(x):= \underset{c \in \mathcal{C}}{\mathrm{argmax}} \; p_{Modell}(c \; | \; x).
 \end{equation}
 
@@ -216,7 +235,7 @@ In dieser Arbeit umfasst die Menge $D$ aus Definition \ref{def_classfun} digital
 
 \subsection{Optimale Parameterwahl bei neuronalen Netzen}
 
-Wird ein künstliches neuronales Netz als probabilistisches Modell genutzt und sind die Hyperparameter festgelegt, müssen die Modellparameter $\mathcal{W}$ gewählt werden. Um die Approximationsgüte messbar zu machen, werden Fehlerfunktionen genutzt, welche mithilfe des Gradientenverfahrens aus Kapitel \ref{fund} durch die Anpassung der Parameter $\mathcal{W}$ in einem Trainingsprozess minimiert werden.
+Wird ein künstliches neuronales Netz als probabilistisches Modell genutzt und sind die Hyperparameter festgelegt, müssen die Modellparameter $\mathcal{W}$ gewählt werden. Um die Approximationsgüte messbar zu machen, wird eine Fehlerfunktion eingeführt, welche mithilfe des Gradientenverfahrens aus Kapitel \ref{fund} durch die Anpassung der Parameter $\mathcal{W}$ in einem Trainingsprozess minimiert werden soll. Im folgenden sei $\Lambda_l$ ein KNN mit der Softmax-Funktion als Aktivierungsfunktion in der Ausgabeschicht, welches als parametrisiertes Modell $f_{Modell}$ wie in \ref{eq:f_modell} genutzt wird.
 
 \begin{defi}[Trainingsmenge]
     Seien $p_{daten}$ eine Datenverteilung und $\Omega=D \times \mathcal{C}$. Dann heißt für ein $k \in \mathbb{N}$ die Menge
@@ -226,23 +245,47 @@ Wird ein künstliches neuronales Netz als probabilistisches Modell genutzt und s
     Trainingsmenge bestehend aus $k$ Trainingsdaten, welche unabhängig durch $p_{Daten}$ generiert wurde.
 \end{defi}
 
-Die Güte eines Modells $f_{Modell}$ wird als Likelihood gegeben einer Trainingsmenge $\mathcal{T}$ gemessen und ist durch 
+Die Güte des Modells $f_{Modell}$ wird als Likelihood gegeben einer Trainingsmenge $\mathcal{T}$ gemessen und lässt sich als 
 
-\begin{equation*}
-    L(\mathcal{T},\mathcal{W}):=\prod_{(x,c) \in \mathcal{T}} p_{Modell}(c \; | \; x; \mathcal{W})
-\end{equation*}
-gegeben\cite{bishop2006pattern}.
-Ziel ist es, dass $P_{Modell}$ und $P_{Daten}$ übereinstimmen und daher wird versucht, die Likelihood zu maximieren. Für einen gegebene Trainingsmenge $\mathcal{T}$ soll das Produkt über alle Wahrscheinlichkeiten der korrekten Klassenzugehörigkeiten maximiert werden. Dieser Ansatz wird \textit{Maximum Likelihood-Methode}\cite{ruschendorf2014mathematische} genannt und die Parameterwahl des Modells wird durch eine Lösung des Optimierungsproblems 
 \begin{equation}
-    \label{opt_likelihood}
+    \label{eq:likelihood}
+    L(\mathcal{T},\mathcal{W}):=\prod_{(x,c) \in \mathcal{T}} p_{Modell}(c \; | \; x; \mathcal{W})
+\end{equation}
+wie in Bishop\cite{bishop2006pattern} berechnen.
+Für eine Trainingsmenge $\mathcal{T}$ soll das Produkt über alle Wahrscheinlichkeiten der korrekten Klassenzugehörigkeiten $c$ gegeben der Eingaben $x$ maximiert werden. Dieser Ansatz wird \textit{Maximum Likelihood-Methode}\cite{ruschendorf2014mathematische} genannt und die Parameterwahl des Modells wird durch eine Lösung des Optimierungsproblems 
+\begin{equation}
+    \label{eq:opt_likelihood}
      \prod_{(x,c) \in \mathcal{T}} p_{Modell}(c \; | \; x; \mathcal{W}) \rightarrow \max
 \end{equation}
 gegeben. Dabei sei bemerkt, dass die Optimierung unabhängig von den Hyperparametern vorgenommen wird.
 
-Für ein Trainingspaar $(x,c) \in \mathcal{T}$ bezeichne $t \in \RR^m$ den Zielvektor mit den Komponenten
+Für ein Trainingspaar $(x,c) \in \mathcal{T}$ bezeichne $t \in \RR^m$ den Zielvektor der Klasse $c$ mit sogenannter (1 aus m)-Kodierung. Die Komponenten von $t=t(x)$ sind
 \begin{equation*}
-    t_i:= \begin{cases}
-        1 &, \text{wenn} \, c=c_i \\
+    t_k:= \begin{cases}
+        1 &, \text{wenn} \, k=c \\
         0 &, \text{sonst}
-    \end{cases}, \; \; \forall i \in [m].
+    \end{cases}, \; \; \forall k \in [m].
 \end{equation*} 
+Mit dieser Bezeichnung lässt sich das Optimierungsproblem \ref{eq:opt_likelihood} als Minimierungproblem mithilfe der \textit{negative log likelihood} schreiben.
+\begin{defi}[negative log likelihood]
+    Seien die Mengen $D$ und  $\mathcal{C}=\{c_1, \ldots, c_m\}$ mit einer dazugehörigen Trainingsmenge $\mathcal{T}$ sowie entsprechende Zielvektoren gegeben. Weiter seien die a posterior Wahrscheinlichkeiten $p_{Modell}(c \; | \; x; \mathcal{W})$ wie in Gleichung \ref{eq:Pmodell} gegeben. Die negative log likelihood ist als Funktion 
+    \begin{equation}
+        \label{eq:NLL}
+        L_{NNL}(\mathcal{T},\mathcal{W}):= -\sum_{(x,c) \in \mathcal{T}}  \sum_{i=1}^m t_i \log \left(p_{Modell}(c_i \; | \; x; \mathcal{W}) \right) 
+    \end{equation}
+    definiert.
+\end{defi}
+
+Das Minimieren der negative log likelihood ist äquivalent zur Maximierung der Likelihood aus \ref{eq:likelihood}, denn es gilt 
+\begin{equation*}
+    \log \left(\prod_{(x,c) \in \mathcal{T}} p_{Modell}(c \; | \; x; \mathcal{W})\right)= \sum_{(x,c) \in \mathcal{T}} \log \left(p_{Modell}(c \; | \; x; \mathcal{W}) \right)
+\end{equation*}
+und der natürliche Logarithmus ist monoton steigend. Wird zusätzlich angenommen, dass die Datenverteilung einer Normalverteilung mit konstanter Varianz entspricht, so ist das Maximieren von \ref{eq:likelihood} äquivalent zur Minimierung der mittleren quadratischen Abweichung
+\begin{equation*}
+    \label{eq:MSE}
+    L(\mathcal{T},\mathcal{W})_{MSE}:=\sum_{(x,c) \in \mathcal{T}} \frac{1}{2} ||\hat{c}-t_c||_2^2,
+\end{equation*}
+wobei $\hat{c}=f_{Modell}(x)$ und $t_c$ der Zielvektor des Datenpaars $(x,c)$ ist, siehe Goodfellow\cite{Goodfellow-et-al-2016}.
+
+
+

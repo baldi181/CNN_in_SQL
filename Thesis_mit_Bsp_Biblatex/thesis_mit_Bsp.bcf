@@ -2369,9 +2369,10 @@
     <bcf:citekey order="18">strauss</bcf:citekey>
     <bcf:citekey order="19">bishop2006pattern</bcf:citekey>
     <bcf:citekey order="20">ruschendorf2014mathematische</bcf:citekey>
-    <bcf:citekey order="21">gruening</bcf:citekey>
-    <bcf:citekey order="22">goodfellow</bcf:citekey>
-    <bcf:citekey order="23">forster1983analysis</bcf:citekey>
+    <bcf:citekey order="21">Goodfellow-et-al-2016</bcf:citekey>
+    <bcf:citekey order="22">gruening</bcf:citekey>
+    <bcf:citekey order="23">goodfellow</bcf:citekey>
+    <bcf:citekey order="24">forster1983analysis</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">
