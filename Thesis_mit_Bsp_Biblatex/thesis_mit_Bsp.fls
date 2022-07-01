@@ -1656,6 +1656,7 @@ INPUT ./pics/chapter_neuralnetworks/perzeptron.png
 INPUT ./pics/chapter_neuralnetworks/perzeptron.png
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmr8.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmr6.tfm
+INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmssbx10.tfm
 INPUT ./chapters/convolutionlayer.tex
 INPUT chapters/convolutionlayer.tex
 INPUT ./chapters/convolutionlayer.tex
@@ -1692,7 +1693,6 @@ INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm7.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmr7.tfm
-INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmssbx10.tfm
 INPUT ./pics/SCHNECKE.pdf
 INPUT pics/SCHNECKE.pdf
 INPUT ./pics/SCHNECKE.pdf

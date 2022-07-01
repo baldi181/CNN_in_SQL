@@ -43,7 +43,7 @@ Für ein Klassifikationsproblem, bei dem die Klassen nicht linear trennbar sind,
 
 \section{Multi-Layer-Perzeptron}
 \label{MLP_abs}
-In dieser Arbeit wird ein Künstliches Neuronales Netz als eine Menge von Perzeptronen, die in gewissen Schichten partitioniert und miteinander verbunden sind, notiert. Diese sogenannten \textit{Multi-Layer-Perzeptronen}, kurz MLP,  gelten als erste tiefe neuronale Netze und sind seit den späten 1980er Gegenstand der Forschung\cite{bourlard1990links,bounds1988multilayer,MLPbook}. Zunächst sind einige Definition notwendig, um eine lesbare Notation von MLPs zu geben.
+In dieser Arbeit wird ein Künstliches Neuronales Netz als eine Menge von Perzeptronen, die in gewissen Schichten partitioniert und miteinander verbunden sind, notiert. Diese sogenannten \textit{Multi-Layer-Perzeptronen}, kurz MLP,  gelten als erste tiefe neuronale Netze und sind seit den späten 1980er Gegenstand der Forschung\cite{bourlard1990links,bounds1988multilayer,MLPbook}. Zunächst sind einige Definition notwendig, um eine lesbare Notation des MLPs zu geben.
 
 \begin{defi}[Übertragungsfunktion]
     \label{def_net}
@@ -75,14 +75,14 @@ Typische Aktivierungsfunktionen, die oft verwendet werden, sind die:
     der Vektor bezeichnet, welcher sich durch die elementweise Auswertung der Aktivierungsfunktion $\psi$ an den Stellen $x_1, \ldots, x_n$ ergibt. 
 \end{bem}
 
-Bei Klassifikationsproblemen wird oft die \textit{Softmax}-Funktion\cite{denker1990transforming} genutzt, welche die gesamte Eingabe berücksichtigt. Im Abschnitt \ref{task_training} wird erläutert, warum sich in diesem Fall diese Softmax-Funktion anbietet.
+Bei Klassifikationsproblemen wird oft die \textit{Softmax}-Funktion\cite{denker1990transforming} genutzt, welche die gesamte Eingabe berücksichtigt. Im Abschnitt \ref{task_training} wird erläutert, warum sich in diesem Fall die Softmax-Funktion eignet.
 
 \begin{defi}[Softmax]
     Für $x \in \RR^n$ wird die Funktion $\psi: \RR^n \rightarrow (0,1]^n$ mit 
     \[
         \psi(x):=\left(\frac{\mathrm{e}^{x_1}}{\sum_{i=1}^n \mathrm{e}^{x_i}}, \ldots,\frac{\mathrm{e}^{x_n}}{\sum_{i=1}^n \mathrm{e}^{x_i}} \right)^T
     \]
-    als Softmax-Funktion definiert. Da sich die Einträge des Vektors $\psi(x)$ zu Eins summieren, kann die Aktivierung als eine Verteilung interpretiert werden, welche die Wahrscheinlichkeiten für bestimmte Klassenzugehörigkeiten angeben.  
+    als Softmax-Funktion definiert. Die Einträge des Vektors $\psi(x)$ summieren sich zu Eins.  
 \end{defi}
 
 Für den späteren Trainingsprozess ist es nützlich, die Ableitung der verwendeten Aktivierungsfunktion, sofern sie exisitiert, zur Verfügung zu haben. Zudem ist es möglich, für bestimmte Aktivierungsfunktionen die Ableitung nur mithilfe der verwendeten Funktion zu berechnen.
@@ -135,10 +135,10 @@ Um die Notation übersichtlich zu halten, bezeichne $\Psi^{W^{(k)},b^{(k)},\psi_
     Die Eingabeschicht $\mathcal{S}_0$ besitzt keine Parameter $W$ und $b$ und besteht nur aus dem Eingabevektor $x \in \RR^{s_0}$. Die letzte Schicht $\Psi^{W^{(l)},b^{(l)},\psi_{l}}$ wird als Ausgabeschicht bezeichnet. Weiter werden die Schichten $\mathcal{S}_1, \ldots, \mathcal{S}_{l-1}$ als verdeckte Schichten definiert. Die Funktionsauswertung $\Lambda_l(x)$ für eine Eingabe $x$ wird Vorwärtsrechnung, engl. \textit{forward propagation}, genannt.
 \end{defi}
 Das MLP-Modell wird im weiteren Verlauf dieser Arbeit repräsentativ als Künstliches Neuronales Netz bezeichnet. Das zuvor angesprochene XOR-Problem kann nun beispielsweise mithilfe eines KNN bestehend aus zwei Schichten gelöst werden\cite{Goodfellow-et-al-2016}.
-Es lassen sich zwischen Modell- und Hyperparameter von KNNs unterscheiden.
+Es lassen sich zwischen Modell- und Hyperparameter von KNN unterscheiden.
 
 \begin{defi}[Hyper- und Modellparameter]
-    Sei für $l \in \mathbb{N}$ ein KNN $\Lambda_l$ gegeben. Dann werden die Eingabe- und Ausgabedimension $s_0, s_l$, die Anzahl $l$ der Schichten, die Anzahl $l-1$ der verdeckten Schichten sowie die verwendeten Aktivierungsfunktion $\psi_l$ Hyperparameter des neuronalen Netzes genannt.
+    Sei für $l \in \mathbb{N}$ ein KNN $\Lambda_l$ gegeben. Dann werden die Eingabe- und Ausgabedimension $s_0, s_l$, die Anzahl $l$ der (verdeckten) Schichten sowie die verwendeten Aktivierungsfunktion $\psi_l$ Hyperparameter des neuronalen Netzes genannt.
     Die Gewichtsmatrizen und Biasvektoren mit den entsprechend passenden Abmessungen stellen die Modellparameter $\mathcal{W}:=\{(W^{(i)},b^{(i)}): \; i=1, \ldots, l\}$ des neuronales Netzes dar. 
 \end{defi}
 Die Hyperparameter werden oft anwendungsspezifisch für das jeweilige Problem gewählt, während die Modellparameter dynamisch in einem Trainingsprozes angepasst werden, sodass die gegebene Aufgabe zufriedenstellend gelöst wird. Wie sies geschieht, wird im folgenden Abschnitt \ref{task_training} erläutert.
@@ -149,20 +149,28 @@ Künstliche Neuronale Netze gehören zu den typischen Vertretern von maschinelle
 
 In den folgenden Abschnitten wird das Klassifikationsproblem im Mittelpunkt stehen. Weiter werden KNNs als Modellschätzer aus der Wahrscheinlichkeitstheorie interpretiert und fundamentale Aussagen wie das \textit{Universal-Approximation-Theroem}\cite{HORNIK1989359} gegeben. Schließlich wird bezüglich der Klassifikationsaufgabe das Training neuronaler Netze erläutert.
 
+
+\subsection{Neuronale Netze als universelle Schätzer}
+\label{NN_estimators_abs}
+Beim Klassifikationsproblem müssen bestimmte bedingte Wahrscheinlichkeiten, die in diesem Abschnitt erklärt werden, ermittelt werden. Oft wird dazu die Ausgabeschicht eines KNN als Wahrscheinlichkeit interpretiert und daher KNN als Schätzer der bedingten Wahrscheinlichkeiten eingesetzt. Zunächst werden Klassifikationsfunktion und -problem definiert.
 \begin{defi}
-    Seien die Mengen $D \subset \RR^n$ und $\mathcal{C}=\{c_1, \ldots, c_m\}$ gegeben. Eine Funktion $f: D \rightarrow \mathcal{C}$, welche ein Element aus $D$ einer Klasse $c_i \in \mathcal{C}$ zuordnet, wird Klassifikationsfunktion genannt. Hier gibt es $m \in \mathbb{N}$ verschiedene Klassenlabels.
+    \label{def_classfun}
+    Seien die Mengen $D \subset \RR^n$ und $\mathcal{C}=\{c_1, \ldots, c_m\}$ gegeben. Eine Funktion $f: D \rightarrow \mathcal{C}$, welche ein Element aus $D$ einer Klasse $c_i \in \mathcal{C}$ zuordnet, wird Klassifikationsfunktion genannt. Hier gibt es $m \in \mathbb{N}$ verschiedene Klassenlabels. Die Menge $D$ wird abstrakter Datensatz genannt.
 \end{defi}
 
 Das Ziel beim Klassifikationsproblem ist die Approximation einer nicht bekannten Klassifikationsfunktion $f:D \rightarrow \mathcal{C}$ durch ein Modell $\tilde{f}: D \rightarrow \mathcal{C}$. 
-In dieser Arbeit werden dafür KNNs genutzt, welche als probabilistische Modelle auf folgende Weise genutzt werden. Auf der Ergebnismenge $\Omega= D \times \mathcal{C}$ sei die nicht bekannte gemeinsame (Wahrscheinlichkeits-) Verteilung $p_{Daten}(x,c)$, genannt Datenverteilung, gegeben. Ein Modell soll nun konstruiert werden, welches die posterior-Verteilung $p_{Daten}(\cdot \; | \; x)$ der Klassen schätzt. In dieser Arbeit werden KNNs so benutzt, dass die Klassenzugehörigkeit direkt anhand der Eingabe $x \in D$ geschätzt wird. Die Funktion $P_{Daten}: D \rightarrow [0,1]^m$ mit
+In dieser Arbeit werden dafür KNNs genutzt, welche als probabilistische Modelle auf folgende Weise genutzt werden. Auf der Ergebnismenge $\Omega= D \times \mathcal{C}$ sei die nicht bekannte gemeinsame (Wahrscheinlichkeits-) Verteilung $p_{Daten}(x,c)$, genannt Datenverteilung, gegeben. Ein Modell soll nun konstruiert werden, welches die posterior-Verteilung $p_{Daten}(\cdot \; | \; x)$ der Klassen schätzt. 
+
+In dieser Arbeit werden KNN so benutzt, dass die Klassenzugehörigkeit direkt anhand der Eingabe $x \in D$ geschätzt wird. Die Funktion $P_{Daten}: D \rightarrow [0,1]^m$ mit
 \begin{equation}
     P_{Daten}(x):=\left(p_{Daten}(c_1 \; | \; x), \ldots, p_{Daten}(c_m \; | \; x)\right)^T \in \RR^m
 \end{equation} soll für alle $x \in D$ approximiert werden. Dazu wird die Funktion $P_{Modell}: D \rightarrow [0,1]^m$ mit 
 \begin{equation}
     P_{Modell}(x;\mathcal{W}):=\left(p_{Modell}(c_1 \; | \; x; \mathcal{W}), \ldots, p_{Modell}(c_m \; | \; x; \mathcal{W})\right)^T \in \RR^m
 \end{equation}
- für alle $x \in D$ asl Approximation genutzt, welche von den Modellparametern $\mathcal{W}$ abhängig ist. Die Klassifikationsfunktion des Modells ergibt sich als
+ für alle $x \in D$ als Approximation genutzt, welche von den Modellparametern $\mathcal{W}$ abhängig ist. Die Klassifikationsfunktion des Modells ergibt sich als
 \begin{equation}
+    \label{f_modell}
     f_{Modell}(x):= \underset{c \in \mathcal{C}}{\mathrm{argmax}} \; p_{Modell}(c \; | \; x).
 \end{equation}
 
@@ -170,10 +178,11 @@ Es stellt sich die Frage, inwiefern das MLP als Modell genutzt werden kann, um b
 
 \begin{satz}[Universal-Approximation-Theroem\cite{gruen}]
     \label{UAT}
-    Sei $\psi_1$ eine nichtkonstante, beschränkkte Aktivierungsfunktion und $id: \RR \rightarrow \RR$ die Identität sowie $D \subset \RR^n$ kompakt. Dann existieren für alle $\varepsilon >0$ und stetigen Funktionen $f: D \rightarrow \RR$ die Parameter $N \in \mathbb{N}, W^{(1)} \in \RR^{n \times N}, b^{(1)} \in \RR^N$ sowie $W^{(2)} \in \RR^{N \times 1}$, sodass
-    \begin{equation*}
+    Sei $\psi_1$ eine nichtkonstante, beschränkkte Aktivierungsfunktion und $id: \RR \rightarrow \RR$ die Identität sowie $D \subset \RR^n$ kompakt. Dann existieren für alle $\varepsilon >0$ und stetigen Funktionen $f: D \rightarrow \RR$ Parameter $N \in \mathbb{N}, W^{(1)} \in \RR^{n \times N}, b^{(1)} \in \RR^N$ sowie $W^{(2)} \in \RR^{N \times 1}$, sodass
+    \begin{equation}
+        \label{UAP_eq}
         \left|f(x)-\Psi^{W^{(2)},0,id} \circ \Psi^{W^{(1)},b^{(1)},\psi_1}(x)\right| < \varepsilon, \; \; \forall x \in D
-    \end{equation*}
+    \end{equation}
     gilt.
 \end{satz}
 
@@ -181,21 +190,59 @@ Es stellt sich die Frage, inwiefern das MLP als Modell genutzt werden kann, um b
     Ein Beweis kann in Hornik\cite{hornik1991approximation} nachgelesen werden.
 \end{proof}
 
-Das Universal-Approximation-Theroem kann ebenfalls für unbeschränkte Funktion,z.B. ReLU, erweitert werden. 
+Das Universal-Approximation-Theroem kann ebenfalls auf unbeschränkte und nichtkonstante Funktion $f:D \rightarrow \RR^m$ erweitert werden. Heutzutage wird oft die ReLU-Funktion als Aktivierungsfunktion verwendet\cite{schmidt2020nonparametric,li2017convergence}.
 
 \begin{kor}
-    Mit den gleichen Vorraussetzungen wie in Satz \ref{UAT} gilt die Abschätzung für $\psi_1(x)=\max\{0,x\}$.
+    Mit den gleichen Vorraussetzungen wie in Satz \ref{UAT} gilt die Abschätzung \ref{UAP_eq} für $\psi_1(x)=\max\{0,x\}$.
 \end{kor}
 
 \begin{proof}
     Siehe Sonoda et. al.\cite{sonoda2017neural}.
 \end{proof}
+
 Hinsichtlich der Approximation von beliebigen Funktionen $P_{Daten}$ mithilfe eines neuronalen Netzes mit der Softmax-Funktion als Aktivierungsfunktion liefert Strauß\cite{strauss} folgendes Resultat.
 
 \begin{kor}
-    Ein MLP mit zwei Schichten, wobei $\psi_2$ die Softmax-Funktion ist, kann genutzt werden, um stetige Funktionen $f:K \rightarrow [0,1]^m$, welche von einem Kompaktum $K$ in eine (Wahrscheinlichkeits)-Verteilung über die Klassen $\mathcal{C}$ abbilden, beliebig genau zu approximieren.
+    \label{kor_softmax}
+    Ein MLP mit zwei Schichten, wobei $\psi_2$ die Softmax-Funktion ist, kann genutzt werden, um stetige Funktionen $f:K \rightarrow [0,1]^m$, welche von einem Kompaktum $K \subset \RR^n$ in eine (Wahrscheinlichkeits)-Verteilung über die Klassen $\mathcal{C}$ abbilden, beliebig genau zu approximieren.
 \end{kor}
 
 \begin{proof}
     Siehe \cite{strauss}.
 \end{proof}
+
+Die Aussage kann auf das MLP mit beliebig vielen Schichten erweitert werden.
+In dieser Arbeit umfasst die Menge $D$ aus Definition \ref{def_classfun} digitalisierte Objekte und ist endlich und damit kompakt. Daher kann wegen Korollar \ref{kor_softmax} das MLP als Modell genutzt werden, um stetige Funktionen $P_{Daten}$ sinnvoll zu approximieren.
+
+\subsection{Optimale Parameterwahl bei neuronalen Netzen}
+
+Wird ein künstliches neuronales Netz als probabilistisches Modell genutzt und sind die Hyperparameter festgelegt, müssen die Modellparameter $\mathcal{W}$ gewählt werden. Um die Approximationsgüte messbar zu machen, werden Fehlerfunktionen genutzt, welche mithilfe des Gradientenverfahrens aus Kapitel \ref{fund} durch die Anpassung der Parameter $\mathcal{W}$ in einem Trainingsprozess minimiert werden.
+
+\begin{defi}[Trainingsmenge]
+    Seien $p_{daten}$ eine Datenverteilung und $\Omega=D \times \mathcal{C}$. Dann heißt für ein $k \in \mathbb{N}$ die Menge
+    \begin{equation*}
+        \mathcal{T}:=\left\{ (x^{(i)},c^{(i)}) \; | \; i \in [k] \right\} \subset \Omega
+    \end{equation*}
+    Trainingsmenge bestehend aus $k$ Trainingsdaten, welche unabhängig durch $p_{Daten}$ generiert wurde.
+\end{defi}
+
+Die Güte eines Modells $f_{Modell}$ wird als Likelihood gegeben einer Trainingsmenge $\mathcal{T}$ gemessen und ist durch 
+
+\begin{equation*}
+    L(\mathcal{T},\mathcal{W}):=\prod_{(x,c) \in \mathcal{T}} p_{Modell}(c \; | \; x; \mathcal{W})
+\end{equation*}
+gegeben\cite{bishop2006pattern}.
+Ziel ist es, dass $P_{Modell}$ und $P_{Daten}$ übereinstimmen und daher wird versucht, die Likelihood zu maximieren. Für einen gegebene Trainingsmenge $\mathcal{T}$ soll das Produkt über alle Wahrscheinlichkeiten der korrekten Klassenzugehörigkeiten maximiert werden. Dieser Ansatz wird \textit{Maximum Likelihood-Methode}\cite{ruschendorf2014mathematische} genannt und die Parameterwahl des Modells wird durch eine Lösung des Optimierungsproblems 
+\begin{equation}
+    \label{opt_likelihood}
+     \prod_{(x,c) \in \mathcal{T}} p_{Modell}(c \; | \; x; \mathcal{W}) \rightarrow \max
+\end{equation}
+gegeben. Dabei sei bemerkt, dass die Optimierung unabhängig von den Hyperparametern vorgenommen wird.
+
+Für ein Trainingspaar $(x,c) \in \mathcal{T}$ bezeichne $t \in \RR^m$ den Zielvektor mit den Komponenten
+\begin{equation*}
+    t_i:= \begin{cases}
+        1 &, \text{wenn} \, c=c_i \\
+        0 &, \text{sonst}
+    \end{cases}, \; \; \forall i \in [m].
+\end{equation*} 

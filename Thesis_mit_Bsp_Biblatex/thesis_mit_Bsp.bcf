@@ -2362,12 +2362,16 @@
     <bcf:citekey order="12">HORNIK1989359</bcf:citekey>
     <bcf:citekey order="13">gruen</bcf:citekey>
     <bcf:citekey order="14">hornik1991approximation</bcf:citekey>
-    <bcf:citekey order="15">sonoda2017neural</bcf:citekey>
-    <bcf:citekey order="16">strauss</bcf:citekey>
+    <bcf:citekey order="15">schmidt2020nonparametric</bcf:citekey>
+    <bcf:citekey order="15">li2017convergence</bcf:citekey>
+    <bcf:citekey order="16">sonoda2017neural</bcf:citekey>
     <bcf:citekey order="17">strauss</bcf:citekey>
-    <bcf:citekey order="18">gruening</bcf:citekey>
-    <bcf:citekey order="19">goodfellow</bcf:citekey>
-    <bcf:citekey order="20">forster1983analysis</bcf:citekey>
+    <bcf:citekey order="18">strauss</bcf:citekey>
+    <bcf:citekey order="19">bishop2006pattern</bcf:citekey>
+    <bcf:citekey order="20">ruschendorf2014mathematische</bcf:citekey>
+    <bcf:citekey order="21">gruening</bcf:citekey>
+    <bcf:citekey order="22">goodfellow</bcf:citekey>
+    <bcf:citekey order="23">forster1983analysis</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">
