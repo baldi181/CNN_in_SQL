@@ -8,13 +8,15 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {algorithm}{\numberline {1}{\ignorespaces Vorwärtsrechnung\relax }}{7}{algorithm.1}%
 \defcounter {refsection}{0}\relax 
-\addvspace {10\p@ }
+\contentsline {algorithm}{\numberline {2}{\ignorespaces Mini-Batch-Verfahren\relax }}{11}{algorithm.2}%
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {algorithm}{\numberline {2}{\ignorespaces An algorithm with caption\relax }}{20}{algorithm.2}%
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {algorithm}{\numberline {3}{\ignorespaces An algorithm with caption\relax }}{20}{algorithm.3}%
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
