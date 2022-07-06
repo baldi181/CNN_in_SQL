@@ -33,7 +33,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {3.4}Zusammenfassung}{12}{section.3.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {4}Faltbare neuronale Netze}{14}{chapter.4}%
+\contentsline {chapter}{\numberline {4}Gefaltete neuronale Netze}{14}{chapter.4}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.1}Die Faltungsoperation}{14}{section.4.1}%
 \defcounter {refsection}{0}\relax 

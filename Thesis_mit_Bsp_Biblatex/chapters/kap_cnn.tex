@@ -1,9 +1,20 @@
-\chapter{Faltbare neuronale Netze}
+\chapter{Gefaltete neuronale Netze}
 \label{kap:CNN}
 
-In diesem Kapitel wird erläutert, wie die Faltung (engl. \textit{convolution}) bei CNNs zu verstehen ist und wie diese Operation bei diesen neuronalen Netzen motiviert wird. In diesem Zusammenhang werden Begriffe wie Merkmalskarten (engl. \textit{feature maps}) und Filter (engl. \textit{kernels}) eingeführt. Des Weiteren wird die Arithmetik der Faltungsoperation für zweidimensionale Eingaben, repräsentiert durch Matrizen, erklärt und das Verfahren \textit{padding} beziehungsweise das Nutzen von \textit{strides} erläutert. Das gesamte Kapitel wird mit konkreten Beispielen begleitet, um die verschiedenen Effekte der Faltungsoperation zu beleuchten.
+Feed-Forward-Netze gelten als leistungsstarke maschinelle Lernmethoden, da sie so trainiert werden können, um beliebige komplexe Funktionen abhängig von einer vektorwertigen Eingabe zu approximieren. Ist die Dimension der Eingabeschicht jedoch zu groß, treten bei klassischen FFN Probleme hinsichtlich der Paramteranzahl auf. In Anwendungen der Computergrafik sollen oft digitalisierte Bilder klassifiziert werden. Wird ein MLP mit $100$ Ausgabeneuronen genutzt und jeder Pixel eines Bildes mit den Abmessungen $1000 \times 1000$ als Merkmal genutzt, so ergeben sich bereits $10^8+100$ freie Parameter. Stehen nur relativ wenige Traingsdaten zur Verfügung, ist die Struktur des FFN zu komplex und dies kann zur Überanpassung führen\cite{caruana2000overfitting,bilbao2017overfitting}. Die Parameteranzahl muss also deutlich reduziert werden. Konzepte wie \textit{Parameter Sharing} und spärliche Konnektivität, engl. \textit{sparse connectivity} erlauben diese Reduktion, vgl \cite{Goodfellow-et-al-2016} und werden in den folgenden Abschnitten erläutert.
+
+Ein weiterer Nachteil des FFN ergibt sich dadurch, dass Korrelationen von benachbarten Eingabeneuronen, z.B. Bilsegmente wie Kanten oder Ecken, nicht miteinbezogen werden. Es muss also eine Modell entwickelt werden, welches diese lokalen Muster extrahiert und sie miteinander verknüpft. Das Modell sollte zudem äquivariant gegenüber Translationen sein. 
+
+Schließlich sind beim FFN die Eingabe- und Ausgabedimension fixiert. Eine flexible Wahl diser Hyperparameter ist bei Problemen der Computergrafik oft erwünscht. 
+
+In diesem Kapitel wird erläutert, wie gefaltete neuronale Netze die erwähnten Nachteile von FFN umgehen. CNN sind in der Lage, lokale Muster zu erkennen, sind äquivariant gegenüber Translationen und realisieren Konzepte wie Parameter Sharing, um die Anzahl der freien Parameter drastisch zu reduzieren. So gelingt es, besonders bei Aufgaben der Computergrafik \cite{DBLP:conf/nips/KrizhevskySH12, DBLP:journals/pieee/LeCunBBH98,DBLP:conf/cvpr/CiresanMS12} die Generalisierungsrate gegenüber klassichen FFN zu erhöhen.
+
+Gefaltete neuronale Netze unterscheiden sich von FFN bei der Berechnung der Übertragungsfunktion. Dazu wird die gefaltete Übertragungsfunktion definiert, welche das Konzept der diskreten Faltung nutzt. Im folgenden Abschnitt \ref{abs:conv_theorie}wird zunächst die Faltung als mathematische Operation eingeführt und deren Zusammenhang zur Fourier-Transformation\cite{werner2011funktionalanalysis} erläutert. Anschließend wird im Abschnitt \ref{abs:conv_def} das CNN-Modell definiert. 
+
+%bei CNNs zu verstehen ist und wie diese Operation bei diesen neuronalen Netzen motiviert wird. In diesem Zusammenhang werden Begriffe wie Merkmalskarten (engl. \textit{feature maps}) und Filter (engl. \textit{kernels}) eingeführt. Des Weiteren wird die Arithmetik der Faltungsoperation für zweidimensionale Eingaben, repräsentiert durch Matrizen, erklärt und das Verfahren \textit{padding} beziehungsweise das Nutzen von \textit{strides} erläutert. Das gesamte Kapitel wird mit konkreten Beispielen begleitet, um die verschiedenen Effekte der Faltungsoperation zu beleuchten.
 
 \section{Die Faltungsoperation}
+\label{abs:conv_theorie}
 In der Analysis ist die Faltung ein mathematischer Operator und liefert für zwei Funktionen $f$ und $g$ die Funktion $ f \ast g$, wobei mit dem Sternchen die Faltungsoperation gemeint ist.
 
 \begin{defi}[Faltung]\label{allg_faltung}
@@ -14,9 +25,9 @@ In der Analysis ist die Faltung ein mathematischer Operator und liefert für zwe
     definiert, wobei gefordert wird, dass das Integral für fast alle $x$ wohldefiniert ist.
    \end{defi}
 
-Bei klassischen neuronalen Netzen, siehe Kapitel \ref{classicNN} werden Eingabedaten durch eine Verkettung von affinen Transformationen verarbeitet. Typischerweise wird die Eingabe als Vektor dargestellt und  mit einer Matrix multipliziert, gegebenenfalls mit einem Biasvektor manipuliert und schließlich so die Ausgabe generiert. Bilder-, Audio- oder Videoaufnahmen besitzen jedoch mehrere Merkmale in unterschiedlichen Achsen. Oft sind solche Eingabedaten im Bereich des Machine-Learnings als mehrdimensionale Arrays abgelegt, welche eine oder mehrere Achsen repräsentieren, wobei die Ordnung dieser eine Rolle spielt. Bei digitalisierten Bildern sind das bespielsweise die Höhe und Breite des Bildes, bei Audioaufnahmen gibt es nur eine Achse, und zwar die Zeitachse. Hinzu kommen Kanalachsen als weitere Verfeinerung der Daten, zum Beispiel besitzen RGB-Farbbilder drei Kanäle der Farben rot, grün und blau. 
+%Bei klassischen neuronalen Netzen, siehe Kapitel \ref{classicNN} werden Eingabedaten durch eine Verkettung von affinen Transformationen verarbeitet. Typischerweise wird die Eingabe als Vektor dargestellt und  mit einer Matrix multipliziert, gegebenenfalls mit einem Biasvektor manipuliert und schließlich so die Ausgabe generiert. Bilder-, Audio- oder Videoaufnahmen besitzen jedoch mehrere Merkmale in unterschiedlichen Achsen. Oft sind solche Eingabedaten im Bereich des Machine-Learnings als mehrdimensionale Arrays abgelegt, welche eine oder mehrere Achsen repräsentieren, wobei die Ordnung dieser eine Rolle spielt. Bei digitalisierten Bildern sind das bespielsweise die Höhe und Breite des Bildes, bei Audioaufnahmen gibt es nur eine Achse, und zwar die Zeitachse. Hinzu kommen Kanalachsen als weitere Verfeinerung der Daten, zum Beispiel besitzen RGB-Farbbilder drei Kanäle der Farben rot, grün und blau. 
 
-Diese speziellen Eigenschaften können bei affinen Transformationen nicht berücksichtigt werden. Alle Merkmale sowie Achsen werden gewissermaßen gleich behandelt und die wesentliche topologische Struktur kann so nicht zum Vorteil ausgenutzt werden. Hier soll nun die sogenannte diskrete Faltung Abhilfe schaffen.
+%Diese speziellen Eigenschaften können bei affinen Transformationen nicht berücksichtigt werden. Alle Merkmale sowie Achsen werden gewissermaßen gleich behandelt und die wesentliche topologische Struktur kann so nicht zum Vorteil ausgenutzt werden. Hier soll nun die sogenannte diskrete Faltung Abhilfe schaffen.
 
 \begin{defi}[Diskrete Faltung]\label{disk_faltung}
     Für zwei Funktionen $f,g: D \rightarrow \mathbb{C}$ mit einem diskreten Definitionsbereich $D \subseteq \mathbb{Z}^n$ ist die diskrete Faltung als
@@ -82,7 +93,7 @@ beeinflusst. Mit zero padding ist gemeint, dass künstliche Nullen um Randpixel 
 
 \section{Motivation der Faltung}
 ..
-Sie nutzt wichtige Konzepte zur Optimierung von Machine-Learning-Verfahren wie spärliche Konnektivität (engl. \textit{sparse connectivity}), \textit{Parameter Sharing} und \textit{äquivariante Repräsentation}, vgl. \cite{goodfellow}. Spärlicher Konnektivität bedeutet, dass die Ausgabeeinheit auf einer bestimmten Schicht nur durch wenige Eingabeeinheiten beeinflusst wird. Dies ist bei CNNs typisch, da meist die verwendeten Filter viel kleiner als die Eingabe ist. Noch mehr erklären + Abbildung
+Sie nutzt wichtige Konzepte zur Optimierung von Machine-Learning-Verfahren wie spärliche Konnektivität (engl. \textit{sparse connectivity}), \textit{Parameter Sharing} und \textit{äquivariante Repräsentation}, vgl. \cite{goodfellow}. Spärliche Konnektivität bedeutet, dass Neuronen auf einer Schicht $\mathcal{s}_{l+1}$ nur durch wenige Neuronen der Schicht $\mathcal{S}_l$ beeinflusst wird. Dies ist bei CNNs typisch, da meist die verwendeten Filter viel kleiner als die Eingabe ist. Noch mehr erklären + Abbildung
 
 Mit Parameter Sharing ist die Nutzung von gleichen Parametern für mehrere Funktionen im neuronalen Netz gemeint. In herkömmlichen Feed-Forward-Netzen wird jedes Element der Gewichtsmatrizen für die Berechnung der Aktivierungen der jeweiligen Schichten verwendet. Anschließend werden diese Gewichte dann nicht mehr gebraucht. Im Zusammenhang von CNNs bedeutet Parameter Sharing während der Faltungsoperation, dass nur eine bestimmte Menge von Parametern erlernt werden müssen
 Noch mehr erklären + Abbildung

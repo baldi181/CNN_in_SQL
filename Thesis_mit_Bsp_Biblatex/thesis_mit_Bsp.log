@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.1)  6 JUL 2022 18:19
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.1)  7 JUL 2022 01:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1434,36 +1434,36 @@ Overfull \hbox (8.53754pt too wide) in paragraph at lines 220--221
 [9] [10] [11] [12]) (./chapters/kap_cnn.tex [13]
 chapter 4.
 
-LaTeX Warning: Reference `classicNN' on page 14 undefined on input line 17.
+LaTeX Warning: Reference `abs:conv_def' on page 14 undefined on input line 12.
 
 [14
 
 ]
-Overfull \hbox (1.4704pt too wide) in paragraph at lines 25--27
+Overfull \hbox (1.4704pt too wide) in paragraph at lines 36--38
 \T1/lmr/m/it/12 definiert. Hier wird über dem ge-sam-ten De-fi-ni-ti-ons-be-reich $\OML/lmm/m/it/12 D$ \T1/lmr/m/it/12 sum-miert. Ist $\OML/lmm/m/it/12 D$ \T1/lmr/m/it/12 be-schränkt,
  []
 
-LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 60.
+LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 71.
 (c:/texlive/2021/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) [15]
-<pics/abb_simpleconv.png, id=381, 581.17125pt x 472.01344pt>
+<pics/abb_simpleconv.png, id=395, 581.17125pt x 472.01344pt>
 File: pics/abb_simpleconv.png Graphic file (type png)
 <use pics/abb_simpleconv.png>
-Package pdftex.def Info: pics/abb_simpleconv.png  used on input line 68.
+Package pdftex.def Info: pics/abb_simpleconv.png  used on input line 79.
 (pdftex.def)             Requested size: 355.09178pt x 288.40312pt.
 
-Underfull \hbox (badness 2990) in paragraph at lines 70--70
+Underfull \hbox (badness 2990) in paragraph at lines 81--81
 [][][]|\T1/lmr/m/n/12 Es wird die Merk-mals-kar-te $\OML/lmm/m/it/12 S \OMS/lmsy/m/n/12 2 \U/msb/m/n/12 R[]$ \T1/lmr/m/n/12 mit den Pa-ra-me-tern
  []
 
-<pics/abb_simplecov_padding.png, id=382, 578.16pt x 411.78844pt>
+<pics/abb_simplecov_padding.png, id=396, 578.16pt x 411.78844pt>
 File: pics/abb_simplecov_padding.png Graphic file (type png)
 <use pics/abb_simplecov_padding.png>
-Package pdftex.def Info: pics/abb_simplecov_padding.png  used on input line 75.
+Package pdftex.def Info: pics/abb_simplecov_padding.png  used on input line 86.
 (pdftex.def)             Requested size: 355.09178pt x 252.90593pt.
 
-Underfull \hbox (badness 2990) in paragraph at lines 77--77
+Underfull \hbox (badness 2990) in paragraph at lines 88--88
 [][][]|\T1/lmr/m/n/12 Es wird die Merk-mals-kar-te $\OML/lmm/m/it/12 S \OMS/lmsy/m/n/12 2 \U/msb/m/n/12 R[]$ \T1/lmr/m/n/12 mit den Pa-ra-me-tern
  []
 
@@ -1485,7 +1485,7 @@ although it is yet undefined on input line 100.
 [18
 
 ]
-<pics/SCHNECKE.pdf, id=424, 289.08pt x 289.08pt>
+<pics/SCHNECKE.pdf, id=438, 289.08pt x 289.08pt>
 File: pics/SCHNECKE.pdf Graphic file (type pdf)
 <use pics/SCHNECKE.pdf>
 Package pdftex.def Info: pics/SCHNECKE.pdf  used on input line 199.
@@ -1520,7 +1520,10 @@ Overfull \hbox (10.22371pt too wide) in paragraph at lines 309--309
 []\T1/lmr/m/n/12 J. Park und I. W. Sand-berg. ^^R  Uni-ver-sal Ap-pro-xi-ma-ti-on Using Radial-Basis-Function
  []
 
-[25] [26
+[25] [26] [27
+
+] [28
+
 
 ]
 chapter A.
@@ -1531,7 +1534,7 @@ File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
 ) (c:/texlive/2021/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 ) (./code/HelloWorld.java)
-<AnleitungBibLatexBiber.pdf, id=487, 597.50829pt x 845.0471pt>
+<AnleitungBibLatexBiber.pdf, id=511, 597.50829pt x 845.0471pt>
 File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 <use AnleitungBibLatexBiber.pdf>
 Package pdftex.def Info: AnleitungBibLatexBiber.pdf  used on input line 360.
@@ -1540,7 +1543,7 @@ File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 <use AnleitungBibLatexBiber.pdf>
 Package pdftex.def Info: AnleitungBibLatexBiber.pdf  used on input line 360.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-<AnleitungBibLatexBiber.pdf, id=490, page=1, 597.50829pt x 845.0471pt>
+<AnleitungBibLatexBiber.pdf, id=514, page=1, 597.50829pt x 845.0471pt>
 File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 <use AnleitungBibLatexBiber.pdf, page 1>
 Package pdftex.def Info: AnleitungBibLatexBiber.pdf , page1 used on input line 360.
@@ -1550,8 +1553,6 @@ File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 Package pdftex.def Info: AnleitungBibLatexBiber.pdf , page1 used on input line 360.
 (pdftex.def)             Requested size: 537.75249pt x 760.53537pt.
  [1
-
-
 
 ]
 File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
@@ -1567,7 +1568,7 @@ File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 Package pdftex.def Info: AnleitungBibLatexBiber.pdf , page1 used on input line 360.
 (pdftex.def)             Requested size: 537.75249pt x 760.53537pt.
  [2 <./AnleitungBibLatexBiber.pdf>]
-<AnleitungBibLatexBiber.pdf, id=555, page=2, 597.50829pt x 845.0471pt>
+<AnleitungBibLatexBiber.pdf, id=578, page=2, 597.50829pt x 845.0471pt>
 File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 <use AnleitungBibLatexBiber.pdf, page 2>
 Package pdftex.def Info: AnleitungBibLatexBiber.pdf , page2 used on input line 360.
@@ -1591,18 +1592,18 @@ Package logreq Info: Writing requests to 'thesis_mit_Bsp.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 53926 strings out of 478353
- 1216184 string characters out of 5852101
- 2163399 words of memory out of 5000000
- 70984 multiletter control sequences out of 15000+600000
+ 53947 strings out of 478353
+ 1217119 string characters out of 5852101
+ 2163934 words of memory out of 5000000
+ 70997 multiletter control sequences out of 15000+600000
  492040 words of font info for 83 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  125i,20n,120p,10658b,3125s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}<c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmro12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss17.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss9.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmtt12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis_mit_Bsp.pdf (41 pages, 1181859 bytes).
+Output written on thesis_mit_Bsp.pdf (43 pages, 1186359 bytes).
 PDF statistics:
- 829 PDF objects out of 1000 (max. 8388607)
- 712 compressed objects within 8 object streams
- 198 named destinations out of 1000 (max. 500000)
+ 855 PDF objects out of 1000 (max. 8388607)
+ 736 compressed objects within 8 object streams
+ 206 named destinations out of 1000 (max. 500000)
  359 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -2386,9 +2386,16 @@
     <bcf:citekey order="35">forster2017analysis</bcf:citekey>
     <bcf:citekey order="36">rojas96neural</bcf:citekey>
     <bcf:citekey order="37">blum1992training</bcf:citekey>
-    <bcf:citekey order="38">gruening</bcf:citekey>
-    <bcf:citekey order="39">goodfellow</bcf:citekey>
-    <bcf:citekey order="40">forster1983analysis</bcf:citekey>
+    <bcf:citekey order="38">caruana2000overfitting</bcf:citekey>
+    <bcf:citekey order="38">bilbao2017overfitting</bcf:citekey>
+    <bcf:citekey order="39">Goodfellow-et-al-2016</bcf:citekey>
+    <bcf:citekey order="40">DBLP:conf/nips/KrizhevskySH12</bcf:citekey>
+    <bcf:citekey order="40">DBLP:journals/pieee/LeCunBBH98</bcf:citekey>
+    <bcf:citekey order="40">DBLP:conf/cvpr/CiresanMS12</bcf:citekey>
+    <bcf:citekey order="41">werner2011funktionalanalysis</bcf:citekey>
+    <bcf:citekey order="42">gruening</bcf:citekey>
+    <bcf:citekey order="43">goodfellow</bcf:citekey>
+    <bcf:citekey order="44">forster1983analysis</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">

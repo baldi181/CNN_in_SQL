@@ -19,6 +19,38 @@
 
 \refsection{0}
   \datalist[entry]{nyt/global//global/global}
+    \entry{bilbao2017overfitting}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=f6613c5f715b164c90db71344977f492}{%
+           family={Bilbao},
+           familyi={B\bibinitperiod},
+           given={Imanol},
+           giveni={I\bibinitperiod}}}%
+        {{hash=ae814854b3609570148ab1a6a1409bff}{%
+           family={Bilbao},
+           familyi={B\bibinitperiod},
+           given={Javier},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{dde22206d8574bb88dcb4b43e0a17bc7}
+      \strng{fullhash}{dde22206d8574bb88dcb4b43e0a17bc7}
+      \strng{bibnamehash}{dde22206d8574bb88dcb4b43e0a17bc7}
+      \strng{authorbibnamehash}{dde22206d8574bb88dcb4b43e0a17bc7}
+      \strng{authornamehash}{dde22206d8574bb88dcb4b43e0a17bc7}
+      \strng{authorfullhash}{dde22206d8574bb88dcb4b43e0a17bc7}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2017 Eighth International Conference on Intelligent Computing and Information Systems (ICICIS)}
+      \field{title}{Overfitting problem and the over-training in the era of data: Particularly for Artificial Neural Networks}
+      \field{year}{2017}
+      \field{pages}{173\bibrangedash 177}
+      \range{pages}{5}
+      \verb{doi}
+      \verb 10.1109/INTELCIS.2017.8260032
+      \endverb
+    \endentry
     \entry{bishop2006pattern}{book}{}
       \name{author}{2}{}{%
         {{hash=9dfd0135a5e80aa6d81cea2c10fb7f73}{%
@@ -157,6 +189,80 @@
       \field{year}{1990}
       \field{pages}{1167\bibrangedash 1178}
       \range{pages}{12}
+    \endentry
+    \entry{caruana2000overfitting}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=599c5251d489b92dc7856277d56cb1a9}{%
+           family={Caruana},
+           familyi={C\bibinitperiod},
+           given={Rich},
+           giveni={R\bibinitperiod}}}%
+        {{hash=eecf2ce6415b262f4cbccc026c92c684}{%
+           family={Lawrence},
+           familyi={L\bibinitperiod},
+           given={Steve},
+           giveni={S\bibinitperiod}}}%
+        {{hash=daeef099e93bccc14e0d6d066fa64e36}{%
+           family={Giles},
+           familyi={G\bibinitperiod},
+           given={Lee},
+           giveni={L\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {MIT Press}%
+      }
+      \strng{namehash}{58c70d49ac4cf7fd5aa3b3b9d11d8160}
+      \strng{fullhash}{58c70d49ac4cf7fd5aa3b3b9d11d8160}
+      \strng{bibnamehash}{58c70d49ac4cf7fd5aa3b3b9d11d8160}
+      \strng{authorbibnamehash}{58c70d49ac4cf7fd5aa3b3b9d11d8160}
+      \strng{authornamehash}{58c70d49ac4cf7fd5aa3b3b9d11d8160}
+      \strng{authorfullhash}{58c70d49ac4cf7fd5aa3b3b9d11d8160}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 13th International Conference on Neural Information Processing Systems}
+      \field{title}{Overfitting in Neural Nets: Backpropagation, Conjugate Gradient, and Early Stopping}
+      \field{year}{2000}
+      \field{pages}{381\bibrangedash 387}
+      \range{pages}{7}
+    \endentry
+    \entry{DBLP:conf/cvpr/CiresanMS12}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=b88f40cd2de1355a96427ba0da84357e}{%
+           family={Ciresan},
+           familyi={C\bibinitperiod},
+           given={Dan\bibnamedelima C.},
+           giveni={D\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=be71dea014b345d130231579ad7a5115}{%
+           family={Meier},
+           familyi={M\bibinitperiod},
+           given={Ueli},
+           giveni={U\bibinitperiod}}}%
+        {{hash=288bdbcfe1b91ad7484d7a24f74f99ed}{%
+           family={Schmidhuber},
+           familyi={S\bibinitperiod},
+           given={Jürgen},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {{IEEE} Computer Society}%
+      }
+      \strng{namehash}{d908baee51816135c8c42e7fbecfa072}
+      \strng{fullhash}{d908baee51816135c8c42e7fbecfa072}
+      \strng{bibnamehash}{d908baee51816135c8c42e7fbecfa072}
+      \strng{authorbibnamehash}{d908baee51816135c8c42e7fbecfa072}
+      \strng{authornamehash}{d908baee51816135c8c42e7fbecfa072}
+      \strng{authorfullhash}{d908baee51816135c8c42e7fbecfa072}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{{CVPR}}
+      \field{title}{Multi-column deep neural networks for image classification}
+      \field{year}{2012}
+      \field{pages}{3642\bibrangedash 3649}
+      \range{pages}{8}
     \endentry
     \entry{dayhoff1990neural}{book}{}
       \name{author}{1}{}{%
@@ -455,6 +561,81 @@
       \field{title}{Adam: A Method for Stochastic Optimization}
       \field{volume}{abs/1412.6980}
       \field{year}{2015}
+    \endentry
+    \entry{DBLP:conf/nips/KrizhevskySH12}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=c5e3a676e2ac1164b3afcd539c131fc9}{%
+           family={Krizhevsky},
+           familyi={K\bibinitperiod},
+           given={Alex},
+           giveni={A\bibinitperiod}}}%
+        {{hash=8d569d1d5b8b5a7836017a98b430f959}{%
+           family={Sutskever},
+           familyi={S\bibinitperiod},
+           given={Ilya},
+           giveni={I\bibinitperiod}}}%
+        {{hash=813bd95fe553e6079cd53a567b238287}{%
+           family={Hinton},
+           familyi={H\bibinitperiod},
+           given={Geoffrey\bibnamedelima E.},
+           giveni={G\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \strng{namehash}{1a23c09aa65b3c2ade45ed18d8127375}
+      \strng{fullhash}{1a23c09aa65b3c2ade45ed18d8127375}
+      \strng{bibnamehash}{1a23c09aa65b3c2ade45ed18d8127375}
+      \strng{authorbibnamehash}{1a23c09aa65b3c2ade45ed18d8127375}
+      \strng{authornamehash}{1a23c09aa65b3c2ade45ed18d8127375}
+      \strng{authorfullhash}{1a23c09aa65b3c2ade45ed18d8127375}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{{NIPS}}
+      \field{title}{ImageNet Classification with Deep Convolutional Neural Networks}
+      \field{year}{2012}
+      \field{pages}{1106\bibrangedash 1114}
+      \range{pages}{9}
+    \endentry
+    \entry{DBLP:journals/pieee/LeCunBBH98}{article}{}
+      \name{author}{4}{}{%
+        {{hash=6a1aa6b7eab12b931ca7c7e3f927231d}{%
+           family={LeCun},
+           familyi={L\bibinitperiod},
+           given={Yann},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=ac762f2592005edf6bad58f566967c6c}{%
+           family={Bottou},
+           familyi={B\bibinitperiod},
+           given={Léon},
+           giveni={L\bibinitperiod}}}%
+        {{hash=40a8e4774982146adc2688546f54efb2}{%
+           family={Bengio},
+           familyi={B\bibinitperiod},
+           given={Yoshua},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=844e183692f08a63f99285330fcf90cc}{%
+           family={Haffner},
+           familyi={H\bibinitperiod},
+           given={Patrick},
+           giveni={P\bibinitperiod}}}%
+      }
+      \strng{namehash}{9e4c6012409dc8dd9b2aa198a2059804}
+      \strng{fullhash}{c397b2e6efe8e5c6ca906410fc9e0ff9}
+      \strng{bibnamehash}{9e4c6012409dc8dd9b2aa198a2059804}
+      \strng{authorbibnamehash}{9e4c6012409dc8dd9b2aa198a2059804}
+      \strng{authornamehash}{9e4c6012409dc8dd9b2aa198a2059804}
+      \strng{authorfullhash}{c397b2e6efe8e5c6ca906410fc9e0ff9}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Proc. {IEEE}}
+      \field{number}{11}
+      \field{title}{Gradient-based learning applied to document recognition}
+      \field{volume}{86}
+      \field{year}{1998}
+      \field{pages}{2278\bibrangedash 2324}
+      \range{pages}{47}
     \endentry
     \entry{li2017convergence}{article}{}
       \name{author}{2}{}{%
@@ -963,6 +1144,38 @@
       \field{year}{1988}
       \field{pages}{339\bibrangedash 356}
       \range{pages}{18}
+    \endentry
+    \entry{werner2011funktionalanalysis}{book}{}
+      \name{author}{1}{}{%
+        {{hash=0feafb07f96fb44103f4c1afe28e1672}{%
+           family={Werner},
+           familyi={W\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{0feafb07f96fb44103f4c1afe28e1672}
+      \strng{fullhash}{0feafb07f96fb44103f4c1afe28e1672}
+      \strng{bibnamehash}{0feafb07f96fb44103f4c1afe28e1672}
+      \strng{authorbibnamehash}{0feafb07f96fb44103f4c1afe28e1672}
+      \strng{authornamehash}{0feafb07f96fb44103f4c1afe28e1672}
+      \strng{authorfullhash}{0feafb07f96fb44103f4c1afe28e1672}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9783642210174}
+      \field{series}{Springer-Lehrbuch}
+      \field{title}{Funktionalanalysis}
+      \field{year}{2011}
+      \verb{urlraw}
+      \verb https://books.google.de/books?id=580NcHHrAXsC
+      \endverb
+      \verb{url}
+      \verb https://books.google.de/books?id=580NcHHrAXsC
+      \endverb
     \endentry
   \enddatalist
   \missing{goodfellow}

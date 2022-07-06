@@ -3,7 +3,7 @@
 
 In diesem Kapitel werden Künstliche Neuronale Netze\cite{dayhoff1990neural}, kurz KNN, als Forschungsgegenstand der Informatik eingeführt und deren mathematische Grundlagen präzisiert. 
 Sie stellen informationsverarbeitende Systeme nach dem Vorbild von tierischen beziehungsweise menschlichen Gehirnen dar und bestehen aus Neuronen in gewissen Zuständen und Schichten, die über gewichtete Verbindungen miteinander gekoppelt sind. Jene Gewichte sind als freie Parameter des neuronalen Netzes zu verstehen und können während des Trainingsprozesses so angepasst werden, um eine entsprechende Aufgabe zu lösen.  
-Gelingt dies, so können neuronale Netze genutzt werden, um bestimmte Muster in Daten, typischerweise in Bildern, Audio oder Stromdaten, effizient zu erkennen\cite{pandya1995pattern, pao1989adaptive, urbaniak2021quality}.
+Gelingt dies, so können neuronale Netze genutzt werden, um bestimmte Muster in Daten, typischerweise in Bildern, Audio oder Stromdaten, zu erkennen\cite{pandya1995pattern, pao1989adaptive, urbaniak2021quality}.
 Sie eignen sich daher für viele typische Aufgaben des maschinellen Lernens, beispielsweise für die Klassifikation digitalisierter Objekte.
 
 Im ersten Abschnitt wird das Perzeptron\cite{rosenblatt1958perceptron} als Grundeinheit eines neuronalen Netzes eingeführt. 
@@ -149,7 +149,7 @@ Um die Notation übersichtlich zu halten, bezeichne $\Psi^{W^{(k)},b^{(k)},\psi_
     
 
 
-Das MLP-Modell wird im weiteren Verlauf dieser Arbeit repräsentativ als Künstliches Neuronales Netz bezeichnet. Die Funktionsauswertung eines FNN wird im Algorithmus Vorwärtsrechnung \ref{alg:ff} festgehalten. Das zuvor angesprochene XOR-Problem kann nun beispielsweise mithilfe eines KNN bestehend aus zwei Schichten gelöst werden\cite{Goodfellow-et-al-2016}.
+Das MLP-Modell wird im weiteren Verlauf dieser Arbeit repräsentativ als Künstliches Neuronales Netz bezeichnet. Die Begriffe MLP und FFN sind austauschbar. Die Funktionsauswertung eines FNN wird im Algorithmus Vorwärtsrechnung \ref{alg:ff} festgehalten. Das zuvor angesprochene XOR-Problem kann nun beispielsweise mithilfe eines KNN bestehend aus zwei Schichten gelöst werden\cite{Goodfellow-et-al-2016}.
 Es lassen sich zwischen Modell- und Hyperparameter von KNN unterscheiden.
 
 \begin{defi}[Hyper- und Modellparameter]
@@ -330,7 +330,7 @@ aktualisiert. Es werden also Gradienten der Fehlerfunktion bezüglich der Gewich
 
 Als Abbruchbedingung im Mini-Batch-Verfahren kann eine fest gewählte Anzahl von Updateoperationen der Parameter gewählt werden. Andere Abbruchbedingungen können mit der Norm der Abstiegsrichtungen\cite{bishop2006pattern} oder abhängig vom Traingsfehler formuliert werden. Bei der Wahl der Lernrate werden heutzutage werden oft adaptive Verfahren genutzt, welche vorangegangene Gradienten berücksichtigen und die Lernrate so anpassen. Bekannte Verfahren sind \textit{Nesterov accelerated
 gradient}\cite{sutskever2013importance}, \textit{AdaGrad}\cite{duchi2011adaptive}, \textit{RMSProp}\cite{tieleman2012lecture} sowie \textit{Adam}\cite{Kingma2015AdamAM}. So sollen Probleme wie des \textit{vanishing gradients} oder des \textit{exploding gradients} vermieden werden\cite{hanin2018neural}.
-Für eine tiefere Analyse des Gradientenverfahrens und dessen Varianten sei auf die jeweilgen Arbeiten beziehungsweise Ruder\cite{ruder2016overview} verwiesen. Darüber hinaus gibt es andere Techniken wie die Regularisierung, um Probleme wie \textit{overfitting} zu entgegnen.
+Für eine tiefere Analyse des Gradientenverfahrens und dessen Varianten sei auf die jeweilgen Arbeiten beziehungsweise Ruder\cite{ruder2016overview,} verwiesen. Darüber hinaus gibt es andere Techniken wie die Regularisierung, um Probleme wie Überanpassung, engl.\textit{overfitting}, zu entgegnen.
 Für die Problemstellung in dieser Arbeit genügt es, das Mini-Batch-Verfahren mit konstanter Lernrate zu nutzen. 
 
 Die Abstiegsrichtungen werden werden mithilfe der mehrdimensionalen Kettenregel in einer Backpropagationsphase, etabliert von Rumelhart et. al. \cite{MLPbook}, berechnet.
@@ -352,7 +352,7 @@ Im Bereich des tiefen Lernens zählt die effiziente Berechnung dieser Gradienten
 \label{abs:NN_conc}
 In diesem Kapitel wurden KNN als Feed-Forward-Netze eingeführt. Es stellt sich heraus, dass diese Netze als probabilistische Modelle genutzt werden können, um Klassifikationsaufgaben hinreichend gut zu lösen. Dabei ist es wichtig die Hyper- und Modellparameter je nach Anwendung und Leistungsmaß optimal zu wählen. Dazu werden Trainingsdaten genutzt, um während eines Lernprozesses eine Fehlerfunktion zu Minimieren. Eine Lösung von \ref{eq:error_fun_opt} kann wegen der Komplexität der Fehlerfuntion $\mathcal{E}$ bzw. der großen Menge von Parametern $\mathcal{W}$ selten direkt angegeben werden\cite{blum1992training}. Daher wird das Mini-Batch-Verfahren als iterativer Ansatz zur numerischen Mnimierung der Fehlerfunktion genutzt. Dabei sind partielle Ableitungen der Fehlerfunktion bezüglich der Parameter nötig, welche in der Backpropagationsphase mithilfe der mehrdimensionalen Kettenregel berechnet werden können. 
 
-Bei der Analyse von Zeitreihen oder Bildern eignen sich abgewandelte Architekturen wie faltbare neuronale Netze (CNN), engl. \textit{convolutional neural networks}, welche im folgenden Kapitel \ref{kap:CNN} näher erläutert werden.
+Bei der Analyse von Zeitreihen oder Bildern eignen sich abgewandelte Architekturen wie gefaltete neuronale Netze (CNN), engl. \textit{convolutional neural networks}, welche im folgenden Kapitel \ref{kap:CNN} näher erläutert werden. Diese Art neuronaler Netze wird im weiteren Verlauf dieser Arbeit im Fokus stehen.
 
 
     
