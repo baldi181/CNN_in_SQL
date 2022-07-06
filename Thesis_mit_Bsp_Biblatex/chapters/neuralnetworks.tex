@@ -1,7 +1,7 @@
 \chapter{Grundlagen neuronaler Netze}
 \label{kapitel_neuralnetworks}
 
-In diesem Abschnitt werden Künstliche Neuronale Netze\cite{dayhoff1990neural}, kurz KNN, als Forschungsgegenstand der Informatik eingeführt und deren mathematischen Grundlagen präzisiert. 
+In diesem Kapitel werden Künstliche Neuronale Netze\cite{dayhoff1990neural}, kurz KNN, als Forschungsgegenstand der Informatik eingeführt und deren mathematischen Grundlagen präzisiert. 
 Sie stellen informationsverarbeitende Systeme nach dem Vorbild von tierischen beziehungsweise menschlichen Gehirnen dar und bestehen aus Neuronen in gewissen Zuständen und Schichten, die über gewichtete Verbindungen miteinander gekoppelt sind. Jene Gewichte sind als freie Parameter des neuronalen Netzes zu verstehen und können während des Trainingsprozesses so angepasst werden, um eine entsprechende Aufgabe zu lösen.  
 Gelingt dies, so können neuronale Netze genutzt werden, um bestimmte Muster in Daten, typischerweise in Bildern, Audio oder Stromdaten, effizient zu erkennen\cite{pandya1995pattern, pao1989adaptive, urbaniak2021quality}.
 Sie eignen sich daher für viele typischen Aufgaben des maschinellen Lernens, beispielsweise für die Klassifikation digitalisierter Objekte.
@@ -130,7 +130,7 @@ Um die Notation übersichtlich zu halten, bezeichne $\Psi^{W^{(k)},b^{(k)},\psi_
     berechnen. Dabei gelten für die Gewichtsmatrizen die Dimensionsbedingungen
     \[{}_1W^{(1)}=s_0, \; \; {}_2W^{(l)}=s_l, \; \; \forall i \in [l-1]: \; {}_2W^{(i)}={}_1W^{(i+1)}.
         \] 
-    Die Eingabeschicht $\mathcal{S}_0$ besitzt keine Parameter $W$ und $b$ und besteht nur aus dem Eingabevektor $x \in \RR^{s_0}$. Die letzte Schicht $\Psi^{W^{(l)},b^{(l)},\psi_{l}}$ wird als Ausgabeschicht bezeichnet. Weiter werden die Schichten $\mathcal{S}_1, \ldots, \mathcal{S}_{l-1}$ als verdeckte Schichten definiert. Die Funktionsauswertung $\Lambda_l(x)$ für eine Eingabe $x$ wird Vorwärtsrechnung, engl. \textit{forward propagation}, genannt.
+    Die Eingabeschicht $\mathcal{S}_0$ besitzt keine Parameter $W$ und $b$ und besteht nur aus dem Eingabevektor $x \in \RR^{s_0}$. Die letzte Schicht $\Psi^{W^{(l)},b^{(l)},\psi_{l}}$ wird als Ausgabeschicht bezeichnet. Weiter werden die Schichten $\mathcal{S}_1, \ldots, \mathcal{S}_{l-1}$ als verdeckte Schichten definiert. Das MLP wird auch Feed-Forward-Netz (FFN)  genannt und die Funktionsauswertung $\Lambda_l(x)$ für eine Eingabe $x$ wird mit Vorwärtsrechnung, engl. \textit{forward propagation}, bezeichnet.
 \end{defi}
 
 \begin{algorithm}
@@ -149,20 +149,20 @@ Um die Notation übersichtlich zu halten, bezeichne $\Psi^{W^{(k)},b^{(k)},\psi_
     
 
 
-Das MLP-Modell wird im weiteren Verlauf dieser Arbeit repräsentativ als Künstliches Neuronales Netz bezeichnet. Die Funktionsauswertung eines KNN wird im Algorithmus Vorwärtsrechnung \ref{alg:ff} festgehalten. Das zuvor angesprochene XOR-Problem kann nun beispielsweise mithilfe eines KNN bestehend aus zwei Schichten gelöst werden\cite{Goodfellow-et-al-2016}.
+Das MLP-Modell wird im weiteren Verlauf dieser Arbeit repräsentativ als Künstliches Neuronales Netz bezeichnet. Die Funktionsauswertung eines FNN wird im Algorithmus Vorwärtsrechnung \ref{alg:ff} festgehalten. Das zuvor angesprochene XOR-Problem kann nun beispielsweise mithilfe eines KNN bestehend aus zwei Schichten gelöst werden\cite{Goodfellow-et-al-2016}.
 Es lassen sich zwischen Modell- und Hyperparameter von KNN unterscheiden.
 
 \begin{defi}[Hyper- und Modellparameter]
     Sei für $l \in \mathbb{N}$ ein KNN $\Lambda_l$ gegeben. Dann werden die Eingabe- und Ausgabedimension $s_0, s_l$, die Anzahl $l$ der (verdeckten) Schichten sowie die verwendeten Aktivierungsfunktion $\psi_l$ Hyperparameter des neuronalen Netzes genannt.
     Die Gewichtsmatrizen und Biasvektoren mit den entsprechend passenden Abmessungen stellen die Modellparameter $\mathcal{W}:=\{(W^{(i)},b^{(i)}): \; i=1, \ldots, l\}$ des neuronales Netzes dar. 
 \end{defi}
-Die Hyperparameter werden oft anwendungsspezifisch für das jeweilige Problem gewählt, während die Modellparameter dynamisch in einem Trainingsprozes angepasst werden, sodass die gegebene Aufgabe zufriedenstellend gelöst wird. Wie sies geschieht, wird im folgenden Abschnitt \ref{task_training} erläutert.
+Die Hyperparameter werden oft anwendungsspezifisch für das jeweilige Problem gewählt, während die Modellparameter dynamisch in einem Trainingsprozes angepasst werden, sodass die gegebene Aufgabe zufriedenstellend gelöst wird. Wie dies geschieht, wird im folgenden Abschnitt \ref{task_training} erläutert.
 
 \section{Training neuronaler Netze}
 \label{task_training}
 Künstliche Neuronale Netze gehören zu den typischen Vertretern von maschinellen Lernalgorithmen, welche hinsichtlich einer bestimmten Aufgabe, engl. \textit{task T}, und einem Leistungsmaß, engl. \textit{perfomance P} an der Erfahrung, engl. \textit{experience E} lernen\cite{Goodfellow-et-al-2016}. Dabei ist mit Lernen gemeint, dass das Computerprogramm bezüglich der Aufgabe $T$ sein Leistungsmaß $P$ mit wachsener Erfahrung $E$ schrittweise steigert. Wie in Kapitel \ref{fund} erläutert, gibt es viele verschiedene Aufgaben, wie die Regression, Klassifikation oder Clusterung bestimmter Objekte. 
 
-In den folgenden Abschnitten wird das Klassifikationsproblem asl \textit{task T} im Mittelpunkt stehen. Weiter werden KNNs als Modellschätzer aus der Wahrscheinlichkeitstheorie interpretiert und fundamentale Aussagen wie das \textit{Universal-Approximation-Theroem}\cite{HORNIK1989359} gegeben. Schließlich wird bezüglich der Klassifikationsaufgabe das Training neuronaler Netze erläutert.
+In den folgenden Abschnitten wird das Klassifikationsproblem als \textit{task T} im Mittelpunkt stehen. Weiter werden KNNs als Modellschätzer aus der Wahrscheinlichkeitstheorie interpretiert und fundamentale Aussagen wie das \textit{Universal-Approximation-Theroem}\cite{HORNIK1989359} gegeben. Schließlich wird bezüglich der Klassifikationsaufgabe das Training neuronaler Netze erläutert.
 
 
 \subsection{Neuronale Netze als universelle Schätzer}
@@ -170,7 +170,7 @@ In den folgenden Abschnitten wird das Klassifikationsproblem asl \textit{task T}
 Beim Klassifikationsproblem müssen bestimmte bedingte Wahrscheinlichkeiten, die in diesem Abschnitt erklärt werden, ermittelt werden. Oft wird dazu die Ausgabeschicht eines KNN als Wahrscheinlichkeit interpretiert und daher KNN als Schätzer der bedingten Wahrscheinlichkeiten eingesetzt. Zunächst werden Klassifikationsfunktion und -problem definiert.
 \begin{defi}
     \label{def_classfun}
-    Seien die Mengen $D \subset \RR^n$ und $\mathcal{C}=\{c_1, \ldots, c_m\}$ gegeben. Eine Funktion $f: D \rightarrow \mathcal{C}$, welche ein Element aus $D$ einer Klasse $c_i \in \mathcal{C}$ zuordnet, wird Klassifikationsfunktion genannt. Hier gibt es $m \in \mathbb{N}$ verschiedene Klassenlabels. Die Menge $D$ wird abstrakter Datensatz genannt.
+    Seien die Mengen $D \subset \RR^n$ und $\mathcal{C}=\{c_1, \ldots, c_m\}$ gegeben. Eine Funktion $f: D \rightarrow \mathcal{C}$, welche ein Element aus $D$ einer Klasse $c_i \in \mathcal{C}$ zuordnet, wird Klassifikationsfunktion genannt. Hier gibt es $m \in \mathbb{N}$ verschiedene Klassenlabels.
 \end{defi}
 
 Das Ziel beim Klassifikationsproblem ist die Approximation einer nicht bekannten Klassifikationsfunktion $f:D \rightarrow \mathcal{C}$ durch ein Modell $\tilde{f}: D \rightarrow \mathcal{C}$. 
@@ -229,22 +229,24 @@ Hinsichtlich der Approximation von beliebigen Funktionen $P_{Daten}$ mithilfe ei
 \end{proof}
 
 Die Aussage kann auf das MLP mit beliebig vielen Schichten erweitert werden.
-In dieser Arbeit umfasst die Menge $D$ aus Definition \ref{def_classfun} digitalisierte Objekte und ist endlich und damit kompakt. Daher kann wegen Korollar \ref{kor_softmax} das MLP als Modell genutzt werden, um stetige Funktionen $P_{Daten}$ sinnvoll zu approximieren.
+In dieser Arbeit umfasst die Menge $D$ aus Definition \ref{def_classfun} digitalisierte Objekte als Vektoren $x \in \RR^n$ und ist endlich und damit kompakt. Daher kann wegen Korollar \ref{kor_softmax} das MLP als Modell genutzt werden, um stetige Funktionen $P_{Daten}$ sinnvoll zu approximieren.
 
 \subsection{Optimale Parameterwahl bei neuronalen Netzen}
 
 Wird ein künstliches neuronales Netz als probabilistisches Modell genutzt und sind die Hyperparameter festgelegt, müssen die Modellparameter $\mathcal{W}$ gewählt werden. Um die Approximationsgüte, also die \textit{perfomance P}, bezüglich des Klassifikationsproblems messbar zu machen, werden Fehlerfunktionen eingeführt. 
-Mit Trainingsdaten als \textit{experience E} und dem Gradientenverfahren\cite{nocedal1999numerical} sollen optimale Parameter $\mathcal{W}$ gefunden werden, sodass die gewählte Fehlerfunktion minimiert wird. Im folgenden sei $\Lambda_l$ ein KNN mit der Softmax-Funktion als Aktivierungsfunktion in der Ausgabeschicht, welches als parametrisiertes Modell $f_{Modell}$ wie in \ref{eq:f_modell} genutzt wird.
+Mit Trainingsdaten als \textit{experience E} und dem Gradientenverfahren\cite{nocedal1999numerical} sollen optimale Parameter $\mathcal{W}$ gefunden werden, sodass die gewählte Fehlerfunktion minimiert wird. Im folgenden steht ein MLP $\Lambda(\, \cdot \, ; \mathcal{W}): D \rightarrow [0,1]^m$  mit der Softmax-Funktion als Aktivierungsfunktion im Mittlepunkt, welches als parametrisiertes Modell $f_{Modell}$ wie in \ref{eq:f_modell} genutzt wird.
+Die Trainingsdaten werden in Trainingsmengen und Testmengen aufgeteilt.
 
-\begin{defi}[Trainingsmenge]
-    Seien $p_{daten}$ eine Datenverteilung und $\Omega=D \times \mathcal{C}$. Dann heißt für ein $k \in \mathbb{N}$ die Menge
-    \begin{equation*}
-        \mathcal{T}:=\left\{ (x^{(i)},c^{(i)}) \; | \; i \in [k] \right\} \subset \Omega
-    \end{equation*}
-    Trainingsmenge bestehend aus $k$ Trainingsdaten, welche unabhängig durch $p_{Daten}$ generiert wurde.
+\begin{defi}[Trainingsmenge, Testmenge]
+    Sei $p_{daten}$ eine Datenverteilung auf der Ergebnismenge $\Omega=D \times \mathcal{C}$. Dann heißen für $n_{train}, n_{test} \in \mathbb{N}$ die Mengen
+    \begin{align*}
+        \mathcal{T} &:= \left\{ (x^{(i)},c^{(i)}) \; | \; i \in [n_{train}] \right\} \subset \Omega \\
+        \mathcal{T}' &:= \left\{ (x^{(i)},c^{(i)}) \; | \; i \in [n_{test}] \right\} \subset \Omega
+    \end{align*}
+    Traingsmenge $\mathcal{T}$ und Testmenge $\mathcal{T}'$, jeweils bestehend aus Datenpaaren, welche unabhängig durch $p_{Daten}$ generiert wurde. Oft werden die Mengen disjunkt gewählt. Die Menge $\mathcal{T}$ wird zum Trainieren und die Menge $\mathcal{T}'$ zur Validierung des Modells $P_{Modell}$ bezüglich $P_{Daten}$ wie in \ref{eq:Pdaten} genutzt.
 \end{defi}
 
-Die Güte des Modells $f_{Modell}$ wird als Likelihood gegeben einer Trainingsmenge $\mathcal{T}$ gemessen und lässt sich als 
+Die Approximationsgüte des Modells $f_{Modell}$ wird als Likelihood gegeben einer Trainingsmenge $\mathcal{T}$ gemessen und lässt sich als 
 
 \begin{equation}
     \label{eq:likelihood}
@@ -279,15 +281,14 @@ Das Minimieren der negative log likelihood ist äquivalent zur Maximierung der L
 \begin{equation*}
     \log \left(\prod_{(x,c) \in \mathcal{T}} p_{Modell}(c \; | \; x; \mathcal{W})\right)= \sum_{(x,c) \in \mathcal{T}} \log \left(p_{Modell}(c \; | \; x; \mathcal{W}) \right)
 \end{equation*}
-und der natürliche Logarithmus ist monoton steigend. Wird zusätzlich angenommen, dass die Datenverteilung einer Normalverteilung mit konstanter Varianz entspricht, so ist das Maximieren von \ref{eq:likelihood} äquivalent zur Minimierung der mittleren quadratischen Abweichung
+und der natürliche Logarithmus ist monoton steigend. Wird zusätzlich angenommen, dass die a posterior Verteilung  $p_{Daten}(c \; | \; x)$ einer Normalverteilung mit konstanter Varianz entspricht, so ist das Maximieren von \ref{eq:likelihood} äquivalent zur Minimierung der mittleren quadratischen Abweichung
 \begin{equation*}
     \label{eq:MSE}
     L_{MSE}(\mathcal{T},\mathcal{W}):=\frac{1}{2} \sum_{(x,c) \in \mathcal{T}} ||\hat{c}-t(x,c)||_2^2,
 \end{equation*}
-wobei $\hat{c}=f_{Modell}(x)$ und $t(x,c)$ der Zielvektor des Datenpaars $(x,c)$ ist, siehe Goodfellow\cite{Goodfellow-et-al-2016}.
-
- Das Problem \ref{eq:opt_likelihood} wird nun allgmemein mit Fehlerfunktionen definiert.
- \begin{defi}
+wobei $\hat{c}=f_{Modell}(x)$ und $t(x,c)$ der Zielvektor des Datenpaars $(x,c)$ ist, siehe Goodfellow\cite{Goodfellow-et-al-2016}. 
+Das Problem \ref{eq:opt_likelihood} wird nun allgmemein mit Fehlerfunktionen definiert.
+ \begin{defi}[Fehlerfunktion]
     Seien $\mathcal{T}$ eine Trainingsmenge und $\mathcal{W}$ Modellparameter eines KNN. Mithilfe des Gradientenverfahrens soll das Problem
     \begin{equation}
         \label{eq:error_fun_opt}
@@ -295,7 +296,8 @@ wobei $\hat{c}=f_{Modell}(x)$ und $t(x,c)$ der Zielvektor des Datenpaars $(x,c)$
     \end{equation}
     gelöst werden. Dabei wird $\mathcal{E}$ Fehlerfunktion gennant.
  \end{defi}
-In dieser Arbeit wird $\mathcal{E}$ immer als stückweise stetig differenzierbare Funktion gewählt, damit das Gradientenverfahren angewendet werden kann. Sowohl die negative log likelihood $L_{NNL}$ als auch die mittlere quadratische Abweichung $L_{MSE}$ sind als Fehlerfunktion geeignet. Die Optimierung der Parameter geschieht iterativ und besteht jeweils aus zwei Schritten. Zuerst wird eine Abstiegsrichtung 
+In dieser Arbeit wird $\mathcal{E}$ immer als stückweise stetig differenzierbare Funktion gewählt, damit das Gradientenverfahren angewendet werden kann. Sowohl die negative log likelihood $L_{NNL}$ als auch die mittlere quadratische Abweichung $L_{MSE}$ sind als Fehlerfunktion geeignet.
+Die Optimierung der Parameter geschieht iterativ und besteht jeweils aus zwei Schritten. Zuerst wird eine Abstiegsrichtung 
 \begin{equation}
     \label{eq:gradE}
     \Delta_n :=\nabla_{\mathcal{W}} \mathcal{E}(\mathcal{T},\mathcal{W})
@@ -305,21 +307,51 @@ berechnet und dann die Parameter
     \label{eq:step}
     \mathcal{W}_{n+1}:=\mathcal{W}_n- \lambda \Delta_n
 \end{equation}
-aktualisiert. Es werden also Gradienten der Fehlerfunktion bezüglich der Gewichtsmatrizen und Biasvektoren ermittelt und anschließend werden jene Parameter mit einer Lernrate $\lambda \in \RR$ angepasst. Hier wird der Gradient über alle Trainingspaare berechnet. Diese Variante nennt sich \textit{Offline-Version} des Gradientenverfahrens und ist besonders für große Trainingsmengen ineffizient. Die \textit{Online-Version} berechnet den Gradienten lediglich für ein Trainingspaar und passt die Parameter direkt an. In dieser Arbeit wird ein Kompromis aus beiden Verfahren verwendet und zwar das \textit{Mini-Batch-Verfahren} \ref{alg:minibatch}, bei dem die Gradienten über kleine Teilmengen der Trainingsmenge $\mathbb{T} \subset \mathcal{T}$ berechnet werden. Für eine tiefere Analyse des Gradientenverfahrens sei auf Ruder\cite{ruder2016overview} verwiesen. 
+aktualisiert. Es werden also Gradienten der Fehlerfunktion bezüglich der Gewichtsmatrizen und Biasvektoren ermittelt und anschließend werden jene Parameter mit einer wählbaren Lernrate $\lambda \in \RR$ angepasst. In \ref{eq:gradE} wird der Gradient über alle Trainingspaare berechnet. Diese Variante nennt sich \textit{Offline-Version} des Gradientenverfahrens und ist besonders für große Trainingsmengen ineffizient. Die \textit{Online-Version} berechnet den Gradienten lediglich für ein Trainingspaar und passt die Parameter direkt an. In dieser Arbeit wird ein Kompromiss aus beiden Verfahren verwendet und zwar das \textit{Mini-Batch-Verfahren}, siehe Algorithmus \ref{alg:minibatch}, bei dem die Gradienten über kleine Teilmengen $\mathbb{T} \subset \mathcal{T}$ der Trainingsmenge berechnet werden.
 
 \begin{algorithm}
-    \caption{Mini-Batch-Verfahren}\label{alg:minibatch}
+    \caption{Mini-Batch-Verfahren, vgl. \cite{gruening}}\label{alg:minibatch}
     \begin{algorithmic}
-    \Require $ \text{Trainingsmenge} \; \mathcal{T}, \text{Modellparameter} \; \mathcal{W}, \text{Fehlerfunktion} \; \mathcal{E}, \text{Batch-Größe} \; n$
+    \Require $ \text{Trainingsmenge} \; \mathcal{T}, \text{Modellparameter} \; \mathcal{W}_0, \text{Fehlerfunktion} \; \mathcal{E}, \text{Batch-Größe} \; n$
     \Ensure $\text{optimierte Modellparamter} \; \mathcal{W}$
-    \State $x=x_0$
-    \For{$i=1, \ldots l}$
-    \State $u=W^{(i) \,T}x+b^{(i)}$
-    \State $x=\psi_i(u)$
-    \EndFor
-    \State $y=x$
+    \State $\mathcal{W}=\mathcal{W}_0$
+    \State $\mathbb{T}=\mathcal{T}$
+    \State Setze Lernrate $\lambda$ \Comment{Wahlmöglichkeiten, siehe Text}     
+    \While{Abbruchbedingung nicht erfüllt} \Comment{Abbruchbedingung, siehe Text}
+    \If{$|\mathbb{T}| < n$}
+        \State $\mathbb{T}=\mathcal{T}$
+    \EndIf
+    \State $\mathbb{T}_n=$ zufällig gewählte $n$ Datenpaare von $\mathbb{T}$ 
+    \State $\mathcal{W}=\mathcal{W}-\lambda \nabla_{\mathcal{W}} \mathcal{E}(\mathbb{T}_n,\mathcal{W})$
+    \State $\mathbb{T}= \mathbb{T} \setminus \mathbb{T}_n$
+    \EndWhile
     \end{algorithmic}
 \end{algorithm}
+
+Als Abbruchbedingung im Mini-Batch-Verfahren kann eine fest gewählte Anzahl von Updateoperationen der Parameter gewählt werden. Andere Abbruchbedingungen können mit der Norm der Abstiegsrichtungen\cite{bishop2006pattern} oder abhängig vom Traingsfehler formuliert werden. Bei der Wahl der Lernrate werden heutzutage werden oft adaptive Verfahren genutzt, welche vorangegangene Gradienten berücksichtigen und die Lernrate so anpassen. Bekannte Verfahren sind \textit{Nesterov accelerated
+gradient}\cite{sutskever2013importance}, \textit{AdaGrad}\cite{duchi2011adaptive}, \textit{RMSProp}\cite{tieleman2012lecture} sowie \textit{Adam}\cite{Kingma2015AdamAM}. So sollen Probleme wie des \textit{vanishing gradients} oder des \textit{exploding gradients} vermieden werden\cite{hanin2018neural}.
+Für eine tiefere Analyse des Gradientenverfahrens und dessen Varianten sei auf die jeweilgen Arbeiten beziehungsweise Ruder\cite{ruder2016overview} verwiesen. Darüber hinaus gibt es andere Techniken wie die Regularisierung, um Probleme wie \textit{overfitting} zu entgegnen.
+Für die Problemstellung in dieser Arbeit genügt es, das Mini-Batch-Verfahren mit konstanter Lernrate zu nutzen. 
+
+Die Abstiegsrichtungen werden werden mithilfe der mehrdimensionalen Kettenregel in einer Backpropagationsphase, etabliert von Rumelhart et. al. \cite{MLPbook}, berechnet.
+\begin{satz}[Mehrdimensionale Kettenregel]
+    \label{chainrule}
+    Ist $f=f(x_1(y_1, \ldots, y_m), \ldots, x_n(y_1, \ldots, y_m))$ und sind alle beteiligten Funktionen stetig differenzierbar, so ergeben sich die partielle Ableitungen mittels Kettenregel zu
+
+    \begin{equation*}
+        \frac{\partial f}{\partial y_i}=\sum_{j=1}^n \frac{\partial f}{\partial x_i} \frac{\partial x_j}{\partial y_i} .
+    \end{equation*}
+\end{satz}
+
+\begin{proof}
+    siehe \cite{forster2017analysis}
+\end{proof}
+Im Bereich des tiefen Lernens zählt die effiziente Berechnung dieser Gradienten zu den schwersten Aufgaben. Eine ausführliche Erklärung der Backpropagationsphase für klassische FFN ist beispielsweise in Rojas\cite{rojas96neural} zu finden. 
+
+\section{Zusammenfassung}
+In diesem Kapitel wurden KNN als Feed-Forward-Netze eingeführt. Es stellt sich heraus, dass diese Netze als probabilistische Modelle genutzt werden können, um Klassifikationsaufgaben hinreichend gut zu lösen. Dabei ist es wichtig die Hyper- und Modellparameter je nach Anwendung und Leistungsmaß optimal zu wählen. Dazu werden Trainingsdaten genutzt, um während eines Lernprozesses eine Fehlerfunktion zu Minimieren. Eine Lösung von \ref{eq:error_fun_opt} kann wegen der Komplexität der Fehlerfuntion $\mathcal{E}$ bzw. der großen Menge von Parametern $\mathcal{W}$ selten direkt angegeben werden\cite{blum1992training}. Daher wird das Mini-Batch-Verfahren als iterativer Ansatz zur numerischen Mnimierung der Fehlerfunktion genutzt. Dabei sind partielle Ableitungen der Fehlerfunktion bezüglich der Parameter nötig, welche in der Backpropagationsphase mithilfe der mehrdimensionalen Kettenregel berechnet werden können. Die Backpropagation bei faltbaren neuronalen Netzen (CNN), engl. \textit{convolutional neural networks} wird im folgende Kapitel \ref{kap:CNN} näher erläutert.
+
+
     
 
 
