@@ -1,13 +1,13 @@
 \chapter{Grundlagen neuronaler Netze}
 \label{kapitel_neuralnetworks}
 
-In diesem Kapitel werden Künstliche Neuronale Netze\cite{dayhoff1990neural}, kurz KNN, als Forschungsgegenstand der Informatik eingeführt und deren mathematischen Grundlagen präzisiert. 
+In diesem Kapitel werden Künstliche Neuronale Netze\cite{dayhoff1990neural}, kurz KNN, als Forschungsgegenstand der Informatik eingeführt und deren mathematische Grundlagen präzisiert. 
 Sie stellen informationsverarbeitende Systeme nach dem Vorbild von tierischen beziehungsweise menschlichen Gehirnen dar und bestehen aus Neuronen in gewissen Zuständen und Schichten, die über gewichtete Verbindungen miteinander gekoppelt sind. Jene Gewichte sind als freie Parameter des neuronalen Netzes zu verstehen und können während des Trainingsprozesses so angepasst werden, um eine entsprechende Aufgabe zu lösen.  
 Gelingt dies, so können neuronale Netze genutzt werden, um bestimmte Muster in Daten, typischerweise in Bildern, Audio oder Stromdaten, effizient zu erkennen\cite{pandya1995pattern, pao1989adaptive, urbaniak2021quality}.
-Sie eignen sich daher für viele typischen Aufgaben des maschinellen Lernens, beispielsweise für die Klassifikation digitalisierter Objekte.
+Sie eignen sich daher für viele typische Aufgaben des maschinellen Lernens, beispielsweise für die Klassifikation digitalisierter Objekte.
 
-Im ersten Abschnitt wird das Perzeptron\cite{rosenblatt1958perceptron} als Grundeinheit eines neuronalen Netztes eingeführt. 
-Im folgendem Abschnitt wird das Konzept der Multi-Layer-Perzeptronen\cite{werbos1988generalization} durch die Kopplung mehrerer Perzeptronen mit bestimmten Übertragungs- und Aktivierungsfunktion in einem Netz erläutert. Diese Repräsentierung eines KNN wird im weiteren Verlauf dieser Arbeit genutzt. 
+Im ersten Abschnitt wird das Perzeptron\cite{rosenblatt1958perceptron} als Grundeinheit eines neuronalen Netzes eingeführt. 
+Im folgenden Abschnitt wird das Konzept der Multi-Layer-Perzeptronen\cite{werbos1988generalization} durch die Kopplung mehrerer Perzeptronen mit bestimmten Übertragungs- und Aktivierungsfunktion in einem Netz erläutert. Diese Repräsentierung eines KNN wird im weiteren Verlauf dieser Arbeit genutzt. Weiter wird das Training neuronaler Netze hinsichtlich der Klassifikationsaufgabe im Abschnitt \ref{abs:task_training} erläutert und schließlich eine kurze Zusammenfassung \ref{abs:NN_conc} gegeben.
 
 \section{Das Perzeptron}
 \label{perzeptron_abs}
@@ -31,8 +31,8 @@ Bei der Wahl der Funktion $\psi$ gibt es mehrere Möglichkeiten. Wird wie in Min
 \begin{equation*}
     \psi: \RR \rightarrow \RR, \; \; \;
     \psi(x)=\begin{cases}
-       1 &, x \geq 0 \\
-       0 &, \text{sonst}
+       1 , \; x \geq 0 \\
+       0 , \; \text{sonst}
     \end{cases}
 \end{equation*} 
 genutzt, kann das Perzeptron als binärer Klassifikator wie in \ref{abs_linear_trenn} interpretiert werden. Dabei dient $w^Tx+\theta=0$ als trennende Hyperebene. Ist $w^Tx+\theta<0$, so ist $\psi(x)=0$ und $x$ wird der Klasse $K_{-1}$ zugeordnet. Gilt jedoch $w^Tx+\theta \geq 0$ und damit $\psi(x)=1$, so ist der Vektor $x$ der Klasse $K_1$ zugehörig. 
@@ -41,7 +41,7 @@ Für ein Klassifikationsproblem, bei dem die Klassen nicht linear trennbar sind,
 
 \section{Multi-Layer-Perzeptron}
 \label{MLP_abs}
-In dieser Arbeit wird ein Künstliches Neuronales Netz als eine Menge von Perzeptronen, die in gewissen Schichten partitioniert und miteinander verbunden sind, notiert. Diese sogenannten \textit{Multi-Layer-Perzeptronen}, kurz MLP,  gelten als erste tiefe neuronale Netze und sind seit den späten 1980er Gegenstand der Forschung\cite{bourlard1990links,bounds1988multilayer,MLPbook}. Zunächst sind einige Definition notwendig, um eine lesbare Notation des MLPs zu geben.
+In dieser Arbeit wird ein Künstliches Neuronales Netz als eine Menge von Perzeptronen, die in gewissen Schichten partitioniert und miteinander verbunden sind, notiert. Diese sogenannten \textit{Multi-Layer-Perzeptronen}, kurz MLP,  gelten als erste tiefe neuronale Netze und sind seit den späten 1980er-Jahren Gegenstand der Forschung\cite{bourlard1990links,bounds1988multilayer,MLPbook}. Zunächst sind einige Definition notwendig, um eine lesbare Notation des MLPs zu geben.
 
 \begin{defi}[Übertragungsfunktion]
     \label{def_net}
@@ -58,7 +58,7 @@ Hierbei ist $W$ eine Gewichtsmatrix und $b$ ein Biasvektor, welche als freie Par
     Eine stetige, monoton steigende und nicht notwendigerweise lineare Funktion $\psi: \RR \rightarrow \RR$ wird als Aktivierungsfunktion bezeichnet.
 \end{defi}
 Es sei erwähnt, dass auch nicht monotone Aktivierungsfunktionen genutzt werden können, beispielsweise radiale Basisfunktionen\cite{radialbasis}, welche jedoch in dieser Arbeit nicht weiter von Interesse sind.
-Typische Aktivierungsfunktionen, die oft verwendet werden, sind die:
+Typische Aktivierungsfunktionen, weclhe heutzutage verwendet werden, sind die:
 \begin{align*}
     \text{Identität}: \; \;\psi(x)&=x, \\
     \text{Logistische Funktion}: \; \;\psi(x)&=\frac{1}{1+\mathrm{e}^{-x}}, \\
@@ -83,7 +83,7 @@ Bei Klassifikationsproblemen wird oft die \textit{Softmax}-Funktion\cite{denker1
     als Softmax-Funktion definiert. Die Einträge des Vektors $\psi(x)$ summieren sich zu Eins.  
 \end{defi}
 
-Für den späteren Trainingsprozess ist es nützlich, die Ableitung der verwendeten Aktivierungsfunktion, sofern sie exisitiert, zur Verfügung zu haben. Zudem ist es möglich, für bestimmte Aktivierungsfunktionen die Ableitung nur mithilfe der verwendeten Funktion zu berechnen.
+Für den späteren Trainingsprozess ist es nützlich, die Ableitung der verwendeten Aktivierungsfunktion, sofern sie existiert, zur Verfügung zu haben. Zudem ist es möglich, für bestimmte Aktivierungsfunktionen die Ableitung nur mithilfe der verwendeten Funktion zu berechnen.
 
 \begin{lem}
     \begin{itemize}
@@ -111,7 +111,7 @@ Für den späteren Trainingsprozess ist es nützlich, die Ableitung der verwende
 \end{proof}
 
 
-Ähnlich der Definition des Perzeptron \ref{def_neuron} wird nun eine Schicht als Verknüpfung von Übertragungsfunktion und Aktivierungsfunktion definiert.
+Ähnlich der Definition des Perzeptrons \ref{def_neuron} wird nun eine Schicht als Verknüpfung von Übertragungsfunktion und Aktivierungsfunktion definiert.
 
 \begin{defi}[Neuronenschicht]
     Ist $\Psi^{W,b}$ eine Übertragungsfunktion mit den Parametern $W \in \RR^{n \times m}, b \in \RR^m$ und $\psi$ eine Aktivierungsfunktion, so wird das Paar $(\Psi^{W,b}, \psi)$ als Schicht $\mathcal{S}$ bezeichnet. Für eine Eingabe $x \in \RR^n$ ist die Ausgabe $y \in \RR^m$ der Schicht $\mathcal{S}$ durch
@@ -159,7 +159,7 @@ Es lassen sich zwischen Modell- und Hyperparameter von KNN unterscheiden.
 Die Hyperparameter werden oft anwendungsspezifisch für das jeweilige Problem gewählt, während die Modellparameter dynamisch in einem Trainingsprozes angepasst werden, sodass die gegebene Aufgabe zufriedenstellend gelöst wird. Wie dies geschieht, wird im folgenden Abschnitt \ref{task_training} erläutert.
 
 \section{Training neuronaler Netze}
-\label{task_training}
+\label{abs:task_training}
 Künstliche Neuronale Netze gehören zu den typischen Vertretern von maschinellen Lernalgorithmen, welche hinsichtlich einer bestimmten Aufgabe, engl. \textit{task T}, und einem Leistungsmaß, engl. \textit{perfomance P} an der Erfahrung, engl. \textit{experience E} lernen\cite{Goodfellow-et-al-2016}. Dabei ist mit Lernen gemeint, dass das Computerprogramm bezüglich der Aufgabe $T$ sein Leistungsmaß $P$ mit wachsener Erfahrung $E$ schrittweise steigert. Wie in Kapitel \ref{fund} erläutert, gibt es viele verschiedene Aufgaben, wie die Regression, Klassifikation oder Clusterung bestimmter Objekte. 
 
 In den folgenden Abschnitten wird das Klassifikationsproblem als \textit{task T} im Mittelpunkt stehen. Weiter werden KNNs als Modellschätzer aus der Wahrscheinlichkeitstheorie interpretiert und fundamentale Aussagen wie das \textit{Universal-Approximation-Theroem}\cite{HORNIK1989359} gegeben. Schließlich wird bezüglich der Klassifikationsaufgabe das Training neuronaler Netze erläutert.
@@ -349,7 +349,10 @@ Die Abstiegsrichtungen werden werden mithilfe der mehrdimensionalen Kettenregel 
 Im Bereich des tiefen Lernens zählt die effiziente Berechnung dieser Gradienten zu den schwersten Aufgaben. Eine ausführliche Erklärung der Backpropagationsphase für klassische FFN ist beispielsweise in Rojas\cite{rojas96neural} zu finden. 
 
 \section{Zusammenfassung}
-In diesem Kapitel wurden KNN als Feed-Forward-Netze eingeführt. Es stellt sich heraus, dass diese Netze als probabilistische Modelle genutzt werden können, um Klassifikationsaufgaben hinreichend gut zu lösen. Dabei ist es wichtig die Hyper- und Modellparameter je nach Anwendung und Leistungsmaß optimal zu wählen. Dazu werden Trainingsdaten genutzt, um während eines Lernprozesses eine Fehlerfunktion zu Minimieren. Eine Lösung von \ref{eq:error_fun_opt} kann wegen der Komplexität der Fehlerfuntion $\mathcal{E}$ bzw. der großen Menge von Parametern $\mathcal{W}$ selten direkt angegeben werden\cite{blum1992training}. Daher wird das Mini-Batch-Verfahren als iterativer Ansatz zur numerischen Mnimierung der Fehlerfunktion genutzt. Dabei sind partielle Ableitungen der Fehlerfunktion bezüglich der Parameter nötig, welche in der Backpropagationsphase mithilfe der mehrdimensionalen Kettenregel berechnet werden können. Die Backpropagation bei faltbaren neuronalen Netzen (CNN), engl. \textit{convolutional neural networks} wird im folgende Kapitel \ref{kap:CNN} näher erläutert.
+\label{abs:NN_conc}
+In diesem Kapitel wurden KNN als Feed-Forward-Netze eingeführt. Es stellt sich heraus, dass diese Netze als probabilistische Modelle genutzt werden können, um Klassifikationsaufgaben hinreichend gut zu lösen. Dabei ist es wichtig die Hyper- und Modellparameter je nach Anwendung und Leistungsmaß optimal zu wählen. Dazu werden Trainingsdaten genutzt, um während eines Lernprozesses eine Fehlerfunktion zu Minimieren. Eine Lösung von \ref{eq:error_fun_opt} kann wegen der Komplexität der Fehlerfuntion $\mathcal{E}$ bzw. der großen Menge von Parametern $\mathcal{W}$ selten direkt angegeben werden\cite{blum1992training}. Daher wird das Mini-Batch-Verfahren als iterativer Ansatz zur numerischen Mnimierung der Fehlerfunktion genutzt. Dabei sind partielle Ableitungen der Fehlerfunktion bezüglich der Parameter nötig, welche in der Backpropagationsphase mithilfe der mehrdimensionalen Kettenregel berechnet werden können. 
+
+Bei der Analyse von Zeitreihen oder Bildern eignen sich abgewandelte Architekturen wie faltbare neuronale Netze (CNN), engl. \textit{convolutional neural networks}, welche im folgenden Kapitel \ref{kap:CNN} näher erläutert werden.
 
 
     

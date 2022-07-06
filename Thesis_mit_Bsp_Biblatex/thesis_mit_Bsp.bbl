@@ -158,6 +158,30 @@
       \field{pages}{1167\bibrangedash 1178}
       \range{pages}{12}
     \endentry
+    \entry{dayhoff1990neural}{book}{}
+      \name{author}{1}{}{%
+        {{hash=46d9a224143459d8f726028fc82d65c3}{%
+           family={Dayhoff},
+           familyi={D\bibinitperiod},
+           given={Judith\bibnamedelima E},
+           giveni={J\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Van Nostrand Reinhold Co.}%
+      }
+      \strng{namehash}{46d9a224143459d8f726028fc82d65c3}
+      \strng{fullhash}{46d9a224143459d8f726028fc82d65c3}
+      \strng{bibnamehash}{46d9a224143459d8f726028fc82d65c3}
+      \strng{authorbibnamehash}{46d9a224143459d8f726028fc82d65c3}
+      \strng{authornamehash}{46d9a224143459d8f726028fc82d65c3}
+      \strng{authorfullhash}{46d9a224143459d8f726028fc82d65c3}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Neural network architectures: an introduction}
+      \field{year}{1990}
+    \endentry
     \entry{denker1990transforming}{article}{}
       \name{author}{2}{}{%
         {{hash=2e06fda0238979cad0d24113daf80ed5}{%
@@ -518,6 +542,59 @@
       \field{title}{Numerical optimization}
       \field{year}{1999}
     \endentry
+    \entry{pandya1995pattern}{book}{}
+      \name{author}{2}{}{%
+        {{hash=0fe43bdbca8e002144cfbbb4c7af9d82}{%
+           family={Pandya},
+           familyi={P\bibinitperiod},
+           given={Abhijit\bibnamedelima S},
+           giveni={A\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=cc410527bcd65b306d921ae1fe29638f}{%
+           family={Macy},
+           familyi={M\bibinitperiod},
+           given={Robert\bibnamedelima B},
+           giveni={R\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {CRC press}%
+      }
+      \strng{namehash}{c8e8337c69e623624fe95f96f1019239}
+      \strng{fullhash}{c8e8337c69e623624fe95f96f1019239}
+      \strng{bibnamehash}{c8e8337c69e623624fe95f96f1019239}
+      \strng{authorbibnamehash}{c8e8337c69e623624fe95f96f1019239}
+      \strng{authornamehash}{c8e8337c69e623624fe95f96f1019239}
+      \strng{authorfullhash}{c8e8337c69e623624fe95f96f1019239}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Pattern recognition with neural networks in C++}
+      \field{year}{1995}
+    \endentry
+    \entry{pao1989adaptive}{article}{}
+      \name{author}{1}{}{%
+        {{hash=fc2c4cf2e3311445db784feea8c45d9f}{%
+           family={Pao},
+           familyi={P\bibinitperiod},
+           given={Yohhan},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Reading, MA (US); Addison-Wesley Publishing Co., Inc.}%
+      }
+      \strng{namehash}{fc2c4cf2e3311445db784feea8c45d9f}
+      \strng{fullhash}{fc2c4cf2e3311445db784feea8c45d9f}
+      \strng{bibnamehash}{fc2c4cf2e3311445db784feea8c45d9f}
+      \strng{authorbibnamehash}{fc2c4cf2e3311445db784feea8c45d9f}
+      \strng{authornamehash}{fc2c4cf2e3311445db784feea8c45d9f}
+      \strng{authorfullhash}{fc2c4cf2e3311445db784feea8c45d9f}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Adaptive pattern recognition and neural networks}
+      \field{year}{1989}
+    \endentry
     \entry{radialbasis}{article}{}
       \name{author}{2}{}{%
         {{hash=a751353273269dd04e3592da348ed973}{%
@@ -825,6 +902,39 @@
       \field{pages}{26\bibrangedash 31}
       \range{pages}{6}
     \endentry
+    \entry{urbaniak2021quality}{article}{}
+      \name{author}{2}{}{%
+        {{hash=78dbf9a23cf374ee5300ea30025dd3f1}{%
+           family={Urbaniak},
+           familyi={U\bibinitperiod},
+           given={Ilona},
+           giveni={I\bibinitperiod}}}%
+        {{hash=966c2687336661a47d8535bdd63f8199}{%
+           family={Wolter},
+           familyi={W\bibinitperiod},
+           given={Marcin},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{7f089de4d63583a8f3c29398e169464b}
+      \strng{fullhash}{7f089de4d63583a8f3c29398e169464b}
+      \strng{bibnamehash}{7f089de4d63583a8f3c29398e169464b}
+      \strng{authorbibnamehash}{7f089de4d63583a8f3c29398e169464b}
+      \strng{authornamehash}{7f089de4d63583a8f3c29398e169464b}
+      \strng{authorfullhash}{7f089de4d63583a8f3c29398e169464b}
+      \field{sortinit}{U}
+      \field{sortinithash}{6901a00e45705986ee5e7ca9fd39adca}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Communications in Nonlinear Science and Numerical Simulation}
+      \field{title}{Quality assessment of compressed and resized medical images based on pattern recognition using a convolutional neural network}
+      \field{volume}{95}
+      \field{year}{2021}
+      \field{pages}{105582}
+      \range{pages}{1}
+    \endentry
     \entry{werbos1988generalization}{article}{}
       \name{author}{1}{}{%
         {{hash=3f6ba0fa8bc8542632efe7f31c9ee2e8}{%
@@ -855,14 +965,10 @@
       \range{pages}{18}
     \endentry
   \enddatalist
-  \missing{dayhoff1990neural}
   \missing{goodfellow}
   \missing{gruen}
   \missing{gruening}
-  \missing{pandya1995pattern}
-  \missing{pao1989adaptive}
   \missing{strauss}
-  \missing{urbaniak2021quality}
 \endrefsection
 \endinput
 

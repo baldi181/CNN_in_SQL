@@ -1654,10 +1654,6 @@ INPUT ./chapters/kap_cnn.tex
 INPUT chapters/kap_cnn.tex
 INPUT ./chapters/kap_cnn.tex
 INPUT chapters/kap_cnn.tex
-INPUT ./chapters/convolutionlayer.tex
-INPUT chapters/convolutionlayer.tex
-INPUT ./chapters/convolutionlayer.tex
-INPUT chapters/convolutionlayer.tex
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmri8.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmri7.tfm
 INPUT c:/texlive/2021/texmf-dist/tex/latex/lm/ts1lmr.fd

@@ -35,41 +35,39 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {4}Faltbare neuronale Netze}{14}{chapter.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Die Faltung}{15}{chapter.5}%
+\contentsline {section}{\numberline {4.1}Die Faltungsoperation}{14}{section.4.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.1}Die Faltungsoperation}{15}{section.5.1}%
+\contentsline {section}{\numberline {4.2}Motivation der Faltung}{16}{section.4.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.2}Motivation der Faltung}{17}{section.5.2}%
+\contentsline {chapter}{\numberline {5}Weiteres Kapitel}{18}{chapter.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Weiteres Kapitel}{19}{chapter.6}%
+\contentsline {section}{\numberline {5.1}Umgebungen und Formeln}{18}{section.5.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.1}Umgebungen und Formeln}{19}{section.6.1}%
+\contentsline {section}{\numberline {5.2}Aufzählung und Nummerierung}{19}{section.5.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.2}Aufzählung und Nummerierung}{20}{section.6.2}%
+\contentsline {section}{\numberline {5.3}Tabellen}{19}{section.5.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.3}Tabellen}{20}{section.6.3}%
+\contentsline {section}{\numberline {5.4}Bilder}{19}{section.5.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.4}Bilder}{20}{section.6.4}%
+\contentsline {subsection}{\numberline {5.4.1}Einzelnes Bild}{19}{subsection.5.4.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.4.1}Einzelnes Bild}{20}{subsection.6.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}Mehrere Bilder}{20}{subsection.5.4.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.4.2}Mehrere Bilder}{21}{subsection.6.4.2}%
+\contentsline {section}{\numberline {5.5}TikZ}{20}{section.5.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.5}TikZ}{21}{section.6.5}%
+\contentsline {subsection}{\numberline {5.5.1}Einfache Grafiken}{21}{subsection.5.5.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.5.1}Einfache Grafiken}{22}{subsection.6.5.1}%
+\contentsline {subsection}{\numberline {5.5.2}Graphen und ähnliches}{21}{subsection.5.5.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {6.5.2}Graphen und ähnliches}{22}{subsection.6.5.2}%
+\contentsline {chapter}{\numberline {6}Ein letztes Kapitel}{22}{chapter.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {7}Ein letztes Kapitel}{23}{chapter.7}%
+\contentsline {section}{\numberline {6.1}Weiteres Korollar}{22}{section.6.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.1}Weiteres Korollar}{23}{section.7.1}%
+\contentsline {section}{\numberline {6.2}Pseudocode}{22}{section.6.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.2}Pseudocode}{23}{section.7.2}%
+\contentsline {section}{\numberline {6.3}Zitate}{22}{section.6.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {7.3}Zitate}{23}{section.7.3}%
-\defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline Literatur}{25}{chapter*.22}%
+\contentsline {chapter}{\nonumberline Literatur}{24}{chapter*.22}%
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {A}Anhang}{i}{appendix.A}%
 \defcounter {refsection}{0}\relax 
