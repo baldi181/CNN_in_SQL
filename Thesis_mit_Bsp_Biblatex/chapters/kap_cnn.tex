@@ -1,15 +1,15 @@
 \chapter{Gefaltete neuronale Netze}
 \label{kap:CNN}
 
-Feed-Forward-Netze gelten als leistungsstarke maschinelle Lernmethoden, da sie so trainiert werden können, um beliebige komplexe Funktionen abhängig von einer vektorwertigen Eingabe zu approximieren. Ist die Dimension der Eingabeschicht jedoch zu groß, treten bei klassischen FFN Probleme hinsichtlich der Paramteranzahl auf. In Anwendungen der Computergrafik sollen oft digitalisierte Bilder klassifiziert werden. Wird ein MLP mit $100$ Ausgabeneuronen genutzt und jeder Pixel eines Bildes mit den Abmessungen $1000 \times 1000$ als Merkmal genutzt, so ergeben sich bereits $10^8+100$ freie Parameter. Stehen nur relativ wenige Traingsdaten zur Verfügung, ist die Struktur des FFN zu komplex und dies kann zur Überanpassung führen\cite{caruana2000overfitting,bilbao2017overfitting}. Die Parameteranzahl muss also deutlich reduziert werden. Konzepte wie \textit{Parameter Sharing} und spärliche Konnektivität, engl. \textit{sparse connectivity} erlauben diese Reduktion, vgl \cite{Goodfellow-et-al-2016} und werden in den folgenden Abschnitten erläutert.
+Feed-Forward-Netze gelten als leistungsstarke maschinelle Lernmethoden, da sie so trainiert werden können, um beliebige komplexe Funktionen abhängig von einer vektorwertigen Eingabe zu approximieren. Ist die Dimension der Eingabeschicht jedoch zu groß, treten bei klassischen FFN Probleme hinsichtlich der Paramteranzahl auf. Im weiteren Verlauf dieser Arbeit sollen digitalisierte Bilder klassifiziert werden. Wird ein MLP mit $100$ Ausgabeneuronen genutzt und jeder Pixel eines Bildes mit den Abmessungen $1000 \times 1000$ als Merkmal genutzt, so ergeben sich bereits $10^8+100$ freie Parameter. Stehen nur relativ wenige Traingsdaten zur Verfügung, ist die Struktur des FFN zu komplex und dies kann zur Überanpassung führen\cite{caruana2000overfitting,bilbao2017overfitting}. Die Parameteranzahl muss also deutlich reduziert werden. Konzepte wie \textit{Parameter Sharing} und spärliche Konnektivität, engl. \textit{sparse connectivity} erlauben diese Reduktion, vgl. Goodfellow\cite{Goodfellow-et-al-2016} und werden in den folgenden Abschnitten erläutert.
 
 Ein weiterer Nachteil des FFN ergibt sich dadurch, dass Korrelationen von benachbarten Eingabeneuronen, z.B. Bilsegmente wie Kanten oder Ecken, nicht miteinbezogen werden. Es muss also eine Modell entwickelt werden, welches diese lokalen Muster extrahiert und sie miteinander verknüpft. Das Modell sollte zudem äquivariant gegenüber Translationen sein. 
 
-Schließlich sind beim FFN die Eingabe- und Ausgabedimension fixiert. Eine flexible Wahl diser Hyperparameter ist bei Problemen der Computergrafik oft erwünscht. 
+%Schließlich sind beim FFN die Eingabe- und Ausgabedimension fixiert. Eine flexible Wahl diser Hyperparameter ist bei Problemen der Computergrafik oft erwünscht. 
 
-In diesem Kapitel wird erläutert, wie gefaltete neuronale Netze die erwähnten Nachteile von FFN umgehen. CNN sind in der Lage, lokale Muster zu erkennen, sind äquivariant gegenüber Translationen und realisieren Konzepte wie Parameter Sharing, um die Anzahl der freien Parameter drastisch zu reduzieren. So gelingt es, besonders bei Aufgaben der Computergrafik \cite{DBLP:conf/nips/KrizhevskySH12, DBLP:journals/pieee/LeCunBBH98,DBLP:conf/cvpr/CiresanMS12} die Generalisierungsrate gegenüber klassichen FFN zu erhöhen.
+In diesem Kapitel wird erläutert, wie gefaltete neuronale Netze die erwähnten Nachteile von FFN umgehen. CNN sind in der Lage, lokale Muster zu erkennen, sind äquivariant gegenüber Translationen und realisieren Konzepte wie Parameter Sharing, um die Anzahl der freien Parameter drastisch zu reduzieren. So gelingt es, besonders bei Aufgaben der Computergrafik\cite{DBLP:conf/nips/KrizhevskySH12, DBLP:journals/pieee/LeCunBBH98,DBLP:conf/cvpr/CiresanMS12} die Generalisierungsrate gegenüber klassichen FFN zu erhöhen. 
 
-Gefaltete neuronale Netze unterscheiden sich von FFN bei der Berechnung der Übertragungsfunktion. Dazu wird die gefaltete Übertragungsfunktion definiert, welche das Konzept der diskreten Faltung nutzt. Im folgenden Abschnitt \ref{abs:conv_theorie}wird zunächst die Faltung als mathematische Operation eingeführt und deren Zusammenhang zur Fourier-Transformation \cite{werner2011funktionalanalysis} erläutert. Anschließend wird im Abschnitt \ref{abs:conv_def} das CNN-Modell definiert. 
+Gefaltete neuronale Netze unterscheiden sich von FFN bei der Berechnung der Übertragungsfunktion. Dazu wird die gefaltete Übertragungsfunktion definiert, welche das Konzept der diskreten Faltung nutzt. Im folgenden Abschnitt \ref{abs:conv_theorie}wird zunächst die Faltung als mathematische Operation eingeführt und deren Zusammenhang zur Fourier-Transformation\cite{werner2011funktionalanalysis} erläutert. Anschließend wird im Abschnitt \ref{abs:conv_def} das CNN-Modell definiert. 
 
 %bei CNNs zu verstehen ist und wie diese Operation bei diesen neuronalen Netzen motiviert wird. In diesem Zusammenhang werden Begriffe wie Merkmalskarten (engl. \textit{feature maps}) und Filter (engl. \textit{kernels}) eingeführt. Des Weiteren wird die Arithmetik der Faltungsoperation für zweidimensionale Eingaben, repräsentiert durch Matrizen, erklärt und das Verfahren \textit{padding} beziehungsweise das Nutzen von \textit{strides} erläutert. Das gesamte Kapitel wird mit konkreten Beispielen begleitet, um die verschiedenen Effekte der Faltungsoperation zu beleuchten.
 
@@ -45,7 +45,7 @@ Für die Faltung gelten einige Rechenregeln.
 %Bei klassischen neuronalen Netzen, siehe Kapitel \ref{classicNN} werden Eingabedaten durch eine Verkettung von affinen Transformationen verarbeitet. Typischerweise wird die Eingabe als Vektor dargestellt und  mit einer Matrix multipliziert, gegebenenfalls mit einem Biasvektor manipuliert und schließlich so die Ausgabe generiert. Bilder-, Audio- oder Videoaufnahmen besitzen jedoch mehrere Merkmale in unterschiedlichen Achsen. Oft sind solche Eingabedaten im Bereich des Machine-Learnings als mehrdimensionale Arrays abgelegt, welche eine oder mehrere Achsen repräsentieren, wobei die Ordnung dieser eine Rolle spielt. Bei digitalisierten Bildern sind das bespielsweise die Höhe und Breite des Bildes, bei Audioaufnahmen gibt es nur eine Achse, und zwar die Zeitachse. Hinzu kommen Kanalachsen als weitere Verfeinerung der Daten, zum Beispiel besitzen RGB-Farbbilder drei Kanäle der Farben rot, grün und blau. 
 
 %Diese speziellen Eigenschaften können bei affinen Transformationen nicht berücksichtigt werden. Alle Merkmale sowie Achsen werden gewissermaßen gleich behandelt und die wesentliche topologische Struktur kann so nicht zum Vorteil ausgenutzt werden. Hier soll nun die sogenannte diskrete Faltung Abhilfe schaffen.
-In der digitalen Signalverarbeitung und der digitalen Bildverarbeitung werden meist diskrete Funktionen analysiert und daher die diskrete Faltung genuzt, bei der statt der Intgration eine Summation auftaucht. Mit $f \ast g$ wird in im weiteren Verlauf dieser Arbeit die diskrete Faltung zweier Funktionen $f$ und $g$ bezeichnet. Die Regeln aus Lemma \ref{lem:convrules} gelten analog.
+In der digitalen Signal- und Bildverarbeitung werden meist diskrete Funktionen analysiert und daher die diskrete Faltung genutzt, bei der statt der Intgration eine Summation auftaucht. Die Regeln aus Lemma \ref{lem:convrules} gelten analog.
 
 \begin{defi}[Diskrete Faltung]\label{disk_faltung}
     Für zwei Funktionen $f,g: D \rightarrow \mathbb{C}$ mit einem diskreten Definitionsbereich $D \subseteq \mathbb{Z}^n$ ist die diskrete Faltung als
@@ -57,7 +57,7 @@ In der digitalen Signalverarbeitung und der digitalen Bildverarbeitung werden me
 
 Ist für $f,g: D \rightarrow \mathbb{C}$ der Definitionsbereich $D$ endlich, so können die Funktionen als zeitdiskrete Signale $f=(f_0, \ldots, f_{n-1})^T \in \mathbb{C}^{n}$ und $g=(g_0, \ldots, g_{n-1}) \in \mathbb{C}^{n}$ aufgefasst werden. Durch das Fortsetzen mit Nullen besitzen die Vektoren $f$ und $g$ die gleiche Länge. In diesem Fall kann die Faltung als Matrix-Vektor-Produkt mit einer zyklischen Matrix ausgedrückt werden. 
 
-\begin{defi}[Zyklische Matrix, vgl.\cite{gray2006toeplitz}]
+\begin{defi}[Zyklische Matrix, vgl. Gray\cite{gray2006toeplitz}]
     Eine quadratische Matrix heißt zyklisch im Vektor $a=(a_0, \ldots, a_{n-1})^T \in \RR^n$, wenn sie die Gesatlt
     \begin{equation*}
         \mathrm{zyk}(a):=
@@ -73,53 +73,88 @@ Ist für $f,g: D \rightarrow \mathbb{C}$ der Definitionsbereich $D$ endlich, so 
 \end{defi}    
     
 \begin{bem}
-Für ein zeitdiskrete Signal $f=(f_0, \ldots, f_{n-1})^T \in \mathbb{C}^{n}$ sei $F=\mathrm{zyk}(f)$ eine zyklische Matrix im Vektor $f$. Sei weiter $g=(g_0, \ldots, g_{n-1}) \in \mathbb{C}^{n}$. Dann lässt sich mit
+Für ein zeitdiskrete Signal $f=(f_0, \ldots, f_{n-1})^T \in \mathbb{C}^{n}$ sei $F=\mathrm{zyk}(f)$ die zyklische Matrix im Vektor $f$. Sei weiter $g=(g_0, \ldots, g_{n-1}) \in \mathbb{C}^{n}$. Dann lässt sich mit
     \begin{equation*}
         (F g)_k=\sum_{j=0}^{n-1}  f_{k-j} g_j,  \; \; k=0, \ldots, n-1
     \end{equation*}
     die diskrete Faltung von $f$ und $g$ darstellen. Dabei werden Indizies außerhalb von $0, \ldots, n-1$ zyklisch durch Modulo-Rechnung ($\mathrm{mod} \; n)$ in den gültigen Indexbereich abgebildet.
 \end{bem}
 
-Es gilt $(f \ast g)(n) =G \vec{f}$ mit 
-    \begin{equation*}
-        G=\begin{pmatrix}
-            \vec{g} & 0 &0 &\ldots &0 \\ 
-            0 & \vec{g} &0 & \ldots &0 \\
-            0 & 0 &\vec{g} &\ldots &0 \\
-            \vdots &\vdots &\vdots &\ddots &\vdots \\
-            0 &0 &0 &\ldots &\vec{g}
-        \end{pmatrix} \in \RR^{m \times n_f},
-    \end{equation*}
-    mit $m=n_f+n_g-1$.
+In Hinblick auf die Klassifikation von digitalisierten Bildern, dargestellt als zweidimensionale Signale, wird die zweidimensionale Faltung mit sogenannten quadratischen Kernen $K \in \RR^{k \times k}$ mit ungeradem $k \in \mathbb{N}$ definiert.
+ 
+%Um die Notation einfach zu halten, sei ein Kern $K$ ebenfalls eine $h \times b$ - Matrix, indem $K$ mit Nullen aufgefüllt wird.
 
-Besonders bei der Bildverarbeitung wird oft die diskrete Faltung als lineare Operation verwendet. 
+%\begin{defi}[Zweidimensionale Faltung]
+    %Sei $X \in \RR^{h \times b}$ und $K \in \RR^{k \times k}$. Das Ergebnis der zweidimensionalen Faltung ist die Matrix $Y= X \ast K \in \RR^{h \times b}$ mit
 
-\begin{defi}[Matrixfaltung, vgl. \cite{gruening}] \label{matrix_faltung}
-    Für gegebene Matrizen $X \in \RR^{h \times w}$ und $K \in \RR^{k_h \times k_w}$ seien 
-    \begin{equation*}
-        h_l=\begin{cases}
-           \lfloor k_h/2  \rfloor &, k_h \, \text{ungerade} \\
-           k_h/2-1 &, \text{sonst}
-        \end{cases}, \; \; 
-        w_l=\begin{cases}
-            \lfloor k_w/2 \rfloor &, k_w \, \text{ungerade} \\
-            k_w/2 -1 &, \text{sonst}    
-        \end{cases}.
-    \end{equation*} 
-    Die Matrixfaltung $K \ast X \in \RR^{h \times w}$ ist als 
+%    \begin{equation}
+%        \label{eq:2dmatrixconv}
+%        Y_{i,j}= \sum_{p \in [k]} \sum_{q \in [k]} X_{p,q} K_{p-i+3,q-j+3}.
+%    \end{equation}
+%    Dabei besitzt $Y$ die selben Abmessungen wie $X$. 
+%\end{defi}
+
+\begin{defi}[Zweidimensionale Faltung, vgl. \cite{gruening}] \label{def:matrix_faltung}
+    Für gegebene Matrizen $X \in \RR^{h \times b}$ und $K \in \RR^{k \times k}$ sei $h=\lfloor k/2  \rfloor$.
+    %\begin{equation*}
+    %   h_l=\begin{cases}
+    %       \lfloor k_h/2  \rfloor &, k_h \, \text{ungerade} \\
+    %       k_h/2-1 &, \text{sonst}
+    %    \end{cases}, \; \; 
+    %    w_l=\begin{cases}
+    %        \lfloor k_w/2 \rfloor &, k_w \, \text{ungerade} \\
+    %        k_w/2 -1 &, \text{sonst}    
+    %    \end{cases}.
+    %\end{equation*} 
+    Die zweidimensionale Faltung  $Y=X \ast K \in \RR^{h \times w}$ ist als 
     \begin{equation}
-        \label{matrix_faltung_op}
-        (K \ast X)_{i,j}:=\sum_{l=-h_l}^{\lfloor k_h/2  \rfloor} \sum_{m=-w_l}^{\lfloor k_w/2 \rfloor} K_{l+h_l+1, m+w_l+1} X_{i+l,j+m} \; \; \forall i \in [h], j \in [w]
-    \end{equation} mit $X_{i,j}=0$ für $i \notin [h]$ und $j \notin [w]$ definiert.
-    \end{defi}
+        \label{eq:matrix_faltung}
+        (Y)_{i,j}:=\sum_{l=-h}^{h} \sum_{m=-h}^{h} X_{i+l,j+m} K_{l+h_l+1, m+w_l+1}\; \; \forall i \in [h], j \in [b]
+    \end{equation} mit $X_{i,j}=0$ für $i \notin [h]$ und $j \notin [b]$ definiert. In der Literatur wird das Aüffüllen mit Nullen am Rand von $X$ mit \textit{zero padding} bezeichnet. In dieser Definition besitzt das Ergebnis $Y$ der Faltung die gleichen Abmessungen wie $X$.
+\end{defi}
 
+Bei gefalteten neuronalen Netzen wird oft eine Reduktion der Dimensionen angestrebt. Dafür werden natürliche Zahlen als Schrittweiten, engl. \textit{strides}, genutzt.
 \begin{bem}\label{bem_strides}
-    Die Matrixfaltung kann durch viele weitere Parameter genauer spezifiziert werden. Sogannte \textit{strides} bestimmen die Reduktion bei der Faltung von $X$ in der Höhe $h$ beziehungsweise Breite $w$. Für strides $s_h, s_w \in \mathbb{N}$ ist die Matrixfaltung als
+    Für Schrittweiten $s_h, s_b \in \mathbb{N}$ ergibt sich die reduzierte zweidimensionale Faltung $Y=X \ast K$ zu
     \begin{equation*}
-        (K \ast X)_{i,j}:=\sum_{l=-h_l}^{\lfloor k_h/2  \rfloor} \sum_{m=-w_l}^{\lfloor k_w/2 \rfloor} K_{l+h_l+1, m+w_l+1} X_{i \cdot s_h +l,j \cdot s_w +m} \; \; \forall i \in [h], j \in [w].
+        (Y)_{i,j}:=\sum_{l=-h}^{h} \sum_{m=-h}^{h} X_{i \cdot s_h +l,j \cdot s_b +m} K_{l+h_l+1, m+w_l+1}\; \; \forall i \in [\lceil h/s_h \rceil], j \in [\lceil b/s_b \rceil].
     \end{equation*}
-    Für $s_h=s_w=1$ ergibt sich die Standardvariante wie in \ref{matrix_faltung_op}.
+    Für $s_h=s_b=1$ ergibt sich die Standardvariante wie in \ref{eq:matrix_faltung}.
     \end{bem}
+
+\section{CNN Architektur}
+
+Beim maschinellen Lernen sind Eingabedaten oft als mehrdimensionale Arrays abgelegt, welche eine oder mehrere Achsen repräsentieren, wobei die Ordnung dieser eine Rolle spielt. Bei digitalisierten Bildern sind das bespielsweise die Höhe und Breite des Bildes, welche als Raumachsen bezeichnet werden. Hinzu kommen Kanalachsen als weitere Verfeinerung der Daten, zum Beispiel besitzen Grauwert-Bilder einen Farbkanal, während RGB-Farbbilder drei Kanäle der Farben rot, grün und blau besitzen. Dementsprechend werden Grauwert-Bilder wie in Definition \ref{def:image} nun als dreidimensionale Arrays $X \in [0,1]^{h \times b \times 1}$ dargestellt. Dies erlaubt die Definition der gefalteten Übertragungsfunktion, wie in Gruening\cite{gruening}
+
+\begin{defi}[Gefaltete Übertragungsfunktion]
+    Sei ein vierdimensionales Array $K \in \RR^{k \times k \times z_{in} \times z_{out}}$ und ein Biasvektor $b \in \RR^{z_{out}}$ gegeben. Die Funktion 
+    \begin{equation*}
+        \Psi_{conv}^{K,b}: \RR^{\cdot \times \cdot \times z_{in}} \rightarrow \RR^{\cdot \times \cdot\times z_{out}}
+    \end{equation*}
+    mit
+    \begin{equation*}
+        \Psi_{conv}^{K,b}(X)_{:,:,l}:= \sum_{p=1}^{z_{in}} K_{:,:,p,l} \ast X_{:,:,p} +b_l \; \forall l \in [z_{out}]
+    \end{equation*}
+    wird gefaltete Übertragungsfunktion bezeichnet. Mit $\ast$ ist die zweidimensionale Faltung wie in Definition \ref{def:matrix_faltung} und mit $\cdot$ beliebige Raumachsen gemeint.
+\end{defi}
+
+
+\begin{bem}
+    Ist $\psi: \RR \rightarrow \RR$ eine Aktivierungsfunktion wie in Definition \ref{def_act_f}, so wird für $X \in \RR^{\cdot \times \cdot \times z}$ mit 
+    \[\psi(X)_{i,j,:}:=\left(\psi(X_{i,j,1}), \ldots, \psi(X_{i,j,z})\right)^T \in \RR^z \; \; \forall i \in [{}_1 X], j \in [{}_2 X] 
+    \]
+    der Vektor bezeichnet, welcher sich durch die elementweise Auswertung der Aktivierungsfunktion $\psi$ ergibt.
+\end{bem}
+
+Ähnlich der Definition \ref{def:NNlayer} wird nun eine Faltungsschicht als Verknüpfung von gefalteter Übertragungsfunktion und Aktivierungsfunktion definiert.
+
+\begin{defi}[Faltungsschicht]
+    \label{def:convlayer}
+    Ist $\Psi_{conv}^{K,b}$ eine gefaltete Übertragungsfunktion und $\psi$ eine Aktivierungsfunktion, so wird das Paar $(\Psi_{conv}^{K,b}, \psi)$ als Faltungsschicht $\mathcal{S}_{conv}$ bezeichnet. Für eine Eingabe $X \in \RR^{\cdot \times \cdot \times z_{in}}$ ist die Ausgabe $Y \in \RR^{\cdot \times \cdot \times z_{out}}$ der Schicht $\mathcal{S}_{conv}$ durch
+    \[Y=\psi \circ \Psi_{conv}^{K,b}(X)= \psi\left(\Psi_{conv}^{K,b}(X)\right)
+        \] 
+        gegeben. Die Matrizen $Y_{:,:,p}$ werden für $1 \leq p \leq z_{out}$ Merkmalskarten genannt.
+\end{defi}
 
 Im Folgenden werden konkrete Beispiele für verschiedene zweidimensionale Faltungen, welche in dieser Arbeit im Fokus stehen, gegeben. Dabei sind die Eingabe $X \in \RR^{h \times w}$ und der Filter $K \in \RR^{k_h \times k_w}$ immer als Matrizen zu verstehen. Das Ergebnis der Faltung $S= X \ast K$ wird als Merkmalskarte bezeichnet. Es sei angemerkt, dass oft $k_h=k_w$ sowie $k_h$ ungerade gewählt wird, z.B. $k_h=3$ oder $k_h=5$. Die Größe der Merkmalskarte wird durch die Parameter
 \begin{itemize}
