@@ -1717,6 +1717,7 @@ INPUT tikz/ohdata.txt
 INPUT tikz/ohdata.txt
 INPUT tikz/ohdata.txt
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmcsc10.tfm
+INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ts1-lmri12.tfm
 INPUT c:/texlive/2021/texmf-dist/tex/latex/listings/lstlang1.sty
 INPUT c:/texlive/2021/texmf-dist/tex/latex/listings/lstlang1.sty
 INPUT c:/texlive/2021/texmf-dist/tex/latex/listings/lstlang1.sty

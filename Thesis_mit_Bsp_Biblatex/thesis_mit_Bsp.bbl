@@ -436,6 +436,37 @@
       \field{title}{Deep Learning}
       \field{year}{2016}
     \endentry
+    \entry{gray2006toeplitz}{article}{}
+      \true{moreauthor}
+      \true{morelabelname}
+      \name{author}{1}{}{%
+        {{hash=1c25ecfe5c6205a9933cfbb5b0a38de4}{%
+           family={Gray},
+           familyi={G\bibinitperiod},
+           given={Robert\bibnamedelima M},
+           giveni={R\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Now Publishers, Inc.}%
+      }
+      \strng{namehash}{f5db7bf4553fa6691ffbc38c907118b4}
+      \strng{fullhash}{f5db7bf4553fa6691ffbc38c907118b4}
+      \strng{bibnamehash}{f5db7bf4553fa6691ffbc38c907118b4}
+      \strng{authorbibnamehash}{f5db7bf4553fa6691ffbc38c907118b4}
+      \strng{authornamehash}{f5db7bf4553fa6691ffbc38c907118b4}
+      \strng{authorfullhash}{f5db7bf4553fa6691ffbc38c907118b4}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Foundations and Trends{®} in Communications and Information Theory}
+      \field{number}{3}
+      \field{title}{Toeplitz and circulant matrices: A review}
+      \field{volume}{2}
+      \field{year}{2006}
+      \field{pages}{155\bibrangedash 239}
+      \range{pages}{85}
+    \endentry
     \entry{hanin2018neural}{article}{}
       \name{author}{1}{}{%
         {{hash=cf9a954bd1391f7be502bbdd80737355}{%

@@ -9,7 +9,7 @@ Schließlich sind beim FFN die Eingabe- und Ausgabedimension fixiert. Eine flexi
 
 In diesem Kapitel wird erläutert, wie gefaltete neuronale Netze die erwähnten Nachteile von FFN umgehen. CNN sind in der Lage, lokale Muster zu erkennen, sind äquivariant gegenüber Translationen und realisieren Konzepte wie Parameter Sharing, um die Anzahl der freien Parameter drastisch zu reduzieren. So gelingt es, besonders bei Aufgaben der Computergrafik \cite{DBLP:conf/nips/KrizhevskySH12, DBLP:journals/pieee/LeCunBBH98,DBLP:conf/cvpr/CiresanMS12} die Generalisierungsrate gegenüber klassichen FFN zu erhöhen.
 
-Gefaltete neuronale Netze unterscheiden sich von FFN bei der Berechnung der Übertragungsfunktion. Dazu wird die gefaltete Übertragungsfunktion definiert, welche das Konzept der diskreten Faltung nutzt. Im folgenden Abschnitt \ref{abs:conv_theorie}wird zunächst die Faltung als mathematische Operation eingeführt und deren Zusammenhang zur Fourier-Transformation\cite{werner2011funktionalanalysis} erläutert. Anschließend wird im Abschnitt \ref{abs:conv_def} das CNN-Modell definiert. 
+Gefaltete neuronale Netze unterscheiden sich von FFN bei der Berechnung der Übertragungsfunktion. Dazu wird die gefaltete Übertragungsfunktion definiert, welche das Konzept der diskreten Faltung nutzt. Im folgenden Abschnitt \ref{abs:conv_theorie}wird zunächst die Faltung als mathematische Operation eingeführt und deren Zusammenhang zur Fourier-Transformation \cite{werner2011funktionalanalysis} erläutert. Anschließend wird im Abschnitt \ref{abs:conv_def} das CNN-Modell definiert. 
 
 %bei CNNs zu verstehen ist und wie diese Operation bei diesen neuronalen Netzen motiviert wird. In diesem Zusammenhang werden Begriffe wie Merkmalskarten (engl. \textit{feature maps}) und Filter (engl. \textit{kernels}) eingeführt. Des Weiteren wird die Arithmetik der Faltungsoperation für zweidimensionale Eingaben, repräsentiert durch Matrizen, erklärt und das Verfahren \textit{padding} beziehungsweise das Nutzen von \textit{strides} erläutert. Das gesamte Kapitel wird mit konkreten Beispielen begleitet, um die verschiedenen Effekte der Faltungsoperation zu beleuchten.
 
@@ -22,20 +22,75 @@ In der Analysis ist die Faltung ein mathematischer Operator und liefert für zwe
     \begin{equation*}
         (f \ast g) (x) := \int_{\Rnv} f(\tau) g(x-\tau) \mathrm{d} \tau
     \end{equation*}
-    definiert, wobei gefordert wird, dass das Integral für fast alle $x$ wohldefiniert ist.
+    definiert, wobei gefordert wird, dass das Integral für fast alle $x$ wohldefiniert ist. Für $f,g \in L^1(\RR^n)$ ist dies der Fall.
    \end{defi}
+
+Für die Faltung gelten einige Rechenregeln.
+
+\begin{lem}
+    \label{lem:convrules}
+    Seien $f,g,h \in L^1(\RR^n)$ und $a \in \mathbb{C}$. Dann gelten
+    \begin{align*}
+         (i) \; \; &f \ast g = g \ast f \; \; &( \text{Kommutativität}) \\
+         (ii) \; \; &f \ast (g \ast h) = (f \ast g) \ast h  \; \;& (\text{Assoziativität}) \\
+         (iii) \; \; &f \ast (g+h) = (f+g) \ast h \; \; &(\text{Distributivität}) \\ 
+         (iv) \; \; &a(f \ast g) = (af) \ast g = f \ast (ag) \; \; &(\text{Assoziativität mit skalarer Multiplikation}) 
+    \end{align*}
+\end{lem}
+
+\begin{proof}
+    Eine Beweis dieser Rechenregeln kann in Werner\cite{werner2011funktionalanalysis} nachgelsen werden.
+\end{proof}
 
 %Bei klassischen neuronalen Netzen, siehe Kapitel \ref{classicNN} werden Eingabedaten durch eine Verkettung von affinen Transformationen verarbeitet. Typischerweise wird die Eingabe als Vektor dargestellt und  mit einer Matrix multipliziert, gegebenenfalls mit einem Biasvektor manipuliert und schließlich so die Ausgabe generiert. Bilder-, Audio- oder Videoaufnahmen besitzen jedoch mehrere Merkmale in unterschiedlichen Achsen. Oft sind solche Eingabedaten im Bereich des Machine-Learnings als mehrdimensionale Arrays abgelegt, welche eine oder mehrere Achsen repräsentieren, wobei die Ordnung dieser eine Rolle spielt. Bei digitalisierten Bildern sind das bespielsweise die Höhe und Breite des Bildes, bei Audioaufnahmen gibt es nur eine Achse, und zwar die Zeitachse. Hinzu kommen Kanalachsen als weitere Verfeinerung der Daten, zum Beispiel besitzen RGB-Farbbilder drei Kanäle der Farben rot, grün und blau. 
 
 %Diese speziellen Eigenschaften können bei affinen Transformationen nicht berücksichtigt werden. Alle Merkmale sowie Achsen werden gewissermaßen gleich behandelt und die wesentliche topologische Struktur kann so nicht zum Vorteil ausgenutzt werden. Hier soll nun die sogenannte diskrete Faltung Abhilfe schaffen.
+In der digitalen Signalverarbeitung und der digitalen Bildverarbeitung werden meist diskrete Funktionen analysiert und daher die diskrete Faltung genuzt, bei der statt der Intgration eine Summation auftaucht. Mit $f \ast g$ wird in im weiteren Verlauf dieser Arbeit die diskrete Faltung zweier Funktionen $f$ und $g$ bezeichnet. Die Regeln aus Lemma \ref{lem:convrules} gelten analog.
 
 \begin{defi}[Diskrete Faltung]\label{disk_faltung}
     Für zwei Funktionen $f,g: D \rightarrow \mathbb{C}$ mit einem diskreten Definitionsbereich $D \subseteq \mathbb{Z}^n$ ist die diskrete Faltung als
     \begin{equation*}
         (f \ast g) (n) := \sum_{k \in D} f(k) g(x-k)
     \end{equation*}
-    definiert. Hier wird über dem gesamten Definitionsbereich $D$ summiert. Ist $D$ beschränkt, werden $f$ beziehungsweise $g$ durch Nullen fortgesetzt. 
-   \end{defi}
+    definiert. Hier wird über dem gesamten Definitionsbereich $D$ summiert. Ist $D$ beschränkt, werden $f$ beziehungsweise $g$ durch Nullen fortgesetzt.  
+\end{defi}
+
+Ist für $f,g: D \rightarrow \mathbb{C}$ der Definitionsbereich $D$ endlich, so können die Funktionen als zeitdiskrete Signale $f=(f_0, \ldots, f_{n-1})^T \in \mathbb{C}^{n}$ und $g=(g_0, \ldots, g_{n-1}) \in \mathbb{C}^{n}$ aufgefasst werden. Durch das Fortsetzen mit Nullen besitzen die Vektoren $f$ und $g$ die gleiche Länge. In diesem Fall kann die Faltung als Matrix-Vektor-Produkt mit einer zyklischen Matrix ausgedrückt werden. 
+
+\begin{defi}[Zyklische Matrix, vgl.\cite{gray2006toeplitz}]
+    Eine quadratische Matrix heißt zyklisch im Vektor $a=(a_0, \ldots, a_{n-1})^T \in \RR^n$, wenn sie die Gesatlt
+    \begin{equation*}
+        \mathrm{zyk}(a):=
+        \begin{pmatrix}
+            a_0 & a_{n-1} &a_{n-2} &\ldots &a_1 \\ 
+            a_1 & a_0 &a_{n-1} & \ldots &a_2 \\
+            a_2 & a_1 &a_0 & \ldots &a_3 \\
+             &\ddots &\ddots &\ddots & \\
+            a_{n-1} &a_{n-2} &a_{n-3} &\ldots &a_0
+        \end{pmatrix}
+    \end{equation*}
+    besitzt.
+\end{defi}    
+    
+\begin{bem}
+Für ein zeitdiskrete Signal $f=(f_0, \ldots, f_{n-1})^T \in \mathbb{C}^{n}$ sei $F=\mathrm{zyk}(f)$ eine zyklische Matrix im Vektor $f$. Sei weiter $g=(g_0, \ldots, g_{n-1}) \in \mathbb{C}^{n}$. Dann lässt sich mit
+    \begin{equation*}
+        (F g)_k=\sum_{j=0}^{n-1}  f_{k-j} g_j,  \; \; k=0, \ldots, n-1
+    \end{equation*}
+    die diskrete Faltung von $f$ und $g$ darstellen. Dabei werden Indizies außerhalb von $0, \ldots, n-1$ zyklisch durch Modulo-Rechnung ($\mathrm{mod} \; n)$ in den gültigen Indexbereich abgebildet.
+\end{bem}
+
+Es gilt $(f \ast g)(n) =G \vec{f}$ mit 
+    \begin{equation*}
+        G=\begin{pmatrix}
+            \vec{g} & 0 &0 &\ldots &0 \\ 
+            0 & \vec{g} &0 & \ldots &0 \\
+            0 & 0 &\vec{g} &\ldots &0 \\
+            \vdots &\vdots &\vdots &\ddots &\vdots \\
+            0 &0 &0 &\ldots &\vec{g}
+        \end{pmatrix} \in \RR^{m \times n_f},
+    \end{equation*}
+    mit $m=n_f+n_g-1$.
 
 Besonders bei der Bildverarbeitung wird oft die diskrete Faltung als lineare Operation verwendet. 
 

@@ -2393,9 +2393,11 @@
     <bcf:citekey order="40">DBLP:journals/pieee/LeCunBBH98</bcf:citekey>
     <bcf:citekey order="40">DBLP:conf/cvpr/CiresanMS12</bcf:citekey>
     <bcf:citekey order="41">werner2011funktionalanalysis</bcf:citekey>
-    <bcf:citekey order="42">gruening</bcf:citekey>
-    <bcf:citekey order="43">goodfellow</bcf:citekey>
-    <bcf:citekey order="44">forster1983analysis</bcf:citekey>
+    <bcf:citekey order="42">werner2011funktionalanalysis</bcf:citekey>
+    <bcf:citekey order="43">gray2006toeplitz</bcf:citekey>
+    <bcf:citekey order="44">gruening</bcf:citekey>
+    <bcf:citekey order="45">goodfellow</bcf:citekey>
+    <bcf:citekey order="46">forster1983analysis</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">
