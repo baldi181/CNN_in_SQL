@@ -8,7 +8,9 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {algorithm}{\numberline {1}{\ignorespaces Vorwärtsrechnung\relax }}{7}{algorithm.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {algorithm}{\numberline {2}{\ignorespaces Mini-Batch-Verfahren, vgl. \cite {gruening}\relax }}{13}{algorithm.2}%
+\contentsline {algorithm}{\numberline {2}{\ignorespaces Online-Backpropagation für ein FFN, vgl. \cite {du_diss}\relax }}{15}{algorithm.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {algorithm}{\numberline {3}{\ignorespaces Mini-Batch-Verfahren, vgl. \cite {gruening}\relax }}{15}{algorithm.3}%
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
@@ -16,7 +18,7 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {algorithm}{\numberline {3}{\ignorespaces An algorithm with caption\relax }}{25}{algorithm.3}%
+\contentsline {algorithm}{\numberline {4}{\ignorespaces An algorithm with caption\relax }}{27}{algorithm.4}%
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 

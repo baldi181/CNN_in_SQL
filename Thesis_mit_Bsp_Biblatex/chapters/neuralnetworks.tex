@@ -316,7 +316,7 @@ aktualisiert. Es werden also Gradienten der Fehlerfunktion bezüglich der Gewich
 
 Die Abstiegsrichtungen werden werden mithilfe der mehrdimensionalen Kettenregel  berechnet.
 \begin{satz}[Mehrdimensionale Kettenregel]
-    \label{chainrule}
+    \label{s:chainrule}
     Ist $f=f(x_1(y_1, \ldots, y_m), \ldots, x_n(y_1, \ldots, y_m))$ und sind alle beteiligten Funktionen stetig differenzierbar, so ergeben sich die partielle Ableitungen mittels Kettenregel zu
 
     \begin{equation*}
@@ -351,25 +351,94 @@ für jeweils eine Eingabe $x$ berechnet, wobei $s_l$ die Anzahl der Neuronen in 
     \Delta_{W^{(k)}} &= -\lambda \frac{\partial E_x}{\partial W^{(k)}} \\
     \Delta_{b^{(k)}} &= -\lambda \frac{\partial E_x}{\partial b^{(k)}} 
 \end{align*}
-für $1 \leq k \leq s_l$ ermittelt werden. Dazu wird im Folgenden die Notation
+für $1 \leq k \leq s_l$ ermittelt werden. Dazu wird im Folgenden die Notation \cite{du_diss}
+\begin{alignat*}{3}
+    &e_k=y_k-t_k &&\text{Fehler des $k$-ten Ausgabeneurons}  \\
+    &w_{k,j}^l  &&\text{Eintrag der Gewichtsmatrix $W^{(l)}$ der Ausgabeschicht} \\
+    &w_{j,i}^h   &&\text{Eintrag der Gewichtsmatrix $W^{(h)}$ einer verdeckten Schicht} \\
+    &V_j=\sum_{i} w_{j,i}^h x_i +b^h_j \; \; \;  &&\text{Netzeingabe des verdeckten Neurons $j$ mit Bias $b^{(h)}$} \\
+    &z_{j}= \psi \left(V_j\right) &&\text{Aktivierung des versteckten Neurons $j$}\\
+    &V_k=\sum_{j} w_{k,j}^l z_j +b^l_k&&\text{Netzeingabe des Ausgabeneurons $k$ mit Bias $b^{(l)}$}  
+\end{alignat*}
+genutzt. Es wird nur eine verdeckte Schicht mit $s_j$ Neuronen betrachtet. Die Verallgemeinerung für beliebig viele Schichten ist analog. Die mehrmalige Anwendung der Kettenregel \ref{s:chainrule} auf die Fehlerfunktion (\ref{eq:MSE_single}) liefert
 
 \begin{align*}
-    &e_k=y_k-t_k& \text{Fehler des $k$-ten Ausgabeneurons}  \\
-    &w_{k,j}^o&   \text{Gewicht von versteckten Neuron $j$ zum Ausgabeneuron $k$} \\
-    &w_{j,i}^h&   \text{Gewicht von Eingabeneuron $i$ zum versteckten Neuron $j$} \\
-    &z_{j}= \psi \left(\sum_{i} w_{j,i} x_i+b_i\right)= \psi\left(\Psi^{W,b}(x)\right)& \text{Aktivierung des versteckten Neurons $j$}
+    \label{eq:delta_w_out}
+\Delta w_{k,j}^l &= -\lambda\,\frac{\partial E_x}{\partial w_{k,j}^l} \\
+                 &= -\lambda\,\frac{\partial E_x}{\partial e_{k}}
+                            \frac{\partial e_k}{\partial y_k} 
+                            \frac{\partial y_k}{\partial V_k}
+                            \frac{\partial V_k}{\partial w_{k,j}^l}\\
+                 &= -\lambda \,e_k \psi'(V_k) z_j \\
+                 &= -\lambda \,\delta_k z_j           
+\end{align*} 
+mit 
+\begin{equation*}
+    \delta_k:= e_k \psi'(V_k)
+\end{equation*}
+als sogenannter lokaler Fehler.
+Für die Schwellwerte gilt analog
+
+\begin{equation*}
+    \Delta b_k^l = -\lambda \, \frac{\partial E_x}{\partial b_{k}^l} 
+                 = -\lambda \, \delta_k.
+\end{equation*}
+Die Gradienten für die Parameter der verdeckten Schicht lassen sich mithilfe der lokalen Fehler der darüberliegenden Ausgabeschicht berechnen, also
+\begin{align*}
+    \Delta w_{j,i}^h &= -\lambda\,\frac{\partial E_x}{\partial w_{j,i}^h} \\
+                     &= -\lambda\,\frac{\partial E_x}{\partial z_{j}}
+                            \frac{\partial z_j}{\partial V_j} 
+                            \frac{\partial V_j}{\partial w_{j,i}^h} \\
+                    &= -\lambda \,\left( \sum_{k=1}^{s_l} e_k \frac{\partial e_k}{\partial z_j}\right) \psi'(V_j) x_i \\
+                    &= -\lambda \,\left( \sum_{k=1}^{s_l} e_k \frac{\partial e_k}{\partial y_k} \frac{\partial y_k}{\partial V_k} \frac{\partial V_k}{\partial z_j}\right) \psi'(V_j) x_i \\
+                    &= -\lambda \,\left( \sum_{k=1}^{s_l} e_k \psi'(V_k) w_{k,j}^l \right) \psi'(V_j) x_i \\
+                    &= \lambda \, \delta_j x_i
 \end{align*}
+mit
+\begin{equation*}
+    \delta_j:= \left(\sum_{k=1}^{s_l} \delta_k w_{k,j}^l\right) \psi'(V_j).
+\end{equation*}
+Für die Schwellwerte gilt wieder
+\begin{equation*}
+    \Delta b_j^h = -\lambda \, \frac{\partial E_x}{\partial b_{j}^h} 
+                 = -\lambda \, \delta_j.
+\end{equation*}
+Die Backpropagation wird als iterativer Algorithmus beschrieben. Daher tauchen im Algorithmus \ref{alg:online_backprop} Variabeln in Abhängigkeit von $n$ auf. Als Abbruchbedingung kann eine maximale Anzahl von Iterationen vorgegeben werden. Andere Abbruchbedingungen können mit der Norm der Abstiegsrichtungen\cite{bishop2006pattern} oder abhängig vom Traingsfehler formuliert werden.
+
+\begin{algorithm}
+    \caption{Online-Backpropagation für ein FFN, vgl. \cite{du_diss}}
+    \label{alg:online_backprop}
+    \begin{algorithmic}
+    \Require  Trainingsmenge $\mathcal{T}$, Modellparameter $\mathcal{W}_0$, Fehlerfunktion $E$, Lernrate $\lambda$ 
+    \Ensure $\text{optimierte Modellparameter} \; \mathcal{W}$
+    \State Initialisiere zufällig alle Gewichte und Schwellwerte des FFN $\Lambda$ 
+    \State $n=0$  
+    \While{Abbruchbedingung nicht erfüllt} \Comment{Abbruchbedingung, siehe Text}
+    \For{$(x,c) \in \mathcal{T}$}
+        \State $y=\Lambda(x)$
+        \State $\delta_k(n)= e_k \psi'(V_k(n))$
+    \EndFor
+    \If{$|\mathbb{T}| < n$}
+        \State $\mathbb{T}=\mathcal{T}$
+    \EndIf
+    \State $\mathbb{T}_n=$ zufällig gewählte $n$ Datenpaare von $\mathbb{T}$ 
+    \State $\mathcal{W}=\mathcal{W}-\lambda \nabla_{\mathcal{W}} \mathcal{E}(\mathbb{T}_n,\mathcal{W})$
+    \State $\mathbb{T}= \mathbb{T} \setminus \mathbb{T}_n$
+    \EndWhile
+    \end{algorithmic}
+\end{algorithm}
 
 
 
 
-Eine ausführliche Erklärung der Backpropagationsphase für dasklassische FFN ist beispielsweise in Rojas\cite{rojas96neural} zu finden.  
+
+Eine ausführliche Erklärung der Backpropagationsphase für das klassische FFN ist beispielsweise in Rojas\cite{rojas96neural} zu finden.  
 
 \begin{algorithm}
     \caption{Mini-Batch-Verfahren, vgl. \cite{gruening}}\label{alg:minibatch}
     \begin{algorithmic}
     \Require $ \text{Trainingsmenge} \; \mathcal{T}, \text{Modellparameter} \; \mathcal{W}_0, \text{Fehlerfunktion} \; \mathcal{E}, \text{Batch-Größe} \; n$
-    \Ensure $\text{optimierte Modellparamter} \; \mathcal{W}$
+    \Ensure $\text{optimierte Modellparameter} \; \mathcal{W}$
     \State $\mathcal{W}=\mathcal{W}_0$
     \State $\mathbb{T}=\mathcal{T}$
     \State Setze Lernrate $\lambda$ \Comment{Wahlmöglichkeiten, siehe Text}     
