@@ -1147,6 +1147,44 @@
       \field{pages}{105582}
       \range{pages}{1}
     \endentry
+    \entry{weng1992cresceptron}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=aa7a161a829c921027e6acff4e89dc58}{%
+           family={Weng},
+           familyi={W\bibinitperiod},
+           given={Juyang},
+           giveni={J\bibinitperiod}}}%
+        {{hash=9b6bb9aa3e5ebab01f9edc88ec431d1a}{%
+           family={Ahuja},
+           familyi={A\bibinitperiod},
+           given={Narendra},
+           giveni={N\bibinitperiod}}}%
+        {{hash=291c931225a4b86952404c5d8cdbfd35}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={Thomas\bibnamedelima S},
+           giveni={T\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{fd6f79bfc29e3ac517b21c854e46d856}
+      \strng{fullhash}{fd6f79bfc29e3ac517b21c854e46d856}
+      \strng{bibnamehash}{fd6f79bfc29e3ac517b21c854e46d856}
+      \strng{authorbibnamehash}{fd6f79bfc29e3ac517b21c854e46d856}
+      \strng{authornamehash}{fd6f79bfc29e3ac517b21c854e46d856}
+      \strng{authorfullhash}{fd6f79bfc29e3ac517b21c854e46d856}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{[Proceedings 1992] IJCNN International Joint Conference on Neural Networks}
+      \field{title}{Cresceptron: a self-organizing neural network which grows adaptively}
+      \field{volume}{1}
+      \field{year}{1992}
+      \field{pages}{576\bibrangedash 581}
+      \range{pages}{6}
+    \endentry
     \entry{werbos1988generalization}{article}{}
       \name{author}{1}{}{%
         {{hash=3f6ba0fa8bc8542632efe7f31c9ee2e8}{%
@@ -1207,6 +1245,48 @@
       \verb{url}
       \verb https://books.google.de/books?id=580NcHHrAXsC
       \endverb
+    \endentry
+    \entry{yu2014mixed}{inproceedings}{}
+      \name{author}{4}{}{%
+        {{hash=932db6973e796406b21f2f72123b7714}{%
+           family={Yu},
+           familyi={Y\bibinitperiod},
+           given={Dingjun},
+           giveni={D\bibinitperiod}}}%
+        {{hash=696f757016d3e0ba7fde8053c58bd7e8}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Hanli},
+           giveni={H\bibinitperiod}}}%
+        {{hash=0cb9c43404c95c30a86a09f59596b776}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Peiqiu},
+           giveni={P\bibinitperiod}}}%
+        {{hash=f75455db934f9c21975d4daae1cb3cb4}{%
+           family={Wei},
+           familyi={W\bibinitperiod},
+           given={Zhihua},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \list{organization}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{14494d66d3129dc8809e32743067ed7d}
+      \strng{fullhash}{1f56158fe96edccc0b0552632d82ccc1}
+      \strng{bibnamehash}{14494d66d3129dc8809e32743067ed7d}
+      \strng{authorbibnamehash}{14494d66d3129dc8809e32743067ed7d}
+      \strng{authornamehash}{14494d66d3129dc8809e32743067ed7d}
+      \strng{authorfullhash}{1f56158fe96edccc0b0552632d82ccc1}
+      \field{sortinit}{Y}
+      \field{sortinithash}{fd67ad5a9ef0f7456bdd9aab10fe1495}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{International conference on rough sets and knowledge technology}
+      \field{title}{Mixed pooling for convolutional neural networks}
+      \field{year}{2014}
+      \field{pages}{364\bibrangedash 375}
+      \range{pages}{12}
     \endentry
   \enddatalist
   \missing{goodfellow}

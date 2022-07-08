@@ -124,7 +124,7 @@ Bei gefalteten neuronalen Netzen wird oft eine Reduktion der Dimensionen angestr
 
 \section{CNN Architektur}
 
-Beim maschinellen Lernen sind Eingabedaten oft als mehrdimensionale Arrays abgelegt, welche eine oder mehrere Achsen repräsentieren, wobei die Ordnung dieser eine Rolle spielt. Bei digitalisierten Bildern sind das bespielsweise die Höhe und Breite des Bildes, welche als Raumachsen bezeichnet werden. Hinzu kommen Kanalachsen als weitere Verfeinerung der Daten, zum Beispiel besitzen Grauwert-Bilder einen Farbkanal, während RGB-Farbbilder drei Kanäle der Farben rot, grün und blau besitzen. Dementsprechend werden Grauwert-Bilder wie in Definition \ref{def:image} nun als dreidimensionale Arrays $X \in [0,1]^{h \times b \times 1}$ dargestellt. Dies erlaubt die Definition der gefalteten Übertragungsfunktion, wie in Gruening\cite{gruening}
+Beim maschinellen Lernen sind Eingabedaten oft als mehrdimensionale Arrays abgelegt, welche eine oder mehrere Achsen repräsentieren, wobei die Ordnung dieser eine Rolle spielt. Bei digitalisierten Bildern sind das bespielsweise die Höhe und Breite des Bildes, welche als Raumachsen bezeichnet werden. Hinzu kommen Kanalachsen, zum Beispiel besitzen Grauwert-Bilder einen Farbkanal, während RGB-Farbbilder drei Kanäle der Farben rot, grün und blau besitzen. Dementsprechend werden Grauwert-Bilder wie in Definition \ref{def:image} nun als dreidimensionale Arrays $X \in [0,1]^{h \times b \times 1}$ dargestellt. Dies erlaubt die Definition der gefalteten Übertragungsfunktion, wie in Gruening\cite{gruening}
 
 \begin{defi}[Gefaltete Übertragungsfunktion]
     Sei ein vierdimensionales Array $K \in \RR^{k \times k \times z_{in} \times z_{out}}$ und ein Biasvektor $b \in \RR^{z_{out}}$ gegeben. Die Funktion 
@@ -135,7 +135,7 @@ Beim maschinellen Lernen sind Eingabedaten oft als mehrdimensionale Arrays abgel
     \begin{equation*}
         \Psi_{conv}^{K,b}(X)_{:,:,l}:= \sum_{p=1}^{z_{in}} K_{:,:,p,l} \ast X_{:,:,p} +b_l \; \forall l \in [z_{out}]
     \end{equation*}
-    wird gefaltete Übertragungsfunktion bezeichnet. Mit $\ast$ ist die zweidimensionale Faltung wie in Definition \ref{def:matrix_faltung} und mit $\cdot$ beliebige Raumachsen gemeint.
+    wird gefaltete Übertragungsfunktion bezeichnet. Mit $\ast$ ist die zweidimensionale Faltung wie in Definition \ref{def:matrix_faltung} gemeint.und mit $\cdot$ werden beliebige Raumachsen bezeichnet.
 \end{defi}
 
 
@@ -153,8 +153,32 @@ Beim maschinellen Lernen sind Eingabedaten oft als mehrdimensionale Arrays abgel
     Ist $\Psi_{conv}^{K,b}$ eine gefaltete Übertragungsfunktion und $\psi$ eine Aktivierungsfunktion, so wird das Paar $(\Psi_{conv}^{K,b}, \psi)$ als Faltungsschicht $\mathcal{S}_{conv}$ bezeichnet. Für eine Eingabe $X \in \RR^{\cdot \times \cdot \times z_{in}}$ ist die Ausgabe $Y \in \RR^{\cdot \times \cdot \times z_{out}}$ der Schicht $\mathcal{S}_{conv}$ durch
     \[Y=\psi \circ \Psi_{conv}^{K,b}(X)= \psi\left(\Psi_{conv}^{K,b}(X)\right)
         \] 
-        gegeben. Die Matrizen $Y_{:,:,p}$ werden für $1 \leq p \leq z_{out}$ Merkmalskarten genannt.
+        gegeben. Die Matrizen $Y_{:,:,p}$ werden für $1 \leq p \leq z_{out}$ Merkmalskarten genannt. Weiter bezeichne $\Psi_{conv}^{K^{},b^{},\psi_{}}$ die Faltungsschicht $\mathcal{S}_{conv}$ mit $\Psi_{conv}^{K^{},b^{},\psi_{}}(X):= \psi_{} \left(\Psi_{conv}^{K^{},b^{}}(X)\right)$.
 \end{defi}
+
+Bei CNN werden sogenannte \textit{Pooling}-Schichten verwendet, um die Dimensionen der Raumachsen neben dem zero padding weiter zu verkleinern und das Modell robuster gegenüber Überanpassung zu machen. Dazu werden Pooling-Funktionen eingesetzt, welche unabhängig voneinander auf Merkmalskarten operieren und so die Rechenkomplexität des Modells reduzieren. Es ist sinnvoll, symmetrische Pooling-Funktionen $T$ zu wählen, für die die Bedingung
+\begin{equation*}
+    \forall \pi \in S_n \; \forall x \in \RR^n: T(x_1, \ldots, x_n)=T(x_{\pi(1)}, \ldots, x_{\pi(n)})
+\end{equation*}
+gilt.
+Heutzutage wird oft die von Weng et. al.\cite{weng1992cresceptron} eingeführte Max-Pooling-Schicht benutzt. Diese Schicht wird wieder durch Schrittweiten parametrisiert.
+
+\begin{defi}[Max-Pooling-Schicht, vgl. Grüning \cite{gruening}]
+    Seien $p_h, p_b \in \mathbb{N}$. Die Funktion 
+    \begin{equation*}
+        \Psi_{max}^{p_h,p_b}: \RR^{\cdot \times \cdot \times z} \rightarrow \RR^{\cdot \times \cdot\times z}
+    \end{equation*}
+    mit
+    \begin{equation*}
+        \Psi_{max}^{p_h,p_b}(X)_{i,j,l}:= \mathop{\max}_{\begin{subarray}{l}(i-1) \cdot p_h < i' \leq \min\{i \cdot p_h, {}_1 X\} \\ 
+        (j-1) \cdot p_w < j' \leq \min\{j \cdot p_w, {}_2 X\}\end{subarray}} X_{i',j',l}  
+    \end{equation*}
+    für alle  $i \in [\lceil {}_1 X/p_h \rceil], j \in [\lceil {}_2 X/p_w \rceil]$ und $l \in [z]$ wird Max-Pooling-Schicht genannt. Die Schrittweiten $p_h, p_b \in \mathbb{N}$ werden subsampling-Faktoren genannt.
+\end{defi}
+
+Pooling-Schichten verdichten also Information von Eingabedaten der Größe $p_h \times p_b$ und reduzieren so die Raumdimension. In dieser Arbeit wird das Max-Pooling benutzt. Für andere Pooling-Funktion sei auf Yu et. al.\cite{yu2014mixed} verwiesen.
+Die Idee bei CNN besteht nun darin, Faltungsschichten mit Pooling-Schichten zu kombinieren und schließlich ein FFN wie in Definition \ref{def:MLP} anzuknüpfen.
+
 
 Im Folgenden werden konkrete Beispiele für verschiedene zweidimensionale Faltungen, welche in dieser Arbeit im Fokus stehen, gegeben. Dabei sind die Eingabe $X \in \RR^{h \times w}$ und der Filter $K \in \RR^{k_h \times k_w}$ immer als Matrizen zu verstehen. Das Ergebnis der Faltung $S= X \ast K$ wird als Merkmalskarte bezeichnet. Es sei angemerkt, dass oft $k_h=k_w$ sowie $k_h$ ungerade gewählt wird, z.B. $k_h=3$ oder $k_h=5$. Die Größe der Merkmalskarte wird durch die Parameter
 \begin{itemize}
