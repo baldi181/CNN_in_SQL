@@ -656,6 +656,7 @@
       \strng{authorbibnamehash}{9e4c6012409dc8dd9b2aa198a2059804}
       \strng{authornamehash}{9e4c6012409dc8dd9b2aa198a2059804}
       \strng{authorfullhash}{c397b2e6efe8e5c6ca906410fc9e0ff9}
+      \field{extraname}{1}
       \field{sortinit}{L}
       \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
       \field{labelnamesource}{author}
@@ -667,6 +668,51 @@
       \field{year}{1998}
       \field{pages}{2278\bibrangedash 2324}
       \range{pages}{47}
+    \endentry
+    \entry{DBLP:series/lncs/LeCunBOM12}{incollection}{}
+      \name{author}{4}{}{%
+        {{hash=6a1aa6b7eab12b931ca7c7e3f927231d}{%
+           family={LeCun},
+           familyi={L\bibinitperiod},
+           given={Yann},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=ac762f2592005edf6bad58f566967c6c}{%
+           family={Bottou},
+           familyi={B\bibinitperiod},
+           given={Léon},
+           giveni={L\bibinitperiod}}}%
+        {{hash=ea9de995dd928a60e9f2ec878f176627}{%
+           family={Orr},
+           familyi={O\bibinitperiod},
+           given={Genevieve\bibnamedelima B.},
+           giveni={G\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{hash=9f1b6144a45b1967e989e74552e37ada}{%
+           family={Müller},
+           familyi={M\bibinitperiod},
+           given={Klaus{-}Robert},
+           giveni={K\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{9e4c6012409dc8dd9b2aa198a2059804}
+      \strng{fullhash}{df8210073325fb7d13d7dad9fa89fc53}
+      \strng{bibnamehash}{9e4c6012409dc8dd9b2aa198a2059804}
+      \strng{authorbibnamehash}{9e4c6012409dc8dd9b2aa198a2059804}
+      \strng{authornamehash}{9e4c6012409dc8dd9b2aa198a2059804}
+      \strng{authorfullhash}{df8210073325fb7d13d7dad9fa89fc53}
+      \field{extraname}{2}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Neural Networks: Tricks of the Trade (2nd ed.)}
+      \field{series}{Lecture Notes in Computer Science}
+      \field{title}{Efficient BackProp}
+      \field{volume}{7700}
+      \field{year}{2012}
+      \field{pages}{9\bibrangedash 48}
+      \range{pages}{40}
     \endentry
     \entry{li2017convergence}{article}{}
       \name{author}{2}{}{%
