@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.1)  9 JUL 2022 00:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.1)  9 JUL 2022 01:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1613,13 +1613,13 @@ Package logreq Info: Writing requests to 'thesis_mit_Bsp.run.xml'.
 Here is how much of TeX's memory you used:
  53990 strings out of 478353
  1217966 string characters out of 5852101
- 2164568 words of memory out of 5000000
+ 2164569 words of memory out of 5000000
  71018 multiletter control sequences out of 15000+600000
  492455 words of font info for 84 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  125i,20n,120p,10658b,3125s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}<c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmro12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss17.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss9.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmtt12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis_mit_Bsp.pdf (47 pages, 1210634 bytes).
+Output written on thesis_mit_Bsp.pdf (47 pages, 1211707 bytes).
 PDF statistics:
  918 PDF objects out of 1000 (max. 8388607)
  794 compressed objects within 8 object streams

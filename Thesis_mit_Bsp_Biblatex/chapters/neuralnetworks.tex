@@ -300,7 +300,7 @@ Das Problem \ref{eq:opt_likelihood} wird nun allgmemein mit Fehlerfunktionen def
  \end{defi}
 
  \section*{Backpropagationsalgorithmus}
-Bei FFN wird Backpropagation, etabliert von Rumelhart et. al. \cite{MLPbook}, als Lernalgorithmus genutzt, um die gewählte Fehlerfunktion $E$ zu minimieren. Dazu wird das Gradientenverfahren zur numerischen Minimierung von $E$ im Raum der Modellparameter $\mathcal{W}$ genutzt. Dabei sei bemerkt, dass das Finden von globalen Minima durch den Backpropagationsalgorithmus nicht garantiert ist.
+Bei FFN wird Backpropagation, etabliert von Rumelhart et. al. \cite{MLPbook}, als Lernalgorithmus genutzt, um eine gewählte Fehlerfunktion $E$ zu minimieren. Dazu wird das Gradientenverfahren zur numerischen Minimierung von $E$ im Raum der Modellparameter $\mathcal{W}$ genutzt. Dabei sei bemerkt, dass das Finden von globalen Minima durch den Backpropagationsalgorithmus nicht garantiert ist.
 In dieser Arbeit wird $E$ immer als stückweise stetig differenzierbare Funktion gewählt, damit das Gradientenverfahren angewendet werden kann. Sowohl die negative log likelihood $L_{NNL}$ als auch die mittlere quadratische Abweichung $L_{MSE}$ sind als Fehlerfunktion geeignet. Weiter sollten auch die Aktivierungsfunktionen aus Definition \ref{def_act_f} als stückweise stetig differenzierbare Funktion vorausgesetzt werden. 
 Die Optimierung der Parameter geschieht iterativ und besteht jeweils aus zwei Schritten. Zuerst wird eine Abstiegsrichtung 
 \begin{equation}
@@ -310,7 +310,7 @@ Die Optimierung der Parameter geschieht iterativ und besteht jeweils aus zwei Sc
 berechnet und dann die Parameter 
 \begin{equation}
     \label{eq:step}
-    \mathcal{W}_{n+1}:=\mathcal{W}_n- \Delta_n
+    \mathcal{W}_{n+1}:=\mathcal{W}_n+ \Delta_n
 \end{equation}
 aktualisiert. Es werden also Gradienten der Fehlerfunktion bezüglich der Gewichtsmatrizen und Biasvektoren ermittelt und anschließend werden jene Parameter mit einer wählbaren Lernrate $\lambda \in \RR$ angepasst. In (\ref{eq:gradE}) wird der Gradient über alle Trainingspaare berechnet. Diese Variante nennt sich \textit{Offline-Version} des Gradientenverfahrens und ist besonders für große Trainingsmengen ineffizient. Die \textit{Online-Version} berechnet den Gradienten lediglich für ein Trainingspaar und passt die Parameter direkt an. In dieser Arbeit wird ein Kompromiss aus beiden Verfahren verwendet und zwar das \textit{Mini-Batch-Verfahren}, siehe Algorithmus \ref{alg:minibatch}, bei dem die Gradienten über kleine Teilmengen $\mathbb{T} \subset \mathcal{T}$ der Trainingsmenge berechnet werden.
 
@@ -327,14 +327,14 @@ Die Abstiegsrichtungen werden werden mithilfe der mehrdimensionalen Kettenregel 
 \begin{proof}
     siehe \cite{forster2017analysis}
 \end{proof}
-Im Bereich des tiefen Lernens zählt die effiziente Berechnung dieser Gradienten bei der Rückwärtsrechnung zu den schwersten Aufgaben\cite{DBLP:series/lncs/LeCunBOM12}.
+Im Bereich des tiefen Lernens zählt die effiziente Berechnung dieser Gradienten zu den schwersten Aufgaben\cite{DBLP:series/lncs/LeCunBOM12}.
 Im Folgenden wird der Online-Backpropagationsalgorithmus, im Englischen auch als \textit{Stochastic Gradient Descent} bezeichnet, erläutert. Grundsätzlich lässt sich das Verfahren in zwei Schritte einteilen.
 
 \begin{itemize}
     \item Bei der Vorwärtsrechnung wird dem FFN $\Lambda$ ein Trainingspaar ($x,c) \in \mathcal{T}$ präsentiert und die Aktivierungen der Schichten schrittweise von der Eingabeschicht über die verdeckten Schichten bis zur Ausgabeschicht berechnet.
     \item Bei der Rückwärtsrechnung wird für jedes Neuronen ein lokaler Gradient bezüglich $E$ berechnet, beginnend in der Ausgabeschicht über die verdeckten Schichten bis zur Eingabeschicht.
 \end{itemize}
-Als Fehlerfunktion wird die mittlere quadratische Abweichung 
+Als Fehlerfunktion wird im weiteren Verlauf die mittlere quadratische Abweichung 
 \begin{equation}
     \label{eq:MSE}
     E=\frac{1}{2} \sum_{(x,c) \in \mathcal{T}} ||y-t||_2^2,
@@ -345,7 +345,7 @@ genutzt, wobei wieder $y=\Lambda(x)$ der Ausgabevektor des FFN und $t=t(x,c)$ de
     \label{eq:MSE_single}
     E_x= \frac{1}{2} ||y-t(x,c)||_2^2= \frac{1}{2} \sum_{k=1}^{s_l} (y_k-t_k)
 \end{equation}
-für jeweils eine Eingabe $x$ berechnet, wobei $s_l$ die Anzahl der Neuronen in der Ausgabeschicht bezeichne. Nun müssen die Abstiegsrichtungen 
+für eine einzige Eingabe $x$ berechnet. Die Ausgabeschicht von $\Lambda$ besitze $s_l$ Neuronen. Nun müssen die Abstiegsrichtungen 
 
 \begin{align*}
     \Delta_{W^{(k)}} &= -\lambda \frac{\partial E_x}{\partial W^{(k)}} \\
@@ -360,8 +360,7 @@ für $1 \leq k \leq s_l$ ermittelt werden. Dazu wird im Folgenden die Notation \
     &z_{j}= \psi \left(V_j\right) &&\text{Aktivierung des versteckten Neurons $j$}\\
     &V_k=\sum_{j} w_{k,j}^l z_j +b^l_k&&\text{Netzeingabe des Ausgabeneurons $k$ mit Bias $b^{(l)}$}  
 \end{alignat*}
-genutzt. Es wird nur eine verdeckte Schicht mit $s_j$ Neuronen betrachtet. Die Verallgemeinerung für beliebig viele Schichten ist analog. Die mehrmalige Anwendung der Kettenregel \ref{s:chainrule} auf die Fehlerfunktion (\ref{eq:MSE_single}) liefert
-
+genutzt. Es wird nur eine verdeckte Schicht mit $s_j$ Neuronen betrachtet. Die Verallgemeinerung für beliebig viele Schichten ist analog. Außerdem werden die Gradienten komponentenweise berechnet und daher die Paramter komponentenweise aktualisiert. Die mehrmalige Anwendung der Kettenregel \ref{s:chainrule} auf die Fehlerfunktion (\ref{eq:MSE_single}) liefert
 \begin{align*}
     \label{eq:delta_w_out}
 \Delta w_{k,j}^l &= -\lambda\,\frac{\partial E_x}{\partial w_{k,j}^l} \\
@@ -376,14 +375,13 @@ mit
 \begin{equation*}
     \delta_k:= e_k \psi'(V_k)
 \end{equation*}
-als sogenannter lokaler Fehler.
+als sogenannte lokale Fehler für $1 \leq k \leq s_l$.
 Für die Schwellwerte gilt analog
-
 \begin{equation*}
     \Delta b_k^l = -\lambda \, \frac{\partial E_x}{\partial b_{k}^l} 
                  = -\lambda \, \delta_k.
 \end{equation*}
-Die Gradienten für die Parameter der verdeckten Schicht lassen sich mithilfe der lokalen Fehler der darüberliegenden Ausgabeschicht berechnen, also
+Die Gradienten für die Parameter der verdeckten Schicht lassen sich mithilfe der lokalen Fehler $\delta_k$ der darüberliegenden Ausgabeschicht berechnen, also
 \begin{align*}
     \Delta w_{j,i}^h &= -\lambda\,\frac{\partial E_x}{\partial w_{j,i}^h} \\
                      &= -\lambda\,\frac{\partial E_x}{\partial z_{j}}
@@ -392,18 +390,19 @@ Die Gradienten für die Parameter der verdeckten Schicht lassen sich mithilfe de
                     &= -\lambda \,\left( \sum_{k=1}^{s_l} e_k \frac{\partial e_k}{\partial z_j}\right) \psi'(V_j) x_i \\
                     &= -\lambda \,\left( \sum_{k=1}^{s_l} e_k \frac{\partial e_k}{\partial y_k} \frac{\partial y_k}{\partial V_k} \frac{\partial V_k}{\partial z_j}\right) \psi'(V_j) x_i \\
                     &= -\lambda \,\left( \sum_{k=1}^{s_l} e_k \psi'(V_k) w_{k,j}^l \right) \psi'(V_j) x_i \\
-                    &= \lambda \, \delta_j x_i
+                    &= -\lambda \, \delta_j x_i
 \end{align*}
 mit
 \begin{equation*}
     \delta_j:= \left(\sum_{k=1}^{s_l} \delta_k w_{k,j}^l\right) \psi'(V_j).
 \end{equation*}
+als lokale Fehler der verdeckten Neuronen für $1 \leq j \leq s_j$.
 Für die Schwellwerte gilt wieder
 \begin{equation*}
     \Delta b_j^h = -\lambda \, \frac{\partial E_x}{\partial b_{j}^h} 
                  = -\lambda \, \delta_j.
 \end{equation*}
-Die Backpropagation wird als iterativer Algorithmus beschrieben. Daher tauchen im Algorithmus \ref{alg:online_backprop} Variabeln in Abhängigkeit von $n$ auf. Als Abbruchbedingung kann eine maximale Anzahl von Iterationen vorgegeben werden. Andere Abbruchbedingungen können mit der Norm der Abstiegsrichtungen\cite{bishop2006pattern} oder abhängig vom Traingsfehler formuliert werden.
+Die Backpropagation wird als iterativer Algorithmus beschrieben. Daher tauchen im Algorithmus \ref{alg:online_backprop} Variablen in Abhängigkeit von $n$ auf. Als Abbruchbedingung kann eine maximale Anzahl $N$ von Iterationen vorgegeben werden. Andere Abbruchbedingungen können mit der Norm der Abstiegsrichtungen\cite{bishop2006pattern} oder abhängig der Größe des Traingsfehlers mit einer Fehlertoleranz $\varepsilon >0$ formuliert werden.
 
 \begin{algorithm}
     \caption{Online-Backpropagation für ein FFN, vgl. \cite{du_diss}}
@@ -413,17 +412,23 @@ Die Backpropagation wird als iterativer Algorithmus beschrieben. Daher tauchen i
     \Ensure $\text{optimierte Modellparameter} \; \mathcal{W}$
     \State Initialisiere zufällig alle Gewichte und Schwellwerte des FFN $\Lambda$ 
     \State $n=0$  
-    \While{Abbruchbedingung nicht erfüllt} \Comment{Abbruchbedingung, siehe Text}
+    \While{$E >\varepsilon$ \textbf{or} $n < N$} \Comment{Abbruchbedingung, siehe Text}
     \For{$(x,c) \in \mathcal{T}$}
-        \State $y=\Lambda(x)$
-        \State $\delta_k(n)= e_k \psi'(V_k(n))$
+        \State $y(n)=\Lambda(x(n))$
+        \State $e_k(n)=y_k(n)-t_k(n)$
+        \State Berechne die Gradienten bezüglich der Ausgabeschicht
+        \State $\delta_k(n)= e_k(n) \psi'(V_k(n))$
+        \State $\Delta w_{k,j}^l(n)= -\lambda \, \delta_k(n) z_j(n)$
+        \State $\Delta b_{k}^l(n)= -\lambda \, \delta_k(n)$
+        \State Berechne die Gradienten bezüglich der verdeckten Schicht
+        \State $\delta_j(n)= \left(\sum_{k=1}^{s_l} \delta_k w_{k,j}^l\right) \psi'(V_j)$
+        \State $\Delta w_{j,i}^h(n)= -\lambda \, \delta_j(n) x_i(n)$
+        \State $\Delta b_{j}^h(n)= -\lambda \, \delta_j(n)$
+        \State Aktualisiere Gewichte 
+        \State $\mathcal{W}_{n+1}= \mathcal{W}_n + \Delta \mathcal{W}_n$
+        \State $n=n+1$
     \EndFor
-    \If{$|\mathbb{T}| < n$}
-        \State $\mathbb{T}=\mathcal{T}$
-    \EndIf
-    \State $\mathbb{T}_n=$ zufällig gewählte $n$ Datenpaare von $\mathbb{T}$ 
-    \State $\mathcal{W}=\mathcal{W}-\lambda \nabla_{\mathcal{W}} \mathcal{E}(\mathbb{T}_n,\mathcal{W})$
-    \State $\mathbb{T}= \mathbb{T} \setminus \mathbb{T}_n$
+    \State $E=\frac{1}{2} \sum_{(x,c) \in \mathcal{T}} ||y-t||_2^2$
     \EndWhile
     \end{algorithmic}
 \end{algorithm}
