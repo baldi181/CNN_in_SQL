@@ -353,11 +353,11 @@ für eine einzige Eingabe $x$ berechnet. Die Ausgabeschicht von $\Lambda$ besitz
 \end{align*}
 für $1 \leq k \leq s_l$ ermittelt werden. Dazu wird im Folgenden die Notation \cite{du_diss}
 \begin{alignat*}{3}
-    &e_k=y_k-t_k &&\text{Fehler des $k$-ten Ausgabeneurons}  \\
-    &w_{k,j}^l  &&\text{Eintrag der Gewichtsmatrix $W^{(l)}$ der Ausgabeschicht} \\
-    &w_{j,i}^h   &&\text{Eintrag der Gewichtsmatrix $W^{(h)}$ einer verdeckten Schicht} \\
-    &V_j=\sum_{i} w_{j,i}^h x_i +b^h_j \; \; \;  &&\text{Netzeingabe des verdeckten Neurons $j$ mit Bias $b^{(h)}$} \\
-    &z_{j}= \psi \left(V_j\right) &&\text{Aktivierung des versteckten Neurons $j$}\\
+    &e_k=y_k-t_k &&\text{Fehler des $k$-ten Ausgabeneurons},  \\
+    &w_{k,j}^l  &&\text{Eintrag der Gewichtsmatrix $W^{(l)}$ der Ausgabeschicht}, \\
+    &w_{j,i}^h   &&\text{Eintrag der Gewichtsmatrix $W^{(h)}$ einer verdeckten Schicht}, \\
+    &V_j=\sum_{i} w_{j,i}^h x_i +b^h_j \; \; \;  &&\text{Netzeingabe des verdeckten Neurons $j$ mit Bias $b^{(h)}$}, \\
+    &z_{j}= \psi \left(V_j\right) &&\text{Aktivierung des versteckten Neurons $j$},\\
     &V_k=\sum_{j} w_{k,j}^l z_j +b^l_k&&\text{Netzeingabe des Ausgabeneurons $k$ mit Bias $b^{(l)}$}  
 \end{alignat*}
 genutzt. Es wird nur eine verdeckte Schicht mit $s_j$ Neuronen betrachtet. Die Verallgemeinerung für beliebig viele Schichten ist analog. Außerdem werden die Gradienten komponentenweise berechnet und daher die Paramter komponentenweise aktualisiert. Die mehrmalige Anwendung der Kettenregel \ref{s:chainrule} auf die Fehlerfunktion (\ref{eq:MSE_single}) liefert
@@ -402,7 +402,7 @@ Für die Schwellwerte gilt wieder
     \Delta b_j^h = -\lambda \, \frac{\partial E_x}{\partial b_{j}^h} 
                  = -\lambda \, \delta_j.
 \end{equation*}
-Die Backpropagation wird als iterativer Algorithmus beschrieben. Daher tauchen im Algorithmus \ref{alg:online_backprop} Variablen in Abhängigkeit von $n$ auf. Als Abbruchbedingung kann eine maximale Anzahl $N$ von Iterationen vorgegeben werden. Andere Abbruchbedingungen können mit der Norm der Abstiegsrichtungen\cite{bishop2006pattern} oder abhängig der Größe des Traingsfehlers mit einer Fehlertoleranz $\varepsilon >0$ formuliert werden.
+Die Backpropagation wird als iterativer Algorithmus beschrieben. Daher tauchen im Algorithmus \ref{alg:online_backprop} Variablen in Abhängigkeit von $n$ auf. Als Abbruchbedingung kann eine maximale Anzahl $N$ von Iterationen vorgegeben werden. Andere Abbruchbedingungen können mit der Norm der Abstiegsrichtungen oder abhängig von der Größe des Traingsfehlers mit einer Fehlertoleranz $\varepsilon >0$ formuliert werden.
 
 \begin{algorithm}
     \caption{Online-Backpropagation für ein FFN, vgl. \cite{du_diss}}
@@ -434,40 +434,16 @@ Die Backpropagation wird als iterativer Algorithmus beschrieben. Daher tauchen i
 \end{algorithm}
 
 
-
-
-
-Eine ausführliche Erklärung der Backpropagationsphase für das klassische FFN ist beispielsweise in Rojas\cite{rojas96neural} zu finden.  
-
-\begin{algorithm}
-    \caption{Mini-Batch-Verfahren, vgl. \cite{gruening}}\label{alg:minibatch}
-    \begin{algorithmic}
-    \Require $ \text{Trainingsmenge} \; \mathcal{T}, \text{Modellparameter} \; \mathcal{W}_0, \text{Fehlerfunktion} \; \mathcal{E}, \text{Batch-Größe} \; n$
-    \Ensure $\text{optimierte Modellparameter} \; \mathcal{W}$
-    \State $\mathcal{W}=\mathcal{W}_0$
-    \State $\mathbb{T}=\mathcal{T}$
-    \State Setze Lernrate $\lambda$ \Comment{Wahlmöglichkeiten, siehe Text}     
-    \While{Abbruchbedingung nicht erfüllt} \Comment{Abbruchbedingung, siehe Text}
-    \If{$|\mathbb{T}| < n$}
-        \State $\mathbb{T}=\mathcal{T}$
-    \EndIf
-    \State $\mathbb{T}_n=$ zufällig gewählte $n$ Datenpaare von $\mathbb{T}$ 
-    \State $\mathcal{W}=\mathcal{W}-\lambda \nabla_{\mathcal{W}} \mathcal{E}(\mathbb{T}_n,\mathcal{W})$
-    \State $\mathbb{T}= \mathbb{T} \setminus \mathbb{T}_n$
-    \EndWhile
-    \end{algorithmic}
-\end{algorithm}
-
-Als Abbruchbedingung im Mini-Batch-Verfahren kann eine fest gewählte Anzahl von Updateoperationen der Parameter gewählt werden. Andere Abbruchbedingungen können mit der Norm der Abstiegsrichtungen\cite{bishop2006pattern} oder abhängig vom Traingsfehler formuliert werden. Bei der Wahl der Lernrate werden heutzutage werden oft adaptive Verfahren genutzt, welche vorangegangene Gradienten berücksichtigen und die Lernrate so anpassen. Bekannte Verfahren sind \textit{Nesterov accelerated
-gradient}\cite{sutskever2013importance}, \textit{AdaGrad}\cite{duchi2011adaptive}, \textit{RMSProp}\cite{tieleman2012lecture} sowie \textit{Adam}\cite{Kingma2015AdamAM}. So sollen Probleme wie des \textit{vanishing gradients} oder des \textit{exploding gradients} vermieden werden\cite{hanin2018neural}.
-Für eine tiefere Analyse des Gradientenverfahrens und dessen Varianten sei auf die jeweilgen Arbeiten beziehungsweise Ruder\cite{ruder2016overview,} verwiesen. Darüber hinaus gibt es andere Techniken wie die Regularisierung, um Probleme wie Überanpassung, engl.\textit{overfitting}, zu entgegnen.
-Für die Problemstellung in dieser Arbeit genügt es, das Mini-Batch-Verfahren mit konstanter Lernrate zu nutzen. 
+Bei der Wahl der Lernrate werden heutzutage werden oft adaptive Verfahren genutzt, welche vorangegangene Gradienten berücksichtigen und die Lernrate so anpassen. Bekannte Verfahren sind \textit{Nesterov accelerated
+gradient}\cite{sutskever2013importance}, \textit{AdaGrad}\cite{duchi2011adaptive}, \textit{RMSProp}\cite{tieleman2012lecture} sowie \textit{Adam}\cite{Kingma2015AdamAM}. So sollen Probleme wie des \textit{vanishing gradients} oder des \textit{exploding gradients} vermieden werden, siehe dazu\cite{hanin2018neural}.
+Für eine tiefere Analyse des Gradientenverfahrens und dessen Varianten sei auf die jeweilgen Arbeiten beziehungsweise als Zusammenfassung auf Ruder\cite{ruder2016overview,} verwiesen. Darüber hinaus gibt es andere Techniken wie die Regularisierung, um die oben genannten Probleme zu entgehen.
+Für die Problemstellung in dieser Arbeit genügt es, das Online-Verfahren mit konstanter Lernrate zu nutzen. 
 
 
 
 \section{Zusammenfassung}
 \label{abs:NN_conc}
-In diesem Kapitel wurden KNN als Feed-Forward-Netze eingeführt. Es stellt sich heraus, dass diese Netze als probabilistische Modelle genutzt werden können, um Klassifikationsaufgaben hinreichend gut zu lösen. Dabei ist es wichtig die Hyper- und Modellparameter je nach Anwendung und Leistungsmaß optimal zu wählen. Dazu werden Trainingsdaten genutzt, um während eines Lernprozesses eine Fehlerfunktion zu Minimieren. Eine Lösung von \ref{eq:error_fun_opt} kann wegen der Komplexität der Fehlerfuntion $\mathcal{E}$ bzw. der großen Menge von Parametern $\mathcal{W}$ selten direkt angegeben werden\cite{blum1992training}. Daher wird das Mini-Batch-Verfahren als iterativer Ansatz zur numerischen Mnimierung der Fehlerfunktion genutzt. Dabei sind partielle Ableitungen der Fehlerfunktion bezüglich der Parameter nötig, welche in der Backpropagationsphase mithilfe der mehrdimensionalen Kettenregel berechnet werden können. 
+In diesem Kapitel wurden KNN als Feed-Forward-Netze eingeführt. Es stellt sich heraus, dass diese Netze als probabilistische Modelle genutzt werden können, um Klassifikationsaufgaben hinreichend gut zu lösen. Dabei ist es wichtig die Hyper- und Modellparameter je nach Anwendung und Leistungsmaß optimal zu wählen. Dazu werden Trainingsdaten genutzt, um während eines Lernprozesses eine Fehlerfunktion zu Minimieren. Eine Lösung von \ref{eq:error_fun_opt} kann wegen der Komplexität der Fehlerfunktion $E$ bzw. der großen Menge von Parametern $\mathcal{W}$ selten direkt angegeben werden\cite{blum1992training}. Daher wird das Gradientenverfahren als iterativer Ansatz zur numerischen Mnimierung der Fehlerfunktion genutzt. Dabei sind partielle Ableitungen der Fehlerfunktion bezüglich der Parameter nötig, welche im Backpropagationsalgorithmus mithilfe der mehrdimensionalen Kettenregel berechnet werden können. 
 
 Bei der Analyse von Zeitreihen oder Bildern eignen sich abgewandelte Architekturen wie gefaltete neuronale Netze (CNN), engl. \textit{convolutional neural networks}, welche im folgenden Kapitel \ref{kap:CNN} näher erläutert werden. Diese Art neuronaler Netze wird im weiteren Verlauf dieser Arbeit im Fokus stehen.
 

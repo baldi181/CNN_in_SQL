@@ -887,30 +887,6 @@
       \verb 10.1162/neco.1991.3.2.246
       \endverb
     \endentry
-    \entry{rojas96neural}{book}{}
-      \name{author}{1}{}{%
-        {{hash=c1877dc945cc34c8614fc465f3667c5b}{%
-           family={Rojas},
-           familyi={R\bibinitperiod},
-           given={Raul},
-           giveni={R\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Springer-Verlag}%
-      }
-      \strng{namehash}{c1877dc945cc34c8614fc465f3667c5b}
-      \strng{fullhash}{c1877dc945cc34c8614fc465f3667c5b}
-      \strng{bibnamehash}{c1877dc945cc34c8614fc465f3667c5b}
-      \strng{authorbibnamehash}{c1877dc945cc34c8614fc465f3667c5b}
-      \strng{authornamehash}{c1877dc945cc34c8614fc465f3667c5b}
-      \strng{authorfullhash}{c1877dc945cc34c8614fc465f3667c5b}
-      \field{sortinit}{R}
-      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Neural Networks - A Systematic Introduction}
-      \field{year}{1996}
-    \endentry
     \entry{rosenblatt1958perceptron}{article}{}
       \name{author}{1}{}{%
         {{hash=9e8511ef13d0cdda3a709b93fa650e71}{%

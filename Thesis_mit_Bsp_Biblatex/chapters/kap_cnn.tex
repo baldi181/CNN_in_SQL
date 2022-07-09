@@ -1,7 +1,7 @@
 \chapter{Gefaltete neuronale Netze}
 \label{kap:CNN}
 
-Feed-Forward-Netze gelten als leistungsstarke maschinelle Lernmethoden, da sie so trainiert werden können, um beliebige komplexe Funktionen abhängig von einer vektorwertigen Eingabe zu approximieren. Ist die Dimension der Eingabeschicht jedoch zu groß, treten bei klassischen FFN Probleme hinsichtlich der Paramteranzahl auf. Im weiteren Verlauf dieser Arbeit sollen digitalisierte Bilder klassifiziert werden. Wird ein MLP mit $100$ Ausgabeneuronen genutzt und jeder Pixel eines Bildes mit den Abmessungen $1000 \times 1000$ als Merkmal genutzt, so ergeben sich bereits $10^8+100$ freie Parameter. Stehen nur relativ wenige Traingsdaten zur Verfügung, ist die Struktur des FFN zu komplex und dies kann zur Überanpassung führen\cite{caruana2000overfitting,bilbao2017overfitting}. Die Parameteranzahl muss also deutlich reduziert werden. Konzepte wie \textit{Parameter Sharing} und spärliche Konnektivität, engl. \textit{sparse connectivity} erlauben diese Reduktion, vgl. Goodfellow\cite{Goodfellow-et-al-2016} und werden in den folgenden Abschnitten erläutert.
+Feed-Forward-Netze gelten als leistungsstarke maschinelle Lernmethoden, da sie so trainiert werden können, um beliebige komplexe Funktionen abhängig von einer vektorwertigen Eingabe zu approximieren. Ist die Dimension der Eingabeschicht jedoch zu groß, treten bei klassischen FFN Probleme hinsichtlich der Paramteranzahl auf. Die Problemstellung \ref{prob:class_image} dieser Arbeit besteht in der Klassifikation digitalisierter Bilder. Wird ein FFN mit $100$ Ausgabeneuronen genutzt und jeder Pixel eines Bildes mit den Abmessungen $1000 \times 1000$ als Merkmal genutzt, so ergeben sich bereits $10^8+100$ freie Parameter. Stehen nur relativ wenige Traingsdaten zur Verfügung, ist die Struktur des FFN zu komplex und dies kann zur Überanpassung führen\cite{caruana2000overfitting,bilbao2017overfitting}. Die Parameteranzahl muss also deutlich reduziert werden. Konzepte wie \textit{Parameter Sharing} und spärliche Konnektivität, engl. \textit{sparse connectivity} erlauben diese Reduktion, vgl. Goodfellow\cite{Goodfellow-et-al-2016} und werden in den folgenden Abschnitten erläutert.
 
 Ein weiterer Nachteil des FFN ergibt sich dadurch, dass Korrelationen von benachbarten Eingabeneuronen, z.B. Bilsegmente wie Kanten oder Ecken, nicht miteinbezogen werden. Es muss also eine Modell entwickelt werden, welches diese lokalen Muster extrahiert und sie miteinander verknüpft. Das Modell sollte zudem äquivariant gegenüber Translationen sein. 
 
@@ -9,7 +9,7 @@ Ein weiterer Nachteil des FFN ergibt sich dadurch, dass Korrelationen von benach
 
 In diesem Kapitel wird erläutert, wie gefaltete neuronale Netze die erwähnten Nachteile von FFN umgehen. CNN sind in der Lage, lokale Muster zu erkennen, sind äquivariant gegenüber Translationen und realisieren Konzepte wie Parameter Sharing, um die Anzahl der freien Parameter drastisch zu reduzieren. So gelingt es, besonders bei Aufgaben der Computergrafik\cite{DBLP:conf/nips/KrizhevskySH12, DBLP:journals/pieee/LeCunBBH98,DBLP:conf/cvpr/CiresanMS12} die Generalisierungsrate gegenüber klassichen FFN zu erhöhen. 
 
-Gefaltete neuronale Netze unterscheiden sich von FFN bei der Berechnung der Übertragungsfunktion. Dazu wird die gefaltete Übertragungsfunktion definiert, welche das Konzept der diskreten Faltung nutzt. Im folgenden Abschnitt \ref{abs:conv_theorie}wird zunächst die Faltung als mathematische Operation eingeführt und deren Zusammenhang zur Fourier-Transformation\cite{werner2011funktionalanalysis} erläutert. Anschließend wird im Abschnitt \ref{abs:conv_def} das CNN-Modell definiert. 
+Gefaltete neuronale Netze unterscheiden sich von FFN bei der Berechnung der Übertragungsfunktion. Dazu wird die gefaltete Übertragungsfunktion definiert, welche das Konzept der diskreten Faltung nutzt. Im folgenden Abschnitt \ref{abs:conv_theorie}wird zunächst die Faltung als mathematische Operation eingeführt und deren Zusammenhang zur Fourier-Transformation\cite{werner2011funktionalanalysis} erläutert. Anschließend wird im Abschnitt \ref{abs:conv_def} das CNN-Modell definiert und schließlich der Backpropagationsalgorithmus \ref{alg:online_backprop} auf CNN verallgemeinert.
 
 %bei CNNs zu verstehen ist und wie diese Operation bei diesen neuronalen Netzen motiviert wird. In diesem Zusammenhang werden Begriffe wie Merkmalskarten (engl. \textit{feature maps}) und Filter (engl. \textit{kernels}) eingeführt. Des Weiteren wird die Arithmetik der Faltungsoperation für zweidimensionale Eingaben, repräsentiert durch Matrizen, erklärt und das Verfahren \textit{padding} beziehungsweise das Nutzen von \textit{strides} erläutert. Das gesamte Kapitel wird mit konkreten Beispielen begleitet, um die verschiedenen Effekte der Faltungsoperation zu beleuchten.
 
@@ -55,7 +55,8 @@ In der digitalen Signal- und Bildverarbeitung werden meist diskrete Funktionen a
     definiert. Hier wird über dem gesamten Definitionsbereich $D$ summiert. Ist $D$ beschränkt, werden $f$ beziehungsweise $g$ durch Nullen fortgesetzt.  
 \end{defi}
 
-Ist für $f,g: D \rightarrow \mathbb{C}$ der Definitionsbereich $D$ endlich, so können die Funktionen als zeitdiskrete Signale $f=(f_0, \ldots, f_{n-1})^T \in \mathbb{C}^{n}$ und $g=(g_0, \ldots, g_{n-1}) \in \mathbb{C}^{n}$ aufgefasst werden. Durch das Fortsetzen mit Nullen besitzen die Vektoren $f$ und $g$ die gleiche Länge. In diesem Fall kann die Faltung als Matrix-Vektor-Produkt mit einer zyklischen Matrix ausgedrückt werden. 
+Ist für $f,g: D \rightarrow \mathbb{C}$ der Definitionsbereich $D$ endlich, so können die Funktionen als zeitdiskrete Signale $f=(f_0, \ldots, f_{n-1})^T \in \mathbb{C}^{n}$ und $g=(g_0, \ldots, g_{n-1})^T \in \mathbb{C}^{n}$ aufgefasst werden. %Durch das Fortsetzen mit Nullen besitzen die Vektoren $f$ und $g$ die gleiche Länge. 
+In diesem Fall kann die Faltung als Matrix-Vektor-Produkt mit einer zyklischen Matrix ausgedrückt werden. 
 
 \begin{defi}[Zyklische Matrix, vgl. Gray\cite{gray2006toeplitz}]
     Eine quadratische Matrix heißt zyklisch im Vektor $a=(a_0, \ldots, a_{n-1})^T \in \RR^n$, wenn sie die Gesatlt
@@ -73,14 +74,14 @@ Ist für $f,g: D \rightarrow \mathbb{C}$ der Definitionsbereich $D$ endlich, so 
 \end{defi}    
     
 \begin{bem}
-Für ein zeitdiskrete Signal $f=(f_0, \ldots, f_{n-1})^T \in \mathbb{C}^{n}$ sei $F=\mathrm{zyk}(f)$ die zyklische Matrix im Vektor $f$. Sei weiter $g=(g_0, \ldots, g_{n-1}) \in \mathbb{C}^{n}$. Dann lässt sich mit
+Für ein zeitdiskrete Signal $f=(f_0, \ldots, f_{n-1})^T \in \mathbb{C}^{n}$ sei $F=\mathrm{zyk}(f)$ die zyklische Matrix im Vektor $f$. Sei weiter $g=(g_0, \ldots, g_{n-1})^T \in \mathbb{C}^{n}$. Dann lässt sich mit
     \begin{equation*}
         (F g)_k=\sum_{j=0}^{n-1}  f_{k-j} g_j,  \; \; k=0, \ldots, n-1
     \end{equation*}
     die diskrete Faltung von $f$ und $g$ darstellen. Dabei werden Indizies außerhalb von $0, \ldots, n-1$ zyklisch durch Modulo-Rechnung ($\mathrm{mod} \; n)$ in den gültigen Indexbereich abgebildet.
 \end{bem}
 
-In Hinblick auf die Klassifikation von digitalisierten Bildern, dargestellt als zweidimensionale Signale, wird die zweidimensionale Faltung mit sogenannten quadratischen Kernen $K \in \RR^{k \times k}$ mit ungeradem $k \in \mathbb{N}$ definiert.
+In Hinblick auf die Klassifikation von digitalisierten Bildern, dargestellt als Matrizen, wird die Matrixfaltung mit sogenannten quadratischen Kernen $K \in \RR^{k \times k}$ mit ungeradem $k \in \mathbb{N}$ definiert.
  
 %Um die Notation einfach zu halten, sei ein Kern $K$ ebenfalls eine $h \times b$ - Matrix, indem $K$ mit Nullen aufgefüllt wird.
 
@@ -94,8 +95,8 @@ In Hinblick auf die Klassifikation von digitalisierten Bildern, dargestellt als 
 %    Dabei besitzt $Y$ die selben Abmessungen wie $X$. 
 %\end{defi}
 
-\begin{defi}[Zweidimensionale Faltung, vgl. \cite{gruening}] \label{def:matrix_faltung}
-    Für gegebene Matrizen $X \in \RR^{h \times b}$ und $K \in \RR^{k \times k}$ sei $h=\lfloor k/2  \rfloor$.
+\begin{defi}[Matrixfaltung, vgl. \cite{gruening}] \label{def:matrix_faltung}
+    Für gegebene Matrizen $X \in \RR^{h \times b}$ und $K \in \RR^{k \times k}$ sei $u=\lfloor k/2  \rfloor$.
     %\begin{equation*}
     %   h_l=\begin{cases}
     %       \lfloor k_h/2  \rfloor &, k_h \, \text{ungerade} \\
@@ -109,15 +110,15 @@ In Hinblick auf die Klassifikation von digitalisierten Bildern, dargestellt als 
     Die zweidimensionale Faltung  $Y=X \ast K \in \RR^{h \times w}$ ist als 
     \begin{equation}
         \label{eq:matrix_faltung}
-        (Y)_{i,j}:=\sum_{l=-h}^{h} \sum_{m=-h}^{h} X_{i+l,j+m} K_{l+h_l+1, m+w_l+1}\; \; \forall i \in [h], j \in [b]
-    \end{equation} mit $X_{i,j}=0$ für $i \notin [h]$ und $j \notin [b]$ definiert. In der Literatur wird das Aüffüllen mit Nullen am Rand von $X$ mit \textit{zero padding} bezeichnet. In dieser Definition besitzt das Ergebnis $Y$ der Faltung die gleichen Abmessungen wie $X$.
+        (Y)_{i,j}:=\sum_{l=-u}^{u} \sum_{m=-u}^{u} X_{i+l,j+m} K_{l+u+1, m+u+1}\; \; \forall i \in [h], j \in [b]
+    \end{equation} mit $X_{i,j}=0$ für $i \notin [h]$ und $j \notin [b]$ definiert. In der Literatur wird dieses Auffüllen mit Nullen am Rand von $X$ mit \textit{zero padding} bezeichnet. In dieser Definition besitzt das Ergebnis $Y$ der Faltung die gleichen Abmessungen wie $X$.
 \end{defi}
 
 Bei gefalteten neuronalen Netzen wird oft eine Reduktion der Dimensionen angestrebt. Dafür werden natürliche Zahlen als Schrittweiten, engl. \textit{strides}, genutzt.
 \begin{bem}\label{bem_strides}
     Für Schrittweiten $s_h, s_b \in \mathbb{N}$ ergibt sich die reduzierte zweidimensionale Faltung $Y=X \ast K$ zu
     \begin{equation*}
-        (Y)_{i,j}:=\sum_{l=-h}^{h} \sum_{m=-h}^{h} X_{i \cdot s_h +l,j \cdot s_b +m} K_{l+h_l+1, m+w_l+1}\; \; \forall i \in [\lceil h/s_h \rceil], j \in [\lceil b/s_b \rceil].
+        (Y)_{i,j}:=\sum_{l=-u}^{u} \sum_{m=-u}^{u} X_{i \cdot s_h +l,j \cdot s_b +m} K_{l+u+1, m+u+1}\; \; \forall i \in [\lceil h/s_h \rceil], j \in [\lceil b/s_b \rceil].
     \end{equation*}
     Für $s_h=s_b=1$ ergibt sich die Standardvariante wie in \ref{eq:matrix_faltung}.
     \end{bem}
@@ -133,9 +134,9 @@ Beim maschinellen Lernen sind Eingabedaten oft als mehrdimensionale Arrays abgel
     \end{equation*}
     mit
     \begin{equation*}
-        \Psi_{conv}^{K,b}(X)_{:,:,l}:= \sum_{p=1}^{z_{in}} K_{:,:,p,l} \ast X_{:,:,p} +b_l \; \forall l \in [z_{out}]
+        \Psi_{conv}^{K,b}(X)_{:,:,l}:= \sum_{p=1}^{z_{in}} \alpha_p\left(K_{:,:,p,l} \ast X_{:,:,p} \right) +b_l \; \forall l \in [z_{out}]
     \end{equation*}
-    wird gefaltete Übertragungsfunktion bezeichnet. Mit $\ast$ ist die zweidimensionale Faltung wie in Definition \ref{def:matrix_faltung} gemeint.und mit $\cdot$ werden beliebige Raumachsen bezeichnet.
+    wird gefaltete Übertragungsfunktion bezeichnet. Mit $\ast$ ist die Matrixfaltung wie in Definition \ref{def:matrix_faltung} gemeint und mit $\cdot$ werden beliebige Raumachsen bezeichnet. Die Skalare $\alpha_p$ sind lernbare Parameter. In dieser Arbeit gelte $\alpha_p=1$ für alle $p \in [z_in]$.
 \end{defi}
 
 
@@ -160,7 +161,19 @@ Bei CNN werden sogenannte \textit{Pooling}-Schichten verwendet, um die Dimension
 \begin{equation*}
     \forall \pi \in S_n \; \forall x \in \RR^n: T(x_1, \ldots, x_n)=T(x_{\pi(1)}, \ldots, x_{\pi(n)})
 \end{equation*}
-gilt.
+gilt. Mögliche Pooling-Funktionen sind 
+\begin{alignat*}{2}
+    \text{Maximum}: \; \;&T(x_1, \ldots x_n) &&= \max\{x_1, \ldots x_n\},\\
+    \text{Mittelwert}: \; \;&T(x_1, \ldots, x_n) &&= \frac{1}{n} \sum_{i=1}^n x_i. 
+ \end{alignat*}
+Für den späteren Trainingsprozess ist es nützlich, die Ableitung der verwendeten Pooling-Funktionen, sofern sie existiert, zur Verfügung zu haben. Für den Mittelwert $T$ gilt $\nabla T=\frac{1}{n} \textbf{1}$. Ist $T$ die Maximum-Funktion so ergibt sich
+
+\begin{equation*}
+    \frac{\partial T}{\partial x_i}= \begin{cases}
+        1 , \; \text{falls}  \; \forall j \neq i: \; x_i >x_j \\
+        0 , \; \text{falls}  \; \exists j \neq i: \; x_i <x_j
+    \end{cases}
+\end{equation*}
 Heutzutage wird oft die von Weng et. al.\cite{weng1992cresceptron} eingeführte Max-Pooling-Schicht benutzt. Diese Schicht wird wieder durch Schrittweiten parametrisiert.
 
 \begin{defi}[Max-Pooling-Schicht, vgl. Grüning \cite{gruening}]
