@@ -1,24 +1,24 @@
 [0] Config.pm:311> INFO - This is Biber 2.16
 [0] Config.pm:314> INFO - Logfile is 'thesis_mit_Bsp.blg'
-[107] biber-MSWIN32:340> INFO - === 
-[141] Biber.pm:415> INFO - Reading 'thesis_mit_Bsp.bcf'
-[275] Biber.pm:952> INFO - Found 45 citekeys in bib section 0
-[291] Biber.pm:4340> INFO - Processing section 0
-[305] Biber.pm:4531> INFO - Looking for bibtex format file 'literatur.bib' for section 0
-[344] bibtex.pm:1689> INFO - LaTeX decoding ...
-[396] bibtex.pm:1494> INFO - Found BibTeX data source 'literatur.bib'
-[579] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_Om8o\a3880c76f34ea5bee4730f185bf8bebe_5424.utf8, line 268, warning: 80 characters of junk seen at toplevel
-[580] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_Om8o\a3880c76f34ea5bee4730f185bf8bebe_5424.utf8, line 276, warning: 30 characters of junk seen at toplevel
-[580] Utils.pm:395> WARN - BibTeX subsystem: warning: comma(s) at end of name (removing)
-[581] Utils.pm:395> WARN - I didn't find a database entry for 'du_diss' (section 0)
-[581] Utils.pm:395> WARN - I didn't find a database entry for 'gruen' (section 0)
-[581] Utils.pm:395> WARN - I didn't find a database entry for 'strauss' (section 0)
-[581] Utils.pm:395> WARN - I didn't find a database entry for 'gruening' (section 0)
-[581] Utils.pm:395> WARN - I didn't find a database entry for 'goodfellow' (section 0)
-[628] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[628] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
-[628] Biber.pm:4168> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'de-DE'
-[628] Biber.pm:4174> INFO - No sort tailoring available for locale 'de-DE'
-[671] bbl.pm:654> INFO - Writing 'thesis_mit_Bsp.bbl' with encoding 'UTF-8'
-[691] bbl.pm:757> INFO - Output to thesis_mit_Bsp.bbl
-[691] Biber.pm:128> INFO - WARNINGS: 8
+[105] biber-MSWIN32:340> INFO - === 
+[138] Biber.pm:415> INFO - Reading 'thesis_mit_Bsp.bcf'
+[263] Biber.pm:952> INFO - Found 45 citekeys in bib section 0
+[280] Biber.pm:4340> INFO - Processing section 0
+[291] Biber.pm:4531> INFO - Looking for bibtex format file 'literatur.bib' for section 0
+[329] bibtex.pm:1689> INFO - LaTeX decoding ...
+[381] bibtex.pm:1494> INFO - Found BibTeX data source 'literatur.bib'
+[556] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_0sNy\a3880c76f34ea5bee4730f185bf8bebe_18800.utf8, line 268, warning: 80 characters of junk seen at toplevel
+[556] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_0sNy\a3880c76f34ea5bee4730f185bf8bebe_18800.utf8, line 276, warning: 30 characters of junk seen at toplevel
+[556] Utils.pm:395> WARN - BibTeX subsystem: warning: comma(s) at end of name (removing)
+[557] Utils.pm:395> WARN - I didn't find a database entry for 'du_diss' (section 0)
+[557] Utils.pm:395> WARN - I didn't find a database entry for 'gruen' (section 0)
+[557] Utils.pm:395> WARN - I didn't find a database entry for 'strauss' (section 0)
+[557] Utils.pm:395> WARN - I didn't find a database entry for 'gruening' (section 0)
+[557] Utils.pm:395> WARN - I didn't find a database entry for 'goodfellow' (section 0)
+[604] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[604] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[605] Biber.pm:4168> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'de-DE'
+[605] Biber.pm:4174> INFO - No sort tailoring available for locale 'de-DE'
+[647] bbl.pm:654> INFO - Writing 'thesis_mit_Bsp.bbl' with encoding 'UTF-8'
+[666] bbl.pm:757> INFO - Output to thesis_mit_Bsp.bbl
+[666] Biber.pm:128> INFO - WARNINGS: 8

@@ -41,37 +41,39 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.3}Training von CNN}{22}{section.4.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.4}Motivation der Faltung}{23}{section.4.4}%
+\contentsline {section}{\numberline {4.4}Anwendung bei der Ziffernerkennung}{23}{section.4.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Weiteres Kapitel}{25}{chapter.5}%
+\contentsline {section}{\numberline {4.5}Motivation der Faltung}{24}{section.4.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.1}Umgebungen und Formeln}{25}{section.5.1}%
+\contentsline {chapter}{\numberline {5}Weiteres Kapitel}{26}{chapter.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.2}Aufzählung und Nummerierung}{26}{section.5.2}%
+\contentsline {section}{\numberline {5.1}Umgebungen und Formeln}{26}{section.5.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.3}Tabellen}{26}{section.5.3}%
+\contentsline {section}{\numberline {5.2}Aufzählung und Nummerierung}{27}{section.5.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.4}Bilder}{26}{section.5.4}%
+\contentsline {section}{\numberline {5.3}Tabellen}{27}{section.5.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.4.1}Einzelnes Bild}{26}{subsection.5.4.1}%
+\contentsline {section}{\numberline {5.4}Bilder}{27}{section.5.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.4.2}Mehrere Bilder}{27}{subsection.5.4.2}%
+\contentsline {subsection}{\numberline {5.4.1}Einzelnes Bild}{27}{subsection.5.4.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.5}TikZ}{27}{section.5.5}%
+\contentsline {subsection}{\numberline {5.4.2}Mehrere Bilder}{28}{subsection.5.4.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.5.1}Einfache Grafiken}{28}{subsection.5.5.1}%
+\contentsline {section}{\numberline {5.5}TikZ}{28}{section.5.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.5.2}Graphen und ähnliches}{28}{subsection.5.5.2}%
+\contentsline {subsection}{\numberline {5.5.1}Einfache Grafiken}{29}{subsection.5.5.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Ein letztes Kapitel}{29}{chapter.6}%
+\contentsline {subsection}{\numberline {5.5.2}Graphen und ähnliches}{29}{subsection.5.5.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.1}Weiteres Korollar}{29}{section.6.1}%
+\contentsline {chapter}{\numberline {6}Ein letztes Kapitel}{30}{chapter.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.2}Pseudocode}{29}{section.6.2}%
+\contentsline {section}{\numberline {6.1}Weiteres Korollar}{30}{section.6.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.3}Zitate}{29}{section.6.3}%
+\contentsline {section}{\numberline {6.2}Pseudocode}{30}{section.6.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline Literatur}{31}{chapter*.23}%
+\contentsline {section}{\numberline {6.3}Zitate}{30}{section.6.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\nonumberline Literatur}{32}{chapter*.24}%
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {A}Anhang}{i}{appendix.A}%
 \defcounter {refsection}{0}\relax 

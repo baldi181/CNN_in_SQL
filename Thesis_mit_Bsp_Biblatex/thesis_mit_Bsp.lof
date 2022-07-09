@@ -11,19 +11,21 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Es wird die Merkmalskarte $S \in \ensuremath {\mathbb {R}}^{3 \times 3}$ mit den Parametern ${h,w=5}, k_h=k_w=3, s_h=s_w=1$ und $p_h=p_w=1.$\relax }}{23}{figure.caption.12}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Beispielbilder \cite {DBLP:journals/pieee/LeCunBBH98} aus der öffentlichen MNIST-Datenbank. Zu sehen sind handgeschriebene Ziffern und zugehörige Annotationen.\relax }}{24}{figure.caption.12}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Es wird die Merkmalskarte $S \in \ensuremath {\mathbb {R}}^{3 \times 3}$ mit den Parametern ${h,w=5}, k_h=k_w=3, s_h=s_w=2$ und $p_h=p_w=1$ berechnet.\relax }}{24}{figure.caption.13}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Es wird die Merkmalskarte $S \in \ensuremath {\mathbb {R}}^{3 \times 3}$ mit den Parametern ${h,w=5}, k_h=k_w=3, s_h=s_w=1$ und $p_h=p_w=1.$\relax }}{25}{figure.caption.13}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Es wird die Merkmalskarte $S \in \ensuremath {\mathbb {R}}^{3 \times 3}$ mit den Parametern ${h,w=5}, k_h=k_w=3, s_h=s_w=2$ und $p_h=p_w=1$ berechnet.\relax }}{25}{figure.caption.14}%
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Vektorgrafiken sind toll. Scrolle mal in mich rein!\relax }}{27}{figure.caption.19}%
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Vektorgrafiken sind toll. Scrolle mal in mich rein!\relax }}{28}{figure.caption.20}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Vergleich verschiedener Schnecken\relax }}{27}{figure.caption.20}%
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Vergleich verschiedener Schnecken\relax }}{28}{figure.caption.21}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.3}{\ignorespaces Beispiel eines mit TikZ erzeugten Bildes\relax }}{28}{figure.caption.21}%
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Beispiel eines mit TikZ erzeugten Bildes\relax }}{29}{figure.caption.22}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.4}{\ignorespaces Datenreihen mittels TikZ visualisiert\relax }}{28}{figure.caption.22}%
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Datenreihen mittels TikZ visualisiert\relax }}{29}{figure.caption.23}%
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 

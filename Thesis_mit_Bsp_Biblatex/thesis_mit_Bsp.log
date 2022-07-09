@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.1)  9 JUL 2022 18:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.1)  9 JUL 2022 23:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1406,7 +1406,7 @@ chapter 3.
 
 LaTeX Warning: Reference `prob:lin_trenn' on page 3 undefined on input line 14.
 
-<pics/chapter_neuralnetworks/perzeptron.png, id=212, 329.73187pt x 191.21437pt>
+<pics/chapter_neuralnetworks/perzeptron.png, id=219, 329.73187pt x 191.21437pt>
 File: pics/chapter_neuralnetworks/perzeptron.png Graphic file (type png)
 <use pics/chapter_neuralnetworks/perzeptron.png>
 Package pdftex.def Info: pics/chapter_neuralnetworks/perzeptron.png  used on input line 25.
@@ -1469,30 +1469,44 @@ Overfull \hbox (1.4704pt too wide) in paragraph at lines 54--56
 LaTeX Warning: Reference `abb:error_conv' on page 22 undefined on input line 243.
 
 [22]
-<pics/abb_simpleconv.png, id=469, 581.17125pt x 472.01344pt>
+
+LaTeX Warning: Reference `abb_CNN_arch' on page 23 undefined on input line 254.
+
+<pics/chapters/CCN/mnist.png, id=478, 803.0pt x 450.68375pt>
+File: pics/chapters/CCN/mnist.png Graphic file (type png)
+<use pics/chapters/CCN/mnist.png>
+Package pdftex.def Info: pics/chapters/CCN/mnist.png  used on input line 269.
+(pdftex.def)             Requested size: 355.09178pt x 199.2986pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<pics/abb_simpleconv.png, id=481, 581.17125pt x 472.01344pt>
 File: pics/abb_simpleconv.png Graphic file (type png)
 <use pics/abb_simpleconv.png>
-Package pdftex.def Info: pics/abb_simpleconv.png  used on input line 265.
+Package pdftex.def Info: pics/abb_simpleconv.png  used on input line 289.
 (pdftex.def)             Requested size: 355.09178pt x 288.40312pt.
 
-Underfull \hbox (badness 2990) in paragraph at lines 267--267
-[][][]|\T1/lmr/m/n/12 Es wird die Merk-mals-kar-te $\OML/lmm/m/it/12 S \OMS/lmsy/m/n/12 2 \U/msb/m/n/12 R[]$ \T1/lmr/m/n/12 mit den Pa-ra-me-tern
- []
-
-<pics/abb_simplecov_padding.png, id=470, 578.16pt x 411.78844pt>
-File: pics/abb_simplecov_padding.png Graphic file (type png)
-<use pics/abb_simplecov_padding.png>
-Package pdftex.def Info: pics/abb_simplecov_padding.png  used on input line 272.
-(pdftex.def)             Requested size: 355.09178pt x 252.90593pt.
-
-Underfull \hbox (badness 2990) in paragraph at lines 274--274
+Underfull \hbox (badness 2990) in paragraph at lines 291--291
 [][][]|\T1/lmr/m/n/12 Es wird die Merk-mals-kar-te $\OML/lmm/m/it/12 S \OMS/lmsy/m/n/12 2 \U/msb/m/n/12 R[]$ \T1/lmr/m/n/12 mit den Pa-ra-me-tern
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-) [23 <./pics/abb_simpleconv.png>] [24 <./pics/abb_simplecov_padding.png>]
+<pics/abb_simplecov_padding.png, id=482, 578.16pt x 411.78844pt>
+File: pics/abb_simplecov_padding.png Graphic file (type png)
+<use pics/abb_simplecov_padding.png>
+Package pdftex.def Info: pics/abb_simplecov_padding.png  used on input line 296.
+(pdftex.def)             Requested size: 355.09178pt x 252.90593pt.
+
+Underfull \hbox (badness 2990) in paragraph at lines 298--298
+[][][]|\T1/lmr/m/n/12 Es wird die Merk-mals-kar-te $\OML/lmm/m/it/12 S \OMS/lmsy/m/n/12 2 \U/msb/m/n/12 R[]$ \T1/lmr/m/n/12 mit den Pa-ra-me-tern
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[23]) [24 <./pics/chapters/CCN/mnist.png (PNG copy)>] [25 <./pics/abb_simpleconv.png> <./pics/abb_simplecov_padding.png>]
 chapter 5.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10> on input line 103.
@@ -1502,10 +1516,10 @@ Package acronym Info: Label `acro:rnn' newly defined as it shall be overridden
 although it is yet undefined on input line 106.
 Package acronym Info: Label `acro:cm' newly defined as it shall be overridden
 although it is yet undefined on input line 112.
-[25
+[26
 
 ]
-<pics/SCHNECKE.pdf, id=513, 289.08pt x 289.08pt>
+<pics/SCHNECKE.pdf, id=529, 289.08pt x 289.08pt>
 File: pics/SCHNECKE.pdf Graphic file (type pdf)
 <use pics/SCHNECKE.pdf>
 Package pdftex.def Info: pics/SCHNECKE.pdf  used on input line 211.
@@ -1518,34 +1532,37 @@ File: pics/SCHNECKE.pdf Graphic file (type pdf)
 <use pics/SCHNECKE.pdf>
 Package pdftex.def Info: pics/SCHNECKE.pdf  used on input line 229.
 (pdftex.def)             Requested size: 177.54251pt x 177.54274pt.
- [26] (./tikz/dbn.tex) [27 <./pics/SCHNECKE.pdf>] (./tikz/ohstats.tex
+ [27] (./tikz/dbn.tex) [28 <./pics/SCHNECKE.pdf>] (./tikz/ohstats.tex
 PGFPlots: reading {tikz/ohdata.txt}
 PGFPlots: reading {tikz/ohdata.txt}
 PGFPlots: reading {tikz/ohdata.txt}
 PGFPlots: reading {tikz/ohdata.txt}
 PGFPlots: reading {tikz/ohdata.txt}
-) [28]
+) [29]
 chapter 6.
 
-LaTeX Warning: Reference `alg:pseudo' on page 29 undefined on input line 263.
+LaTeX Warning: Reference `alg:pseudo' on page 30 undefined on input line 263.
 
-[29
+[30
 
-] [30]
+] [31]
 chapter without number
-[31
+[32
 
 ]
 Overfull \hbox (10.22371pt too wide) in paragraph at lines 321--321
 []\T1/lmr/m/n/12 J. Park und I. W. Sand-berg. ^^R  Uni-ver-sal Ap-pro-xi-ma-ti-on Using Radial-Basis-Function
  []
 
-[32]
+[33]
 Overfull \hbox (13.75667pt too wide) in paragraph at lines 321--321
 []\T1/lmr/m/n/12 Juyang Weng, Na-ren-dra Ahu-ja und Tho-mas S Huang. ^^R  Cre-scep-tron: a self-organizing
  []
 
-[33] [34
+[34] [35
+
+] [36
+
 
 ]
 chapter A.
@@ -1556,7 +1573,7 @@ File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
 ) (c:/texlive/2021/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 ) (./code/HelloWorld.java)
-<AnleitungBibLatexBiber.pdf, id=581, 597.50829pt x 845.0471pt>
+<AnleitungBibLatexBiber.pdf, id=601, 597.50829pt x 845.0471pt>
 File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 <use AnleitungBibLatexBiber.pdf>
 Package pdftex.def Info: AnleitungBibLatexBiber.pdf  used on input line 372.
@@ -1565,7 +1582,7 @@ File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 <use AnleitungBibLatexBiber.pdf>
 Package pdftex.def Info: AnleitungBibLatexBiber.pdf  used on input line 372.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-<AnleitungBibLatexBiber.pdf, id=584, page=1, 597.50829pt x 845.0471pt>
+<AnleitungBibLatexBiber.pdf, id=604, page=1, 597.50829pt x 845.0471pt>
 File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 <use AnleitungBibLatexBiber.pdf, page 1>
 Package pdftex.def Info: AnleitungBibLatexBiber.pdf , page1 used on input line 372.
@@ -1575,8 +1592,6 @@ File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 Package pdftex.def Info: AnleitungBibLatexBiber.pdf , page1 used on input line 372.
 (pdftex.def)             Requested size: 537.75249pt x 760.53537pt.
  [1
-
-
 
 ]
 File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
@@ -1592,7 +1607,7 @@ File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 Package pdftex.def Info: AnleitungBibLatexBiber.pdf , page1 used on input line 372.
 (pdftex.def)             Requested size: 537.75249pt x 760.53537pt.
  [2 <./AnleitungBibLatexBiber.pdf>]
-<AnleitungBibLatexBiber.pdf, id=649, page=2, 597.50829pt x 845.0471pt>
+<AnleitungBibLatexBiber.pdf, id=670, page=2, 597.50829pt x 845.0471pt>
 File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 <use AnleitungBibLatexBiber.pdf, page 2>
 Package pdftex.def Info: AnleitungBibLatexBiber.pdf , page2 used on input line 372.
@@ -1616,18 +1631,18 @@ Package logreq Info: Writing requests to 'thesis_mit_Bsp.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 54002 strings out of 478353
- 1218012 string characters out of 5852101
- 2164604 words of memory out of 5000000
- 71023 multiletter control sequences out of 15000+600000
+ 54017 strings out of 478353
+ 1218304 string characters out of 5852101
+ 2164795 words of memory out of 5000000
+ 71032 multiletter control sequences out of 15000+600000
  492455 words of font info for 84 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  125i,20n,120p,10658b,3125s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}<c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmro12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss17.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss9.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmtt12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis_mit_Bsp.pdf (49 pages, 1219828 bytes).
+Output written on thesis_mit_Bsp.pdf (51 pages, 1271617 bytes).
 PDF statistics:
- 941 PDF objects out of 1000 (max. 8388607)
- 814 compressed objects within 9 object streams
- 234 named destinations out of 1000 (max. 500000)
- 375 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 965 PDF objects out of 1000 (max. 8388607)
+ 834 compressed objects within 9 object streams
+ 238 named destinations out of 1000 (max. 500000)
+ 388 words of extra memory for PDF output out of 10000 (max. 10000000)
 

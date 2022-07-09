@@ -129,15 +129,15 @@ Beim maschinellen Lernen sind Eingabedaten oft als mehrdimensionale Arrays abgel
 
 \begin{defi}[Gefaltete Übertragungsfunktion]
     \label{eq:convlogit}
-    Sei ein vierdimensionales Array $K \in \RR^{k \times k \times z_{in} \times z_{out}}$ und ein Biasvektor $b \in \RR^{z_{out}}$ gegeben. Die Funktion 
+    Sei ein vierdimensionales Array $K \in \RR^{z_{in} \times z_{out} \times k \times k}$ und ein Biasvektor $b \in \RR^{z_{out}}$ gegeben. Die Funktion 
     \begin{equation*}
         \Psi_{conv}^{K,b}: \RR^{\cdot \times \cdot \times z_{in}} \rightarrow \RR^{\cdot \times \cdot\times z_{out}}
     \end{equation*}
     mit
     \begin{equation*}
-        \Psi_{conv}^{K,b}(X)_{:,:,l}:= \sum_{p=1}^{z_{in}} \alpha_p\left(K_{:,:,p,l} \ast X_{:,:,p} \right) +b_l \; \forall l \in [z_{out}]
+        \Psi_{conv}^{K,b}(X)_{:,:,l}:= \sum_{p=1}^{z_{in}} \alpha_p\left(K_{p,l,:,:} \ast X_{:,:,p} \right) +b_l \; \forall l \in [z_{out}]
     \end{equation*}
-    wird gefaltete Übertragungsfunktion bezeichnet. Mit $\ast$ ist die Matrixfaltung wie in Definition \ref{def:matrix_faltung} gemeint und mit $\cdot$ werden beliebige Raumachsen bezeichnet. Die Skalare $\alpha_p$ sind lernbare Parameter. In dieser Arbeit gelte $\alpha_p=1$ für alle $p \in [z_in]$.
+    wird gefaltete Übertragungsfunktion bezeichnet. Mit $\ast$ ist die Matrixfaltung wie in Definition \ref{def:matrix_faltung} gemeint und mit $\cdot$ werden beliebige Raumachsen bezeichnet. Die Skalare $\alpha_p$ sind lernbare Parameter. In dieser Arbeit gelte $\alpha_p=1$ für alle $p \in [z_{in}]$.
 \end{defi}
 
 
@@ -247,6 +247,30 @@ Der Zusammenhang in Gleichung (\ref{eq:CNN_K_grad}) ist in Abbildung \ref{abb:er
 \end{equation*}
 Die Berechnung des lokalen Fehlers $\delta_{j}^{(l)}$ der Schicht $l$ ist abhängig von der Schicht $l+1$.
 $V_k=\sum_{j} w_{k,j}^l z_j +b^l_k$ 
+
+\section{Anwendung bei der Ziffernerkennung}
+In diesem Abschnitt wird ein CNN zur Klassifikation von Grauwert-Bildern aus einem konkreten Datensatz vorgestellt. Der MNIST-Datensatz\cite{DBLP:journals/pieee/LeCunBBH98} bietet $60.000$ Trainingsbilder handgeschriebener Ziffern und $10.000$ Testbilder, welche jeweils durch menschliches Wissen annotiert sind. Dieser Datensatz gilt als typischer Benchmark zur Klassifikation von Ziffern und wird im weiteren Verlauf dieser Arbeit genutzt. Jedes einzelne Bild besteht aus $28 \times 28$ Pixeln, welche jeweils einen grayscale-Wert zwischen 0 und 1 annehmen, vgl. Abbildung \ref{mnistpic}. Ein Bild wird als $X \in [0,1]^{28 \times 28 \ 1}$ notiert und damit ergeben sich Trainingspaare $(X,c)$ mit $c \in \{0, \ldots, 9\}$. 
+
+Es wird ein CNN mit zwei Faltungsschichten $C^1$ und $C^2$ mit der logistischen Aktivierungsfunktion $\psi$ genutzt. Die Ausgabe der Schicht $C^1$ umfasst sechs Merkmalskarten und die Ausgabe der Schicht $C^2$ zwölf Merkmalskarten. Es werden quadratische $5 \times 5$- Kerne verwendet. Außerdem werden zwei Pooling-Schichten mit den Schrittweiten $p_h=p_b=2$ und der Mittelwert-Funktion genutzt. Anschließend wird ein FFN mit 10 Ausgabeneuronen angekoppelt, sodass dessen Aktivierung zur Klassifikation der Eingabe genutzt werden kann. Die Architektur, ähnlich dem Le-Net-5-Modell\cite{DBLP:journals/pieee/LeCunBBH98}, ist in Abbildung \ref{abb_CNN_arch} dargestellt. Dabei sind
+
+\begin{itemize}
+    \item $X$ ein Grauwert-Bild der Größe $h=b=28$,
+    \item $K^1 \in \RR^{1 \times 6 \times 5 \times 5}$ der Kern der Schicht $C^1$,
+    \item $b^1 \in \RR^6$ der Biasvektor der Schicht $C^1$,
+    \item $K^2 \in \RR^{12 \times 6 \times 5 \times 5}$ der Kern der Schicht $C^2$,
+    \item $b^2 \in \RR^{12}$ der Biasvektor der Schicht $C^2$,
+    \item $W \in \RR^{192 \times 10}$ die Gewichtsmatrix der Neuronenschicht,
+    \item $b \in \RR^{10}$ der Biasvektor der Neuronenschicht,
+    \item $y \in \RR^{10}$ die Ausgabe des CNN. 
+\end{itemize}
+
+
+\begin{figure}[h]
+    \includegraphics[width=0.8\textwidth]{pics/chapters/CCN/mnist.png}
+    \centering
+    \caption{Beispielbilder \cite{DBLP:journals/pieee/LeCunBBH98} aus der öffentlichen MNIST-Datenbank. Zu sehen sind handgeschriebene Ziffern und zugehörige Annotationen.}
+    \label{mnistpic}
+\end{figure}
 
 
 
