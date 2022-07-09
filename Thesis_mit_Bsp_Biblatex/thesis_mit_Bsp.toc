@@ -39,7 +39,9 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.2}CNN Architektur}{19}{section.4.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.3}Motivation der Faltung}{22}{section.4.3}%
+\contentsline {section}{\numberline {4.3}Training von CNN}{22}{section.4.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {4.4}Motivation der Faltung}{23}{section.4.4}%
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {5}Weiteres Kapitel}{25}{chapter.5}%
 \defcounter {refsection}{0}\relax 

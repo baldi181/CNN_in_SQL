@@ -9,7 +9,7 @@ Ein weiterer Nachteil des FFN ergibt sich dadurch, dass Korrelationen von benach
 
 In diesem Kapitel wird erläutert, wie gefaltete neuronale Netze die erwähnten Nachteile von FFN umgehen. CNN sind in der Lage, lokale Muster zu erkennen, sind äquivariant gegenüber Translationen und realisieren Konzepte wie Parameter Sharing, um die Anzahl der freien Parameter drastisch zu reduzieren. So gelingt es, besonders bei Aufgaben der Computergrafik\cite{DBLP:conf/nips/KrizhevskySH12, DBLP:journals/pieee/LeCunBBH98,DBLP:conf/cvpr/CiresanMS12} die Generalisierungsrate gegenüber klassichen FFN zu erhöhen. 
 
-Gefaltete neuronale Netze unterscheiden sich von FFN bei der Berechnung der Übertragungsfunktion. Dazu wird die gefaltete Übertragungsfunktion definiert, welche das Konzept der diskreten Faltung nutzt. Im folgenden Abschnitt \ref{abs:conv_theorie}wird zunächst die Faltung als mathematische Operation eingeführt und deren Zusammenhang zur Fourier-Transformation\cite{werner2011funktionalanalysis} erläutert. Anschließend wird im Abschnitt \ref{abs:conv_def} das CNN-Modell definiert und schließlich der Backpropagationsalgorithmus \ref{alg:online_backprop} auf CNN verallgemeinert.
+Gefaltete neuronale Netze unterscheiden sich von FFN bei der Berechnung der Übertragungsfunktion. Dazu wird die gefaltete Übertragungsfunktion definiert, welche das Konzept der diskreten Faltung nutzt. Im folgenden Abschnitt \ref{abs:conv_theorie}wird zunächst die Faltung als mathematische Operation eingeführt und deren Zusammenhang zur Fourier-Transformation\cite{werner2011funktionalanalysis} erläutert. Anschließend wird im Abschnitt \ref{abs:conv_def} das CNN-Modell definiert und schließlich im Abschnitt \ref{abs:CNN_train} der Backpropagationsalgorithmus \ref{alg:online_backprop} auf CNN verallgemeinert.
 
 %bei CNNs zu verstehen ist und wie diese Operation bei diesen neuronalen Netzen motiviert wird. In diesem Zusammenhang werden Begriffe wie Merkmalskarten (engl. \textit{feature maps}) und Filter (engl. \textit{kernels}) eingeführt. Des Weiteren wird die Arithmetik der Faltungsoperation für zweidimensionale Eingaben, repräsentiert durch Matrizen, erklärt und das Verfahren \textit{padding} beziehungsweise das Nutzen von \textit{strides} erläutert. Das gesamte Kapitel wird mit konkreten Beispielen begleitet, um die verschiedenen Effekte der Faltungsoperation zu beleuchten.
 
@@ -128,6 +128,7 @@ Bei gefalteten neuronalen Netzen wird oft eine Reduktion der Dimensionen angestr
 Beim maschinellen Lernen sind Eingabedaten oft als mehrdimensionale Arrays abgelegt, welche eine oder mehrere Achsen repräsentieren, wobei die Ordnung dieser eine Rolle spielt. Bei digitalisierten Bildern sind das bespielsweise die Höhe und Breite des Bildes, welche als Raumachsen bezeichnet werden. Hinzu kommen Kanalachsen, zum Beispiel besitzen Grauwert-Bilder einen Farbkanal, während RGB-Farbbilder drei Kanäle der Farben rot, grün und blau besitzen. Dementsprechend werden Grauwert-Bilder wie in Definition \ref{def:image} nun als dreidimensionale Arrays $X \in [0,1]^{h \times b \times 1}$ dargestellt. Dies erlaubt die Definition der gefalteten Übertragungsfunktion, wie in Gruening\cite{gruening}
 
 \begin{defi}[Gefaltete Übertragungsfunktion]
+    \label{eq:convlogit}
     Sei ein vierdimensionales Array $K \in \RR^{k \times k \times z_{in} \times z_{out}}$ und ein Biasvektor $b \in \RR^{z_{out}}$ gegeben. Die Funktion 
     \begin{equation*}
         \Psi_{conv}^{K,b}: \RR^{\cdot \times \cdot \times z_{in}} \rightarrow \RR^{\cdot \times \cdot\times z_{out}}
@@ -151,7 +152,7 @@ Beim maschinellen Lernen sind Eingabedaten oft als mehrdimensionale Arrays abgel
 
 \begin{defi}[Faltungsschicht]
     \label{def:convlayer}
-    Ist $\Psi_{conv}^{K,b}$ eine gefaltete Übertragungsfunktion und $\psi$ eine Aktivierungsfunktion, so wird das Paar $(\Psi_{conv}^{K,b}, \psi)$ als Faltungsschicht $\mathcal{S}_{conv}$ bezeichnet. Für eine Eingabe $X \in \RR^{\cdot \times \cdot \times z_{in}}$ ist die Ausgabe $Y \in \RR^{\cdot \times \cdot \times z_{out}}$ der Schicht $\mathcal{S}_{conv}$ durch
+    Ist $\Psi_{conv}^{K,b}$ eine gefaltete Übertragungsfunktion und $\psi$ eine Aktivierungsfunktion, so wird das Paar $(\Psi_{conv}^{K,b}, \psi)$ als Faltungsschicht $\mathcal{S}_{conv}$ bezeichnet. Für eine sogenannte Eingabekarte $X \in \RR^{\cdot \times \cdot \times z_{in}}$ ist die Ausgabe $Y \in \RR^{\cdot \times \cdot \times z_{out}}$ der Schicht $\mathcal{S}_{conv}$ durch
     \[Y=\psi \circ \Psi_{conv}^{K,b}(X)= \psi\left(\Psi_{conv}^{K,b}(X)\right)
         \] 
         gegeben. Die Matrizen $Y_{:,:,p}$ werden für $1 \leq p \leq z_{out}$ Merkmalskarten genannt. Weiter bezeichne $\Psi_{conv}^{K^{},b^{},\psi_{}}$ die Faltungsschicht $\mathcal{S}_{conv}$ mit $\Psi_{conv}^{K^{},b^{},\psi_{}}(X):= \psi_{} \left(\Psi_{conv}^{K^{},b^{}}(X)\right)$.
@@ -204,7 +205,6 @@ Dazu wird für allgemeine mehrdimensionale Arrays die Flatten-Schicht definiert.
 \end{defi}
 
 Dies erlaubt die Definition des CNN-Modells als Kombination aus Faltungsschichten, Pooling-Schichten und des MLP aus Kapitel \ref{kap:NN}. 
-
 \begin{defi}(Gefaltetes Neuronales Netz)
     Seien $h, w, z_{in}, z_{out}, l ,c \in \mathbb{N}$ und Schichten $\Psi^{W^{(1)},b^{(1)},\psi_{1}}, \ldots, \Psi^{W^{(l)},b^{(l)},\psi_{l}}$ sowie Faltungsschichten $\Psi_{conv}^{K^{(1)},b^{(1)},\psi_{1}}, \ldots, \Psi_{conv}^{K^{(l)},b^{(l)},\psi_{l}}$ gegeben. Die Vorwärtsrechnung eines CNN lässt sich als Komposition
     \begin{equation}
@@ -219,16 +219,47 @@ Auch CNN bestehen aus Hyper- und Modellparametern.
     Die Eingabe- und Ausgabedimension $h, b, z_{in}, z_{out}$, die Anzahl $c$ der Faltunsschichten, die Dimensionen der Kerne, die Schrittweiten bei der Faltung bzw. dem Pooling sowie die verwendeten Aktivierungs- und Poolingfunktionen sind Hyperparameter des CNN.
     Die Kerne, Gewichtsmatrizen und Biasvektoren mit den entsprechend passenden Abmessungen stellen die Modellparameter $\mathcal{W}:=\{(W^{(i)},b^{(i)}): \; i=1, \ldots, l\}$ und $\mathcal{W}_{conv}:=\{(K^{(i)}, b^{(i)}): \; i=1, \ldots, c\}$ des CNN dar. 
 \end{defi}
-Die Hyperparameter werden wieder anwendungsspezifisch für das jeweilige Problem gewählt und die Modellparameter während des Trainingsprozesses angepasst.
+Die Hyperparameter werden wieder anwendungsspezifisch für das jeweilige Problem gewählt und die Modellparameter während des Trainingsprozesses angepasst. 
 
-Im Folgenden werden konkrete Beispiele für verschiedene zweidimensionale Faltungen, welche in dieser Arbeit im Fokus stehen, gegeben. Dabei sind die Eingabe $X \in \RR^{h \times w}$ und der Filter $K \in \RR^{k_h \times k_w}$ immer als Matrizen zu verstehen. Das Ergebnis der Faltung $S= X \ast K$ wird als Merkmalskarte bezeichnet. Es sei angemerkt, dass oft $k_h=k_w$ sowie $k_h$ ungerade gewählt wird, z.B. $k_h=3$ oder $k_h=5$. Die Größe der Merkmalskarte wird durch die Parameter
-\begin{itemize}
-    \item $h,w$: Die Höhe und Breite der Eingabe,
-    \item $k_h, k_w$: Die Abmessungen des Filters,
-    \item $s_h, s_w$: Die Wahl der strides, 
-    \item $p_h, p_w$: Die Größe des zero paddings
-\end{itemize}
-beeinflusst. Mit zero padding ist gemeint, dass künstliche Nullen um Randpixel der Eingabe $X$ eingefügt werden, damit die Berechnung mit dem Filter um jene Pixel gelingt. Ein Beispiel für das Verwenden von zero padding wird in Abbildung \ref{abb_simplematrixconv_padding} gezeigt. In Abbildung \ref{abb_simplematrixconv} ist die Berechnung einer einfachen zweidimensionalen Matrixfaltung dargestellt. Ein vorher festgelegter Filter (grau) bewegt sich über die Eingabe (blau) und berechnet jeweils die Einträge der Ausgabe(grün). 
+
+\section{Training von CNN}
+\label{abs:CNN_train}
+Der Backpropagationsalgorithmus \ref{alg:online_backprop} soll nun für das CNN-Modell verallgemeinert werden. 
+Als Fehlerfunktion wird wieder die mittlere quadratische Abweichung (\ref{eq:MSE})
+genutzt. 
+Die Abstiegsrichtungen für die Schichten des FFN wurden bereits im vorherigen Kapitel \ref{kap:NN} hergeleitet. Es müssen nun Gradienten innerhalb der Faltungsschichten beziehungsweise Pooling-Schichten berechnet werden. Die Einträge det Eingabe- und Merkmalskarten, in Zukunft einfach Karten genannt, können als Neuronenaktivierungen interpretiert werden. Weiter werden zur Vereinfachung die trainierbaren Gewichte der Kerne in Zukunft mit $w_{i,j}^{(l)}$ bezeichnet. Gemeint ist also das Gewicht zwischen Neuron $i$ auf Schicht $l-1$ und Neuron $j$ der Schicht $l$ bezeichnet. Bezeichne $y_{i}^{(l-1)}$ die Aktivierung des Neurons $i$ der Schicht $l-1$ und $\delta_j^{(l)}$ sei der lokale Fehler des Neurons $j$ der Schicht $l$. Weiter repräsentiere die Funktion $\psi$ eine Aktivierungsfunktion, Pooling-Funktion oder Flatten-Funktion, je nachdem auf welcher Schicht sie benutzt wird.
+
+Die Gradienten werden wieder komponentenweise berechnet.
+Angenommen, $l$ ist eine Faltungsschicht. Die Aktivierung einer Merkmalskarte $j$ an der Stelle $(x,y)$ lässt sich mit der Matrixfaltung, siehe \ref{def:matrix_faltung}, \ref{eq:convlogit}, als
+\begin{equation}
+    y_j^{(l)}(x,y) =\psi \left(\sum_{i \in [z_{in}]} \sum_{(u,v) \in F} y_i^{(l)}(x+u,y+u)\,  w_{j,i}^{(l)}(u,v) +b_j^{(l)}\right)
+\end{equation}   
+schreiben. Es ist zu beachten, dass $(x,y)$ ein Pixel der Karte $j$ meint. Weiter sei $F=\{(u,v): \; 0\leq u,v <k\}$ und $k$ die Dimension der Kerns.
+Das Gewicht des Kerns von der Karte $i$ zur Karte $j$ an der Stelle $(u,v)$ ist mit $w_{j,i}(u,v)$ bezeichnet. Der Gradient ergibt sich als Summe über die jeweilgen Positionen $(x,y)$ der Merkmalskarte $j$, also
+\begin{equation}
+    \label{eq:CNN_K_grad}
+    \Delta w_{j,i}^{(l)}(u,v)= -\lambda \, \sum_{(x,y)} \left( y_i^{(l-1)}(x+u,y+v) \delta_j^{(l)}(x,y)\right)
+\end{equation}
+Der Zusammenhang in Gleichung (\ref{eq:CNN_K_grad}) ist in Abbildung \ref{abb:error_conv} grafisch dargestellt. Analog ergibt sich für den Schwellwert
+
+\begin{equation*}
+    \Delta b_j^{(l)}= -\lambda \, \sum_{(x,y)} \delta_j^{(l)}(x,y).
+\end{equation*}
+Die Berechnung des lokalen Fehlers $\delta_{j}^{(l)}$ der Schicht $l$ ist abhängig von der Schicht $l+1$.
+$V_k=\sum_{j} w_{k,j}^l z_j +b^l_k$ 
+
+
+
+
+
+%Im Folgenden werden konkrete Beispiele für verschiedene zweidimensionale Faltungen, welche in dieser Arbeit im Fokus stehen, gegeben. Dabei sind die Eingabe $X \in \RR^{h \times w}$ und der Filter $K \in \RR^{k_h \times k_w}$ immer als Matrizen zu verstehen. Das Ergebnis der Faltung $S= X \ast K$ wird als Merkmalskarte bezeichnet. Es sei angemerkt, dass oft $k_h=k_w$ sowie $k_h$ ungerade gewählt wird, z.B. $k_h=3$ oder $k_h=5$. Die Größe der Merkmalskarte wird durch die Parameter
+%\begin{itemize}
+%    \item $h,w$: Die Höhe und Breite der Eingabe,
+%    \item $k_h, k_w$: Die Abmessungen des Filters,
+%   \item $s_h, s_w$: Die Wahl der strides, 
+%   \item $p_h, p_w$: Die Größe des zero paddings
+%\end{itemize}
+%beeinflusst. Mit zero padding ist gemeint, dass künstliche Nullen um Randpixel der Eingabe $X$ eingefügt werden, damit die Berechnung mit dem Filter um jene Pixel gelingt. Ein Beispiel für das Verwenden von zero padding wird in Abbildung \ref{abb_simplematrixconv_padding} gezeigt. In Abbildung \ref{abb_simplematrixconv} ist die Berechnung einer einfachen zweidimensionalen Matrixfaltung dargestellt. Ein vorher festgelegter Filter (grau) bewegt sich über die Eingabe (blau) und berechnet jeweils die Einträge der Ausgabe(grün). 
 
 \begin{figure}[h]
     \includegraphics[width=0.8\textwidth]{pics/abb_simpleconv}
