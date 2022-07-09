@@ -197,6 +197,7 @@ Die Idee bei CNN besteht nun darin, Faltungsschichten mit Pooling-Schichten zu k
 Dazu wird für allgemeine mehrdimensionale Arrays die Flatten-Schicht definiert.
 
 \begin{defi}
+    \label{def:flatten}
     Sei $X \in \RR^{n_1 \times n_2 \times n_3}$. Dann wird die Funktion $T_f:\RR^{n_1 \times n_2 \times n_3} \rightarrow \RR^{n_1 \cdot n_2 \cdot n_3}$ mit 
     \begin{equation*}
         T_f(X)_{(i-1) \cdot (n_2 \cdot n_3)+(j-1) \cdot n_3+k}:= X_{i,j,k}, \; \; \forall i \in [n_1],\; j \in [n_2],\; k \in [n_3]
@@ -222,7 +223,7 @@ Auch CNN bestehen aus Hyper- und Modellparametern.
 Die Hyperparameter werden wieder anwendungsspezifisch für das jeweilige Problem gewählt und die Modellparameter während des Trainingsprozesses angepasst. 
 
 
-\section{Training von CNN}
+\section{Backpropagation bei CNN}
 \label{abs:CNN_train}
 Der Backpropagationsalgorithmus \ref{alg:online_backprop} soll nun für das CNN-Modell verallgemeinert werden. 
 Als Fehlerfunktion wird wieder die mittlere quadratische Abweichung (\ref{eq:MSE})
@@ -249,9 +250,16 @@ Die Berechnung des lokalen Fehlers $\delta_{j}^{(l)}$ der Schicht $l$ ist abhän
 $V_k=\sum_{j} w_{k,j}^l z_j +b^l_k$ 
 
 \section{Anwendung bei der Ziffernerkennung}
-In diesem Abschnitt wird ein CNN zur Klassifikation von Grauwert-Bildern aus einem konkreten Datensatz vorgestellt. Der MNIST-Datensatz\cite{DBLP:journals/pieee/LeCunBBH98} bietet $60.000$ Trainingsbilder handgeschriebener Ziffern und $10.000$ Testbilder, welche jeweils durch menschliches Wissen annotiert sind. Dieser Datensatz gilt als typischer Benchmark zur Klassifikation von Ziffern und wird im weiteren Verlauf dieser Arbeit genutzt. Jedes einzelne Bild besteht aus $28 \times 28$ Pixeln, welche jeweils einen grayscale-Wert zwischen 0 und 1 annehmen, vgl. Abbildung \ref{mnistpic}. Ein Bild wird als $X \in [0,1]^{28 \times 28 \ 1}$ notiert und damit ergeben sich Trainingspaare $(X,c)$ mit $c \in \{0, \ldots, 9\}$. 
+In diesem Abschnitt wird ein CNN zur Klassifikation von Grauwert-Bildern aus einem konkreten Datensatz vorgestellt. Der MNIST-Datensatz\cite{DBLP:journals/pieee/LeCunBBH98} bietet $60.000$ Trainingsbilder handgeschriebener Ziffern und $10.000$ Testbilder, welche jeweils durch menschliches Wissen annotiert sind. Dieser Datensatz gilt als typischer Benchmark zur Klassifikation von Ziffern und wird im weiteren Verlauf dieser Arbeit genutzt. Jedes einzelne Bild besteht aus $28 \times 28$ Pixeln, welche jeweils einen grayscale-Wert zwischen 0 und 1 annehmen, vgl. Abbildung \ref{mnistpic}. Ein Bild wird als $X \in [0,1]^{28 \times 28 \times 1}$ notiert und damit ergeben sich Trainingspaare $(X,c)$ mit $c \in \{0, \ldots, 9\}$. 
 
-Es wird ein CNN mit zwei Faltungsschichten $C^1$ und $C^2$ mit der logistischen Aktivierungsfunktion $\psi$ genutzt. Die Ausgabe der Schicht $C^1$ umfasst sechs Merkmalskarten und die Ausgabe der Schicht $C^2$ zwölf Merkmalskarten. Es werden quadratische $5 \times 5$- Kerne verwendet. Außerdem werden zwei Pooling-Schichten mit den Schrittweiten $p_h=p_b=2$ und der Mittelwert-Funktion genutzt. Anschließend wird ein FFN mit 10 Ausgabeneuronen angekoppelt, sodass dessen Aktivierung zur Klassifikation der Eingabe genutzt werden kann. Die Architektur, ähnlich dem Le-Net-5-Modell\cite{DBLP:journals/pieee/LeCunBBH98}, ist in Abbildung \ref{abb_CNN_arch} dargestellt. Dabei sind
+\begin{figure}[h]
+    \includegraphics[width=0.8\textwidth]{pics/chapters/CCN/mnist.png}
+    \centering
+    \caption{Beispielbilder, vgl. \cite{DBLP:journals/pieee/LeCunBBH98} aus der öffentlichen MNIST-Datenbank. Zu sehen sind handgeschriebene Ziffern und zugehörige Annotationen.}
+    \label{mnistpic}
+\end{figure}
+
+Es wird ein CNN mit zwei Faltungsschichten $C^1$ und $C^2$ mit der logistischen Aktivierungsfunktion $\psi$ genutzt. Die Ausgabe der Schicht $C^1$ umfasst sechs Merkmalskarten und die Ausgabe der Schicht $C^2$ zwölf Merkmalskarten. Zur Faltung werden quadratische $5 \times 5$ -Kerne verwendet. Außerdem werden zwei Pooling-Schichten $P^1$ und $P^2$mit den Schrittweiten $p_h=p_b=2$ und der Mittelwert-Funktion genutzt. Anschließend wird ein FFN mit 10 Ausgabeneuronen angekoppelt, sodass dessen Aktivierung zur Klassifikation der Eingabe genutzt werden kann. Die Architektur, ähnlich dem Le-Net-5-Modell\cite{DBLP:journals/pieee/LeCunBBH98}, ist in Abbildung \ref{abb_CNN_arch} dargestellt. Dabei sind
 
 \begin{itemize}
     \item $X$ ein Grauwert-Bild der Größe $h=b=28$,
@@ -264,17 +272,74 @@ Es wird ein CNN mit zwei Faltungsschichten $C^1$ und $C^2$ mit der logistischen 
     \item $y \in \RR^{10}$ die Ausgabe des CNN. 
 \end{itemize}
 
+Im Folgenden wird der Online-Backpropagationsalgorithmus \ref{alg:online_backprop_CNN} verwendet, um das CNN zu trainieren. Dieser besteht zunächst aus der Initialisierung und der Vorwärtsrechnung. Zur Übersicht wird im Folgenden eine komponentenweise Schreibweise genutzt.
 
-\begin{figure}[h]
-    \includegraphics[width=0.8\textwidth]{pics/chapters/CCN/mnist.png}
-    \centering
-    \caption{Beispielbilder \cite{DBLP:journals/pieee/LeCunBBH98} aus der öffentlichen MNIST-Datenbank. Zu sehen sind handgeschriebene Ziffern und zugehörige Annotationen.}
-    \label{mnistpic}
-\end{figure}
+\section*{Vorwärtsrechnung}
 
+Alle Biasvektoren werden als Nullvektor initialisiert. Zur Initialisierung der Gewichte wird die Xavier-Initialisierung \ref{def:xavier} genutzt, also
 
+\begin{alignat*}{2}
+    K^{1}_{1,p}(u,v) &\sim  \mathcal{N} \left(0, \frac{2}{5 \cdot 5 \cdot (1+6)}\right), \; \; &&1 \leq p \leq 6,\\
+    K^{2}_{p,q}(u,v) &\sim  \mathcal{N} \left(0, \frac{2}{5 \cdot 5 \cdot (6+12)}\right),\; \; &&1 \leq p \leq 6, 1 \leq q \leq 12,\\
+    W(i,j) &\sim \mathcal{N} \left(0, \frac{2}{192+10}\right).
+\end{alignat*}
+Die Parameteranzahl ist damit 
+\begin{equation*}
+    \underbrace{(5 \cdot 5 +1) \cdot 6}_{\text{Gewichte in $C^1$}}+\underbrace{(5 \cdot 5 \cdot 6+1) \cdot 12}_{\text{Gewichte in $C^2$}}+\underbrace{ 10\cdot (192+1)}_{\text{Gewichte im FFN}}=3898.
+\end{equation*}
+ Sei $X \in \RR^{28 \times \times 1}$ das Eingabebild und $\psi$ die logistische Funktion. In der Schicht $C^1$ werden sechs Merkmalskarten 
 
+\begin{align}
+    \label{eq:C1_forw}
+    \begin{split}
+    C_p^1 &= \psi(X \ast K_{1,p}^1+b_p^1 \mathbf{1}) \\
+    C_p^1(i,j)&=\psi \left(\sum_{u=0}^4 \sum_{v=0}^4 X(i+u,j+v) \cdot K_{1,p}^1(u,v) +b_p^1\right)
+    \end{split}
+\end{align}
+für $1 \leq p \leq 6$ berechnet. Mit $\mathbf{1} \in \RR^{24 \times 24}$ ist die Matrix gemeint, deren Einträge nur Einsen sind. Die Matrixfaltung $\ast$ wird ohne zero padding genutzt und daher reduziert sich die Raumdimension. Es gilt $C^1_p \in \RR^{24 \times 24 \times 1}$. Anschließend folgen das Mittelwert-Pooling $P^1$ mit
 
+\begin{equation}
+    \label{eq:P1_forw}
+    P^1_p(i,j) =\frac{1}{4} \sum_{u=0}^1 \sum_{v=0}^1 C_p^1(2i-u, 2j-v), \; i,j \in [12]
+\end{equation}
+für $1 \leq p \leq 6$ und die zweite Faltungsschicht $C^2$, welche zwölf Merkmalskarten
+
+\begin{align}
+    \label{eq:C2_forw}
+    \begin{split}
+        C_q^2 &= \psi \left( \sum_{p=1}^6 P_p^1 \ast K_{p,q}^2 + \mathbf{1} b_q^2\right) \\
+        C_q^2(i,j) &= \psi \left( \sum_{p=1}^6 \sum_{u=0}^4 \sum_{v=0}^4 P^1_p(i+u,j+v) \cdot K_{p,q}(u,v) +b_q^2\right)
+    \end{split}
+\end{align}
+für $1 \leq q \leq 12$ berechnet. Die Matrixfaltung $\ast$ wird wieder ohne zero padding genutzt und daher reduziert sich die Raumdimension.
+Es gilt $C_q^2 \in \RR^{8 \times 8 \times 1}$. Es folgt das Mittelwert-Pooling $P^2$ mit
+\begin{equation}
+    \label{eq:P2_forw}
+    P_q^2(i,j)= \frac{1}{4} \sum_{u=0}^1 \sum_{v=0}^1 C_p^1(2i-u, 2j-v), \; i,j \in [4]
+\end{equation}
+für $1 \leq q \leq 12$. Es gilt $P^2_q \in \RR^{4 \times 4 \times 1}$. Jede dieser $4 \times 4$- Matrizen wird durch die Flatten-Funktion $T_f$ aus Definition \ref{def:flatten} in einen Vektor $f_q \in \RR^{4 \cdot 4 \cdot 1}$ umgewandelt. Anschließend werden diese Vektoren zu einem Vektor zusammengefasst, indem sie einfach untereinander geschrieben werden. Dies sei durch
+\begin{equation}
+    \label{eq:f_forw}
+    f=T_f\left(\{P^2_q\}_{q=1, \ldots, 12}\right)
+\end{equation}
+beschrieben. 
+Die Umkehrung wird mit
+\begin{equation}
+    \label{eq_f_ford_inv}
+    \{P^2_q\}_{q=1, \ldots, 12}=T_f^{-1}(f).
+\end{equation}
+bezeichnet.
+Die Ausgabe des FFN ergibt sich schließlich zu
+\begin{equation}
+    \label{eq:y_forw}
+    y=\psi(W^T f +b).
+\end{equation}
+und der mittlere quadratische Fehler lautet
+\begin{equation}
+    \label{eq:E_forw}
+    E=\frac{1}{2} \sum_{i=1}^{10} \left(y(i)-t(i)\right)^2,
+\end{equation}
+wobei $t=t(X,c)$ der Zielvektor des Datenpaars $(X,c)$ ist.
 
 %Im Folgenden werden konkrete Beispiele für verschiedene zweidimensionale Faltungen, welche in dieser Arbeit im Fokus stehen, gegeben. Dabei sind die Eingabe $X \in \RR^{h \times w}$ und der Filter $K \in \RR^{k_h \times k_w}$ immer als Matrizen zu verstehen. Das Ergebnis der Faltung $S= X \ast K$ wird als Merkmalskarte bezeichnet. Es sei angemerkt, dass oft $k_h=k_w$ sowie $k_h$ ungerade gewählt wird, z.B. $k_h=3$ oder $k_h=5$. Die Größe der Merkmalskarte wird durch die Parameter
 %\begin{itemize}
