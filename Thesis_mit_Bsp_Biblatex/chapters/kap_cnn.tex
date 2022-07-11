@@ -306,7 +306,7 @@ für $1 \leq p \leq 6$ und die zweite Faltungsschicht $C^2$, welche zwölf Merkm
     \label{eq:C2_forw}
     \begin{split}
         C_q^2 &= \psi \left( \sum_{p=1}^6 P_p^1 \ast K_{q,p}^2 + \mathbf{1} b_q^2\right) \\
-        C_q^2(i,j) &= \psi \left( \sum_{p=1}^6 \sum_{u=0}^4 \sum_{v=0}^4 P^1_p(i+u,j+v) \cdot K_{q,p }(u,v) +b_q^2\right)
+        C_q^2(i,j) &= \psi \left( \sum_{p=1}^6 \sum_{u=0}^4 \sum_{v=0}^4 P^1_p(i+u,j+v) \cdot K_{q,p}(u,v) +b_q^2\right)
     \end{split}
 \end{align}
 für $1 \leq q \leq 12$ berechnet. Die Matrixfaltung $\ast$ wird wieder ohne zero padding genutzt und daher reduziert sich die Raumdimension.
@@ -340,27 +340,41 @@ und der mittlere quadratische Fehler lautet
 wobei $t=t(X,c)$ der Zielvektor des Datenpaars $(X,c)$ ist.
 
 \section*{Backpropagation}
-
 Zuerst werden die Gradienten bezüglich der Gewichtsmatrix und Biasvektor der Neuronenschicht des FNN berechnet. Es gilt
 \begin{align}
     \begin{split}
-        \Delta W(k,j) &= -\lambda \, \frac{\partial E}{\partial W(k,j)}\\
-                       &= -\lambda \, \frac{\partial L}{\partial y(k)} \cdot \frac{\partial y(k)}{\partial W(k,j)}\\
-                       &=-\lambda \, (t(k)-y(k)) \cdot \frac{\partial}{\partial W(k,j)} \psi \left(\sum_{j=1}^{192} W(k,j) f(j)+b(k)\right)\\
-                       &=-\lambda \, (t(k)-y(k)) \cdot y(k)(1-y(k)) \cdot f(j).
+        \Delta W(j,k) &= -\lambda \, \frac{\partial E}{\partial W(j,k)}\\
+                       &= -\lambda \, \frac{\partial L}{\partial y(k)} \cdot \frac{\partial y(k)}{\partial W(j,k)}\\
+                       &=-\lambda \, (y(k)-t(k)) \cdot \frac{\partial}{\partial W(j,k)} \psi \left(\sum_{j=1}^{192} W(j,k) f(j)+b(k)\right)\\
+                       &=-\lambda \, (y(k)-t(k)) \cdot y(k)(1-y(k)) \cdot f(j).
      \end{split}
 \end{align}
-Mit $\delta(k)=\left((t(k)-y(k)) \cdot y(k)(1-y(k))\right)$ für $1 \leq k \leq 10$ lassen sich die Abstiegsrichtungen als dyadisches Produkt  
+Mit $\delta^{\text{FFN}}(k)=(y(k)-t(k)) \cdot y(k)(1-y(k))$ für $1 \leq k \leq 10$ lässt sich $\Delta W$ als dyadisches Produkt  
 \begin{align*}
-    \Delta W(k,j)&=-\lambda \, \left(\delta(k) \cdot f(j) \right) \\
-    \Rightarrow  \Delta W&=-\lambda \,\left(\delta \otimes f^T \right)   
+    \Delta W(j,k)&=-\lambda \, \left(\delta^{\text{FFN}}(k) \cdot f(j) \right) \\
+    \Rightarrow  \Delta W&=-\lambda \,\left(f \otimes (\delta^{\text{FFN}})^T\right)   
 \end{align*}
 darstellen. Analog gilt
+\begin{equation*}
+\Delta b= -\lambda \delta^{\text{FFN}}.
+\end{equation*}
+Um $ \Delta K_{q,p}$ in $C^2$ zu bestimmen, sind zunächst die lokalen Fehler der darüberliegenden Schicht zu ermitteln. Der lokale Fehler $\delta^f \in \RR^{}$in der Flatten-Schicht lautet
+\begin{align*}
+    \delta^f(j) &= - \lambda \, \frac{\partial E}{\partial f} \\
+                &= - \lambda \, \sum_{k=1}^{10} \frac{\partial E}{\partial y(k)} \cdot \frac{\partial y(k)}{f(j)} \\
+                &= - \lambda \, (y(k)-t(k)) \cdot \frac{\partial}{\partial f(j)} \psi \left(\sum_{j=1}^{192} W(k,j) f(j) +b(k)\right) \\
+                &=- \lambda \, \sum_{k=1}^{10} (y(k)-t(k)) \cdot y(k)(1-y(k)) \cdot W(k,j) \\
+                &=-\lambda \,\sum_{k=1}^{10} \delta^{\text{FFN}}(k) \cdot W(k,j) \\
+                \Rightarrow \delta^f &= -\lambda \, W^T \delta^{\text{FFN}}
+\end{align*}
+In der Pooling-Schicht $P^2$ sind keine Gradienten zu bestimmen, da diese nicht von den Modellparametern abhängt. Mit
 \begin{equation}
-\Delta b= -\lambda \delta
+    \delta^{P^2}=T_f^{-1}(\delta_f) \in \RR^{4 \times 4 \times 12}
 \end{equation}
-
-Um $K_{q,p}$
+folgt mit $\nabla T=\frac{1}{4} \mathbf{1}$ das Upsampling
+\begin{equation}
+    \delta^{C^2}(i,j)= \nabla T() \delta_{P^2}\left( \lceil i/2 \rceil, \lceil j/2 \rceil\right)
+\end{equation}
 %Im Folgenden werden konkrete Beispiele für verschiedene zweidimensionale Faltungen, welche in dieser Arbeit im Fokus stehen, gegeben. Dabei sind die Eingabe $X \in \RR^{h \times w}$ und der Filter $K \in \RR^{k_h \times k_w}$ immer als Matrizen zu verstehen. Das Ergebnis der Faltung $S= X \ast K$ wird als Merkmalskarte bezeichnet. Es sei angemerkt, dass oft $k_h=k_w$ sowie $k_h$ ungerade gewählt wird, z.B. $k_h=3$ oder $k_h=5$. Die Größe der Merkmalskarte wird durch die Parameter
 %\begin{itemize}
 %    \item $h,w$: Die Höhe und Breite der Eingabe,
