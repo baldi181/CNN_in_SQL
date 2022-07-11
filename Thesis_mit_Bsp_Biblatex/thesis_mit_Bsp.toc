@@ -73,7 +73,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {6.3}Zitate}{32}{section.6.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline Literatur}{34}{chapter*.25}%
+\contentsline {chapter}{\nonumberline Literatur}{34}{chapter*.26}%
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {A}Anhang}{i}{appendix.A}%
 \defcounter {refsection}{0}\relax 

@@ -171,6 +171,7 @@
 \newlabel{eq:MSE_single}{{3.12}{12}{Backpropagationsalgorithmus}{equation.3.3.12}{}}
 \abx@aux@cite{du_diss}
 \abx@aux@segm{0}{0}{du_diss}
+\newlabel{eq:delta_out}{{3.13}{13}{Backpropagationsalgorithmus}{equation.3.3.13}{}}
 \abx@aux@cite{du_diss}
 \abx@aux@segm{0}{0}{du_diss}
 \abx@aux@cite{du_diss}
@@ -187,9 +188,10 @@
 \abx@aux@segm{0}{0}{hanin2018neural}
 \abx@aux@cite{ruder2016overview}
 \abx@aux@segm{0}{0}{ruder2016overview}
-\BKM@entry{id=16,dest={73656374696F6E2E332E34},srcline={444}}{5C3337365C3337375C3030305A5C303030755C303030735C303030615C3030306D5C3030306D5C303030655C3030306E5C303030665C303030615C303030735C303030735C303030755C3030306E5C30303067}
+\BKM@entry{id=16,dest={73656374696F6E2E332E34},srcline={446}}{5C3337365C3337375C3030305A5C303030755C303030735C303030615C3030306D5C3030306D5C303030655C3030306E5C303030665C303030615C303030735C303030735C303030755C3030306E5C30303067}
 \abx@aux@cite{blum1992training}
 \abx@aux@segm{0}{0}{blum1992training}
+\newlabel{eq:delta_hidden}{{3.3.2}{14}{Backpropagationsalgorithmus}{equation.3.3.13}{}}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {3.4}Zusammenfassung}{14}{section.3.4}\protected@file@percent }
 \newlabel{abs:NN_conc}{{3.4}{14}{Zusammenfassung}{section.3.4}{}}
 \@writefile{loa}{\defcounter {refsection}{0}\relax }\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces Online-Backpropagation für ein FFN, vgl. \cite {du_diss}\relax }}{15}{algorithm.2}\protected@file@percent }
@@ -261,9 +263,6 @@
 \@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {4.1}{\ignorespaces Beispielbilder, vgl. \cite {DBLP:journals/pieee/LeCunBBH98} aus der öffentlichen MNIST-Datenbank. Zu sehen sind handgeschriebene Ziffern und zugehörige Annotationen.\relax }}{23}{figure.caption.12}\protected@file@percent }
 \newlabel{mnistpic}{{4.1}{23}{Beispielbilder, vgl. \cite {DBLP:journals/pieee/LeCunBBH98} aus der öffentlichen MNIST-Datenbank. Zu sehen sind handgeschriebene Ziffern und zugehörige Annotationen.\relax }{figure.caption.12}{}}
 \newlabel{eq:C1_forw}{{4.5}{24}{Vorwärtsrechnung}{equation.4.4.5}{}}
-\BKM@entry{id=22,dest={73656374696F6E2E342E35},srcline={369}}{5C3337365C3337375C3030304D5C3030306F5C303030745C303030695C303030765C303030615C303030745C303030695C3030306F5C3030306E5C3030305C3034305C303030645C303030655C303030725C3030305C3034305C303030465C303030615C3030306C5C303030745C303030755C3030306E5C30303067}
-\abx@aux@cite{goodfellow}
-\abx@aux@segm{0}{0}{goodfellow}
 \newlabel{eq:P1_forw}{{4.6}{25}{Vorwärtsrechnung}{equation.4.4.6}{}}
 \newlabel{eq:C2_forw}{{4.7}{25}{Vorwärtsrechnung}{equation.4.4.7}{}}
 \newlabel{eq:P2_forw}{{4.8}{25}{Vorwärtsrechnung}{equation.4.4.8}{}}
@@ -271,11 +270,14 @@
 \newlabel{eq_f_ford_inv}{{4.10}{25}{Vorwärtsrechnung}{equation.4.4.10}{}}
 \newlabel{eq:y_forw}{{4.11}{25}{Vorwärtsrechnung}{equation.4.4.11}{}}
 \newlabel{eq:E_forw}{{4.12}{25}{Vorwärtsrechnung}{equation.4.4.12}{}}
-\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Es wird die Merkmalskarte $S \in \ensuremath  {\mathbb  {R}}^{3 \times 3}$ mit den Parametern ${h,w=5}, k_h=k_w=3, s_h=s_w=1$ und $p_h=p_w=1.$\relax }}{26}{figure.caption.14}\protected@file@percent }
-\newlabel{abb_simplematrixconv}{{4.2}{26}{Es wird die Merkmalskarte $S \in \RR ^{3 \times 3}$ mit den Parametern ${h,w=5}, k_h=k_w=3, s_h=s_w=1$ und $p_h=p_w=1.$\relax }{figure.caption.14}{}}
+\BKM@entry{id=22,dest={73656374696F6E2E342E35},srcline={389}}{5C3337365C3337375C3030304D5C3030306F5C303030745C303030695C303030765C303030615C303030745C303030695C3030306F5C3030306E5C3030305C3034305C303030645C303030655C303030725C3030305C3034305C303030465C303030615C3030306C5C303030745C303030755C3030306E5C30303067}
+\abx@aux@cite{goodfellow}
+\abx@aux@segm{0}{0}{goodfellow}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {4.5}Motivation der Faltung}{26}{section.4.5}\protected@file@percent }
-\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Es wird die Merkmalskarte $S \in \ensuremath  {\mathbb  {R}}^{3 \times 3}$ mit den Parametern ${h,w=5}, k_h=k_w=3, s_h=s_w=2$ und $p_h=p_w=1$ berechnet.\relax }}{27}{figure.caption.15}\protected@file@percent }
-\newlabel{abb_simplematrixconv_padding}{{4.3}{27}{Es wird die Merkmalskarte $S \in \RR ^{3 \times 3}$ mit den Parametern ${h,w=5}, k_h=k_w=3, s_h=s_w=2$ und $p_h=p_w=1$ berechnet.\relax }{figure.caption.15}{}}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {4.2}{\ignorespaces Es wird die Merkmalskarte $S \in \ensuremath  {\mathbb  {R}}^{3 \times 3}$ mit den Parametern ${h,w=5}, k_h=k_w=3, s_h=s_w=1$ und $p_h=p_w=1.$\relax }}{27}{figure.caption.15}\protected@file@percent }
+\newlabel{abb_simplematrixconv}{{4.2}{27}{Es wird die Merkmalskarte $S \in \RR ^{3 \times 3}$ mit den Parametern ${h,w=5}, k_h=k_w=3, s_h=s_w=1$ und $p_h=p_w=1.$\relax }{figure.caption.15}{}}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {4.3}{\ignorespaces Es wird die Merkmalskarte $S \in \ensuremath  {\mathbb  {R}}^{3 \times 3}$ mit den Parametern ${h,w=5}, k_h=k_w=3, s_h=s_w=2$ und $p_h=p_w=1$ berechnet.\relax }}{27}{figure.caption.16}\protected@file@percent }
+\newlabel{abb_simplematrixconv_padding}{{4.3}{27}{Es wird die Merkmalskarte $S \in \RR ^{3 \times 3}$ mit den Parametern ${h,w=5}, k_h=k_w=3, s_h=s_w=2$ und $p_h=p_w=1$ berechnet.\relax }{figure.caption.16}{}}
 \BKM@entry{id=23,dest={636861707465722E35},srcline={102}}{5C3337365C3337375C303030575C303030655C303030695C303030745C303030655C303030725C303030655C303030735C3030305C3034305C3030304B5C303030615C303030705C303030695C303030745C303030655C3030306C}
 \BKM@entry{id=24,dest={73656374696F6E2E352E31},srcline={104}}{5C3337365C3337375C303030555C3030306D5C303030675C303030655C303030625C303030755C3030306E5C303030675C303030655C3030306E5C3030305C3034305C303030755C3030306E5C303030645C3030305C3034305C303030465C3030306F5C303030725C3030306D5C303030655C3030306C5C3030306E}
 \BKM@entry{id=25,dest={73656374696F6E2E352E32},srcline={153}}{5C3337365C3337375C303030415C303030755C303030665C3030307A5C3030305C3334345C303030685C3030306C5C303030755C3030306E5C303030675C3030305C3034305C303030755C3030306E5C303030645C3030305C3034305C3030304E5C303030755C3030306D5C3030306D5C303030655C303030725C303030695C303030655C303030725C303030755C3030306E5C30303067}
@@ -287,13 +289,13 @@
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {5.1}Umgebungen und Formeln}{28}{section.5.1}\protected@file@percent }
 \newlabel{defi1}{{23}{28}{}{defi.23}{}}
 \AC@undonewlabel{acro:rnn}
-\newlabel{acro:rnn}{{23}{28}{}{section*.16}{}}
+\newlabel{acro:rnn}{{23}{28}{}{section*.17}{}}
 \acronymused{rnn}
 \newlabel{bem1}{{5}{28}{}{bem.5}{}}
 \acronymused{rnn}
 \newlabel{bem2}{{6}{28}{}{bem.6}{}}
 \AC@undonewlabel{acro:cm}
-\newlabel{acro:cm}{{6}{28}{}{section*.17}{}}
+\newlabel{acro:cm}{{6}{28}{}{section*.18}{}}
 \acronymused{cm}
 \newlabel{annahme1}{{1}{28}{}{annahme.1}{}}
 \newlabel{hsatz1}{{1}{28}{}{hsatz.1}{}}
@@ -310,31 +312,31 @@
 \BKM@entry{id=29,dest={73756273656374696F6E2E352E342E32},srcline={219}}{5C3337365C3337375C3030304D5C303030655C303030685C303030725C303030655C303030725C303030655C3030305C3034305C303030425C303030695C3030306C5C303030645C303030655C30303072}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {5.2}Aufzählung und Nummerierung}{29}{section.5.2}\protected@file@percent }
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {5.3}Tabellen}{29}{section.5.3}\protected@file@percent }
-\@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces Einfache Tabelle\relax }}{29}{table.caption.19}\protected@file@percent }
-\newlabel{tab:reservoir_segmentlabelling}{{5.1}{29}{Einfache Tabelle\relax }{table.caption.19}{}}
-\@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces Nicht mehr ganz so einfache Tabelle\relax }}{29}{table.caption.20}\protected@file@percent }
-\newlabel{tab:dlv_restr_all}{{5.2}{29}{Nicht mehr ganz so einfache Tabelle\relax }{table.caption.20}{}}
+\@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces Einfache Tabelle\relax }}{29}{table.caption.20}\protected@file@percent }
+\newlabel{tab:reservoir_segmentlabelling}{{5.1}{29}{Einfache Tabelle\relax }{table.caption.20}{}}
+\@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces Nicht mehr ganz so einfache Tabelle\relax }}{29}{table.caption.21}\protected@file@percent }
+\newlabel{tab:dlv_restr_all}{{5.2}{29}{Nicht mehr ganz so einfache Tabelle\relax }{table.caption.21}{}}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {5.4}Bilder}{29}{section.5.4}\protected@file@percent }
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.1}Einzelnes Bild}{29}{subsection.5.4.1}\protected@file@percent }
 \BKM@entry{id=30,dest={73656374696F6E2E352E35},srcline={239}}{5C3337365C3337375C303030545C303030695C3030306B5C3030305A}
 \BKM@entry{id=31,dest={73756273656374696F6E2E352E352E31},srcline={241}}{5C3337365C3337375C303030455C303030695C3030306E5C303030665C303030615C303030635C303030685C303030655C3030305C3034305C303030475C303030725C303030615C303030665C303030695C3030306B5C303030655C3030306E}
-\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Vektorgrafiken sind toll. Scrolle mal in mich rein!\relax }}{30}{figure.caption.21}\protected@file@percent }
-\newlabel{fig:schnecke}{{5.1}{30}{Vektorgrafiken sind toll. Scrolle mal in mich rein!\relax }{figure.caption.21}{}}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {5.1}{\ignorespaces Vektorgrafiken sind toll. Scrolle mal in mich rein!\relax }}{30}{figure.caption.22}\protected@file@percent }
+\newlabel{fig:schnecke}{{5.1}{30}{Vektorgrafiken sind toll. Scrolle mal in mich rein!\relax }{figure.caption.22}{}}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {5.4.2}Mehrere Bilder}{30}{subsection.5.4.2}\protected@file@percent }
-\newlabel{fig:schnecke:a}{{5.2a}{30}{Schnecke 1\relax }{figure.caption.22}{}}
-\newlabel{sub@fig:schnecke:a}{{a}{30}{Schnecke 1\relax }{figure.caption.22}{}}
-\newlabel{fig:schnecke:b}{{5.2b}{30}{Schnecke 2\relax }{figure.caption.22}{}}
-\newlabel{sub@fig:schnecke:b}{{b}{30}{Schnecke 2\relax }{figure.caption.22}{}}
-\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Vergleich verschiedener Schnecken\relax }}{30}{figure.caption.22}\protected@file@percent }
-\newlabel{fig:seam}{{5.2}{30}{Vergleich verschiedener Schnecken\relax }{figure.caption.22}{}}
+\newlabel{fig:schnecke:a}{{5.2a}{30}{Schnecke 1\relax }{figure.caption.23}{}}
+\newlabel{sub@fig:schnecke:a}{{a}{30}{Schnecke 1\relax }{figure.caption.23}{}}
+\newlabel{fig:schnecke:b}{{5.2b}{30}{Schnecke 2\relax }{figure.caption.23}{}}
+\newlabel{sub@fig:schnecke:b}{{b}{30}{Schnecke 2\relax }{figure.caption.23}{}}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {5.2}{\ignorespaces Vergleich verschiedener Schnecken\relax }}{30}{figure.caption.23}\protected@file@percent }
+\newlabel{fig:seam}{{5.2}{30}{Vergleich verschiedener Schnecken\relax }{figure.caption.23}{}}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {section}{\numberline {5.5}TikZ}{30}{section.5.5}\protected@file@percent }
 \BKM@entry{id=32,dest={73756273656374696F6E2E352E352E32},srcline={244}}{5C3337365C3337375C303030475C303030725C303030615C303030705C303030685C303030655C3030306E5C3030305C3034305C303030755C3030306E5C303030645C3030305C3034305C3030305C3334345C303030685C3030306E5C3030306C5C303030695C303030635C303030685C303030655C30303073}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.1}Einfache Grafiken}{31}{subsection.5.5.1}\protected@file@percent }
-\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Beispiel eines mit TikZ erzeugten Bildes\relax }}{31}{figure.caption.23}\protected@file@percent }
-\newlabel{fig:tikz}{{5.3}{31}{Beispiel eines mit TikZ erzeugten Bildes\relax }{figure.caption.23}{}}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {5.3}{\ignorespaces Beispiel eines mit TikZ erzeugten Bildes\relax }}{31}{figure.caption.24}\protected@file@percent }
+\newlabel{fig:tikz}{{5.3}{31}{Beispiel eines mit TikZ erzeugten Bildes\relax }{figure.caption.24}{}}
 \@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {subsection}{\numberline {5.5.2}Graphen und ähnliches}{31}{subsection.5.5.2}\protected@file@percent }
-\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces Datenreihen mittels TikZ visualisiert\relax }}{31}{figure.caption.24}\protected@file@percent }
-\newlabel{fig:ohstats}{{5.4}{31}{Datenreihen mittels TikZ visualisiert\relax }{figure.caption.24}{}}
+\@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\contentsline {figure}{\numberline {5.4}{\ignorespaces Datenreihen mittels TikZ visualisiert\relax }}{31}{figure.caption.25}\protected@file@percent }
+\newlabel{fig:ohstats}{{5.4}{31}{Datenreihen mittels TikZ visualisiert\relax }{figure.caption.25}{}}
 \BKM@entry{id=33,dest={636861707465722E36},srcline={248}}{5C3337365C3337375C303030455C303030695C3030306E5C3030305C3034305C3030306C5C303030655C303030745C3030307A5C303030745C303030655C303030735C3030305C3034305C3030304B5C303030615C303030705C303030695C303030745C303030655C3030306C}
 \BKM@entry{id=34,dest={73656374696F6E2E362E31},srcline={252}}{5C3337365C3337375C303030575C303030655C303030695C303030745C303030655C303030725C303030655C303030735C3030305C3034305C3030304B5C3030306F5C303030725C3030306F5C3030306C5C3030306C5C303030615C30303072}
 \BKM@entry{id=35,dest={73656374696F6E2E362E32},srcline={262}}{5C3337365C3337375C303030505C303030735C303030655C303030755C303030645C3030306F5C303030635C3030306F5C303030645C30303065}
@@ -355,8 +357,8 @@
 \newlabel{ch:bib}{{6.3}{32}{Zitate}{section.6.3}{}}
 \abx@aux@cite{forster1983analysis}
 \abx@aux@segm{0}{0}{forster1983analysis}
-\BKM@entry{id=37,dest={636861707465722A2E3235},srcline={321}}{5C3337365C3337375C3030304C5C303030695C303030745C303030655C303030725C303030615C303030745C303030755C30303072}
-\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{\nonumberline Literatur}{34}{chapter*.25}\protected@file@percent }
+\BKM@entry{id=37,dest={636861707465722A2E3236},srcline={321}}{5C3337365C3337375C3030304C5C303030695C303030745C303030655C303030725C303030615C303030745C303030755C30303072}
+\@writefile{toc}{\defcounter {refsection}{0}\relax }\@writefile{toc}{\contentsline {chapter}{\nonumberline Literatur}{34}{chapter*.26}\protected@file@percent }
 \@writefile{lof}{\defcounter {refsection}{0}\relax }\@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\defcounter {refsection}{0}\relax }\@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{lol}{\defcounter {refsection}{0}\relax }\@writefile{lol}{\addvspace {10\p@ }}

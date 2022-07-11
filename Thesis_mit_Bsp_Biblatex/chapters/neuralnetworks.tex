@@ -360,7 +360,7 @@ für $1 \leq k \leq s_l$ ermittelt werden. Dazu wird im Folgenden die Notation \
     &z_{j}= \psi \left(V_j\right) &&\text{Aktivierung des versteckten Neurons $j$},\\
     &V_k=\sum_{j} w_{k,j}^l z_j +b^l_k&&\text{Netzeingabe des Ausgabeneurons $k$ mit Bias $b^{(l)}$}  
 \end{alignat*}
-genutzt. Es wird nur eine verdeckte Schicht mit $s_j$ Neuronen betrachtet. Die Verallgemeinerung für beliebig viele Schichten ist analog. Außerdem werden die Gradienten komponentenweise berechnet und daher die Paramter komponentenweise aktualisiert. Die mehrmalige Anwendung der Kettenregel \ref{s:chainrule} auf die Fehlerfunktion (\ref{eq:MSE_single}) liefert
+genutzt. Es wird nur eine verdeckte Schicht mit $s_j$ Neuronen betrachtet. Die Verallgemeinerung für beliebig viele Schichten ist analog. Mit $i$ ist ein Eingabeneuron, $j$ eine verstecktes Neuron und $k$ eine Ausgabeneuron gemeint. Außerdem werden die Gradienten komponentenweise berechnet und daher die Paramter komponentenweise aktualisiert. Die mehrmalige Anwendung der Kettenregel \ref{s:chainrule} auf die Fehlerfunktion (\ref{eq:MSE_single}) liefert
 \begin{align*}
     \label{eq:delta_w_out}
 \Delta w_{k,j}^l &= -\lambda\,\frac{\partial E_x}{\partial w_{k,j}^l} \\
@@ -372,9 +372,10 @@ genutzt. Es wird nur eine verdeckte Schicht mit $s_j$ Neuronen betrachtet. Die V
                  &= -\lambda \,\delta_k z_j           
 \end{align*} 
 mit 
-\begin{equation*}
+\begin{equation}
+    \label{eq:delta_out}
     \delta_k:= e_k \psi'(V_k)
-\end{equation*}
+\end{equation}
 als sogenannte lokale Fehler für $1 \leq k \leq s_l$.
 Für die Schwellwerte gilt analog
 \begin{equation*}
@@ -392,8 +393,9 @@ Die Gradienten für die Parameter der verdeckten Schicht lassen sich mithilfe de
                     &= -\lambda \,\left( \sum_{k=1}^{s_l} e_k \psi'(V_k) w_{k,j}^l \right) \psi'(V_j) x_i \\
                     &= -\lambda \, \delta_j x_i
 \end{align*}
-mit
+mit $x_i$ als Eingabeneuron und
 \begin{equation*}
+    \label{eq:delta_hidden}
     \delta_j:= \left(\sum_{k=1}^{s_l} \delta_k w_{k,j}^l\right) \psi'(V_j).
 \end{equation*}
 als lokale Fehler der verdeckten Neuronen für $1 \leq j \leq s_j$.
