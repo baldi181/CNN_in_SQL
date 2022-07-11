@@ -13,7 +13,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Beispielbilder, vgl. \cite {DBLP:journals/pieee/LeCunBBH98} aus der öffentlichen MNIST-Datenbank. Zu sehen sind handgeschriebene Ziffern und zugehörige Annotationen.\relax }}{23}{figure.caption.12}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Es wird die Merkmalskarte $S \in \ensuremath {\mathbb {R}}^{3 \times 3}$ mit den Parametern ${h,w=5}, k_h=k_w=3, s_h=s_w=1$ und $p_h=p_w=1.$\relax }}{27}{figure.caption.15}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Es wird die Merkmalskarte $S \in \ensuremath {\mathbb {R}}^{3 \times 3}$ mit den Parametern ${h,w=5}, k_h=k_w=3, s_h=s_w=1$ und $p_h=p_w=1.$\relax }}{28}{figure.caption.15}%
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {4.3}{\ignorespaces Es wird die Merkmalskarte $S \in \ensuremath {\mathbb {R}}^{3 \times 3}$ mit den Parametern ${h,w=5}, k_h=k_w=3, s_h=s_w=2$ und $p_h=p_w=1$ berechnet.\relax }}{28}{figure.caption.16}%
 \defcounter {refsection}{0}\relax 

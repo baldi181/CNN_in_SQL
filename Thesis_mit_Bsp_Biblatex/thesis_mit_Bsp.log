@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.1)  11 JUL 2022 16:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.1)  11 JUL 2022 17:39
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1492,30 +1492,37 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [26]
-<pics/abb_simpleconv.png, id=514, 581.17125pt x 472.01344pt>
-File: pics/abb_simpleconv.png Graphic file (type png)
-<use pics/abb_simpleconv.png>
-Package pdftex.def Info: pics/abb_simpleconv.png  used on input line 388.
-(pdftex.def)             Requested size: 355.09178pt x 288.40312pt.
-
-Underfull \hbox (badness 2990) in paragraph at lines 390--390
-[][][]|\T1/lmr/m/n/12 Es wird die Merk-mals-kar-te $\OML/lmm/m/it/12 S \OMS/lmsy/m/n/12 2 \U/msb/m/n/12 R[]$ \T1/lmr/m/n/12 mit den Pa-ra-me-tern
+Overfull \hbox (24.6502pt too wide) detected at line 386
+[]
  []
 
-<pics/abb_simplecov_padding.png, id=515, 578.16pt x 411.78844pt>
-File: pics/abb_simplecov_padding.png Graphic file (type png)
-<use pics/abb_simplecov_padding.png>
-Package pdftex.def Info: pics/abb_simplecov_padding.png  used on input line 395.
-(pdftex.def)             Requested size: 355.09178pt x 252.90593pt.
+<pics/abb_simpleconv.png, id=513, 581.17125pt x 472.01344pt>
+File: pics/abb_simpleconv.png Graphic file (type png)
+<use pics/abb_simpleconv.png>
+Package pdftex.def Info: pics/abb_simpleconv.png  used on input line 402.
+(pdftex.def)             Requested size: 355.09178pt x 288.40312pt.
 
-Underfull \hbox (badness 2990) in paragraph at lines 397--397
+Underfull \hbox (badness 2990) in paragraph at lines 404--404
 [][][]|\T1/lmr/m/n/12 Es wird die Merk-mals-kar-te $\OML/lmm/m/it/12 S \OMS/lmsy/m/n/12 2 \U/msb/m/n/12 R[]$ \T1/lmr/m/n/12 mit den Pa-ra-me-tern
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-) [27 <./pics/abb_simpleconv.png>] [28 <./pics/abb_simplecov_padding.png>]
+<pics/abb_simplecov_padding.png, id=514, 578.16pt x 411.78844pt>
+File: pics/abb_simplecov_padding.png Graphic file (type png)
+<use pics/abb_simplecov_padding.png>
+Package pdftex.def Info: pics/abb_simplecov_padding.png  used on input line 409.
+(pdftex.def)             Requested size: 355.09178pt x 252.90593pt.
+
+Underfull \hbox (badness 2990) in paragraph at lines 411--411
+[][][]|\T1/lmr/m/n/12 Es wird die Merk-mals-kar-te $\OML/lmm/m/it/12 S \OMS/lmsy/m/n/12 2 \U/msb/m/n/12 R[]$ \T1/lmr/m/n/12 mit den Pa-ra-me-tern
+ []
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) [27] [28 <./pics/abb_simpleconv.png> <./pics/abb_simplecov_padding.png>]
 chapter 5.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10> on input line 103.
@@ -1528,7 +1535,7 @@ although it is yet undefined on input line 112.
 [29
 
 ]
-<pics/SCHNECKE.pdf, id=557, 289.08pt x 289.08pt>
+<pics/SCHNECKE.pdf, id=555, 289.08pt x 289.08pt>
 File: pics/SCHNECKE.pdf Graphic file (type pdf)
 <use pics/SCHNECKE.pdf>
 Package pdftex.def Info: pics/SCHNECKE.pdf  used on input line 211.
@@ -1579,7 +1586,7 @@ File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
 ) (c:/texlive/2021/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 ) (./code/HelloWorld.java)
-<AnleitungBibLatexBiber.pdf, id=627, 597.50829pt x 845.0471pt>
+<AnleitungBibLatexBiber.pdf, id=625, 597.50829pt x 845.0471pt>
 File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 <use AnleitungBibLatexBiber.pdf>
 Package pdftex.def Info: AnleitungBibLatexBiber.pdf  used on input line 372.
@@ -1588,7 +1595,7 @@ File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 <use AnleitungBibLatexBiber.pdf>
 Package pdftex.def Info: AnleitungBibLatexBiber.pdf  used on input line 372.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-<AnleitungBibLatexBiber.pdf, id=630, page=1, 597.50829pt x 845.0471pt>
+<AnleitungBibLatexBiber.pdf, id=628, page=1, 597.50829pt x 845.0471pt>
 File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 <use AnleitungBibLatexBiber.pdf, page 1>
 Package pdftex.def Info: AnleitungBibLatexBiber.pdf , page1 used on input line 372.
@@ -1615,7 +1622,7 @@ File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 Package pdftex.def Info: AnleitungBibLatexBiber.pdf , page1 used on input line 372.
 (pdftex.def)             Requested size: 537.75249pt x 760.53537pt.
  [2 <./AnleitungBibLatexBiber.pdf>]
-<AnleitungBibLatexBiber.pdf, id=694, page=2, 597.50829pt x 845.0471pt>
+<AnleitungBibLatexBiber.pdf, id=692, page=2, 597.50829pt x 845.0471pt>
 File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 <use AnleitungBibLatexBiber.pdf, page 2>
 Package pdftex.def Info: AnleitungBibLatexBiber.pdf , page2 used on input line 372.
@@ -1639,18 +1646,18 @@ Package logreq Info: Writing requests to 'thesis_mit_Bsp.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 54058 strings out of 478353
- 1218828 string characters out of 5852101
+ 54056 strings out of 478353
+ 1218798 string characters out of 5852101
  2167349 words of memory out of 5000000
  71051 multiletter control sequences out of 15000+600000
  510104 words of font info for 90 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  125i,20n,120p,10658b,3125s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}<c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmro12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss17.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss9.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmtt12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis_mit_Bsp.pdf (53 pages, 1285914 bytes).
+Output written on thesis_mit_Bsp.pdf (53 pages, 1287230 bytes).
 PDF statistics:
- 995 PDF objects out of 1000 (max. 8388607)
- 861 compressed objects within 9 object streams
- 254 named destinations out of 1000 (max. 500000)
+ 991 PDF objects out of 1000 (max. 8388607)
+ 857 compressed objects within 9 object streams
+ 252 named destinations out of 1000 (max. 500000)
  388 words of extra memory for PDF output out of 10000 (max. 10000000)
 
