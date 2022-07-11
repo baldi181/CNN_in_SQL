@@ -377,19 +377,19 @@ folgt mit der Mittelwert-Funktion $
     \delta^{C^2}_q(i,j)&= \delta^{P^2}_q\left( \lceil i/2 \rceil, \lceil j/2 \rceil\right) \cdot \nabla \phi(\lceil i/2 \rceil)\\
     &=\delta^{P^2}_q\left( \lceil i/2 \rceil, \lceil j/2 \rceil\right) \cdot \frac{1}{4} \; \; \forall i,j \in [8], \forall q \in [12].
 \end{align*}
-Es gilt $\delta^{C^2} \in \RR^{8 \times 8 \times 12}$. Nun kann $\Delta K^2_{q,p}$ an einer Stelle $(u,v)$ berechnet werden.
+Es gilt $\delta^{C^2} \in \RR^{8 \times 8 \times 12}$. Nun kann $\Delta K^2_{q,p}$ an einer Stelle $(u,v)$ als
 \begin{align*}
     \Delta K^2_{q,p}(u,v) &= -\lambda \, \frac{\partial E}{\partial K^2_{q,p}(u,v)} \\
                           &= -\lambda \, \sum_{i=1}^8 \sum_{j=1}^8 \frac{\partial E}{\partial C^2_q(i,j)} \cdot \frac{\partial C^2_q(i,j)}{\partial K_{q,p}^2(u,v)} \\
                           &= -\lambda \, \sum_{i=1}^8 \sum_{j=1}^8 \delta_q^{C^2}(i,j) \cdot \frac{\partial}{ K^2_{q,p}(u,v)} \psi \left( \sum_{p=1}^6 \sum_{u=0}^4 \sum_{v=0}^4 P^1_p(i+u,j+v) \cdot K_{q,p}^2(u,v) +b_q^2\right) \\
                           &= -\lambda \, \sum_{i=1}^8 \sum_{j=1}^8 \delta_q^{C^2}(i,j) \cdot C_q^2(i,j)\left(1-C_q^2(i,j)\right) \cdot P^1_p(i+u,j+v)
 \end{align*}
-für $1 \leq q \leq 12, 1 \leq p \leq 6$.
-Sei 
+für $1 \leq q \leq 12, 1 \leq p \leq 6$ berechnet werden.
+Bezeichne
 \begin{align*}
     \delta^{C^2}_{q,\psi}(i,j):&= \delta^{C^2}_q(i,j) \cdot C_q^2(i,j)\left(1- C_q^2(i,j)\right)\\
     &= \delta^{C^2}_q(i,j) \cdot \psi'(C^2_q(i,j)), \; \; \forall i,j \in [8], \forall q \in [12]
-\end{align*} der lokale Fehler $\delta^{C^2}_{q,\psi}$ der Faltungschicht $C^2$ vor der Anwendung der logistischen Funktion und
+\end{align*} den lokalen Fehler $\delta^{C^2}_{q,\psi}$ der Faltungschicht $C^2$ und
 \begin{equation*}
     P^1_{p,rot180}(u-i,v-j):=P^1_p(i-u,j-v).
 \end{equation*}
@@ -398,7 +398,7 @@ Dann gilt
     \Delta K^2_{q,p}(u,v) &= - \lambda \, \sum_{i=1}^8 \sum_{j=1}^8 P^1_{p,rot180}(u-i,v-j) \cdot \delta^{C^2}_{q,\psi}(i,j) \\
      \Rightarrow \Delta K_{q,p}^2 &=- \lambda \, P^1_{p,rot180} \ast \delta^{C^2}_{q,\psi} , \; \; \forall q \in [12], \forall p \in [6].
 \end{align*}
-Dies ist besonders für die effiziente Implementierung der Rückwärtsrechnung nützlich, da Abstiegsrichtungen wieder mithilfe von Faltungsoperationen berechnet werden können. Analog ergibt sich 
+Dies ist besonders für die effiziente Implementierung der Rückwärtsrechnung nützlich, da Abstiegsrichtungen wieder mithilfe von Faltungsoperationen ausgedrückt werden können. Es muss also besonders die Faltung prefomant implemntiert werden. Analog ergibt sich 
 \begin{equation*}
     \Delta b_q^2= -\lambda \, \sum_{i=1}^8 \sum_{j=1}^8 \delta_{q,\psi}^{C^2}(i,j), \; \; \forall q \in [12].
 \end{equation*}
@@ -410,16 +410,16 @@ Um $ \Delta K^1_{p,1}$ zu bestimmen, ist zunächst der lokale Fehler der darübe
     &= \sum_{q=1}^{12} \sum_{u=-2}^2 \sum_{v=-2}^2 \delta^{C^2}_{q,\psi}(i+u,j+v) \cdot \frac{\partial}{\partial S_p^1(i,j)}  \left( \sum_{p=1}^6 \sum_{u=-2}^2 \sum_{v=-2}^2 P^1_p(i,j) \cdot K^2_{q,p}(u,v) +b_q^2\right) \\
     &= \sum_{q=1}^{12} \sum_{v=-2}^2 \sum_{u=-2}^2 \delta_{q,\psi}^{C^2}(i+u,j+v) \cdot K^2_{q,p}(u,v), \; \; \forall i,j \in [12], \forall p \in [6]
 \end{align*}
-Mit $K^2_{q,p,rot180}(-u,-v):=K^2_{q,p}(u,v)$ ist
+Mit $K^2_{q,p,rot180}(-u,-v):=K^2_{q,p}(u,v)$ ergibt sich
 \begin{align*}
     \delta^{S^1}_{p}(i,j)&=\sum_{q=1}^{12} \sum_{v=-2}^2 \sum_{u=-2}^2 \delta_{q,\psi}^{C^2}(i-(-u),j-(-v)) \cdot K^2_{q,p,rot180}(-u,-v) \\
-    \Rightarrow \delta^{S^1}_{p} &= \sum_{q=1}^{12} \delta_{q, \psi}^2 \ast K_{q,p,rot180}^2, \; \; \forall p \in [6]
+    \Rightarrow \delta^{S^1}_{p} &= \sum_{q=1}^{12} \delta_{q, \psi}^2 \ast K_{q,p,rot180}^2, \; \; \forall p \in [6].
     \end{align*}
 Es gilt  $\delta^{S^1} \in \RR^{12 \times 12 \times 6}$. Mit dem Upsampling
 \begin{equation*}
     \delta^{C^1}_p= \delta^{S^1}_p \left( \lceil i/2 \rceil, \lceil j/2 \rceil \right), \forall i,j \in [24], \forall p \in [6]
 \end{equation*}
-kann nun der Gradient $\Delta K^1_{p,1}$ an einer Stelle $(u,v)$ mit
+kann nun der Gradient $\Delta K^1_{p,1}$ an einer Stelle $(u,v)$ als
 \begin{align*}
     \Delta K^1_{p,1}(u,v) &= -\lambda \, \frac{\partial E}{\partial K^1_{p,1}(u,v)} \\
     &= -\lambda \, \sum_{i=1}^{24} \sum_{j=1}^{24} \frac{\partial E}{\partial C^1_p(i,j)} \cdot \frac{\partial C^1_p(i,j)}{\partial K_{p,1}^1(u,v)} \\
@@ -434,7 +434,10 @@ für $1 \leq p \leq 6$ berechnet werden. Sei wieder
 Dann gilt schließlich
 \begin{align*}
     \Delta K^1_{p,1}(u,v) &= - \lambda \, \sum_{i=1}^{24} \sum_{j=1}^{24} X_{rot180}(u-i,v-j) \cdot \delta^{C^1}_{p,\psi}(i,j) \\
-     \Rightarrow \Delta K_{p,1}^1 &=- \lambda \, X_{rot180} \ast \delta^{C^2}_{q,\psi} , \; \; \forall p \in [6].
+     \Rightarrow \Delta K_{p,1}^1 &=- \lambda \, X_{rot180} \ast \delta^{C^2}_{q,\psi} , \; \; \forall p \in [6]
+\end{align*} und 
+\begin{align*}
+    \Delta b_p^1 =-\lambda \, \sum_{i=1}^{24} \sum_{j=1}^{24} \delta_{p, \psi}^{C^1}(i,j), \; \; \forall p \in[6].
 \end{align*}
 %Im Folgenden werden konkrete Beispiele für verschiedene zweidimensionale Faltungen, welche in dieser Arbeit im Fokus stehen, gegeben. Dabei sind die Eingabe $X \in \RR^{h \times w}$ und der Filter $K \in \RR^{k_h \times k_w}$ immer als Matrizen zu verstehen. Das Ergebnis der Faltung $S= X \ast K$ wird als Merkmalskarte bezeichnet. Es sei angemerkt, dass oft $k_h=k_w$ sowie $k_h$ ungerade gewählt wird, z.B. $k_h=3$ oder $k_h=5$. Die Größe der Merkmalskarte wird durch die Parameter
 %\begin{itemize}
