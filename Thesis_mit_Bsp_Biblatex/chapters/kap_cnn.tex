@@ -279,8 +279,8 @@ Im Folgenden wird der Online-Backpropagationsalgorithmus \ref{alg:online_backpro
 Alle Biasvektoren werden als Nullvektor initialisiert. Zur Initialisierung der Gewichte wird die Xavier-Initialisierung \ref{def:xavier} genutzt, also
 
 \begin{alignat*}{2}
-    K^{1}_{p,1}(u,v) &\sim  \mathcal{N} \left(0, \frac{2}{5 \cdot 5 \cdot (1+6)}\right), \; \; && p \in [6],\\
-    K^{2}_{q,p}(u,v) &\sim  \mathcal{N} \left(0, \frac{2}{5 \cdot 5 \cdot (6+12)}\right),\; \; && q \in [12], p \in [6],\\
+    K^{1}_{p,1}(u,v) &\sim  \mathcal{N} \left(0, \frac{2}{5 \cdot 5 \cdot (1+6)}\right), \; \; && \forall p \in [6],\\
+    K^{2}_{q,p}(u,v) &\sim  \mathcal{N} \left(0, \frac{2}{5 \cdot 5 \cdot (6+12)}\right),\; \; && \forall q \in [12], \forall p \in [6],\\
     W(i,j) &\sim \mathcal{N} \left(0, \frac{2}{192+10}\right), \; \; &&\forall i \in [192], \forall j \in [10].
 \end{alignat*}
 Die Parameteranzahl ist damit 
@@ -358,37 +358,84 @@ darstellen. Analog gilt
 \begin{equation*}
 \Delta b= -\lambda \delta^{\text{FFN}}.
 \end{equation*}
-Um $ \Delta K_{q,p}$ in $C^2$ zu bestimmen, sind zunächst die lokalen Fehler der darüberliegenden Schicht zu ermitteln. Der lokale Fehler $\delta^f \in \RR^{}$ in der Flatten-Schicht lautet
+Um $ \Delta K^2_{q,p}$ zu bestimmen, ist zunächst der lokale Fehler der darüberliegenden Flatten-Schicht zu ermitteln. Der lokale Fehler $\delta^f \in \RR^{192}$ in der Flatten-Schicht wird mithilfe des lokalen Fehlers des FNN berechnet und lautet
 \begin{align*}
-    \delta^F(j) &= - \lambda \, \frac{\partial E}{\partial f} \\
-                &= - \lambda \, \sum_{k=1}^{10} \frac{\partial E}{\partial y(k)} \cdot \frac{\partial y(k)}{f(j)} \\
-                &= - \lambda \, (y(k)-t(k)) \cdot \frac{\partial}{\partial f(j)} \psi \left(\sum_{j=1}^{192} W(k,j) f(j) +b(k)\right) \\
-                &=- \lambda \, \sum_{k=1}^{10} (y(k)-t(k)) \cdot y(k)(1-y(k)) \cdot W(k,j) \\
-                &=-\lambda \,\sum_{k=1}^{10} \delta^{\text{FFN}}(k) \cdot W(k,j) \\
-                \Rightarrow \delta^F &= -\lambda \, W^T \delta^{\text{FFN}}
+    \delta^f(j) &=  \frac{\partial E}{\partial f} \\
+                &=  \sum_{k=1}^{10} \frac{\partial E}{\partial y(k)} \cdot \frac{\partial y(k)}{\partial f(j)} \\
+                &=  (y(k)-t(k)) \cdot \frac{\partial}{\partial f(j)} \psi \left(\sum_{j=1}^{192} W(k,j) f(j) +b(k)\right) \\
+                &=-  \sum_{k=1}^{10} (y(k)-t(k)) \cdot y(k)(1-y(k)) \cdot W(k,j) \\
+                &=\sum_{k=1}^{10} \delta^{\text{FFN}}(k) \cdot W(k,j) \\
+                \Rightarrow \delta^f &= W \delta^{\text{FFN}}.
 \end{align*}
 In der Pooling-Schicht $P^2$ sind keine Gradienten zu bestimmen, da diese nicht von den Modellparametern abhängt. Mit
 \begin{equation*}
-    \delta^{P^2}=T_f^{-1}(\delta^F) \in \RR^{4 \times 4 \times 12}
+    \delta^{P^2}=T_f^{-1}(\delta^f) \in \RR^{4 \times 4 \times 12}
 \end{equation*}
 folgt mit der Mittelwert-Funktion $
 \phi:\RR^4 \rightarrow \RR^4$ und $\nabla \phi=\frac{1}{4} \mathbf{1}$ das Upsampling
 \begin{align*}
     \delta^{C^2}_q(i,j)&= \delta^{P^2}_q\left( \lceil i/2 \rceil, \lceil j/2 \rceil\right) \cdot \nabla \phi(\lceil i/2 \rceil)\\
-    &=\delta^{P^2}_q\left( \lceil i/2 \rceil, \lceil j/2 \rceil\right) \cdot \frac{1}{4} \; \; \forall i,j \in [8] 
+    &=\delta^{P^2}_q\left( \lceil i/2 \rceil, \lceil j/2 \rceil\right) \cdot \frac{1}{4} \; \; \forall i,j \in [8], \forall q \in [12].
 \end{align*}
-für $1 \leq q \leq 12$. Es gilt $\delta^{C^2} \in \RR^{8 \times 8 \times 12}$. Nun kann $\Delta K^2_{q,p}$ an einer Stelle $(u,v)$ berechnet werden.
+Es gilt $\delta^{C^2} \in \RR^{8 \times 8 \times 12}$. Nun kann $\Delta K^2_{q,p}$ an einer Stelle $(u,v)$ berechnet werden.
 \begin{align*}
     \Delta K^2_{q,p}(u,v) &= -\lambda \, \frac{\partial E}{\partial K^2_{q,p}(u,v)} \\
                           &= -\lambda \, \sum_{i=1}^8 \sum_{j=1}^8 \frac{\partial E}{\partial C^2_q(i,j)} \cdot \frac{\partial C^2_q(i,j)}{\partial K_{q,p}^2(u,v)} \\
-                          &= -\lambda \, \sum_{i=1}^8 \sum_{j=1}^8 \delta_q^{C^2}(i,j) \cdot \frac{\partial}{ K^2_{q,p}(u,v)} \psi \left( \sum_{p=1}^6 \sum_{u=0}^4 \sum_{v=0}^4 P^1_p(i+u,j+v) \cdot K_{q,p}(u,v) +b_q^2\right) \\
+                          &= -\lambda \, \sum_{i=1}^8 \sum_{j=1}^8 \delta_q^{C^2}(i,j) \cdot \frac{\partial}{ K^2_{q,p}(u,v)} \psi \left( \sum_{p=1}^6 \sum_{u=0}^4 \sum_{v=0}^4 P^1_p(i+u,j+v) \cdot K_{q,p}^2(u,v) +b_q^2\right) \\
                           &= -\lambda \, \sum_{i=1}^8 \sum_{j=1}^8 \delta_q^{C^2}(i,j) \cdot C_q^2(i,j)\left(1-C_q^2(i,j)\right) \cdot P^1_p(i+u,j+v)
 \end{align*}
 für $1 \leq q \leq 12, 1 \leq p \leq 6$.
-Mit 
+Sei 
+\begin{align*}
+    \delta^{C^2}_{q,\psi}(i,j):&= \delta^{C^2}_q(i,j) \cdot C_q^2(i,j)\left(1- C_q^2(i,j)\right)\\
+    &= \delta^{C^2}_q(i,j) \cdot \psi'(C^2_q(i,j)), \; \; \forall i,j \in [8], \forall q \in [12]
+\end{align*} der lokale Fehler $\delta^{C^2}_{q,\psi}$ der Faltungschicht $C^2$ vor der Anwendung der logistischen Funktion und
 \begin{equation*}
-    \delta^{C^2}
+    P^1_{p,rot180}(u-i,v-j):=P^1_p(i-u,j-v).
 \end{equation*}
+Dann gilt
+\begin{align*}
+    \Delta K^2_{q,p}(u,v) &= - \lambda \, \sum_{i=1}^8 \sum_{j=1}^8 P^1_{p,rot180}(u-i,v-j) \cdot \delta^{C^2}_{q,\psi}(i,j) \\
+     \Rightarrow \Delta K_{q,p}^2 &=- \lambda \, P^1_{p,rot180} \ast \delta^{C^2}_{q,\psi} , \; \; \forall q \in [12], \forall p \in [6].
+\end{align*}
+Dies ist besonders für die effiziente Implementierung der Rückwärtsrechnung nützlich, da Abstiegsrichtungen wieder mithilfe von Faltungsoperationen berechnet werden können. Analog ergibt sich 
+\begin{equation*}
+    \Delta b_q^2= -\lambda \, \sum_{i=1}^8 \sum_{j=1}^8 \delta_{q,\psi}^{C^2}(i,j), \; \; \forall q \in [12].
+\end{equation*}
+
+Um $ \Delta K^1_{p,1}$ zu bestimmen, ist zunächst der lokale Fehler der darüberliegenden Pooling-Schicht zu ermitteln. Dieser lässt sich wieder mit dem lokalen Fehler $\delta_{q,\psi}^{C^2}$ der Faltungsschicht $C^2$ ausdrücken. Es gilt 
+\begin{align*}
+    \delta^{S^1}_{p}(i,j) &= \frac{\partial E}{\partial S^1_{p}(i,j)} \\
+    &= \sum_{q=1}^{12} \sum_{u=-2}^2 \sum_{v=-2}^2 \frac{\partial E}{\partial C^2_{q,\psi}(i+u,j+v)} \cdot \frac{\partial C^2_{q,\psi}(i+u,j+v)}{\partial S_{p}^1(i,j)} \\
+    &= \sum_{q=1}^{12} \sum_{u=-2}^2 \sum_{v=-2}^2 \delta^{C^2}_{q,\psi}(i+u,j+v) \cdot \frac{\partial}{\partial S_p^1(i,j)}  \left( \sum_{p=1}^6 \sum_{u=-2}^2 \sum_{v=-2}^2 P^1_p(i,j) \cdot K^2_{q,p}(u,v) +b_q^2\right) \\
+    &= \sum_{q=1}^{12} \sum_{v=-2}^2 \sum_{u=-2}^2 \delta_{q,\psi}^{C^2}(i+u,j+v) \cdot K^2_{q,p}(u,v), \; \; \forall i,j \in [12], \forall p \in [6]
+\end{align*}
+Mit $K^2_{q,p,rot180}(-u,-v):=K^2_{q,p}(u,v)$ ist
+\begin{align*}
+    \delta^{S^1}_{p}(i,j)&=\sum_{q=1}^{12} \sum_{v=-2}^2 \sum_{u=-2}^2 \delta_{q,\psi}^{C^2}(i-(-u),j-(-v)) \cdot K^2_{q,p,rot180}(-u,-v) \\
+    \Rightarrow \delta^{S^1}_{p} &= \sum_{q=1}^{12} \delta_{q, \psi}^2 \ast K_{q,p,rot180}^2, \; \; \forall p \in [6]
+    \end{align*}
+Es gilt  $\delta^{S^1} \in \RR^{12 \times 12 \times 6}$. Mit dem Upsampling
+\begin{equation*}
+    \delta^{C^1}_p= \delta^{S^1}_p \left( \lceil i/2 \rceil, \lceil j/2 \rceil \right), \forall i,j \in [24], \forall p \in [6]
+\end{equation*}
+kann nun der Gradient $\Delta K^1_{p,1}$ an einer Stelle $(u,v)$ mit
+\begin{align*}
+    \Delta K^1_{p,1}(u,v) &= -\lambda \, \frac{\partial E}{\partial K^1_{p,1}(u,v)} \\
+    &= -\lambda \, \sum_{i=1}^{24} \sum_{j=1}^{24} \frac{\partial E}{\partial C^1_p(i,j)} \cdot \frac{\partial C^1_p(i,j)}{\partial K_{p,1}^1(u,v)} \\
+    &= -\lambda \, \sum_{i=1}^{24} \sum_{j=1}^{24} \delta_p^{C^1}(i,j) \cdot \frac{\partial}{ K^1_{p,1}(u,v)} \psi \left(\sum_{u=-2}^2 \sum_{v=-2}^2 X(i+u,j+v) \cdot K^1_{p,1}(u,v) +b_p^1\right) \\
+    &= -\lambda \, \sum_{i=1}^{24} \sum_{j=1}^{24} \delta_p^{C^1}(i,j) \cdot C_p^1(i,j)\left(1-C_p^1(i,j)\right) \cdot X(i-u,j-v).
+\end{align*}
+für $1 \leq p \leq 6$ berechnet werden. Sei wieder
+\begin{align*}
+    \delta^{C^1}_{p,\psi}(i,j):&= \delta^{C^1}_p(i,j) \cdot C_p^1(i,j)\left(1- C_p^1(i,j)\right)\\
+    &= \delta^{C^1}_p(i,j) \cdot \psi'(C^1_p(i,j)), \; \; \forall i,j \in [8], \forall p \in [6].
+\end{align*}
+Dann gilt schließlich
+\begin{align*}
+    \Delta K^1_{p,1}(u,v) &= - \lambda \, \sum_{i=1}^{24} \sum_{j=1}^{24} X_{rot180}(u-i,v-j) \cdot \delta^{C^1}_{p,\psi}(i,j) \\
+     \Rightarrow \Delta K_{p,1}^1 &=- \lambda \, X_{rot180} \ast \delta^{C^2}_{q,\psi} , \; \; \forall p \in [6].
+\end{align*}
 %Im Folgenden werden konkrete Beispiele für verschiedene zweidimensionale Faltungen, welche in dieser Arbeit im Fokus stehen, gegeben. Dabei sind die Eingabe $X \in \RR^{h \times w}$ und der Filter $K \in \RR^{k_h \times k_w}$ immer als Matrizen zu verstehen. Das Ergebnis der Faltung $S= X \ast K$ wird als Merkmalskarte bezeichnet. Es sei angemerkt, dass oft $k_h=k_w$ sowie $k_h$ ungerade gewählt wird, z.B. $k_h=3$ oder $k_h=5$. Die Größe der Merkmalskarte wird durch die Parameter
 %\begin{itemize}
 %    \item $h,w$: Die Höhe und Breite der Eingabe,
