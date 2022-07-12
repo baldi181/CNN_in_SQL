@@ -1,5 +1,42 @@
 \chapter{Einleitung}
-Es mag euch wundern, dass die Einleitung in einem separaten File abgelegt ist. Dies muss natürlich nicht so sein. Es könnte aber bei einer langen Abschlussarbeit durchaus die Übersichtlichkeit erhöhen, wenn ihr für verschiedene Kapitel einzelne Dateien anlegt und diese mittels 
+!!! eine kurze Einleitung, wird noch verbessert/erweitert, in Kontext CNN einordnen!!!
+!!! ist die Einleitung von der Projektarbeit(FeedForwardNetze in SQL)
+
+!!! Literaturnachweise in bibmanager eingügen !!!
+
+
+Assistenzsysteme stellen Informationen und Hilfestellungen bei bestimmten Produkten bereit, um deren Bedienung zu erleichtern. 
+Heutzutage spielen sie in fast allen Bereichen der Industrie und Forschung eine große Rolle und unterstützen Menschen bei ihren Tätigkeiten \cite{winner2014handbook, kurihata2005rainy, omerdic2011design}.
+Meist werden solche Systeme intelligent genannt, denn sie sind in der Lage, durch die Verarbeitung von Sensordaten eigenständig auf bestimmte Szenarien zu reagieren beziehungsweise Vorhersagen über zukünftige Situationen zu treffen. Die Analyse solcher Assistenzsysteme ist daher Forschungsgegenstand in den Bereichen der Big Data Analytics und Künstlichen Intelligenz.
+Sensoren liefern hierbei im Zusammenhang des \textit{Internet of Things} \cite{xia2012internet, wortmann2015internet} meist große Datenmengen, die geschickt gespeichert und verarbeitet werden sollen. 
+
+Das PArADISE-Projekt \cite{paradise} des Lerhstuhls für Datenbank- und Informationsysteme der Universität Rostock beschäftigt sich mit dem Designsprozess von Assisenzsystemen mit dem Ziel, die Entwickler von assistiven Systemen zu unterstützen. Durch eine hochparallele Analyse großer Mengen von Sensordaten soll hierbei die datengetriebene Entwicklung von Assisenzsystemen gelingen. In der Anwendung werden jene Systeme genutzt, um Vorhersagen über bestimmter Ereignisse durch Algorithmen (Maschinelles Lernen) zu treffen. Verfahren des überwachten maschinellen Lernens lassen sich typischerweise in 2 Schritten durchführen. In einer Trainingsphase werden mit Hilfe von Trainingsdaten per Annotation Modelle zur
+Erkennung von Mustern abgeleitet. In der späteren Erkennungsphase wird dann das
+trainierte Modell genutzt, um erkannte Muster in einer Zieldatenmenge effizient ableiten
+zu können. 
+
+In der Arbeit von Marten \cite{marten2017machine} wird am Beispiel eines Meeting Szenarios ein Maschinelles Lernverfahren namens Hidden-Markov-Modelle untersucht. Es wird erläutert, wie die Erkennungsphase eines zuvor trainierten Modells datenbankgestützt in parallelen SQL-Datenbanksystemen realisiert werden kann.   
+Als Ergebnis wird festgehalten, dass die datenbankgestützte Umsetzung von ML-Algorithmen, hier speziell bei Hidden-Markov-Modellen, in bestimmten Szenarien gute Skalierungseigenschaften hinsichtlich der Datenmenge besitzt und verschiedenste Resultate der relationalen Datenbankforschung vorteilhaft genutzt werden können. Dies motiviert Analysen anderer Machine-Learning-Verfahren und deren Transformation in SQL. Diese Arbeit beschäftigt sich mit neuronalen Netzen als weitverbreitete Machine Learning Methode und deren Transformation in SQL-Datenbanksystemen unter Zuhilfenahme von Werkzeugen der linearen Algebra.
+
+\section*{Motivation}
+
+In diesem Abschnitt wird die Nutzung paralleler Datanbanksysteme zur Trainings- und Erkennungsphase von Aktivitätsmodellen 
+basierend auf Algorithmen des Machine Learnings \cite{anzai2012pattern}, kurz ML, motiviert.
+Die vielen verwendeten Sensoren liefern meist hoch frequente Daten und daher fallen in der Lernphase riesige Datenmengen an, die perfomant behandelt werden müssen.
+Hier sollen Techniken aus Datenbanksystemen eingebunden werden, um ML-Tools sinnvoll zu unterstützen, was sich als spannendes Forschungsgebiet der Informationssysteme herausstellt \cite{abiteboul2018research}.
+Gelingt dies, so können verschiedenste Resultate der relationalen Datenbankforschung vorteilhaft genutzt werden.
+\begin{itemize}
+    \item Techniken der parallelen Datenbanksysteme ermöglichen es, SQL Anfragen auf Rechnercluster zu verteilen, um so die Perfomance von ML Algorithmen zu verbessern.
+    \item Konzepte wie \textit{Query Decomposition} \cite{chirkova2011materialized} und \textit{Answering Queries using Views} \cite{ afrati2019answering, levy1999answering} werden genutzt, um bestimmte Auswertungen von Daten näher an den Sensoren durchzuführen und damit \textit{Privacy} \cite{agrawal2000privacy} Aspekte von Nutzern zu berücksichtigen.
+    \item \textit{Data Provenance} \cite{heuer2015metis, bruder2017konzepte} kann genutzt werden, um herauszufinden, welche Daten für die Detektierung bzw. Vorhersage von Aktivitäten gebraucht werden. 
+    So wird unter anderem festgestellt, welche der vielen eingesetzten Sensoren für das Modell essentiell beziehungsweise uninteressant sind.
+\end{itemize} 
+Das Ziel dieser Arbeit ist, den Transformationsprozess von Machine-Learning-Algorithmen in SQL Anfragen zu beleuchten. Besonders interressant ist die Erweiterung von SQL um Konzepte der linearen Algebra, unter anderem motiviert durch Test-of Time-Award-Winner Dan Suciu \cite{interviewsuciu} .
+
+
+\section*{Problemstellung}
+
+\section*{Aufbau der Arbeit}
 \begin{verbatim}\input{<DateiName>}\end{verbatim}
 
 \bigskip

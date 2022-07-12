@@ -350,32 +350,6 @@
       \field{volume}{12}
       \field{year}{2011}
     \endentry
-    \entry{forster1983analysis}{article}{}
-      \name{author}{1}{}{%
-        {{hash=f8e53a8257ed07acdf13331b689a4e08}{%
-           family={Forster},
-           familyi={F\bibinitperiod},
-           given={Otto},
-           giveni={O\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Springer}%
-      }
-      \strng{namehash}{f8e53a8257ed07acdf13331b689a4e08}
-      \strng{fullhash}{f8e53a8257ed07acdf13331b689a4e08}
-      \strng{bibnamehash}{f8e53a8257ed07acdf13331b689a4e08}
-      \strng{authorbibnamehash}{f8e53a8257ed07acdf13331b689a4e08}
-      \strng{authornamehash}{f8e53a8257ed07acdf13331b689a4e08}
-      \strng{authorfullhash}{f8e53a8257ed07acdf13331b689a4e08}
-      \field{extraname}{1}
-      \field{sortinit}{F}
-      \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Vieweg, Braunschweig}
-      \field{title}{Analysis 1}
-      \field{year}{1983}
-    \endentry
     \entry{forster2017analysis}{book}{}
       \name{author}{1}{}{%
         {{hash=f8e53a8257ed07acdf13331b689a4e08}{%
@@ -393,7 +367,6 @@
       \strng{authorbibnamehash}{f8e53a8257ed07acdf13331b689a4e08}
       \strng{authornamehash}{f8e53a8257ed07acdf13331b689a4e08}
       \strng{authorfullhash}{f8e53a8257ed07acdf13331b689a4e08}
-      \field{extraname}{2}
       \field{sortinit}{F}
       \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
       \field{labelnamesource}{author}
@@ -1311,11 +1284,29 @@
       \range{pages}{12}
     \endentry
   \enddatalist
+  \missing{abiteboul2018research}
+  \missing{afrati2019answering}
+  \missing{agrawal2000privacy}
+  \missing{anzai2012pattern}
+  \missing{bruder2017konzepte}
+  \missing{chirkova2011materialized}
   \missing{du_diss}
   \missing{goodfellow}
   \missing{gruen}
   \missing{gruening}
+  \missing{heuer2015metis}
+  \missing{interviewsuciu}
+  \missing{kurihata2005rainy}
+  \missing{levy1999answering}
+  \missing{marten2017machine}
+  \missing{martendiss}
+  \missing{omerdic2011design}
+  \missing{paradise}
+  \missing{saad1990sparskit}
   \missing{strauss}
+  \missing{winner2014handbook}
+  \missing{wortmann2015internet}
+  \missing{xia2012internet}
 \endrefsection
 \endinput
 

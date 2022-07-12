@@ -96,7 +96,7 @@ In Hinblick auf die Klassifikation von digitalisierten Bildern, dargestellt als 
 %\end{defi}
 
 \begin{defi}[Matrixfaltung, vgl. \cite{gruening}] \label{def:matrix_faltung}
-    Für gegebene Matrizen $X \in \RR^{h \times b}$ und $K \in \RR^{k \times k}$ sei $u=\lfloor k/2  \rfloor$.
+    Für gegebene Matrizen $X \in \RR^{h \times b}$ und $K \in \RR^{k \times k}$ sei $l=\lfloor k/2  \rfloor$.
     %\begin{equation*}
     %   h_l=\begin{cases}
     %       \lfloor k_h/2  \rfloor &, k_h \, \text{ungerade} \\
@@ -110,15 +110,24 @@ In Hinblick auf die Klassifikation von digitalisierten Bildern, dargestellt als 
     Die zweidimensionale Faltung  $Y=X \ast K \in \RR^{h \times w}$ ist als 
     \begin{equation}
         \label{eq:matrix_faltung}
-        (Y)_{i,j}:=\sum_{l=-u}^{u} \sum_{m=-u}^{u} X_{i+l,j+m} K_{l+u+1, m+u+1}\; \; \forall i \in [h], j \in [b]
-    \end{equation} mit $X_{i,j}=0$ für $i \notin [h]$ und $j \notin [b]$ definiert. In der Literatur wird dieses Auffüllen mit Nullen am Rand von $X$ mit \textit{zero padding} bezeichnet. In dieser Definition besitzt das Ergebnis $Y$ der Faltung die gleichen Abmessungen wie $X$.
+        Y_{i,j}:=\sum_{u=-l}^{l} \sum_{v=-l}^{l} X_{i+u,j+v} K_{u+l+1,v+l+1}\; \; \forall i \in [h], j \in [b]
+    \end{equation} mit $X_{i,j}=0$ für $i \notin [h]$ und $j \notin [b]$ definiert. In der Literatur wird dieses Auffüllen mit Nullen am Rand von $X$ mit \textit{zero padding} bezeichnet. In dieser Definition besitzt das Ergebnis $Y$ der Faltung, genauer der Kreuzkorrelation, die gleichen Abmessungen wie $X$. In der Literatur werden die Begriffe Faltung und Kreuzkorrelation oft für dieselbe Operation genutzt. In dieser Arbeit wird (\ref{eq:matrix_faltung}) als Faltung bezeichnet 
 \end{defi}
+
+\begin{bem}
+    Oft wird eine kompakte Schreibweise der Faltung von $X \in \RR^{h \times b}$ und $ K \in \RR^{k \times k}$ mit 
+    \begin{equation}
+        \label{eq:valid_conv}
+        Y_{i,j}=\sum_{u=-l}^l \sum_{v=-l}^l X_{i+u,j+v}K_{u,v}
+    \end{equation}
+    und $X_{i,j}=0$ für $i \notin [h]$ und $j \notin [b]$ angegeben. Dabei wird der Kern negative indiziert. Ist beispielsweise $k=5$, so ist mit $K_{-2,-2}$ das Matrixelement $k_{1,1}$ und mit $K_{0,0}$ der Wert im Mittelpunkt $k_{3,3}$ gemeint. 
+\end{bem}
 
 Bei gefalteten neuronalen Netzen wird oft eine Reduktion der Dimensionen angestrebt. Dafür werden natürliche Zahlen als Schrittweiten, engl. \textit{strides}, genutzt.
 \begin{bem}\label{bem_strides}
     Für Schrittweiten $s_h, s_b \in \mathbb{N}$ ergibt sich die reduzierte zweidimensionale Faltung $Y=X \ast K$ zu
     \begin{equation*}
-        (Y)_{i,j}:=\sum_{l=-u}^{u} \sum_{m=-u}^{u} X_{i \cdot s_h +l,j \cdot s_b +m} K_{l+u+1, m+u+1}\; \; \forall i \in [\lceil h/s_h \rceil], j \in [\lceil b/s_b \rceil].
+        Y_{i,j}:=\sum_{u=-l}^{l} \sum_{v=-l}^{l} X_{i \cdot s_h +u,j \cdot s_b +v} K_{u+l+1, v+l+1}\; \; \forall i \in [\lceil h/s_h \rceil], j \in [\lceil b/s_b \rceil].
     \end{equation*}
     Für $s_h=s_b=1$ ergibt sich die Standardvariante wie in \ref{eq:matrix_faltung}.
     \end{bem}
@@ -137,7 +146,7 @@ Beim maschinellen Lernen sind Eingabedaten oft als mehrdimensionale Arrays abgel
     \begin{equation*}
         \Psi_{conv}^{K,b}(X)_{:,:,q}:= \sum_{p=1}^{z_{in}} \alpha_p\left(K_{q,p,:,:} \ast X_{:,:,p} \right) +b_q \; \forall q \in [z_{out}]
     \end{equation*}
-    wird gefaltete Übertragungsfunktion bezeichnet. Mit $\ast$ ist die Matrixfaltung wie in Definition \ref{def:matrix_faltung} gemeint und mit $\cdot$ werden beliebige Raumachsen bezeichnet. Die Skalare $\alpha_p$ sind lernbare Parameter. In dieser Arbeit gelte $\alpha_p=1$ für alle $p \in [z_{in}]$.
+    wird gefaltete Übertragungsfunktion bezeichnet. Mit $\ast$ ist die Matrixfaltung wie in Definition \ref{def:matrix_faltung} gemeint und mit $\cdot$ werden beliebige Raumachsen bezeichnet. Die Skalare $\alpha_p$ können als lernbare Parameter genutzt werden. In dieser Arbeit gelte $\alpha_p=1$ für alle $p \in [z_{in}]$.
 \end{defi}
 
 
@@ -228,15 +237,15 @@ Die Hyperparameter werden wieder anwendungsspezifisch für das jeweilige Problem
 Der Backpropagationsalgorithmus \ref{alg:online_backprop} soll nun für das CNN-Modell verallgemeinert werden. 
 Als Fehlerfunktion wird wieder die mittlere quadratische Abweichung (\ref{eq:MSE})
 genutzt. 
-Die Abstiegsrichtungen für die Schichten des FFN wurden bereits im vorherigen Kapitel \ref{kap:NN} hergeleitet. Es müssen nun Gradienten innerhalb der Faltungsschichten beziehungsweise Pooling-Schichten berechnet werden. Die Einträge der Eingabe- und Merkmalskarten, in Zukunft einfach Karten genannt, können als Neuronenaktivierungen interpretiert werden. Weiter werden zur Vereinfachung die trainierbaren Gewichte der Kerne in Zukunft mit $w_{i,j}^{(l)}$ bezeichnet. Gemeint ist also das Gewicht zwischen Neuron $i$ auf Schicht $l-1$ und Neuron $j$ der Schicht $l$ bezeichnet. Weiter sei $y_{i}^{(l-1)}$ die Aktivierung des Neurons $i$ der Schicht $l-1$ und $\delta_j^{(l)}$ sei der lokale Fehler des Neurons $j$ der Schicht $l$. Die Funktion $\psi$ repräsentiert eine Aktivierungsfunktion, Pooling-Funktion oder Flatten-Funktion, je nachdem auf welcher Schicht sie benutzt wird.
+Die Abstiegsrichtungen für die Schichten des FFN wurden bereits im vorherigen Kapitel \ref{kap:NN} hergeleitet. Es müssen nun Gradienten innerhalb der Faltungsschichten beziehungsweise Pooling-Schichten berechnet werden. Die Einträge der Eingabe- und Merkmalskarten, in Zukunft einfach Karten genannt, können als Neuronenaktivierungen interpretiert werden. Weiter werden zur Vereinfachung die trainierbaren Gewichte der Kerne mit $w_{j,i}^{(l)}$ bezeichnet. Gemeint ist also das Gewicht zwischen Neuron $i$ auf Schicht $l-1$ und Neuron $j$ der Schicht $l$ bezeichnet. Weiter sei $y_{i}^{(l-1)}$ die Aktivierung des Neurons $i$ der Schicht $l-1$ und $\delta_j^{(l)}$ sei der lokale Fehler des Neurons $j$ der Schicht $l$. Die Funktion $\psi$ repräsentiere eine Aktivierungsfunktion, Pooling-Funktion oder Flatten-Funktion, je nachdem auf welcher Schicht sie benutzt wird.
 
 Die Gradienten werden wieder komponentenweise berechnet.
 Angenommen, $l$ ist eine Faltungsschicht. Die Aktivierung einer Merkmalskarte $j$ an der Stelle $(x,y)$ lässt sich mit der Matrixfaltung, siehe \ref{def:matrix_faltung}, \ref{eq:convlogit}, als
 \begin{equation}
-    y_j^{(l)}(x,y) =\psi \left(\sum_{i \in [z_{in}]} \sum_{(u,v) \in F} y_i^{(l)}(x+u,y+u)\,  w_{j,i}^{(l)}(u,v) +b_j^{(l)}\right)
+    y_j^{(l)}(x,y) =\psi \left(\sum_{i=1}^{z_{in}} \sum_{(u,v) \in F} y_i^{(l)}(x+u,y+u)\,  w_{j,i}^{(l)}(u,v) +b_j^{(l)}\right)
 \end{equation}   
-schreiben. Es ist zu beachten, dass $(x,y)$ ein Pixel der Karte $j$ meint. Dabei ist $F=\{(u,v): \; 0\leq u,v <k\}$ und $k$ die Dimension der Kerns.
-Das Gewicht des Kerns von der Karte $i$ zur Karte $j$ an der Stelle $(u,v)$ ist mit $w_{j,i}(u,v)$ bezeichnet. Der Gradient ergibt sich als Summe über das Produkt der jeweilgen Positionen $(x,y)$ der Merkmalskarte $j$ und dem lokalen Fehler $\delta^{(l)}_j$, also
+schreiben. Es ist zu beachten, dass $(x,y)$ ein Pixel der Karte $j$ meint. Mit $k$ als Dimension der Kerns und $l=\lfloor k/2 \rfloor$ ist $F=\{(u,v): \; -l \leq u,v \leq l\}$.
+Das Gewicht des Kerns von der Karte $i$ zur Karte $j$ an der Stelle $(u,v)$ ist mit $w^{(l)}_{j,i}(u,v)$ bezeichnet. Der Gradient ergibt sich als Summe über alle beteiligten Pixel $(x,y)$ der Merkmalskarte $j$, also
 \begin{equation}
     \label{eq:CNN_K_grad}
     \Delta w_{j,i}^{(l)}(u,v)= -\lambda \, \sum_{(x,y)} \left( y_i^{(l-1)}(x+u,y+v) \delta_j^{(l)}(x,y)\right)
@@ -246,8 +255,27 @@ Der Zusammenhang in Gleichung (\ref{eq:CNN_K_grad}) ist in Abbildung \ref{abb:er
 \begin{equation*}
     \Delta b_j^{(l)}= -\lambda \, \sum_{(x,y)} \delta_j^{(l)}(x,y).
 \end{equation*}
-Die Berechnung des lokalen Fehlers $\delta_{j}^{(l)}$ der Schicht $l$ ist abhängig von der Schicht $l+1$.
-$V_k=\sum_{j} w_{k,j}^l z_j +b^l_k$ 
+Die Berechnung des lokalen Fehlers $\delta_{j}^{(l)}$ der Schicht $l$ ist abhängig von der Schicht $l+1$. Auch hier wird wieder komponentenweise vorgegangen. Ist die Schicht $l+1$ eine Neuronenschicht mit $s_k$ Neuronen, wird Gleichung \ref{eq:delta_hidden} zu
+\begin{equation*}
+    \delta_j^{(l)}(x,y)=\sum_{k=1}^{s_{k}} \left(\sum_{(x,y)} \delta_k^{(l+1)} w_{k,j}^{(l+1)}(x,y)\right) 
+\end{equation*}
+verallgemeinert. Ist die nachfolgende Schicht eine Faltungsschicht, so ergibt sich der lokale Fehler der Schicht $l$ zu
+\begin{equation*}
+    \delta_j^{(l)}(x,y)=\sum_{k=1}^{z_{out}} \left(\sum_{(u,v) \in F} \delta_k^{(l+1)}(x,y) w_{k,j}^{(l+1)}(u,v)\right)
+\end{equation*}
+Ist $l+1$ eine Pooling-Schicht mit Schrittweiten $p_h,p_b$ und einer Pooling-Funktion $T$, so gilt
+\begin{equation*}
+    \delta_j^{(l)}(x,y)=\delta_k^{(l+1)}(\lceil x/p_h \rceil ,\lceil y/p_b \rceil) \nabla T(j)
+\end{equation*}
+Dieses Vorgehen wird auch Upsampling genannt.
+%$V_k=\sum_{j} w_{k,j}^l z_j +b^l_k$ 
+
+!!!!!!!
+
+!!! noch als algorithmus aufschreiben und mit dem folgenden Beispiel vergleichen, ob Indizies/lokale Fehler usw. richtig sind!!!
+
+!!!!!!
+
 
 \section{Anwendung bei der Ziffernerkennung}
 In diesem Abschnitt wird ein CNN zur Klassifikation von Grauwert-Bildern aus einem konkreten Datensatz vorgestellt. Der MNIST-Datensatz\cite{DBLP:journals/pieee/LeCunBBH98} bietet $60.000$ Trainingsbilder handgeschriebener Ziffern und $10.000$ Testbilder, welche jeweils durch menschliches Wissen annotiert sind. Dieser Datensatz gilt als typischer Benchmark zur Klassifikation von Ziffern und wird im weiteren Verlauf dieser Arbeit genutzt. Jedes einzelne Bild besteht aus $28 \times 28$ Pixeln, welche jeweils einen Grauwert zwischen 0 und 1 annehmen, vgl. Abbildung \ref{mnistpic}. Ein Bild wird als $X \in [0,1]^{28 \times 28 \times 1}$ und ein Trainingspaare als $(X,c)$ mit $c \in \{0, \ldots, 9\}$ bezeichnet. 
@@ -293,7 +321,7 @@ Die Parameteranzahl ist damit
     \label{eq:C1_forw}
     \begin{split}
     C_p^1 &= \psi(X \ast K_{p,1}^1+b_p^1 \mathbf{1}) \\
-    C_p^1(i,j)&=\psi \left(\sum_{u=0}^4 \sum_{v=0}^4 X(i+u,j+v) \cdot K_{p,1}^1(u,v) +b_p^1\right)
+    C_p^1(i,j)&=\psi \left(\sum_{u=-2}^2 \sum_{v=-2}^2 X(i+u,j+v) \cdot K_{p,1}^1(u,v) +b_p^1\right)
     \end{split}
 \end{align}
 für $1 \leq p \leq 6$ berechnet. Mit $\mathbf{1} \in \RR^{24 \times 24}$ ist die Matrix gemeint, deren Einträge nur Einsen sind. Die Matrixfaltung $\ast$ wird ohne zero padding genutzt und daher reduziert sich die Raumdimension. Es gilt $C^1_p \in \RR^{24 \times 24 \times 1}$. Anschließend folgen das Mittelwert-Pooling $P^1$ mit
@@ -306,7 +334,7 @@ für $1 \leq p \leq 6$ und die zweite Faltungsschicht $C^2$, welche zwölf Merkm
     \label{eq:C2_forw}
     \begin{split}
         C_q^2 &= \psi \left( \sum_{p=1}^6 P_p^1 \ast K_{q,p}^2 + \mathbf{1} b_q^2\right) \\
-        C_q^2(i,j) &= \psi \left( \sum_{p=1}^6 \sum_{u=0}^4 \sum_{v=0}^4 P^1_p(i+u,j+v) \cdot K^2_{q,p}(u,v) +b_q^2\right)
+        C_q^2(i,j) &= \psi \left( \sum_{p=1}^6 \sum_{u=-2}^2 \sum_{v=-2}^2 P^1_p(i+u,j+v) \cdot K^2_{q,p}(u,v) +b_q^2\right)
     \end{split}
 \end{align}
 für $1 \leq q \leq 12$ berechnet. Die Matrixfaltung $\ast$ wird wieder ohne zero padding genutzt und daher reduziert sich die Raumdimension.
@@ -358,7 +386,7 @@ darstellen. Analog gilt
 \begin{equation*}
 \Delta b= -\lambda \delta^{\text{FFN}}.
 \end{equation*}
-Um $ \Delta K^2_{q,p}$ zu bestimmen, ist zunächst der lokale Fehler der darüberliegenden Flatten-Schicht zu ermitteln. Der lokale Fehler $\delta^f \in \RR^{192}$ in der Flatten-Schicht wird mithilfe des lokalen Fehlers des FNN berechnet und lautet
+Um $ \Delta K^2_{q,p}$ zu bestimmen, ist zunächst der lokale Fehler der darüberliegenden Neuronenschicht zu ermitteln. Der lokale Fehler $\delta^f \in \RR^{192}$ wird mithilfe des lokalen Fehlers des FNN berechnet und lautet
 \begin{align*}
     \delta^f(j) &=  \frac{\partial E}{\partial f} \\
                 &=  \sum_{k=1}^{10} \frac{\partial E}{\partial y(k)} \cdot \frac{\partial y(k)}{\partial f(j)} \\
@@ -389,42 +417,45 @@ Bezeichne
 \begin{align*}
     \delta^{C^2}_{q,\psi}(i,j):&= \delta^{C^2}_q(i,j) \cdot C_q^2(i,j)\left(1- C_q^2(i,j)\right)\\
     &= \delta^{C^2}_q(i,j) \cdot \psi'(C^2_q(i,j)), \; \; \forall i,j \in [8], \forall q \in [12]
-\end{align*} den lokalen Fehler $\delta^{C^2}_{q,\psi}$ der Faltungschicht $C^2$ und
+\end{align*} den lokalen Fehler $\delta^{C^2}_{q,\psi}$ der Faltungschicht $C^2$. Damit ergibt sich
 \begin{equation*}
-    P^1_{p,rot180}(u-i,v-j):=P^1_p(i-u,j-v).
+    C_{q,\psi}^2(i,j)=\sum_{p=1}^6 \sum_{u=-2}^2 \sum_{v=-2}^2 P^1_p(i+u,j+v) \cdot K^2_{q,p}(u,v) +b_q^2.
 \end{equation*}
-Dann gilt
+%und
+%\begin{equation*}
+%    P^1_{p,rot180}(u-i,v-j):=P^1_p(i-u,j-v).
+%\end{equation*}
+Es gilt
 \begin{align*}
-    \Delta K^2_{q,p}(u,v) &= - \lambda \, \sum_{i=1}^8 \sum_{j=1}^8 P^1_{p,rot180}(u-i,v-j) \cdot \delta^{C^2}_{q,\psi}(i,j) \\
-     \Rightarrow \Delta K_{q,p}^2 &=- \lambda \, P^1_{p,rot180} \ast \delta^{C^2}_{q,\psi} , \; \; \forall q \in [12], \forall p \in [6].
+    \Delta K^2_{q,p}(u,v) &= - \lambda \, \sum_{i=1}^8 \sum_{j=1}^8 P^1_{p}(u+i,v+j) \cdot \delta^{C^2}_{q,\psi}(i,j) \\
+     \Rightarrow \Delta K_{q,p}^2 &=- \lambda \, P^1_{p} \ast \delta^{C^2}_{q,\psi} , \; \; \forall q \in [12], \forall p \in [6].
 \end{align*}
 Dies ist besonders für die effiziente Implementierung der Rückwärtsrechnung nützlich, da Abstiegsrichtungen wieder mithilfe von Faltungsoperationen ausgedrückt werden können. Es muss also besonders die Faltung prefomant implemntiert werden. Analog ergibt sich 
 \begin{equation*}
     \Delta b_q^2= -\lambda \, \sum_{i=1}^8 \sum_{j=1}^8 \delta_{q,\psi}^{C^2}(i,j), \; \; \forall q \in [12].
 \end{equation*}
-
 Um $ \Delta K^1_{p,1}$ zu bestimmen, ist zunächst der lokale Fehler der darüberliegenden Pooling-Schicht zu ermitteln. Dieser lässt sich wieder mit dem lokalen Fehler $\delta_{q,\psi}^{C^2}$ der Faltungsschicht $C^2$ ausdrücken. Es gilt 
 \begin{align*}
-    \delta^{S^1}_{p}(i,j) &= \frac{\partial E}{\partial S^1_{p}(i,j)} \\
-    &= \sum_{q=1}^{12} \sum_{u=-2}^2 \sum_{v=-2}^2 \frac{\partial E}{\partial C^2_{q,\psi}(i+u,j+v)} \cdot \frac{\partial C^2_{q,\psi}(i+u,j+v)}{\partial S_{p}^1(i,j)} \\
-    &= \sum_{q=1}^{12} \sum_{u=-2}^2 \sum_{v=-2}^2 \delta^{C^2}_{q,\psi}(i+u,j+v) \cdot \frac{\partial}{\partial S_p^1(i,j)}  \left( \sum_{p=1}^6 \sum_{u=-2}^2 \sum_{v=-2}^2 P^1_p(i,j) \cdot K^2_{q,p}(u,v) +b_q^2\right) \\
-    &= \sum_{q=1}^{12} \sum_{v=-2}^2 \sum_{u=-2}^2 \delta_{q,\psi}^{C^2}(i+u,j+v) \cdot K^2_{q,p}(u,v), \; \; \forall i,j \in [12], \forall p \in [6]
+    \delta^{P^1}_{p}(i,j) &= \frac{\partial E}{\partial P^1_{p}(i,j)} \\
+    &= \sum_{q=1}^{12} \sum_{u=-2}^2 \sum_{v=-2}^2 \frac{\partial E}{\partial C^2_{q,\psi}(i-u,j-v)} \cdot \frac{\partial C^2_{q,\psi}(i-u,j-v)}{\partial P_{p}^1(i,j)} \\
+    &= \sum_{q=1}^{12} \sum_{u=-2}^2 \sum_{v=-2}^2 \delta^{C^2}_{q,\psi}(i-u,j-v) \cdot \frac{\partial}{\partial S_p^1(i,j)}  \left( \sum_{p=1}^6 \sum_{u=-2}^2 \sum_{v=-2}^2 P^1_p(i,j) \cdot K^2_{q,p}(u,v) +b_q^2\right) \\
+    &= \sum_{q=1}^{12} \sum_{v=-2}^2 \sum_{u=-2}^2 \delta_{q,\psi}^{C^2}(i-u,j-v) \cdot K^2_{q,p}(u,v), \; \; \forall i,j \in [12], \forall p \in [6]
 \end{align*}
 Mit $K^2_{q,p,rot180}(-u,-v):=K^2_{q,p}(u,v)$ ergibt sich
 \begin{align*}
-    \delta^{S^1}_{p}(i,j)&=\sum_{q=1}^{12} \sum_{v=-2}^2 \sum_{u=-2}^2 \delta_{q,\psi}^{C^2}(i-(-u),j-(-v)) \cdot K^2_{q,p,rot180}(-u,-v) \\
-    \Rightarrow \delta^{S^1}_{p} &= \sum_{q=1}^{12} \delta_{q, \psi}^2 \ast K_{q,p,rot180}^2, \; \; \forall p \in [6].
+    \delta^{P^1}_{p}(i,j)&=\sum_{q=1}^{12} \sum_{v=-2}^2 \sum_{u=-2}^2 \delta_{q,\psi}^{C^2}(i+(-u),j+(-v)) \cdot K^2_{q,p,rot180}(-u,-v) \\
+    \Rightarrow \delta^{P^1}_{p} &= \sum_{q=1}^{12} \delta_{q, \psi}^2 \ast K_{q,p,rot180}^2, \; \; \forall p \in [6].
     \end{align*}
-Es gilt  $\delta^{S^1} \in \RR^{12 \times 12 \times 6}$. Mit dem Upsampling
+Es gilt  $\delta^{P^1} \in \RR^{12 \times 12 \times 6}$. Mit dem Upsampling
 \begin{equation*}
-    \delta^{C^1}_p= \delta^{S^1}_p \left( \lceil i/2 \rceil, \lceil j/2 \rceil \right), \forall i,j \in [24], \forall p \in [6]
+    \delta^{C^1}_p= \delta^{P^1}_p \left( \lceil i/2 \rceil, \lceil j/2 \rceil \right), \forall i,j \in [24], \forall p \in [6]
 \end{equation*}
 kann nun der Gradient $\Delta K^1_{p,1}$ an einer Stelle $(u,v)$ als
 \begin{align*}
     \Delta K^1_{p,1}(u,v) &= -\lambda \, \frac{\partial E}{\partial K^1_{p,1}(u,v)} \\
     &= -\lambda \, \sum_{i=1}^{24} \sum_{j=1}^{24} \frac{\partial E}{\partial C^1_p(i,j)} \cdot \frac{\partial C^1_p(i,j)}{\partial K_{p,1}^1(u,v)} \\
     &= -\lambda \, \sum_{i=1}^{24} \sum_{j=1}^{24} \delta_p^{C^1}(i,j) \cdot \frac{\partial}{ K^1_{p,1}(u,v)} \psi \left(\sum_{u=-2}^2 \sum_{v=-2}^2 X(i+u,j+v) \cdot K^1_{p,1}(u,v) +b_p^1\right) \\
-    &= -\lambda \, \sum_{i=1}^{24} \sum_{j=1}^{24} \delta_p^{C^1}(i,j) \cdot C_p^1(i,j)\left(1-C_p^1(i,j)\right) \cdot X(i-u,j-v).
+    &= -\lambda \, \sum_{i=1}^{24} \sum_{j=1}^{24} \delta_p^{C^1}(i,j) \cdot C_p^1(i,j)\left(1-C_p^1(i,j)\right) \cdot X(i+u,j+v).
 \end{align*}
 für $1 \leq p \leq 6$ berechnet werden. Sei wieder
 \begin{align*}
@@ -433,8 +464,8 @@ für $1 \leq p \leq 6$ berechnet werden. Sei wieder
 \end{align*}
 Dann gilt schließlich
 \begin{align*}
-    \Delta K^1_{p,1}(u,v) &= - \lambda \, \sum_{i=1}^{24} \sum_{j=1}^{24} X_{rot180}(u-i,v-j) \cdot \delta^{C^1}_{p,\psi}(i,j) \\
-     \Rightarrow \Delta K_{p,1}^1 &=- \lambda \, X_{rot180} \ast \delta^{C^2}_{q,\psi} , \; \; \forall p \in [6]
+    \Delta K^1_{p,1}(u,v) &= - \lambda \, \sum_{i=1}^{24} \sum_{j=1}^{24} X_(u+i,v+j) \cdot \delta^{C^1}_{p,\psi}(i,j) \\
+     \Rightarrow \Delta K_{p,1}^1 &=- \lambda \, X \ast \delta^{C^2}_{q,\psi} , \; \; \forall p \in [6]
 \end{align*} und 
 \begin{align*}
     \Delta b_p^1 =-\lambda \, \sum_{i=1}^{24} \sum_{j=1}^{24} \delta_{p, \psi}^{C^1}(i,j), \; \; \forall p \in[6].
@@ -448,24 +479,24 @@ Dann gilt schließlich
 %\end{itemize}
 %beeinflusst. Mit zero padding ist gemeint, dass künstliche Nullen um Randpixel der Eingabe $X$ eingefügt werden, damit die Berechnung mit dem Filter um jene Pixel gelingt. Ein Beispiel für das Verwenden von zero padding wird in Abbildung \ref{abb_simplematrixconv_padding} gezeigt. In Abbildung \ref{abb_simplematrixconv} ist die Berechnung einer einfachen zweidimensionalen Matrixfaltung dargestellt. Ein vorher festgelegter Filter (grau) bewegt sich über die Eingabe (blau) und berechnet jeweils die Einträge der Ausgabe(grün). 
 
-\begin{figure}[h]
-    \includegraphics[width=0.8\textwidth]{pics/abb_simpleconv}
-    \centering
-    \caption{Es wird die Merkmalskarte $S \in \RR^{3 \times 3}$ mit den Parametern ${h,w=5}, k_h=k_w=3, s_h=s_w=1$ und $p_h=p_w=1.$}
-    \label{abb_simplematrixconv}
-\end{figure}
+%\begin{figure}[h]
+    %\includegraphics[width=0.8\textwidth]{pics/abb_simpleconv}
+    %\centering
+    %\caption{Es wird die Merkmalskarte $S \in \RR^{3 \times 3}$ mit den Parametern ${h,w=5}, k_h=k_w=3, s_h=s_w=1$ und $p_h=p_w=1.$}
+    %%\label{abb_simplematrixconv}
+%\end{figure}
 
-\begin{figure}[h]
-    \includegraphics[width=0.8\textwidth]{pics/abb_simplecov_padding}
-    \centering
-    \caption{Es wird die Merkmalskarte $S \in \RR^{3 \times 3}$ mit den Parametern ${h,w=5}, k_h=k_w=3, s_h=s_w=2$ und $p_h=p_w=1$ berechnet.}
-    \label{abb_simplematrixconv_padding}
-\end{figure}
+%\begin{figure}[h]
+   % \includegraphics[width=0.8\textwidth]{pics/abb_simplecov_padding}
+   % \centering
+   % \caption{Es wird die Merkmalskarte $S \in \RR^{3 \times 3}$ mit den Parametern ${h,w=5}, k_h=k_w=3, s_h=s_w=2$ und $p_h=p_w=1$ berechnet.}
+    %\label{abb_simplematrixconv_padding}
+%\end{figure}
 
 
 
 \section{Motivation der Faltung}
-..
+Weiter machen!
 Sie nutzt wichtige Konzepte zur Optimierung von Machine-Learning-Verfahren wie spärliche Konnektivität (engl. \textit{sparse connectivity}), \textit{Parameter Sharing} und \textit{äquivariante Repräsentation}, vgl. \cite{goodfellow}. Spärliche Konnektivität bedeutet, dass Neuronen auf einer Schicht $\mathcal{s}_{l+1}$ nur durch wenige Neuronen der Schicht $\mathcal{S}_l$ beeinflusst wird. Dies ist bei CNNs typisch, da meist die verwendeten Filter viel kleiner als die Eingabe ist. Noch mehr erklären + Abbildung
 
 Mit Parameter Sharing ist die Nutzung von gleichen Parametern für mehrere Funktionen im neuronalen Netz gemeint. In herkömmlichen Feed-Forward-Netzen wird jedes Element der Gewichtsmatrizen für die Berechnung der Aktivierungen der jeweiligen Schichten verwendet. Anschließend werden diese Gewichte dann nicht mehr gebraucht. Im Zusammenhang von CNNs bedeutet Parameter Sharing während der Faltungsoperation, dass nur eine bestimmte Menge von Parametern erlernt werden müssen

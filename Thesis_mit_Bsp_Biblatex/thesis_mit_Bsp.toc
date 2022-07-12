@@ -17,63 +17,57 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {1}Einleitung}{1}{chapter.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {2}Grundlagen}{2}{chapter.2}%
+\contentsline {chapter}{\numberline {2}Grundlagen}{4}{chapter.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {3}Grundlagen neuronaler Netze}{3}{chapter.3}%
+\contentsline {section}{\numberline {2.1}Mathe/ ML Learning}{4}{section.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}Das Perzeptron}{3}{section.3.1}%
+\contentsline {section}{\numberline {2.2}Relationale Datenbanksysteme}{4}{section.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}Multi-Layer-Perzeptron}{4}{section.3.2}%
+\contentsline {subsection}{\numberline {2.2.1}Die Anfragesprache SQL}{4}{subsection.2.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.3}Training neuronaler Netze}{8}{section.3.3}%
+\contentsline {subsection}{\numberline {2.2.2}Lineare Algebra in SQL}{4}{subsection.2.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.1}Neuronale Netze als universelle Schätzer}{8}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {2.2.3}Matrixdarstellunng}{4}{subsection.2.2.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.2}Optimale Parameterwahl bei neuronalen Netzen}{9}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {2.2.4}Basisoperationen}{5}{subsection.2.2.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.4}Zusammenfassung}{14}{section.3.4}%
+\contentsline {chapter}{\numberline {3}Grundlagen neuronaler Netze}{7}{chapter.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {4}Gefaltete neuronale Netze}{17}{chapter.4}%
+\contentsline {section}{\numberline {3.1}Das Perzeptron}{7}{section.3.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.1}Die Faltungsoperation}{17}{section.4.1}%
+\contentsline {section}{\numberline {3.2}Multi-Layer-Perzeptron}{8}{section.3.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.2}CNN Architektur}{19}{section.4.2}%
+\contentsline {section}{\numberline {3.3}Training neuronaler Netze}{12}{section.3.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.3}Backpropagation bei CNN}{22}{section.4.3}%
+\contentsline {subsection}{\numberline {3.3.1}Neuronale Netze als universelle Schätzer}{12}{subsection.3.3.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.4}Anwendung bei der Ziffernerkennung}{23}{section.4.4}%
+\contentsline {subsection}{\numberline {3.3.2}Optimale Parameterwahl bei neuronalen Netzen}{13}{subsection.3.3.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.5}Motivation der Faltung}{29}{section.4.5}%
+\contentsline {section}{\numberline {3.4}Zusammenfassung}{18}{section.3.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Weiteres Kapitel}{31}{chapter.5}%
+\contentsline {chapter}{\numberline {4}Gefaltete neuronale Netze}{21}{chapter.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.1}Umgebungen und Formeln}{31}{section.5.1}%
+\contentsline {section}{\numberline {4.1}Die Faltungsoperation}{21}{section.4.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.2}Aufzählung und Nummerierung}{32}{section.5.2}%
+\contentsline {section}{\numberline {4.2}CNN Architektur}{24}{section.4.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.3}Tabellen}{32}{section.5.3}%
+\contentsline {section}{\numberline {4.3}Backpropagation bei CNN}{26}{section.4.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.4}Bilder}{32}{section.5.4}%
+\contentsline {section}{\numberline {4.4}Anwendung bei der Ziffernerkennung}{27}{section.4.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.4.1}Einzelnes Bild}{32}{subsection.5.4.1}%
+\contentsline {section}{\numberline {4.5}Motivation der Faltung}{33}{section.4.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.4.2}Mehrere Bilder}{33}{subsection.5.4.2}%
+\contentsline {chapter}{\numberline {5}Datenbankgestützte Implementierung von CNN}{35}{chapter.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.5}TikZ}{33}{section.5.5}%
+\contentsline {section}{\numberline {5.1}Die Faltungsoperation in SQL}{35}{section.5.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.5.1}Einfache Grafiken}{34}{subsection.5.5.1}%
+\contentsline {section}{\numberline {5.2}Datenbankgestützte FFN}{35}{section.5.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.5.2}Graphen und ähnliches}{34}{subsection.5.5.2}%
+\contentsline {section}{\numberline {5.3}Evalution}{35}{section.5.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Ein letztes Kapitel}{35}{chapter.6}%
+\contentsline {chapter}{\numberline {6}Zusammenfassung und Ausblick}{36}{chapter.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.1}Weiteres Korollar}{35}{section.6.1}%
-\defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.2}Pseudocode}{35}{section.6.2}%
-\defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {6.3}Zitate}{35}{section.6.3}%
-\defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline Literatur}{37}{chapter*.26}%
+\contentsline {chapter}{\nonumberline Literatur}{37}{chapter*.18}%
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {A}Anhang}{i}{appendix.A}%
 \defcounter {refsection}{0}\relax 
