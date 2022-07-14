@@ -438,17 +438,17 @@ Um $ \Delta K^1_{p,1}$ zu bestimmen, ist zunächst der lokale Fehler der darübe
 \begin{align*}
     \delta^{P^1}_{p}(i,j) &= \frac{\partial E}{\partial P^1_{p}(i,j)} \\
     &= \sum_{q=1}^{12} \sum_{u=-2}^2 \sum_{v=-2}^2 \frac{\partial E}{\partial C^2_{q,\psi}(i-u,j-v)} \cdot \frac{\partial C^2_{q,\psi}(i-u,j-v)}{\partial P_{p}^1(i,j)} \\
-    &= \sum_{q=1}^{12} \sum_{u=-2}^2 \sum_{v=-2}^2 \delta^{C^2}_{q,\psi}(i-u,j-v) \cdot \frac{\partial}{\partial S_p^1(i,j)}  \left( \sum_{p=1}^6 \sum_{u=-2}^2 \sum_{v=-2}^2 P^1_p(i,j) \cdot K^2_{q,p}(u,v) +b_q^2\right) \\
+    &= \sum_{q=1}^{12} \sum_{u=-2}^2 \sum_{v=-2}^2 \delta^{C^2}_{q,\psi}(i-u,j-v) \cdot \frac{\partial}{\partial P_p^1(i,j)}  \left( \sum_{p=1}^6 \sum_{u=-2}^2 \sum_{v=-2}^2 P^1_p(i,j) \cdot K^2_{q,p}(u,v) +b_q^2\right) \\
     &= \sum_{q=1}^{12} \sum_{v=-2}^2 \sum_{u=-2}^2 \delta_{q,\psi}^{C^2}(i-u,j-v) \cdot K^2_{q,p}(u,v), \; \; \forall i,j \in [12], \forall p \in [6]
 \end{align*}
 Mit $K^2_{q,p,rot180}(-u,-v):=K^2_{q,p}(u,v)$ ergibt sich
 \begin{align*}
     \delta^{P^1}_{p}(i,j)&=\sum_{q=1}^{12} \sum_{v=-2}^2 \sum_{u=-2}^2 \delta_{q,\psi}^{C^2}(i+(-u),j+(-v)) \cdot K^2_{q,p,rot180}(-u,-v) \\
-    \Rightarrow \delta^{P^1}_{p} &= \sum_{q=1}^{12} \delta_{q, \psi}^2 \ast K_{q,p,rot180}^2, \; \; \forall p \in [6].
+    \Rightarrow \delta^{P^1}_{p} &= \sum_{q=1}^{12} \delta_{q, \psi}^{C^2} \ast K_{q,p,rot180}^2, \; \; \forall p \in [6].
     \end{align*}
 Es gilt  $\delta^{P^1} \in \RR^{12 \times 12 \times 6}$. Mit dem Upsampling
 \begin{equation*}
-    \delta^{C^1}_p= \delta^{P^1}_p \left( \lceil i/2 \rceil, \lceil j/2 \rceil \right), \forall i,j \in [24], \forall p \in [6]
+    \delta^{C^1}_p(i,j)= \delta^{P^1}_p \left( \lceil i/2 \rceil, \lceil j/2 \rceil \right), \forall i,j \in [24], \forall p \in [6]
 \end{equation*}
 kann nun der Gradient $\Delta K^1_{p,1}$ an einer Stelle $(u,v)$ als
 \begin{align*}
@@ -464,8 +464,8 @@ für $1 \leq p \leq 6$ berechnet werden. Sei wieder
 \end{align*}
 Dann gilt schließlich
 \begin{align*}
-    \Delta K^1_{p,1}(u,v) &= - \lambda \, \sum_{i=1}^{24} \sum_{j=1}^{24} X_(u+i,v+j) \cdot \delta^{C^1}_{p,\psi}(i,j) \\
-     \Rightarrow \Delta K_{p,1}^1 &=- \lambda \, X \ast \delta^{C^2}_{q,\psi} , \; \; \forall p \in [6]
+    \Delta K^1_{p,1}(u,v) &= - \lambda \, \sum_{i=1}^{24} \sum_{j=1}^{24} X(u+i,v+j) \cdot \delta^{C^1}_{p,\psi}(i,j) \\
+     \Rightarrow \Delta K_{p,1}^1 &=- \lambda \, X \ast \delta^{C^1}_{p,\psi} , \; \; \forall p \in [6]
 \end{align*} und 
 \begin{align*}
     \Delta b_p^1 =-\lambda \, \sum_{i=1}^{24} \sum_{j=1}^{24} \delta_{p, \psi}^{C^1}(i,j), \; \; \forall p \in[6].
