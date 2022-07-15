@@ -3,7 +3,36 @@
 \section{Mathe/ ML Learning}
 
 \section{Relationale Datenbanksysteme}
+Relationale Datenbanksysteme gehören zu den erfolgreichsten und verbreitetsten Datenbanken, welche zur elektronischen Datenverwaltung in Computersystemen eingesetzt werden\cite{DBLP:books/daglib/0044627}. In diesem Abschnitt werden wichtige Grundbegriffe relationaler Datenbanksysteme erläutert und erklärt, wie Daten repräsentiert und verarbeitet werden können. Die Notation und Bezeichnungen basieren auf Heuer et al. \cite{DBLP:books/daglib/0044627}. Zum Abfragen und Manipulieren der Daten wird die Datenbanksparche SQL eingeführt und deren theoretische Grundlage im Abschnitt \ref{abs:SQL_intro} beleuchtet. Schließlich werden im Abschnitt \ref{abs:SQL_linalg} Methoden vorgestellt, um Objekte der linearen Algebra als Relationen darzustellen und damit verbundene Operationen, beispielsweise die Matrixvektormultiplikation, umzusetzen.
 
+\subsection{Das Relationenmodell}
+Der Grundbaustein relationaler Datenbanksysteme bildet die Relation. Sie stellt eine mathematische Beschreibung einer Tabelle, welche aus Attributen und zugehörigen Domänen besteht, dar. Ein Datenbanksystem ist dann eine Menge dieser Tabellen. 
+
+\begin{defi}[Universum, Attribut, Domäne]
+    \label{def:universum}
+    Bezeichne die endliche Menge $\mathcal{U} \neq \emptyset$ das Universum. Ein Element $A \in \mathcal{U}$ heißt Attribut. Für $m \in \mathbb{N}$ sei $\mathcal{D}=\{D_1, \ldots, D_m\}$ eine Menge nichtleere Mengen. Ein Element $D_i \in \mathcal{D}$ wird Domäne genannt. Für eine Funktion $\mathrm{dom}: \mathcal{U} \rightarrow \mathcal{D}$ bezeichne $\mathrm{dom}(A)$ den Wertebereich von $A$ und $w \in \mathrm{dom}(A)$ ein Attributwert.
+\end{defi}
+
+Nun kann das Relationenschema und zugehörige Begriffe wie Relation und Tupel definiert werden.
+
+\begin{defi}[Relationenschema, Relation, Tupel]
+    \label{def:relation}
+    Eine Menge $R \subseteq \mathcal{U}$ heißt Relationenschema über dem Universum $\mathcal{U}$. Für $R=\{A_1, \ldots, A_n \}$ ist eine Relation $r$ über $R$, kurz $r(R)$, als eine endliche Menge von Abbildungen
+    \begin{equation*}
+        t:R \rightarrow \bigcup_{i=1}^m D_i
+    \end{equation*}
+    definiert. Dabei gilt $t(A) \in \mathrm{dom}(A)$. Die Abbildungen $t$ werden Tupel genannt.
+\end{defi}
+
+Vereinfacht gesagt, setzt sich eine Datenbank als Menge von Relationen und ein Datenbankschema als Menge der zugehörigen Relationenschemata zusammen.
+
+\begin{defi}[Datenbank, Datenbankschema, vgl.\cite{DBLP:books/daglib/0044627}]
+    Für $p \in \mathbb{N}$ ist eine Menge von Relationenschemata $S=\{R_1, \ldots, R_p\}$ als Datenbankschema definiert. Eine Datenbank $d$ über dem Schema $S$, kurz $d(S)$, ist eine Menge von Relationen
+    \begin{equation*}
+        d=\{r_1, \ldots, r_p \}
+    \end{equation*}
+    mit $r_i(R_i)$ für $1 \leq i \leq p$. Eine Relation $r \in d$ wird Basisrelation genannt.
+\end{defi}
 \subsection{Die Anfragesprache SQL}
 
 \subsection{Lineare Algebra in SQL}

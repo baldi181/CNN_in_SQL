@@ -402,8 +402,7 @@ In der Pooling-Schicht $P^2$ sind keine Gradienten zu bestimmen, da diese nicht 
 folgt mit der Mittelwert-Funktion $
 \phi:\RR^4 \rightarrow \RR^4$ und $\nabla \phi=\frac{1}{4} \mathbf{1}$ das Upsampling
 \begin{align*}
-    \delta^{C^2}_q(i,j)&= \delta^{P^2}_q\left( \lceil i/2 \rceil, \lceil j/2 \rceil\right) \cdot \nabla \phi(\lceil i/2 \rceil)\\
-    &=\delta^{P^2}_q\left( \lceil i/2 \rceil, \lceil j/2 \rceil\right) \cdot \frac{1}{4} \; \; \forall i,j \in [8], \forall q \in [12].
+    \delta^{C^2}_q(i,j)&= \delta^{P^2}_q\left( \lceil i/2 \rceil, \lceil j/2 \rceil\right) \cdot \frac{1}{4} \; \; \forall i,j \in [8], \forall q \in [12].
 \end{align*}
 Es gilt $\delta^{C^2} \in \RR^{8 \times 8 \times 12}$. Nun kann $\Delta K^2_{q,p}$ an einer Stelle $(u,v)$ als
 \begin{align*}
@@ -448,7 +447,7 @@ Mit $K^2_{q,p,rot180}(-u,-v):=K^2_{q,p}(u,v)$ ergibt sich
     \end{align*}
 Es gilt  $\delta^{P^1} \in \RR^{12 \times 12 \times 6}$. Mit dem Upsampling
 \begin{equation*}
-    \delta^{C^1}_p(i,j)= \delta^{P^1}_p \left( \lceil i/2 \rceil, \lceil j/2 \rceil \right), \forall i,j \in [24], \forall p \in [6]
+    \delta^{C^1}_p(i,j)= \delta^{P^1}_p \left( \lceil i/2 \rceil, \lceil j/2 \rceil \right) \cdot \frac{1}{4}, \; \; \forall i,j \in [24], \forall p \in [6]
 \end{equation*}
 kann nun der Gradient $\Delta K^1_{p,1}$ an einer Stelle $(u,v)$ als
 \begin{align*}
