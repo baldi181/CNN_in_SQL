@@ -3,7 +3,7 @@
 \section{Mathe/ ML Learning}
 
 \section{Relationale Datenbanksysteme}
-Relationale Datenbanksysteme gehören zu den erfolgreichsten und verbreitetsten Datenbanken, welche zur elektronischen Datenverwaltung in Computersystemen eingesetzt werden\cite{DBLP:books/daglib/0044627}. In diesem Abschnitt werden wichtige Grundbegriffe relationaler Datenbanksysteme erläutert und erklärt, wie Daten repräsentiert und verarbeitet werden können. Die Notation und Bezeichnungen basieren auf Heuer et al. \cite{DBLP:books/daglib/0044627}. Zum Abfragen und Manipulieren der Daten wird die Datenbanksparche SQL eingeführt und deren theoretische Grundlage im Abschnitt \ref{abs:SQL_intro} beleuchtet. Schließlich werden im Abschnitt \ref{abs:SQL_linalg} Methoden vorgestellt, um Objekte der linearen Algebra als Relationen darzustellen und damit verbundene Operationen, beispielsweise die Matrixvektormultiplikation, umzusetzen.
+Relationale Datenbanksysteme gehören zu den erfolgreichsten und verbreitetsten Datenbanken, welche zur elektronischen Datenverwaltung in Computersystemen eingesetzt werden\cite{DBLP:books/daglib/0044627}. In diesem Abschnitt werden wichtige Grundbegriffe relationaler Datenbanksysteme erläutert und erklärt, wie Daten repräsentiert und verarbeitet werden können. Die Notation und Bezeichnungen basieren auf Heuer et al. \cite{DBLP:books/daglib/0044627}. Zum Abfragen und Manipulieren der Daten wird die Datenbanksparche SQL eingeführt und deren theoretische Grundlage im Abschnitt \ref{abs:SQL_intro} beleuchtet. Schließlich werden im Abschnitt \ref{abs:SQL_linalg} Methoden vorgestellt, um Objekte der linearen Algebra als Relationen darzustellen und damit verbundene Operationen, beispielsweise die Matrixvektormultiplikation, datenbankgestützt umzusetzen.
 
 \subsection{Das Relationenmodell}
 Der Grundbaustein relationaler Datenbanksysteme bildet die Relation. Sie stellt eine mathematische Beschreibung einer Tabelle, welche aus Attributen und zugehörigen Domänen besteht, dar.
@@ -13,7 +13,7 @@ Der Grundbaustein relationaler Datenbanksysteme bildet die Relation. Sie stellt 
     Bezeichne die endliche Menge $\mathcal{U} \neq \emptyset$ das Universum. Ein Element $A \in \mathcal{U}$ heißt Attribut. Für $m \in \mathbb{N}$ sei $\mathcal{D}=\{D_1, \ldots, D_m\}$ eine Menge nichtleere Mengen. Ein Element $D_i \in \mathcal{D}$ wird Domäne genannt. Für eine Funktion $\mathrm{dom}: \mathcal{U} \rightarrow \mathcal{D}$ bezeichne $\mathrm{dom}(A)$ den Wertebereich von $A$ und $w \in \mathrm{dom}(A)$ ein Attributwert.
 \end{defi}
 
-Nun kann das Relationenschema und zugehörige Begriffe wie Relation und Tupel definiert werden.
+Nun können das Relationenschema und zugehörige Begriffe wie Relation und Tupel definiert werden.
 
 \begin{defi}[Relationenschema, Relation, Tupel]
     \label{def:relation}
@@ -21,7 +21,7 @@ Nun kann das Relationenschema und zugehörige Begriffe wie Relation und Tupel de
     \begin{equation*}
         t:R \rightarrow \bigcup_{i=1}^m D_i
     \end{equation*}
-    definiert. Dabei gilt $t(A) \in \mathrm{dom}(A)$. Die Abbildungen $t$ werden Tupel genannt und mit $t(A)$ ist die Restriktion der Abbildung auf $A \in R$ gemeint.
+    definiert. Dabei gilt $t(A) \in \mathrm{dom}(A)$. Die Abbildungen $t$ werden Tupel genannt und mit $t(A)$ ist die Restriktion der Abbildung $t$ auf $A \in R$ gemeint.
 \end{defi}
 
 Vereinfacht gesagt, setzt sich eine Datenbank als Menge von Relationen und ein Datenbankschema als Menge der zugehörigen Relationenschemata zusammen.
@@ -54,8 +54,48 @@ Das Managementsystem ist als abgekapseltes Softwaremodul zu interpretieren, welc
 
 Im Folgenden wird die Relationenalgebra als Anfragesprache vorgestellt. Sie bildet die theoretische Grundlage der weitverbreiteten Anfragesprache SQL, welche im Folgeabschnitt \ref{abs:SQL_intro} im Fokus steht. Zusammen mit der erweiterten Relationalgebra gelingt im Abschnitt \ref{abs:SQL_linalg} die Umsetzung von Basisoperationen der linearen Algebra in SQL.
 
-\subsection{Die Relationenalebra}
-In der Relationenalgebra werden Relationen als abstrakte Datentypen mit darauf definierten Operationen definiert. Eine Anfrage ist eine Komposition von Operatoren aus einem gewissen Operatorensystem. Ein geeignetes System ist $\omega= \{ \pi, \sigma, \bowtie \beta, ,\cup, \setminus\}$, welches im Folgenden definiert wird.
+\subsection{Die Relationenalgebra}
+In der Relationenalgebra werden Relationen als abstrakte Datentypen mit darauf definierten Operationen definiert. Eine Anfrage ist eine Komposition von Operatoren aus einem gewissen Operatorensystem. Ein geeignetes System ist $\omega= \{ \pi, \sigma, \bowtie, \cup, \setminus, \beta \}$, welches im Folgenden definiert wird.
+
+\begin{itemize}
+    \item Für eine relation $r(R)$ mit Tupeln $t$ wird die Projektion $\pi_X(r)$ auf das Attribut $X \subseteq R$ durch
+    \begin{equation*}
+        \pi_X(r):=\{t(X) \; | \; t \in r \}
+    \end{equation*}
+    definiert. 
+    \item Die Konstantenselektion $\sigma_{X \theta c}$ ist als
+    \begin{equation*}
+        \sigma_{X \theta c}(r):=\{t \; | \; t \in r \wedge t(X) \; \theta \; c\}
+    \end{equation*}
+    definiert.
+    Hierbei ist $\theta \in \{=, \neq\}$ möglich und bei Wertebereichen, welche mit einer Halbordnung ausgestattet sind, ist $\theta \in \{\leq, <, \geq, >, = ,\neq\}$ möglich. 
+    Bei Attributen mit demselben Wertebereich ist die Attributselektion $\sigma_{X \theta Y}$ für $X, Y \subseteq R$ als
+    \begin{equation*}
+        \sigma_{X \theta Y}(r):=\{t \; | \; t \in r \wedge t(X) \; \theta \; t(Y)\}
+    \end{equation*}    
+    definiert. Zudem können mehrere Selektionsbedingungen beliebig logisch mit $\wedge, \vee $ und $\neg$ in $F$ verknüpft werden. Die Selektion $\sigma$ ist eine Konstanten- oder Attributselektion.
+    \item Sind $r_1(R_1)$ und $r_2(R_2)$ Relationen, so verbindet der natürliche Verbund $\bowtie$ Tupel der beiden Relationen mit gleichen Attributwerten von gleichnamigen Attributen, also 
+    \begin{equation*}
+        r_1 \bowtie r_2 := \{t \; | \; t(R_1 \cup R_2) \wedge \exists t_1 \in r_1: t_1=t(R_1) \wedge \exists t_2 \in r_2: t_2=t(R_2)\}.
+    \end{equation*} Ist $R_1=R_2$ so wird $\bowtie$ zum mengentheoretischen Durchschnitt und für $R_1 \cap R_2=\emptyset$ ergibt sich das kartesische Produkt von $r_1$ und $r_2$.
+    \item Die Vereinigung zweier Relationen $r_1(R)$ und $r_2(R)$ über dem Relationenschema $R$ ist durch
+    \begin{equation*}
+        r_1 \cup r_2:=\{ t \; | \; t \in r_1 \wedge t \in r_2 \}
+    \end{equation*}
+    definiert.
+    \item Die Differenz zweier Relationen $r_1(R)$ und $r_2(R)$ über dem Relationenschema $R$ ist als
+    \begin{equation*}
+        r_1 \setminus r_2:=\{ t \; | \; t \in r_1 \wedge t \notin r_2 \}
+    \end{equation*}
+    definiert.
+    \item Die Umbenennung $\beta$ wird für die obigen Operationen benötigt, da diese von der Attributbenennung abhängen. Für $A \in R, B \notin (R \setminus \{A\})$ sei $R':=(R \setminus \{A\}) \cup B$. Die Umbenennung $\beta$ von $A$ zu $B$ in $r(R)$ ist für $\mathrm{dom}(A)=\mathrm{dom}(B)$ als
+    \begin{equation*}
+        \beta_{B \leftarrow A}:=\{t' \; | \; \exists t \in r: t'(R \setminus \{A\})=t(R \setminus \{A\}) \wedge t'(B)=t(A)\}
+    \end{equation*}
+    erklärt.
+\end{itemize}
+Es sei darauf hingewiesen, dass weitere Operatorensysteme existieren, welche zu $\omega$ äquivalent sind\cite{DBLP:books/daglib/0044627}.
+
 \subsection{Die Anfragesprache SQL}
 
 \subsection{Lineare Algebra in SQL}
