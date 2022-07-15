@@ -490,12 +490,48 @@
       \strng{authorbibnamehash}{d0706c7aa518d421a6f75f26ffbede17}
       \strng{authornamehash}{d0706c7aa518d421a6f75f26ffbede17}
       \strng{authorfullhash}{d0706c7aa518d421a6f75f26ffbede17}
+      \field{extraname}{1}
       \field{sortinit}{H}
       \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{title}{Datenbanken - Konzepte und Sprachen, 6. Auflage}
       \field{year}{2018}
+    \endentry
+    \entry{DBLP:books/mitp/HSS19}{book}{}
+      \name{author}{3}{}{%
+        {{hash=94f08f060565b9a18bab52b231e0abc8}{%
+           family={Heuer},
+           familyi={H\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod}}}%
+        {{hash=2a5ae6c3a7deb62e4508c393839b89cc}{%
+           family={Saake},
+           familyi={S\bibinitperiod},
+           given={Gunter},
+           giveni={G\bibinitperiod}}}%
+        {{hash=8db2abd6eb5de20da108c145f2c2019f}{%
+           family={Sattler},
+           familyi={S\bibinitperiod},
+           given={Kai{-}Uwe},
+           giveni={K\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {MITP}%
+      }
+      \strng{namehash}{d0706c7aa518d421a6f75f26ffbede17}
+      \strng{fullhash}{d0706c7aa518d421a6f75f26ffbede17}
+      \strng{bibnamehash}{d0706c7aa518d421a6f75f26ffbede17}
+      \strng{authorbibnamehash}{d0706c7aa518d421a6f75f26ffbede17}
+      \strng{authornamehash}{d0706c7aa518d421a6f75f26ffbede17}
+      \strng{authorfullhash}{d0706c7aa518d421a6f75f26ffbede17}
+      \field{extraname}{2}
+      \field{sortinit}{H}
+      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Datenbanken - Implementierungstechniken, 4. Auflage}
+      \field{year}{2019}
     \endentry
     \entry{hornik1991approximation}{article}{}
       \name{author}{1}{}{%

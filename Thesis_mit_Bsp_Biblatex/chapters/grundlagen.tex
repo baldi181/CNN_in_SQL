@@ -6,7 +6,7 @@
 Relationale Datenbanksysteme gehören zu den erfolgreichsten und verbreitetsten Datenbanken, welche zur elektronischen Datenverwaltung in Computersystemen eingesetzt werden\cite{DBLP:books/daglib/0044627}. In diesem Abschnitt werden wichtige Grundbegriffe relationaler Datenbanksysteme erläutert und erklärt, wie Daten repräsentiert und verarbeitet werden können. Die Notation und Bezeichnungen basieren auf Heuer et al. \cite{DBLP:books/daglib/0044627}. Zum Abfragen und Manipulieren der Daten wird die Datenbanksparche SQL eingeführt und deren theoretische Grundlage im Abschnitt \ref{abs:SQL_intro} beleuchtet. Schließlich werden im Abschnitt \ref{abs:SQL_linalg} Methoden vorgestellt, um Objekte der linearen Algebra als Relationen darzustellen und damit verbundene Operationen, beispielsweise die Matrixvektormultiplikation, umzusetzen.
 
 \subsection{Das Relationenmodell}
-Der Grundbaustein relationaler Datenbanksysteme bildet die Relation. Sie stellt eine mathematische Beschreibung einer Tabelle, welche aus Attributen und zugehörigen Domänen besteht, dar. Ein Datenbanksystem ist dann eine Menge dieser Tabellen. 
+Der Grundbaustein relationaler Datenbanksysteme bildet die Relation. Sie stellt eine mathematische Beschreibung einer Tabelle, welche aus Attributen und zugehörigen Domänen besteht, dar.
 
 \begin{defi}[Universum, Attribut, Domäne]
     \label{def:universum}
@@ -21,7 +21,7 @@ Nun kann das Relationenschema und zugehörige Begriffe wie Relation und Tupel de
     \begin{equation*}
         t:R \rightarrow \bigcup_{i=1}^m D_i
     \end{equation*}
-    definiert. Dabei gilt $t(A) \in \mathrm{dom}(A)$. Die Abbildungen $t$ werden Tupel genannt.
+    definiert. Dabei gilt $t(A) \in \mathrm{dom}(A)$. Die Abbildungen $t$ werden Tupel genannt und mit $t(A)$ ist die Restriktion der Abbildung auf $A \in R$ gemeint.
 \end{defi}
 
 Vereinfacht gesagt, setzt sich eine Datenbank als Menge von Relationen und ein Datenbankschema als Menge der zugehörigen Relationenschemata zusammen.
@@ -33,6 +33,29 @@ Vereinfacht gesagt, setzt sich eine Datenbank als Menge von Relationen und ein D
     \end{equation*}
     mit $r_i(R_i)$ für $1 \leq i \leq p$. Eine Relation $r \in d$ wird Basisrelation genannt.
 \end{defi}
+
+Weiter können Beziehungen zwischen Attributen und Relationen definiert werden. Für diese Arbeit ist der Begriff des Schlüsselattributs wesentlich.
+
+\begin{defi}[Schlüssel]
+    Sei $R$ ein Relationenschema und $K=\{B_1, \ldots, B_k\} \subseteq R$. Gilt für jede Relation $r(R)$ die Beziehung
+    \begin{equation*}
+         \forall t_1, t_2 \in r: \; [ t_1 \neq t_2 \Rightarrow \exists B \in K: \, t_1(B) \neq t_2(B)],
+    \end{equation*}
+    so wird $K$ identifizierende Attributmenge genannt. Ein Schlüssel ist eine bezüglich der Mengeninklusion $\subset$ minimal identifizierende Attributmenge. Die Attribute eines Schlüssels werden Primattribute genannt.
+\end{defi}
+
+Mit diesen Begriffen lässt sich das relationale Datenbanksystem definieren.
+
+\begin{defi}
+    Ein relationales Datenbanksystem ist eine Kombination aus Datenbank und Datenbankmanagementsystem, wobei letzteres zur Verwaltung der Daten verwendet wird.
+\end{defi}
+
+Das Managementsystem ist als abgekapseltes Softwaremodul zu interpretieren, welches bestimme Funktionen zur Verwaltung der Datenbank unter gewissen Anforderungen liefert. Typischerwiese sind die von Edgar F. Codd etablierten Anforderungspunkte, siehe \cite{DBLP:books/daglib/0044627}, von einem Datenbankmanagementsystem umzusetzen. Eine der geforderten Funktion bildet die Anfrage an eine Datenbank, um Daten auslesen oder manipulieren zu können. Dabei sei bemerkt, dass je nach Datenbanksystem die Anfragebearbeitung unterschiedlich abläuft. Für eine vertiefende Analyse von Architekturen, Funktionalitäten und Implementierungsmöglichkeiten von relationalen Datenbanksystemen sei auf Heuer et. al.\cite{DBLP:books/mitp/HSS19, DBLP:books/daglib/0044627} verwiesen. 
+
+Im Folgenden wird die Relationenalgebra als Anfragesprache vorgestellt. Sie bildet die theoretische Grundlage der weitverbreiteten Anfragesprache SQL, welche im Folgeabschnitt \ref{abs:SQL_intro} im Fokus steht. Zusammen mit der erweiterten Relationalgebra gelingt im Abschnitt \ref{abs:SQL_linalg} die Umsetzung von Basisoperationen der linearen Algebra in SQL.
+
+\subsection{Die Relationenalebra}
+In der Relationenalgebra werden Relationen als abstrakte Datentypen mit darauf definierten Operationen definiert. Eine Anfrage ist eine Komposition von Operatoren aus einem gewissen Operatorensystem. Ein geeignetes System ist $\omega= \{ \pi, \sigma, \bowtie \beta, ,\cup, \setminus\}$, welches im Folgenden definiert wird.
 \subsection{Die Anfragesprache SQL}
 
 \subsection{Lineare Algebra in SQL}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.1)  15 JUL 2022 18:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.1)  15 JUL 2022 19:29
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1103,43 +1103,46 @@ Document Style algorithmicx 1.2 - a greatly improved `algorithmic' style
 \ALG@tmplength=\skip104
 )
 Document Style - pseudocode environments for use with the `algorithmicx' style
+) (c:/texlive/2021/texmf-dist/tex/latex/ifsym/ifsym.sty
+Package: ifsym 2000/04/18 I.Kloeckl
+\c@ifsymcnt=\count492
 )
-\c@kor=\count492
-\c@hsatz=\count493
-\c@satz=\count494
-\c@prop=\count495
-\c@defi=\count496
-\c@lem=\count497
-\c@annahme=\count498
-\c@problem=\count499
-\c@bem=\count500
-\c@bsp=\count501
+\c@kor=\count493
+\c@hsatz=\count494
+\c@satz=\count495
+\c@prop=\count496
+\c@defi=\count497
+\c@lem=\count498
+\c@annahme=\count499
+\c@problem=\count500
+\c@bem=\count501
+\c@bsp=\count502
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 65.
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 66.
  (c:/texlive/2021/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) (./thesis_mit_Bsp.aux)
 \openout1 = `thesis_mit_Bsp.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 65.
-LaTeX Font Info:    ... okay on input line 65.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 66.
+LaTeX Font Info:    ... okay on input line 66.
 
 
 LaTeX hooks Warning: Generic hook
@@ -1152,19 +1155,19 @@ LaTeX hooks Warning: Generic hook
 (c:/texlive/2021/texmf-dist/tex/latex/translations/translations-basic-dictionary-german.trsl
 File: translations-basic-dictionary-german.trsl (german translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `german'. on input line 65.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `german'. on input line 66.
  (c:/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count502
+\scratchcounter=\count503
 \scratchdimen=\dimen332
 \scratchbox=\box87
-\nofMPsegments=\count503
-\nofMParguments=\count504
+\nofMPsegments=\count504
+\nofMParguments=\count505
 \everyMPshowfont=\toks56
-\MPscratchCnt=\count505
+\MPscratchCnt=\count506
 \MPscratchDim=\dimen333
-\MPnumerator=\count506
-\makeMPintoPDFobject=\count507
+\MPnumerator=\count507
+\makeMPintoPDFobject=\count508
 \everyMPtoPDFconversion=\toks57
 ) (c:/texlive/2021/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -1177,7 +1180,7 @@ Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\c@lstlisting=\count508
+\c@lstlisting=\count509
  (c:/texlive/2021/texmf-dist/tex/latex/pdflscape/pdflscape.sty
 Package: pdflscape 2019/12/05 v0.12 Display of landscape pages in PDF (HO)
  (c:/texlive/2021/texmf-dist/tex/latex/graphics/lscape.sty
@@ -1193,7 +1196,7 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )
 Package pgfplots notification 'compat/show suggested version=true': you might benefit from \pgfplotsset{compat=1.18} (current compat level: 1.12).
 
-Package scrhack Info: undefining \float@addtolists on input line 65.
+Package scrhack Info: undefining \float@addtolists on input line 66.
 Package biblatex Info: Trying to load language 'ngerman'...
 Package biblatex Info: ... file 'ngerman.lbx' found.
 (c:/texlive/2021/texmf-dist/tex/latex/biblatex/lbx/ngerman.lbx
@@ -1386,9 +1389,9 @@ Package biblatex Warning: The following entry could not be found
 (biblatex)                LaTeX afterwards.
 
 )
-Package biblatex Info: Reference section=0 on input line 65.
-Package biblatex Info: Reference segment=0 on input line 65.
-Package hyperref Info: Link coloring OFF on input line 65.
+Package biblatex Info: Reference section=0 on input line 66.
+Package biblatex Info: Reference segment=0 on input line 66.
+Package hyperref Info: Link coloring OFF on input line 66.
  (c:/texlive/2021/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (c:/texlive/2021/texmf-dist/tex/latex/refcount/refcount.sty
@@ -1396,11 +1399,11 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ) (c:/texlive/2021/texmf-dist/tex/generic/gettitlestring/gettitlestring.sty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count509
+\c@section@level=\count510
 )
-LaTeX Info: Redefining \ref on input line 65.
-LaTeX Info: Redefining \pageref on input line 65.
-LaTeX Info: Redefining \nameref on input line 65.
+LaTeX Info: Redefining \ref on input line 66.
+LaTeX Info: Redefining \pageref on input line 66.
+LaTeX Info: Redefining \nameref on input line 66.
  (./thesis_mit_Bsp.out) (./thesis_mit_Bsp.out)
 \@outlinefile=\write5
 \openout5 = `thesis_mit_Bsp.out'.
@@ -1412,50 +1415,50 @@ Class scrreprt Info: loading recommended package `bookmark'.
 (scrreprt)           `bookmarkpackage=false' before \begin{document} and
 (scrreprt)           you can avoid this message adding:
 (scrreprt)             \usepackage{bookmark}
-(scrreprt)           before \begin{document} on input line 65.
+(scrreprt)           before \begin{document} on input line 66.
  (c:/texlive/2021/texmf-dist/tex/latex/bookmark/bookmark.sty
 Package: bookmark 2020-11-06 v1.29 PDF bookmarks (HO)
  (c:/texlive/2021/texmf-dist/tex/latex/bookmark/bkm-pdftex.def
 File: bkm-pdftex.def 2020-11-06 v1.29 bookmark driver for pdfTeX (HO)
-\BKM@id=\count510
+\BKM@id=\count511
 ))
-Package hyperref Info: Option `pageanchor' set `false' on input line 66.
-LaTeX Font Info:    Trying to load font information for T1+lmss on input line 68.
+Package hyperref Info: Option `pageanchor' set `false' on input line 67.
+LaTeX Font Info:    Trying to load font information for T1+lmss on input line 69.
  (c:/texlive/2021/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 <pics/UNI-Logo_Siegel_4c_115mm.pdf, id=7, 703.62875pt x 144.54pt>
 File: pics/UNI-Logo_Siegel_4c_115mm.pdf Graphic file (type pdf)
 <use pics/UNI-Logo_Siegel_4c_115mm.pdf>
-Package pdftex.def Info: pics/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 68.
+Package pdftex.def Info: pics/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 69.
 (pdftex.def)             Requested size: 341.43306pt x 70.13708pt.
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 68.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 69.
  (c:/texlive/2021/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 68.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 69.
  (c:/texlive/2021/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 68.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 69.
  (c:/texlive/2021/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 68.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 69.
  (c:/texlive/2021/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 68.
+(Font)              <12> on input line 69.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 68.
+(Font)              <8> on input line 69.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 68.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 68.
+(Font)              <6> on input line 69.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 69.
  (c:/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 68.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 69.
  (c:/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
@@ -1466,7 +1469,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 73--73
+Underfull \hbox (badness 10000) in paragraph at lines 74--74
 
  []
 
@@ -1513,7 +1516,7 @@ Overfull \hbox (3.22041pt too wide) detected at line 16
 ] (./symbole.tex) [8
 
 ]
-Package hyperref Info: Option `pageanchor' set `true' on input line 92.
+Package hyperref Info: Option `pageanchor' set `true' on input line 93.
  (./einleitung.tex
 chapter 1.
 
@@ -1549,24 +1552,24 @@ LaTeX Warning: Reference `abs:SQL_linalg' on page 4 undefined on input line 6.
 
 ]
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+LaTeX Warning: Reference `abs:SQL_intro' on page 5 undefined on input line 55.
 
 
-Underfull \vbox (badness 1259) has occurred while \output is active []
+LaTeX Warning: Reference `abs:SQL_linalg' on page 5 undefined on input line 55.
 
- [5]
+[5] [6]
 
-LaTeX Warning: Reference `app:app_1' on page 6 undefined on input line 100.
+LaTeX Warning: Reference `app:app_1' on page 7 undefined on input line 123.
 
 
-LaTeX Warning: Reference `app:app_1' on page 6 undefined on input line 117.
+LaTeX Warning: Reference `app:app_1' on page 7 undefined on input line 140.
 
-[6]) (./chapters/neuralnetworks.tex [7]
+[7]) (./chapters/neuralnetworks.tex [8]
 chapter 3.
 
-LaTeX Warning: Reference `prob:lin_trenn' on page 8 undefined on input line 14.
+LaTeX Warning: Reference `prob:lin_trenn' on page 9 undefined on input line 14.
 
-<pics/chapter_neuralnetworks/perzeptron.png, id=228, 329.73187pt x 191.21437pt>
+<pics/chapter_neuralnetworks/perzeptron.png, id=240, 329.73187pt x 191.21437pt>
 File: pics/chapter_neuralnetworks/perzeptron.png Graphic file (type png)
 <use pics/chapter_neuralnetworks/perzeptron.png>
 Package pdftex.def Info: pics/chapter_neuralnetworks/perzeptron.png  used on input line 25.
@@ -1574,81 +1577,81 @@ Package pdftex.def Info: pics/chapter_neuralnetworks/perzeptron.png  used on inp
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[8
+[9
 
 ]
 
-LaTeX Warning: Reference `abs_linear_trenn' on page 9 undefined on input line 38.
+LaTeX Warning: Reference `abs_linear_trenn' on page 10 undefined on input line 38.
 
-[9 <./pics/chapter_neuralnetworks/perzeptron.png>]
+[10 <./pics/chapter_neuralnetworks/perzeptron.png>]
 
-LaTeX Warning: Reference `task_training' on page 10 undefined on input line 76.
+LaTeX Warning: Reference `task_training' on page 11 undefined on input line 76.
 
-[10] [11]
+[11] [12]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 139.
 
 
-LaTeX Warning: Reference `task_training' on page 12 undefined on input line 161.
+LaTeX Warning: Reference `task_training' on page 13 undefined on input line 161.
 
 
-LaTeX Warning: Reference `fund' on page 12 undefined on input line 165.
+LaTeX Warning: Reference `fund' on page 13 undefined on input line 165.
 
-[12] [13]
+[13] [14]
 Overfull \hbox (8.53754pt too wide) in paragraph at lines 222--223
 \T1/lmr/m/n/12 ro-na-len Net-zes mit der Softmax-Funktion als Ak-ti-vie-rungs-funk-ti-on lie-fert Strauÿ[[]]
  []
 
-[14] [15]
+[15] [16]
 
-LaTeX Warning: Reference `alg:minibatch' on page 16 undefined on input line 315.
+LaTeX Warning: Reference `alg:minibatch' on page 17 undefined on input line 315.
 
-[16] [17]
+[17] [18]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [18] [19] [20]) (./chapters/kap_cnn.tex [21]
+ [19] [20] [21]) (./chapters/kap_cnn.tex [22]
 chapter 4.
 
-LaTeX Warning: Reference `prob:class_image' on page 22 undefined on input line 4.
+LaTeX Warning: Reference `prob:class_image' on page 23 undefined on input line 4.
 
 
-LaTeX Warning: Reference `abs:conv_def' on page 22 undefined on input line 12.
+LaTeX Warning: Reference `abs:conv_def' on page 23 undefined on input line 12.
 
-[22
+[23
 
 ]
 Overfull \hbox (1.4704pt too wide) in paragraph at lines 54--56
 \T1/lmr/m/it/12 definiert. Hier wird über dem ge-sam-ten De-fi-ni-ti-ons-be-reich $\OML/lmm/m/it/12 D$ \T1/lmr/m/it/12 sum-miert. Ist $\OML/lmm/m/it/12 D$ \T1/lmr/m/it/12 be-schränkt,
  []
 
-[23]
+[24]
 Underfull \vbox (badness 1668) has occurred while \output is active []
 
- [24] [25] [26] [27]
+ [25] [26] [27] [28]
 
-LaTeX Warning: Reference `abb:error_conv' on page 28 undefined on input line 253.
+LaTeX Warning: Reference `abb:error_conv' on page 29 undefined on input line 253.
 
-<pics/chapters/CCN/mnist.png, id=488, 803.0pt x 450.68375pt>
+<pics/chapters/CCN/mnist.png, id=500, 803.0pt x 450.68375pt>
 File: pics/chapters/CCN/mnist.png Graphic file (type png)
 <use pics/chapters/CCN/mnist.png>
 Package pdftex.def Info: pics/chapters/CCN/mnist.png  used on input line 284.
 (pdftex.def)             Requested size: 355.09178pt x 199.2986pt.
-[28]
+[29]
 
-LaTeX Warning: Reference `abb_CNN_arch' on page 29 undefined on input line 290.
-
-
-LaTeX Warning: Reference `alg:online_backprop_CNN' on page 29 undefined on input line 303.
+LaTeX Warning: Reference `abb_CNN_arch' on page 30 undefined on input line 290.
 
 
-LaTeX Warning: Reference `def:xavier' on page 29 undefined on input line 307.
+LaTeX Warning: Reference `alg:online_backprop_CNN' on page 30 undefined on input line 303.
 
-[29 <./pics/chapters/CCN/mnist.png (PNG copy)>]
+
+LaTeX Warning: Reference `def:xavier' on page 30 undefined on input line 307.
+
+[30 <./pics/chapters/CCN/mnist.png (PNG copy)>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [30]
+ [31]
 Underfull \vbox (badness 1742) has occurred while \output is active []
 
- [31]
+ [32]
 Overfull \hbox (24.6502pt too wide) detected at line 413
 []
  []
@@ -1656,7 +1659,7 @@ Overfull \hbox (24.6502pt too wide) detected at line 413
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [32]
+ [33]
 Overfull \hbox (22.04568pt too wide) detected at line 442
 []
  []
@@ -1664,7 +1667,7 @@ Overfull \hbox (22.04568pt too wide) detected at line 442
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [33]
+ [34]
 Overfull \hbox (18.00522pt too wide) detected at line 458
 []
  []
@@ -1672,32 +1675,29 @@ Overfull \hbox (18.00522pt too wide) detected at line 458
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [34]) (./chapters/umsetzung_sql.tex [35]
+ [35]) (./chapters/umsetzung_sql.tex [36]
 chapter 5.
-) (./chapters/summery.tex [36
+) (./chapters/summery.tex [37
 
 ]
 chapter 6.
-) [37
+) [38
 
 ]
 chapter without number
-[38
+[39
 
 ]
-Overfull \hbox (10.22371pt too wide) in paragraph at lines 133--133
+Overfull \hbox (10.22371pt too wide) in paragraph at lines 134--134
 []\T1/lmr/m/n/12 J. Park und I. W. Sand-berg. ^^R  Uni-ver-sal Ap-pro-xi-ma-ti-on Using Radial-Basis-Function
  []
 
-[39]
-Overfull \hbox (13.75667pt too wide) in paragraph at lines 133--133
+[40]
+Overfull \hbox (13.75667pt too wide) in paragraph at lines 134--134
 []\T1/lmr/m/n/12 Juyang Weng, Na-ren-dra Ahu-ja und Tho-mas S Huang. ^^R  Cre-scep-tron: a self-organizing
  []
 
-[40] [41
-
-] [42
-
+[41] [42
 
 ]
 chapter A.
@@ -1708,52 +1708,54 @@ File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
 ) (c:/texlive/2021/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 ) (./code/HelloWorld.java)
-<AnleitungBibLatexBiber.pdf, id=578, 597.50829pt x 845.0471pt>
+<AnleitungBibLatexBiber.pdf, id=586, 597.50829pt x 845.0471pt>
 File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 <use AnleitungBibLatexBiber.pdf>
-Package pdftex.def Info: AnleitungBibLatexBiber.pdf  used on input line 184.
+Package pdftex.def Info: AnleitungBibLatexBiber.pdf  used on input line 185.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 <use AnleitungBibLatexBiber.pdf>
-Package pdftex.def Info: AnleitungBibLatexBiber.pdf  used on input line 184.
+Package pdftex.def Info: AnleitungBibLatexBiber.pdf  used on input line 185.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-<AnleitungBibLatexBiber.pdf, id=581, page=1, 597.50829pt x 845.0471pt>
+<AnleitungBibLatexBiber.pdf, id=589, page=1, 597.50829pt x 845.0471pt>
 File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 <use AnleitungBibLatexBiber.pdf, page 1>
-Package pdftex.def Info: AnleitungBibLatexBiber.pdf , page1 used on input line 184.
+Package pdftex.def Info: AnleitungBibLatexBiber.pdf , page1 used on input line 185.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
 File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 <use AnleitungBibLatexBiber.pdf, page 1>
-Package pdftex.def Info: AnleitungBibLatexBiber.pdf , page1 used on input line 184.
+Package pdftex.def Info: AnleitungBibLatexBiber.pdf , page1 used on input line 185.
 (pdftex.def)             Requested size: 537.75249pt x 760.53537pt.
  [1
+
+
 
 ]
 File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 <use AnleitungBibLatexBiber.pdf, page 1>
-Package pdftex.def Info: AnleitungBibLatexBiber.pdf , page1 used on input line 184.
+Package pdftex.def Info: AnleitungBibLatexBiber.pdf , page1 used on input line 185.
 (pdftex.def)             Requested size: 537.75249pt x 760.53537pt.
 File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 <use AnleitungBibLatexBiber.pdf, page 1>
-Package pdftex.def Info: AnleitungBibLatexBiber.pdf , page1 used on input line 184.
+Package pdftex.def Info: AnleitungBibLatexBiber.pdf , page1 used on input line 185.
 (pdftex.def)             Requested size: 537.75249pt x 760.53537pt.
 File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 <use AnleitungBibLatexBiber.pdf, page 1>
-Package pdftex.def Info: AnleitungBibLatexBiber.pdf , page1 used on input line 184.
+Package pdftex.def Info: AnleitungBibLatexBiber.pdf , page1 used on input line 185.
 (pdftex.def)             Requested size: 537.75249pt x 760.53537pt.
  [2 <./AnleitungBibLatexBiber.pdf>]
-<AnleitungBibLatexBiber.pdf, id=648, page=2, 597.50829pt x 845.0471pt>
+<AnleitungBibLatexBiber.pdf, id=656, page=2, 597.50829pt x 845.0471pt>
 File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 <use AnleitungBibLatexBiber.pdf, page 2>
-Package pdftex.def Info: AnleitungBibLatexBiber.pdf , page2 used on input line 184.
+Package pdftex.def Info: AnleitungBibLatexBiber.pdf , page2 used on input line 185.
 (pdftex.def)             Requested size: 537.75249pt x 760.53537pt.
 File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 <use AnleitungBibLatexBiber.pdf, page 2>
-Package pdftex.def Info: AnleitungBibLatexBiber.pdf , page2 used on input line 184.
+Package pdftex.def Info: AnleitungBibLatexBiber.pdf , page2 used on input line 185.
 (pdftex.def)             Requested size: 537.75249pt x 760.53537pt.
 File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 <use AnleitungBibLatexBiber.pdf, page 2>
-Package pdftex.def Info: AnleitungBibLatexBiber.pdf , page2 used on input line 184.
+Package pdftex.def Info: AnleitungBibLatexBiber.pdf , page2 used on input line 185.
 (pdftex.def)             Requested size: 537.75249pt x 760.53537pt.
  [3 <./AnleitungBibLatexBiber.pdf>] (./thesis_mit_Bsp.aux)
 
@@ -1766,18 +1768,18 @@ Package logreq Info: Writing requests to 'thesis_mit_Bsp.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 53229 strings out of 478353
- 1200423 string characters out of 5852101
- 2167046 words of memory out of 5000000
- 70263 multiletter control sequences out of 15000+600000
+ 53425 strings out of 478353
+ 1203143 string characters out of 5852101
+ 2167396 words of memory out of 5000000
+ 70451 multiletter control sequences out of 15000+600000
  490202 words of font info for 76 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  125i,18n,120p,10658b,3125s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}<c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmro12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss17.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss9.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmtt12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis_mit_Bsp.pdf (57 pages, 1093259 bytes).
+Output written on thesis_mit_Bsp.pdf (57 pages, 1097067 bytes).
 PDF statistics:
- 933 PDF objects out of 1000 (max. 8388607)
- 801 compressed objects within 9 object streams
- 227 named destinations out of 1000 (max. 500000)
- 357 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 945 PDF objects out of 1000 (max. 8388607)
+ 813 compressed objects within 9 object streams
+ 231 named destinations out of 1000 (max. 500000)
+ 365 words of extra memory for PDF output out of 10000 (max. 10000000)
 
