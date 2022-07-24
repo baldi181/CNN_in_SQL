@@ -208,11 +208,36 @@ verwendet. Diese berechnet die Angestelltenkosten bezüglich der jeweiligen Spez
 \caption{Es ist die Ergebnisrelation der zuvor beschriebenen Anfrage (\ref{anf:erw})
 \label{abb:erg_erw} abgebildet.}
 \end{figure}
-Weitere Operationen der Relationenalgebra wie die Vereinigung (\textbf{UNION}) und die Mengendifferenz (\textbf{EXCEPT}) können ebenfalls in SQL-Anfragen eingebunden werden. Es sei bemerkt, dass Ergebnisse von SQL-Anfrage immer als Multimengen angesehen werden. Um eine Duplikateleminierung zur Verfügung zu haben, kann die \textbf{SELECt}-Klausel durch den \textbf{DISTINCT}-Operator erweitert werden.  
+Weitere Operationen der Relationenalgebra wie die Vereinigung (\textbf{UNION}) und die Mengendifferenz (\textbf{EXCEPT}) können ebenfalls in SQL-Anfragen eingebunden werden. Es sei bemerkt, dass Ergebnisse von SQL-Anfrage immer als Multimengen angesehen werden. Um eine Duplikateleminierung zur Verfügung zu haben, kann die \textbf{SELECT}-Klausel durch den \textbf{DISTINCT}-Operator erweitert werden. Die Repräsentierung der Operatoren der Relationenalgebra durch SQL-Anfragen wird in Tabelle \ref{table:vgl} dargestellt. In vielen Datenbankmanagementsystemen gibt es weitere Funktionalitäten und Operatoren, welche in dieser Arbeit nicht weiter beleuchtet werden. Zur datenbankgestützten Umsetzung von linearer Algebra genügt der SQL-Anfragekern wie in Tabelle \ref{table:vgl}.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|l|} \hline
+        Relationenalgebra &SQL \\ 
+        \hline
+        Projektion $\pi$ &\textbf{SELECT} \textbf{DISTINCT} \\ 
+        &[\textbf{GROUP BY}] \\
+        \hline
+        Selektion $\sigma$ &\textbf{WHERE} ohne Schachtelung\\
+        \hline
+        Verbund $\bowtie$ &\textbf{FROM}, \textbf{WHERE}\\
+        &\textbf{FROM} mit \textbf{JOIN} \\
+        \hline
+        Umbenennung $\beta$ &\textbf{FROM} mit Tupelvariable \\ &\textbf{AS} \\
+        \hline
+        Differenz $\setminus$ & \textbf{WHERE} mit Schachtelung \\
+                  & \textbf{EXCEPT} \\
+        \hline
+        Vereinigung $\cup$ &\textbf{UNION}  \\
+        \hline        
+    \end{tabular}
+    \caption[tt]{Vergleich des Operatorensystems aus Abschnitt \ref{abs:rela_algebra} mit dem SQL-Anfragekern, vgl.\cite{DBLP:books/daglib/0044627}.}
+    \label{table:vgl}
+\end{table}
 
 
 \subsection{Lineare Algebra in SQL}
-\label{linalgsql}
+\label{abs:SQL_linalg}
 In diesem Abschnitt wird eine Darstellungsform von Vektoren und Matrizen als Relationen vorgestellt. Weiter werden Ideen zur Umsetzung wichtiger Basisoperationen mit Vektoren und Matrizen in SQL beleuchtet, da diese mathematischen Objekte bei zahlreichen statistischen Analysen eingestzt werden.
 \subsection{Matrixdarstellunng}
 Im Folgenden wird das \textit{Coordinate scheme} \cite{martendiss} als Schema für die Darstellung  von Matrizen und Vektoren genutzt. Dieses Schema gestaltet sich als einfach und ist daher weit verbreitet \cite{saad1990sparskit}.
