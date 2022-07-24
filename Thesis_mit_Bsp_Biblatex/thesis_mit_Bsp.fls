@@ -1657,6 +1657,8 @@ INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmssbx10.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/rm-lmbx12.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/rm-lmbx8.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/rm-lmbx6.tfm
+INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmr8.tfm
+INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmr6.tfm
 INPUT ./chapters/neuralnetworks.tex
 INPUT chapters/neuralnetworks.tex
 INPUT ./chapters/neuralnetworks.tex
@@ -1666,8 +1668,6 @@ INPUT ./pics/chapter_neuralnetworks/perzeptron.png
 INPUT pics/chapter_neuralnetworks/perzeptron.png
 INPUT ./pics/chapter_neuralnetworks/perzeptron.png
 INPUT ./pics/chapter_neuralnetworks/perzeptron.png
-INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmr8.tfm
-INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmr6.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmbx8.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmbx6.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/rm-lmr5.tfm

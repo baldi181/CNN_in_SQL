@@ -7,7 +7,7 @@ Gelingt dies, so können neuronale Netze genutzt werden, um bestimmte Muster in 
 Sie eignen sich daher für viele typische Aufgaben des maschinellen Lernens, beispielsweise für die Klassifikation digitalisierter Objekte.
 
 Im ersten Abschnitt wird das Perzeptron\cite{rosenblatt1958perceptron} als Grundeinheit eines neuronalen Netzes eingeführt. 
-Im folgenden Abschnitt wird das Konzept der Multi-Layer-Perzeptronen\cite{werbos1988generalization} durch die Kopplung mehrerer Perzeptronen mit bestimmten Übertragungs- und Aktivierungsfunktion in einem Netz erläutert. Diese Repräsentierung eines KNN wird im weiteren Verlauf dieser Arbeit genutzt. Weiter wird das Training neuronaler Netze hinsichtlich der Klassifikationsaufgabe im Abschnitt \ref{abs:task_training} erläutert und schließlich eine kurze Zusammenfassung \ref{abs:NN_conc} gegeben.
+Im folgenden Abschnitt wird das Konzept der Multi-Layer-Perzeptronen\cite{werbos1988generalization} durch die Kopplung mehrerer Perzeptronen mit bestimmten Übertragungs- und Aktivierungsfunktion in einem Netz erläutert. Diese Repräsentierung eines KNN wird im weiteren Verlauf dieser Arbeit genutzt. Weiter wird das Training neuronaler Netze hinsichtlich der Klassifikationsaufgabe im Abschnitt \ref{abs:task_training} erläutert und schließlich eine kurze Zusammenfassung im letzten Abschnitt \ref{abs:NN_conc} gegeben.
 
 \section{Das Perzeptron}
 \label{perzeptron_abs}
@@ -447,7 +447,7 @@ Für die Problemstellung in dieser Arbeit genügt es, das Online-Verfahren mit k
 \label{abs:NN_conc}
 In diesem Kapitel wurden KNN als Feed-Forward-Netze eingeführt. Es stellt sich heraus, dass diese Netze als probabilistische Modelle genutzt werden können, um Klassifikationsaufgaben hinreichend gut zu lösen. Dabei ist es wichtig die Hyper- und Modellparameter je nach Anwendung und Leistungsmaß optimal zu wählen. Dazu werden Trainingsdaten genutzt, um während eines Lernprozesses eine Fehlerfunktion zu Minimieren. Eine Lösung von \ref{eq:error_fun_opt} kann wegen der Komplexität der Fehlerfunktion $E$ bzw. der großen Menge von Parametern $\mathcal{W}$ selten direkt angegeben werden\cite{blum1992training}. Daher wird das Gradientenverfahren als iterativer Ansatz zur numerischen Mnimierung der Fehlerfunktion genutzt. Dabei sind partielle Ableitungen der Fehlerfunktion bezüglich der Parameter nötig, welche im Backpropagationsalgorithmus mithilfe der mehrdimensionalen Kettenregel berechnet werden können. 
 
-Bei der Analyse von Zeitreihen oder Bildern eignen sich abgewandelte Architekturen wie gefaltete neuronale Netze (CNN), engl. \textit{convolutional neural networks}, welche im folgenden Kapitel \ref{kap:CNN} näher erläutert werden. Diese Art neuronaler Netze wird im weiteren Verlauf dieser Arbeit im Fokus stehen.
+Bei der Analyse von Zeitreihen oder Bildern eignen sich abgewandelte Architekturen wie gefaltete neuronale Netze (CNN), engl. \textit{Convolutional Neural Networks}, welche im folgenden Kapitel \ref{kap:CNN} näher erläutert werden. Diese Art neuronaler Netze wird im weiteren Verlauf dieser Arbeit im Fokus stehen.
 
 
     
