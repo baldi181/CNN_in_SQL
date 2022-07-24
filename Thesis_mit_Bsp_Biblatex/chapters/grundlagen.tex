@@ -50,7 +50,7 @@ Mit diesen Begriffen lässt sich das relationale Datenbanksystem definieren.
     Ein relationales Datenbanksystem ist eine Kombination aus Datenbank und Datenbankmanagementsystem, wobei letzteres zur Verwaltung der Daten verwendet wird.
 \end{defi}
 
-Das Managementsystem ist als abgekapseltes Softwaremodul zu interpretieren, welches bestimme Funktionen zur Verwaltung der Datenbank unter gewissen Anforderungen liefert. Typischerwiese sind die von Edgar F. Codd etablierten Anforderungspunkte, siehe \cite{DBLP:books/daglib/0044627}, von einem Datenbankmanagementsystem umzusetzen. Eine der geforderten Funktion bildet die Anfrage an eine Datenbank, um Daten auslesen oder manipulieren zu können. Dabei sei bemerkt, dass je nach Datenbanksystem die Anfragebearbeitung unterschiedlich abläuft. Für eine vertiefende Analyse von Architekturen, Funktionalitäten und Implementierungsmöglichkeiten von relationalen Datenbanksystemen sei auf Heuer et. al.\cite{DBLP:books/mitp/HSS19, DBLP:books/daglib/0044627} verwiesen. 
+Das Managementsystem ist als abgekapseltes Softwaremodul zu interpretieren, welches bestimme Funktionen zur Verwaltung der Datenbank unter gewissen Anforderungen liefert. Typischerwiese sind die von Edgar F. Codd etablierten Anforderungspunkte, siehe \cite{DBLP:books/daglib/0044627}, von einem Datenbankmanagementsystem umzusetzen. Eine der geforderten Funktion bildet die Anfrage an eine Datenbank, um Daten auslesen zu können. Dabei sei bemerkt, dass je nach Datenbanksystem die Anfragebearbeitung unterschiedlich abläuft. Für eine vertiefende Analyse von Architekturen, Funktionalitäten und Implementierungsmöglichkeiten von relationalen Datenbanksystemen sei auf Heuer et. al.\cite{DBLP:books/mitp/HSS19, DBLP:books/daglib/0044627} verwiesen. 
 
 Im Folgenden wird die Relationenalgebra als Anfragesprache vorgestellt. Sie bildet die theoretische Grundlage der weitverbreiteten Anfragesprache SQL, welche im Folgeabschnitt \ref{abs:SQL_intro} im Fokus steht. Zusammen mit der erweiterten Relationalgebra gelingt im Abschnitt \ref{abs:SQL_linalg} die Umsetzung von Basisoperationen der linearen Algebra in SQL.
 
@@ -116,23 +116,23 @@ Das Resultat einer Anfrage ist wieder eine Relation. Daher ist es möglich, vers
 Um die Anfragebearbeitung nachzuvollziehen, seien im Folgenden zwei Relationen \textit{Angestellte} und \textit{Projekt} wie in den Abbildungen \ref{abb:angestellte} und \ref{abb:projekt} gegeben.
 \begin{figure}
     \centering
-\begin{tabular}{|c|c|c|c|} \hline
-    \multicolumn{4}{|c|}{\textbf{Angestellte}} \\ \hline
+\begin{tabular}{|c|c|c|c|c|} \hline
+    \multicolumn{5}{|c|}{\textbf{Angestellte}} \\ \hline
     \hline
-    ID &Name &Spezialisierung &Projektnummer\\ 
+    ID &Name &Spezialisierung &Projektnummer &Gehalt\\ 
     \hline
-    1 &Martin &Elektrotechnik &3\\ 
+    1 &Martin &Elektrotechnik &3 &2000\\ 
     \hline
-    2 &Lennardt &Informatik &1 \\
+    2 &Lennardt &Informatik &1 &1500\\
     \hline
-    3 &Johann &Informatik &3 \\
+    3 &Johann &Informatik &3 &1800\\
     \hline
-    4 &Anna &Buchhaltung &3 \\
+    4 &Anna &Buchhaltung &3 &2000\\
     \hline
-    5 &Antonia &Buchhaltung &2 \\ 
+    5 &Antonia &Buchhaltung &2 &2000\\ 
     \hline
 \end{tabular}
-\caption{Abgebildet ist die Beispielrelation Angestellte mit den Attributen ID, Name, Spezialisierung und Projektnummer.}
+\caption{Abgebildet ist die Beispielrelation Angestellte mit den Attributen ID, Name, Spezialisierung, Projektnummer und Gehalt.}
 \label{abb:angestellte}
 \end{figure}
 \begin{figure}
@@ -158,11 +158,10 @@ Die Anfrage
     \begin{split}
     & \mathbf{SELECT} \; \text{A.Name, P.Projektname}\\
     & \mathbf{FROM} \; \text{Angestellte A} \; \mathbf{JOIN} \; \text{Projek P} \; \mathbf{ON} \; \text{A.Projektnummer} = \text{P.Projektnummer}\\
-    &\mathbf{WHERE} \; \text{P.Status}=\text{'offen'}.
+    &\mathbf{WHERE} \; \text{P.Status}=\text{'offen'}
 \end{split}
 \end{align}
 liefert die Namen der Angestellten von offenden Projekten. Dementsprechend ist die Ergebnisrelation in Abbildung \ref{abb:result_relation} dargestellt.
-
 \begin{figure}[h]
     \centering
 \begin{tabular}{|c|c|} \hline
@@ -182,7 +181,35 @@ liefert die Namen der Angestellten von offenden Projekten. Dementsprechend ist d
 \caption{Zu sehen ist die Ergebnisrelation der zuvor beschriebenen Anfrage (\ref{anf:bsp}).}
 \label{abb:result_relation}
 \end{figure}
-Die Aliasnamen \glqq A\grqq{} und \glqq P\grqq{} dienen hier zur Übersicht und sind bei geschalteten SQL-Anfragen zwingend notwendig. Die klassiche Anfrage (\ref{anf:stand}) kann mit arithmetischen Operationen und Aggregatfunktionen sowie Gruppierungsfunktionen erweitert werden.
+Die Aliasnamen \glqq A\grqq{} und \glqq P\grqq{} dienen hier zur Übersicht und sind bei geschalteten SQL-Anfragen zwingend notwendig. Die klassiche Anfrage (\ref{anf:stand}) kann mit arithmetischen Operationen und Aggregatfunktionen sowie Gruppierungsfunktionen erweitert werden. Die Funktion \textbf{SUM} kann zur Summierung numerischer Attributwerte eines Attributs über mehrere Tupel verwendet werden. Die in dieser Arbeit oft verwendete \textbf{GROUP BY}-Klausel dient zur Gruppierung von Tupeln bezüglich gleicher Attributwertkombinationen. Eine Kombination aus der Aggregatfunktion \textbf{SUM} und der Gruppierung wird beispielsweise in der Anfrage
+\begin{align}
+    \label{anf:erw}
+    \begin{split}
+        & \mathbf{SELECT} \; \text{A.Spezialisierung}, \; \mathbf{SUM}(\text{A.Gehalt}) \; \mathbf{AS} \; \text{Angestelltenkosten}\\
+        & \mathbf{FROM} \; \text{Angestellte A} \\
+        &\mathbf{GROUP} \, \mathbf{BY} \; \text{A.Spezialisierung}
+    \end{split}
+\end{align}
+verwendet. Diese berechnet die Angestelltenkosten bezüglich der jeweiligen Spezialisierungen. Die Ergebnistabelle ist in Abbildung \ref{abb:erg_erw} dargestellt.
+\begin{figure}[h]
+    \centering
+\begin{tabular}{|c|c|} \hline
+    \multicolumn{2}{|c|}{\textbf{Ergebnis}} \\ \hline
+    \hline
+    A.Spezialisierung &Angestelltenkosten\\ 
+    \hline
+    Elektrotechnik &2000 \\ 
+    \hline
+    Informatik &3300\\
+    \hline
+    Buchhaltung &4000\\ 
+    \hline
+\end{tabular}
+\caption{Es ist die Ergebnisrelation der zuvor beschriebenen Anfrage (\ref{anf:erw})
+\label{abb:erg_erw} abgebildet.}
+\end{figure}
+Weitere Operationen der Relationenalgebra wie die Vereinigung (\textbf{UNION}) und die Mengendifferenz (\textbf{EXCEPT}) können ebenfalls in SQL-Anfragen eingebunden werden. Es sei bemerkt, dass Ergebnisse von SQL-Anfrage immer als Multimengen angesehen werden. Um eine Duplikateleminierung zur Verfügung zu haben, kann die \textbf{SELECt}-Klausel durch den \textbf{DISTINCT}-Operator erweitert werden.  
+
 
 \subsection{Lineare Algebra in SQL}
 \label{linalgsql}

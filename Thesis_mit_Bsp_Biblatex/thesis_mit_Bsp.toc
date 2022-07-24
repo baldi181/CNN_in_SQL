@@ -29,11 +29,11 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.2.3}Die Anfragesprache SQL}{7}{subsection.2.2.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2.4}Lineare Algebra in SQL}{8}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.4}Lineare Algebra in SQL}{9}{subsection.2.2.4}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.2.5}Matrixdarstellunng}{9}{subsection.2.2.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2.6}Basisoperationen}{9}{subsection.2.2.6}%
+\contentsline {subsection}{\numberline {2.2.6}Basisoperationen}{10}{subsection.2.2.6}%
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {3}Grundlagen neuronaler Netze}{12}{chapter.3}%
 \defcounter {refsection}{0}\relax 
@@ -71,7 +71,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {6}Zusammenfassung und Ausblick}{41}{chapter.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline Literatur}{42}{chapter*.21}%
+\contentsline {chapter}{\nonumberline Literatur}{42}{chapter*.22}%
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {A}Anhang}{i}{appendix.A}%
 \defcounter {refsection}{0}\relax 
