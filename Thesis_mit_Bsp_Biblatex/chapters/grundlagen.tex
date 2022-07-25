@@ -364,8 +364,9 @@ gegeben. Folgendes Beispiel illustriert diese Beziehung.
 \end{bsp}
 Die indirekte Indizierung der Matrixelemente sorgt zwar für eine Verminderung des Speicherbedarfs, erschwert jedoch die rein relationale Umsetzung von Operationen wie die Matrixvektormultiplikation. Hier kann ein objekt-relationaler Ansatz Abhilfe schaffen, bei dem Array-Datentypen genutzt werden, welche jedoch nur in bestimmten relationalen Datenbankmanagementsystemen unterstützt werden. 
 
-\begin{defi}[Spaltenkompression]
-Eine dünn besetzte Matrix $A$ wird als Relation
+\begin{defi}[Spaltenkompression, vgl.\cite{martendiss}]
+    \label{def:spaltenkomp}
+Eine dünn besetzte Matrix $A \in \RR^{m \times n}$ wird als Relation
 \begin{align*}
     \mathbf{A}(&i \; \mathrm{int} \; \mathrm{ARRAY}, \\
                &\underline{j} \; \mathrm{int}, \\
@@ -374,14 +375,22 @@ Eine dünn besetzte Matrix $A$ wird als Relation
 \end{align*}
 gespeichert. Diese Repräsentierung wird Spaltenkompression genannt und ist insbesondere für die Matrixvektormultiplikation nützlich.
 \end{defi}
-Zusammenfassend stellt sich heraus, dass wesentliche Objekte der linearen Algebra und damit verbundene fundamentale Operationen im SQL-Kern umgesetzt werden können.  
-Im folgenden Abschnitt werden diese Resultate genutzt und im Zusammenhang mit einem Machine- Learning-Verfahren eingesetzt.
-Problemstellung(Einleitung)
+In dem Open-Source-Datenbanksystem PostgreSQL \cite{momjian2001postgresql}, welches in dieser Arbeit genutzt wird, kann hinsichtlich der Matrixvektormultiplikation die \textbf{UNNEST}-Funktion genutzt werden. Diese Funktion wandelt ein Array in eine Menge von Tupeln um. Die Matrixvektormultiplikation $Ax$ mit dünnbesetzter Matrix A kann dann mithilfe der SQL-Anfage
 
-\begin{defi}
-    \label{def:image}
-    Eine Matrix $X \in [0,1]^{h \times b}$ heißt (Grauwert)-Bild mit der Höhe $h$ und Breite $b$. Mit $X_{i,j}$ wird der Grauwert des Pixels $p=(i,j)$ bezeichnet.
-\end{defi}
+\begin{align*}
+    &\mathbf{SELECT} \; i, \mathbf{SUM}(v)\\
+    &\mathbf{FROM} (\\
+    &\mathbf{SELECT} \; \mathbf{UNNEST}(A.i)\; \mathbf{AS} \; i, \mathbf{UNNEST}(A.v)*x.v \; \mathbf{AS} \; v \\
+    &\mathbf{FROM} \; A \; \mathbf{JOIN} \; x \; \mathbf{ON} \; A.j=x.i ) \; \text{temp} \\
+    &\mathbf{GROUP} \, \mathbf{BY} \; i
+\end{align*}
+berechnet werden.
+
+Zusammenfassend stellt sich heraus, dass wesentliche Objekte der linearen Algebra und fundamentale Operationen im SQL-Kern umgesetzt werden können. Für dicht besetzte Matrizen wird das Coordinate-Schema \ref{def:coordinate_sheme} benutzt, während für dünn besetzte Probleme das Spaltenkompression-Schema \ref{def:spaltenkomp} genutzt wird. Beide Darstellungsformen erlauben kompakte SQL-Anfragen für die Matrixvektormultiplikation. Für eine tiefere Analyse dieser und anderer Darstellungsmöglichkeiten und deren Perfomance hinsichtlich verschiedener Basisoperationen sei auf Marten\cite{martendiss} verwiesen.
+
+
+%Im folgenden Abschnitt werden diese Resultate genutzt und im Zusammenhang mit einem Machine- Learning-Verfahren eingesetzt.
+
 
 
 Training, Aufgabe Leistung
@@ -408,11 +417,4 @@ warum NN?
 
 warum später CNN?
 
-
-\section*{SQL}
-Relationen, Tensoren
-
-Marizen/Vektoren als Relationen
-
-Basisoperationen
 
