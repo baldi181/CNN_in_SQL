@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.1)  25 JUL 2022 13:23
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.1)  25 JUL 2022 15:41
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1544,19 +1544,18 @@ File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 chapter 2.
 [4
 
-] [5] [6] [7] [8] [9] [10]
+] [5] [6] [7] [8] [9]
+Underfull \vbox (badness 2181) has occurred while \output is active []
 
-LaTeX Warning: Reference `app:app_1' on page 11 undefined on input line 312.
+ [10]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-
-LaTeX Warning: Reference `app:app_1' on page 11 undefined on input line 329.
-
-[11]) (./chapters/neuralnetworks.tex [12]
+ [11] [12]) (./chapters/neuralnetworks.tex [13]
 chapter 3.
 
-LaTeX Warning: Reference `prob:lin_trenn' on page 13 undefined on input line 14.
+LaTeX Warning: Reference `prob:lin_trenn' on page 14 undefined on input line 14.
 
-<pics/chapter_neuralnetworks/perzeptron.png, id=291, 329.73187pt x 191.21437pt>
+<pics/chapter_neuralnetworks/perzeptron.png, id=310, 329.73187pt x 191.21437pt>
 File: pics/chapter_neuralnetworks/perzeptron.png Graphic file (type png)
 <use pics/chapter_neuralnetworks/perzeptron.png>
 Package pdftex.def Info: pics/chapter_neuralnetworks/perzeptron.png  used on input line 25.
@@ -1564,81 +1563,81 @@ Package pdftex.def Info: pics/chapter_neuralnetworks/perzeptron.png  used on inp
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[13
+[14
 
 ]
 
-LaTeX Warning: Reference `abs_linear_trenn' on page 14 undefined on input line 38.
+LaTeX Warning: Reference `abs_linear_trenn' on page 15 undefined on input line 38.
 
-[14 <./pics/chapter_neuralnetworks/perzeptron.png>]
+[15 <./pics/chapter_neuralnetworks/perzeptron.png>]
 
-LaTeX Warning: Reference `task_training' on page 15 undefined on input line 76.
+LaTeX Warning: Reference `task_training' on page 16 undefined on input line 76.
 
-[15] [16]
+[16] [17]
 Package hyperref Info: bookmark level for unknown algorithm defaults to 0 on input line 139.
 
 
-LaTeX Warning: Reference `task_training' on page 17 undefined on input line 161.
+LaTeX Warning: Reference `task_training' on page 18 undefined on input line 161.
 
 
-LaTeX Warning: Reference `fund' on page 17 undefined on input line 165.
+LaTeX Warning: Reference `fund' on page 18 undefined on input line 165.
 
-[17] [18]
+[18] [19]
 Overfull \hbox (8.53754pt too wide) in paragraph at lines 222--223
 \T1/lmr/m/n/12 ro-na-len Net-zes mit der Softmax-Funktion als Ak-ti-vie-rungs-funk-ti-on lie-fert Strauÿ[[]]
  []
 
-[19] [20]
+[20] [21]
 
-LaTeX Warning: Reference `alg:minibatch' on page 21 undefined on input line 315.
+LaTeX Warning: Reference `alg:minibatch' on page 22 undefined on input line 315.
 
-[21] [22]
+[22] [23]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [23] [24] [25]) (./chapters/kap_cnn.tex [26]
+ [24] [25] [26]) (./chapters/kap_cnn.tex [27]
 chapter 4.
 
-LaTeX Warning: Reference `prob:class_image' on page 27 undefined on input line 4.
+LaTeX Warning: Reference `prob:class_image' on page 28 undefined on input line 4.
 
 
-LaTeX Warning: Reference `abs:conv_def' on page 27 undefined on input line 12.
+LaTeX Warning: Reference `abs:conv_def' on page 28 undefined on input line 12.
 
-[27
+[28
 
 ]
 Overfull \hbox (1.4704pt too wide) in paragraph at lines 54--56
 \T1/lmr/m/it/12 definiert. Hier wird über dem ge-sam-ten De-fi-ni-ti-ons-be-reich $\OML/lmm/m/it/12 D$ \T1/lmr/m/it/12 sum-miert. Ist $\OML/lmm/m/it/12 D$ \T1/lmr/m/it/12 be-schränkt,
  []
 
-[28]
+[29]
 Underfull \vbox (badness 1668) has occurred while \output is active []
 
- [29] [30] [31] [32]
+ [30] [31] [32] [33]
 
-LaTeX Warning: Reference `abb:error_conv' on page 33 undefined on input line 253.
+LaTeX Warning: Reference `abb:error_conv' on page 34 undefined on input line 253.
 
-<pics/chapters/CCN/mnist.png, id=552, 803.0pt x 450.68375pt>
+<pics/chapters/CCN/mnist.png, id=571, 803.0pt x 450.68375pt>
 File: pics/chapters/CCN/mnist.png Graphic file (type png)
 <use pics/chapters/CCN/mnist.png>
 Package pdftex.def Info: pics/chapters/CCN/mnist.png  used on input line 284.
 (pdftex.def)             Requested size: 355.09178pt x 199.2986pt.
-[33]
+[34]
 
-LaTeX Warning: Reference `abb_CNN_arch' on page 34 undefined on input line 290.
-
-
-LaTeX Warning: Reference `alg:online_backprop_CNN' on page 34 undefined on input line 303.
+LaTeX Warning: Reference `abb_CNN_arch' on page 35 undefined on input line 290.
 
 
-LaTeX Warning: Reference `def:xavier' on page 34 undefined on input line 307.
+LaTeX Warning: Reference `alg:online_backprop_CNN' on page 35 undefined on input line 303.
 
-[34 <./pics/chapters/CCN/mnist.png (PNG copy)>]
+
+LaTeX Warning: Reference `def:xavier' on page 35 undefined on input line 307.
+
+[35 <./pics/chapters/CCN/mnist.png (PNG copy)>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [35]
+ [36]
 Underfull \vbox (badness 1742) has occurred while \output is active []
 
- [36]
+ [37]
 Overfull \hbox (24.6502pt too wide) detected at line 413
 []
  []
@@ -1646,7 +1645,7 @@ Overfull \hbox (24.6502pt too wide) detected at line 413
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [37]
+ [38]
 Overfull \hbox (22.04568pt too wide) detected at line 442
 []
  []
@@ -1654,7 +1653,7 @@ Overfull \hbox (22.04568pt too wide) detected at line 442
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [38]
+ [39]
 Overfull \hbox (18.00522pt too wide) detected at line 458
 []
  []
@@ -1662,32 +1661,36 @@ Overfull \hbox (18.00522pt too wide) detected at line 458
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [39]) (./chapters/umsetzung_sql.tex [40]
+ [40]) (./chapters/umsetzung_sql.tex [41]
 chapter 5.
-) (./chapters/summery.tex [41
+) (./chapters/summery.tex [42
 
 ]
 chapter 6.
-) [42
+) (./chapters/appendix.tex [43
+
+]
+chapter A.
+) [44
 
 ]
 chapter without number
-[43
+[45
 
 ]
 Overfull \hbox (10.22371pt too wide) in paragraph at lines 134--134
 []\T1/lmr/m/n/12 J. Park und I. W. Sand-berg. ^^R  Uni-ver-sal Ap-pro-xi-ma-ti-on Using Radial-Basis-Function
  []
 
-[44]
+[46]
 Overfull \hbox (13.75667pt too wide) in paragraph at lines 134--134
 []\T1/lmr/m/n/12 Juyang Weng, Na-ren-dra Ahu-ja und Tho-mas S Huang. ^^R  Cre-scep-tron: a self-organizing
  []
 
-[45] [46
+[47] [48
 
 ]
-chapter A.
+chapter B.
 (c:/texlive/2021/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 ) (c:/texlive/2021/texmf-dist/tex/latex/listings/lstmisc.sty
@@ -1695,7 +1698,7 @@ File: lstmisc.sty 2020/03/24 1.8d (Carsten Heinz)
 ) (c:/texlive/2021/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 ) (./code/HelloWorld.java)
-<AnleitungBibLatexBiber.pdf, id=639, 597.50829pt x 845.0471pt>
+<AnleitungBibLatexBiber.pdf, id=662, 597.50829pt x 845.0471pt>
 File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 <use AnleitungBibLatexBiber.pdf>
 Package pdftex.def Info: AnleitungBibLatexBiber.pdf  used on input line 185.
@@ -1704,7 +1707,7 @@ File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 <use AnleitungBibLatexBiber.pdf>
 Package pdftex.def Info: AnleitungBibLatexBiber.pdf  used on input line 185.
 (pdftex.def)             Requested size: 597.50682pt x 845.04504pt.
-<AnleitungBibLatexBiber.pdf, id=642, page=1, 597.50829pt x 845.0471pt>
+<AnleitungBibLatexBiber.pdf, id=665, page=1, 597.50829pt x 845.0471pt>
 File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 <use AnleitungBibLatexBiber.pdf, page 1>
 Package pdftex.def Info: AnleitungBibLatexBiber.pdf , page1 used on input line 185.
@@ -1731,7 +1734,7 @@ File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 Package pdftex.def Info: AnleitungBibLatexBiber.pdf , page1 used on input line 185.
 (pdftex.def)             Requested size: 537.75249pt x 760.53537pt.
  [2 <./AnleitungBibLatexBiber.pdf>]
-<AnleitungBibLatexBiber.pdf, id=707, page=2, 597.50829pt x 845.0471pt>
+<AnleitungBibLatexBiber.pdf, id=731, page=2, 597.50829pt x 845.0471pt>
 File: AnleitungBibLatexBiber.pdf Graphic file (type pdf)
 <use AnleitungBibLatexBiber.pdf, page 2>
 Package pdftex.def Info: AnleitungBibLatexBiber.pdf , page2 used on input line 185.
@@ -1755,18 +1758,18 @@ Package logreq Info: Writing requests to 'thesis_mit_Bsp.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 53452 strings out of 478353
- 1203527 string characters out of 5852101
- 2168133 words of memory out of 5000000
- 70465 multiletter control sequences out of 15000+600000
+ 53476 strings out of 478353
+ 1204135 string characters out of 5852101
+ 2168378 words of memory out of 5000000
+ 70477 multiletter control sequences out of 15000+600000
  490202 words of font info for 76 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  125i,18n,120p,10658b,3125s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}<c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmro12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss17.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss9.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmtt12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis_mit_Bsp.pdf (61 pages, 1113537 bytes).
+Output written on thesis_mit_Bsp.pdf (63 pages, 1120784 bytes).
 PDF statistics:
- 999 PDF objects out of 1000 (max. 8388607)
- 859 compressed objects within 9 object streams
- 244 named destinations out of 1000 (max. 500000)
+ 1025 PDF objects out of 1200 (max. 8388607)
+ 883 compressed objects within 9 object streams
+ 254 named destinations out of 1000 (max. 500000)
  365 words of extra memory for PDF output out of 10000 (max. 10000000)
 

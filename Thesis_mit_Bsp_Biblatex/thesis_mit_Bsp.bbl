@@ -350,6 +350,45 @@
       \field{volume}{12}
       \field{year}{2011}
     \endentry
+    \entry{duff1989sparse}{article}{}
+      \name{author}{3}{}{%
+        {{hash=0866c3fafff56d000945159adee45c40}{%
+           family={Duff},
+           familyi={D\bibinitperiod},
+           given={Iain\bibnamedelima S},
+           giveni={I\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=e4c58d6091a7b4cc4681af33c0d824f7}{%
+           family={Grimes},
+           familyi={G\bibinitperiod},
+           given={Roger\bibnamedelima G},
+           giveni={R\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+        {{hash=08eb2e627b2b638a0c6e57e8042e7889}{%
+           family={Lewis},
+           familyi={L\bibinitperiod},
+           given={John\bibnamedelima G},
+           giveni={J\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {ACM New York, NY, USA}%
+      }
+      \strng{namehash}{33d73fcf7270bffc1a123b86cfed9fa4}
+      \strng{fullhash}{33d73fcf7270bffc1a123b86cfed9fa4}
+      \strng{bibnamehash}{33d73fcf7270bffc1a123b86cfed9fa4}
+      \strng{authorbibnamehash}{33d73fcf7270bffc1a123b86cfed9fa4}
+      \strng{authornamehash}{33d73fcf7270bffc1a123b86cfed9fa4}
+      \strng{authorfullhash}{33d73fcf7270bffc1a123b86cfed9fa4}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{ACM Transactions on Mathematical Software (TOMS)}
+      \field{number}{1}
+      \field{title}{Sparse matrix test problems}
+      \field{volume}{15}
+      \field{year}{1989}
+      \field{pages}{1\bibrangedash 14}
+      \range{pages}{14}
+    \endentry
     \entry{forster2017analysis}{book}{}
       \name{author}{1}{}{%
         {{hash=f8e53a8257ed07acdf13331b689a4e08}{%
@@ -608,6 +647,19 @@
       \verb https://www.sciencedirect.com/science/article/pii/0893608089900208
       \endverb
     \endentry
+    \entry{30711}{article}{}
+      \field{sortinit}{I}
+      \field{sortinithash}{8d291c51ee89b6cd86bf5379f0b151d8}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{ANSI/IEEE Std 754-1985}
+      \field{title}{IEEE Standard for Binary Floating-Point Arithmetic}
+      \field{year}{1985}
+      \field{pages}{1\bibrangedash 20}
+      \range{pages}{20}
+      \verb{doi}
+      \verb 10.1109/IEEESTD.1985.82928
+      \endverb
+    \endentry
     \entry{Kingma2015AdamAM}{article}{}
       \name{author}{2}{}{%
         {{hash=b6fbd171848aad4edf3925543f1f1522}{%
@@ -669,6 +721,32 @@
       \field{year}{2012}
       \field{pages}{1106\bibrangedash 1114}
       \range{pages}{9}
+    \endentry
+    \entry{DBLP:books/daglib/0067064}{book}{}
+      \name{author}{1}{}{%
+        {{hash=b0301a5b0271c6618421467d19ba5352}{%
+           family={Lans},
+           familyi={L\bibinitperiod},
+           given={Rick\bibnamedelima F.},
+           giveni={R\bibinitperiod\bibinitdelim F\bibinitperiod},
+           prefix={van\bibnamedelima der},
+           prefixi={v\bibinitperiod\bibinitdelim d\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Prentice Hall}%
+      }
+      \strng{namehash}{b0301a5b0271c6618421467d19ba5352}
+      \strng{fullhash}{b0301a5b0271c6618421467d19ba5352}
+      \strng{bibnamehash}{b0301a5b0271c6618421467d19ba5352}
+      \strng{authorbibnamehash}{b0301a5b0271c6618421467d19ba5352}
+      \strng{authornamehash}{b0301a5b0271c6618421467d19ba5352}
+      \strng{authorfullhash}{b0301a5b0271c6618421467d19ba5352}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{SQL} standard - a complete reference}
+      \field{year}{1989}
     \endentry
     \entry{DBLP:journals/pieee/LeCunBBH98}{article}{}
       \name{author}{4}{}{%
