@@ -113,15 +113,15 @@ SQL ist aus mehreren Teilsprachen aufgebaut, welche jeweils unterschiedliche Auf
 \end{align}
 Das Resultat einer Anfrage ist wieder eine Relation. Daher ist es möglich, verschachtelte Anfragen zu formulieren. Die \textbf{SELECT}-Anweisung gibt durch die Attribute in der Projektionsliste das Schema der Ergebnistabelle vor. Die \textbf{FROM}-Klausel beinhaltet die Relationenliste, in welcher die Relationen aufgeführt sind, aus denen Attribute selektiert werden sollen. Die Liste kann aus einer oder aus mehreren Unteranfragen bestehen, welche optional durch Operationen wie dem natürlichen Verbund oder dem kartesischem Produkt kombiniert werden können. Ebenfalls optional ist die \textbf{WHERE}-Klausel, welche Selektionsbedingungen bezüglich Konstanten oder Attributen enthält. 
 
-Um die Anfragebearbeitung nachzuvollziehen, seien im Folgenden zwei Relationen \textit{Angestellte} und \textit{Projekt} wie in den Abbildungen \ref{abb:angestellte} und \ref{abb:projekt} gegeben.
-\begin{figure}
+Um dden Anfragemechanismus nachzuvollziehen, seien im Folgenden zwei Relationen \textit{Angestellte} und \textit{Projekt} wie in den Tabellen \ref{abb:angestellte} und \ref{abb:projekt} gegeben.
+\begin{table}
     \centering
 \begin{tabular}{|c|c|c|c|c|} \hline
     \multicolumn{5}{|c|}{\textbf{Angestellte}} \\ \hline
     \hline
     ID &Name &Spezialisierung &Projektnummer &Gehalt\\ 
     \hline
-    1 &Martin &Elektrotechnik &3 &2000\\ 
+    1 &Martin &Elektrotechnik &3 &2300\\ 
     \hline
     2 &Lennardt &Informatik &1 &1500\\
     \hline
@@ -134,8 +134,8 @@ Um die Anfragebearbeitung nachzuvollziehen, seien im Folgenden zwei Relationen \
 \end{tabular}
 \caption{Abgebildet ist die Beispielrelation Angestellte mit den Attributen ID, Name, Spezialisierung, Projektnummer und Gehalt.}
 \label{abb:angestellte}
-\end{figure}
-\begin{figure}
+\end{table}
+\begin{table}
     \centering
 \begin{tabular}{|c|c|c|c|c|} \hline
     \multicolumn{5}{|c|}{\textbf{Projekt}} \\ \hline
@@ -151,18 +151,18 @@ Um die Anfragebearbeitung nachzuvollziehen, seien im Folgenden zwei Relationen \
 \end{tabular}
 \caption{Abgebildet ist die Beispielrelation Projekt mit den Attributen Projektnummer, Projektname, Budget, Ort und Status.}
 \label{abb:projekt}
-\end{figure}
+\end{table}
 Die Anfrage 
 \begin{align}
     \label{anf:bsp}
     \begin{split}
     & \mathbf{SELECT} \; \text{A.Name, P.Projektname}\\
-    & \mathbf{FROM} \; \text{Angestellte A} \; \mathbf{JOIN} \; \text{Projek P} \; \mathbf{ON} \; \text{A.Projektnummer} = \text{P.Projektnummer}\\
+    & \mathbf{FROM} \; \text{Angestellte A} \; \mathbf{JOIN} \; \text{Projekt P} \; \mathbf{ON} \; \text{A.Projektnummer} = \text{P.Projektnummer}\\
     &\mathbf{WHERE} \; \text{P.Status}=\text{'offen'}
 \end{split}
 \end{align}
-liefert die Namen der Angestellten von offenden Projekten. Dementsprechend ist die Ergebnisrelation in Abbildung \ref{abb:result_relation} dargestellt.
-\begin{figure}[h]
+liefert die Namen der Angestellten von offenden Projekten. Dementsprechend ist die Ergebnisrelation in Tabelle \ref{abb:result_relation} dargestellt.
+\begin{table}[h]
     \centering
 \begin{tabular}{|c|c|} \hline
     \multicolumn{2}{|c|}{\textbf{Ergebnis}} \\ \hline
@@ -178,9 +178,9 @@ liefert die Namen der Angestellten von offenden Projekten. Dementsprechend ist d
     Antonia &Verwaltung \\
     \hline
 \end{tabular}
-\caption{Zu sehen ist die Ergebnisrelation der zuvor beschriebenen Anfrage (\ref{anf:bsp}).}
+\caption[]{Zu sehen ist die Ergebnisrelation der zuvor beschriebenen Anfrage (\ref{anf:bsp}).}
 \label{abb:result_relation}
-\end{figure}
+\end{table}
 Die Aliasnamen \glqq A\grqq{} und \glqq P\grqq{} dienen hier zur Übersicht und sind bei geschalteten SQL-Anfragen zwingend notwendig. Die klassiche Anfrage (\ref{anf:stand}) kann mit arithmetischen Operationen und Aggregatfunktionen sowie Gruppierungsfunktionen erweitert werden. Die Funktion \textbf{SUM} kann zur Summierung numerischer Attributwerte eines Attributs über mehrere Tupel verwendet werden. Die in dieser Arbeit oft verwendete \textbf{GROUP BY}-Klausel dient zur Gruppierung von Tupeln bezüglich gleicher Attributwertkombinationen. Eine Kombination aus der Aggregatfunktion \textbf{SUM} und der Gruppierung wird beispielsweise in der Anfrage
 \begin{align}
     \label{anf:erw}
@@ -190,25 +190,36 @@ Die Aliasnamen \glqq A\grqq{} und \glqq P\grqq{} dienen hier zur Übersicht und 
         &\mathbf{GROUP} \, \mathbf{BY} \; \text{A.Spezialisierung}
     \end{split}
 \end{align}
-verwendet. Diese berechnet die Angestelltenkosten bezüglich der jeweiligen Spezialisierungen. Die Ergebnistabelle ist in Abbildung \ref{abb:erg_erw} dargestellt.
-\begin{figure}[h]
+verwendet. Diese berechnet die Angestelltenkosten und gruppiert sie nach den jeweiligen Spezialisierungen. Die Ergebnistabelle ist in Tabelle \ref{abb:erg_erw} dargestellt.
+\begin{table}[h]
     \centering
 \begin{tabular}{|c|c|} \hline
     \multicolumn{2}{|c|}{\textbf{Ergebnis}} \\ \hline
     \hline
     A.Spezialisierung &Angestelltenkosten\\ 
     \hline
-    Elektrotechnik &2000 \\ 
+    Elektrotechnik &2300 \\ 
     \hline
     Informatik &3300\\
     \hline
     Buchhaltung &4000\\ 
     \hline
 \end{tabular}
-\caption{Es ist die Ergebnisrelation der zuvor beschriebenen Anfrage (\ref{anf:erw})
+\caption[]{Es ist die Ergebnisrelation der zuvor beschriebenen Anfrage (\ref{anf:erw})
 \label{abb:erg_erw} abgebildet.}
-\end{figure}
-Weitere Operationen der Relationenalgebra wie die Vereinigung (\textbf{UNION}) und die Mengendifferenz (\textbf{EXCEPT}) können ebenfalls in SQL-Anfragen eingebunden werden. Es sei bemerkt, dass Ergebnisse von SQL-Anfrage immer als Multimengen angesehen werden. Um eine Duplikateleminierung zur Verfügung zu haben, kann die \textbf{SELECT}-Klausel durch den \textbf{DISTINCT}-Operator erweitert werden. Die Repräsentierung der Operatoren der Relationenalgebra durch SQL-Anfragen wird in Tabelle \ref{table:vgl} dargestellt. In vielen Datenbankmanagementsystemen gibt es weitere Funktionalitäten und Operatoren, welche in dieser Arbeit nicht weiter beleuchtet werden. Zur datenbankgestützten Umsetzung von linearer Algebra genügt der SQL-Anfragekern wie in Tabelle \ref{table:vgl}.
+\end{table}
+Ein Beispiel einer geschalteten Anfrage zur Bestimmung des Angestellten mit dem höchstem Gehalt ist durch
+\begin{align}
+    \label{anf:schachtel}
+    \begin{split}
+        & \mathbf{SELECT} \; \text{A.Name}\;  \mathbf{AS} \; \text{Topverdiener},\; \text{A.Gehalt}\\
+        & \mathbf{FROM} \; \text{Angestellte A} \\
+        &\mathbf{WHERE} \; \text{A.Gehalt}=(\mathbf{SELECT}\; \mathbf{MAX}(\text{Gehalt}) \; \mathbf{FROM}\; \text{Angestellte})
+    \end{split}
+\end{align}
+gegeben. Dabei wird die in dieser Arbeit oft verwendete Aggregatfunktion \textbf{MAX} verwendet. Die Ergebnisrelation beinhaltet in diesem Beispiel ein Tupel mit Martin als Topverdiener mit einem Gehalt von 2300 Euro.
+
+Weitere Operationen der Relationenalgebra wie die Vereinigung (\textbf{UNION}) und die Mengendifferenz (\textbf{EXCEPT}) können ebenfalls in SQL-Anfragen eingebunden werden. Es sei bemerkt, dass Ergebnisse von SQL-Anfrage immer als Multimengen angesehen werden. Um eine Duplikateleminierung zur Verfügung zu haben, kann die \textbf{SELECT}-Klausel durch den \textbf{DISTINCT}-Operator erweitert werden. Die Repräsentierung der Operatoren der Relationenalgebra durch SQL-Anfragen wird in Tabelle \ref{table:vgl} dargestellt. In vielen Datenbankmanagementsystemen gibt es weitere Funktionalitäten und Operatoren, welche in dieser Arbeit nicht weiter beleuchtet werden. Für die datenbankgestützte Umsetzung linearer Algebra genügt der SQL-Anfragekern wie in Tabelle \ref{table:vgl}.
 
 \begin{table}[h]
     \centering

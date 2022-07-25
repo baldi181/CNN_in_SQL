@@ -29,7 +29,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.2.3}Die Anfragesprache SQL}{7}{subsection.2.2.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2.4}Lineare Algebra in SQL}{9}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.4}Lineare Algebra in SQL}{10}{subsection.2.2.4}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {2.2.5}Matrixdarstellunng}{10}{subsection.2.2.5}%
 \defcounter {refsection}{0}\relax 
