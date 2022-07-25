@@ -340,9 +340,9 @@ berechnen.
 Schließlich kann auch die Transponierte $A^T$ einer Matrix $A$ einfach berechnet werden, siehe dazu Anhang \ref{app:app_1}.
 
 \subsection*{Dünn besetzte Matrizen}
-Bei bestimmten Anwendungen werden dünnbesetzte Matrizen benötigt, deren Zeilen- und Spaltenanzahl erheblich größer als bei dicht besetzten Problemen sind. Oft enthalten diese Matrizen dann eine Menge von Nicht-Null-Elementen, welche im Vergleich zu den Null-Elementen verschwindend gering ist. Daher lohnt es sich, nur die Nicht-Null-Elemente sinnvoll zu speichern. In dieser Arbeit wird das \textit{Compressed-Sparse-Column-Schema}\cite{duff1989sparse} verwendet, um dünn besetzte Matrizen zu repräsentieren. Es besteht ähnlich des Coordinate-Schemas wieder aus drei Arrays. Das erste Array gibt das Spaltenmuster \textbf{colPtr}, das zweite den Zeilenindex \textbf{rowInd} und das dritte den Matrixeintrag \textbf{val}. Der formale Zusammenhang zwischen einer Matrix $A \in \RR^{m \times n}$ und der Darstellung im Compressed-Sparse-Column-Schema ist durch 
+Bei bestimmten Anwendungen werden dünnbesetzte Matrizen benötigt, deren Zeilen- und Spaltenanzahl erheblich größer als bei dicht besetzten Problemen sind. Oft enthalten diese Matrizen dann eine Menge von Nicht-Null-Elementen, welche im Vergleich zu den Null-Elementen verschwindend gering ist. Daher lohnt es sich, nur die Nicht-Null-Elemente sinnvoll zu speichern. In dieser Arbeit wird das \textit{Compressed-Sparse-Column-Schema}\cite{duff1989sparse} verwendet, um dünn besetzte Matrizen zu repräsentieren. Es besteht ähnlich des Coordinate-Schemas wieder aus drei Arrays. Das erste Array gibt das Spaltenmuster \textbf{colPtr}, das zweite den Zeilenindex \textbf{rowInd} und das dritte den Matrixeintrag \textbf{val} an. Der formale Zusammenhang zwischen einer Matrix $A \in \RR^{m \times n}$ und der Darstellung im Compressed-Sparse-Column-Schema ist durch 
 \begin{equation*}
-    A_{i,j}=\mathbf{val}[k] \Leftrightarrow (\mathbf{rowInd}=i) \wedge (\mathbf{colPtr}[j] \leq j < \mathbf{colPtr}[j+1])
+    A_{i,j}=\mathbf{val}[k] \Leftrightarrow (\mathbf{rowInd}[k]=i) \wedge (\mathbf{colPtr}[j] \leq k < \mathbf{colPtr}[j+1])
 \end{equation*} 
 gegeben. Folgendes Beispiel illustriert diese Beziehung.
 \begin{bsp}
@@ -355,7 +355,25 @@ gegeben. Folgendes Beispiel illustriert diese Beziehung.
             0 &a_{42} &0 &a_{44} \\
         \end{pmatrix}
     \end{equation*}
+    ergeben sich die Arrays des Compressed-Sparse-Column-Schemas zu
+    \begin{itemize}
+        \item \textbf{val}=$[a_{11}, a_{21}, a_{22}, a_{42}, a_{33}, a_{14}, a_{44}]$,
+        \item \textbf{rowInd}=$[1, 2, 2, 4, 3, 1, 4]$,
+        \item \textbf{colPtr}=$[1, 3, 5, 6, 8]$.
+    \end{itemize}
 \end{bsp}
+Die indirekte Indizierung der Matrixelemente sorgt zwar für eine Verminderung des Speicherbedarfs, erschwert jedoch die rein relationale Umsetzung von Operationen wie die Matrixvektormultiplikation. Hier kann ein objekt-relationaler Ansatz Abhilfe schaffen, bei dem Array-Datentypen genutzt werden, welche jedoch nur in bestimmten relationalen Datenbankmanagementsystemen unterstützt werden. 
+
+\begin{defi}[Spaltenkompression]
+Eine dünn besetzte Matrix $A$ wird als Relation
+\begin{align*}
+    \mathbf{A}(&i \; \mathrm{int} \; \mathrm{ARRAY}, \\
+               &\underline{j} \; \mathrm{int}, \\
+               &v \; \mathrm{double} \; \mathrm{ARRAY}
+               )
+\end{align*}
+gespeichert. Diese Repräsentierung wird Spaltenkompression genannt und ist insbesondere für die Matrixvektormultiplikation nützlich.
+\end{defi}
 Zusammenfassend stellt sich heraus, dass wesentliche Objekte der linearen Algebra und damit verbundene fundamentale Operationen im SQL-Kern umgesetzt werden können.  
 Im folgenden Abschnitt werden diese Resultate genutzt und im Zusammenhang mit einem Machine- Learning-Verfahren eingesetzt.
 Problemstellung(Einleitung)
