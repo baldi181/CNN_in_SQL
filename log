@@ -22,3 +22,16 @@
 -vorläufiges Inhaltverzeichnis
 -kurze Motivation/Einleitung eingefügt, muss noch für Kontext CNN bearbeitet werden
 - Abschnitt 3.3.1/3.3.2 müssen noch angepasst/gekürtzt werden
+
+25.07
+-Kapitel CNN fast fertig, Backpropagation CNN Algorithmus/ Motivation fehlt noch
+-MNIST eingeführt und fortlaufendes Modell vorgestellt (Grafik fehlt noch)
+-Grundlagen Kapitel SQL eingefügt
+TODO
+-Anmerkungen Engel - Abschnitt 3.3.1/3.3.2 müssen noch angepasst/gekürtzt werden
+-kurze Motivation/Einleitung eingefügt, muss noch für Kontext CNN bearbeitet werden
+-Grundlagen Mathe/Machine Learning(kurzer Abschnitt)
+-Kapitel 5(deadline 01.08)
+  -Sparse Approach
+  -FFT Approach
+  -Evaluation
