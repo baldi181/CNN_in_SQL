@@ -1,7 +1,13 @@
 \chapter{Datenbankgestützte Implementierung von CNN}
+\label{kap:CNN_in_SQL}
+In diesem Kapitel werden Ideen zur Umsetzung der datenbankgestützten Mustererkennung durch tranierte gefaltete neuronale Netze vorgestellt. Der Schlüssel liegt dabei in der effektiven Implementierung der Faltungsoperation als SQL-Anfrage. Gelingt dies, so kann die Vorwärtsrechnung eines CNN durch Komposition von Faltungs-, Pooling- und Matrixvektoroperationen umgesetzt werden. Im Abschnitt \ref{abs:conv_in_sql} werden drei Implementierungsmöglichkeiten der Matrixfaltung, siehe \ref{def:matrix_faltung}, in SQL beleuchtet. Dabei stellt sich heraus, dass es sich lohnt, die diskrete Faltung als lineare Operationen mithilfe der in Kapitel \ref{kap:grundlagen} vorgestellten Basisoperationen umzusetzen. So gelingt es, hinsichtlich der Problemstellung \ref{prob_eff_erk}, auch für große Grauwertbilder akzeptable Laufzeiten zu erreichen. 
 
+Im Abschnitt \ref{abs:FFN_in_sql} wird die Vorwärtsrechnung eines FFN als Komposition von affin linearen Transformationen mit dem SQL-Anfragekern dargestellt. Zusammen mit den Ergebnissen aus dem vorherigen Abschnitt wird im Abschnitt \ref{abs_CNN_in_SQL} eine objekt-relationale Umsetzung der Vorwärtsrechnung für das tranierte Modell \ref{modell} zur Ziffernerkennung vorgestellt. Dies spiegelt zugleich das Hauptresultat dieser Arbeit wieder, welches schließlich im Abschnitt \ref{abs:CNN_eval} evaluiert wird. 
 \section{Die Faltungsoperation in SQL}
-
+\label{abs:conv_in_sql}
 \section{Datenbankgestützte FFN}
-
+\label{abs:FFN_in_sql}
+\section{Datenbankgestützte Vorwärtsrechnung}
+\label{abs_CNN_in_SQL}
 \section{Evalution}
+\label{abs:CNN_eval}
