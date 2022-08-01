@@ -115,12 +115,13 @@ In Hinblick auf die Klassifikation von digitalisierten Bildern, dargestellt als 
 \end{defi}
 
 \begin{bem}
+    \label{bem:K_conv_komp}
     Oft wird eine kompakte Schreibweise der Faltung von $X \in \RR^{h \times b}$ und $ K \in \RR^{k \times k}$ mit 
     \begin{equation}
         \label{eq:valid_conv}
         Y_{i,j}=\sum_{u=-l}^l \sum_{v=-l}^l X_{i+u,j+v}K_{u,v}
     \end{equation}
-    und $X_{i,j}=0$ für $i \notin [h]$ und $j \notin [b]$ angegeben. Dabei wird der Kern negative indiziert. Ist beispielsweise $k=5$, so ist mit $K_{-2,-2}$ das Matrixelement $k_{1,1}$ und mit $K_{0,0}$ der Wert im Mittelpunkt $k_{3,3}$ gemeint. 
+    und $X_{i,j}=0$ für $i \notin [h]$ und $j \notin [b]$ angegeben. Dabei wird der Kern speziell indiziert. Ist beispielsweise $k=5$, so ist mit $K_{-2,-2}$ das Matrixelement $k_{1,1}$ und mit $K_{0,0}$ der Wert im Mittelpunkt $k_{3,3}$ gemeint. 
 \end{bem}
 
 Bei gefalteten neuronalen Netzen wird oft eine Reduktion der Dimensionen angestrebt. Dafür werden natürliche Zahlen als Schrittweiten, engl. \textit{strides}, genutzt.

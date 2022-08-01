@@ -1,10 +1,51 @@
 \chapter{Datenbankgestützte Implementierung von CNN}
 \label{kap:CNN_in_SQL}
-In diesem Kapitel werden Ideen zur Umsetzung der datenbankgestützten Mustererkennung durch tranierte gefaltete neuronale Netze vorgestellt. Der Schlüssel liegt dabei in der effektiven Implementierung der Faltungsoperation als SQL-Anfrage. Gelingt dies, so kann die Vorwärtsrechnung eines CNN durch Komposition von Faltungs-, Pooling- und Matrixvektoroperationen umgesetzt werden. Im Abschnitt \ref{abs:conv_in_sql} werden drei Implementierungsmöglichkeiten der Matrixfaltung, siehe \ref{def:matrix_faltung}, in SQL beleuchtet. Dabei stellt sich heraus, dass es sich lohnt, die diskrete Faltung als lineare Operationen mithilfe der in Kapitel \ref{kap:grundlagen} vorgestellten Basisoperationen umzusetzen. So gelingt es, hinsichtlich der Problemstellung \ref{prob_eff_erk}, auch für große Grauwertbilder akzeptable Laufzeiten zu erreichen. 
+In diesem Kapitel werden Ideen zur Umsetzung der datenbankgestützten Mustererkennung durch tranierte gefaltete neuronale Netze vorgestellt. Der Schlüssel liegt dabei in der effektiven Implementierung der Faltungsoperation als SQL-Anfrage. Gelingt dies, so kann die Vorwärtsrechnung eines CNN durch Komposition von Faltungs-, Pooling- und Matrixvektoroperationen umgesetzt werden. Im Abschnitt \ref{abs:conv_in_sql} werden drei Implementierungsmöglichkeiten der Matrixfaltung, siehe \ref{def:matrix_faltung}, in SQL beleuchtet. Dabei stellt sich heraus, dass es sich lohnt, die diskrete Faltung als lineare Operationen mithilfe der in Kapitel \ref{kap:grundlagen} vorgestellten Basisoperationen umzusetzen. So gelingt es, hinsichtlich der Problemstellung \ref{prob_effi_erk}, auch für große Grauwertbilder akzeptable Laufzeiten zu erreichen. 
 
 Im Abschnitt \ref{abs:FFN_in_sql} wird die Vorwärtsrechnung eines FFN als Komposition von affin linearen Transformationen mit dem SQL-Anfragekern dargestellt. Zusammen mit den Ergebnissen aus dem vorherigen Abschnitt wird im Abschnitt \ref{abs_CNN_in_SQL} eine objekt-relationale Umsetzung der Vorwärtsrechnung für das tranierte Modell \ref{modell} zur Ziffernerkennung vorgestellt. Dies spiegelt zugleich das Hauptresultat dieser Arbeit wieder, welches schließlich im Abschnitt \ref{abs:CNN_eval} evaluiert wird. 
 \section{Die Faltungsoperation in SQL}
 \label{abs:conv_in_sql}
+Die Faltung zweier zeitdiskrete Signale stellt die Kernoperation innerhalb von CNN dar. Sind die entsprechenden Signale zweidimensional wie in Problemstellung \ref{prob:effe_erk}, so muss die Matrixfaltung $X \ast K$ für $X \in \RR^{h \times b}$ und $K \in \RR^{k \times k}$ mithilfe des im Abschnitt \ref{abs:relation_intro} vorgestellten SQL-Kerns umgesetzt werden. Dazu werden in diesem Abschnitt drei Varianten vorgestellt, welche das Coordinate-Schema bzw. das Spaltenkompression-Schema zur Darstellung der Matrizen $X$ und $K$ nutzen. 
+\subsection{Faltung mit Nachbarschaften}
+\label{abs:naive_app}
+Der erste Ansatz beruht auf den Nachbarschaftsbeziehungen der Pixel innerhalb der Matrix $X$, die durch die Faltung mit einem Kern $K$ mit den Abmessungen $k \times k$ gegeben sind. Dazu werden einige Bezeichnungen im Folgenden eingeführt. Seien $l=\lfloor k/2 \rfloor$ und die Mengen
+\begin{align*}
+    N:=\{(i,j) \; |\; 1 \leq i \leq b, 1 \leq j \leq h \}
+\end{align*} 
+sowie
+\begin{align*}
+    F:=\{(i,j) \; |\; -l \leq i \leq l, -l \leq j \leq l \}
+\end{align*} 
+gegeben, welche die Positionen der Matrizen $X$ und $K$ widerspiegeln. Hier wird wieder die spezielle Indizierung des Kerns $K$ wie in Bemerkung \ref{bem:K_conv_komp} genutzt. Nun kann für jeden Pixel $(i,j)$ von $X$ eine Umgebung $U(i,j)$  in Abhängigkeit von $F$ definiert werden, und zwar
+\begin{equation}
+    \label{eq:neighborhood}
+    U(i,j):=\{(i', j') \; | \; (i'-i, j'-j) \in F \}.
+\end{equation}
+Die Menge $U(i,j)$ wird auch als Nachbarschaft des Pixels $(i,j)$ bezeichnet.
+Die Matrixfaltung $Y= X \ast K$ lässt sich mit den Nachbarschaften (\ref{eq:neighborhood}) durch
+\begin{equation}
+    \label{eq:naive_approach}
+    Y_{i,j}=\sum_{(i',j') \in U(i,j)} X_{i', j'} K_{i'-i, j'-j}, \; \; \forall i \in [h], \forall j \in [b]
+\end{equation}
+berechnen. Dabei wird $X$ außerhalb des Definitionsbereiches mit Nullen aufgefüllt, sodass das Ergebnis $Y$ wieder die gleichen Abmessungen wie $X$ besitzt.
+
+Zur Umsetzung der Faltungsoperation sind also zunächst die Nachbarschaften für jeden Pixel von $X$ zu berechnen. In SQL kann dies mithilfe des kartesischem Produkts implementiert werden. Dazu bezeichnen $\mathbf{X}$ und $\mathbf{K}$ die Relation zur Darstellung der Matrizen $X$ und $K$ im Coordinate-Schema. Eine rein relationale Umsetzung von \ref{eq:naive_approach} ist durch die SQL-Anfrage \ref{sql:naive} gegeben. Zur Übersicht sind die Attributbezeichnungen groß geschrieben und die SQL-Klausel blau gekennzeichnet. 
+
+\lstinputlisting[label=sql:naive, caption=SQL-Code zur Umsetzung der Faltung mit Nachbarschaften, language=SQL]{sql_code/neighborhood.sql}
+
+In der Teilanfrage (Zeile 4-14) werden die Nachbarschaften aller Pixel in der temporären $\mathbf{KREUZ}$ Relation berechnet. Dabei wird die \textbf{BETWEEN}-Funktion zur kompakten Darstellung der Konstantenselektion bezüglich $l=\lfloor k/2 \rfloor$ genutzt. In den Zeilen 15-17 werden dann die Nachbarschaften über die entsprechenden Indizies der Filtermatrix verbunden und schließlich die \textbf{SUM}-Funktion genutzt, um das Faltungsergebnis zu berechnen. Dieser naive Ansatz nutzt keine lineare Algebra in Form von Matrixvektor- oder Matrixmatrixmultiplikation und ist hinsichtlich des Problems \ref{prob_effi_erk} schon für verhältnismäßig kleine Grauwertbilder ineffizient. Zu Erkennen ist dies in der Abbildung \ref{abb:laufzeit_naive}, bei der die Laufzeiten der SQL-Anfrage \ref{sql:naive} in Abhängigkeit von der Dimension $n$ für allgemeine Matrizen $X \in [0,1]^{n \times n}$ dargestellt ist.
+
+TODO Grafik ergebnis erklären.
+
+Eine Verbesserung der Laufzeiten kann mithilfe von Umsetzungstabellen, engl. \textit{Lookup tables}, erreicht werden. Da die Dimensionen aller vorkommenden Merkmalskarten und Kerne eines CNN von Anfang an durch die Wahl der Hyperparameter festgelegt wird, müssen die Nachbarschaften für die Faltung und das Pooling nur einmalig berechnet werden. Dies kann zudem vor der eigentlichen Erkennungsphase durchgeführt werden. So wird zwar der Speicheraufwand erhöht, aber der Zeitaufwand hinsichtlich der Faltungs- und Poolingoperation deutlich vermindert. Dazu werden jeweils pro Faltungs- und Poolingschicht eine Umsetzungstabelle \textbf{U} in der Form 
+\begin{align*}
+    \mathbf{U}( &\underline{i} \; \; \mathrm{int}, \\
+    &\underline{j} \; \;\mathrm{int},\\
+    &\underline{\text{id}} \; \; \mathrm{double}, \\
+    &\text{istrich} \; \; \mathrm{int},\\
+    &\text{jstrich}\; \; \mathrm{int})
+\end{align*}
+mit dem zusammengesetzten Schlüssel $(i,j,\text{id})$.
 \section{Datenbankgestützte FFN}
 \label{abs:FFN_in_sql}
 \section{Datenbankgestützte Vorwärtsrechnung}

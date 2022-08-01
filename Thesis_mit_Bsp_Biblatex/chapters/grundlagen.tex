@@ -1,8 +1,10 @@
 \chapter{Grundlagen}
+\label{kap:fund}
 
 \section{Mathe/ ML Learning}
 
 \section{Relationale Datenbanksysteme}
+\label{abs:relation_intro}
 Relationale Datenbanksysteme gehören zu den erfolgreichsten und verbreitetsten Datenbanken, welche zur elektronischen Datenverwaltung in Computersystemen eingesetzt werden. In diesem Abschnitt werden wichtige Grundbegriffe relationaler Datenbanksysteme erläutert und erklärt, wie Daten in Relationen repräsentiert und verarbeitet werden können. Die Notation und Bezeichnungen basieren auf Heuer et al.\cite{DBLP:books/daglib/0044627}. Zum Abfragen von Datenbeständen wird die Datenbanksparche SQL im Abschnitt \ref{abs:SQL_intro} eingeführt und deren theoretische Grundlage im Abschnitt \ref{abs:rela_algebra} beleuchtet. Schließlich werden im Abschnitt \ref{abs:SQL_linalg} Methoden vorgestellt, um Objekte der linearen Algebra als Relationen darzustellen und damit verbundene Operationen, beispielsweise die Matrixvektormultiplikation, datenbankgestützt umzusetzen.
 
 \subsection{Das Relationenmodell}
@@ -218,7 +220,7 @@ Ein Beispiel einer geschalteten Anfrage zur Bestimmung des Angestellten mit dem 
         &\mathbf{WHERE} \; \text{A.Gehalt}=(\mathbf{SELECT}\; \mathbf{MAX}(\text{Gehalt}) \; \mathbf{FROM}\; \text{Angestellte})
     \end{split}
 \end{align}
-gegeben. Dabei wird die in dieser Arbeit oft verwendete Aggregatfunktion \textbf{MAX} verwendet. Die Ergebnisrelation beinhaltet in diesem Beispiel ein Tupel mit Martin als Topverdiener mit einem Gehalt von 2300 Euro.
+gegeben. Dabei wird die Aggregatfunktion \textbf{MAX} verwendet. Die Ergebnisrelation beinhaltet in diesem Beispiel ein Tupel mit Martin als Topverdiener mit einem Gehalt von 2300 Euro.
 
 Weitere Operationen der Relationenalgebra wie die Vereinigung (\textbf{UNION}) und die Mengendifferenz (\textbf{EXCEPT}) können ebenfalls in SQL-Anfragen eingebunden werden. Es sei bemerkt, dass Ergebnisse von SQL-Anfrage immer als Multimengen fungieren. Um eine Duplikateleminierung zur Verfügung zu haben, kann die \textbf{SELECT}-Klausel durch den \textbf{DISTINCT}-Operator erweitert werden. Die Repräsentierung der Operatoren der Relationenalgebra durch SQL-Anfragen wird in Tabelle \ref{table:vgl} dargestellt. In vielen Datenbankmanagementsystemen gibt es weitere Funktionalitäten und Operatoren, welche in dieser Arbeit nicht weiter beleuchtet werden. Für die datenbankgestützte Umsetzung linearer Algebra genügt der SQL-Anfragekern wie in Tabelle \ref{table:vgl}.
 
