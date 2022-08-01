@@ -50,6 +50,7 @@ mit dem zusammengesetzten Schlüssel $(i,j,\text{id})$ benötigt. Hier werden f�
 TODO Grafik ergebnis erklären.
 
 \subsection{Faltung mit zyklischen Matrizen}
+\label{abs:conv_using_sparse}
 Zwei beliebige Funktionen $f,g: D \rightarrow \mathbb{R}$ mit endlichem Definitionsbereich $D$ können als zeitdiskrete Signale $f=(f_0, \ldots, f_{n-1})^T \in \mathbb{R}^{n}$ und $g=(g_0, \ldots, g_{n-1})^T \in \mathbb{R}^{n}$ aufgefasst werden. %Durch das Fortsetzen mit Nullen besitzen die Vektoren $f$ und $g$ die gleiche Länge. 
 In diesem Fall kann die Faltung dieser Signale als Matrixvektorprodukt mit einer zyklischen Matrix ausgedrückt werden. 
 
@@ -89,18 +90,36 @@ Für ein zeitdiskrete Signal $f \in \mathbb{R}^{n}$ sei $F=\mathrm{zyk}(f)$ die 
         a_{n-1} &\ldots &\ldots &a_{2} &a_{1} &a_0
     \end{pmatrix}
 \end{equation*}
-    wird Toeplitz\footnote{Otto Toeplitz 1881-1940}-Matrix genannt. Für die Einträge gilt $A_{i,j}=A_{i+1,j+1}=a_{i-j}$. Für den Fall $a_k=a_{-(n-k)}=a_{k-n}$ für $1 \leq k \leq n-1$ ist $A$ eine zyklische Matrix im Vektor $a=(a_0, \ldots,m a_{n-1})^T$.
+    wird Toeplitz\footnote{Otto Toeplitz 1881-1940}-Matrix genannt. Für die Einträge gilt $A_{i,j}=A_{i+1,j+1}=a_{i-j}$. Für den Fall $a_i=a_{-(n-i)}=a_{i-n}$ für alle $1 \leq i \leq n-1$ wird $A$ zu einer zyklische Matrix.
 \end{defi}
 
-\begin{defi}
-    
-\end{defi}
-Für zweidimensionale Signale kann die Faltung als lineare Transformation mithilfe von Blocktoeplitzmatrizen dargestellt werden.
+Für zweidimensionale Signale kann die Faltung als lineare Transformation mithilfe von doppelt zyklischen Blockmatrizen dargestellt werden.
 \begin{defi}
     \label{def:double_circ}
-    Eine Matrix $A \in \RR^{n^2 \times n^2}$ heißt doppelt zyklische Blockmatrix, genau dann wenn $A$ eine zyklische Matrix 
+    Eine Blockmatrix $A \in \RR^{n^2 \times n^2}$ heißt doppelt zyklische Blockmatrix, genau dann wenn $A$ eine zyklische Matrix wie in Definition \ref{def:toeplitzM} ist und jeder der $n \times n$-Blöcke wieder eine zyklische Matrix darstellt. 
 \end{defi}
-\label{abs:conv_using_sparse}
+
+Seien für $h=b=n$ die Matrizen $X \in \RR^{n \times n}$ und $K \in \RR^{k \times k}$ einer Faltungschicht gegeben. Zur Vereinfachung der Notation wird der Kern $K$ mithilfe des zero paddings ebenfalls in eine $n \times n$-Matrix eingebettet. Dazu wird der Kern ja nach der gewünschten Größe des Faltungsergebnis von unten und von rechts mit Nullen aufgefüllt, siehe Beispiel \ref{bsp:Kzeropad}.
+Weiter sei $\mathrm{vec}(X)$ die Transformation der Matrix $X$ in einen Vektor der Länge $n^2$, bei dem die Spalten von $X$ untereinander geschrieben werden, ähnlich wie bei der Flatten-Funktion \ref{def:flatten} aus Kapitel \ref{kap:CNN}. Das folgende Lemma liefert die Darstellung der Faltungsoperation als Matrixvektorprodukt.
+
+\begin{lem}[vgl. Jain\cite{jain}, Goodfellow\cite{Goodfellow-et-al-2016}]
+    Für $K \in \RR^{n \times n}$ sei die doppelt zyklische Blockmatrix $A \in \RR^{n \times n}$ der Form
+    \begin{equation*}
+        A=\begin{bmatrix}
+            \mathrm{zyk}(K_{1,:}) &\mathrm{zyk}(K_{2,:}) &\ldots &\mathrm{zyk}(K_{n,:}) \\
+            \mathrm{zyk}(K_{n,:}) &\mathrm{zyk}(K_{1,:}) &\ldots & \; \; \;\mathrm{zyk}(K_{n-1,:})\\
+            \vdots &\vdots &\ddots &\vdots\\
+            \mathrm{zyk}(K_{2,:}) &\mathrm{zyk}(K_{3,:}) &\ldots &\mathrm{zyk}(K_{1,:})
+        \end{bmatrix}
+    \end{equation*}
+    gegeben. Dann entspricht $Y=A \mathrm{vec}(X)$ dem Ergebnis der Matrixfaltung $X \ast K$. Die Matrix $A$ ist dünnbesetzt. 
+\end{lem}
+
+\begin{bsp}
+    \label{bsp:Kzeropad}
+    TODO
+\end{bsp}
+
 
 \section{Datenbankgestützte FFN}
 \label{abs:FFN_in_sql}
