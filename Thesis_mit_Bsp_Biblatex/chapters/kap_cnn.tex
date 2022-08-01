@@ -55,32 +55,6 @@ In der digitalen Signal- und Bildverarbeitung werden meist diskrete Funktionen a
     definiert. Hier wird über dem gesamten Definitionsbereich $D$ summiert. Ist $D$ beschränkt, werden $f$ beziehungsweise $g$ durch Nullen fortgesetzt.  
 \end{defi}
 
-Ist für $f,g: D \rightarrow \mathbb{C}$ der Definitionsbereich $D$ endlich, so können die Funktionen als zeitdiskrete Signale $f=(f_0, \ldots, f_{n-1})^T \in \mathbb{C}^{n}$ und $g=(g_0, \ldots, g_{n-1})^T \in \mathbb{C}^{n}$ aufgefasst werden. %Durch das Fortsetzen mit Nullen besitzen die Vektoren $f$ und $g$ die gleiche Länge. 
-In diesem Fall kann die Faltung als Matrix-Vektor-Produkt mit einer zyklischen Matrix ausgedrückt werden. 
-
-\begin{defi}[Zyklische Matrix, vgl. Gray\cite{gray2006toeplitz}]
-    Eine quadratische Matrix heißt zyklisch im Vektor $a=(a_0, \ldots, a_{n-1})^T \in \RR^n$, wenn sie die Gesatlt
-    \begin{equation*}
-        \mathrm{zyk}(a):=
-        \begin{pmatrix}
-            a_0 & a_{n-1} &a_{n-2} &\ldots &a_1 \\ 
-            a_1 & a_0 &a_{n-1} & \ldots &a_2 \\
-            a_2 & a_1 &a_0 & \ldots &a_3 \\
-             &\ddots &\ddots &\ddots & \\
-            a_{n-1} &a_{n-2} &a_{n-3} &\ldots &a_0
-        \end{pmatrix}
-    \end{equation*}
-    besitzt.
-\end{defi}    
-    
-\begin{bem}
-Für ein zeitdiskrete Signal $f=(f_0, \ldots, f_{n-1})^T \in \mathbb{C}^{n}$ sei $F=\mathrm{zyk}(f)$ die zyklische Matrix im Vektor $f$. Sei weiter $g=(g_0, \ldots, g_{n-1})^T \in \mathbb{C}^{n}$. Dann lässt sich mit
-    \begin{equation*}
-        (F g)_k=\sum_{j=0}^{n-1}  f_{k-j} g_j,  \; \; k=0, \ldots, n-1
-    \end{equation*}
-    die diskrete Faltung von $f$ und $g$ darstellen. Dabei werden Indizies außerhalb von $0, \ldots, n-1$ zyklisch durch Modulo-Rechnung ($\mathrm{mod} \; n)$ in den gültigen Indexbereich abgebildet.
-\end{bem}
-
 In Hinblick auf die Klassifikation von digitalisierten Bildern, dargestellt als Matrizen, wird die Matrixfaltung mit sogenannten quadratischen Kernen $K \in \RR^{k \times k}$ mit ungeradem $k \in \mathbb{N}$ definiert.
  
 %Um die Notation einfach zu halten, sei ein Kern $K$ ebenfalls eine $h \times b$ - Matrix, indem $K$ mit Nullen aufgefüllt wird.
@@ -227,7 +201,7 @@ Dies erlaubt die Definition des CNN-Modells als Kombination aus Faltungsschichte
 Auch CNN bestehen aus Hyper- und Modellparametern.
 
 \begin{defi}[Hyper- und Modellparameter von CNN]
-    Die Eingabe- und Ausgabedimensionen $h, b, z_{in}, z_{out}$, die Anzahl $c$ der Faltunsschichten, dei Anzahl $l$ der Neuronenschichten, die Dimensionen der Kerne, die Schrittweiten bei der Faltung bzw. dem Pooling sowie die verwendeten Aktivierungs- und Poolingfunktionen sind Hyperparameter des CNN.
+    Die Eingabe- und Ausgabedimensionen $h, b, z_{in}, z_{out}$, die Anzahl $c$ der Faltunsschichten, die Anzahl $l$ der Neuronenschichten, die Dimensionen der Kerne, die Schrittweiten bei der Faltung bzw. dem Pooling sowie die verwendeten Aktivierungs- und Poolingfunktionen sind Hyperparameter des CNN.
     Die Kerne, Gewichtsmatrizen und Biasvektoren mit den entsprechend passenden Abmessungen stellen die Modellparameter $\mathcal{W}:=\{(W^{(i)},b^{(i)}): \; i=1, \ldots, l\}$ und $\mathcal{W}_{conv}:=\{(K^{(i)}, b^{(i)}): \; i=1, \ldots, c\}$ des CNN dar. 
 \end{defi}
 Die Hyperparameter werden wieder anwendungsspezifisch für das jeweilige Problem gewählt und die Modellparameter während des Trainingsprozesses angepasst. 
@@ -238,7 +212,7 @@ Die Hyperparameter werden wieder anwendungsspezifisch für das jeweilige Problem
 Der Backpropagationsalgorithmus \ref{alg:online_backprop} soll nun für das CNN-Modell verallgemeinert werden. 
 Als Fehlerfunktion wird wieder die mittlere quadratische Abweichung (\ref{eq:MSE})
 genutzt. 
-Die Abstiegsrichtungen für die Schichten des FFN wurden bereits im vorherigen Kapitel \ref{kap:NN} hergeleitet. Es müssen nun Gradienten innerhalb der Faltungsschichten beziehungsweise Pooling-Schichten berechnet werden. Die Einträge der Eingabe- und Merkmalskarten, in Zukunft einfach Karten genannt, können als Neuronenaktivierungen interpretiert werden. Weiter werden zur Vereinfachung die trainierbaren Gewichte der Kerne mit $w_{j,i}^{(l)}$ bezeichnet. Gemeint ist also das Gewicht zwischen Neuron $i$ auf Schicht $l-1$ und Neuron $j$ der Schicht $l$ bezeichnet. Weiter sei $y_{i}^{(l-1)}$ die Aktivierung des Neurons $i$ der Schicht $l-1$ und $\delta_j^{(l)}$ sei der lokale Fehler des Neurons $j$ der Schicht $l$. Die Funktion $\psi$ repräsentiere eine Aktivierungsfunktion, Pooling-Funktion oder Flatten-Funktion, je nachdem auf welcher Schicht sie benutzt wird.
+Die Abstiegsrichtungen für die Schichten des FFN wurden bereits im vorherigen Kapitel \ref{kap:NN} hergeleitet. Es müssen nun Gradienten innerhalb der Faltungsschichten beziehungsweise Pooling-Schichten berechnet werden. Die Einträge der Eingabe- und Merkmalskarten, in Zukunft einfach Karten genannt, können als Neuronenaktivierungen interpretiert werden. Weiter werden zur Vereinfachung die trainierbaren Gewichte der Kerne und Gewichtsmatrizen mit $w_{j,i}^{(l)}$ bezeichnet. Gemeint ist also das Gewicht zwischen Neuron $i$ auf (Faltungs)-Schicht $l-1$ und Neuron $j$ der (Faltungs)-Schicht $l$ bezeichnet. Weiter sei $y_{i}^{(l-1)}$ die Aktivierung des Neurons $i$ der (Faltungs)Schicht $l-1$ und $\delta_j^{(l)}$ sei der lokale Fehler des Neurons $j$ der (Faltungs)Schicht $l$. Die Funktion $\psi$ repräsentiere eine Aktivierungsfunktion, Pooling-Funktion oder Flatten-Funktion, je nachdem auf welcher Schicht sie benutzt wird.
 
 Die Gradienten werden wieder komponentenweise berechnet.
 Angenommen, $l$ ist eine Faltungsschicht. Die Aktivierung einer Merkmalskarte $j$ an der Stelle $(x,y)$ lässt sich mit der Matrixfaltung, siehe \ref{def:matrix_faltung}, \ref{eq:convlogit}, als

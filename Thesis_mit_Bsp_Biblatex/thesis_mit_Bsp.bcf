@@ -2428,17 +2428,17 @@
     <bcf:citekey order="69">DBLP:conf/cvpr/CiresanMS12</bcf:citekey>
     <bcf:citekey order="70">werner2011funktionalanalysis</bcf:citekey>
     <bcf:citekey order="71">werner2011funktionalanalysis</bcf:citekey>
-    <bcf:citekey order="72">gray2006toeplitz</bcf:citekey>
+    <bcf:citekey order="72">gruening</bcf:citekey>
     <bcf:citekey order="73">gruening</bcf:citekey>
-    <bcf:citekey order="74">gruening</bcf:citekey>
-    <bcf:citekey order="75">weng1992cresceptron</bcf:citekey>
-    <bcf:citekey order="76">gruening</bcf:citekey>
-    <bcf:citekey order="77">yu2014mixed</bcf:citekey>
+    <bcf:citekey order="74">weng1992cresceptron</bcf:citekey>
+    <bcf:citekey order="75">gruening</bcf:citekey>
+    <bcf:citekey order="76">yu2014mixed</bcf:citekey>
+    <bcf:citekey order="77">DBLP:journals/pieee/LeCunBBH98</bcf:citekey>
     <bcf:citekey order="78">DBLP:journals/pieee/LeCunBBH98</bcf:citekey>
     <bcf:citekey order="79">DBLP:journals/pieee/LeCunBBH98</bcf:citekey>
     <bcf:citekey order="80">DBLP:journals/pieee/LeCunBBH98</bcf:citekey>
-    <bcf:citekey order="81">DBLP:journals/pieee/LeCunBBH98</bcf:citekey>
-    <bcf:citekey order="82">goodfellow</bcf:citekey>
+    <bcf:citekey order="81">goodfellow</bcf:citekey>
+    <bcf:citekey order="82">gray2006toeplitz</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">

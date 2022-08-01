@@ -41,11 +41,67 @@ Eine Verbesserung der Laufzeiten kann mithilfe von Umsetzungstabellen, engl. \te
 \begin{align*}
     \mathbf{U}( &\underline{i} \; \; \mathrm{int}, \\
     &\underline{j} \; \;\mathrm{int},\\
-    &\underline{\text{id}} \; \; \mathrm{double}, \\
+    &\underline{\text{id}} \; \; \mathrm{int}, \\
     &\text{istrich} \; \; \mathrm{int},\\
     &\text{jstrich}\; \; \mathrm{int})
 \end{align*}
-mit dem zusammengesetzten Schlüssel $(i,j,\text{id})$.
+mit dem zusammengesetzten Schlüssel $(i,j,\text{id})$ benötigt. Hier werden für jeden Pixel $(i,j)$ die Nachbarpixel $(i', j') \in U$ mit einer entsprechenden Nummer $\text{id}$ hinterlegt. So wird die zeitintensive Berechnung der Summierung über dem  kartesischen Produkt in der Anfrage \ref{sql:naive} umgangen. Die Laufzeiten dieser Verbesserung sind in Abbildung \ref{abb:laufzeit_naive_verb} dargestellt.
+
+TODO Grafik ergebnis erklären.
+
+\subsection{Faltung mit zyklischen Matrizen}
+Zwei beliebige Funktionen $f,g: D \rightarrow \mathbb{R}$ mit endlichem Definitionsbereich $D$ können als zeitdiskrete Signale $f=(f_0, \ldots, f_{n-1})^T \in \mathbb{R}^{n}$ und $g=(g_0, \ldots, g_{n-1})^T \in \mathbb{R}^{n}$ aufgefasst werden. %Durch das Fortsetzen mit Nullen besitzen die Vektoren $f$ und $g$ die gleiche Länge. 
+In diesem Fall kann die Faltung dieser Signale als Matrixvektorprodukt mit einer zyklischen Matrix ausgedrückt werden. 
+
+\begin{defi}[Zyklische Matrix, vgl. Gray\cite{gray2006toeplitz}]
+    \label{def:zykM}
+    Eine quadratische Matrix heißt zyklisch im Vektor $a=(a_0, \ldots, a_{n-1})^T \in \RR^n$, wenn sie die Gesatlt
+    \begin{equation*}
+        \mathrm{zyk}(a):=
+        \begin{pmatrix}
+            a_0 & a_{n-1} &a_{n-2} &\ldots &a_1 \\ 
+            a_1 & a_0 &a_{n-1} & \ldots &a_2 \\
+            a_2 & a_1 &a_0 & \ldots &a_3 \\
+             &\ddots &\ddots &\ddots & \\
+            a_{n-1} &a_{n-2} &a_{n-3} &\ldots &a_0
+        \end{pmatrix}
+    \end{equation*}
+    besitzt.
+\end{defi}    
+    
+Für ein zeitdiskrete Signal $f \in \mathbb{R}^{n}$ sei $F=\mathrm{zyk}(f)$ die zyklische Matrix im Vektor $f$. Sei weiter $g \in \mathbb{R}^{n}$. Dann lässt sich mit
+\begin{equation*}
+        (F g)_k=\sum_{j=0}^{n-1}  f_{k-j} g_j,  \; \; k=0, \ldots, n-1
+    \end{equation*}
+    die diskrete Faltung von $f$ und $g$ darstellen. Dabei werden Indizies außerhalb von $0, \ldots, n-1$ zyklisch durch Modulo-Rechnung ($\mathrm{mod} \; n)$ in den gültigen Indexbereich abgebildet. Zyklische Matrizen aus Definition \ref{def:zykM} stellen Spezialfälle von Toeplitz-Matrizen dar.
+
+\begin{defi}[Quadratische Toeplitz-Matrix]
+    \label{def:toeplitzM}
+    Eine diagonalkonstante Matrix $A \in \RR^{n \times n}$ mit der Gestalt
+    \begin{equation*}
+    A=
+    \begin{pmatrix}
+        a_0 & a_{-1} &a_{-2} &\ldots &\ldots &a_{-(n-1)} \\ 
+        a_1 & a_0 &a_{-1} &\ddots & &\vdots \\
+        a_2 & a_1 &\ddots &\ddots &\ddots &\vdots\\
+        \vdots & \ddots &\ddots &\ddots &a_{-1} &a_{-2}\\
+        \vdots & &\ddots &a_1 &a_0 &a_{-1} \\
+        a_{n-1} &\ldots &\ldots &a_{2} &a_{1} &a_0
+    \end{pmatrix}
+\end{equation*}
+    wird Toeplitz\footnote{Otto Toeplitz 1881-1940}-Matrix genannt. Für die Einträge gilt $A_{i,j}=A_{i+1,j+1}=a_{i-j}$. Für den Fall $a_k=a_{-(n-k)}=a_{k-n}$ für $1 \leq k \leq n-1$ ist $A$ eine zyklische Matrix im Vektor $a=(a_0, \ldots,m a_{n-1})^T$.
+\end{defi}
+
+\begin{defi}
+    
+\end{defi}
+Für zweidimensionale Signale kann die Faltung als lineare Transformation mithilfe von Blocktoeplitzmatrizen dargestellt werden.
+\begin{defi}
+    \label{def:double_circ}
+    Eine Matrix $A \in \RR^{n^2 \times n^2}$ heißt doppelt zyklische Blockmatrix, genau dann wenn $A$ eine zyklische Matrix 
+\end{defi}
+\label{abs:conv_using_sparse}
+
 \section{Datenbankgestützte FFN}
 \label{abs:FFN_in_sql}
 \section{Datenbankgestützte Vorwärtsrechnung}
