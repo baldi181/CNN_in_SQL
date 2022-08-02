@@ -49,10 +49,27 @@ mit dem zusammengesetzten Schlüssel $(i,j,\text{id})$ benötigt. Hier werden f�
 
 TODO Grafik ergebnis erklären.
 
-\subsection{Faltung mit zyklischen Matrizen}
+\subsection{Faltung als Matrixvektorprodukt}
 \label{abs:conv_using_sparse}
 Zwei beliebige Funktionen $f,g: D \rightarrow \mathbb{R}$ mit endlichem Definitionsbereich $D$ können als zeitdiskrete Signale $f=(f_0, \ldots, f_{n-1})^T \in \mathbb{R}^{n}$ und $g=(g_0, \ldots, g_{n-1})^T \in \mathbb{R}^{n}$ aufgefasst werden. %Durch das Fortsetzen mit Nullen besitzen die Vektoren $f$ und $g$ die gleiche Länge. 
-In diesem Fall kann die Faltung dieser Signale als Matrixvektorprodukt mit einer zyklischen Matrix ausgedrückt werden. 
+In diesem Fall kann die Faltung der eindimensionalen Signale $f$ und $g$ als Matrixvektorprodukt mit speziellen Toeplitz-Matrizen formuliert werden. 
+
+\begin{defi}[Toeplitz-Matrix, Zyklische Matrix]
+    \label{def:toeplitzM}
+    Eine diagonalkonstante Matrix $A \in \RR^{n \times n}$ der Gestalt
+    \begin{equation*}
+    A=
+    \begin{pmatrix}
+        a_0 & a_{-1} &a_{-2} &\ldots &\ldots &a_{-(n-1)} \\ 
+        a_1 & a_0 &a_{-1} &\ddots & &\vdots \\
+        a_2 & a_1 &\ddots &\ddots &\ddots &\vdots\\
+        \vdots & \ddots &\ddots &\ddots &a_{-1} &a_{-2}\\
+        \vdots & &\ddots &a_1 &a_0 &a_{-1} \\
+        a_{n-1} &\ldots &\ldots &a_{2} &a_{1} &a_0
+    \end{pmatrix}
+\end{equation*}
+    wird Toeplitz\footnote{Otto Toeplitz 1881-1940}-Matrix genannt. Hierbei gilt $A_{i,j}=A_{i+1,j+1}=a_{i-j}$ für alle Indizies $1 \leq i, j \leq n$. Eine quadratische Toeplitzmatrix ist damit durch ihre erste Zeile und Spalte eindeutig bestimmt. Für den Spezialfall $a_i=a_{-(n-i)}=a_{i-n}$ für alle $1 \leq i \leq n-1$ wird $A$ zyklische Matrix genannt.
+\end{defi}
 
 \begin{defi}[Zyklische Matrix, vgl. Gray\cite{gray2006toeplitz}]
     \label{def:zykM}
@@ -70,40 +87,65 @@ In diesem Fall kann die Faltung dieser Signale als Matrixvektorprodukt mit einer
     besitzt.
 \end{defi}    
     
-Für ein zeitdiskrete Signal $f \in \mathbb{R}^{n}$ sei $F=\mathrm{zyk}(f)$ die zyklische Matrix im Vektor $f$. Sei weiter $g \in \mathbb{R}^{n}$. Dann lässt sich mit
-\begin{equation*}
-        (F g)_k=\sum_{j=0}^{n-1}  f_{k-j} g_j,  \; \; k=0, \ldots, n-1
-    \end{equation*}
-    die diskrete Faltung von $f$ und $g$ darstellen. Dabei werden Indizies außerhalb von $0, \ldots, n-1$ zyklisch durch Modulo-Rechnung ($\mathrm{mod} \; n)$ in den gültigen Indexbereich abgebildet. Zyklische Matrizen aus Definition \ref{def:zykM} stellen Spezialfälle von Toeplitz-Matrizen dar.
-
-\begin{defi}[Quadratische Toeplitz-Matrix]
-    \label{def:toeplitzM}
-    Eine diagonalkonstante Matrix $A \in \RR^{n \times n}$ mit der Gestalt
-    \begin{equation*}
-    A=
-    \begin{pmatrix}
-        a_0 & a_{-1} &a_{-2} &\ldots &\ldots &a_{-(n-1)} \\ 
-        a_1 & a_0 &a_{-1} &\ddots & &\vdots \\
-        a_2 & a_1 &\ddots &\ddots &\ddots &\vdots\\
-        \vdots & \ddots &\ddots &\ddots &a_{-1} &a_{-2}\\
-        \vdots & &\ddots &a_1 &a_0 &a_{-1} \\
-        a_{n-1} &\ldots &\ldots &a_{2} &a_{1} &a_0
+Für ein zeitdiskrete Signal $f \in \mathbb{R}^{n}$ wird die Toeplitz-Matrix 
+\begin{equation*} 
+    F_n=\begin{pmatrix}
+        f_0 & 0 &0 &\ldots &\ldots &0 \\ 
+        f_1 & f_0 &0 &\ddots & &\vdots \\
+        f_2 & f_1 &\ddots &\ddots &\ddots &\vdots\\
+        \vdots & \ddots &\ddots &\ddots &0 &0\\
+        \vdots & &\ddots &f_1 &f_0 &0 \\
+        f_{n-1} &\ldots &\ldots &f_{2} &f_{1} &f_0
     \end{pmatrix}
 \end{equation*}
-    wird Toeplitz\footnote{Otto Toeplitz 1881-1940}-Matrix genannt. Für die Einträge gilt $A_{i,j}=A_{i+1,j+1}=a_{i-j}$. Für den Fall $a_i=a_{-(n-i)}=a_{i-n}$ für alle $1 \leq i \leq n-1$ wird $A$ zu einer zyklische Matrix.
-\end{defi}
-
-Für zweidimensionale Signale kann die Faltung als lineare Transformation mithilfe von doppelt zyklischen Blockmatrizen dargestellt werden.
+konstruiert. Sei ein zeitdiskretes Signal $g \in \RR^{n}$ gegeben und der Vektor
+\begin{equation*}
+    y:=F_n g =\begin{pmatrix}
+        f_0 & 0 &0 &\ldots &\ldots &0 \\ 
+        f_1 & f_0 &0 &\ddots & &\vdots \\
+        f_2 & f_1 &\ddots &\ddots &\ddots &\vdots\\
+        \vdots & \ddots &\ddots &\ddots &0 &0\\
+        \vdots & &\ddots &f_1 &f_0 &0 \\
+        f_{n-1} &\ldots &\ldots &f_{2} &f_{1} &f_0
+    \end{pmatrix}
+    \begin{pmatrix}
+        g_0 \\
+        g_1 \\
+        g_2 \\
+        \vdots \\
+        \vdots \\
+        g_{n-1}
+    \end{pmatrix} \\
+    = \begin{pmatrix}
+        g_0 f_0 \\
+        g_0 f_1+ g_1 f_0 \\
+        \sum_{i=0}^2 g_i f_{2-i}  \\
+        \vdots \\
+        \vdots \\
+        \sum_{i=0}^{n-1} g_i f_{n-1-i} 
+    \end{pmatrix}
+\end{equation*}
+mit den Einträgen 
+\begin{equation*}
+   y_k=\sum_{i=0}^k g_i f_{k-i}, \; \; 0 \leq k \leq n-1
+\end{equation*}
+definiert.
+Dann spiegelt $y$ das Ergebnis der eindimensionalen diskreten Faltung von $f$ und $g$ wider. Die Faltung zweidimensionaler Signale kann mithilfe von zyklischen Blockmatrizen dargestellt werden.
+    %Matrix im Vektor $f$. Sei weiter $g \in \mathbb{R}^{n}$. Dann lässt sich mit
+%\begin{equation*}
+ %       (F g)_k=\sum_{j=0}^{n-1}  f_{k-j} g_j,  \; \; k=0, \ldots, n-1
+  %  \end{equation*}
+   % die diskrete Faltung von $f$ und $g$ darstellen. Dabei werden Indizies außerhalb von $0, \ldots, n-1$ zyklisch durch Modulo-Rechnung ($\mathrm{mod} \; n)$ in den gültigen Indexbereich abgebildet. Zyklische Matrizen aus Definition \ref{def:zykM} stellen Spezialfälle von Toeplitz-Matrizen dar.
 \begin{defi}
     \label{def:double_circ}
-    Eine Blockmatrix $A \in \RR^{n^2 \times n^2}$ heißt doppelt zyklische Blockmatrix, genau dann wenn $A$ eine zyklische Matrix wie in Definition \ref{def:toeplitzM} ist und jeder der $n \times n$-Blöcke wieder eine zyklische Matrix darstellt. 
+    Eine Blockmatrix $A \in \RR^{n^2 \times n^2}$ bestehend aus Blockmatrizen $B_{i,j} \in \RR^{n \times n}$ heißt zyklische Blockmatrix, genau dann wenn die Matrizen $B_{i,j}$ für alle $ 1 \leq i, j \leq n$ zyklisch im Sinne von Definietion \ref{def:toeplitzM} sind.
 \end{defi}
 
-Seien für $h=b=n$ die Matrizen $X \in \RR^{n \times n}$ und $K \in \RR^{k \times k}$ einer Faltungschicht gegeben. Zur Vereinfachung der Notation wird der Kern $K$ mithilfe des zero paddings ebenfalls in eine $n \times n$-Matrix eingebettet. Dazu wird der Kern ja nach der gewünschten Größe des Faltungsergebnis von unten und von rechts mit Nullen aufgefüllt, siehe Beispiel \ref{bsp:Kzeropad}.
-Weiter sei $\mathrm{vec}(X)$ die Transformation der Matrix $X$ in einen Vektor der Länge $n^2$, bei dem die Spalten von $X$ untereinander geschrieben werden, ähnlich wie bei der Flatten-Funktion \ref{def:flatten} aus Kapitel \ref{kap:CNN}. Das folgende Lemma liefert die Darstellung der Faltungsoperation als Matrixvektorprodukt.
+Die Konstruktion solcher zyklischen Blockmatrizen soll im Folgenden beleuchtet werden. Dazu  seien für $h=b=n$ die Matrizen $X \in \RR^{n \times n}$ und $K \in \RR^{k \times k}$ einer Faltungschicht gegeben. Zunächst wird der Kern $K$ mithilfe des zero paddings ebenfalls in eine $n \times n$-Matrix eingebettet. Dazu wird der Kern ja nach der gewünschten Größe des Faltungsergebnis von unten und von rechts mit Nullen aufgefüllt, siehe dazu Beispiel \ref{bsp:Kzeropad}.
+Weiter bezeichne $\mathrm{vec}(X)$ die Transformation der Matrix $X$ in einen Vektor der Länge $n^2$, indem die Spalten von $X$ untereinander geschrieben werden, ähnlich wie bei der Flatten-Funktion \ref{def:flatten} aus Kapitel \ref{kap:CNN}. Das folgende Lemma liefert die Darstellung der Faltungsoperation als Matrixvektorprodukt.
 
 \begin{lem}[vgl. Jain\cite{jain}, Goodfellow\cite{Goodfellow-et-al-2016}]
-    Für $K \in \RR^{n \times n}$ sei die doppelt zyklische Blockmatrix $A \in \RR^{n \times n}$ der Form
+    Für $K \in \RR^{n \times n}$ wird die zyklische Blockmatrix $A \in \RR^{n \times n}$ als
     \begin{equation*}
         A=\begin{bmatrix}
             \mathrm{zyk}(K_{1,:}) &\mathrm{zyk}(K_{2,:}) &\ldots &\mathrm{zyk}(K_{n,:}) \\

@@ -63,7 +63,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.1.1}Faltung mit Nachbarschaften}{41}{subsection.5.1.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1.2}Faltung mit zyklischen Matrizen}{43}{subsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.1.2}Faltung als Matrixvektorprodukt}{43}{subsection.5.1.2}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {5.2}Datenbankgestützte FFN}{45}{section.5.2}%
 \defcounter {refsection}{0}\relax 
