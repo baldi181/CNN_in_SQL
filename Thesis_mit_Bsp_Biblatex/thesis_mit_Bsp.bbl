@@ -706,6 +706,40 @@
       \field{title}{Analysis 2: Differentialrechnung im IRn, gewöhnliche Differentialgleichungen}
       \field{year}{2017}
     \endentry
+    \entry{DBLP:books/daglib/0020812}{book}{}
+      \name{author}{3}{}{%
+        {{hash=7b6f78bee4d74fb4edb7a42ad7e3c2ad}{%
+           family={Garcia{-}Molina},
+           familyi={G\bibinitperiod},
+           given={Hector},
+           giveni={H\bibinitperiod}}}%
+        {{hash=cafe1d770c56825ebccdb81e9f7c9b3b}{%
+           family={Ullman},
+           familyi={U\bibinitperiod},
+           given={Jeffrey\bibnamedelima D.},
+           giveni={J\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=f5c9bf7d1fe609c7c5aa35cdee017284}{%
+           family={Widom},
+           familyi={W\bibinitperiod},
+           given={Jennifer},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Pearson Education}%
+      }
+      \strng{namehash}{8a1f188b3e552426bdcfd1f584d7a66b}
+      \strng{fullhash}{8a1f188b3e552426bdcfd1f584d7a66b}
+      \strng{bibnamehash}{8a1f188b3e552426bdcfd1f584d7a66b}
+      \strng{authorbibnamehash}{8a1f188b3e552426bdcfd1f584d7a66b}
+      \strng{authornamehash}{8a1f188b3e552426bdcfd1f584d7a66b}
+      \strng{authorfullhash}{8a1f188b3e552426bdcfd1f584d7a66b}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Database systems - the complete book {(2.} ed.)}
+      \field{year}{2009}
+    \endentry
     \entry{Goodfellow-et-al-2016}{book}{}
       \name{author}{3}{}{%
         {{hash=5d2585c11210cf1d4512e6e0a03ec315}{%

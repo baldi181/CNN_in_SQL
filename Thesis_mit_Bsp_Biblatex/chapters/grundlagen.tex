@@ -103,7 +103,79 @@ Es sei darauf hingewiesen, dass weitere Operatorensysteme existieren, welche zu 
 \subsection*{Erweiterung der Realtionenalgebra}
 
 Mit dem Operatorensystem $\omega$ von oben sind noch keine arithmetischen Berechnungen über Attribute möglich, welche jedoch zwingend für die Umsetzung linearer Algebra benötigt werden. Daher wird im Folgenden die Relationenalgebra aus Abschnitt \ref{abs:rela_algebra} erweitert. In dieser Arbeit wird oft die Gruppierung von Tupeln bezüglich gleicher Attributwertkombinationen benötigt und daher ein Gruppierungsoperator $\gamma$ eingeführt. Darüber hinaus wird die Projektion $\pi$ erweitert, um tupelweise Funktion, z.B. die Summierung \textbf{SUM}, aus Attributen verwenden zu können.
-Dazu werden die bisher eingeführten Operatoren leicht modifiziert, indem sie auf Multimengen definiert werden. Dafür sei an dieser Stelle auf \cite{} verwiesen, um die angepasste Definition des Operatorensystems und die zugrunde liegende Theorie nachzulesen.
+Dazu werden die bisher eingeführten Operatoren leicht modifiziert, indem sie auf Multimengen definiert werden. Dafür sei an dieser Stelle auf \cite{DBLP:books/daglib/0020812} verwiesen, um die angepasste Definition des Operatorensystems und die zugrunde liegende Theorie nachzulesen.
+
+Der Operator $\gamma_L(r)$ dient zur Aggregation von Attributwerten in Gruppen für eine gegebene Relation $r$. Die Liste $L$ kann aus Attributen der Relation $r$ oder aus bestimmten Aggregatfunktionen bestehen, welche auf ein Attribut berechnet werden. Die Ergebnisrelation besteht aus Tupeln von $r$, welche in Gruppen partitioniert ist. Dabei ergeben sich die jeweiligen Gruppen durch gleiche Attributwertkombinationen der Gruppierungsattribute in $L$. Es wird für jede Gruppe ein Tupel berechnet, welches dann aus den Attributwerten der Attribute aus $L$ oder den Ergebnissen der Aggregatfunktionen aus $L$ besteht. Folgendes Beispiel illustriert die Funktionsweise des Gruppierungsoperator $\gamma$. Dazu sei die Relation A in Tabellenform \ref{tab:bsp_group} gegeben.
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|} \hline
+        \multicolumn{3}{|c|}{\textbf{A}} \\ \hline
+        \hline
+        i &j &v\\
+        \hline
+        1 &1 &3\\
+        \hline
+        1 &2 &1\\
+        \hline
+        2 &1 &4\\
+        \hline
+        2 &2 &1\\
+        \hline
+    \end{tabular}
+    \caption[]{Zu sehen ist die Beispielrelation bestehend aus den Attributen $i, j$ und $v$.}
+    \label{tab:bsp_group}
+\end{table}
+Die Relation \textbf{A} kann als Matrix 
+\begin{equation*}
+    A=\begin{pmatrix}
+        3 &1\\
+        4 &1
+    \end{pmatrix}
+\end{equation*}
+interpretiert werden. Weitere Ausführungen dazu werden im späteren Abschnitt \ref{abs:SQL_linalg} vorgestellt. Die Spaltensumme von $A$ kann mit der Gruppierungsoperationen
+\begin{equation*}
+    \gamma_{j, \; \mathbf{SUM}(v) \rightarrow v}(\mathbf{A}) \Rightarrow 
+    \begin{tabular}{|c|c|} \hline
+        j &v\\
+        \hline
+        1 &7\\
+        \hline
+        2 &2\\
+        \hline
+    \end{tabular}
+\end{equation*} 
+berechnet werden. Mit dem Pfeil ist die Umbenennung $\beta$ gemeint.
+
+Desweiteren soll der Projektionsoperator $\pi_F(r)$ auf tupelweise arithmetische Berechnungen bezüglich einer oder mehrer Attribute einer Relation $\mathbf{r}$ erweitert werden. Dazu wird wieder eine Liste $F$ genutzt, welche 
+\begin{itemize}
+    \item Attribute der Relation $r$,
+    \item Umbenennungen der Form $x \rightarrow y$, wobei $x$ eine Attribut der Relation $r$ ist, oder
+    \item Ausdrücke der Form $E \rightarrow z$, wobei $E$ aus Attributen der Relation $r$, Konstanten oder arithmetischen Operationen besteht,
+\end{itemize}
+beinhalten kann. Die Funktionsweise des erweiterten Projektionsoperators wird an der Beispielrelation \ref{tab:bsp_group} beleuchtet. Die Matrixaddition
+\begin{equation*}
+    2 \cdot A + \begin{pmatrix}
+        1 & 1\\
+        1 &1
+    \end{pmatrix}
+\end{equation*}
+lässt sich durch
+\begin{equation*}
+    \pi_{i,\; j, \; 2*v+1 \rightarrow v}(\mathbf{A}) \Rightarrow
+    \begin{tabular}{|c|c|c|} \hline
+        i &j &v\\
+        \hline
+        1 &1 &7\\
+        \hline
+        1 &2 &3\\
+        \hline
+        2 &1 &9\\
+        \hline
+        2 &2 &3\\
+        \hline
+    \end{tabular}
+\end{equation*}
+berechnen. Für diese Arbeit genügt die erweiterte Relationenalgebra mit der Gruppierung $\gamma_L$ und der Projektion $\pi_F$, um fundamentale Operationen der linearen Algebra im Abschnitt \ref{abs:SQL_linalg} in der Datenbanksprache SQL darzustellen. Diese wird im Folgenden Abschnitt vorgestellt.
 \subsection{Die Anfragesprache SQL}
 \label{abs:SQL_intro}
 SQL als Abkürzung für \textit{Structured Query Language} ist eine Datenbanksparche zur Definition von Datenstrukturen in relationalen Datenbanksystemen. Sie wird genutzt, um Datenbestände zu bearbeiten und abzufragen und basiert dabei auf der im vorherigen Abschnitt eingeführten Relationenalgebra. SQL wird als standardisierte Sprache in allen kommerziellen und frei zugänglichen Datenbankmanagementsystemen unterstützt. Da die Sprache unter Mitwirkung von Normungsgremien wie des \textit{American National Standard Institute} (ANSI) und der \textit{International Organization for Standardization} (ISO) seit 1986 standardisiert ist, ist es möglich, über die Grenzen spezieller Systeme hinaus SQL als einheitliche Datenbanksprache zu benutzen. Für eine detailliertere Darstellung der einzelen Standards sei auf die entsprechende Literatur verwiesen. Ein guter Überblick ist in Heuer et. al.\cite{DBLP:books/daglib/0044627} zu finden.
@@ -188,7 +260,7 @@ liefert die Namen der Angestellten von offenden Projekten. Dementsprechend ist d
 \caption[]{Zu sehen ist die Ergebnisrelation der zuvor beschriebenen Anfrage (\ref{anf:bsp}).}
 \label{abb:result_relation}
 \end{table}
-Die Aliasnamen \glqq A\grqq{} und \glqq P\grqq{} dienen hier zur Übersicht und sind bei geschalteten SQL-Anfragen zwingend notwendig. Die klassiche Anfrage (\ref{anf:stand}) kann mit arithmetischen Operationen und Aggregatfunktionen sowie Gruppierungsfunktionen erweitert werden. Die Funktion \textbf{SUM} kann zur Summierung numerischer Attributwerte eines Attributs über mehrere Tupel verwendet werden. Die in dieser Arbeit oft verwendete \textbf{GROUP BY}-Klausel dient zur Gruppierung von Tupeln bezüglich gleicher Attributwertkombinationen. Eine Kombination aus der Aggregatfunktion \textbf{SUM} und der Gruppierung wird beispielsweise in der Anfrage
+Die Aliasnamen \glqq A\grqq{} und \glqq P\grqq{} dienen hier zur Übersicht und sind bei geschalteten SQL-Anfragen zwingend notwendig. Die klassiche Anfrage (\ref{anf:stand}) kann mit arithmetischen Operationen und Aggregatfunktionen sowie Gruppierungsfunktionen erweitert werden. Die Funktion \textbf{SUM} kann zur Summierung numerischer Attributwerte eines Attributs über mehrere Tupel verwendet werden. Die \textbf{GROUP BY}-Klausel dient zur Gruppierung von Tupeln bezüglich gleicher Attributwertkombinationen. Eine Kombination aus der Aggregatfunktion \textbf{SUM} und der Gruppierung wird beispielsweise in der Anfrage
 \begin{align}
     \label{anf:erw}
     \begin{split}
