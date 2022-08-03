@@ -100,6 +100,10 @@ In der Relationenalgebra werden Relationen als abstrakte Datentypen mit darauf d
 \end{itemize}
 Es sei darauf hingewiesen, dass weitere Operatorensysteme existieren, welche zu $\omega$ äquivalent sind\cite{DBLP:books/daglib/0044627}.
 
+\subsection*{Erweiterung der Realtionenalgebra}
+
+Mit dem Operatorensystem $\omega$ von oben sind noch keine arithmetischen Berechnungen über Attribute möglich, welche jedoch zwingend für die Umsetzung linearer Algebra benötigt werden. Daher wird im Folgenden die Relationenalgebra aus Abschnitt \ref{abs:rela_algebra} erweitert. In dieser Arbeit wird oft die Gruppierung von Tupeln bezüglich gleicher Attributwertkombinationen benötigt und daher ein Gruppierungsoperator $\gamma$ eingeführt. Darüber hinaus wird die Projektion $\pi$ erweitert, um tupelweise Funktion, z.B. die Summierung \textbf{SUM}, aus Attributen verwenden zu können.
+Dazu werden die bisher eingeführten Operatoren leicht modifiziert, indem sie auf Multimengen definiert werden. Dafür sei an dieser Stelle auf \cite{} verwiesen, um die angepasste Definition des Operatorensystems und die zugrunde liegende Theorie nachzulesen.
 \subsection{Die Anfragesprache SQL}
 \label{abs:SQL_intro}
 SQL als Abkürzung für \textit{Structured Query Language} ist eine Datenbanksparche zur Definition von Datenstrukturen in relationalen Datenbanksystemen. Sie wird genutzt, um Datenbestände zu bearbeiten und abzufragen und basiert dabei auf der im vorherigen Abschnitt eingeführten Relationenalgebra. SQL wird als standardisierte Sprache in allen kommerziellen und frei zugänglichen Datenbankmanagementsystemen unterstützt. Da die Sprache unter Mitwirkung von Normungsgremien wie des \textit{American National Standard Institute} (ANSI) und der \textit{International Organization for Standardization} (ISO) seit 1986 standardisiert ist, ist es möglich, über die Grenzen spezieller Systeme hinaus SQL als einheitliche Datenbanksprache zu benutzen. Für eine detailliertere Darstellung der einzelen Standards sei auf die entsprechende Literatur verwiesen. Ein guter Überblick ist in Heuer et. al.\cite{DBLP:books/daglib/0044627} zu finden.
