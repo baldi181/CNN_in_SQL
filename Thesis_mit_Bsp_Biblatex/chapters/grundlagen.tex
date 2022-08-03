@@ -100,12 +100,12 @@ In der Relationenalgebra werden Relationen als abstrakte Datentypen mit darauf d
 \end{itemize}
 Es sei darauf hingewiesen, dass weitere Operatorensysteme existieren, welche zu $\omega$ äquivalent sind\cite{DBLP:books/daglib/0044627}.
 
-\subsection*{Erweiterung der Realtionenalgebra}
+\subsection*{Erweiterung der Relationenalgebra}
 
 Mit dem Operatorensystem $\omega$ von oben sind noch keine arithmetischen Berechnungen über Attribute möglich, welche jedoch zwingend für die Umsetzung linearer Algebra benötigt werden. Daher wird im Folgenden die Relationenalgebra aus Abschnitt \ref{abs:rela_algebra} erweitert. In dieser Arbeit wird oft die Gruppierung von Tupeln bezüglich gleicher Attributwertkombinationen benötigt und daher ein Gruppierungsoperator $\gamma$ eingeführt. Darüber hinaus wird die Projektion $\pi$ erweitert, um tupelweise Funktion, z.B. die Summierung \textbf{SUM}, aus Attributen verwenden zu können.
-Dazu werden die bisher eingeführten Operatoren leicht modifiziert, indem sie auf Multimengen definiert werden. Dafür sei an dieser Stelle auf \cite{DBLP:books/daglib/0020812} verwiesen, um die angepasste Definition des Operatorensystems und die zugrunde liegende Theorie nachzulesen.
-
-Der Operator $\gamma_L(r)$ dient zur Aggregation von Attributwerten in Gruppen für eine gegebene Relation $r$. Die Liste $L$ kann aus Attributen der Relation $r$ oder aus bestimmten Aggregatfunktionen bestehen, welche auf ein Attribut berechnet werden. Die Ergebnisrelation besteht aus Tupeln von $r$, welche in Gruppen partitioniert ist. Dabei ergeben sich die jeweiligen Gruppen durch gleiche Attributwertkombinationen der Gruppierungsattribute in $L$. Es wird für jede Gruppe ein Tupel berechnet, welches dann aus den Attributwerten der Attribute aus $L$ oder den Ergebnissen der Aggregatfunktionen aus $L$ besteht. Folgendes Beispiel illustriert die Funktionsweise des Gruppierungsoperator $\gamma$. Dazu sei die Relation A in Tabellenform \ref{tab:bsp_group} gegeben.
+Dazu werden die bisher eingeführten Operatoren leicht modifiziert, indem sie auf Multimengen definiert werden. Dafür sei an dieser Stelle auf \cite{DBLP:books/daglib/0020812} verwiesen, um die angepasste Definition des Operatorensystems $ \omega$ und die zugrunde liegende Theorie nachzuvollziehen.
+\subsubsection*{Der Gruppierungsopeartor $\gamma$}
+Der Operator $\gamma_L(r)$ dient zur Aggregation von Attributwerten in Gruppen für eine gegebene Relation $r$. Die Liste $L$ kann aus Attributen der Relation $r$ oder aus bestimmten Aggregatfunktionen bestehen, welche auf den jeweiligen Attributen berechnet werden. Die Ergebnisrelation besteht aus Tupeln von $r$, welche in Gruppen partitioniert ist. Dabei ergeben sich die jeweiligen Gruppen durch gleiche Attributwertkombinationen der Gruppierungsattribute in $L$. Es wird für jede Gruppe ein Tupel berechnet, welches dann aus den Attributwerten der Attribute aus $L$ oder den Ergebnissen der Aggregatfunktionen aus $L$ besteht. Folgendes Beispiel illustriert die Funktionsweise des Gruppierungsoperator $\gamma$. Dazu sei die Relation A in Tabellenform \ref{tab:bsp_group} gegeben.
 \begin{table}[h]
     \centering
     \begin{tabular}{|c|c|c|} \hline
@@ -146,6 +146,7 @@ interpretiert werden. Weitere Ausführungen dazu werden im späteren Abschnitt \
 \end{equation*} 
 berechnet werden. Mit dem Pfeil ist die Umbenennung $\beta$ gemeint.
 
+\subsubsection*{Der erweiterte Projektionsoperator}
 Desweiteren soll der Projektionsoperator $\pi_F(r)$ auf tupelweise arithmetische Berechnungen bezüglich einer oder mehrer Attribute einer Relation $\mathbf{r}$ erweitert werden. Dazu wird wieder eine Liste $F$ genutzt, welche 
 \begin{itemize}
     \item Attribute der Relation $r$,
@@ -175,7 +176,7 @@ lässt sich durch
         \hline
     \end{tabular}
 \end{equation*}
-berechnen. Für diese Arbeit genügt die erweiterte Relationenalgebra mit der Gruppierung $\gamma_L$ und der Projektion $\pi_F$, um fundamentale Operationen der linearen Algebra im Abschnitt \ref{abs:SQL_linalg} in der Datenbanksprache SQL darzustellen. Diese wird im Folgenden Abschnitt vorgestellt.
+berechnen. Für diese Arbeit genügt die erweiterte Relationenalgebra mit der Gruppierung $\gamma_L$ und der erweiterten Projektion $\pi_F$, um fundamentale Operationen der linearen Algebra in der Datenbanksprache SQL darzustellen. Diese wird im Folgenden Abschnitt vorgestellt.
 \subsection{Die Anfragesprache SQL}
 \label{abs:SQL_intro}
 SQL als Abkürzung für \textit{Structured Query Language} ist eine Datenbanksparche zur Definition von Datenstrukturen in relationalen Datenbanksystemen. Sie wird genutzt, um Datenbestände zu bearbeiten und abzufragen und basiert dabei auf der im vorherigen Abschnitt eingeführten Relationenalgebra. SQL wird als standardisierte Sprache in allen kommerziellen und frei zugänglichen Datenbankmanagementsystemen unterstützt. Da die Sprache unter Mitwirkung von Normungsgremien wie des \textit{American National Standard Institute} (ANSI) und der \textit{International Organization for Standardization} (ISO) seit 1986 standardisiert ist, ist es möglich, über die Grenzen spezieller Systeme hinaus SQL als einheitliche Datenbanksprache zu benutzen. Für eine detailliertere Darstellung der einzelen Standards sei auf die entsprechende Literatur verwiesen. Ein guter Überblick ist in Heuer et. al.\cite{DBLP:books/daglib/0044627} zu finden.
