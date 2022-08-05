@@ -11,13 +11,17 @@ Leistungsmaß $P$ mit wachsener Erfahrung $E$ schrittweise steigert. Diese Begri
 Seien gewisse Objekte $O_1, \ldots, O_m$ durch Vektoren repräsentiert, welche in der Menge $\mathcal{M}:=\{x_i \; | \; 1 \leq i \leq m \}$ gesammelt werden. Jedes der Objekte lässt sich durch die Funktion $f:\mathcal{M} \rightarrow \{K_1, K_2, \ldots, K_s\}$ zu einer der $s$ Klassen zuordnen. Die Funktion $f$ wird Klassifikationsfunktion genannt. Im Allgemeinen ist diese Funktion jedoch unbekannt und es steht nur eine endliche Menge von Tupeln der Form $(x_i, f(x_i))_{i=1}^m$ zur Verfügung. 
 \begin{defi}[Traininsmenge]
     \label{deff:trainset}
-    Seien die Mengen $\mathcal{M}$ und $\mathcal{C}:=\{K_1, \ldots, K_s \}$ gegeben. Weiter sei $f: \mathcal{M} \rightarrow \mathcal{C}$ eine (unbekannte)Klassifikationsfunktion. Dann wird die Menge $\mathcal{T}:=\{(x_i, f(x_i))\; | \, 1 \leq i \leq m\}$ Traininsmenge genannt. 
+    Seien die Mengen $\mathcal{M}$ und $\mathcal{C}:=\{K_1, \ldots, K_s \}$ gegeben. Weiter sei $f: \mathcal{M} \rightarrow \mathcal{C}$ eine (unbekannte)Klassifikationsfunktion. Dann wird die Menge 
+    \begin{equation}
+        \label{eq:trainset}
+        \mathcal{T}:=\{(x_i, f(x_i))\; | \, 1 \leq i \leq m\}
+    \end{equation} Traininsmenge genannt. 
 \end{defi}
 Nun kann die Klassifikation als \textit{task T} definiert werden, welche im weiteren Verlauf dieser Arbeit im Fokus steht.
 \begin{defi}[Klassifikationsaufgabe]
     Seien $\mathcal{M}$ und $\mathcal{C}$ wie in Definition \ref{deff:trainset} gegeben. Die Klassifikationsaufgabe besteht darin, ein Modell $\tilde{f}_{\mathcal{W}}:\mathcal{M} \rightarrow \mathcal{C}$, abhängig von Parametern $\mathcal{W}$, zu entwickeln, welche die Funktion $f$ hinreichend gut approximiert. Zur Vereinfachung der Notation wird das Modell in Zukunft mit $\tilde{f}$ bezeichnet.
 \end{defi}
-Im Zuge des überwachten Lernens wird eine Trainingsphase durchgeführt, bei welcher die Modellparameter $\mathcal{W}$ mithilfe der Traininsmenge $\mathcal{T}$ einem iterativen Prozess schrittweise angepasst werden. Die Tupel in $\mathcal{T}$, welche die gewünschten Ausgaben repräsentieren, können als \textit{experience E} interpretiert werden.
+Im Zuge des überwachten Lernens wird eine Trainingsphase durchgeführt, bei welcher die Modellparameter $\mathcal{W}$ mithilfe der Traininsmenge $\mathcal{T}$ (\ref{eq:trainset}) einem iterativen Prozess schrittweise angepasst werden. Die Tupel in $\mathcal{T}$, welche die gewünschten Ausgaben repräsentieren, können als \textit{experience E} interpretiert werden.
 Die Güte der Approximation $\tilde{f}$ wird durch Fehlerfunktionen gemessen. Ziel ist es, die \textit{perfomance P} des Modells durch die Minimierung solcher Fehlerfunktionen zu steigern.  
 \begin{defi}
     Seien eine Klassifikationsfunktion $f$, eine Traininsmenge $\mathcal{T}$ und Modellparameter $\mathcal{W}$ gegeben. Für das Modell $\tilde{f}$ soll das Minimierungsproblem 
@@ -27,9 +31,30 @@ Die Güte der Approximation $\tilde{f}$ wird durch Fehlerfunktionen gemessen. Zi
     \end{equation}
     durch die Anpassung der Modellparameter $\mathcal{W}$ gelöst werden. Dabei wird $\mathcal{E}$ Fehlerfunktion genannt.
 \end{defi}
-Das Optimierungsproblem (\ref{eq:opt_fund_abs}) wird in dieser Arbeit mithilfe des Backpropagationsalgorithmus bearbeitet. Dieser wird im Hinblick auf Problem \ref{prop:train} in den Kapiteln \ref{kap:NN} und \ref{kap:CNN} für die dort verwendeten Modelle ausführlich vorgestellt. Fraglich bleibt, unter welchen Vorraussetzungen eine sinnvolle Approximation möglich ist. Dazu wird im Folgenden das Problem der Trennbarkeit von Punktmengen behandelt.
+Das Optimierungsproblem (\ref{eq:opt_fund_abs}) wird in dieser Arbeit mithilfe des Backpropagationsalgorithmus bearbeitet. Dieser wird im Hinblick auf Problem \ref{prop:train} in den Kapiteln \ref{kap:NN} und \ref{kap:CNN} für die dort verwendeten Modelle ausführlich vorgestellt. 
+
+In der Praxis werden Testdaten, für die die Klassenzugehörigkeiten bekannt sind, genutzt, um die Generalisierungsfähigkeit des Modells zu messen. Diese Daten werden zur Anpassung der Modellparameter $\mathcal{W}$ nicht benutzt.
+
+\begin{defi}[Testmenge]
+    Seien die Mengen $\mathcal{M}':=\{x_i \; | \; 1 \leq i \leq m'\}$ und $\mathcal{C}:=\{K_1, \ldots, K_s \}$ gegeben. Weiter sei $f: \mathcal{M}' \rightarrow \mathcal{C}$ eine Klassifikationsfunktion. Dann wird mit 
+    \begin{equation}
+        \label{eq:testset}
+        \mathcal{T}':=\{(x_i, f(x_i))\; | \, 1 \leq i \leq m'\}
+    \end{equation}
+    eine Testmenge bezeichnet.
+\end{defi}
+Auf Training- bzw. Testmengen lassenn sich Fehlerraten als Gütemaße definieren.
+
+\begin{defi}[Erkennungsrate, Generalisierungsrate]
+    Sei die Approximation $\tilde{f}$ gegeben.
+    Die Erkennungsrate von $\tilde{f}$ ergibt sich durch den Anteil der richtig klassifizierten Lerndaten in der Traininsmenge. Die Generalisierungsrate von $\tilde{f}$ ist durch den Anteil der richtig klassifizierten Lerndaten in der Testmenge gegeben.
+\end{defi}
+
+Schließlich ist noch das Problem der Überanpassung, engl. \textit{overfitting}, zu erwähnen. Dieses Phänomen tritt auf, wenn die Erkennungsrate eines verwendeten Modells $\tilde{f}$ während der Trainingsphase weiter steigt, gleichzeitig aber die Generalisierungsrate sinkt. In diesem Fall passt sich das Modell an zufälliges Rauschen in den Trainingsdaten an und ist für die Klassifikation allgemeiner Daten meist unbrauchbar. Für eine tiefere Analyse des Overfittings und anderer Probleme sowie deren Behandlung sei auf Goodfellow\cite{Goodfellow-et-al-2016} verwiesen.
+Fraglich bleibt zudem, unter welchen Vorraussetzungen überhaupt eine sinnvolle Approximation möglich ist. Dazu wird im Folgenden das Problem der Trennbarkeit von Punktmengen behandelt.
 \subsection{Trennbarkeit und ein einfacher Lernalgorithmus}
 \label{abs:trenn}
+\subsubsection*{Lineare Trennbarkeit}
 \section{Relationale Datenbanksysteme}
 \label{abs:relation_intro}
 Relationale Datenbanksysteme gehören zu den erfolgreichsten und verbreitetsten Datenbanken, welche zur elektronischen Datenverwaltung in Computersystemen eingesetzt werden. In diesem Abschnitt werden wichtige Grundbegriffe relationaler Datenbanksysteme erläutert und erklärt, wie Daten in Relationen repräsentiert und verarbeitet werden können. Die Notation und Bezeichnungen basieren auf Heuer et al.\cite{DBLP:books/daglib/0044627}. Zum Abfragen von Datenbeständen wird die Datenbanksparche SQL im Abschnitt \ref{abs:SQL_intro} eingeführt und deren theoretische Grundlage im Abschnitt \ref{abs:rela_algebra} beleuchtet. Schließlich werden im Abschnitt \ref{abs:SQL_linalg} Methoden vorgestellt, um Objekte der linearen Algebra als Relationen darzustellen und damit verbundene Operationen, beispielsweise die Matrixvektormultiplikation, datenbankgestützt umzusetzen.
