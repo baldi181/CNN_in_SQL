@@ -1644,11 +1644,6 @@ INPUT c:/texlive/2021/texmf-dist/tex/latex/lm/ts1lmr.fd
 INPUT c:/texlive/2021/texmf-dist/tex/latex/lm/ts1lmr.fd
 INPUT c:/texlive/2021/texmf-dist/tex/latex/lm/ts1lmr.fd
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ts1-lmr12.tfm
-INPUT c:/texlive/2021/texmf-dist/tex/latex/lm/t1lmtt.fd
-INPUT c:/texlive/2021/texmf-dist/tex/latex/lm/t1lmtt.fd
-INPUT c:/texlive/2021/texmf-dist/tex/latex/lm/t1lmtt.fd
-INPUT c:/texlive/2021/texmf-dist/tex/latex/lm/t1lmtt.fd
-INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmtt12.tfm
 INPUT ./chapters/grundlagen.tex
 INPUT chapters/grundlagen.tex
 INPUT ./chapters/grundlagen.tex
@@ -1725,6 +1720,11 @@ INPUT chapters/appendix.tex
 INPUT ./chapters/appendix.tex
 INPUT chapters/appendix.tex
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmcsc10.tfm
+INPUT c:/texlive/2021/texmf-dist/tex/latex/lm/t1lmtt.fd
+INPUT c:/texlive/2021/texmf-dist/tex/latex/lm/t1lmtt.fd
+INPUT c:/texlive/2021/texmf-dist/tex/latex/lm/t1lmtt.fd
+INPUT c:/texlive/2021/texmf-dist/tex/latex/lm/t1lmtt.fd
+INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmtt12.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ts1-lmri12.tfm
 INPUT c:/texlive/2021/texmf-dist/tex/latex/listings/lstlang1.sty
 INPUT c:/texlive/2021/texmf-dist/tex/latex/listings/lstlang1.sty

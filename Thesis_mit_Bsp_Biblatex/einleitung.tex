@@ -21,32 +21,47 @@ Der Schlüssel liegt dabei in der Transformation von Maschinellen-Lern-Algorithm
 \end{itemize}
 
 In der Arbeit von Marten et.al.\cite{marten2017machine} wird am Beispiel eines Meeting Szenarios ein Maschinelles Lernverfahren namens Hidden-Markov-Modelle untersucht. Es wird erläutert, wie die Erkennungsphase eines zuvor trainierten Modells datenbankgestützt in parallelen SQL-Datenbanksystemen realisiert werden kann.   
-Als Ergebnis wird festgehalten, dass die datenbankgestützte Umsetzung von ML-Algorithmen, hier speziell bei Hidden-Markov-Modellen, in bestimmten Szenarien gute Skalierungseigenschaften hinsichtlich der Datenmenge besitzt und verschiedenste Resultate der relationalen Datenbankforschung vorteilhaft genutzt werden können. Dies motiviert Analysen anderer ML-Verfahren und deren Transformation in SQL. 
+Als Ergebnis wird festgehalten, dass die datenbankgestützte Umsetzung von ML-Algorithmen, hier speziell bei Hidden-Markov-Modellen, in bestimmten Szenarien gute Skalierungseigenschaften hinsichtlich der Datenmenge besitzt und verschiedenste Resultate der relationalen Datenbankforschung vorteilhaft genutzt werden können. Dies motiviert die Analyse weiterer ML-Verfahren und deren Transformation in SQL. 
 
 \section*{Problemstellung}
 \label{abs:problemstellung}
-Diese Arbeit beschäftigt sich mit \textit{Convolutional Neural Networks}, kurz CNN, als weitverbreitete ML-Methode und deren Transformation in SQL-Datenbanksysteme unter Zuhilfenahme von Werkzeugen der linearen Algebra. Diese speziellen neuronalen Netze werden 
-Das Ziel dieser Arbeit ist, den Transformationsprozess von Machine-Learning-Algorithmen in SQL Anfragen zu beleuchten. Besonders interressant ist die Erweiterung von SQL um Konzepte der linearen Algebra, unter anderem motiviert durch Test-of Time-Award-Winner Dan Suciu \cite{interviewsuciu} .
+Diese Arbeit beschäftigt sich mit \textit{Convolutional Neural Networks}, kurz CNN, als weitverbreitete ML-Methode und deren Realisierung in SQL-Datenbanksysteme unter Zuhilfenahme von Werkzeugen der linearen Algebra. Die fundamentale mathematische Operation innerhalb von CNN stellt die Faltung $ f \ast g$ zweier Funktionen bzw. Signale $f$ und $g$ dar. 
+Es liegt daher nahe, die in CNN zugrundliegende Faltungsoperation von zeitdiskreten Signalen, in dieser Arbeit einfach Matrizen, datenbankgestützt umzusetzen.
 
+\begin{problem}
+    \label{prob:conv_in_sql}
+Sind zwei Matrizen $X \in \RR^{m \times n}$ und $K \in \RR^{k \times k}$ gegeben, so ist die Matrixfaltung, siehe Definition \ref{def:matrix_faltung}, in eine Folge von SQL-Anweisungen zu übersetzen. Der Speicher- und Zeitaufwand dieser Anweisungen ist in Abhängigkeit von den Dimensionen der beteiligten Matrizen zu untersuchen.   
+\end{problem}
 
+CNN werden zur Lösung von Aufgaben der Computergrafik\cite{DBLP:conf/nips/KrizhevskySH12, DBLP:journals/pieee/LeCunBBH98,DBLP:conf/cvpr/CiresanMS12} erfolgreich genutzt.
+Im Kontext der Mustererkennung soll die Klassifikation von digitalisierten Bildern als Anwendungsbeispiel durch ein vorher traniertes CNN-Modell dienen. In dieser Arbeit werden dazu Grauwertbilder aus dem MNIST-Datensatz\cite{lecun1998gradient} betrachtet. 
 
 \begin{defi}
     \label{def:image}
-    Eine Matrix $X \in [0,1]^{h \times b}$ heißt (Grauwert)-Bild mit der Höhe $h$ und Breite $b$. Mit $X_{i,j}$ wird der Grauwert des Pixels $p=(i,j)$ bezeichnet.
+    Eine Matrix $X \in [0,1]^{h \times b}$ heißt (Grauwert)-Bild mit der Höhe $h$ und Breite $b$. Mit $X_{i,j}$ wird der Grauwert des Pixels $p=(i,j)$ bezeichnet. In dieser Arbeit werden Matrizen als diskrete zweidimensionale Signale interpretiert.
 \end{defi}
+Der MNIST-Datensatz bietet 60.000 Trainingsbilder handgeschriebener Ziffern und 10.000 Testbilder, welche jeweils durch menschliches
+Wissen annotiert sind. Dieser Datensatz gilt als typischer Benchmark zur Klassifikation von Ziffern. Um eine erfolgreiche Klassifikation zu gewährleisten, muss ein CNN vorher mithilfe von Traininsdaten angelernt werden. Hier wird Backpropagation, etabliert von Rumelhart et. al.\cite{MLPbook}, als Lernalgorithmus basierend auf dem Gradientenverfahren 
+genutzt.
+\begin{problem}
+    \label{prop:train}
+    Die Trainingsphase neuronaler Netze und speziell gefalteter neuronale Netze gilt es konzeptionell darzustellen sowie am Beispiel des MNIST-Datensatzes für ein konkret gewähltes Modell möglichst perfomant umzusetzen. 
+\end{problem}
+
+Schließlich soll die datenbankgestützte Erkennungsphase in einem trainieren gefalteten neuronalen Netz dargestellt werden.
+
+\begin{problem}
+    \label{prob:ffCCN}
+    Angenommen es wird ein traniertes CNN als Modell zur Klassifikation von Grauwertbildern aus dem MNIST-Datensatz genutzt. Dann ist die Vorwärtsrechnung, vgl.Definition \ref{def_fw_cnn}, in eine Folge von SQL-Anfragen zu transformieren.
+\end{problem}
+
 \section*{Aufbau der Arbeit}
-\begin{verbatim}\input{<DateiName>}\end{verbatim}
+\label{abs:glied}
+Im Kapitel \ref{kap:fund} wird zunächst das Maschinelle Lernen als mathematisches Problem eingeordnet und die konkrete Klassifikationsaufgabe im Kontext des überwachten Lernens definiert. Im Abschnitt \ref{abs:mathe_intro} werden wichtige Begriffe zur linearen und nichtlinearen Trennbarkeit erläutert und ein erster Lernalgorithmus vorgestellt. Im Folgenden Abschnitt \ref{abs:relation_intro} werden wichtige Grundbegriffe relationaler Datenbanksysteme erläutert und erklärt, wie Daten in Relationen repräsentiert und verarbeitet werden können. Hier gelingt die Darstellung von Objekten der linearen Algebra als Relationen und die damit verbundenen Basisoperationen, beispielsweise die Matrixvektormultiplikation, welche datenbankgestützt umgesetzt werden.
 
-\bigskip
-oder
+Im Kapitel \ref{kap:NN} werden Künstliche Neuronale Netze, kurz KNN, als Forschungsgegenstand der Informatik eingeführt und deren mathematische Grundlagen präzisiert. Im Hinblick auf CNN werden vorwärtgerichtete neuronale Netze, kurz FFN, im Abschnitt \ref{MLP_abs} definiert und deren Training hinsichtlich der Klassifikationsaufgabe im Abschnitt \ref{abs:task_training} erläutert. 
 
-\bigskip
-\begin{verbatim}\include{<DateiName>}\end{verbatim}
-einfügt.
+Darauf aufbauend werden im Kapitel \ref{kap:CNN} gefaltete neuronale Netze als spezielle neuronale Netze eingeführt und deren Vorteile gegenüber FFN hinsichtlich der Bildklassifikation kurz erläutert. In den Abschnitten \ref{abs:conv_theorie} und \ref{abs:CNN_arch} wird die Faltungsoperation und die CNN-AArchietektur vorgestellt. Die Problemstellung \ref{prop:train} hinsichtlich des Training von gefalteten neuronalen Neten wird im Abschnitt \ref{abs:CNN_train} behandelt.
 
-\bigskip
-\noindent\textcolor{red}{Verwendet keine Umlaute oder Leerzeichen in Dateinamen.}
+Das Kapitel \ref{kap:CNN_in_SQL} beschäftigt sich mit der Transformation von gefalteten neuronalen Netzen und deren Operationen in SQL-Anweisungen. Im Abschnitt \ref{abs:conv_in_sql} werden Antworten zu Problem \ref{prob:conv_in_sql} geliefert und numerische Resultate vorgestellt. Zusammen mit der datenbankgestützten Implementierung von vorwärtgerichteten neuronalen Netzen in SQL, beleuchtet im Abschnitt \ref{abs:FFN_in_sql}, gelingt hinsichtlich Problem \ref{prob:ffCCN} die Transformation der Vorwärtsrechnung für ein aus Kapitel \ref{kap:CNN} trainiertes CNN im folgenden Abschnitt \ref{abs_CNN_in_SQL}. Schließlich werden in Kapitel \ref{kap:sum} die Ergebnisse dieser Arbeit zusammengefasst und ein Ausblick auf fortführende Forschungsthemen gegeben.
 
-\noindent\texttt{input} fügt den Text direkt an die Stelle des \texttt{input}-Befehls ein.
-
-\noindent\texttt{include} fügt den Text auf einer neuen Seite ein. 
