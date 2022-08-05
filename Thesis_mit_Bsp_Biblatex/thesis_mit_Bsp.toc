@@ -19,65 +19,69 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {2}Grundlagen}{5}{chapter.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.1}Mathe/ ML Learning}{5}{section.2.1}%
+\contentsline {section}{\numberline {2.1}Maschinelles Lernen}{5}{section.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {2.2}Relationale Datenbanksysteme}{5}{section.2.2}%
+\contentsline {subsection}{\numberline {2.1.1}Klassifikationsaufgaben}{5}{subsection.2.1.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2.1}Das Relationenmodell}{5}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.1.2}Trennbarkeit und ein einfacher Lernalgorithmus}{6}{subsection.2.1.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2.2}Die Relationenalgebra}{6}{subsection.2.2.2}%
+\contentsline {section}{\numberline {2.2}Relationale Datenbanksysteme}{6}{section.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2.3}Die Anfragesprache SQL}{9}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.1}Das Relationenmodell}{6}{subsection.2.2.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {2.2.4}Lineare Algebra in SQL}{12}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.2}Die Relationenalgebra}{8}{subsection.2.2.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {3}Grundlagen neuronaler Netze}{17}{chapter.3}%
+\contentsline {subsection}{\numberline {2.2.3}Die Anfragesprache SQL}{11}{subsection.2.2.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.1}Das Perzeptron}{17}{section.3.1}%
+\contentsline {subsection}{\numberline {2.2.4}Lineare Algebra in SQL}{13}{subsection.2.2.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.2}Multi-Layer-Perzeptron}{18}{section.3.2}%
+\contentsline {chapter}{\numberline {3}Grundlagen neuronaler Netze}{19}{chapter.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.3}Training neuronaler Netze}{22}{section.3.3}%
+\contentsline {section}{\numberline {3.1}Das Perzeptron}{19}{section.3.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.1}Neuronale Netze als universelle Schätzer}{22}{subsection.3.3.1}%
+\contentsline {section}{\numberline {3.2}Multi-Layer-Perzeptron}{20}{section.3.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {3.3.2}Optimale Parameterwahl bei neuronalen Netzen}{23}{subsection.3.3.2}%
+\contentsline {section}{\numberline {3.3}Training neuronaler Netze}{24}{section.3.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {3.4}Zusammenfassung}{28}{section.3.4}%
+\contentsline {subsection}{\numberline {3.3.1}Neuronale Netze als universelle Schätzer}{24}{subsection.3.3.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {4}Gefaltete neuronale Netze}{31}{chapter.4}%
+\contentsline {subsection}{\numberline {3.3.2}Optimale Parameterwahl bei neuronalen Netzen}{25}{subsection.3.3.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.1}Die Faltungsoperation}{31}{section.4.1}%
+\contentsline {section}{\numberline {3.4}Zusammenfassung}{30}{section.3.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.2}CNN Architektur}{33}{section.4.2}%
+\contentsline {chapter}{\numberline {4}Gefaltete neuronale Netze}{33}{chapter.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.3}Backpropagation bei CNN}{35}{section.4.3}%
+\contentsline {section}{\numberline {4.1}Die Faltungsoperation}{33}{section.4.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.4}Anwendung bei der Ziffernerkennung}{37}{section.4.4}%
+\contentsline {section}{\numberline {4.2}CNN Architektur}{35}{section.4.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.5}Motivation der Faltung}{43}{section.4.5}%
+\contentsline {section}{\numberline {4.3}Backpropagation bei CNN}{37}{section.4.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Datenbankgestützte Implementierung von CNN}{44}{chapter.5}%
+\contentsline {section}{\numberline {4.4}Anwendung bei der Ziffernerkennung}{39}{section.4.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.1}Die Faltungsoperation in SQL}{44}{section.5.1}%
+\contentsline {section}{\numberline {4.5}Motivation der Faltung}{45}{section.4.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1.1}Faltung mit Nachbarschaften}{44}{subsection.5.1.1}%
+\contentsline {chapter}{\numberline {5}Datenbankgestützte Implementierung von CNN}{46}{chapter.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1.2}Faltung als Matrixvektorprodukt}{46}{subsection.5.1.2}%
+\contentsline {section}{\numberline {5.1}Die Faltungsoperation in SQL}{46}{section.5.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.2}Datenbankgestützte FFN}{48}{section.5.2}%
+\contentsline {subsection}{\numberline {5.1.1}Faltung mit Nachbarschaften}{46}{subsection.5.1.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.3}Datenbankgestützte Vorwärtsrechnung}{48}{section.5.3}%
+\contentsline {subsection}{\numberline {5.1.2}Faltung als Matrixvektorprodukt}{48}{subsection.5.1.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.4}Evalution}{48}{section.5.4}%
+\contentsline {section}{\numberline {5.2}Datenbankgestützte FFN}{50}{section.5.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Zusammenfassung und Ausblick}{49}{chapter.6}%
+\contentsline {section}{\numberline {5.3}Datenbankgestützte Vorwärtsrechnung}{50}{section.5.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Anhang}{50}{appendix.A}%
+\contentsline {section}{\numberline {5.4}Evalution}{50}{section.5.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.1}Weitere Basisoperation in SQL}{50}{section.A.1}%
+\contentsline {chapter}{\numberline {6}Zusammenfassung und Ausblick}{51}{chapter.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline Literatur}{51}{chapter*.29}%
+\contentsline {chapter}{\numberline {A}Anhang}{52}{appendix.A}%
+\defcounter {refsection}{0}\relax 
+\contentsline {section}{\numberline {A.1}Weitere Basisoperation in SQL}{52}{section.A.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\nonumberline Literatur}{53}{chapter*.29}%
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {B}Anhang}{i}{appendix.B}%
 \defcounter {refsection}{0}\relax 

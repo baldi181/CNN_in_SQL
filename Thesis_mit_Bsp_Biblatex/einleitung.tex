@@ -12,10 +12,10 @@ zu können.
 \section*{Motivation}
 Eines der schwierigsten Probleme stellt das Verwalten der riesigen Datenmengen, besonders in der Trainingsphase maschineller Lernverfahren, dar. Um in der Implementierung Perfomance-Probleme zu lösen, kann die verwendete Hardware verbessert, der Code optimiert oder Parallelisierungstechniken wie das berühmte \textit{MapReduce}-Verfahren\cite{DBLP:journals/cn/BrinP98} benutzt werden. Ein andere Möglichkeit besteht in der von Verwendung einer transparenten Datenbankunterstützung\cite{DBLP:conf/gvd/MartenH15} für Big Data Analytics. In diesem Kontext werden Techniken aus relationalen Datenbanksystemen eingebunden, um ML-Tools sinnvoll zu unterstützen.
  % was sich als spannendes Forschungsgebiet der Informationssysteme herausstellt \cite{abiteboul2018research}. 
-Der Schlüssel liegt dabei in der Transformation von Maschinellen-Lern-Algorithmen in SQL-Datenbanksysteme. Gelingt diese Übersetzung, so können verschiedenste Resultate der relationalen Datenbankforschung vorteilhaft genutzt werden.
+Der Schlüssel liegt dabei in der Transformation von Maschinellen-Lern-Algorithmen in SQL-Datenbanksysteme. Gelingt diese Übersetzung, so können verschiedenste Resultate der relationalen Datenbankforschung vorteilhaft genutzt werden:
 \begin{itemize}
-    \item Techniken der parallelen Datenbanksysteme ermöglichen es, SQL-Anfragen auf Rechnercluster zu verteilen, um so die Perfomance von ML-Algorithmen zu verbessern. Besonders interressant ist hier die Umsetzung von Operationen der linearen Algebra,unter anderem motiviert durch Test-of Time-Award-Winner Dan Suciu \cite{interviewsuciu}. Die Transformation von Matrixopeartionen bei dichtbestzten bzw. dünnbesetzten Problemen in parallele relationale Datenbanksysteme wird beispielsweise in Marten et.al.\cite{martensparse} beleuchtet.
-    \item Konzepte wie \textit{Query Decomposition}\cite{chirkova2011materialized} und \textit{Answering Queries using Views}\cite{ afrati2019answering, levy1999answering} werden genutzt, um bestimmte Auswertungen von Daten näher an den Sensoren durchzuführen und damit \textit{Privacy}\cite{agrawal2000privacy} Aspekte von Benutzern zu berücksichtigen.
+    \item Techniken der parallelen Datenbanksysteme ermöglichen es, SQL-Anfragen auf Rechnercluster zu verteilen, um so die Perfomance von ML-Algorithmen zu verbessern. Besonders interressant ist hier die Umsetzung von Operationen der linearen Algebra, unter anderem motiviert durch Test-of Time-Award-Winner Dan Suciu\cite{interviewsuciu}. Die Transformation von Matrixopeartionen in parallele relationale Datenbanksysteme bei dichtbestzten bzw. dünnbesetzten Problemen wird beispielsweise in Marten et.al.\cite{martensparse} beleuchtet.
+    \item Konzepte wie \textit{Query Decomposition}\cite{chirkova2011materialized} und \textit{Answering Queries using Views}\cite{ afrati2019answering, levy1999answering} werden genutzt, um bestimmte Auswertungen von Daten näher an den Sensoren durchzuführen und damit \textit{Privacy}\cite{agrawal2000privacy} Aspekte der Benutzer zu berücksichtigen.
     \item \textit{Data Provenance} \cite{heuer2015metis, bruder2017konzepte} kann genutzt werden, um herauszufinden, welche Daten für die Detektierung bzw. Vorhersage von Aktivitäten gebraucht werden. 
     So wird unter anderem festgestellt, welche der vielen eingesetzten Sensoren für das Modell essentiell beziehungsweise uninteressant sind.
 \end{itemize}
@@ -26,7 +26,7 @@ Als Ergebnis wird festgehalten, dass die datenbankgestützte Umsetzung von ML-Al
 \section*{Problemstellung}
 \label{abs:problemstellung}
 Diese Arbeit beschäftigt sich mit \textit{Convolutional Neural Networks}, kurz CNN, als weitverbreitete ML-Methode und deren Realisierung in SQL-Datenbanksysteme unter Zuhilfenahme von Werkzeugen der linearen Algebra. Die fundamentale mathematische Operation innerhalb von CNN stellt die Faltung $ f \ast g$ zweier Funktionen bzw. Signale $f$ und $g$ dar. 
-Es liegt daher nahe, die in CNN zugrundliegende Faltungsoperation von zeitdiskreten Signalen, in dieser Arbeit einfach Matrizen, datenbankgestützt umzusetzen.
+Es liegt daher nahe, die Faltungsoperation von zeitdiskreten Signalen, in dieser Arbeit einfach Matrizen, datenbankgestützt umzusetzen.
 
 \begin{problem}
     \label{prob:conv_in_sql}
@@ -34,25 +34,25 @@ Sind zwei Matrizen $X \in \RR^{m \times n}$ und $K \in \RR^{k \times k}$ gegeben
 \end{problem}
 
 CNN werden zur Lösung von Aufgaben der Computergrafik\cite{DBLP:conf/nips/KrizhevskySH12, DBLP:journals/pieee/LeCunBBH98,DBLP:conf/cvpr/CiresanMS12} erfolgreich genutzt.
-Im Kontext der Mustererkennung soll die Klassifikation von digitalisierten Bildern als Anwendungsbeispiel durch ein vorher traniertes CNN-Modell dienen. In dieser Arbeit werden dazu Grauwertbilder aus dem MNIST-Datensatz\cite{lecun1998gradient} betrachtet. 
+Im Kontext der Mustererkennung soll die Klassifikation von digitalisierten Bildern als Anwendungsbeispiel durch ein vorher traniertes CNN-Modell dienen. In dieser Arbeit werden dazu Grauwertbilder aus dem MNIST-Datensatz\cite{lecun1998gradient} genutzt. 
 
 \begin{defi}
     \label{def:image}
     Eine Matrix $X \in [0,1]^{h \times b}$ heißt (Grauwert)-Bild mit der Höhe $h$ und Breite $b$. Mit $X_{i,j}$ wird der Grauwert des Pixels $p=(i,j)$ bezeichnet. In dieser Arbeit werden Matrizen als diskrete zweidimensionale Signale interpretiert.
 \end{defi}
 Der MNIST-Datensatz bietet 60.000 Trainingsbilder handgeschriebener Ziffern und 10.000 Testbilder, welche jeweils durch menschliches
-Wissen annotiert sind. Dieser Datensatz gilt als typischer Benchmark zur Klassifikation von Ziffern. Um eine erfolgreiche Klassifikation zu gewährleisten, muss ein CNN vorher mithilfe von Traininsdaten angelernt werden. Hier wird Backpropagation, etabliert von Rumelhart et. al.\cite{MLPbook}, als Lernalgorithmus basierend auf dem Gradientenverfahren 
+Wissen annotiert sind. Dieser Datensatz gilt als typischer Benchmark zur Klassifikation von Ziffern. Um dabei erfolgreich zu sein, muss ein CNN vorher mithilfe von Traininsdaten angelernt werden. Hier wird Backpropagation, etabliert von Rumelhart et. al.\cite{MLPbook}, als Lernalgorithmus basierend auf dem Gradientenverfahren 
 genutzt.
 \begin{problem}
     \label{prop:train}
     Die Trainingsphase neuronaler Netze und speziell gefalteter neuronale Netze gilt es konzeptionell darzustellen sowie am Beispiel des MNIST-Datensatzes für ein konkret gewähltes Modell möglichst perfomant umzusetzen. 
 \end{problem}
 
-Schließlich soll die datenbankgestützte Erkennungsphase in einem trainieren gefalteten neuronalen Netz dargestellt werden.
+Schließlich soll die datenbankgestützte Erkennungsphase in einem trainierten gefalteten neuronalen Netz implementiert werden.
 
 \begin{problem}
     \label{prob:ffCCN}
-    Angenommen es wird ein traniertes CNN als Modell zur Klassifikation von Grauwertbildern aus dem MNIST-Datensatz genutzt. Dann ist die Vorwärtsrechnung, vgl.Definition \ref{def_fw_cnn}, in eine Folge von SQL-Anfragen zu transformieren.
+    Angenommen es wird ein traniertes CNN als Modell zur Klassifikation von Grauwertbildern aus dem MNIST-Datensatz genutzt. Dann ist die Vorwärtsrechnung, vgl. Definition \ref{def_fw_cnn}, in eine Folge von SQL-Anfragen zu transformieren.
 \end{problem}
 
 \section*{Aufbau der Arbeit}
@@ -61,7 +61,7 @@ Im Kapitel \ref{kap:fund} wird zunächst das Maschinelle Lernen als mathematisch
 
 Im Kapitel \ref{kap:NN} werden Künstliche Neuronale Netze, kurz KNN, als Forschungsgegenstand der Informatik eingeführt und deren mathematische Grundlagen präzisiert. Im Hinblick auf CNN werden vorwärtgerichtete neuronale Netze, kurz FFN, im Abschnitt \ref{MLP_abs} definiert und deren Training hinsichtlich der Klassifikationsaufgabe im Abschnitt \ref{abs:task_training} erläutert. 
 
-Darauf aufbauend werden im Kapitel \ref{kap:CNN} gefaltete neuronale Netze als spezielle neuronale Netze eingeführt und deren Vorteile gegenüber FFN hinsichtlich der Bildklassifikation kurz erläutert. In den Abschnitten \ref{abs:conv_theorie} und \ref{abs:CNN_arch} wird die Faltungsoperation und die CNN-AArchietektur vorgestellt. Die Problemstellung \ref{prop:train} hinsichtlich des Training von gefalteten neuronalen Neten wird im Abschnitt \ref{abs:CNN_train} behandelt.
+Darauf aufbauend werden im Kapitel \ref{kap:CNN} gefaltete neuronale Netze als spezielle neuronale Netze eingeführt und deren Vorteile gegenüber FFN hinsichtlich der Bildklassifikation kurz erläutert. In den Abschnitten \ref{abs:conv_theorie} und \ref{abs:CNN_arch} wird die Faltungsoperation und die CNN-Archietektur vorgestellt. Die Problemstellung \ref{prop:train} hinsichtlich des Trainings von gefalteten neuronalen Netzen wird im Abschnitt \ref{abs:CNN_train} behandelt.
 
-Das Kapitel \ref{kap:CNN_in_SQL} beschäftigt sich mit der Transformation von gefalteten neuronalen Netzen und deren Operationen in SQL-Anweisungen. Im Abschnitt \ref{abs:conv_in_sql} werden Antworten zu Problem \ref{prob:conv_in_sql} geliefert und numerische Resultate vorgestellt. Zusammen mit der datenbankgestützten Implementierung von vorwärtgerichteten neuronalen Netzen in SQL, beleuchtet im Abschnitt \ref{abs:FFN_in_sql}, gelingt hinsichtlich Problem \ref{prob:ffCCN} die Transformation der Vorwärtsrechnung für ein aus Kapitel \ref{kap:CNN} trainiertes CNN im folgenden Abschnitt \ref{abs_CNN_in_SQL}. Schließlich werden in Kapitel \ref{kap:sum} die Ergebnisse dieser Arbeit zusammengefasst und ein Ausblick auf fortführende Forschungsthemen gegeben.
+Das Kapitel \ref{kap:CNN_in_SQL} beschäftigt sich mit der Transformation von gefalteten neuronalen Netzen und deren Operationen in SQL-Anweisungen. Im Abschnitt \ref{abs:conv_in_sql} werden Antworten zu Problem \ref{prob:conv_in_sql} geliefert und numerische Resultate vorgestellt. Zusammen mit der datenbankgestützten Implementierung von vorwärtgerichteten neuronalen Netzen, beleuchtet im Abschnitt \ref{abs:FFN_in_sql}, gelingt hinsichtlich Problem \ref{prob:ffCCN} die Transformation der Vorwärtsrechnung für ein aus Kapitel \ref{kap:CNN} trainiertes CNN im folgenden Abschnitt \ref{abs_CNN_in_SQL}. Schließlich werden in Kapitel \ref{kap:sum} die Ergebnisse dieser Arbeit zusammengefasst und ein Ausblick auf fortführende Forschungsthemen gegeben.
 
