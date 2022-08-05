@@ -491,34 +491,6 @@
       \field{title}{Neural network architectures: an introduction}
       \field{year}{1990}
     \endentry
-    \entry{denker1990transforming}{article}{}
-      \name{author}{2}{}{%
-        {{hash=2e06fda0238979cad0d24113daf80ed5}{%
-           family={Denker},
-           familyi={D\bibinitperiod},
-           given={John},
-           giveni={J\bibinitperiod}}}%
-        {{hash=6a1aa6b7eab12b931ca7c7e3f927231d}{%
-           family={LeCun},
-           familyi={L\bibinitperiod},
-           given={Yann},
-           giveni={Y\bibinitperiod}}}%
-      }
-      \strng{namehash}{7b19304a0dc286ff28335b8c95003cc6}
-      \strng{fullhash}{7b19304a0dc286ff28335b8c95003cc6}
-      \strng{bibnamehash}{7b19304a0dc286ff28335b8c95003cc6}
-      \strng{authorbibnamehash}{7b19304a0dc286ff28335b8c95003cc6}
-      \strng{authornamehash}{7b19304a0dc286ff28335b8c95003cc6}
-      \strng{authorfullhash}{7b19304a0dc286ff28335b8c95003cc6}
-      \field{sortinit}{D}
-      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Advances in neural information processing systems}
-      \field{title}{Transforming neural-net output levels to probability distributions}
-      \field{volume}{3}
-      \field{year}{1990}
-    \endentry
     \entry{duchi2011adaptive}{article}{}
       \name{author}{3}{}{%
         {{hash=b8fbef1897da5bf46822ced31bc865c6}{%
@@ -591,6 +563,31 @@
       \field{year}{1989}
       \field{pages}{1\bibrangedash 14}
       \range{pages}{14}
+    \endentry
+    \entry{du_diss}{thesis}{}
+      \name{author}{1}{}{%
+        {{hash=82720e485192bacded2026c82b983433}{%
+           family={Duffner},
+           familyi={D\bibinitperiod},
+           given={Stefan},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Freiburg (Breisgau), Univ., Diss., 2008}%
+      }
+      \strng{namehash}{82720e485192bacded2026c82b983433}
+      \strng{fullhash}{82720e485192bacded2026c82b983433}
+      \strng{bibnamehash}{82720e485192bacded2026c82b983433}
+      \strng{authorbibnamehash}{82720e485192bacded2026c82b983433}
+      \strng{authornamehash}{82720e485192bacded2026c82b983433}
+      \strng{authorfullhash}{82720e485192bacded2026c82b983433}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Face image analysis with convolutional neural networks}
+      \field{type}{phdthesis}
+      \field{year}{2008}
     \endentry
     \entry{forster2017analysis}{book}{}
       \name{author}{1}{}{%
@@ -684,37 +681,6 @@
       \field{note}{\url{http://www.deeplearningbook.org}}
       \field{title}{Deep Learning}
       \field{year}{2016}
-    \endentry
-    \entry{gray2006toeplitz}{article}{}
-      \true{moreauthor}
-      \true{morelabelname}
-      \name{author}{1}{}{%
-        {{hash=1c25ecfe5c6205a9933cfbb5b0a38de4}{%
-           family={Gray},
-           familyi={G\bibinitperiod},
-           given={Robert\bibnamedelima M},
-           giveni={R\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Now Publishers, Inc.}%
-      }
-      \strng{namehash}{f5db7bf4553fa6691ffbc38c907118b4}
-      \strng{fullhash}{f5db7bf4553fa6691ffbc38c907118b4}
-      \strng{bibnamehash}{f5db7bf4553fa6691ffbc38c907118b4}
-      \strng{authorbibnamehash}{f5db7bf4553fa6691ffbc38c907118b4}
-      \strng{authornamehash}{f5db7bf4553fa6691ffbc38c907118b4}
-      \strng{authorfullhash}{f5db7bf4553fa6691ffbc38c907118b4}
-      \field{sortinit}{G}
-      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Foundations and Trends{®} in Communications and Information Theory}
-      \field{number}{3}
-      \field{title}{Toeplitz and circulant matrices: A review}
-      \field{volume}{2}
-      \field{year}{2006}
-      \field{pages}{155\bibrangedash 239}
-      \range{pages}{85}
     \endentry
     \entry{hanin2018neural}{article}{}
       \name{author}{1}{}{%
@@ -1962,44 +1928,6 @@
       \field{pages}{105582}
       \range{pages}{1}
     \endentry
-    \entry{weng1992cresceptron}{inproceedings}{}
-      \name{author}{3}{}{%
-        {{hash=aa7a161a829c921027e6acff4e89dc58}{%
-           family={Weng},
-           familyi={W\bibinitperiod},
-           given={Juyang},
-           giveni={J\bibinitperiod}}}%
-        {{hash=9b6bb9aa3e5ebab01f9edc88ec431d1a}{%
-           family={Ahuja},
-           familyi={A\bibinitperiod},
-           given={Narendra},
-           giveni={N\bibinitperiod}}}%
-        {{hash=291c931225a4b86952404c5d8cdbfd35}{%
-           family={Huang},
-           familyi={H\bibinitperiod},
-           given={Thomas\bibnamedelima S},
-           giveni={T\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
-      }
-      \list{organization}{1}{%
-        {IEEE}%
-      }
-      \strng{namehash}{fd6f79bfc29e3ac517b21c854e46d856}
-      \strng{fullhash}{fd6f79bfc29e3ac517b21c854e46d856}
-      \strng{bibnamehash}{fd6f79bfc29e3ac517b21c854e46d856}
-      \strng{authorbibnamehash}{fd6f79bfc29e3ac517b21c854e46d856}
-      \strng{authornamehash}{fd6f79bfc29e3ac517b21c854e46d856}
-      \strng{authorfullhash}{fd6f79bfc29e3ac517b21c854e46d856}
-      \field{sortinit}{W}
-      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{booktitle}{[Proceedings 1992] IJCNN International Joint Conference on Neural Networks}
-      \field{title}{Cresceptron: a self-organizing neural network which grows adaptively}
-      \field{volume}{1}
-      \field{year}{1992}
-      \field{pages}{576\bibrangedash 581}
-      \range{pages}{6}
-    \endentry
     \entry{werbos1988generalization}{article}{}
       \name{author}{1}{}{%
         {{hash=3f6ba0fa8bc8542632efe7f31c9ee2e8}{%
@@ -2249,7 +2177,6 @@
       \range{pages}{12}
     \endentry
   \enddatalist
-  \missing{du_diss}
   \missing{goodfellow}
   \missing{gruen}
   \missing{gruening}

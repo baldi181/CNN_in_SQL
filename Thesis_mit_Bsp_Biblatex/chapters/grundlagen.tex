@@ -109,9 +109,9 @@ Es lassen sich jedoch einfache Beispiele anegeben, bei der die Punktmengen nicht
             \geq 0, \; x \in \mathcal{M}_1
         \end{cases}
     \end{equation*}
-    gilt. Oft wird hier $f$ als komplexee Entscheidungsgrenze bezeichnet.
+    gilt. Oft wird hier $f$ als komplexe Entscheidungsgrenze bezeichnet.
 \end{defi}
-Neuronale Netze, welche im Kapitel \ref{kap:NN} vorgestellt werden, sind in der Lage solche komplexen Entscheidungsgrenzen widerzuspiegeln.
+Neuronale Netze, welche im Kapitel \ref{kap:NN} vorgestellt werden, sind in der Lage, solch komplexe Entscheidungsgrenzen auch bei Multiklassenproblemen, also $s \geq 2$, widerzuspiegeln. Für weitere Ausführungen über Verfahren des Maschinellen Lernens sei auf das umfangreiche Buch von Goodfellow\cite{Goodfellow-et-al-2016} verwiesen.
 \begin{algorithm}[h]
     \caption{Der Perzeptron-Lernalgorithmus}\label{alg:pla}
     \begin{algorithmic}
@@ -580,7 +580,7 @@ Eine dünn besetzte Matrix $A \in \RR^{m \times n}$ wird als Relation
 \end{align*}
 gespeichert. Diese Repräsentierung wird Spaltenkompression genannt und ist insbesondere für die Matrixvektormultiplikation nützlich.
 \end{defi}
-In dem Open-Source-Datenbanksystem PostgreSQL \cite{momjian2001postgresql}, welches in dieser Arbeit genutzt wird, kann hinsichtlich der Matrixvektormultiplikation die \textbf{UNNEST}-Funktion genutzt werden. Diese Funktion wandelt ein Array in eine Menge von Tupeln um. Die Matrixvektormultiplikation $Ax$ mit dünnbesetzter Matrix A kann dann mithilfe der SQL-Anfage
+In dem Open-Source-Datenbanksystem PostgreSQL\cite{momjian2001postgresql}, welches in dieser Arbeit genutzt wird, kann für die Matrixvektormultiplikation die \textbf{UNNEST}-Funktion genutzt werden. Diese Funktion wandelt ein Array in eine Menge von Tupeln um. Die Matrixvektormultiplikation $Ax \in \RR^m$ mit dünnbesetzter Matrix $A \in \RR^{m \times n}$ kann dann mithilfe der SQL-Anfage
 
 \begin{align*}
     &\mathbf{SELECT} \; i, \mathbf{SUM}(v)\\
@@ -591,35 +591,10 @@ In dem Open-Source-Datenbanksystem PostgreSQL \cite{momjian2001postgresql}, welc
 \end{align*}
 berechnet werden.
 
-Zusammenfassend stellt sich heraus, dass wesentliche Objekte der linearen Algebra und fundamentale Operationen im SQL-Kern umgesetzt werden können. Für dicht besetzte Matrizen wird das Coordinate-Schema \ref{def:coordinate_sheme} benutzt, während für dünn besetzte Probleme das Spaltenkompression-Schema \ref{def:spaltenkomp} genutzt wird. Beide Darstellungsformen erlauben kompakte SQL-Anfragen für die Matrixvektormultiplikation. Für eine tiefere Analyse dieser und anderer Darstellungsmöglichkeiten und deren Perfomance hinsichtlich verschiedener Basisoperationen sei auf Marten\cite{martendiss} verwiesen.
+Zusammenfassend stellt sich heraus, dass wesentliche Objekte der linearen Algebra und fundamentale Operationen im SQL-Kern umgesetzt werden können. Für dicht besetzte Matrizen wird das Coordinate-Schema \ref{def:coordinate_sheme} benutzt, während für dünn besetzte Probleme das Spaltenkompression-Schema \ref{def:spaltenkomp} genutzt wird. Beide Darstellungsformen erlauben kompakte SQL-Anfragen für die Matrixmatrix- bzw. Matrixvektormultiplikation. Für eine tiefere Analyse dieser und anderer Darstellungsmöglichkeiten und deren Perfomance hinsichtlich verschiedener Basisoperationen sei auf Marten\cite{martendiss} verwiesen.
 
 
 %Im folgenden Abschnitt werden diese Resultate genutzt und im Zusammenhang mit einem Machine- Learning-Verfahren eingesetzt.
 
-
-
-Training, Aufgabe Leistung
-
-supervisies, unsupervised erklären
-
-Klassifikationsproblem
-
-Merkmalsextraktion( 1FFT 2FFT, IFFT NFFT)
-
-(Faltung)
-
-(FFT Regeln insb convolution/coprrelation theorem mit FFT)
-
-Trennbarkeit linear/nichtlinear Entscheidungsgrenzen Hyperebene
-
-Perzeptron Theorem
-
-numerische Minimierung, kurz Abstiegsverfahren in einfacher Version
-
-falls nötig adaptive Verfahren
-
-warum NN?
-
-warum später CNN?
 
 

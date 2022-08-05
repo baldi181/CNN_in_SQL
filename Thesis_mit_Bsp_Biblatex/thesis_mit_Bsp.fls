@@ -1614,7 +1614,6 @@ OUTPUT thesis_mit_Bsp.lot
 INPUT ./thesis_mit_Bsp.loa
 INPUT thesis_mit_Bsp.loa
 INPUT thesis_mit_Bsp.loa
-INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmbx12.tfm
 OUTPUT thesis_mit_Bsp.loa
 INPUT ./thesis_mit_Bsp.lol
 INPUT thesis_mit_Bsp.lol
@@ -1627,6 +1626,7 @@ INPUT abkuerzungen.tex
 INPUT ./abkuerzungen.tex
 INPUT ./abkuerzungen.tex
 INPUT abkuerzungen.tex
+INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmbx12.tfm
 INPUT ./symbole.tex
 INPUT ./symbole.tex
 INPUT ./symbole.tex
@@ -1725,7 +1725,6 @@ INPUT c:/texlive/2021/texmf-dist/tex/latex/lm/t1lmtt.fd
 INPUT c:/texlive/2021/texmf-dist/tex/latex/lm/t1lmtt.fd
 INPUT c:/texlive/2021/texmf-dist/tex/latex/lm/t1lmtt.fd
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmtt12.tfm
-INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ts1-lmri12.tfm
 INPUT c:/texlive/2021/texmf-dist/tex/latex/listings/lstlang1.sty
 INPUT c:/texlive/2021/texmf-dist/tex/latex/listings/lstlang1.sty
 INPUT c:/texlive/2021/texmf-dist/tex/latex/listings/lstlang1.sty
@@ -1796,11 +1795,11 @@ INPUT ./thesis_mit_Bsp.out
 INPUT ./thesis_mit_Bsp.out
 INPUT thesis_mit_Bsp.run.xml
 OUTPUT thesis_mit_Bsp.run.xml
-INPUT c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc
 INPUT c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc
-INPUT c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc
-INPUT c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc
+INPUT c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc
 INPUT c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc
+INPUT c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc
+INPUT c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc
 INPUT c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc
 INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx10.pfb
 INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb

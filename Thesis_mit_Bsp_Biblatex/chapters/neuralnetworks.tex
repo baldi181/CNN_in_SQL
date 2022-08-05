@@ -11,23 +11,23 @@ Im folgenden Abschnitt wird das Konzept der Multi-Layer-Perzeptronen\cite{werbos
 
 \section{Das Perzeptron}
 \label{perzeptron_abs}
-Zunächst wird das \textit{Perzeptron} ähnlich wie in Minsky \cite{minsky2017perceptrons} als fundamentaler Baustein eines neuronalen Netzes eingeführt. Das Perzeptron wird oft als Basis moderner KNN angeführt und kann mithilfe des Perzeptron-Lernalgorithmus\cite{rosenblatt1958perceptron} trainiert werden, um das Problem der linearen Trennbarkeit \ref{prob:lin_trenn}von Punktmengen zu lösen.
+Zunächst wird das \textit{Perzeptron} ähnlich wie in Minsky\cite{minsky2017perceptrons} als fundamentaler Baustein eines neuronalen Netzes eingeführt. Das Perzeptron wird oft als Basis moderner KNN angeführt und kann mithilfe des Perzeptron-Lernalgorithmus \ref{alg:pla} trainiert werden, um das Problem der Trennbarkeit von Punktmengen zu lösen.
 \begin{defi}[Perzeptron]
     \label{def_neuron}
-    Für eine gegebene Funktion $\psi: \RR \rightarrow \RR$, einen Vektor $w \in \Rnv$ und ein Skalar $\theta \in \RR$ wird die Funktion 
+    Für eine gegebene Funktion $\phi: \RR \rightarrow \RR$, einen Vektor $w \in \Rnv$ und ein Skalar $\theta \in \RR$ wird die Funktion 
     \[ \
-    \Psi: \RR^n \rightarrow \RR, \; \; \; x \mapsto \psi(w^T x +\theta)=:y,
+    \Phi: \RR^n \rightarrow \RR, \; \; \; x \mapsto \phi(w^T x -\theta)=:y,
     \]
-    \textit{Perzeptron} genannt. Mit $x \in \Rnv$ wird die vektorwertige Eingabe und mit $y \in \RR$ die skalare Ausgabe, auch Aktivierung, des Perzeptrons bezeichnet. Dabei ist mit $w^Tx=\sum_{i=1}^n w_i x_i$ das Standardskalarprodukt im euklidischen Vektorraum $\Rnv$ gemeint. Die Komponenten von $w$ werden Gewichte und der Skalar $\theta$ Schwellwert oder auch Bias genannt.
+    \textit{Perzeptron} genannt. Mit $x \in \Rnv$ wird die vektorwertige Eingabe und mit $y \in \RR$ die skalare Ausgabe, auch Aktivierung, des Perzeptrons bezeichnet. Dabei ist $w^Tx=\sum_{i=1}^n w_i x_i$ das Standardskalarprodukt im euklidischen Vektorraum $\Rnv$. Die Komponenten von $w$ werden Gewichte und der Skalar $\theta$ Schwellwert oder auch Bias genannt.
 \end{defi}
-Die Funktionsweise eines Perzeptrons ist in Abbildung \ref{funktionsweise_neuron} dargestellt. In dieser Arbeit wird das Perzeptron oft einfach Neuron geannt. Die Begriffe sind austauschbar und meinen dasselbe.
+Die Funktionsweise eines Perzeptrons ist in Abbildung \ref{funktionsweise_neuron} dargestellt. In dieser Arbeit wird das Perzeptron oft einfach Neuron genannt. Die Begriffe sind austauschbar und meinen dasselbe.
 \begin{figure}[h]
     \includegraphics[width=0.8\textwidth]{pics/chapter_neuralnetworks/perzeptron.png}
     \centering
     \caption{Arbeitsweise eines Perzeptrons mit entsprechender Notation aus Definition \ref{def_neuron}.}
     \label{funktionsweise_neuron}
 \end{figure}
-Bei der Wahl der Funktion $\psi$ gibt es mehrere Möglichkeiten. Wird wie in Minsky\cite{minsky2017perceptrons} die Heavyside-Funktion
+Bei der Wahl der Funktion $\phi$ gibt es mehrere Möglichkeiten. Wird wie in Minsky\cite{minsky2017perceptrons} die Heavyside-Funktion
 \begin{equation*}
     \psi: \RR \rightarrow \RR, \; \; \;
     \psi(x)=\begin{cases}
@@ -35,13 +35,13 @@ Bei der Wahl der Funktion $\psi$ gibt es mehrere Möglichkeiten. Wird wie in Min
        0 , \; \text{sonst}
     \end{cases}
 \end{equation*} 
-genutzt, kann das Perzeptron als binärer Klassifikator wie in \ref{abs_linear_trenn} interpretiert werden. Dabei dient $w^Tx+\theta=0$ als trennende Hyperebene. Ist $w^Tx+\theta<0$, so ist $\psi(x)=0$ und $x$ wird der Klasse $K_{0}$ zugeordnet. Gilt jedoch $w^Tx+\theta \geq 0$ und damit $\psi(x)=1$, so ist der Vektor $x$ der Klasse $K_1$ zugehörig. 
+genutzt, kann das Perzeptron als binärer Klassifikator wie in \ref{abs:trenn} interpretiert werden. Dabei dient $w^T x-\theta=0$ als trennende Hyperebene. Ist $w^Tx-\theta<0$, so ist $\psi(x)=0$ und $x$ wird der Klasse $K_{0}$ zugeordnet. Gilt jedoch $w^T x-\theta \geq 0$ und damit $\psi(x)=1$, so ist der Vektor $x$ der Klasse $K_1$ zugehörig. 
 
-Für ein Klassifikationsproblem, bei dem die Klassen nicht linear trennbar sind, scheitern diese einfachen Perzeptronen. Hier wird oft das zweidimensionale XOR-Problem angeführt, bei denen die Punktmengen $P_{0}=\{(0,0),(1,1)\}$ und $P_{1}=\{(1,0),(0,1)\}$ getrennt werden sollen. Um solche Aufgaben zu lösen, ist es notwendig, mehrere Perzeptronen geschickt zu verknüpfen, um komplexe Entscheidungsgrenzen zu erhalten.
+Für ein Klassifikationsproblem, bei dem die Klassen nicht linear trennbar sind, scheitern diese einfachen Perzeptronen. Hier wird oft das zweidimensionale XOR-Problem angeführt. Um solche Aufgaben zu lösen, ist es notwendig, mehrere Perzeptronen geschickt zu verknüpfen, um komplexe Entscheidungsgrenzen zu erhalten.
 
 \section{Multi-Layer-Perzeptron}
 \label{MLP_abs}
-In dieser Arbeit wird ein Künstliches Neuronales Netz als eine Menge von Perzeptronen, die in gewissen Schichten partitioniert und miteinander verbunden sind, notiert. Diese sogenannten \textit{Multi-Layer-Perzeptronen}, kurz MLP,  gelten als erste tiefe neuronale Netze und sind seit den späten 1980er-Jahren Gegenstand der Forschung\cite{bourlard1990links,bounds1988multilayer,MLPbook}. Zunächst sind einige Definition notwendig, um eine lesbare Notation des MLPs zu geben.
+In dieser Arbeit wird ein Künstliches Neuronales Netz als eine Menge von Perzeptronen, die in gewissen Schichten partitioniert und miteinander verbunden sind, notiert. Diese sogenannten \textit{Multi-Layer-Perzeptronen}, kurz MLP,  gelten als erste tiefe neuronale Netze und sind seit den späten 1980er-Jahren Gegenstand der Forschung\cite{bourlard1990links,bounds1988multilayer,MLPbook}. Zunächst sind einige Definition notwendig, um eine lesbare Notation des MLP zu geben.
 
 \begin{defi}[Übertragungsfunktion]
     \label{def_net}
@@ -58,7 +58,7 @@ Hierbei ist $W$ eine Gewichtsmatrix und $b$ ein Biasvektor, welche als freie Par
     Eine stetige, monoton steigende und nicht notwendigerweise lineare Funktion $\psi: \RR \rightarrow \RR$ wird als Aktivierungsfunktion bezeichnet.
 \end{defi}
 Es sei erwähnt, dass auch nicht monotone Aktivierungsfunktionen genutzt werden können, beispielsweise radiale Basisfunktionen\cite{radialbasis}, welche jedoch in dieser Arbeit nicht weiter von Interesse sind.
-Typische Aktivierungsfunktionen, weclhe heutzutage verwendet werden, sind die:
+Typische Aktivierungsfunktionen, welche heutzutage verwendet werden, sind die:
 \begin{align*}
     \text{Identität}: \; \;\psi(x)&=x, \\
     \text{Logistische Funktion}: \; \;\psi(x)&=\frac{1}{1+\mathrm{e}^{-x}}, \\
@@ -73,15 +73,15 @@ Typische Aktivierungsfunktionen, weclhe heutzutage verwendet werden, sind die:
     der Vektor bezeichnet, welcher sich durch die elementweise Auswertung der Aktivierungsfunktion $\psi$ an den Stellen $x_1, \ldots, x_n$ ergibt. 
 \end{bem}
 
-Bei Klassifikationsproblemen wird oft die \textit{Softmax}-Funktion\cite{denker1990transforming} genutzt, welche die gesamte Eingabe berücksichtigt. Im Abschnitt \ref{task_training} wird erläutert, warum sich in diesem Fall die Softmax-Funktion eignet.
+%Bei Klassifikationsproblemen wird oft die \textit{Softmax}-Funktion\cite{denker1990transforming} genutzt, welche die gesamte Eingabe berücksichtigt. Im Abschnitt \ref{task_training} wird erläutert, warum sich in diesem Fall die Softmax-Funktion eignet.
 
-\begin{defi}[Softmax-Funktion]
-    Für $x \in \RR^n$ wird die Funktion $\psi: \RR^n \rightarrow (0,1]^n$ mit 
-    \[
-        \psi(x):=\left(\frac{\mathrm{e}^{x_1}}{\sum_{i=1}^n \mathrm{e}^{x_i}}, \ldots,\frac{\mathrm{e}^{x_n}}{\sum_{i=1}^n \mathrm{e}^{x_i}} \right)^T
-    \]
-    als Softmax-Funktion definiert. Die Einträge des Vektors $\psi(x)$ summieren sich zu Eins.  
-\end{defi}
+%\begin{defi}[Softmax-Funktion]
+    %Für $x \in \RR^n$ wird die Funktion $\psi: \RR^n \rightarrow (0,1]^n$ mit 
+    %\[
+        %\psi(x):=\left(\frac{\mathrm{e}^{x_1}}{\sum_{i=1}^n \mathrm{e}^{x_i}}, \ldots,\frac{\mathrm{e}^{x_n}}{\sum_{i=1}^n \mathrm{e}^{x_i}} \right)^T
+    %\]
+    %als Softmax-Funktion definiert. Die Einträge des Vektors $\psi(x)$ summieren sich zu Eins.  
+%\end{defi}
 
 Für den späteren Trainingsprozess ist es nützlich, die Ableitung der verwendeten Aktivierungsfunktion, sofern sie existiert, zur Verfügung zu haben. Zudem ist es möglich, für bestimmte Aktivierungsfunktionen die Ableitung nur mithilfe der verwendeten Funktion zu berechnen.
 
@@ -107,9 +107,8 @@ Für den späteren Trainingsprozess ist es nützlich, die Ableitung der verwende
     \end{itemize}
 \end{lem}
 \begin{proof}
-    Einfaches Differenzieren liefert für $(i)$ und $(ii)$ die Resultate. Bei $(iii)$ wird die Darstellung $\tanh(x)=\frac{2}{\mathrm{e}^{2x}+1}$ genutzt und das Differenzieren mittels Quotientenregel liefert die Aussage.
+    Einfaches Differenzieren liefert für $(i)$ und $(ii)$ die Resultate. Bei $(iii)$ wird die Darstellung $\tanh(x)=\frac{2}{\mathrm{e}^{2x}+1}$ genutzt und das Differenzieren mittels Quotientenregel führt zur Aussage.
 \end{proof}
-
 
 Ähnlich der Definition des Perzeptrons \ref{def_neuron} wird nun eine Schicht als Verknüpfung von Übertragungsfunktion und Aktivierungsfunktion definiert.
 
@@ -118,7 +117,7 @@ Für den späteren Trainingsprozess ist es nützlich, die Ableitung der verwende
     Ist $\Psi^{W,b}$ eine Übertragungsfunktion mit den Parametern $W \in \RR^{n \times m}$ und $b \in \RR^m$ sowie $\psi$ eine Aktivierungsfunktion, so wird das Paar $(\Psi^{W,b}, \psi)$ als Neuronenschicht $\mathcal{S}$ bezeichnet. Für eine Eingabe $x \in \RR^n$ ist die Ausgabe $y \in \RR^m$ der Schicht $\mathcal{S}$ durch
     \[y=\psi \circ \Psi^{W,b}(x)= \psi\left(\Psi^{W,b}(x)\right)
         \] 
-        gegeben. Die Komponenten $y_i$ werden für $1 \leq i \leq m$ Aktivierungen der Neuronen in der Schicht $\mathcal{S}$ genannt und gleichen jeweils der Ausgabe eines einfachen Perzeptrons wie in Definition \ref{def_neuron}. Eine Schicht besteht also aus $m$ Perzeptronen $\tilde{\Psi}_i$ mit $y_i=\tilde{\Psi}(x_i)=\psi(W_{i,:}^T x+b_i)$ für $1 \leq i \leq m$.
+        gegeben. Die Komponenten $y_i$ werden für $1 \leq i \leq m$ Aktivierungen der Neuronen in der Schicht $\mathcal{S}$ genannt und gleichen jeweils der Ausgabe eines einfachen Perzeptrons wie in Definition \ref{def_neuron}. Eine Schicht besteht also aus $m$ Perzeptronen $\tilde{\Psi}_i$ mit der Beziehung $y_i=\Phi(x_i)=\phi(W_{i,:}^T x+b_i)$ für $1 \leq i \leq m$.
 \end{defi}
 Im Hinblick auf MLPs werden nun mehrere Schichten so verbunden, dass die Ausgabe einer Schicht $\mathcal{S}_k$ als Eingabe einer darüberliegenden Schicht $\mathcal{S}_{k+1}$ für ein $k \in \mathbb{N}$ dient. Die Anzahl der Neuronen kann dabei von Schicht zu Schicht variieren. Dementsprechend werden die Dimensionen der beteiligten Gewichtsmatrizen $W^{(k)}$ und Biasvektoren $b^{(k)}$ passend gewählt. 
 Um die Notation übersichtlich zu halten, bezeichne $\Psi^{W^{(k)},b^{(k)},\psi_{k}}$ die Schicht $\mathcal{S}_k$ mit $\Psi^{W^{(k)},b^{(k)},\psi_{k}}(x):= \psi_{k} \left(\Psi^{W^{(k)},b^{(k)}}(x)\right)$.
@@ -158,7 +157,7 @@ Es lassen sich zwischen Modell- und Hyperparameter von KNN unterscheiden.
     Sei für $l \in \mathbb{N}$ ein KNN $\Lambda_l$ gegeben. Dann werden die Eingabe- und Ausgabedimension $s_0, s_l$, die Anzahl $l$ der (verdeckten) Schichten sowie die verwendeten Aktivierungsfunktion $\psi_l$ Hyperparameter des neuronalen Netzes genannt.
     Die Gewichtsmatrizen und Biasvektoren mit den entsprechend passenden Abmessungen stellen die Modellparameter $\mathcal{W}:=\{(W^{(i)},b^{(i)}): \; i=1, \ldots, l\}$ des neuronales Netzes dar. 
 \end{defi}
-Die Hyperparameter werden oft anwendungsspezifisch für das jeweilige Problem gewählt, während die Modellparameter dynamisch in einem Trainingsprozes angepasst werden, sodass die gegebene Aufgabe zufriedenstellend gelöst wird. Wie dies geschieht, wird im folgenden Abschnitt \ref{task_training} erläutert.
+Die Hyperparameter werden oft anwendungsspezifisch für das jeweilige Problem gewählt, während die Modellparameter dynamisch in einem Trainingsprozes angepasst werden, sodass die gegebene Aufgabe zufriedenstellend gelöst wird. Wie dies geschieht, wird im folgenden Abschnitt \ref{abs:task_training} erläutert.
 
 \section{Training neuronaler Netze}
 \label{abs:task_training}
@@ -300,24 +299,24 @@ Das Problem \ref{eq:opt_likelihood} wird nun allgmemein mit Fehlerfunktionen def
  \end{defi}
 
  \section*{Backpropagationsalgorithmus}
-Bei FFN wird Backpropagation, etabliert von Rumelhart et. al. \cite{MLPbook}, als Lernalgorithmus genutzt, um eine gewählte Fehlerfunktion $E$ zu minimieren. Dazu wird das Gradientenverfahren zur numerischen Minimierung von $E$ im Raum der Modellparameter $\mathcal{W}$ genutzt. Dabei sei bemerkt, dass das Finden von globalen Minima durch den Backpropagationsalgorithmus nicht garantiert ist.
-In dieser Arbeit wird $E$ immer als stückweise stetig differenzierbare Funktion gewählt, damit das Gradientenverfahren angewendet werden kann. Sowohl die negative log likelihood $L_{NNL}$ als auch die mittlere quadratische Abweichung $L_{MSE}$ sind als Fehlerfunktion geeignet. Weiter sollten auch die Aktivierungsfunktionen aus Definition \ref{def_act_f} als stückweise stetig differenzierbare Funktion vorausgesetzt werden. 
-Die Optimierung der Parameter geschieht iterativ und besteht jeweils aus zwei Schritten. Zuerst wird eine Abstiegsrichtung 
+Bei FFN wird Backpropagation, etabliert von Rumelhart et. al. \cite{MLPbook}, als Lernalgorithmus genutzt, um eine gewählte Fehlerfunktion $\mathcal{E}$ zu minimieren. Dazu wird das Gradientenverfahren zur numerischen Minimierung von $\mathcal{E}$ im Raum der Modellparameter $\mathcal{W}$ genutzt. Dabei sei bemerkt, dass das Finden von globalen Minima durch den Backpropagationsalgorithmus nicht garantiert ist.
+In dieser Arbeit wird $\mathcal{E}$ immer als stückweise stetig differenzierbare Funktion gewählt, damit das Gradientenverfahren angewendet werden kann. Sowohl die negative log likelihood $L_{NNL}$ als auch die mittlere quadratische Abweichung $L_{MSE}$ sind als Fehlerfunktion geeignet. Weiter sollten auch die Aktivierungsfunktionen aus Definition \ref{def_act_f} als stückweise stetig differenzierbare Funktion vorausgesetzt werden. 
+Die Optimierung der Parameter geschieht iterativ und das Gradientenverfahren besteht jeweils aus zwei Schritten. Zuerst wird eine Abstiegsrichtung 
 \begin{equation}
     \label{eq:gradE}
-    \Delta_n :=- \lambda \nabla_{\mathcal{W}} \mathcal{E}(\mathcal{T},\mathcal{W})
+    \Delta_n := \nabla_{\mathcal{W}} \mathcal{E}(\mathcal{T},\mathcal{W})
 \end{equation} 
-berechnet und dann die Parameter 
+berechnet und dann werden die Parameter 
 \begin{equation}
     \label{eq:step}
-    \mathcal{W}_{n+1}:=\mathcal{W}_n+ \Delta_n
+    \mathcal{W}_{n+1}:=\mathcal{W}_n - \lambda \Delta_n
 \end{equation}
-aktualisiert. Es werden also Gradienten der Fehlerfunktion bezüglich der Gewichtsmatrizen und Biasvektoren ermittelt und anschließend werden jene Parameter mit einer wählbaren Lernrate $\lambda \in \RR$ angepasst. In (\ref{eq:gradE}) wird der Gradient über alle Trainingspaare berechnet. Diese Variante nennt sich \textit{Offline-Version} des Gradientenverfahrens und ist besonders für große Trainingsmengen ineffizient. Die \textit{Online-Version} berechnet den Gradienten lediglich für ein Trainingspaar und passt die Parameter direkt an. In dieser Arbeit wird ein Kompromiss aus beiden Verfahren verwendet und zwar das \textit{Mini-Batch-Verfahren}, siehe Algorithmus \ref{alg:minibatch}, bei dem die Gradienten über kleine Teilmengen $\mathbb{T} \subset \mathcal{T}$ der Trainingsmenge berechnet werden.
+aktualisiert. Es werden also Gradienten der Fehlerfunktion bezüglich der Gewichtsmatrizen und Biasvektoren ermittelt und anschließend werden jene Parameter mit einer wählbaren Lernrate $\lambda \in \RR$ in (\ref{eq:step}) angepasst. In (\ref{eq:gradE}) wird der Gradient über alle Trainingspaare berechnet. Diese Variante nennt sich \textit{Offline-Version} des Gradientenverfahrens und ist besonders für große Trainingsmengen ineffizient. Die \textit{Online-Version} berechnet den Gradienten lediglich für ein Trainingspaar und passt die Parameter direkt an. Ein Kompromiss aus beiden Verfahren ist das \textit{Mini-Batch-Verfahren} bei dem die Gradienten über kleine Teilmengen $\mathbb{T} \subset \mathcal{T}$ der Trainingsmenge berechnet werden.
 
-Die Abstiegsrichtungen werden werden mithilfe der mehrdimensionalen Kettenregel  berechnet.
+Die Abstiegsrichtungen werden mithilfe der mehrdimensionalen Kettenregel  berechnet.
 \begin{satz}[Mehrdimensionale Kettenregel]
     \label{s:chainrule}
-    Ist $f=f(x_1(y_1, \ldots, y_m), \ldots, x_n(y_1, \ldots, y_m))$ und sind alle beteiligten Funktionen stetig differenzierbar, so ergeben sich die partielle Ableitungen mittels Kettenregel zu
+    Ist $f=f(x_1(y_1, \ldots, y_m), \ldots, x_n(y_1, \ldots, y_m))$ und sind alle beteiligten Funktionen stetig differenzierbar, so ergeben sich die partiellen Ableitungen mittels Kettenregel zu
 
     \begin{equation*}
         \frac{\partial f}{\partial y_i}=\sum_{j=1}^n \frac{\partial f}{\partial x_i} \frac{\partial x_j}{\partial y_i} .
@@ -325,9 +324,9 @@ Die Abstiegsrichtungen werden werden mithilfe der mehrdimensionalen Kettenregel 
 \end{satz}
 
 \begin{proof}
-    siehe \cite{forster2017analysis}
+    Ein Beweis kann in Forster\cite{forster2017analysis} nachgelesen werden.
 \end{proof}
-Im Bereich des tiefen Lernens zählt die effiziente Berechnung dieser Gradienten zu den schwersten Aufgaben\cite{DBLP:series/lncs/LeCunBOM12}.
+Die effiziente Berechnung dieser Gradienten gehört zu den schwersten Aufgaben\cite{DBLP:series/lncs/LeCunBOM12} im Bereich des Maschinellen Lernens.
 Im Folgenden wird der Online-Backpropagationsalgorithmus, im Englischen auch als \textit{Stochastic Gradient Descent} bezeichnet, erläutert. Grundsätzlich lässt sich das Verfahren in zwei Schritte einteilen.
 
 \begin{itemize}
@@ -337,7 +336,7 @@ Im Folgenden wird der Online-Backpropagationsalgorithmus, im Englischen auch als
 Als Fehlerfunktion wird im weiteren Verlauf die mittlere quadratische Abweichung 
 \begin{equation}
     \label{eq:MSE}
-    E=\frac{1}{2} \sum_{(x,c) \in \mathcal{T}} ||y-t||_2^2,
+    E:=\frac{1}{2} \sum_{(x,c) \in \mathcal{T}} ||y-t||_2^2,
 \end{equation}
 genutzt, wobei wieder $y=\Lambda(x)$ der Ausgabevektor des FFN und $t=t(x,c)$ der Zielvektor des Datenpaars $(x,c)$ ist. Beim Online-Verfahren wird der Fehler 
 
@@ -348,17 +347,18 @@ genutzt, wobei wieder $y=\Lambda(x)$ der Ausgabevektor des FFN und $t=t(x,c)$ de
 für eine einzige Eingabe $x$ berechnet. Die Ausgabeschicht von $\Lambda$ besitze $s_l$ Neuronen. Nun müssen die Abstiegsrichtungen 
 
 \begin{align*}
-    \Delta_{W^{(k)}} &= -\lambda \frac{\partial E_x}{\partial W^{(k)}} \\
-    \Delta_{b^{(k)}} &= -\lambda \frac{\partial E_x}{\partial b^{(k)}} 
+    \Delta_{W^{(k)}} &= \frac{\partial E_x}{\partial W^{(k)}} \\
+    \Delta_{b^{(k)}} &= \frac{\partial E_x}{\partial b^{(k)}} 
 \end{align*}
-für $1 \leq k \leq s_l$ ermittelt werden. Dazu wird im Folgenden die Notation \cite{du_diss}
+für $1 \leq k \leq s_l$ ermittelt werden. Dazu wird im Folgenden die Notation wie in \cite{du_diss} mit
 \begin{alignat*}{3}
-    &e_k=y_k-t_k &&\text{Fehler des $k$-ten Ausgabeneurons},  \\
     &w_{k,j}^l  &&\text{Eintrag der Gewichtsmatrix $W^{(l)}$ der Ausgabeschicht}, \\
     &w_{j,i}^h   &&\text{Eintrag der Gewichtsmatrix $W^{(h)}$ einer verdeckten Schicht}, \\
     &V_j=\sum_{i} w_{j,i}^h x_i +b^h_j \; \; \;  &&\text{Netzeingabe des verdeckten Neurons $j$ mit Bias $b^{(h)}$}, \\
     &z_{j}= \psi \left(V_j\right) &&\text{Aktivierung des versteckten Neurons $j$},\\
-    &V_k=\sum_{j} w_{k,j}^l z_j +b^l_k&&\text{Netzeingabe des Ausgabeneurons $k$ mit Bias $b^{(l)}$}  
+    &V_k=\sum_{j} w_{k,j}^l z_j +b^l_k&&\text{Netzeingabe des Ausgabeneurons $k$ mit Bias $b^{(l)}$}, \\
+    &y_k=\psi(V_k) &&\text{Aktivierung des Ausgabeneurons} k,\\
+    &e_k=y_k-t_k &&\text{Fehler des $k$-ten Ausgabeneurons} 
 \end{alignat*}
 genutzt. Es wird nur eine verdeckte Schicht mit $s_j$ Neuronen betrachtet. Die Verallgemeinerung für beliebig viele Schichten ist analog. Mit $i$ ist ein Eingabeneuron, $j$ eine verstecktes Neuron und $k$ eine Ausgabeneuron gemeint. Außerdem werden die Gradienten komponentenweise berechnet und daher die Paramter komponentenweise aktualisiert. Die mehrmalige Anwendung der Kettenregel \ref{s:chainrule} auf die Fehlerfunktion (\ref{eq:MSE_single}) liefert
 \begin{align*}
@@ -439,13 +439,11 @@ Die Backpropagation wird als iterativer Algorithmus beschrieben. Daher tauchen i
 Bei der Wahl der Lernrate werden heutzutage werden oft adaptive Verfahren genutzt, welche vorangegangene Gradienten berücksichtigen und die Lernrate so anpassen. Bekannte Verfahren sind \textit{Nesterov accelerated
 gradient}\cite{sutskever2013importance}, \textit{AdaGrad}\cite{duchi2011adaptive}, \textit{RMSProp}\cite{tieleman2012lecture} sowie \textit{Adam}\cite{Kingma2015AdamAM}. So sollen Probleme wie des \textit{vanishing gradients} oder des \textit{exploding gradients} vermieden werden, siehe dazu\cite{hanin2018neural}.
 Für eine tiefere Analyse des Gradientenverfahrens und dessen Varianten sei auf die jeweilgen Arbeiten beziehungsweise als Zusammenfassung auf Ruder\cite{ruder2016overview,} verwiesen. Darüber hinaus gibt es andere Techniken wie die Regularisierung, um die oben genannten Probleme zu entgehen.
-Für die Problemstellung in dieser Arbeit genügt es, das Online-Verfahren mit konstanter Lernrate zu nutzen. 
-
-
+Für die Problemstellung in dieser Arbeit ist es ausreichend, das Online-Verfahren mit konstanter Lernrate zu nutzen. 
 
 \section{Zusammenfassung}
 \label{abs:NN_conc}
-In diesem Kapitel wurden KNN als Feed-Forward-Netze eingeführt. Es stellt sich heraus, dass diese Netze als probabilistische Modelle genutzt werden können, um Klassifikationsaufgaben hinreichend gut zu lösen. Dabei ist es wichtig die Hyper- und Modellparameter je nach Anwendung und Leistungsmaß optimal zu wählen. Dazu werden Trainingsdaten genutzt, um während eines Lernprozesses eine Fehlerfunktion zu Minimieren. Eine Lösung von \ref{eq:error_fun_opt} kann wegen der Komplexität der Fehlerfunktion $E$ bzw. der großen Menge von Parametern $\mathcal{W}$ selten direkt angegeben werden\cite{blum1992training}. Daher wird das Gradientenverfahren als iterativer Ansatz zur numerischen Mnimierung der Fehlerfunktion genutzt. Dabei sind partielle Ableitungen der Fehlerfunktion bezüglich der Parameter nötig, welche im Backpropagationsalgorithmus mithilfe der mehrdimensionalen Kettenregel berechnet werden können. 
+In diesem Kapitel wurden KNN als Feed-Forward-Netze eingeführt. Es stellt sich heraus, dass diese Netze als probabilistische Modelle genutzt werden können, um Klassifikationsaufgaben hinreichend gut zu lösen. Dabei ist es wichtig die Hyper- und Modellparameter je nach Anwendung und Leistungsmaß optimal zu wählen. Dazu werden Trainingsdaten genutzt, um während eines Lernprozesses eine Fehlerfunktion zu Minimieren. Eine Lösung von \ref{eq:error_fun_opt} kann wegen der Komplexität der Fehlerfunktion $E$ bzw. der großen Menge von Parametern $\mathcal{W}$ selten direkt angegeben werden\cite{blum1992training}. Daher wird das Gradientenverfahren als iterativer Ansatz zur numerischen Minimierung der Fehlerfunktion genutzt. Dabei sind partielle Ableitungen der Fehlerfunktion bezüglich der Parameter nötig, welche im Backpropagationsalgorithmus mithilfe der mehrdimensionalen Kettenregel berechnet werden können. 
 
 Bei der Analyse von Zeitreihen oder Bildern eignen sich abgewandelte Architekturen wie gefaltete neuronale Netze (CNN), engl. \textit{Convolutional Neural Networks}, welche im folgenden Kapitel \ref{kap:CNN} näher erläutert werden. Diese Art neuronaler Netze wird im weiteren Verlauf dieser Arbeit im Fokus stehen.
 
