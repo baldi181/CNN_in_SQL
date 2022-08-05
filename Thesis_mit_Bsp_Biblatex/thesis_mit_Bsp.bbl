@@ -19,132 +19,6 @@
 
 \refsection{0}
   \datalist[entry]{nyt/global//global/global}
-    \entry{abiteboul2018research}{article}{}
-      \name{author}{21}{}{%
-        {{hash=e99985780977196e6a1237ff2144092e}{%
-           family={Abiteboul},
-           familyi={A\bibinitperiod},
-           given={Serge},
-           giveni={S\bibinitperiod}}}%
-        {{hash=9282d63c7c5bda72aad9b39bc68fddeb}{%
-           family={Arenas},
-           familyi={A\bibinitperiod},
-           given={Marcelo},
-           giveni={M\bibinitperiod}}}%
-        {{hash=1b311c76b1d53d7a7ea31d940e188e80}{%
-           family={Barceló},
-           familyi={B\bibinitperiod},
-           given={Pablo},
-           giveni={P\bibinitperiod}}}%
-        {{hash=965ba63ef7fc510bc5114d536b474a03}{%
-           family={Bienvenu},
-           familyi={B\bibinitperiod},
-           given={Meghyn},
-           giveni={M\bibinitperiod}}}%
-        {{hash=391528581dff96ccc48b055940229162}{%
-           family={Calvanese},
-           familyi={C\bibinitperiod},
-           given={Diego},
-           giveni={D\bibinitperiod}}}%
-        {{hash=0a17dfc0a1f956a4aa698cb087691336}{%
-           family={David},
-           familyi={D\bibinitperiod},
-           given={Claire},
-           giveni={C\bibinitperiod}}}%
-        {{hash=bbb6ac3d71ba4b81b2cc50e54cf9d355}{%
-           family={Hull},
-           familyi={H\bibinitperiod},
-           given={Richard},
-           giveni={R\bibinitperiod}}}%
-        {{hash=ce2458f8ac2ca4f2198649b4e8a00380}{%
-           family={Hüllermeier},
-           familyi={H\bibinitperiod},
-           given={Eyke},
-           giveni={E\bibinitperiod}}}%
-        {{hash=a7eb74ab06a3a9e65230bed9d673fc9d}{%
-           family={Kimelfeld},
-           familyi={K\bibinitperiod},
-           given={Benny},
-           giveni={B\bibinitperiod}}}%
-        {{hash=931db7d26f75777de801bc1858e3ebae}{%
-           family={Libkin},
-           familyi={L\bibinitperiod},
-           given={Leonid},
-           giveni={L\bibinitperiod}}}%
-        {{hash=ed4ff9f72894a62154d2a77120e5d97a}{%
-           family={Martens},
-           familyi={M\bibinitperiod},
-           given={Wim},
-           giveni={W\bibinitperiod}}}%
-        {{hash=1dfc3aa1c750561ca551aad6a7d63c30}{%
-           family={Milo},
-           familyi={M\bibinitperiod},
-           given={Tova},
-           giveni={T\bibinitperiod}}}%
-        {{hash=39568b984dcfe7b3714bd8298f394cf7}{%
-           family={Murlak},
-           familyi={M\bibinitperiod},
-           given={Filip},
-           giveni={F\bibinitperiod}}}%
-        {{hash=c4518325aa68e5f0005014f669ebdbaf}{%
-           family={Neven},
-           familyi={N\bibinitperiod},
-           given={Frank},
-           giveni={F\bibinitperiod}}}%
-        {{hash=b98078c822e7f6b3cc40ee470d9902b9}{%
-           family={Ortiz},
-           familyi={O\bibinitperiod},
-           given={Magdalena},
-           giveni={M\bibinitperiod}}}%
-        {{hash=672aacf6f24a9217a85c41f257db3c7c}{%
-           family={Schwentick},
-           familyi={S\bibinitperiod},
-           given={Thomas},
-           giveni={T\bibinitperiod}}}%
-        {{hash=bdf0bed4bd04a483f8096b25ad61239b}{%
-           family={Stoyanovich},
-           familyi={S\bibinitperiod},
-           given={Julia},
-           giveni={J\bibinitperiod}}}%
-        {{hash=95661b40fdfa5608116e00c55e9f9182}{%
-           family={Su},
-           familyi={S\bibinitperiod},
-           given={Jianwen},
-           giveni={J\bibinitperiod}}}%
-        {{hash=dad05536948804793c3e454acd5ecb8f}{%
-           family={Suciu},
-           familyi={S\bibinitperiod},
-           given={Dan},
-           giveni={D\bibinitperiod}}}%
-        {{hash=4ab1591fa0309ed9fd313fde6c441ae0}{%
-           family={Vianu},
-           familyi={V\bibinitperiod},
-           given={Victor},
-           giveni={V\bibinitperiod}}}%
-        {{hash=91ceec99caada2f2587e7657c721f3f5}{%
-           family={Yi},
-           familyi={Y\bibinitperiod},
-           given={Ke},
-           giveni={K\bibinitperiod}}}%
-      }
-      \strng{namehash}{5a816f126ceda351f7ebe97ba7551f65}
-      \strng{fullhash}{534f15583bc72f7b6beb4fa9a0e12ab6}
-      \strng{bibnamehash}{5a816f126ceda351f7ebe97ba7551f65}
-      \strng{authorbibnamehash}{5a816f126ceda351f7ebe97ba7551f65}
-      \strng{authornamehash}{5a816f126ceda351f7ebe97ba7551f65}
-      \strng{authorfullhash}{534f15583bc72f7b6beb4fa9a0e12ab6}
-      \field{sortinit}{A}
-      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Dagstuhl Manifestos}
-      \field{number}{1}
-      \field{title}{Research Directions for Principles of Data Management (Dagstuhl Perspectives Workshop 16151)}
-      \field{volume}{7}
-      \field{year}{2018}
-      \field{pages}{1\bibrangedash 29}
-      \range{pages}{29}
-    \endentry
     \entry{afrati2019answering}{article}{}
       \name{author}{2}{}{%
         {{hash=0a4d1ff52400064d3124de67e77cc12c}{%
@@ -207,30 +81,6 @@
       \field{year}{2000}
       \field{pages}{439\bibrangedash 450}
       \range{pages}{12}
-    \endentry
-    \entry{anzai2012pattern}{book}{}
-      \name{author}{1}{}{%
-        {{hash=b88d37135e737b3b0aea57e6762ff45b}{%
-           family={Anzai},
-           familyi={A\bibinitperiod},
-           given={Yuichiro},
-           giveni={Y\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Elsevier}%
-      }
-      \strng{namehash}{b88d37135e737b3b0aea57e6762ff45b}
-      \strng{fullhash}{b88d37135e737b3b0aea57e6762ff45b}
-      \strng{bibnamehash}{b88d37135e737b3b0aea57e6762ff45b}
-      \strng{authorbibnamehash}{b88d37135e737b3b0aea57e6762ff45b}
-      \strng{authornamehash}{b88d37135e737b3b0aea57e6762ff45b}
-      \strng{authorfullhash}{b88d37135e737b3b0aea57e6762ff45b}
-      \field{sortinit}{A}
-      \field{sortinithash}{2f401846e2029bad6b3ecc16d50031e2}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Pattern recognition and machine learning}
-      \field{year}{2012}
     \endentry
     \entry{bilbao2017overfitting}{inproceedings}{}
       \name{author}{2}{}{%
@@ -403,6 +253,37 @@
       \field{pages}{1167\bibrangedash 1178}
       \range{pages}{12}
     \endentry
+    \entry{DBLP:journals/cn/BrinP98}{article}{}
+      \name{author}{2}{}{%
+        {{hash=ade8269d287e9c1531e4a1cbad0b4b82}{%
+           family={Brin},
+           familyi={B\bibinitperiod},
+           given={Sergey},
+           giveni={S\bibinitperiod}}}%
+        {{hash=5ca20489809aaab392f875d6bc785086}{%
+           family={Page},
+           familyi={P\bibinitperiod},
+           given={Lawrence},
+           giveni={L\bibinitperiod}}}%
+      }
+      \strng{namehash}{67f006a7ae882b83a187215c4e9bdf2f}
+      \strng{fullhash}{67f006a7ae882b83a187215c4e9bdf2f}
+      \strng{bibnamehash}{67f006a7ae882b83a187215c4e9bdf2f}
+      \strng{authorbibnamehash}{67f006a7ae882b83a187215c4e9bdf2f}
+      \strng{authornamehash}{67f006a7ae882b83a187215c4e9bdf2f}
+      \strng{authorfullhash}{67f006a7ae882b83a187215c4e9bdf2f}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Comput. Networks}
+      \field{number}{1-7}
+      \field{title}{The Anatomy of a Large-Scale Hypertextual Web Search Engine}
+      \field{volume}{30}
+      \field{year}{1998}
+      \field{pages}{107\bibrangedash 117}
+      \range{pages}{11}
+    \endentry
     \entry{bruder2017konzepte}{inproceedings}{}
       \name{author}{4}{}{%
         {{hash=7763242f28a68370f125291edf7968f1}{%
@@ -556,6 +437,35 @@
       \field{year}{2012}
       \field{pages}{3642\bibrangedash 3649}
       \range{pages}{8}
+    \endentry
+    \entry{d2019big}{book}{}
+      \name{author}{2}{}{%
+        {{hash=ab9143fbe83c2dc4fb6251295e74ba25}{%
+           family={D'Onofrio},
+           familyi={D\bibinitperiod},
+           given={Sara},
+           giveni={S\bibinitperiod}}}%
+        {{hash=c85850c63c930c4211bd1baa46598989}{%
+           family={Meier},
+           familyi={M\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{fc719062f84ee54484bfc866453e7986}
+      \strng{fullhash}{fc719062f84ee54484bfc866453e7986}
+      \strng{bibnamehash}{fc719062f84ee54484bfc866453e7986}
+      \strng{authorbibnamehash}{fc719062f84ee54484bfc866453e7986}
+      \strng{authornamehash}{fc719062f84ee54484bfc866453e7986}
+      \strng{authorfullhash}{fc719062f84ee54484bfc866453e7986}
+      \field{sortinit}{D}
+      \field{sortinithash}{6f385f66841fb5e82009dc833c761848}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Big data analytics}
+      \field{year}{2019}
     \endentry
     \entry{dayhoff1990neural}{book}{}
       \name{author}{1}{}{%
@@ -1373,6 +1283,41 @@
       \field{pages}{25:1\bibrangedash 25:4}
       \range{pages}{-1}
     \endentry
+    \entry{DBLP:conf/gvd/MartenH15}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=a65e2c06f7997da7ce132c7c36b03dbb}{%
+           family={Marten},
+           familyi={M\bibinitperiod},
+           given={Dennis},
+           giveni={D\bibinitperiod}}}%
+        {{hash=94f08f060565b9a18bab52b231e0abc8}{%
+           family={Heuer},
+           familyi={H\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {CEUR-WS.org}%
+      }
+      \strng{namehash}{6958ceb1a896a1ac4b20e6f20f60a32a}
+      \strng{fullhash}{6958ceb1a896a1ac4b20e6f20f60a32a}
+      \strng{bibnamehash}{6958ceb1a896a1ac4b20e6f20f60a32a}
+      \strng{authorbibnamehash}{6958ceb1a896a1ac4b20e6f20f60a32a}
+      \strng{authornamehash}{6958ceb1a896a1ac4b20e6f20f60a32a}
+      \strng{authorfullhash}{6958ceb1a896a1ac4b20e6f20f60a32a}
+      \field{extraname}{2}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{GvD}
+      \field{series}{{CEUR} Workshop Proceedings}
+      \field{title}{Transparente Datenbankunterstützung für Analysen auf Big Data}
+      \field{volume}{1366}
+      \field{year}{2015}
+      \field{pages}{36\bibrangedash 41}
+      \range{pages}{6}
+    \endentry
     \entry{marten2017machine}{article}{}
       \name{author}{2}{}{%
         {{hash=a65e2c06f7997da7ce132c7c36b03dbb}{%
@@ -1395,7 +1340,7 @@
       \strng{authorbibnamehash}{6958ceb1a896a1ac4b20e6f20f60a32a}
       \strng{authornamehash}{6958ceb1a896a1ac4b20e6f20f60a32a}
       \strng{authorfullhash}{6958ceb1a896a1ac4b20e6f20f60a32a}
-      \field{extraname}{2}
+      \field{extraname}{3}
       \field{sortinit}{M}
       \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
       \field{labelnamesource}{author}
@@ -1407,6 +1352,47 @@
       \field{year}{2017}
       \field{pages}{22\bibrangedash 42}
       \range{pages}{21}
+    \endentry
+    \entry{martensparse}{article}{}
+      \name{author}{4}{}{%
+        {{hash=a65e2c06f7997da7ce132c7c36b03dbb}{%
+           family={Marten},
+           familyi={M\bibinitperiod},
+           given={Dennis},
+           giveni={D\bibinitperiod}}}%
+        {{hash=f0c2e10a2cbef9cbb55132c9c0bfd8eb}{%
+           family={Meyer},
+           familyi={M\bibinitperiod},
+           given={Holger},
+           giveni={H\bibinitperiod}}}%
+        {{hash=5e04adc8edd25f1dc7d7c1ca509d908d}{%
+           family={Dietrich},
+           familyi={D\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+        {{hash=94f08f060565b9a18bab52b231e0abc8}{%
+           family={Heuer},
+           familyi={H\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{e634f80117bf45ddb08f5948d878e777}
+      \strng{fullhash}{e9feede283dd5c98dc2858e7d53d5dce}
+      \strng{bibnamehash}{e634f80117bf45ddb08f5948d878e777}
+      \strng{authorbibnamehash}{e634f80117bf45ddb08f5948d878e777}
+      \strng{authornamehash}{e634f80117bf45ddb08f5948d878e777}
+      \strng{authorfullhash}{e9feede283dd5c98dc2858e7d53d5dce}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Open J. Big Data}
+      \field{number}{1}
+      \field{title}{Sparse and Dense Linear Algebra for Machine Learning on Parallel-RDBMS Using {SQL}}
+      \field{volume}{5}
+      \field{year}{2019}
+      \field{pages}{1\bibrangedash 34}
+      \range{pages}{34}
     \endentry
     \entry{minsky2017perceptrons}{book}{}
       \name{author}{2}{}{%

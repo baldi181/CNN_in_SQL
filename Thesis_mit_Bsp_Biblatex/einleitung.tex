@@ -1,41 +1,34 @@
 \chapter{Einleitung}
 \label{kap:intro}
 Assistenzsysteme stellen Informationen und Hilfestellungen bei bestimmten Produkten bereit, um deren Bedienung zu erleichtern. Im Allgemeinen dienen sie der Verbesserung beziehungsweise Erleichterung verschiedenster Situationen aus dem modernen Alltag.
-Heutzutage spielen sie in fast allen Bereichen der Forschung und Industrie eine große Rolle und unterstützen Menschen bei ihren Tätigkeiten \cite{winner2014handbook, kurihata2005rainy, omerdic2011design}.
-Meist werden solche Systeme intelligent genannt, denn sie sind in der Lage, durch die Verarbeitung von Sensordaten bestimmte Szenarien und Aktivitäten zu erkennen, um so die optimalen Assisenzfunktionen zur Verfügung zu stellen. Darüber hinaus können diese Modelle genutzt werden, um Vorhersagen über zukünftige Situationen zu treffen.
-Sensoren, z.B. in Smartphones, Autos oder allgemeinen Multimediasystemen, liefern im Kontext des \textit{Internet of Things} \cite{xia2012internet, wortmann2015internet}meist große Datenmengen, die geschickt gespeichert und verarbeitet werden sollen. Um Muster in diesen immer größer werdenden Datenmegen zu erkennen, können Verfahren und Algorithmen des \textit{Maschinellen Lernens}\cite{Goodfellow-et-al-2016} genutzt werden. Die Analyse solcher Assistenzsysteme ist daher Forschungsgegenstand in den Bereichen der Big Data Analytics und Künstlichen Intelligenz. 
+Heutzutage spielen Assistenzsysteme in fast allen Bereichen der Forschung und Industrie eine große Rolle und unterstützen Menschen bei ihren Tätigkeiten \cite{winner2014handbook, kurihata2005rainy, omerdic2011design}. Um sinnvolle Hilfestellungen zu geben, ist die korrekte Erfassung der aktuellen Situation und
+der wahrscheinlichen Intentionen der zu assistierenden Benutzer notwendig. 
+In diesem Zuge werden solche Systeme meist intelligent genannt, denn sie sind in der Lage, durch die Verarbeitung von Sensordaten bestimmte Szenarien und Aktivitäten zu erkennen, um so die optimalen Assisenzfunktionen zur Verfügung zu stellen. Darüber hinaus können diese Modelle genutzt werden, um Vorhersagen über zukünftige Situationen zu treffen.
+Sensoren, z.B. in Smartphones, Autos oder allgemeinen Multimediasystemen, liefern im Kontext des \textit{Internet of Things}\cite{xia2012internet, wortmann2015internet}meist große Datenmengen, die geschickt verarbeitet werden müssen. Um Muster in diesen immer größer werdenden Datenmegen zu erkennen, können Verfahren und Algorithmen des \textit{Maschinellen Lernens}\cite{Goodfellow-et-al-2016}, kurz ML, genutzt werden. Die Analyse solcher Assistenzsysteme ist daher Forschungsgegenstand in den Bereichen der Big Data Analytics\cite{d2019big} und Künstlichen Intelligenz. 
 
-Das PArADISE-Projekt\cite{paradise} des Lerhstuhls für Datenbank- und Informationsysteme der Universität Rostock beschäftigt sich mit dem Designprozess von Assisenzsystemen mit dem Ziel, die Ersteller von assistiven Systemen in drei Entwicklungsphasen zu unterstützen. 
-\begin{itemize}
-    \item \textbf{Entwicklung:} Datenwissenschaftler versuchen, Benutzeraktivitäten zu erkennen und vorherzusagen, indem sie Daten von einer kleinen Anzahl von Testpersonen verwenden, Sensordaten für einen kurzen Zeitraum  sammeln, diese Sensordaten mit Aktivitätsinformationen versehen und dann versuchen, die Aktivitätsmodelle mit Hilfe von Maschinellen-Lern-Algorithmen zu lernen.
-    \item \textbf{Daten- und Dimensionsreduktion:}
-    \item \textbf{Verwendung:}
-\end{itemize}Durch eine hochparallele Analyse großer Mengen von Sensordaten soll hierbei die datengetriebene Entwicklung von Assisenzsystemen gelingen. In der Anwendung werden jene Systeme genutzt, um Vorhersagen über bestimmter Ereignisse durch Algorithmen (Maschinelles Lernen) zu treffen. Verfahren des überwachten maschinellen Lernens lassen sich typischerweise in 2 Schritten durchführen. In einer Trainingsphase werden mit Hilfe von Trainingsdaten per Annotation Modelle zur
-Erkennung von Mustern abgeleitet. In der späteren Erkennungsphase wird dann das
+Das PArADISE-Projekt\cite{paradise} des Lerhstuhls für Datenbank- und Informationsysteme der Universität Rostock beschäftigt sich mit dem Designprozess von Assisenzsystemen mit dem Ziel, die Ersteller von assistiven Systemen zu unterstützen. In der Entwicklungsphase versuchen Datenwissenschaftler, Benutzeraktivitäten zu erkennen und vorherzusagen, indem sie Sensordaten von einer kleinen Anzahl von Testpersonen über einen kurzen Zeitraum sammeln. Diese Daten werden dann durch Expertenwissen mit Aktivitätsinformationen versehen, um anschließend Aktivitätsmodelle mit Hilfe von Maschinellen-Lern-Algorithmen zu lernen. Hier werden Verfahren des überwachten maschinellen Lernens genutzt, welche sich typischerweise in zwei Phasen einteilen lassen. In einer Trainingsphase werden mithilfe von annotierten Trainingsdaten Modelle zur Erkennung von Mustern abgeleitet. In der späteren Erkennungsphase wird dann das
 trainierte Modell genutzt, um erkannte Muster in einer Zieldatenmenge effizient ableiten
 zu können. 
-
-In der Arbeit von Marten \cite{marten2017machine} wird am Beispiel eines Meeting Szenarios ein Maschinelles Lernverfahren namens Hidden-Markov-Modelle untersucht. Es wird erläutert, wie die Erkennungsphase eines zuvor trainierten Modells datenbankgestützt in parallelen SQL-Datenbanksystemen realisiert werden kann.   
-Als Ergebnis wird festgehalten, dass die datenbankgestützte Umsetzung von ML-Algorithmen, hier speziell bei Hidden-Markov-Modellen, in bestimmten Szenarien gute Skalierungseigenschaften hinsichtlich der Datenmenge besitzt und verschiedenste Resultate der relationalen Datenbankforschung vorteilhaft genutzt werden können. Dies motiviert Analysen anderer Machine-Learning-Verfahren und deren Transformation in SQL. Diese Arbeit beschäftigt sich mit neuronalen Netzen als weitverbreitete Machine Learning Methode und deren Transformation in SQL-Datenbanksystemen unter Zuhilfenahme von Werkzeugen der linearen Algebra.
-
 \section*{Motivation}
-
-In diesem Abschnitt wird die Nutzung relationaler Datanbanksysteme zur Trainings- und Erkennungsphase von Aktivitätsmodellen 
-basierend auf Algorithmen des Machine Learnings \cite{anzai2012pattern}, kurz ML, motiviert.
-Die vielen verwendeten Sensoren liefern meist hoch frequente Daten und daher fallen in der Lernphase riesige Datenmengen an, die perfomant behandelt werden müssen.
-Hier sollen Techniken aus Datenbanksystemen eingebunden werden, um ML-Tools sinnvoll zu unterstützen, was sich als spannendes Forschungsgebiet der Informationssysteme herausstellt \cite{abiteboul2018research}.
-Gelingt dies, so können verschiedenste Resultate der relationalen Datenbankforschung vorteilhaft genutzt werden.
+Eines der schwierigsten Probleme stellt das Verwalten der riesigen Datenmengen, besonders in der Trainingsphase maschineller Lernverfahren, dar. Um in der Implementierung Perfomance-Probleme zu lösen, kann die verwendete Hardware verbessert, der Code optimiert oder Parallelisierungstechniken wie das berühmte \textit{MapReduce}-Verfahren\cite{DBLP:journals/cn/BrinP98} benutzt werden. Ein andere Möglichkeit besteht in der von Verwendung einer transparenten Datenbankunterstützung\cite{DBLP:conf/gvd/MartenH15} für Big Data Analytics. In diesem Kontext werden Techniken aus relationalen Datenbanksystemen eingebunden, um ML-Tools sinnvoll zu unterstützen.
+ % was sich als spannendes Forschungsgebiet der Informationssysteme herausstellt \cite{abiteboul2018research}. 
+Der Schlüssel liegt dabei in der Transformation von Maschinellen-Lern-Algorithmen in SQL-Datenbanksysteme. Gelingt diese Übersetzung, so können verschiedenste Resultate der relationalen Datenbankforschung vorteilhaft genutzt werden.
 \begin{itemize}
-    \item Techniken der parallelen Datenbanksysteme ermöglichen es, SQL Anfragen auf Rechnercluster zu verteilen, um so die Perfomance von ML Algorithmen zu verbessern.
-    \item Konzepte wie \textit{Query Decomposition} \cite{chirkova2011materialized} und \textit{Answering Queries using Views} \cite{ afrati2019answering, levy1999answering} werden genutzt, um bestimmte Auswertungen von Daten näher an den Sensoren durchzuführen und damit \textit{Privacy} \cite{agrawal2000privacy} Aspekte von Nutzern zu berücksichtigen.
+    \item Techniken der parallelen Datenbanksysteme ermöglichen es, SQL-Anfragen auf Rechnercluster zu verteilen, um so die Perfomance von ML-Algorithmen zu verbessern. Besonders interressant ist hier die Umsetzung von Operationen der linearen Algebra,unter anderem motiviert durch Test-of Time-Award-Winner Dan Suciu \cite{interviewsuciu}. Die Transformation von Matrixopeartionen bei dichtbestzten bzw. dünnbesetzten Problemen in parallele relationale Datenbanksysteme wird beispielsweise in Marten et.al.\cite{martensparse} beleuchtet.
+    \item Konzepte wie \textit{Query Decomposition}\cite{chirkova2011materialized} und \textit{Answering Queries using Views}\cite{ afrati2019answering, levy1999answering} werden genutzt, um bestimmte Auswertungen von Daten näher an den Sensoren durchzuführen und damit \textit{Privacy}\cite{agrawal2000privacy} Aspekte von Benutzern zu berücksichtigen.
     \item \textit{Data Provenance} \cite{heuer2015metis, bruder2017konzepte} kann genutzt werden, um herauszufinden, welche Daten für die Detektierung bzw. Vorhersage von Aktivitäten gebraucht werden. 
     So wird unter anderem festgestellt, welche der vielen eingesetzten Sensoren für das Modell essentiell beziehungsweise uninteressant sind.
-\end{itemize} 
+\end{itemize}
+
+In der Arbeit von Marten et.al.\cite{marten2017machine} wird am Beispiel eines Meeting Szenarios ein Maschinelles Lernverfahren namens Hidden-Markov-Modelle untersucht. Es wird erläutert, wie die Erkennungsphase eines zuvor trainierten Modells datenbankgestützt in parallelen SQL-Datenbanksystemen realisiert werden kann.   
+Als Ergebnis wird festgehalten, dass die datenbankgestützte Umsetzung von ML-Algorithmen, hier speziell bei Hidden-Markov-Modellen, in bestimmten Szenarien gute Skalierungseigenschaften hinsichtlich der Datenmenge besitzt und verschiedenste Resultate der relationalen Datenbankforschung vorteilhaft genutzt werden können. Dies motiviert Analysen anderer ML-Verfahren und deren Transformation in SQL. 
+
+\section*{Problemstellung}
+\label{abs:problemstellung}
+Diese Arbeit beschäftigt sich mit \textit{Convolutional Neural Networks}, kurz CNN, als weitverbreitete ML-Methode und deren Transformation in SQL-Datenbanksysteme unter Zuhilfenahme von Werkzeugen der linearen Algebra. Diese speziellen neuronalen Netze werden 
 Das Ziel dieser Arbeit ist, den Transformationsprozess von Machine-Learning-Algorithmen in SQL Anfragen zu beleuchten. Besonders interressant ist die Erweiterung von SQL um Konzepte der linearen Algebra, unter anderem motiviert durch Test-of Time-Award-Winner Dan Suciu \cite{interviewsuciu} .
 
 
-\section*{Problemstellung}
-Problemstellung(Einleitung)
 
 \begin{defi}
     \label{def:image}
