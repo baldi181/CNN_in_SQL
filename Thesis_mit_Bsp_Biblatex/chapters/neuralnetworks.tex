@@ -35,9 +35,9 @@ Bei der Wahl der Funktion $\psi$ gibt es mehrere Möglichkeiten. Wird wie in Min
        0 , \; \text{sonst}
     \end{cases}
 \end{equation*} 
-genutzt, kann das Perzeptron als binärer Klassifikator wie in \ref{abs_linear_trenn} interpretiert werden. Dabei dient $w^Tx+\theta=0$ als trennende Hyperebene. Ist $w^Tx+\theta<0$, so ist $\psi(x)=0$ und $x$ wird der Klasse $K_{-1}$ zugeordnet. Gilt jedoch $w^Tx+\theta \geq 0$ und damit $\psi(x)=1$, so ist der Vektor $x$ der Klasse $K_1$ zugehörig. 
+genutzt, kann das Perzeptron als binärer Klassifikator wie in \ref{abs_linear_trenn} interpretiert werden. Dabei dient $w^Tx+\theta=0$ als trennende Hyperebene. Ist $w^Tx+\theta<0$, so ist $\psi(x)=0$ und $x$ wird der Klasse $K_{0}$ zugeordnet. Gilt jedoch $w^Tx+\theta \geq 0$ und damit $\psi(x)=1$, so ist der Vektor $x$ der Klasse $K_1$ zugehörig. 
 
-Für ein Klassifikationsproblem, bei dem die Klassen nicht linear trennbar sind, scheitern diese einfachen Perzeptronen. Hier wird oft das zweidimensionale XOR-Problem angeführt, bei denen die Punktmengen $P_{-1}=\{(0,0),(1,1)\}$ und $P_{1}=\{(1,0),(0,1)\}$ getrennt werden sollen. Um solche Aufgaben zu lösen, ist es notwendig, mehrere Perzeptronen geschickt zu verknüpfen, um komplexe Entscheidungsgrenzen zu erhalten.
+Für ein Klassifikationsproblem, bei dem die Klassen nicht linear trennbar sind, scheitern diese einfachen Perzeptronen. Hier wird oft das zweidimensionale XOR-Problem angeführt, bei denen die Punktmengen $P_{0}=\{(0,0),(1,1)\}$ und $P_{1}=\{(1,0),(0,1)\}$ getrennt werden sollen. Um solche Aufgaben zu lösen, ist es notwendig, mehrere Perzeptronen geschickt zu verknüpfen, um komplexe Entscheidungsgrenzen zu erhalten.
 
 \section{Multi-Layer-Perzeptron}
 \label{MLP_abs}
@@ -162,7 +162,7 @@ Die Hyperparameter werden oft anwendungsspezifisch für das jeweilige Problem ge
 
 \section{Training neuronaler Netze}
 \label{abs:task_training}
-Künstliche Neuronale Netze gehören zu den typischen Vertretern von maschinellen Lernalgorithmen, welche hinsichtlich einer bestimmten Aufgabe, engl. \textit{task T}, und einem Leistungsmaß, engl. \textit{perfomance P} an der Erfahrung, engl. \textit{experience E} lernen\cite{Goodfellow-et-al-2016}. Dabei ist mit Lernen gemeint, dass das Computerprogramm bezüglich der Aufgabe $T$ sein Leistungsmaß $P$ mit wachsener Erfahrung $E$ schrittweise steigert. Wie in Kapitel \ref{fund} erläutert, gibt es viele verschiedene Aufgaben, wie die Regression, Klassifikation oder Clusterung bestimmter Objekte. 
+%Künstliche Neuronale Netze gehören zu den typischen Vertretern von maschinellen Lernalgorithmen, welche hinsichtlich einer bestimmten Aufgabe, engl. \textit{task T}, und einem Leistungsmaß, engl. \textit{perfomance P} an der Erfahrung, engl. \textit{experience E} lernen\cite{Goodfellow-et-al-2016}. Dabei ist mit Lernen gemeint, dass das Computerprogramm bezüglich der Aufgabe $T$ sein Leistungsmaß $P$ mit wachsener Erfahrung $E$ schrittweise steigert. Wie in Kapitel \ref{kap:fund} erläutert, gibt es viele verschiedene Aufgaben, wie die Regression, Klassifikation oder Clusterung bestimmter Objekte. 
 
 In den folgenden Abschnitten wird das Klassifikationsproblem als \textit{task T} im Mittelpunkt stehen. Weiter werden KNNs als Modellschätzer aus der Wahrscheinlichkeitstheorie interpretiert und fundamentale Aussagen wie das \textit{Universal-Approximation-Theroem}\cite{HORNIK1989359} gegeben. Schließlich wird bezüglich der Klassifikationsaufgabe das Training neuronaler Netze erläutert.
 
