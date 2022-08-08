@@ -175,11 +175,12 @@ Weiter bezeichne $\mathrm{vec}(X)$ die Transformation der Matrix $X$ in einen Ve
 Die Diskrete Fourier\footnote{Jean Baptiste Joseph Fourie 1786-1830}-Transformation ist eine Methode aus dem Bereich der Fourier-Analysis. Dabei werden zeitdiskrete endliche Signale auf sogenannte diskrete, periodische Frequenzspektren abgebildet. In diesem Kontext wird zwischen Zeitbereich und Frequenzbereich unterschieden.
 
 \begin{defi}[Diskrete Fourier-Transformation]
-    Sei ein diskretes Signal $x=(x_0, \ldots, x_{n-1})^T \in \RR^n$ im Zeitbereich gegeben. Dann wird mit $\hat{x}=(\hat{x}_0, \ldots, \hat{x}_{n-1}) \in \mathbb{C}^n$ das Ergebnis der diskreten Fourier-Transformation, kurz DFT, im Frequenzbereich bezeichnet. Die sogenannten Fourier-Koeffizienten sind durch 
+    \label{def:dft}
+    Im Zeitbereich sei ein diskretes Signal $x=(x_0, \ldots, x_{n-1})^T \in \RR^n$ gegeben. Dann wird mit $\hat{x}=(\hat{x}_0, \ldots, \hat{x}_{n-1}) \in \mathbb{C}^n$ das Ergebnis der diskreten Fourier-Transformation, kurz DFT, im Frequenzbereich bezeichnet. Die sogenannten Fourier-Koeffizienten sind als 
     \begin{equation*}
         \hat{x}_k:=\sum_{j=0}^{n-1} \mathrm{e}^{- \frac{2 \pi i}{n} j k} \cdot x_k
     \end{equation*}
-    für $0 \leq k \leq n-1$ definiert
+    für $0 \leq k \leq n-1$ definiert.
 \end{defi}
 Mit der inversen Fourier-Transformation kann aus dem Signal im Frequenzbereich das Signal im Zeitbereich rekonstruiert werden. Damit ist es möglich, Signale im Frequenzbereich zu manipulieren und zwischen Zeit- und Frequenzbereich beliebig zu wechseln.
 \begin{defi}[Inverse Diskrete Fourier-Transformation]
@@ -187,8 +188,22 @@ Mit der inversen Fourier-Transformation kann aus dem Signal im Frequenzbereich d
     \begin{equation*}
         x_k:= \frac{1}{n} \sum_{j=0}^{n-1} \mathrm{e}^{\frac{2 \pi i}{n} j k} \cdot \hat{x}_k, \; \; 0 \leq k \leq n-1
     \end{equation*}
-    lassen sich die Einträge des Vektors $x$ rekonstruieren.
+    lassen sich die Einträge des Vektors $x$ rekonstruieren. Diese Transformation wird inverse diskrete Fourier-Transformation, kurz iDFT, genannt.
 \end{defi}
+Die diskrete Fourier-Transformation aus Definition \ref{def:dft} lässt sich in ein Matrixvektorprodukt $\hat{x}=Fx$ überführen, wobei $F \in \mathbb{C}^{n \times n}$ eine quadratische Matrix mit den Einträgen
+\begin{equation*}
+    F_{k,j}= \mathrm{e}^{- \frac{2 \pi i}{n} j k}, \; \; 1 \leq k, j \leq n-1
+\end{equation*}
+ist. Diese Matrix wird Fourier-Matrix genannt und deren Einträge als \textit{Twiddle}-Faktoren bezeichnet. Wird ein zweidimensionales diskretes Signal in Form einer Matrix $X \in \RR^{n}$ betrachtet,  lässt sich die zweidimensionale diskrete Fourier-Transformation definieren. 
+\begin{defi}
+    Sei $X \in \RR^{n \times n}$ gegeben. Die Koeffizienten der zweidimensionalen diskreten Fourier-Transformation, kurz 2-DFT, sind als
+    \begin{align*}
+        \hat{X}_{u,v}:&= \sum_{l=0}^{n-1} \sum_{j=0}^{n-1} X_{l,j} \cdot \mathrm{e}^{\frac{2 \pi i}{n} -(lu+jv)} \\
+        &=\sum_{l=0}^{n-1} \mathrm{e}^{-\frac{2 \pi i}{n} l u} \left(\sum_{j=0}^{n-1} X_{l,j} \cdot \mathrm{e}^{-\frac{2 \pi i}{n} j v}\right), \; \; 0 \leq u, v \leq n-1
+    \end{align*}
+    definiert. Mit dieser Darstellung lässt sich die 2-DFT als Matrixmatrixmultiplikation $\hat{X}=FXF^T$ berechnen.
+\end{defi}
+
 \section{Datenbankgestützte FFN}
 \label{abs:FFN_in_sql}
 \section{Datenbankgestützte Vorwärtsrechnung}
