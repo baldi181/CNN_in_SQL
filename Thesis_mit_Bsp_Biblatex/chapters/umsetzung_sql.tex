@@ -194,9 +194,9 @@ Mit der inversen Fourier-Transformation kann aus dem Signal im Frequenzbereich d
 Die diskrete Fourier-Transformation aus Definition \ref{def:dft} lässt sich in ein Matrixvektorprodukt $\hat{x}=Fx$ überführen, wobei $F \in \mathbb{C}^{n \times n}$ eine quadratische Matrix mit den Einträgen
 \begin{equation}
     \label{eq:FM}
-    F_{k,j}= \mathrm{e}^{- \frac{2 \pi i}{n} j k}, \; \; 0 \leq k, j \leq n-1
+    F_{k,j}= \mathrm{e}^{- \frac{2 \pi i}{n} j k}=:\omega_n^{k,j}, \; \; 0 \leq k, j \leq n-1
 \end{equation}
-ist. Diese Matrix wird Fourier-Matrix genannt und deren Einträge als \textit{Twiddle}-Faktoren bezeichnet. Wird ein zweidimensionales diskretes Signal in Form einer Matrix $X \in \RR^{n}$ betrachtet, lässt sich die zweidimensionale diskrete Fourier-Transformation definieren. 
+ist. Diese Matrix wird Fourier-Matrix genannt und deren Einträge $\omega_n^{k,j}$ als \textit{Twiddle}-Faktoren bezeichnet. Wird ein zweidimensionales diskretes Signal in Form einer Matrix $X \in \RR^{n}$ betrachtet, lässt sich die zweidimensionale diskrete Fourier-Transformation definieren. 
 \begin{defi}
     Sei $X \in \RR^{n \times n}$ gegeben. Die Koeffizienten der zweidimensionalen diskreten Fourier-Transformation, kurz $\hat{X}=2\mathrm{DFT}(X)$, sind als
     \begin{align*}
@@ -205,20 +205,44 @@ ist. Diese Matrix wird Fourier-Matrix genannt und deren Einträge als \textit{Tw
     \end{align*}
     definiert.
 \end{defi}
-Die zweidimensionale diskrete Fourier-Transformation ist als Hintereinanderausführung von zwei eindimensionalen Fourier-Transformationen, vgl. Definition \ref{def:dft}, zu verstehen. Zuerst wird die $\mathrm{DFT}$ der Zeilen und anschließend die $\mathrm{DFT}$ der Spalten von $X$ berechnet. So lässt sich $\hat{X}=\mathrm{2DFT}(X)$ als Matrixmatrixprodukt $\hat{X}=FXF^T$ mit der Matrix $F$ aus (\ref{eq:FM}) darstellen.
+Die zweidimensionale diskrete Fourier-Transformation ist als Hintereinanderausführung von zwei eindimensionalen Fourier-Transformationen, vgl. Definition \ref{def:dft}, zu verstehen. Zuerst wird die $\mathrm{DFT}$ der Zeilen und anschließend die $\mathrm{DFT}$ der Spalten von $X$ berechnet. So lässt sich $\hat{X}=FXF^T$ als Matrixmatrixprodukt mit der Matrix $F$ aus (\ref{eq:FM}) darstellen.
+
+\begin{defi}
+    inverse 2d as 2d 
+\end{defi}
 
 Zwischen der zyklischen Faltung \ref{def:cycconv} und der diskreten Fourier-Transformation \ref{def:dft} besteht ein fundamentaler Zusammenhang, und zwar das Faltungstheorem. Eine Version davon wird im weiteren Verlauf dieser Arbeit genutzt, um die Matrixfaltung, vgl. Definition \ref{def:matrix_faltung}, mithilfe von Fourier-Transformationen zu berechnen.
 
-\begin{satz}
-    Seine Vektoren $f,g \in \RR^{n}$ gegeben und $y:= f \ast g$ das Ergebnis der zyklischen Faltung. Dann gilt
+\begin{satz}[Zyklisches Faltungstheorem]
+    \label{satz:conv_theorem}
+    Seien Vektoren $f,g \in \RR^{n}$ gegeben und $y= f \ast g$ das Ergebnis der zyklischen Faltung. Dann gilt
     \begin{equation}
-        y=\mathrm{iDFT}\left(\mathrm{DFT}(f) \odot \mathrm{DFT}(g) \right).
+        \mathrm{DFT}(y)=\left(\mathrm{DFT}(f) \odot \mathrm{DFT}(g) \right).
     \end{equation}
     Dabei bezeichne $\odot$ die elementweise Multiplikation der Einträge von den beteiligten Vektoren.
 \end{satz}
-\begin{bem}[Zyklisches Faltungstheorem]
-    Seien die Matrizen $X \in \RR^{n \times n}$ und $K \in \RR^{k \times k}$ mit ungeradem $k$ gegeben.
+\begin{proof}
+    Ein Beweis ist von Smith\cite{smith2007mathematics} gegeben.
+\end{proof}
+\begin{bem}
+    Seien die Matrizen $X \in \RR^{n \times n}$ und $K \in \RR^{k \times k}$ mit ungeradem $k$ gegeben. Weiter sei $l=\lfloor k/2 \rfloor$. Die Matrixfaltung $Y= X \ast K$ ist durch
+    \begin{equation*}
+        Y_{i,j}=\sum_{u=-l}^l \sum_{v=-l}^l X_{i+u, j+v} K_{u,v}, \; \; 1 \leq i, j \leq n
+    \end{equation*}
+    erklärt, vgl. Bemerkung \ref{bem:K_conv_komp}.
+    Der Kern $K$ wird in eine $n \times n$-Matrix wie in \ref{lem:circ_extension} eingebettet und diese wird wieder mit $K \in \RR^{n \times n}$ bezeichnet wird. Sind $\hat{X}=\mathrm{2DFT}(X)$ und $\hat{K}=\mathrm{2DFT}(K)$ die zweidimensionalen Fourier-Transformationen, so gilt mit dem Faltungstheorem \ref{satz:conv_theorem} der Zusammenhang
+    \begin{align*}
+        \mathrm{2DFT}(Y)&=\left(\mathrm{2DFT}(X) \odot \mathrm{2DFT}(K)\right) 
+        %\Leftrightarrow &=\mathrm{i2DFT}(\hat{X} \odot \hat{K}).
+    \end{align*}
+    % bereits um 180 Grad gedreht, vgl. Bemerkung \ref{bem:K_conv_komp}, 
 \end{bem}
+Die Matrixfaltung innerhalb einer Faltungsschicht eines CNN lässt sich mit den obigen Resultaten in drei Schritten berechnen.
+\begin{itemize}
+    \item[1.] Es sind jeweils die zweidimensionalen diskreten Fourier-Transformationen für die Eingabe $\hat{X}$ und den Kern $\hat{K}$ zu berechnen.
+    \item[2.] Die Matrix $\hat{Y}= \hat{X} \odot \hat{K}$, welche sich mit der elementweisen Multiplikation ergibt ist zu bestimmen.
+    \item[3.] Schließlich stellt $Y=\mathrm{i2DFT}(\hat{Y})$ die Matrixfaltung dar, welche mithilfe der inversen Fourier-Transformation ermittelt wird.    
+\end{itemize} 
 \label{abs:FFN_in_sql}
 \section{Datenbankgestützte Vorwärtsrechnung}
 \label{abs_CNN_in_SQL}

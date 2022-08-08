@@ -1786,6 +1786,30 @@
       \field{pages}{1875\bibrangedash 1897}
       \range{pages}{23}
     \endentry
+    \entry{smith2007mathematics}{book}{}
+      \name{author}{1}{}{%
+        {{hash=1badfd642dad955ea19955d5165b2005}{%
+           family={Smith},
+           familyi={S\bibinitperiod},
+           given={Julius\bibnamedelima Orion},
+           giveni={J\bibinitperiod\bibinitdelim O\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Julius Smith}%
+      }
+      \strng{namehash}{1badfd642dad955ea19955d5165b2005}
+      \strng{fullhash}{1badfd642dad955ea19955d5165b2005}
+      \strng{bibnamehash}{1badfd642dad955ea19955d5165b2005}
+      \strng{authorbibnamehash}{1badfd642dad955ea19955d5165b2005}
+      \strng{authornamehash}{1badfd642dad955ea19955d5165b2005}
+      \strng{authorfullhash}{1badfd642dad955ea19955d5165b2005}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Mathematics of the discrete Fourier transform (DFT): with audio applications}
+      \field{year}{2007}
+    \endentry
     \entry{sonoda2017neural}{article}{}
       \name{author}{2}{}{%
         {{hash=2f21ece4e9535a03503a7186e62aec7f}{%
