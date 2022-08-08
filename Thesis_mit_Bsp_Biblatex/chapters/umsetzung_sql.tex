@@ -55,6 +55,7 @@ Zwei beliebige Funktionen $f,g: D \rightarrow \mathbb{R}$ mit endlichem Definiti
 Die diskrete Faltung dieser eindimensionalen Signale wird im Folgenden erklärt.
 
 \begin{defi}
+    \label{def:cycconv}
     Das Faltungsergebnis $y \in \RR^{n}$ zweier zeitdiskreter Signale $f \in \RR^n$ und $g \in \RR^n$ ist durch
     \begin{equation}
         y_k:=\sum_{j=0}^{k} f_j g_{k-j}, \; \; 0 \leq k \leq n-1
@@ -172,11 +173,11 @@ Weiter bezeichne $\mathrm{vec}(X)$ die Transformation der Matrix $X$ in einen Ve
 \end{bsp}
 
 \subsection{Diskrete Fourier-Transformation}
-Die Diskrete Fourier\footnote{Jean Baptiste Joseph Fourie 1786-1830}-Transformation ist eine Methode aus dem Bereich der Fourier-Analysis. Dabei werden zeitdiskrete endliche Signale auf sogenannte diskrete, periodische Frequenzspektren abgebildet. In diesem Kontext wird zwischen Zeitbereich und Frequenzbereich unterschieden.
+Die Diskrete Fourier\footnote{Jean Baptiste Joseph Fourier 1786-1830}-Transformation ist eine Methode aus dem Bereich der Fourier-Analysis. Dabei werden zeitdiskrete endliche Signale auf sogenannte diskrete, periodische Frequenzspektren abgebildet. In diesem Kontext wird zwischen Zeitbereich und Frequenzbereich unterschieden.
 
 \begin{defi}[Diskrete Fourier-Transformation]
     \label{def:dft}
-    Im Zeitbereich sei ein diskretes Signal $x=(x_0, \ldots, x_{n-1})^T \in \RR^n$ gegeben. Dann wird mit $\hat{x}=(\hat{x}_0, \ldots, \hat{x}_{n-1}) \in \mathbb{C}^n$ das Ergebnis der diskreten Fourier-Transformation, kurz DFT, im Frequenzbereich bezeichnet. Die sogenannten Fourier-Koeffizienten sind als 
+    Im Zeitbereich sei ein diskretes Signal $x=(x_0, \ldots, x_{n-1})^T \in \RR^n$ gegeben. Dann wird mit $\hat{x}=(\hat{x}_0, \ldots, \hat{x}_{n-1}) \in \mathbb{C}^n$ das Ergebnis der diskreten Fourier-Transformation, kurz $\hat{x}=\mathrm{DFT}(x)$, im Frequenzbereich bezeichnet. Die sogenannten Fourier-Koeffizienten sind als 
     \begin{equation*}
         \hat{x}_k:=\sum_{j=0}^{n-1} \mathrm{e}^{- \frac{2 \pi i}{n} j k} \cdot x_k
     \end{equation*}
@@ -188,23 +189,36 @@ Mit der inversen Fourier-Transformation kann aus dem Signal im Frequenzbereich d
     \begin{equation*}
         x_k:= \frac{1}{n} \sum_{j=0}^{n-1} \mathrm{e}^{\frac{2 \pi i}{n} j k} \cdot \hat{x}_k, \; \; 0 \leq k \leq n-1
     \end{equation*}
-    lassen sich die Einträge des Vektors $x$ rekonstruieren. Diese Transformation wird inverse diskrete Fourier-Transformation, kurz iDFT, genannt.
+    lassen sich die Einträge des Vektors $x$ rekonstruieren. Diese Transformation wird inverse diskrete Fourier-Transformation, kurz $x=\mathrm{iDFT}(\hat{x})$, genannt.
 \end{defi}
 Die diskrete Fourier-Transformation aus Definition \ref{def:dft} lässt sich in ein Matrixvektorprodukt $\hat{x}=Fx$ überführen, wobei $F \in \mathbb{C}^{n \times n}$ eine quadratische Matrix mit den Einträgen
-\begin{equation*}
-    F_{k,j}= \mathrm{e}^{- \frac{2 \pi i}{n} j k}, \; \; 1 \leq k, j \leq n-1
-\end{equation*}
-ist. Diese Matrix wird Fourier-Matrix genannt und deren Einträge als \textit{Twiddle}-Faktoren bezeichnet. Wird ein zweidimensionales diskretes Signal in Form einer Matrix $X \in \RR^{n}$ betrachtet,  lässt sich die zweidimensionale diskrete Fourier-Transformation definieren. 
+\begin{equation}
+    \label{eq:FM}
+    F_{k,j}= \mathrm{e}^{- \frac{2 \pi i}{n} j k}, \; \; 0 \leq k, j \leq n-1
+\end{equation}
+ist. Diese Matrix wird Fourier-Matrix genannt und deren Einträge als \textit{Twiddle}-Faktoren bezeichnet. Wird ein zweidimensionales diskretes Signal in Form einer Matrix $X \in \RR^{n}$ betrachtet, lässt sich die zweidimensionale diskrete Fourier-Transformation definieren. 
 \begin{defi}
-    Sei $X \in \RR^{n \times n}$ gegeben. Die Koeffizienten der zweidimensionalen diskreten Fourier-Transformation, kurz 2-DFT, sind als
+    Sei $X \in \RR^{n \times n}$ gegeben. Die Koeffizienten der zweidimensionalen diskreten Fourier-Transformation, kurz $\hat{X}=2\mathrm{DFT}(X)$, sind als
     \begin{align*}
         \hat{X}_{u,v}:&= \sum_{l=0}^{n-1} \sum_{j=0}^{n-1} X_{l,j} \cdot \mathrm{e}^{\frac{2 \pi i}{n} -(lu+jv)} \\
         &=\sum_{l=0}^{n-1} \mathrm{e}^{-\frac{2 \pi i}{n} l u} \left(\sum_{j=0}^{n-1} X_{l,j} \cdot \mathrm{e}^{-\frac{2 \pi i}{n} j v}\right), \; \; 0 \leq u, v \leq n-1
     \end{align*}
-    definiert. Mit dieser Darstellung lässt sich die 2-DFT als Matrixmatrixmultiplikation $\hat{X}=FXF^T$ berechnen.
+    definiert.
 \end{defi}
+Die zweidimensionale diskrete Fourier-Transformation ist als Hintereinanderausführung von zwei eindimensionalen Fourier-Transformationen, vgl. Definition \ref{def:dft}, zu verstehen. Zuerst wird die $\mathrm{DFT}$ der Zeilen und anschließend die $\mathrm{DFT}$ der Spalten von $X$ berechnet. So lässt sich $\hat{X}=\mathrm{2DFT}(X)$ als Matrixmatrixprodukt $\hat{X}=FXF^T$ mit der Matrix $F$ aus (\ref{eq:FM}) darstellen.
 
-\section{Datenbankgestützte FFN}
+Zwischen der zyklischen Faltung \ref{def:cycconv} und der diskreten Fourier-Transformation \ref{def:dft} besteht ein fundamentaler Zusammenhang, und zwar das Faltungstheorem. Eine Version davon wird im weiteren Verlauf dieser Arbeit genutzt, um die Matrixfaltung, vgl. Definition \ref{def:matrix_faltung}, mithilfe von Fourier-Transformationen zu berechnen.
+
+\begin{satz}
+    Seine Vektoren $f,g \in \RR^{n}$ gegeben und $y:= f \ast g$ das Ergebnis der zyklischen Faltung. Dann gilt
+    \begin{equation}
+        y=\mathrm{iDFT}\left(\mathrm{DFT}(f) \odot \mathrm{DFT}(g) \right).
+    \end{equation}
+    Dabei bezeichne $\odot$ die elementweise Multiplikation der Einträge von den beteiligten Vektoren.
+\end{satz}
+\begin{bem}[Zyklisches Faltungstheorem]
+    Seien die Matrizen $X \in \RR^{n \times n}$ und $K \in \RR^{k \times k}$ mit ungeradem $k$ gegeben.
+\end{bem}
 \label{abs:FFN_in_sql}
 \section{Datenbankgestützte Vorwärtsrechnung}
 \label{abs_CNN_in_SQL}
