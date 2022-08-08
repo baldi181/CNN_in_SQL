@@ -52,7 +52,16 @@ TODO Grafik ergebnis erklären.
 \subsection{Faltung als Matrixvektorprodukt}
 \label{abs:conv_using_sparse}
 Zwei beliebige Funktionen $f,g: D \rightarrow \mathbb{R}$ mit endlichem Definitionsbereich $D$ können als zeitdiskrete Signale $f=(f_0, \ldots, f_{n-1})^T \in \mathbb{R}^{n}$ und $g=(g_0, \ldots, g_{n-1})^T \in \mathbb{R}^{n}$ aufgefasst werden. %Durch das Fortsetzen mit Nullen besitzen die Vektoren $f$ und $g$ die gleiche Länge. 
-In diesem Fall kann die Faltung der eindimensionalen Signale $f$ und $g$ als Matrixvektorprodukt mit speziellen Toeplitz-Matrizen formuliert werden. 
+Die diskrete Faltung dieser eindimensionalen Signale wird im Folgenden erklärt.
+
+\begin{defi}
+    Das Faltungsergebnis $y \in \RR^{n}$ zweier zeitdiskreter Signale $f \in \RR^n$ und $g \in \RR^n$ ist durch
+    \begin{equation}
+        y_k:=\sum_{j=0}^{k} f_j g_{k-j}, \; \; 0 \leq k \leq n-1
+    \end{equation}
+    definiert.
+\end{defi}
+In diesem Fall kann die diskrete Faltung von $f$ und $g$ als Matrixvektorprodukt mit Toeplitz-Matrizen formuliert werden. 
 
 \begin{defi}[Toeplitz-Matrix, Zyklische Matrix]
     \label{def:toeplitzM}
@@ -87,49 +96,49 @@ In diesem Fall kann die Faltung der eindimensionalen Signale $f$ und $g$ als Mat
    % besitzt.
 %\end{defi}    
     
-Für ein zeitdiskrete Signal $f \in \mathbb{R}^{n}$ wird die Toeplitz-Matrix 
+Für ein zeitdiskrete Signal $g \in \mathbb{R}^{n}$ wird die Toeplitz-Matrix 
 \begin{equation*} 
-    F_n=\begin{pmatrix}
-        f_0 & 0 &0 &\ldots &\ldots &0 \\ 
-        f_1 & f_0 &0 &\ddots & &\vdots \\
-        f_2 & f_1 &\ddots &\ddots &\ddots &\vdots\\
+    G_n=\begin{pmatrix}
+        g_0 & 0 &0 &\ldots &\ldots &0 \\ 
+        g_1 & g_0 &0 &\ddots & &\vdots \\
+        g_2 & g_1 &\ddots &\ddots &\ddots &\vdots\\
         \vdots & \ddots &\ddots &\ddots &0 &0\\
-        \vdots & &\ddots &f_1 &f_0 &0 \\
-        f_{n-1} &\ldots &\ldots &f_{2} &f_{1} &f_0
+        \vdots & &\ddots &g_1 &g_0 &0 \\
+        g_{n-1} &\ldots &\ldots &g_{2} &g_{1} &g_0
     \end{pmatrix}
 \end{equation*}
-konstruiert. Sei ein zeitdiskretes Signal $g \in \RR^{n}$ gegeben und der Vektor
+konstruiert. Sei ein zeitdiskretes Signal $f \in \RR^{n}$ gegeben und der Vektor $y \in \RR^n$ durch
 \begin{equation*}
-    y:=F_n g =\begin{pmatrix}
-        f_0 & 0 &0 &\ldots &\ldots &0 \\ 
-        f_1 & f_0 &0 &\ddots & &\vdots \\
-        f_2 & f_1 &\ddots &\ddots &\ddots &\vdots\\
+    y:=G_n f =\begin{pmatrix}
+        g_0 & 0 &0 &\ldots &\ldots &0 \\ 
+        g_1 & g_0 &0 &\ddots & &\vdots \\
+        g_2 & g_1 &\ddots &\ddots &\ddots &\vdots\\
         \vdots & \ddots &\ddots &\ddots &0 &0\\
-        \vdots & &\ddots &f_1 &f_0 &0 \\
-        f_{n-1} &\ldots &\ldots &f_{2} &f_{1} &f_0
+        \vdots & &\ddots &g_1 &g_0 &0 \\
+        g_{n-1} &\ldots &\ldots &g_{2} &g_{1} &g_0
     \end{pmatrix}
     \begin{pmatrix}
-        g_0 \\
-        g_1 \\
-        g_2 \\
+        f_0 \\
+        f_1 \\
+        f_2 \\
         \vdots \\
         \vdots \\
-        g_{n-1}
+        f_{n-1}
     \end{pmatrix} \\
     = \begin{pmatrix}
         g_0 f_0 \\
-        g_0 f_1+ g_1 f_0 \\
-        \sum_{i=0}^2 g_i f_{2-i}  \\
+        g_1 f_0+ g_0 f_1 \\
+        \sum_{j=0}^2 f_j g_{2-j}  \\
         \vdots \\
         \vdots \\
-        \sum_{i=0}^{n-1} g_i f_{n-1-i} 
+        \sum_{j=0}^{n-1} f_j g_{n-1-j} 
     \end{pmatrix}
 \end{equation*}
 mit den Einträgen 
 \begin{equation*}
-   y_k=\sum_{i=0}^k g_i f_{k-i}, \; \; 0 \leq k \leq n-1
+   y_k=\sum_{j=0}^k f_j g_{k-j}, \; \; 0 \leq k \leq n-1
 \end{equation*}
-definiert.
+gegeben.
 Dann spiegelt $y$ das Ergebnis der eindimensionalen diskreten Faltung von $f$ und $g$ wider. Die Faltung zweidimensionaler Signale kann mithilfe von zyklischen Blockmatrizen dargestellt werden.
     %Matrix im Vektor $f$. Sei weiter $g \in \mathbb{R}^{n}$. Dann lässt sich mit
 %\begin{equation*}
@@ -162,7 +171,24 @@ Weiter bezeichne $\mathrm{vec}(X)$ die Transformation der Matrix $X$ in einen Ve
     TODO
 \end{bsp}
 
+\subsection{Diskrete Fourier-Transformation}
+Die Diskrete Fourier\footnote{Jean Baptiste Joseph Fourie 1786-1830}-Transformation ist eine Methode aus dem Bereich der Fourier-Analysis. Dabei werden zeitdiskrete endliche Signale auf sogenannte diskrete, periodische Frequenzspektren abgebildet. In diesem Kontext wird zwischen Zeitbereich und Frequenzbereich unterschieden.
 
+\begin{defi}[Diskrete Fourier-Transformation]
+    Sei ein diskretes Signal $x=(x_0, \ldots, x_{n-1})^T \in \RR^n$ im Zeitbereich gegeben. Dann wird mit $\hat{x}=(\hat{x}_0, \ldots, \hat{x}_{n-1}) \in \mathbb{C}^n$ das Ergebnis der diskreten Fourier-Transformation, kurz DFT, im Frequenzbereich bezeichnet. Die sogenannten Fourier-Koeffizienten sind durch 
+    \begin{equation*}
+        \hat{x}_k:=\sum_{j=0}^{n-1} \mathrm{e}^{- \frac{2 \pi i}{n} j k} \cdot x_k
+    \end{equation*}
+    für $0 \leq k \leq n-1$ definiert
+\end{defi}
+Mit der inversen Fourier-Transformation kann aus dem Signal im Frequenzbereich das Signal im Zeitbereich rekonstruiert werden. Damit ist es möglich, Signale im Frequenzbereich zu manipulieren und zwischen Zeit- und Frequenzbereich beliebig zu wechseln.
+\begin{defi}[Inverse Diskrete Fourier-Transformation]
+    Sei $\hat{x}=(\hat{x}_0, \ldots, \hat{x}_{n-1}) \in \mathbb{C}^n$ das Ergebnis der diskreten Fourier-Transformation von $x \in \RR^n$. Mit 
+    \begin{equation*}
+        x_k:= \frac{1}{n} \sum_{j=0}^{n-1} \mathrm{e}^{\frac{2 \pi i}{n} j k} \cdot \hat{x}_k, \; \; 0 \leq k \leq n-1
+    \end{equation*}
+    lassen sich die Einträge des Vektors $x$ rekonstruieren.
+\end{defi}
 \section{Datenbankgestützte FFN}
 \label{abs:FFN_in_sql}
 \section{Datenbankgestützte Vorwärtsrechnung}

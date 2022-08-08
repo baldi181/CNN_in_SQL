@@ -69,19 +69,21 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.1.2}Faltung als Matrixvektorprodukt}{49}{subsection.5.1.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.2}Datenbankgestützte FFN}{51}{section.5.2}%
+\contentsline {subsection}{\numberline {5.1.3}Diskrete Fourier-Transformation}{51}{subsection.5.1.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.3}Datenbankgestützte Vorwärtsrechnung}{51}{section.5.3}%
+\contentsline {section}{\numberline {5.2}Datenbankgestützte FFN}{52}{section.5.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.4}Evalution}{51}{section.5.4}%
+\contentsline {section}{\numberline {5.3}Datenbankgestützte Vorwärtsrechnung}{52}{section.5.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Zusammenfassung und Ausblick}{52}{chapter.6}%
+\contentsline {section}{\numberline {5.4}Evalution}{52}{section.5.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Anhang}{53}{appendix.A}%
+\contentsline {chapter}{\numberline {6}Zusammenfassung und Ausblick}{53}{chapter.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.1}Weitere Basisoperation in SQL}{53}{section.A.1}%
+\contentsline {chapter}{\numberline {A}Anhang}{54}{appendix.A}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline Literatur}{54}{chapter*.29}%
+\contentsline {section}{\numberline {A.1}Weitere Basisoperation in SQL}{54}{section.A.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {chapter}{\nonumberline Literatur}{55}{chapter*.29}%
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {B}Anhang}{i}{appendix.B}%
 \defcounter {refsection}{0}\relax 
