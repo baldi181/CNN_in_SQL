@@ -1656,6 +1656,7 @@ INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmbx6.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/rm-lmbx12.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/rm-lmbx8.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/rm-lmbx6.tfm
+INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmbxi10.tfm
 INPUT ./chapters/neuralnetworks.tex
 INPUT chapters/neuralnetworks.tex
 INPUT ./chapters/neuralnetworks.tex
@@ -1804,6 +1805,7 @@ INPUT c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc
 INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx10.pfb
 INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb
 INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx8.pfb
+INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb
 INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb
 INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmex10.pfb
 INPUT c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi12.pfb

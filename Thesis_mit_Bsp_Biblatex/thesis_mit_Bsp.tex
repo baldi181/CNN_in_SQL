@@ -21,7 +21,7 @@
 \newtheorem{lem}{Lemma}
 \newtheorem{annahme}{Annahme}
 \newtheorem{problem}{Problem}
-\theoremstyle{remark}	%Styleänderung (Text aufrecht, ...)
+%\theoremstyle{remark}	%Styleänderung (Text aufrecht, ...)
 \newtheorem{bem}{Bemerkung}
 \newtheorem{bsp}{Beispiel}
 
@@ -39,6 +39,11 @@
 %\newtheorem{brem}{T}[section] % remarks are numbered within sections
 %Beispiel für eigene Kommandos
 \newcommand{\ol}{\overline} %Kurzform für \overline definiert 
+\newcommand{\olsi}[1]{\,\overline{\!{#1}}} % overline short italic
+\newcommand{\ols}[1]{\mskip.5\thinmuskip\overline{\mskip-.5\thinmuskip {#1} \mskip-.5\thinmuskip}\mskip.5\thinmuskip} % overline short
+
+
+
 %\newcommand{\RR}{\mathbb{R}}
 %newcommand{\RRn}{\mathbb{R}^n}
 
