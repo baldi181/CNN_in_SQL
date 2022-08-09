@@ -1364,6 +1364,45 @@
       \field{pages}{22\bibrangedash 42}
       \range{pages}{21}
     \endentry
+    \entry{DBLP:conf/adbis/Marten0019}{inproceedings}{}
+      \name{author}{3}{}{%
+        {{hash=a65e2c06f7997da7ce132c7c36b03dbb}{%
+           family={Marten},
+           familyi={M\bibinitperiod},
+           given={Dennis},
+           giveni={D\bibinitperiod}}}%
+        {{hash=f0c2e10a2cbef9cbb55132c9c0bfd8eb}{%
+           family={Meyer},
+           familyi={M\bibinitperiod},
+           given={Holger},
+           giveni={H\bibinitperiod}}}%
+        {{hash=94f08f060565b9a18bab52b231e0abc8}{%
+           family={Heuer},
+           familyi={H\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer}%
+      }
+      \strng{namehash}{b29b4844d2a89fc08f505bd3e3116138}
+      \strng{fullhash}{b29b4844d2a89fc08f505bd3e3116138}
+      \strng{bibnamehash}{b29b4844d2a89fc08f505bd3e3116138}
+      \strng{authorbibnamehash}{b29b4844d2a89fc08f505bd3e3116138}
+      \strng{authornamehash}{b29b4844d2a89fc08f505bd3e3116138}
+      \strng{authorfullhash}{b29b4844d2a89fc08f505bd3e3116138}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{{ADBIS}}
+      \field{series}{Lecture Notes in Computer Science}
+      \field{title}{Calculating Fourier Transforms in {SQL}}
+      \field{volume}{11695}
+      \field{year}{2019}
+      \field{pages}{151\bibrangedash 166}
+      \range{pages}{16}
+    \endentry
     \entry{martensparse}{article}{}
       \name{author}{4}{}{%
         {{hash=a65e2c06f7997da7ce132c7c36b03dbb}{%

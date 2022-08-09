@@ -208,6 +208,7 @@ mit
 \end{equation*}
 ist. Diese Matrix wird Fourier-Matrix genannt und deren Einträge $\omega_n^{j}$ als $n$-te Einheitswurzeln bezeichnet. Es gilt $\omega_n^n=1$.
 \begin{lem}
+    \label{lem:Finv}
     Es gilt $F^H=\bar{F}$ und die Matrix $\frac{1}{\sqrt{n}} F$ ist unitär. Für $x \in \RR^n$ sei $\hat{x}=Fx$. Dann gilt $F^{-1}=\frac{1}{n} \bar{F}$ und $x= \frac{1}{n}\bar{F} \hat{x}$.
 \end{lem}
 \begin{proof}
@@ -224,6 +225,7 @@ ist. Diese Matrix wird Fourier-Matrix genannt und deren Einträge $\omega_n^{j}$
 \end{proof} 
 Die inverse diskrete Fourier-Transformation lässt sich mithilfe der diskreten Fourier-Transformation berechnen. Dieser Zusammenhang wird insbesondere für die spätere datenbankgestützte Implementierung der Fourier-Transformationen genutzt.
 \begin{lem}
+    \label{lem:inversedftasdft}
     Sei das Fourier-Paar
     \begin{align*}
         \hat{x}_k&=\sum_{j=0}^{n-1} \mathrm{e}^{- \frac{2 \pi i}{n} j k} \cdot x_j, \\ x_j&= \frac{1}{n} \sum_{k=0}^{n-1} \mathrm{e}^{\frac{2 \pi i}{n} j k} \cdot \hat{x}_k
@@ -234,8 +236,9 @@ Die inverse diskrete Fourier-Transformation lässt sich mithilfe der diskreten F
   Es gilt
   \begin{align*}
     x_j^{*}&=\frac{1}{n} \sum_{k=0}^{n-1} \mathrm{e}^{-\frac{2 \pi i}{n} j k} \cdot \hat{x}^*_k \\
-    &=\frac{1}{n} \mathrm{DFT}(\hat{x}^*)_j
+    &=\frac{1}{n} \mathrm{DFT}(\hat{x}^*)_j.
   \end{align*}
+  Die Konjugation auf beiden Seiten liefert die Aussage.
 \end{proof}
 Wird ein zweidimensionales diskretes Signal in Form einer Matrix $X \in \RR^{n \times n}$ betrachtet, lässt sich die zweidimensionale diskrete Fourier-Transformation definieren. 
 \begin{defi}
@@ -267,7 +270,7 @@ Zwischen der zyklischen Faltung \ref{def:cycconv} und der diskreten Fourier-Tran
         Y_{i,j}=\sum_{u=-l}^l \sum_{v=-l}^l X_{i+u, j+v} K_{u,v}, \; \; 1 \leq i, j \leq n
     \end{equation*}
     erklärt, vgl. Bemerkung \ref{bem:K_conv_komp}.
-    Der Kern $K$ wird in eine $n \times n$-Matrix wie in \ref{lem:circ_extension} eingebettet und diese wird wieder mit $K \in \RR^{n \times n}$ bezeichnet wird. Sind $\hat{X}=\mathrm{2DFT}(X)$ und $\hat{K}=\mathrm{2DFT}(K)$ die zweidimensionalen diskreten Fourier-Transformationen, so gilt mit dem Faltungstheorem \ref{satz:conv_theorem} der Zusammenhang
+    Der Kern $K$ wird in eine $n \times n$-Matrix wie in \ref{lem:circ_extension} eingebettet und diese wird wieder mit $K \in \RR^{n \times n}$ bezeichnet wird. Stehen die zweidimensionalen diskreten Fourier-Transformationen $\hat{X}=\mathrm{2DFT}(X)$ und $\hat{K}=\mathrm{2DFT}(K)$ zur Verfügung, so gilt mit dem Faltungstheorem \ref{satz:conv_theorem} der Zusammenhang
     \begin{align*}
         \mathrm{2DFT}(Y)&=\mathrm{2DFT}(X) \odot \mathrm{2DFT}(K). 
         %\Leftrightarrow &=\mathrm{i2DFT}(\hat{X} \odot \hat{K}).
@@ -280,7 +283,26 @@ Die Matrixfaltung innerhalb einer Faltungsschicht eines CNN lässt sich mit den 
     \item[2.] Die Matrix $\hat{Y}= \hat{X} \odot \hat{K}$, welche sich aus der elementweisen Multiplikation ergibt, ist zu bestimmen.
     \item[3.] Schließlich stellt $Y=\mathrm{i2DFT}(\hat{Y})$ die Matrixfaltung dar, welche mithilfe der inversen diskreten Fourier-Transformation ermittelt wird.    
 \end{itemize} 
-\label{abs:FFN_in_sql}
+Für Schritt 1 und Schritt 3 kann wegen Lemma \ref{lem:Finv} und Lemma \ref{lem:inversedftasdft} die Fourier-Matrix $F$ benutzt werden. Die Aufgabe besteht nun darin, die Berechnungen in Algorithmus \ref{alg:conv_as_2dft} datenbankgestützt umzusetzen. Dies gelingt, da ausschließlich Basisoperationen wie die Matrixmatrixmultiplikation sowie das Transponieren von Matrizen benötigt werden. Die elementweise Multiplikation und die Konjugation können als einfache skalare Funktionen implementiert werden. Die Berechnung der DFT mit der Matrix $F$ benötigt $n(2n-1)$ Fließkomma-Operationen. Da die Matrix $F$ nur von den Dimensionen der beteiligten Matrizen abhängt und diese durch die Hyperparameter des verwendeten CNN festgehalten sind, kann $F$ vor der Vorwärtsrechnung in einer Relation gespeichert werden. So kann die Berechnungszeit verkürtzt werden. Wird zur Berechnung der DFT die sogenannte schnelle Fourier-Transformation (engl. \textit{Fast-Fourier-Transformation}, kurz: FFT) genutzt, kann der Zeitaufwand von $\mathcal{O}(n^2)$ auf $\mathcal{O}(n \log n)$ vermindert werden. Verschiedene Möglichkeiten, die FFT in SQL zu implementieren, werden in Marten et. al.\cite{DBLP:conf/adbis/Marten0019} präsentiert.
+
+\begin{algorithm}[h]
+    \caption{Matrixfaltung mit diskreten Fourier-Transformationen}
+    \label{alg:conv_as_2dft}
+    \begin{algorithmic}
+    \Require  Eingabematrix $X \in \RR^{n \times n}$, eingebetteter Kern $K \in \RR^{n \times n}$, Fourier-Matrix $F \in \RR^{n \times n}$ 
+    \Ensure Matrixfaltung $Y= X \ast K$
+    \State Berechne die zweidimensionalen diskreten Fourier-Transformationen
+    \State $\hat{X}=F X F^T$
+    \State $\hat{K}=F K F^T$ 
+    \State Berechne das Produkt mit der elementweisen Multiplikation
+    \State $\hat{Y}= \hat{X} \odot \hat{K}$
+    \State Bestimme die inverse Fourier-Transformation  
+    \State $Z=\hat{Y}^*$
+    \State $\hat{Z}=F Z F^T$
+    \State $Y=\frac{1}{n^2}\hat{Z}^*$
+    \end{algorithmic}
+\end{algorithm}
+
 \section{Datenbankgestützte Vorwärtsrechnung für CNN}
 \label{abs_CNN_in_SQL}
 \section{Evalution}

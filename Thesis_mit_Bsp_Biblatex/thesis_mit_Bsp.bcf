@@ -2451,6 +2451,7 @@
     <bcf:citekey order="90">jain</bcf:citekey>
     <bcf:citekey order="91">Goodfellow-et-al-2016</bcf:citekey>
     <bcf:citekey order="92">smith2007mathematics</bcf:citekey>
+    <bcf:citekey order="93">DBLP:conf/adbis/Marten0019</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">
