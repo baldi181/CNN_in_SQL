@@ -179,7 +179,7 @@ Die Diskrete Fourier\footnote{Jean Baptiste Joseph Fourier 1786-1830}-Transforma
     \label{def:dft}
     Im Zeitbereich sei ein diskretes Signal $x=(x_0, \ldots, x_{n-1})^T \in \RR^n$ gegeben. Dann wird mit $\hat{x}=(\hat{x}_0, \ldots, \hat{x}_{n-1}) \in \mathbb{C}^n$ das Ergebnis der diskreten Fourier-Transformation, kurz $\hat{x}=\mathrm{DFT}(x)$, im Frequenzbereich bezeichnet. Die sogenannten Fourier-Koeffizienten sind als 
     \begin{equation*}
-        \hat{x}_k:=\sum_{j=0}^{n-1} \mathrm{e}^{- \frac{2 \pi i}{n} j k} \cdot x_k
+        \hat{x}_k:=\sum_{j=0}^{n-1} \mathrm{e}^{- \frac{2 \pi i}{n} j k} \cdot x_j
     \end{equation*}
     für $0 \leq k \leq n-1$ definiert.
 \end{defi}
@@ -187,7 +187,7 @@ Mit der inversen Fourier-Transformation kann aus dem Signal im Frequenzbereich d
 \begin{defi}[Inverse Diskrete Fourier-Transformation]
     Sei $\hat{x}=(\hat{x}_0, \ldots, \hat{x}_{n-1}) \in \mathbb{C}^n$. Mit den Koeffizienten
     \begin{equation*}
-        x_k:= \frac{1}{n} \sum_{j=0}^{n-1} \mathrm{e}^{\frac{2 \pi i}{n} j k} \cdot \hat{x}_k, \; \; 0 \leq k \leq n-1
+        x_j:= \frac{1}{n} \sum_{k=0}^{n-1} \mathrm{e}^{\frac{2 \pi i}{n} j k} \cdot \hat{x}_k, \; \; 0 \leq j \leq n-1
     \end{equation*}
     lässt sich die inverse diskrete Fourier-Transformation, kurz $x=\mathrm{iDFT}(\hat{x})$, angeben.
 \end{defi}
@@ -222,23 +222,31 @@ ist. Diese Matrix wird Fourier-Matrix genannt und deren Einträge $\omega_n^{j}$
     \end{equation*} 
     Also ist $\left(\frac{1}{\sqrt{n}}\right) F\left(\frac{1}{\sqrt{n}}\right) F^H=I$ und damit $\frac{1}{\sqrt{n}} F$ unitär. Schließlich gilt $\frac{1}{n} \bar{F} F=\frac{1}{n} F \bar{F}= I$ und damit $\hat{x}=Fx \Leftrightarrow \frac{1}{n}\bar{F} \hat{x}=x$.
 \end{proof} 
+Die inverse diskrete Fourier-Transformation lässt sich mithilfe der diskreten Fourier-Transformation berechnen. Dieser Zusammenhang wird insbesondere für die spätere datenbankgestützte Implementierung der Fourier-Transformationen genutzt.
+\begin{lem}
+    Sei das Fourier-Paar
+    \begin{align*}
+        \hat{x}_k&=\sum_{j=0}^{n-1} \mathrm{e}^{- \frac{2 \pi i}{n} j k} \cdot x_j, \\ x_j&= \frac{1}{n} \sum_{k=0}^{n-1} \mathrm{e}^{\frac{2 \pi i}{n} j k} \cdot \hat{x}_k
+    \end{align*}
+    für $x_j \in \mathbb{C}$ gegeben. Dann gilt für die inverse Transformation $x_j=\frac{1}{n} (DFT(\hat{x}^*)_j)^*$. Hierbei ist mit ${}^*$ die komplexe Konjugation gemeint.
+\end{lem}
+\begin{proof}
+  Es gilt
+  \begin{align*}
+    x_j^{*}&=\frac{1}{n} \sum_{k=0}^{n-1} \mathrm{e}^{-\frac{2 \pi i}{n} j k} \cdot \hat{x}^*_k \\
+    &=\frac{1}{n} \mathrm{DFT}(\hat{x}^*)_j
+  \end{align*}
+\end{proof}
 Wird ein zweidimensionales diskretes Signal in Form einer Matrix $X \in \RR^{n \times n}$ betrachtet, lässt sich die zweidimensionale diskrete Fourier-Transformation definieren. 
 \begin{defi}
-    Sei $X \in \RR^{n \times n}$ gegeben. Die zweidimensionale diskrete Fourier-Transformation, kurz $\hat{X}=2\mathrm{DFT}(X)$, ist als
+    Die zweidimensionale diskrete Fourier-Transformation für $X \in \RR^{n \times n}$, kurz $\hat{X}=2\mathrm{DFT}(X)$, ist als
     \begin{align*}
         \hat{X}_{u+1,v+1}:&= \sum_{l=0}^{n-1} \sum_{j=0}^{n-1} X_{l+1,j+1} \cdot \mathrm{e}^{\frac{2 \pi i}{n} -(lu+jv)} \\
         &=\sum_{l=0}^{n-1} \mathrm{e}^{-\frac{2 \pi i}{n} l u} \left(\sum_{j=0}^{n-1} X_{l+1,j+1} \cdot \mathrm{e}^{-\frac{2 \pi i}{n} j v}\right), \; \; 0 \leq u, v \leq n-1
     \end{align*}
     definiert.
 \end{defi}
-Die zweidimensionale diskrete Fourier-Transformation ist als Hintereinanderausführung von zwei eindimensionalen Fourier-Transformationen, vgl. Definition \ref{def:dft}, zu verstehen. Zuerst wird die $\mathrm{DFT}$ der Zeilen und anschließend die $\mathrm{DFT}$ der Spalten von $X$ berechnet. So lässt sich $\hat{X}=FXF^T$ als Matrixmatrixprodukt mit der Matrix $F$ aus (\ref{eq:FM}) darstellen. Die inverse zweidimensionale Fourier-Transformation kann als wieder als Fourier-Transformation beschrieben werden. 
-
-\begin{lem}
-    Sei $X \in \RR^{n \times n}$ und $\hat{X}=\mathrm{2DFT}(X)$. Dann gilt $X=\frac{1}{n} (DFT(X)^H)^H$.
-\end{lem}
-\begin{proof}
-  todo
-\end{proof}
+Die zweidimensionale diskrete Fourier-Transformation ist als Hintereinanderausführung von zwei eindimensionalen Fourier-Transformationen, vgl. Definition \ref{def:dft}, zu verstehen. Zuerst wird die $\mathrm{DFT}$ der Zeilen und anschließend die $\mathrm{DFT}$ der Spalten von $X$ berechnet. So lässt sich $\hat{X}=FXF^T$ als Matrixmatrixprodukt mit der Matrix $F$ aus (\ref{eq:FM}) darstellen.
 
 Zwischen der zyklischen Faltung \ref{def:cycconv} und der diskreten Fourier-Transformation \ref{def:dft} besteht ein fundamentaler Zusammenhang, und zwar das Faltungstheorem. Eine Version davon wird im weiteren Verlauf dieser Arbeit genutzt, um die Matrixfaltung, vgl. Definition \ref{def:matrix_faltung}, mithilfe von Fourier-Transformationen zu berechnen.
 
