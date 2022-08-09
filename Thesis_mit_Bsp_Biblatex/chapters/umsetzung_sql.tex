@@ -283,7 +283,10 @@ Die Matrixfaltung innerhalb einer Faltungsschicht eines CNN lässt sich mit den 
     \item[2.] Die Matrix $\hat{Y}= \hat{X} \odot \hat{K}$, welche sich aus der elementweisen Multiplikation ergibt, ist zu bestimmen.
     \item[3.] Schließlich stellt $Y=\mathrm{i2DFT}(\hat{Y})$ die Matrixfaltung dar, welche mithilfe der inversen diskreten Fourier-Transformation ermittelt wird.    
 \end{itemize} 
-Für Schritt 1 und Schritt 3 kann wegen Lemma \ref{lem:Finv} und Lemma \ref{lem:inversedftasdft} die Fourier-Matrix $F$ benutzt werden. Die Aufgabe besteht nun darin, die Berechnungen in Algorithmus \ref{alg:conv_as_2dft} datenbankgestützt umzusetzen. Dies gelingt, da ausschließlich Basisoperationen wie die Matrixmatrixmultiplikation sowie das Transponieren von Matrizen benötigt werden. Die elementweise Multiplikation und die Konjugation können als einfache skalare Funktionen implementiert werden. Die Berechnung der DFT mit der Matrix $F$ benötigt $n(2n-1)$ Fließkomma-Operationen. Da die Matrix $F$ nur von den Dimensionen der beteiligten Matrizen abhängt und diese durch die Hyperparameter des verwendeten CNN festgehalten sind, kann $F$ vor der Vorwärtsrechnung in einer Relation gespeichert werden. So kann die Berechnungszeit verkürtzt werden. Wird zur Berechnung der DFT die sogenannte schnelle Fourier-Transformation (engl. \textit{Fast-Fourier-Transformation}, kurz: FFT) genutzt, kann der Zeitaufwand von $\mathcal{O}(n^2)$ auf $\mathcal{O}(n \log n)$ vermindert werden. Verschiedene Möglichkeiten, die FFT in SQL zu implementieren, werden in Marten et. al.\cite{DBLP:conf/adbis/Marten0019} präsentiert.
+Für Schritt 1 und Schritt 3 kann wegen Lemma \ref{lem:Finv} und Lemma \ref{lem:inversedftasdft} die Fourier-Matrix $F$ benutzt werden. Die Aufgabe besteht nun darin, die Berechnungen in Algorithmus \ref{alg:conv_as_2dft} datenbankgestützt umzusetzen. Dies gelingt, da ausschließlich Basisoperationen wie die Matrixmatrixmultiplikation sowie das Transponieren von Matrizen benötigt werden. Die elementweise Multiplikation und die Konjugation können als einfache skalare Funktionen implementiert werden. Die Berechnung der DFT mit der Matrix $F$ benötigt $n(2n-1)$ Fließkomma-Operationen. Da die Matrix $F$ nur von den Dimensionen der beteiligten Matrizen abhängt und diese durch die Hyperparameter des verwendeten CNN festgelegt sind, kann $F$ vor der Vorwärtsrechnung in einer Relation gespeichert werden. Darüber hinaus können auch die Fourier-Transformierten $\hat{K}$ für alle beteiligten Kerne $K$ bereits vor der Erkennungsphase bestimmt werden. So kann die Berechnungszeit verkürtzt werden.
+
+Seien $X \in \RR^{n \times n}$ und \textbf{X} sowie \textbf{F} die Relation zur Darstellung der Matrizen $X$ und $F$ im Coordinate-Schema. Im ersten Berechnungsschritt ist lediglich $\mathrm{2DFT}(X)$ zu bestimmen. Die entsprechende SQL-Anfrage \ref{sql:dft} lässt sich formulieren. 
+Numerische Resultate  
 
 \begin{algorithm}[h]
     \caption{Matrixfaltung mit diskreten Fourier-Transformationen}
@@ -291,18 +294,20 @@ Für Schritt 1 und Schritt 3 kann wegen Lemma \ref{lem:Finv} und Lemma \ref{lem:
     \begin{algorithmic}
     \Require  Eingabematrix $X \in \RR^{n \times n}$, eingebetteter Kern $K \in \RR^{n \times n}$, Fourier-Matrix $F \in \RR^{n \times n}$ 
     \Ensure Matrixfaltung $Y= X \ast K$
-    \State Berechne die zweidimensionalen diskreten Fourier-Transformationen
+    \State Berechne die zweidimensionalen diskreten Fourier-Transformationen:
     \State $\hat{X}=F X F^T$
     \State $\hat{K}=F K F^T$ 
-    \State Berechne das Produkt mit der elementweisen Multiplikation
+    \State Berechne das Produkt mit der elementweisen Multiplikation:
     \State $\hat{Y}= \hat{X} \odot \hat{K}$
-    \State Bestimme die inverse Fourier-Transformation  
+    \State Bestimme die inverse Fourier-Transformation:  
     \State $Z=\hat{Y}^*$
     \State $\hat{Z}=F Z F^T$
     \State $Y=\frac{1}{n^2}\hat{Z}^*$
     \end{algorithmic}
 \end{algorithm}
 
+
+Wird zur Berechnung der DFT die sogenannte schnelle Fourier-Transformation (engl. \textit{Fast-Fourier-Transformation}, kurz: FFT) genutzt, kann der Zeitaufwand von $\mathcal{O}(n^2)$ auf $\mathcal{O}(n \log n)$ vermindert werden. Verschiedene Möglichkeiten, die FFT in SQL zu implementieren, werden in Marten et. al.\cite{DBLP:conf/adbis/Marten0019} präsentiert. In dieser Arbeit wird diskrete Fourier-Transformation wie in Algorithmus \ref{alg:conv_as_2dft} behandelt. 
 \section{Datenbankgestützte Vorwärtsrechnung für CNN}
 \label{abs_CNN_in_SQL}
 \section{Evalution}
