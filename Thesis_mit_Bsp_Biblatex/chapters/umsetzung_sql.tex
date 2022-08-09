@@ -185,13 +185,13 @@ Die Diskrete Fourier\footnote{Jean Baptiste Joseph Fourier 1786-1830}-Transforma
 \end{defi}
 Mit der inversen Fourier-Transformation kann aus dem Signal im Frequenzbereich das Signal im Zeitbereich rekonstruiert werden. Damit ist es möglich, Signale im Frequenzbereich zu manipulieren und zwischen Zeit- und Frequenzbereich beliebig zu wechseln.
 \begin{defi}[Inverse Diskrete Fourier-Transformation]
-    Sei $\hat{x}=(\hat{x}_0, \ldots, \hat{x}_{n-1}) \in \mathbb{C}^n$ das Ergebnis der diskreten Fourier-Transformation von $x \in \RR^n$. Mit den Koeffizienten
+    Sei $\hat{x}=(\hat{x}_0, \ldots, \hat{x}_{n-1}) \in \mathbb{C}^n$. Mit den Koeffizienten
     \begin{equation*}
         x_k:= \frac{1}{n} \sum_{j=0}^{n-1} \mathrm{e}^{\frac{2 \pi i}{n} j k} \cdot \hat{x}_k, \; \; 0 \leq k \leq n-1
     \end{equation*}
-    lassen sich die Einträge des Vektors $x$ rekonstruieren. Diese Transformation wird inverse diskrete Fourier-Transformation, kurz $x=\mathrm{iDFT}(\hat{x})$, genannt.
+    lässt sich die inverse diskrete Fourier-Transformation, kurz $x=\mathrm{iDFT}(\hat{x})$, angeben.
 \end{defi}
-Die diskrete Fourier-Transformation aus Definition \ref{def:dft} lässt sich in ein Matrixvektorprodukt $\hat{x}=Fx$ überführen, wobei $F \in \mathbb{C}^{n \times n}$ eine symmetrische Matrix mit der Gestalt
+Die diskrete Fourier-Transformation aus Definition \ref{def:dft} lässt sich in ein Matrixvektorprodukt $\hat{x}=Fx$ überführen, wobei $F \in \mathbb{C}^{n \times n}$ eine symmetrische Matrix der Gestalt
 \begin{equation}
     \label{eq:FM}
     F=\begin{pmatrix}
@@ -215,16 +215,16 @@ ist. Diese Matrix wird Fourier-Matrix genannt und deren Einträge $\omega_n^{j}$
     \begin{equation*}
         F^H=\bar{{F}}^T=\bar{F}.
     \end{equation*}
-    Mit $W:=F\bar{F}$ gilt $W_{k,j}=\sum_{l=0}^{n-1} \omega^{(j-k)l}$. Ist $k=j$ so ergeben sich die Einträge auf der Hauptdiagonalen von $W$ zu $n$. Ist $k \neq j$, so ist $\omega_0:=\omega^{j-k} \neq 1$ eine $n$-te Einheitswurzel.
-    Damit gilt
+    Mit $W:=F\bar{F}$ gilt $W_{k,j}=\sum_{l=0}^{n-1} \omega_n^{(j-k)l}$. Ist $k=j$ so ergeben sich die Einträge auf der Hauptdiagonalen von $W$ zu $n$. Ist $k \neq j$, so ist $\omega_0:=\omega_n^{j-k} \neq 1$ eine $n$-te Einheitswurzel.
+    Mit der geometrischen Summenformel gilt
     \begin{equation*}
         W_{k,j}=\sum_{l=0}^{n-1} \omega_0^l=\frac{1-\omega_0^n}{1-\omega_0}=0.
     \end{equation*} 
     Also ist $\left(\frac{1}{\sqrt{n}}\right) F\left(\frac{1}{\sqrt{n}}\right) F^H=I$ und damit $\frac{1}{\sqrt{n}} F$ unitär. Schließlich gilt $\frac{1}{n} \bar{F} F=\frac{1}{n} F \bar{F}= I$ und damit $\hat{x}=Fx \Leftrightarrow \frac{1}{n}\bar{F} \hat{x}=x$.
 \end{proof} 
-Wird ein zweidimensionales diskretes Signal in Form einer Matrix $X \in \RR^{n}$ betrachtet, lässt sich die zweidimensionale diskrete Fourier-Transformation definieren. 
+Wird ein zweidimensionales diskretes Signal in Form einer Matrix $X \in \RR^{n \times n}$ betrachtet, lässt sich die zweidimensionale diskrete Fourier-Transformation definieren. 
 \begin{defi}
-    Sei $X \in \RR^{n \times n}$ gegeben. Die Koeffizienten der zweidimensionalen diskreten Fourier-Transformation, kurz $\hat{X}=2\mathrm{DFT}(X)$, sind als
+    Sei $X \in \RR^{n \times n}$ gegeben. Die zweidimensionale diskrete Fourier-Transformation, kurz $\hat{X}=2\mathrm{DFT}(X)$, ist als
     \begin{align*}
         \hat{X}_{u+1,v+1}:&= \sum_{l=0}^{n-1} \sum_{j=0}^{n-1} X_{l+1,j+1} \cdot \mathrm{e}^{\frac{2 \pi i}{n} -(lu+jv)} \\
         &=\sum_{l=0}^{n-1} \mathrm{e}^{-\frac{2 \pi i}{n} l u} \left(\sum_{j=0}^{n-1} X_{l+1,j+1} \cdot \mathrm{e}^{-\frac{2 \pi i}{n} j v}\right), \; \; 0 \leq u, v \leq n-1
@@ -246,7 +246,7 @@ Zwischen der zyklischen Faltung \ref{def:cycconv} und der diskreten Fourier-Tran
     \label{satz:conv_theorem}
     Seien Vektoren $f,g \in \RR^{n}$ gegeben und $y= f \ast g$ das Ergebnis der zyklischen Faltung. Dann gilt
     \begin{equation}
-        \mathrm{DFT}(y)=\left(\mathrm{DFT}(f) \odot \mathrm{DFT}(g) \right).
+        \mathrm{DFT}(y)=\mathrm{DFT}(f) \odot \mathrm{DFT}(g).
     \end{equation}
     Dabei bezeichne $\odot$ die elementweise Multiplikation der Einträge von den beteiligten Vektoren.
 \end{satz}
@@ -259,9 +259,9 @@ Zwischen der zyklischen Faltung \ref{def:cycconv} und der diskreten Fourier-Tran
         Y_{i,j}=\sum_{u=-l}^l \sum_{v=-l}^l X_{i+u, j+v} K_{u,v}, \; \; 1 \leq i, j \leq n
     \end{equation*}
     erklärt, vgl. Bemerkung \ref{bem:K_conv_komp}.
-    Der Kern $K$ wird in eine $n \times n$-Matrix wie in \ref{lem:circ_extension} eingebettet und diese wird wieder mit $K \in \RR^{n \times n}$ bezeichnet wird. Sind $\hat{X}=\mathrm{2DFT}(X)$ und $\hat{K}=\mathrm{2DFT}(K)$ die zweidimensionalen Fourier-Transformationen, so gilt mit dem Faltungstheorem \ref{satz:conv_theorem} der Zusammenhang
+    Der Kern $K$ wird in eine $n \times n$-Matrix wie in \ref{lem:circ_extension} eingebettet und diese wird wieder mit $K \in \RR^{n \times n}$ bezeichnet wird. Sind $\hat{X}=\mathrm{2DFT}(X)$ und $\hat{K}=\mathrm{2DFT}(K)$ die zweidimensionalen diskreten Fourier-Transformationen, so gilt mit dem Faltungstheorem \ref{satz:conv_theorem} der Zusammenhang
     \begin{align*}
-        \mathrm{2DFT}(Y)&=\left(\mathrm{2DFT}(X) \odot \mathrm{2DFT}(K)\right). 
+        \mathrm{2DFT}(Y)&=\mathrm{2DFT}(X) \odot \mathrm{2DFT}(K). 
         %\Leftrightarrow &=\mathrm{i2DFT}(\hat{X} \odot \hat{K}).
     \end{align*}
     % bereits um 180 Grad gedreht, vgl. Bemerkung \ref{bem:K_conv_komp}, 
@@ -269,8 +269,8 @@ Zwischen der zyklischen Faltung \ref{def:cycconv} und der diskreten Fourier-Tran
 Die Matrixfaltung innerhalb einer Faltungsschicht eines CNN lässt sich mit den obigen Resultaten in drei Schritten berechnen.
 \begin{itemize}
     \item[1.] Es sind jeweils die zweidimensionalen diskreten Fourier-Transformationen für die Eingabe $\hat{X}$ und den Kern $\hat{K}$ zu berechnen.
-    \item[2.] Die Matrix $\hat{Y}= \hat{X} \odot \hat{K}$, welche sich mit der elementweisen Multiplikation ergibt ist zu bestimmen.
-    \item[3.] Schließlich stellt $Y=\mathrm{i2DFT}(\hat{Y})$ die Matrixfaltung dar, welche mithilfe der inversen Fourier-Transformation ermittelt wird.    
+    \item[2.] Die Matrix $\hat{Y}= \hat{X} \odot \hat{K}$, welche sich aus der elementweisen Multiplikation ergibt, ist zu bestimmen.
+    \item[3.] Schließlich stellt $Y=\mathrm{i2DFT}(\hat{Y})$ die Matrixfaltung dar, welche mithilfe der inversen diskreten Fourier-Transformation ermittelt wird.    
 \end{itemize} 
 \label{abs:FFN_in_sql}
 \section{Datenbankgestützte Vorwärtsrechnung für CNN}
