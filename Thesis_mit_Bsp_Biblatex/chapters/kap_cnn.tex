@@ -264,6 +264,7 @@ Dieses Vorgehen wird auch Upsampling genannt.
 
 
 \section{Anwendung bei der Ziffernerkennung}
+\label{abs:model_mnist}
 In diesem Abschnitt wird ein CNN zur Klassifikation von Grauwert-Bildern aus einem konkreten Datensatz vorgestellt. Der MNIST-Datensatz\cite{DBLP:journals/pieee/LeCunBBH98} bietet $60.000$ Trainingsbilder handgeschriebener Ziffern und $10.000$ Testbilder, welche jeweils durch menschliches Wissen annotiert sind. Dieser Datensatz gilt als typischer Benchmark zur Klassifikation von Ziffern und wird im weiteren Verlauf dieser Arbeit genutzt. Jedes einzelne Bild besteht aus $28 \times 28$ Pixeln, welche jeweils einen Grauwert zwischen 0 und 1 annehmen, vgl. Abbildung \ref{mnistpic}. Ein Bild wird als $X \in [0,1]^{28 \times 28 \times 1}$ und ein Trainingspaar als $(X,c)$ mit $c \in \{0, \ldots, 9\}$ bezeichnet. 
 
 \begin{figure}[h]

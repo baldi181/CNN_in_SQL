@@ -228,12 +228,13 @@ Die inverse diskrete Fourier-Transformation lässt sich mithilfe der diskreten F
     \label{lem:inversedftasdft}
     Sei das Fourier-Paar
     \begin{align*}
-        \hat{x}_k&=\sum_{j=0}^{n-1} \mathrm{e}^{- \frac{2 \pi i}{n} j k} \cdot x_j, \\ x_j&= \frac{1}{n} \sum_{k=0}^{n-1} \mathrm{e}^{\frac{2 \pi i}{n} j k} \cdot \hat{x}_k
+        \mathrm{DFT}(x)&: \; \;\hat{x}_k=\sum_{j=0}^{n-1} \mathrm{e}^{- \frac{2 \pi i}{n} j k} \cdot x_j, \\ 
+        \mathrm{iDFT}(\hat{x})&:\; \; x_j= \frac{1}{n} \sum_{k=0}^{n-1} \mathrm{e}^{\frac{2 \pi i}{n} j k} \cdot \hat{x}_k
     \end{align*}
-    für $x_j \in \mathbb{C}$ gegeben. Dann gilt für die inverse Transformation $x_j=\frac{1}{n} (DFT(\hat{x}^*)_j)^*$. Hierbei ist mit ${}^*$ die komplexe Konjugation gemeint.
+    für $x=(x_0, \ldots, x_{n-1})^T \in \mathbb{R}^n$ gegeben. Dann gilt $x=\frac{1}{n} (DFT(\hat{x}^*))^*$. Hierbei ist mit ${}^*$ die komplexe Konjugation gemeint.
 \end{lem}
 \begin{proof}
-  Es gilt
+  Für alle $0 \leq j \leq n-1$  gilt
   \begin{align*}
     x_j^{*}&=\frac{1}{n} \sum_{k=0}^{n-1} \mathrm{e}^{-\frac{2 \pi i}{n} j k} \cdot \hat{x}^*_k \\
     &=\frac{1}{n} \mathrm{DFT}(\hat{x}^*)_j.
@@ -283,11 +284,7 @@ Die Matrixfaltung innerhalb einer Faltungsschicht eines CNN lässt sich mit den 
     \item[2.] Die Matrix $\hat{Y}= \hat{X} \odot \hat{K}$, welche sich aus der elementweisen Multiplikation ergibt, ist zu bestimmen.
     \item[3.] Schließlich stellt $Y=\mathrm{i2DFT}(\hat{Y})$ die Matrixfaltung dar, welche mithilfe der inversen diskreten Fourier-Transformation ermittelt wird.    
 \end{itemize} 
-Für Schritt 1 und Schritt 3 kann wegen Lemma \ref{lem:Finv} und Lemma \ref{lem:inversedftasdft} die Fourier-Matrix $F$ benutzt werden. Die Aufgabe besteht nun darin, die Berechnungen in Algorithmus \ref{alg:conv_as_2dft} datenbankgestützt umzusetzen. Dies gelingt, da ausschließlich Basisoperationen wie die Matrixmatrixmultiplikation sowie das Transponieren von Matrizen benötigt werden. Die elementweise Multiplikation und die Konjugation können als einfache skalare Funktionen implementiert werden. Die Berechnung der DFT mit der Matrix $F$ benötigt $n(2n-1)$ Fließkomma-Operationen. Da die Matrix $F$ nur von den Dimensionen der beteiligten Matrizen abhängt und diese durch die Hyperparameter des verwendeten CNN festgelegt sind, kann $F$ vor der Vorwärtsrechnung in einer Relation gespeichert werden. Darüber hinaus können auch die Fourier-Transformierten $\hat{K}$ für alle beteiligten Kerne $K$ bereits vor der Erkennungsphase bestimmt werden. So kann die Berechnungszeit verkürtzt werden.
-
-Seien $X \in \RR^{n \times n}$ und \textbf{X} sowie \textbf{F} die Relation zur Darstellung der Matrizen $X$ und $F$ im Coordinate-Schema. Im ersten Berechnungsschritt ist lediglich $\mathrm{2DFT}(X)$ zu bestimmen. Die entsprechende SQL-Anfrage \ref{sql:dft} lässt sich formulieren. 
-Numerische Resultate  
-
+Für Schritt 1 und Schritt 3 kann wegen Lemma \ref{lem:Finv} und Lemma \ref{lem:inversedftasdft} die Fourier-Matrix $F$ benutzt werden. Die Aufgabe besteht nun darin, die Berechnungen in Algorithmus \ref{alg:conv_as_2dft} datenbankgestützt umzusetzen. 
 \begin{algorithm}[h]
     \caption{Matrixfaltung mit diskreten Fourier-Transformationen}
     \label{alg:conv_as_2dft}
@@ -306,9 +303,53 @@ Numerische Resultate
     \end{algorithmic}
 \end{algorithm}
 
+Dies gelingt, da ausschließlich Basisoperationen wie die Matrixmatrixmultiplikation sowie das Adjungieren von Matrizen benötigt werden. Die elementweise Multiplikation und die Konjugation können als einfache skalare Funktionen implementiert werden. Die Berechnung der DFT mit der Matrix $F$ benötigt $n(2n-1)$ Fließkomma-Operationen. Da die Matrix $F$ nur von den Dimensionen der beteiligten Matrizen abhängt und diese durch die Hyperparameter des verwendeten CNN festgelegt sind, kann $F$ vor der Vorwärtsrechnung in einer Relation gespeichert werden. 
+Die Matrix $F$ besitzt komplexwertige Einträge und daher wird das Attribut \textbf{v} in die Attribute \textbf{re} und \textbf{im} aufgeteilt, um den Real- und Imaginärteil getrennt zu speichern. Die Multiplikation zweier komplexer Zahlen $z_1$ und $z_2$ ist durch
+\begin{align*}
+    z_1 \cdot z_2 &=(\Re(z_1)+ i \Im(z_1))(\Re(z_2)+i \Im(z_2))\\
+    &=(\Re(z_1) \cdot \Re(z_2)-\Im(z_1) \cdot \Im(z_2))+ i (\Re(z_1) \cdot \Im(z_2)+ \Im(z_1) \cdot \Re(z_2))
+\end{align*}
+erklärt.
+Darüber hinaus können auch die Fourier-Transformierten $\hat{K}$ für alle beteiligten Kerne $K$ bereits vor der Erkennungsphase bestimmt werden. So kann die Berechnungszeit verkürtzt werden.
+
+Seien $X \in [0,1]^{n \times n}$ und \textbf{X} sowie \textbf{F} die Relation zur Darstellung der Matrizen $X$ und $F$ im Coordinate-Schema. Im ersten Berechnungsschritt ist lediglich die Matrix $\mathrm{2DFT}(X)$ zu bestimmen. Die entsprechende SQL-Anfrage \ref{sql:dft} lässt sich formulieren. Mithilfe sogenannter Common Table Expressions, zu Erkennen am Schlagwort \textbf{WITH}, können temporäre Relationen berechnet werden. So gelingt die iterative Berechnung der Matrixmatrixprodukte. Die erste Relation \textbf{FT}
+in den Zeilen 1-6 ermittelt $F^T$. In den Zeilen 7-15 wird $X F^T$ und anschließend in den Zeilen 16-24 $F X F^T$ in der Relation \textbf{FXFT} berechnet. 
+Schließlich folgt in den letzten Zeilen die Ausgabe der zweidimensionalen diskreten Fourier-Transformation. Numerische Resultate zum Zeit- und Speicheraufwand sind der Abbildung \ref{abb:dft_insql}
+zu entnehmen.
+
+TODO Grafik erklären
+
+\lstinputlisting[label=sql:dft, caption=SQL-Code zur Umsetzung der zweidimensionalen diskreten Fourier-Transformation, language=SQL]{sql_code/dft_ansatz_FXFT.txt}
+
+Im zweiten Berechnungsschritt ist eine elementweise Multiplikation auszuführen. Angenommenen die Matrizen $\hat{X}$ und $\hat{K}$ sind als Relationen \textbf{X}
+und \textbf{K} im Coordinate-Schema hinterlegt. Dann wird $\hat{X} \odot \hat{K}$ in der SQL-Anfrage \ref{sql:elementweise} implementiert.
+Der dritte Berechnungsschritt lässt sich analog zum ersten Schritt darstellen. Dabei ist an zwei Stellen lediglich das Adjungieren einer komplexen Matrix notwendig, siehe Anhang \ref{app:app_1}. 
+
+\lstinputlisting[label=sql:elementweise, caption=SQL-Code zur Umsetzung der elementweisen Multiplikation, language=SQL]{sql_code/dft_ansatz_elemwise.txt}
 
 Wird zur Berechnung der DFT die sogenannte schnelle Fourier-Transformation (engl. \textit{Fast-Fourier-Transformation}, kurz: FFT) genutzt, kann der Zeitaufwand von $\mathcal{O}(n^2)$ auf $\mathcal{O}(n \log n)$ vermindert werden. Verschiedene Möglichkeiten, die FFT in SQL zu implementieren, werden in Marten et. al.\cite{DBLP:conf/adbis/Marten0019} präsentiert. In dieser Arbeit wird diskrete Fourier-Transformation wie in Algorithmus \ref{alg:conv_as_2dft} behandelt. 
+
+\subsection{Zusammenfassung}
+\label{abs:sum_conc_in_sql}
+
+
 \section{Datenbankgestützte Vorwärtsrechnung für CNN}
 \label{abs_CNN_in_SQL}
+Alle Parameter sind vorher trainiert. ausführen!! TODO
+\subsection*{Linearkombinationen}
+\subsection*{Pooling}
+Die datenbankgestützte Umsetzung von Pooling-Schichten gelingt direkt durch die Nutzung von Nachbarschaften wie in Abschnitt \ref{abs:naive_app}. Da die Dimensionen aller vorkommenden Merkmalskarten und Kerne eines CNN durch die Wahl der Hyperparameter festgelegt werden, müssen die Nachbarschaften beim Pooling nur einmalig berechnet werden. Des Weiteren werden Funktionen wie \textbf{MAX} und \textbf{MEAN} im SQL-Standard unterstützt, sodass Mittelwert-Pooling und Maximum-Pooling implementiert werden können.
+
+Eine weitere Möglichkeit besteht darin, das Mittelwert-Pooling mit den Schrittweiten $p:=p_h=p_b$ als Faltungsoperation mit dem sogenannten Mittelwert-Kern $\frac{1}{p^2} \mathbf{1} \in \RR^{p \times p}$ zu implementieren. An dieser Stelle können Resultate aus dem vorherigen Abschnitt \ref{abs:conv_in_sql} genutzt werden, um abzuschätzen, welcher Ansatz für das gewählte Modell besser geeignet ist. Schließlich ist auch die Flatten-Funktion, vgl. Definition \ref{def:flatten}, leicht in SQL umsetzbar. 
+
+TODO beispiel fatten code
+ 
+\subsection*{Vorwärtsgerichtete neuronale Netze}
+Die letzte Schicht eines CNN besteht meistens aus einem FFN mit einer oder mehreren verdeckten Neuronenschichten. Die Theorie von FFN wird in Kapitel \ref{kap:NN} vorgestellt. Dabei wird die Ausgabe eines neuronalen Natzes mittels Vorwärtsrechnung, vgl. \ref{alg:ff}, berechnet. Diese lässt sich ausschließlich mit bereits vorgestellten Basisoperationen wie der Matrixvektormultiplikation bzw. Vektoraddition und einfachen Funktionsauswertung darstellen. Wird das Modell \ref{modell} zur Klassifikation von Ziffern genutzt, so ist die Vorwärtsrechnung für eine Neuronenschicht datenbankgestützt umzusetzen. Die Verallgemeinerung für beliebig viele Schichten wurde bereits in einer Projektarbeit der Universität Rostock untersucht \cite{myprojekt}. 
+
+Sei die Gewichtsmatrix $W \in \RR^{192 \times 10}$ sowie der Biasvektor $b \in \RR^{10}$ wie in Abschnitt \ref{abs:model_mnist} gegeben. Die entsprechenden Relationen \textbf{W} und \textbf{B} werden gemäß dem Coordinate-Schema erstellt. Weiter sei $\psi$ eine beliebige Aktivierungsfunktion, im Modell \ref{modell} ist $\psi$ die logistische Funktion. In SQL-Anfragen wird dafür die Variable $T$ verwendet. Schließlich sei in der Relation \textbf{FLAT} der Vektor $f=T_f(X)$ der Flatten-Schicht gespeichert, welcher als Eingabe des FFN dient. Die Ausgabe des FFN und damit des gesamten CNN lässt sich durch die SQL-Anfrage \ref{sql:ffn} berechnen. In den Zeilen 1-9 wird das Matrixvektorprodukt $Wf$ berechnet, welches anschließend mit dem Biasvektor $b$ manipuliert wird. Schließlich werden die Aktivierungen der Ausgabeschicht mit der Funktion $T$ ermittelt. In den Zeilen 10-15 wird der Index der maximale Aktivierung selektiert, welcher, vermindert um Eins, die Klassifikation der Ziffer darstellt.
+
+\lstinputlisting[label=sql:ffn, caption=SQL-Code zur Umsetzung der Vorwärtsrechnung eines einschichtigen FFN, language=SQL]{sql_code/ffn_in_sql.txt}
 \section{Evalution}
+Eine vollständige Erkennungsphase ist im Anhang \ref{app:app_2} zu finden.
 \label{abs:CNN_eval}

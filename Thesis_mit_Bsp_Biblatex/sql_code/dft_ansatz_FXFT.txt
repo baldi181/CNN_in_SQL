@@ -1,0 +1,29 @@
+WITH FT AS
+  (SELECT F.j AS i,
+          F.i AS j,
+          F.re AS re,
+          F.im AS im
+   FROM F),
+     XFT AS
+  (SELECT X.i AS i,
+          FT.j AS j,
+          SUM(X.v*FT.re) AS re,
+          SUM(X.v*FT.im) AS im
+   FROM X
+   JOIN FT ON X.j=FT.i
+   GROUP BY X.i,
+            FT.j),
+     FXFT AS
+  (SELECT F.i AS i,
+          XFT.j AS j,
+          SUM(F.re*XFT.re-F.im*XFT.im) AS re,
+          SUM(F.re*XFT.im+F.im*XFT.re) AS im
+   FROM F
+   JOIN XFT ON F.j=XFT.i
+   GROUP BY F.i,
+            XFT.j)
+SELECT FXFT.i AS i,
+       FXFT.j AS j,
+       FXFT.re AS re,
+       FXFT.im AS im
+FROM FXFT

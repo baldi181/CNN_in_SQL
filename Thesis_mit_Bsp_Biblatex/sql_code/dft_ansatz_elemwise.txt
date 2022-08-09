@@ -1,0 +1,7 @@
+SELECT X.i AS i,
+       X.j AS j,
+       X.re*K.re-X.im*K.im AS re,
+       X.re*K.im+X.im*K.re AS im
+FROM X
+JOIN K ON X.i=K.i
+AND X.j = K.j)

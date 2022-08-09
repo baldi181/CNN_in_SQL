@@ -36,7 +36,7 @@ Bei neuronalen Netzen wird das Optimierungsproblem (\ref{eq:opt_fund_abs}) mithi
 In der Praxis werden Testdaten, für die die Klassenzugehörigkeiten bekannt sind, genutzt, um die Generalisierungsfähigkeit des Modells zu messen. Diese Daten werden während des Trainingsprozesses zur Anpassung der Modellparameter $\mathcal{W}$ nicht benutzt.
 
 \begin{defi}[Testmenge]
-    Seien die Mengen $\mathcal{M}':=\{x_i \; : \; 1 \leq i \leq m'\}$ und $\mathcal{C}:=\{K_1, \ldots, K_s \}$ gegeben. Weiter sei $f: \mathcal{M}' \rightarrow \mathcal{C}$ eine Klassifikationsfunktion. Dann wird mit 
+    Seien die Mengen $\mathcal{M}':=\{x_i \; : \; 1 \leq i \leq m'\}$ sowie $\mathcal{C}:=\{K_1, \ldots, K_s \}$ gegeben. Weiter sei $f: \mathcal{M}' \rightarrow \mathcal{C}$ eine Klassifikationsfunktion. Dann wird mit 
     \begin{equation}
         \label{eq:testset}
         \mathcal{T}':=\{(x_i, f(x_i))\; : \, 1 \leq i \leq m'\}
@@ -50,8 +50,8 @@ Auf Training- bzw. Testmengen lassenn sich Fehlerraten als Gütemaße definieren
     Die Erkennungsrate von $\tilde{f}$ ergibt sich durch den Anteil der richtig klassifizierten Lerndaten in der Traininsmenge. Die Generalisierungsrate von $\tilde{f}$ ist durch den Anteil der richtig klassifizierten Lerndaten in der Testmenge gegeben.
 \end{defi}
 
-Schließlich ist noch das Problem der Überanpassung, engl. \textit{overfitting}, zu erwähnen. Dieses Phänomen tritt auf, wenn die Erkennungsrate eines verwendeten Modells $\tilde{f}$ während der Trainingsphase weiter steigt, gleichzeitig aber die Generalisierungsrate sinkt. In diesem Fall passt sich das Modell an zufälliges Rauschen in den Trainingsdaten an und ist für die Klassifikation allgemeiner Daten meist unbrauchbar. Für eine tiefere Analyse des Overfittings und anderer Probleme sowie deren Behandlung sei auf Goodfellow\cite{Goodfellow-et-al-2016} verwiesen.
-Fraglich bleibt zudem, unter welchen Vorraussetzungen überhaupt eine sinnvolle Approximation möglich ist. Dazu wird im Folgenden das Problem der linearen und nichtlinearen Trennbarkeit von Punktmengen behandelt.
+Schließlich ist noch das Problem der Überanpassung, engl. \textit{overfitting}, zu erwähnen. Dieses Phänomen tritt auf, wenn die Erkennungsrate eines verwendeten Modells $\tilde{f}$ während der Trainingsphase weiter steigt, gleichzeitig aber die Generalisierungsrate sinkt. In diesem Fall passt sich das Modell an zufälliges Rauschen in den Trainingsdaten an und ist für die Klassifikation allgemeiner Daten meist unbrauchbar. Für eine vertiefende Analyse des Overfittings und anderer Probleme sowie deren Behandlung sei auf Goodfellow\cite{Goodfellow-et-al-2016} verwiesen.
+Fraglich bleibt zudem, unter welchen Vorraussetzungen überhaupt eine sinnvolle Approximation möglich ist. Dazu wird im Folgenden das Problem der linearen Trennbarkeit von Punktmengen behandelt.
 \subsection{Trennbarkeit und ein erster Lernalgorithmus}
 \label{abs:trenn}
 Seien wieder Vektoren $x_1, \ldots, x_m \in \RR^{n}$ von Objekten $O_1, \ldots, O_m$ gegeben. Zunächst wird der einfache Fall betrachtet, bei dem die Punkte $x_i$ jeweils zu genau einer der zwei Klassen $K_0$ und $K_{1}$ zugeordnet sind. Seien dazu die Punktmengen

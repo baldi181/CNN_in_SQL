@@ -1,0 +1,15 @@
+WITH OUT AS
+  (SELECT B.i AS i,
+          T(B . v + sub . v) AS v
+   FROM
+     (SELECT W. i AS i,
+             SUM(W. v * FLAT. v) AS v
+      FROM W
+      JOIN FLAT ON W . j = FLAT . i
+      GROUP BY W . i) sub)
+SELECT out.i-1 AS label,
+       out.v
+FROM OUT
+WHERE v=
+    (SELECT MAX(v)
+     FROM OUT)
