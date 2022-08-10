@@ -1724,6 +1724,12 @@ INPUT ./sql_code/dft_ansatz_elemwise.txt
 INPUT sql_code/dft_ansatz_elemwise.txt
 INPUT ./sql_code/dft_ansatz_elemwise.txt
 INPUT sql_code/dft_ansatz_elemwise.txt
+INPUT ./sql_code/recursive_sum_n.txt
+INPUT sql_code/recursive_sum_n.txt
+INPUT ./sql_code/recursive_sum_n.txt
+INPUT sql_code/recursive_sum_n.txt
+INPUT ./sql_code/recursive_sum_n.txt
+INPUT sql_code/recursive_sum_n.txt
 INPUT ./sql_code/ffn_in_sql.txt
 INPUT sql_code/ffn_in_sql.txt
 INPUT ./sql_code/ffn_in_sql.txt

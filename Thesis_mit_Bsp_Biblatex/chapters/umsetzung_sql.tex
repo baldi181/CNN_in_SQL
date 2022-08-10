@@ -285,7 +285,7 @@ Die Matrixfaltung innerhalb einer Faltungsschicht eines CNN lässt sich mit den 
     \item[3.] Schließlich stellt $Y=\mathrm{i2DFT}(\hat{Y})$ die Matrixfaltung dar, welche mithilfe der inversen diskreten Fourier-Transformation ermittelt wird.    
 \end{itemize} 
 Für Schritt 1 und Schritt 3 kann wegen Lemma \ref{lem:Finv} und Lemma \ref{lem:inversedftasdft} die Fourier-Matrix $F$ benutzt werden. Die Aufgabe besteht nun darin, die Berechnungen in Algorithmus \ref{alg:conv_as_2dft} datenbankgestützt umzusetzen. 
-\begin{algorithm}[h]
+\begin{algorithm}[H]
     \caption{Matrixfaltung mit diskreten Fourier-Transformationen}
     \label{alg:conv_as_2dft}
     \begin{algorithmic}
@@ -316,9 +316,9 @@ Seien $X \in [0,1]^{n \times n}$ und \textbf{X} sowie \textbf{F} die Relation zu
 in den Zeilen 1-6 ermittelt die Matrix $F^T$. In den Zeilen 7-15 wird $X F^T$ und anschließend in den Zeilen 16-24 das Produkt $F X F^T$ in der temporären Relation \textbf{FXFT} berechnet. 
 Schließlich folgt in den letzten Zeilen die Ausgabe der zweidimensionalen diskreten Fourier-Transformation. Numerische Resultate zum Zeit- und Speicheraufwand sind der Abbildung \ref{abb:dft_insql} zu entnehmen.
 
-TODO Grafik erklären
-
-\lstinputlisting[label=sql:dft, caption=SQL-Code zur Umsetzung der zweidimensionalen diskreten Fourier-Transformation, language=SQL]{sql_code/dft_ansatz_FXFT.txt}
+\noindent \begin{minipage}{\linewidth}
+    \lstinputlisting[label=sql:dft, caption=SQL-Code zur Umsetzung der zweidimensionalen diskreten Fourier-Transformation, language=SQL]{sql_code/dft_ansatz_FXFT.txt}
+\end{minipage}
 
 Im zweiten Berechnungsschritt ist eine elementweise Multiplikation auszuführen. Angenommenen die Matrizen $\hat{X}$ und $\hat{K}$ sind als Relationen \textbf{X}
 und \textbf{K} im Coordinate-Schema hinterlegt. Dann wird $\hat{X} \odot \hat{K}$ in der SQL-Anfrage \ref{sql:elementweise} implementiert.
@@ -335,16 +335,37 @@ Wird zur Berechnung der DFT die sogenannte schnelle Fourier-Transformation (engl
 \section{Datenbankgestützte Vorwärtsrechnung für CNN}
 \label{abs_CNN_in_SQL}
 In diesem Abschnitt steht das Problem \ref{prob:ffCCN} im Vordergrund und es wird eine relationale Umsetzung der Vorwärtsrechnung für ein trainiertes CNN-Modell diskutiert. In Abhängigkeit von den Hyperparameter des verwendeten Modells und dem Anwendungsszenario sind die im Abschnitt \ref{abs:conv_in_sql} vorgestellten Resultate zu nutzen.    
-Die konkreten Implementierungen in SQL beziehen sich auf das im Abschnitt \ref{abs:model_mnist} vorgestellte Modell \ref{modell}, welches als laufende Beispielmodell dienen soll.   
-\subsection*{Linearkombinationen}
-Bei ML-Algorithmen wird oft mit mehrdimensionalen Arrays gearbeitet. Dies ist problemlos mit dem Relationenmodell vereinbar. Das Coordinate-Schema wird einfach mit Attributen, welche die Achen darstellen, erweitert. Für den Kern $K^1 \in \RR^{6 \times 1 \times 5 \times 5}$ ergibt sich die Relation \textbf{K1} zu
+Die konkreten Implementierungen in SQL beziehen sich auf das im Abschnitt \ref{abs:model_mnist} vorgestellte Modell \ref{modell}, welches als laufende Beispielmodell dienen soll. In diesem Abschnitt tauchen immer wieder Modellparameter auf, welche als traniert und damit optimal im Sinne der gestellten Klassifikationsaufgabe voraussgesetzt werden. Nur dann ist eine sinnvolle datenbankgestützte Mustererkennung möglich.  
+
+\subsection*{Gefaltete Übertragungsfunktion}
+Bei ML-Verfahren wird oft mit mehrdimensionalen Arrays gearbeitet. Diese sind problemlos mit dem Relationenmodell vereinbar. Das Coordinate-Schema wird einfach mit entsprechenden Attributen, welche die Achsen darstellen, erweitert. Für einen Kern $K \in \RR^{q \times p \times k \times k}$ ergibt sich die Relation \textbf{K1} zu
 
 \begin{align*}
-    \mathbf{K1}( 
-    &\underline{p} \; \; \mathrm{int},\\    
-    &\underline{i} \; \; \mathrm{int}, \\
-    &v \; \; \mathrm{double})
+    \mathbf{K1}\, ( 
+    &\underline{q} \; \; \mathrm{int},\\
+    &\underline{p} \; \; \mathrm{int},\\
+    &\underline{i} \; \; \mathrm{int}, \\    
+    &\underline{j} \; \; \mathrm{int}, \\
+    &v \; \; \mathrm{double}),
 \end{align*}
+wobei $q$ und $p$ die neuen Achsen präsentieren. 
+
+Zur Berechnung der Merkmalskarten durch die gefaltete Übertragungsfunktion, vgl. Definition \ref{eq:convlogit} sind (gewichtete) Summen über Matrixfaltungen zu bestimmen. Um dies kompakt darzustellen, werden rekursive Anfragen benutzt, welche seit 1999 in SQL standardisiert sind. An dieser Stelle sei bemerkt, dass je nach Wahl des Datenbankmanagementsystems diese Anfragen unterstützt beziehungsweise nicht unterstützt werden. In den meisten kommerziellen und freien Systemen, unter anderem PostgreSQL, sind rekursive Anfragen möglich. Ein Beispiel zur rekursiven Berechnung von
+\begin{equation*}
+   \label{eq:sum_n}
+\sum_{n=1}^{100} n    
+\end{equation*} 
+ist in Anfrage \ref{sql:recursive} gegeben. 
+
+\lstinputlisting[label=sql:recursive, caption=Ein Beispiel einer rekursiven Anfrage, language=SQL]{sql_code/recursive_sum_n.txt}
+
+Eine rekursive Anfrage besteht immer aus einem nicht-rekursiven Term (im Beispiel Zeile 3), der Vereinigung \textbf{UNION} bzw. \textbf{UNION ALL} und einem rekursiven Term (Zeile 4-6), welcher den Selbstverweis auf entsprechende Relation beinhaltet. Der \textbf{UNION ALL}-Operator entfernt im Gegensatz zum \textbf{UNION}-Operator keine Duplikate. Die erste \textbf{SELECT}-Klausel definiert die Rekursionsbasis und darf sich nicht auf die zu definierende Relation, im Beispiel \textbf{t}, beziehen. Durch diese Anweisung werden die Datentypen der Attribute der zu definierenden Relation festgelegt. In den Zeilen 7 und 8 wird die Summe (\ref{eq:sum_n}) über die Partialsummen in der Relation \textbf{t} berechnet. 
+
+Im Hinblick auf die gefaltete Übertragungsfunktion \ref{eq:convlogit} ist eine Summe der Form
+\begin{equation}
+    \psi \left(\sum_{p=1}^{z_{in}} \alpha_{qp} A_p+ b \mathbf{1} \right)
+\end{equation}
+zu berechnen. Dabei sind die Matrizen $A_p$ Ergebnisse von Matrixfaltungen, $\alpha_{qp} \in \RR$ beliebige Gewichte, $b$ ein Biasvektor sowie $psi$ eine Aktivierungsfunktion. Zukünftig werden Aktivierungsfunktionen im SQL-Code mit $T$ bezeichnet.
 
 \subsection*{Pooling}
 Die datenbankgestützte Umsetzung von Pooling-Schichten gelingt direkt durch die Nutzung von Nachbarschaften wie in Abschnitt \ref{abs:naive_app}. Da die Dimensionen aller vorkommenden Merkmalskarten und Kerne eines CNN durch die Wahl der Hyperparameter festgelegt werden, müssen die Nachbarschaften beim Pooling nur einmalig berechnet werden. Des Weiteren werden Funktionen wie \textbf{MAX} und \textbf{MEAN} im SQL-Standard unterstützt, sodass Mittelwert-Pooling und Maximum-Pooling implementiert werden können.
