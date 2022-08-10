@@ -424,7 +424,7 @@ Um $ \Delta K^1_{p,1}$ zu bestimmen, ist zunächst der lokale Fehler der darübe
 \begin{align*}
     \delta^{P^1}_{p}(i,j) &= \frac{\partial E}{\partial P^1_{p}(i,j)} \\
     &= \sum_{q=1}^{12} \sum_{u=-2}^2 \sum_{v=-2}^2 \frac{\partial E}{\partial C^2_{q,\psi}(i-u,j-v)} \cdot \frac{\partial C^2_{q,\psi}(i-u,j-v)}{\partial P_{p}^1(i,j)} \\
-    &= \sum_{q=1}^{12} \sum_{u=-2}^2 \sum_{v=-2}^2 \delta^{C^2}_{q,\psi}(i-u,j-v) \cdot \frac{\partial}{\partial P_p^1(i,j)}  \left( \sum_{p=1}^6 \sum_{u=-2}^2 \sum_{v=-2}^2 P^1_p(i,j) \cdot K^2_{q,p}(u,v) +b_q^2\right) \\
+    &= \sum_{q=1}^{12} \sum_{u=-2}^2 \sum_{v=-2}^2 \delta^{C^2}_{q,\psi}(i-u,j-v) \cdot \frac{\partial}{\partial P_p^1(i,j)}  \psi \left( \sum_{p=1}^6 \sum_{u=-2}^2 \sum_{v=-2}^2 P^1_p(i,j) \cdot K^2_{q,p}(u,v) +b_q^2\right) \\
     &= \sum_{q=1}^{12} \sum_{v=-2}^2 \sum_{u=-2}^2 \delta_{q,\psi}^{C^2}(i-u,j-v) \cdot K^2_{q,p}(u,v), \; \; \forall i,j \in [12], \forall p \in [6]
 \end{align*}
 Mit $K^2_{q,p,rot180}(-u,-v):=K^2_{q,p}(u,v)$ ergibt sich

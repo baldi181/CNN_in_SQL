@@ -177,11 +177,11 @@ Die Diskrete Fourier\footnote{Jean Baptiste Joseph Fourier 1786-1830}-Transforma
 
 \begin{defi}[Diskrete Fourier-Transformation]
     \label{def:dft}
-    Im Zeitbereich sei ein diskretes Signal $x=(x_0, \ldots, x_{n-1})^T \in \RR^n$ gegeben. Dann wird mit $\hat{x}=(\hat{x}_0, \ldots, \hat{x}_{n-1}) \in \mathbb{C}^n$ das Ergebnis der diskreten Fourier-Transformation, kurz $\hat{x}=\mathrm{DFT}(x)$, im Frequenzbereich bezeichnet. Die sogenannten Fourier-Koeffizienten sind als 
+    Im Zeitbereich sei ein diskretes Signal $x=(x_0, \ldots, x_{n-1})^T \in \RR^n$ gegeben. Dann wird mit $\hat{x}=(\hat{x}_0, \ldots, \hat{x}_{n-1}) \in \mathbb{C}^n$ das Ergebnis der diskreten Fourier-Transformation, kurz $\hat{x}=\mathrm{DFT}(x)$, bezeichnet. Die sogenannten Fourier-Koeffizienten sind als 
     \begin{equation*}
         \hat{x}_k:=\sum_{j=0}^{n-1} \mathrm{e}^{- \frac{2 \pi i}{n} j k} \cdot x_j
     \end{equation*}
-    für $0 \leq k \leq n-1$ definiert.
+    für $0 \leq k \leq n-1$ definiert. Das komplexe Signal $\hat{x}$ ist dem Frequenzbereich zugeordnet.
 \end{defi}
 Mit der inversen Fourier-Transformation kann aus dem Signal im Frequenzbereich das Signal im Zeitbereich rekonstruiert werden. Damit ist es möglich, Signale im Frequenzbereich zu manipulieren und zwischen Zeit- und Frequenzbereich beliebig zu wechseln.
 \begin{defi}[Inverse Diskrete Fourier-Transformation]
@@ -304,7 +304,7 @@ Für Schritt 1 und Schritt 3 kann wegen Lemma \ref{lem:Finv} und Lemma \ref{lem:
 \end{algorithm}
 
 Dies gelingt, da ausschließlich Basisoperationen wie die Matrixmatrixmultiplikation sowie das Adjungieren von Matrizen benötigt werden. Die elementweise Multiplikation und die Konjugation können als einfache skalare Funktionen implementiert werden. Die Berechnung der DFT mit der Matrix $F$ benötigt $n(2n-1)$ Fließkomma-Operationen. Da die Matrix $F$ nur von den Dimensionen der beteiligten Matrizen abhängt und diese durch die Hyperparameter des verwendeten CNN festgelegt sind, kann $F$ vor der Vorwärtsrechnung in einer Relation gespeichert werden. 
-Die Matrix $F$ besitzt komplexwertige Einträge und daher wird das Attribut \textbf{v} in die Attribute \textbf{re} und \textbf{im} aufgeteilt, um den Real- und Imaginärteil getrennt zu speichern. Die Multiplikation zweier komplexer Zahlen $z_1$ und $z_2$ ist durch
+Die Matrix $F$ besitzt komplexwertige Einträge und daher wird das Attribut \textbf{v} im Coordinate-Schema in die Attribute \textbf{re} und \textbf{im} aufgeteilt, um den Real- und Imaginärteil getrennt zu speichern. Die Multiplikation zweier komplexer Zahlen $z_1$ und $z_2$ ist durch
 \begin{align*}
     z_1 \cdot z_2 &=(\Re(z_1)+ i \Im(z_1))(\Re(z_2)+i \Im(z_2))\\
     &=(\Re(z_1) \cdot \Re(z_2)-\Im(z_1) \cdot \Im(z_2))+ i (\Re(z_1) \cdot \Im(z_2)+ \Im(z_1) \cdot \Re(z_2))
@@ -312,10 +312,9 @@ Die Matrix $F$ besitzt komplexwertige Einträge und daher wird das Attribut \tex
 erklärt.
 Darüber hinaus können auch die Fourier-Transformierten $\hat{K}$ für alle beteiligten Kerne $K$ bereits vor der Erkennungsphase bestimmt werden. So kann die Berechnungszeit verkürtzt werden.
 
-Seien $X \in [0,1]^{n \times n}$ und \textbf{X} sowie \textbf{F} die Relation zur Darstellung der Matrizen $X$ und $F$ im Coordinate-Schema. Im ersten Berechnungsschritt ist lediglich die Matrix $\mathrm{2DFT}(X)$ zu bestimmen. Die entsprechende SQL-Anfrage \ref{sql:dft} lässt sich formulieren. Mithilfe sogenannter Common Table Expressions, zu Erkennen am Schlagwort \textbf{WITH}, können temporäre Relationen berechnet werden. So gelingt die iterative Berechnung der Matrixmatrixprodukte. Die erste Relation \textbf{FT}
-in den Zeilen 1-6 ermittelt $F^T$. In den Zeilen 7-15 wird $X F^T$ und anschließend in den Zeilen 16-24 $F X F^T$ in der Relation \textbf{FXFT} berechnet. 
-Schließlich folgt in den letzten Zeilen die Ausgabe der zweidimensionalen diskreten Fourier-Transformation. Numerische Resultate zum Zeit- und Speicheraufwand sind der Abbildung \ref{abb:dft_insql}
-zu entnehmen.
+Seien $X \in [0,1]^{n \times n}$ und \textbf{X} sowie \textbf{F} die Relation zur Darstellung der Matrizen $X$ und $F$ im Coordinate-Schema. Im ersten Berechnungsschritt ist lediglich die Matrix $\mathrm{2DFT}(X)$ zu bestimmen. Die entsprechende SQL-Anfrage \ref{sql:dft} lässt sich formulieren. Dabei werden Common Table Expressions, zu Erkennen am Schlagwort \textbf{WITH}, welche als temporäre Tabellen zu verstehen sind, verwendet. So ist es möglich, zum einen Zwischenergebnisse übersichtlich darzustellen und zum anderen jene Ergebnisse weiter zu verwenden. Damit gelingt die iterative Berechnung der Matrixmatrixprodukte. Die erste temporäre Tabelle \textbf{FT}
+in den Zeilen 1-6 ermittelt die Matrix $F^T$. In den Zeilen 7-15 wird $X F^T$ und anschließend in den Zeilen 16-24 das Produkt $F X F^T$ in der temporären Relation \textbf{FXFT} berechnet. 
+Schließlich folgt in den letzten Zeilen die Ausgabe der zweidimensionalen diskreten Fourier-Transformation. Numerische Resultate zum Zeit- und Speicheraufwand sind der Abbildung \ref{abb:dft_insql} zu entnehmen.
 
 TODO Grafik erklären
 
@@ -323,11 +322,11 @@ TODO Grafik erklären
 
 Im zweiten Berechnungsschritt ist eine elementweise Multiplikation auszuführen. Angenommenen die Matrizen $\hat{X}$ und $\hat{K}$ sind als Relationen \textbf{X}
 und \textbf{K} im Coordinate-Schema hinterlegt. Dann wird $\hat{X} \odot \hat{K}$ in der SQL-Anfrage \ref{sql:elementweise} implementiert.
-Der dritte Berechnungsschritt lässt sich analog zum ersten Schritt darstellen. Dabei ist an zwei Stellen lediglich das Adjungieren einer komplexen Matrix notwendig, siehe Anhang \ref{app:app_1}. 
+Der dritte Berechnungsschritt lässt sich analog zum ersten Schritt darstellen. Dabei ist an zwei Stellen lediglich das Adjungieren einer komplexen Matrix, siehe Anhang \ref{app:app_1}, notwendig.
 
 \lstinputlisting[label=sql:elementweise, caption=SQL-Code zur Umsetzung der elementweisen Multiplikation, language=SQL]{sql_code/dft_ansatz_elemwise.txt}
 
-Wird zur Berechnung der DFT die sogenannte schnelle Fourier-Transformation (engl. \textit{Fast-Fourier-Transformation}, kurz: FFT) genutzt, kann der Zeitaufwand von $\mathcal{O}(n^2)$ auf $\mathcal{O}(n \log n)$ vermindert werden. Verschiedene Möglichkeiten, die FFT in SQL zu implementieren, werden in Marten et. al.\cite{DBLP:conf/adbis/Marten0019} präsentiert. In dieser Arbeit wird diskrete Fourier-Transformation wie in Algorithmus \ref{alg:conv_as_2dft} behandelt. 
+Wird zur Berechnung der DFT die sogenannte schnelle Fourier-Transformation (engl. \textit{Fast-Fourier-Transformation}, kurz: FFT) genutzt, können die Zeitkosten von $\mathcal{O}(n^2)$ auf $\mathcal{O}(n \log n)$ vermindert werden. Verschiedene Möglichkeiten, die FFT in SQL zu implementieren, werden in Marten et. al.\cite{DBLP:conf/adbis/Marten0019} präsentiert. In dieser Arbeit wird ausschließlich die diskrete zweidimensionale Fourier-Transformation wie in Algorithmus \ref{alg:conv_as_2dft} behandelt. 
 
 \subsection{Zusammenfassung}
 \label{abs:sum_conc_in_sql}
@@ -335,14 +334,24 @@ Wird zur Berechnung der DFT die sogenannte schnelle Fourier-Transformation (engl
 
 \section{Datenbankgestützte Vorwärtsrechnung für CNN}
 \label{abs_CNN_in_SQL}
-Alle Parameter sind vorher trainiert. ausführen!! TODO
+In diesem Abschnitt steht das Problem \ref{prob:ffCCN} im Vordergrund und es wird eine relationale Umsetzung der Vorwärtsrechnung für ein trainiertes CNN-Modell diskutiert. In Abhängigkeit von den Hyperparameter des verwendeten Modells und dem Anwendungsszenario sind die im Abschnitt \ref{abs:conv_in_sql} vorgestellten Resultate zu nutzen.    
+Die konkreten Implementierungen in SQL beziehen sich auf das im Abschnitt \ref{abs:model_mnist} vorgestellte Modell \ref{modell}, welches als laufende Beispielmodell dienen soll.   
 \subsection*{Linearkombinationen}
+Bei ML-Algorithmen wird oft mit mehrdimensionalen Arrays gearbeitet. Dies ist problemlos mit dem Relationenmodell vereinbar. Das Coordinate-Schema wird einfach mit Attributen, welche die Achen darstellen, erweitert. Für den Kern $K^1 \in \RR^{6 \times 1 \times 5 \times 5}$ ergibt sich die Relation \textbf{K1} zu
+
+\begin{align*}
+    \mathbf{K1}( 
+    &\underline{p} \; \; \mathrm{int},\\    
+    &\underline{i} \; \; \mathrm{int}, \\
+    &v \; \; \mathrm{double})
+\end{align*}
+
 \subsection*{Pooling}
 Die datenbankgestützte Umsetzung von Pooling-Schichten gelingt direkt durch die Nutzung von Nachbarschaften wie in Abschnitt \ref{abs:naive_app}. Da die Dimensionen aller vorkommenden Merkmalskarten und Kerne eines CNN durch die Wahl der Hyperparameter festgelegt werden, müssen die Nachbarschaften beim Pooling nur einmalig berechnet werden. Des Weiteren werden Funktionen wie \textbf{MAX} und \textbf{MEAN} im SQL-Standard unterstützt, sodass Mittelwert-Pooling und Maximum-Pooling implementiert werden können.
 
 Eine weitere Möglichkeit besteht darin, das Mittelwert-Pooling mit den Schrittweiten $p:=p_h=p_b$ als Faltungsoperation mit dem sogenannten Mittelwert-Kern $\frac{1}{p^2} \mathbf{1} \in \RR^{p \times p}$ zu implementieren. An dieser Stelle können Resultate aus dem vorherigen Abschnitt \ref{abs:conv_in_sql} genutzt werden, um abzuschätzen, welcher Ansatz für das gewählte Modell besser geeignet ist. Schließlich ist auch die Flatten-Funktion, vgl. Definition \ref{def:flatten}, leicht in SQL umsetzbar. 
 
-TODO beispiel fatten code
+TODO beispiel fatten code+Pooling
  
 \subsection*{Vorwärtsgerichtete neuronale Netze}
 Die letzte Schicht eines CNN besteht meistens aus einem FFN mit einer oder mehreren verdeckten Neuronenschichten. Die Theorie von FFN wird in Kapitel \ref{kap:NN} vorgestellt. Dabei wird die Ausgabe eines neuronalen Natzes mittels Vorwärtsrechnung, vgl. \ref{alg:ff}, berechnet. Diese lässt sich ausschließlich mit bereits vorgestellten Basisoperationen wie der Matrixvektormultiplikation bzw. Vektoraddition und einfachen Funktionsauswertung darstellen. Wird das Modell \ref{modell} zur Klassifikation von Ziffern genutzt, so ist die Vorwärtsrechnung für eine Neuronenschicht datenbankgestützt umzusetzen. Die Verallgemeinerung für beliebig viele Schichten wurde bereits in einer Projektarbeit der Universität Rostock untersucht \cite{myprojekt}. 
