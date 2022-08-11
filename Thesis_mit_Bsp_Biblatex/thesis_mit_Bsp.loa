@@ -12,7 +12,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {algorithm}{\numberline {3}{\ignorespaces Vorwärtsrechnung\relax }}{25}{algorithm.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {algorithm}{\numberline {4}{\ignorespaces Online-Backpropagation für ein FFN, vgl. \cite {du_diss}\relax }}{30}{algorithm.4}%
+\contentsline {algorithm}{\numberline {4}{\ignorespaces Online-Backpropagation für ein FFN $\Lambda _L$\relax }}{30}{algorithm.4}%
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 

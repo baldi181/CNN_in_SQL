@@ -36,7 +36,7 @@ Bei neuronalen Netzen wird das Optimierungsproblem (\ref{eq:opt_fund_abs}) mithi
 In der Praxis werden Testdaten, für die die Klassenzugehörigkeiten bekannt sind, genutzt, um die Generalisierungsfähigkeit des Modells zu messen. Diese Daten werden während des Trainingsprozesses zur Anpassung der Modellparameter $\mathcal{W}$ nicht benutzt.
 
 \begin{defi}[Testmenge]
-    Seien die Mengen $\mathcal{M}':=\{x_i \; : \; 1 \leq i \leq m'\}$ sowie $\mathcal{C}:=\{K_1, \ldots, K_s \}$ gegeben. Weiter sei $f: \mathcal{M}' \rightarrow \mathcal{C}$ eine Klassifikationsfunktion. Dann wird mit 
+    Seien die Mengen $\mathcal{M}':=\{x_i \; : \; 1 \leq i \leq m'\}$ sowie $\mathcal{C}:=\{K_1, \ldots, K_s \}$ gegeben. Weiter sei $f: \mathcal{M}' \rightarrow \mathcal{C}$ eine bekannte Klassifikationsfunktion. Dann wird mit 
     \begin{equation}
         \label{eq:testset}
         \mathcal{T}':=\{(x_i, f(x_i))\; : \, 1 \leq i \leq m'\}
