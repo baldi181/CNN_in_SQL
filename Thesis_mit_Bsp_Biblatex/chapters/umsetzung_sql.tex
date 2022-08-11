@@ -47,7 +47,7 @@ Eine Verbesserung der Laufzeiten kann mithilfe von Umsetzungstabellen, engl. \te
 \end{align*}
 mit dem zusammengesetzten Schlüssel $(i,j,\text{id})$ benötigt. Hier werden für jeden Pixel $(i,j)$ die Nachbarpixel $(i', j') \in U$ mit einer entsprechenden Nummer $\text{id}$ hinterlegt. So wird die zeitintensive Berechnung der Nachbarschaften mit dem  kartesischen Produkt in der Anfrage \ref{sql:naive} umgangen. Die Laufzeiten dieser Verbesserung sind in Abbildung \ref{abb:laufzeit_naive_verb} dargestellt.
 
-TODO Grafik ergebnis erklären.
+TODO Grafik ergebnis erklären + Code.
 
 \subsection{Faltung als Matrixvektorprodukt}
 \label{abs:conv_using_sparse}
@@ -312,7 +312,7 @@ Die Matrix $F$ besitzt komplexwertige Einträge und daher wird das Attribut \tex
 erklärt.
 Darüber hinaus können auch die Fourier-Transformierten $\hat{K}$ für alle beteiligten Kerne $K$ bereits vor der Erkennungsphase bestimmt werden. So kann die Berechnungszeit verkürtzt werden.
 
-Seien $X \in [0,1]^{n \times n}$ und \textbf{X} sowie \textbf{F} die Relation zur Darstellung der Matrizen $X$ und $F$ im Coordinate-Schema. Im ersten Berechnungsschritt ist lediglich die Matrix $\mathrm{2DFT}(X)$ zu bestimmen. Die entsprechende SQL-Anfrage \ref{sql:dft} lässt sich formulieren. Dabei werden Common Table Expressions, zu Erkennen am Schlagwort \textbf{WITH}, welche als temporäre Tabellen zu verstehen sind, verwendet. So ist es möglich, zum einen Zwischenergebnisse übersichtlich darzustellen und zum anderen jene Ergebnisse weiter zu verwenden. Damit gelingt die iterative Berechnung der Matrixmatrixprodukte. Die erste temporäre Tabelle \textbf{FT}
+Seien $X \in [0,1]^{n \times n}$ und \textbf{X} sowie \textbf{F} die Relation zur Darstellung der Matrizen $X$ und $F$ im Coordinate-Schema. Im ersten Berechnungsschritt ist lediglich die Matrix $\mathrm{2DFT}(X)$ zu bestimmen. Die entsprechende SQL-Anfrage \ref{sql:dft} lässt sich formulieren. Dabei werden \textit{Common-Table-Expressions}, zu Erkennen am Schlagwort \textbf{WITH}, welche als temporäre Tabellen zu verstehen sind, verwendet. So ist es möglich, zum einen Zwischenergebnisse übersichtlich darzustellen und zum anderen jene Ergebnisse weiter zu verwenden. Damit gelingt die iterative Berechnung der Matrixmatrixprodukte. Die erste temporäre Tabelle \textbf{FT}
 in den Zeilen 1-6 ermittelt die Matrix $F^T$. In den Zeilen 7-15 wird $X F^T$ und anschließend in den Zeilen 16-24 das Produkt $F X F^T$ in der temporären Relation \textbf{FXFT} berechnet. 
 Schließlich folgt in den letzten Zeilen die Ausgabe der zweidimensionalen diskreten Fourier-Transformation. Numerische Resultate zum Zeit- und Speicheraufwand sind der Abbildung \ref{abb:dft_insql} zu entnehmen.
 
@@ -338,17 +338,17 @@ In diesem Abschnitt steht das Problem \ref{prob:ffCCN} im Vordergrund und es wir
 Die konkreten Implementierungen in SQL beziehen sich auf das im Abschnitt \ref{abs:model_mnist} vorgestellte Modell \ref{modell}, welches als laufende Beispielmodell dienen soll. In diesem Abschnitt tauchen immer wieder Modellparameter auf, welche als traniert und damit optimal im Sinne der gestellten Klassifikationsaufgabe voraussgesetzt werden. Nur dann ist eine sinnvolle datenbankgestützte Mustererkennung möglich.  
 
 \subsection*{Gefaltete Übertragungsfunktion}
-Bei ML-Verfahren wird oft mit mehrdimensionalen Arrays gearbeitet. Diese sind problemlos mit dem Relationenmodell vereinbar. Das Coordinate-Schema wird einfach mit entsprechenden Attributen, welche die Achsen darstellen, erweitert. Für einen Kern $K \in \RR^{q \times p \times k \times k}$ ergibt sich die Relation \textbf{K1} zu
+Bei ML-Verfahren wird oft mit mehrdimensionalen Arrays gearbeitet. Diese sind problemlos mit dem Relationenmodell vereinbar. Das Coordinate-Schema wird einfach mit entsprechenden Attributen, welche die Achsen darstellen, erweitert. Für einen Kern $K \in \RR^{q \times p \times k \times k}$ ergibt sich die Relation \textbf{K} zu
 
 \begin{align*}
-    \mathbf{K1}\, ( 
+    \mathbf{K}\, ( 
     &\underline{q} \; \; \mathrm{int},\\
     &\underline{p} \; \; \mathrm{int},\\
     &\underline{i} \; \; \mathrm{int}, \\    
     &\underline{j} \; \; \mathrm{int}, \\
     &v \; \; \mathrm{double}),
 \end{align*}
-wobei $q$ und $p$ die neuen Achsen präsentieren. 
+wobei $q$ und $p$ die neuen Achsen präsentieren. In diesem Kontext wird von einem erweiterten Coordinate-Schema gesprochen.
 
 Zur Berechnung der Merkmalskarten durch die gefaltete Übertragungsfunktion, vgl. Definition \ref{eq:convlogit} sind (gewichtete) Summen über Matrixfaltungen zu bestimmen. Um dies kompakt darzustellen, werden rekursive Anfragen benutzt, welche seit 1999 in SQL standardisiert sind. An dieser Stelle sei bemerkt, dass je nach Wahl des Datenbankmanagementsystems diese Anfragen unterstützt beziehungsweise nicht unterstützt werden. In den meisten kommerziellen und freien Systemen, unter anderem PostgreSQL, sind rekursive Anfragen möglich. Ein Beispiel zur rekursiven Berechnung von
 \begin{equation*}
@@ -357,29 +357,39 @@ Zur Berechnung der Merkmalskarten durch die gefaltete Übertragungsfunktion, vgl
 \end{equation*} 
 ist in Anfrage \ref{sql:recursive} gegeben. 
 
-\lstinputlisting[label=sql:recursive, caption=Ein Beispiel einer rekursiven Anfrage, language=SQL]{sql_code/recursive_sum_n.txt}
+\lstinputlisting[label=sql:recursive, caption=Ein Beispiel einer rekursiven SQL-Anfrage, language=SQL]{sql_code/recursive_sum_n.txt}
 
 Eine rekursive Anfrage besteht immer aus einem nicht-rekursiven Term (im Beispiel Zeile 3), der Vereinigung \textbf{UNION} bzw. \textbf{UNION ALL} und einem rekursiven Term (Zeile 4-6), welcher den Selbstverweis auf entsprechende Relation beinhaltet. Der \textbf{UNION ALL}-Operator entfernt im Gegensatz zum \textbf{UNION}-Operator keine Duplikate. Die erste \textbf{SELECT}-Klausel definiert die Rekursionsbasis und darf sich nicht auf die zu definierende Relation, im Beispiel \textbf{t}, beziehen. Durch diese Anweisung werden die Datentypen der Attribute der zu definierenden Relation festgelegt. In den Zeilen 7 und 8 wird die Summe (\ref{eq:sum_n}) über die Partialsummen in der Relation \textbf{t} berechnet. 
 
-Im Hinblick auf die gefaltete Übertragungsfunktion \ref{eq:convlogit} ist eine Summe der Form
+Bei der gefalteten Übertragungsfunktion \ref{eq:convlogit} mit einer Aktivierungfunktion $\psi$ ist eine Summe der Form
 \begin{equation}
-    \psi \left(\sum_{p=1}^{z_{in}} \alpha_{qp} A_p+ b \mathbf{1} \right)
+    \label{eq:rec_conv}
+    \psi \left(\sum_{p=1}^{z_{in}} \alpha_{qp} A_p+ b_q \mathbf{1} \right)
 \end{equation}
-zu berechnen. Dabei sind die Matrizen $A_p$ Ergebnisse von Matrixfaltungen, $\alpha_{qp} \in \RR$ beliebige Gewichte, $b$ ein Biasvektor sowie $psi$ eine Aktivierungsfunktion. Zukünftig werden Aktivierungsfunktionen im SQL-Code mit $T$ bezeichnet.
+zu berechnen. Dabei sind die Matrizen $A_p$ Ergebnisse von Matrixfaltungen, $\alpha_{qp} \in \RR$ beliebige Gewichte sowie $b \in \RR^{z_{out}}$ ein Biasvektor. Zukünftig werden Aktivierungsfunktionen im SQL-Code mit $T$ bezeichnet. Zur Berechnung von (\ref{eq:rec_conv}) wird eine rekursive SQL-Anfrage \ref{sql:conv_rec} genutzt. Die entsprechenden Relationen liegen jeweils im erweiterten Coordinate-Schema vor. In der Anfrage gilt für alle Gewichte $\alpha_{qp}=1$. Die Erweiterung für beliebige Gewichte kann mit einer zusätzlichen Relation für die Gewichtsparameter gelingen. 
+
+\lstinputlisting[label=sql:conv_rec, caption=Die rekursive SQL-Anfrage zur Berechnung der gefalteten Übertragungsfunktion, language=SQL]{sql_code/conv_recursive.txt}
+
+Die datenbankgestützte Matrixfaltung ist bereits im vorherigen Abschnitt \ref{abs:conv_in_sql} beleuchtet worden. Zur Veranschaulichung wird die SQL-Implementierung \ref{sql:C1} zur Berechnung der sechs Merkmalskarten in der Faltungschicht $C^1$ des Modells \ref{modell} dargestellt. Dabei wurde der im Abschnitt \ref{abs:naive_app} diskutierte verbesserte Nachbarschaftsansatz mit Umgebungstabellen und das erweiterte Coordinate-Schema benutzt. Hier ist im Gegensatz zur Schicht $C^2$ keine rekursive Berechnung notwendig. Die rekursiven Anfragen für $C^2$ sind im Anhang \ref{app:app_2} zu finden. Es kommen wieder Common-Table-Expressions zum Einsatz. In den Zeilen 1-19 werden die Matrixfaltungen $X \ast K^{1}_p$ mit zero-padding mithilfe einer Nachbarschaftstabelle \textbf{U} für $1 \leq p \leq 6$ berechnet. In den Zeilen 20 bis 27 wird nur das Teilergebnis behalten, welches ohne zero-padding bestimmt wurde. Schließlich folgt in den Zeilen 28-34 die Manipulation mit den Schwellwerten $b_p$ und die Berechnung der Aktivierung mit der logistischen Funktion.
+
+\lstinputlisting[label=sql:C1, caption=Die SQL-Anfrage zur Berechnung von $C^1$, language=SQL]{sql_code/C1_sql.txt}
 
 \subsection*{Pooling}
-Die datenbankgestützte Umsetzung von Pooling-Schichten gelingt direkt durch die Nutzung von Nachbarschaften wie in Abschnitt \ref{abs:naive_app}. Da die Dimensionen aller vorkommenden Merkmalskarten und Kerne eines CNN durch die Wahl der Hyperparameter festgelegt werden, müssen die Nachbarschaften beim Pooling nur einmalig berechnet werden. Des Weiteren werden Funktionen wie \textbf{MAX} und \textbf{MEAN} im SQL-Standard unterstützt, sodass Mittelwert-Pooling und Maximum-Pooling implementiert werden können.
+Die datenbankgestützte Umsetzung von Pooling-Schichten kann direkt durch die Nutzung von Nachbarschaften wie in Abschnitt \ref{abs:naive_app} gelingen. Da die Dimensionen aller vorkommenden Merkmalskarten und Kerne eines CNN durch die Wahl der Hyperparameter festgelegt werden, müssen die Nachbarschaften beim Pooling nur einmalig berechnet werden. Des Weiteren werden Funktionen wie \textbf{MAX} und \textbf{MEAN} im SQL-Standard unterstützt, sodass Mittelwert-Pooling und Maximum-Pooling implementiert werden können.
 
-Eine weitere Möglichkeit besteht darin, das Mittelwert-Pooling mit den Schrittweiten $p:=p_h=p_b$ als Faltungsoperation mit dem sogenannten Mittelwert-Kern $\frac{1}{p^2} \mathbf{1} \in \RR^{p \times p}$ zu implementieren. An dieser Stelle können Resultate aus dem vorherigen Abschnitt \ref{abs:conv_in_sql} genutzt werden, um abzuschätzen, welcher Ansatz für das gewählte Modell besser geeignet ist. Schließlich ist auch die Flatten-Funktion, vgl. Definition \ref{def:flatten}, leicht in SQL umsetzbar. 
+Eine weitere Möglichkeit besteht darin, das Mittelwert-Pooling mit den Schrittweiten $p:=p_h=p_b$ als Faltungsoperation mit dem sogenannten Mittelwert-Kern $\frac{1}{p^2} \mathbf{1} \in \RR^{p \times p}$ zu implementieren. An dieser Stelle können Resultate aus dem vorherigen Abschnitt \ref{abs:conv_in_sql} genutzt werden, um abzuschätzen, welcher Ansatz für das Anwendungsszenario besser geeignet ist. Schließlich ist auch die Flatten-Funktion, vgl. Definition \ref{def:flatten}, leicht in SQL umsetzbar. 
 
-TODO beispiel fatten code+Pooling
+Eine Kombination aus Mittelwert-Pooling mit Schrittweite $p=2$ und der Flatten-Funktion $T_f$ ist für das konkrete Modell \ref{modell} in der SQL-Anfrage \ref{sql:pool_flatten} gegeben. Alle beteiligten Relationen liegen entsprechend ihrer Namen im erweitertem Coordinate-Schema vor. Es wird der oben diskutierte Nachbarschaftsansatz gewählt.
+
+\lstinputlisting[label=sql:pool_flatten, caption=SQL-Code zur Umsetzung des Mittelwert-Poolings und anschließender Flatten-Operation, language=SQL]{sql_code/pool_flatten.txt}
+
+In den Zeilen 1 bis 11 wird das Mittelwert-Pooling mithilfe der Aggregatfunktion \textbf{AVG} und der Nachbarschaften in der Relation \textbf{U} bestimmt. Dieses Ergebnis wird mit den Schrittweiten $s_h=s_b=2$, vgl. Bemerkung \ref{bem_strides}, in den Zeilen 12 bis 19 in der Dimension verkleinert. Dabei werden Funktionen wie das Aufrunden \textbf{CEIL} und Modulo-Rechnen \textbf{MOD} zur passenden Selektierung der Indizes genutzt. Die Doppelpunkte sorgen dafür, dass die Indizes zu natürlichen Zahlen umgewandelt werden. Im Englischen wird diese Typumwandlung als \textit{type-casting} bezeichnet. Alle verwendeten Operationen werden im SQL-Standard unterstützt. Schließlich wird der Vektor $f=T_f(P^2) \in \RR^{192}$ der Flatten-Funktion in den Zeilen 20 bis 26 berechnet. 
  
 \subsection*{Vorwärtsgerichtete neuronale Netze}
-Die letzte Schicht eines CNN besteht meistens aus einem FFN mit einer oder mehreren verdeckten Neuronenschichten. Die Theorie von FFN wird in Kapitel \ref{kap:NN} vorgestellt. Dabei wird die Ausgabe eines neuronalen Natzes mittels Vorwärtsrechnung, vgl. \ref{alg:ff}, berechnet. Diese lässt sich ausschließlich mit bereits vorgestellten Basisoperationen wie der Matrixvektormultiplikation bzw. Vektoraddition und einfachen Funktionsauswertung darstellen. Wird das Modell \ref{modell} zur Klassifikation von Ziffern genutzt, so ist die Vorwärtsrechnung für eine Neuronenschicht datenbankgestützt umzusetzen. Die Verallgemeinerung für beliebig viele Schichten wurde bereits in einer Projektarbeit der Universität Rostock untersucht \cite{myprojekt}. 
+Die letzte Schicht eines CNN besteht meistens aus einem FFN mit einer oder mehreren verdeckten Neuronenschichten. Die Theorie von FFN wird in Kapitel \ref{kap:NN} vorgestellt. Dabei wird die Ausgabe eines neuronalen Natzes mittels Vorwärtsrechnung, vgl. \ref{alg:ff}, berechnet. Diese lässt sich ausschließlich mit bereits vorgestellten Basisoperationen wie der Matrixvektormultiplikation bzw. Vektoraddition und einfachen Funktionsauswertung darstellen. Wird das Modell \ref{modell} zur Klassifikation von Ziffern genutzt, so ist die Vorwärtsrechnung lediglich für eine Neuronenschicht datenbankgestützt umzusetzen. Die Verallgemeinerung für beliebig viele Schichten wurde bereits in einer Projektarbeit der Universität Rostock untersucht \cite{myprojekt}. 
 
-Sei die Gewichtsmatrix $W \in \RR^{192 \times 10}$ sowie der Biasvektor $b \in \RR^{10}$ wie in Abschnitt \ref{abs:model_mnist} gegeben. Die entsprechenden Relationen \textbf{W} und \textbf{B} werden gemäß dem Coordinate-Schema erstellt. Weiter sei $\psi$ eine beliebige Aktivierungsfunktion, im Modell \ref{modell} ist $\psi$ die logistische Funktion. In SQL-Anfragen wird dafür die Variable $T$ verwendet. Schließlich sei in der Relation \textbf{FLAT} der Vektor $f=T_f(X)$ der Flatten-Schicht gespeichert, welcher als Eingabe des FFN dient. Die Ausgabe des FFN und damit des gesamten CNN lässt sich durch die SQL-Anfrage \ref{sql:ffn} berechnen. In den Zeilen 1-9 wird das Matrixvektorprodukt $Wf$ berechnet, welches anschließend mit dem Biasvektor $b$ manipuliert wird. Schließlich werden die Aktivierungen der Ausgabeschicht mit der Funktion $T$ ermittelt. In den Zeilen 10-15 wird der Index der maximale Aktivierung selektiert, welcher, vermindert um Eins, die Klassifikation der Ziffer darstellt.
+Sei die Gewichtsmatrix $W \in \RR^{192 \times 10}$ sowie der Biasvektor $b \in \RR^{10}$ wie in Abschnitt \ref{abs:model_mnist} gegeben. Die entsprechenden Relationen \textbf{W} und \textbf{B} werden gemäß dem Coordinate-Schema erstellt. Weiter sei $T$ eine beliebige Aktivierungsfunktion, im Modell \ref{modell} ist $T$ die logistische Funktion. Schließlich sei in der Relation \textbf{FLATTEN} der Vektor $f=T_f(X)$ der Flatten-Schicht gespeichert, welcher als Eingabe des FFN dient. Die Ausgabe des FFN und damit des gesamten CNN lässt sich durch die SQL-Anfrage \ref{sql:ffn} berechnen. In den Zeilen 1-9 wird das Matrixvektorprodukt $Wf$ berechnet, welches anschließend mit dem Biasvektor $b$ manipuliert wird. Schließlich werden die Aktivierungen der Ausgabeschicht mit der Funktion $T$ ermittelt. In den Zeilen 10-15 wird der Index mit der maximalen Aktivierung selektiert, welcher, vermindert um Eins, die Klassifikation der Ziffer darstellt.
 
 \lstinputlisting[label=sql:ffn, caption=SQL-Code zur Umsetzung der Vorwärtsrechnung eines einschichtigen FFN, language=SQL]{sql_code/ffn_in_sql.txt}
-\section{Evalution}
-Eine vollständige Erkennungsphase ist im Anhang \ref{app:app_2} zu finden.
-\label{abs:CNN_eval}
+
+Die vollständige datenbankgestützte Vorwärtsrechnung für das tranierte Modell \ref{modell} ist im Anhang \ref{app:app_2} dargestellt. LAUFZEIT eval TODO, TODO full pass im Anhang

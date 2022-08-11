@@ -1,0 +1,34 @@
+WITH C1same AS
+  (SELECT K1.p AS p,
+          temp.i,
+          temp.j,
+          SUM(temp.v*K1.v) AS v
+   FROM
+     (SELECT U.i AS i,
+             U.j AS j,
+             X.v AS v,
+             U.istrich AS istrich,
+             U.jstrich AS jstrich
+      FROM X
+      JOIN U ON X.i=U.istrich
+      AND X.j =U.jstrich) temp
+   JOIN K1 ON K1.i=temp.istrich-temp.i+2
+   AND K1.j=temp.jstrich-temp.j+2
+   GROUP BY K1.p,
+            temp.i,
+            temp.j),
+     C1valid AS
+  (SELECT C1same.p AS p,
+          C1same.i-2 AS i,
+          C1same.j-2 AS j,
+          C1same.v AS v
+   FROM C1same
+   WHERE C1same.i BETWEEN 3 AND 26
+     AND C1same.j BETWEEN 3 AND 26),
+     C1 AS
+  (SELECT C1valid.p AS p,
+          C1valid.i AS i,
+          C1valid.j AS j,
+          1/(1+EXP(-(C1valid.v+B1.v))) AS v
+   FROM C1valid
+   JOIN B1 ON C1valid.p=B1.i)

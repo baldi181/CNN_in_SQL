@@ -16,9 +16,15 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {lstlisting}{\numberline {5.3}SQL-Code zur Umsetzung der elementweisen Multiplikation}{56}{lstlisting.5.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {5.4}Ein Beispiel einer rekursiven Anfrage}{57}{lstlisting.5.4}%
+\contentsline {lstlisting}{\numberline {5.4}Ein Beispiel einer rekursiven SQL-Anfrage}{58}{lstlisting.5.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {5.5}SQL-Code zur Umsetzung der Vorwärtsrechnung eines einschichtigen FFN}{59}{lstlisting.5.5}%
+\contentsline {lstlisting}{\numberline {5.5}Die rekursive SQL-Anfrage zur Berechnung der gefalteten Übertragungsfunktion}{58}{lstlisting.5.5}%
+\defcounter {refsection}{0}\relax 
+\contentsline {lstlisting}{\numberline {5.6}Die SQL-Anfrage zur Berechnung von $C^1$}{59}{lstlisting.5.6}%
+\defcounter {refsection}{0}\relax 
+\contentsline {lstlisting}{\numberline {5.7}SQL-Code zur Umsetzung des Mittelwert-Poolings und anschließender Flatten-Operation}{60}{lstlisting.5.7}%
+\defcounter {refsection}{0}\relax 
+\contentsline {lstlisting}{\numberline {5.8}SQL-Code zur Umsetzung der Vorwärtsrechnung eines einschichtigen FFN}{61}{lstlisting.5.8}%
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 

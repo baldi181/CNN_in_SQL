@@ -1,0 +1,26 @@
+WITH P2 AS
+  (SELECT C2.q AS q,
+          U.i AS i,
+          U.j AS j,
+          AVG(C2.v) AS v
+   FROM C2
+   JOIN U ON C2.i=U.istrich
+   AND C2.j =U.jstrich
+   GROUP BY C2.q,
+            U.i,
+            U.j),
+     P2stride AS
+  (SELECT P2.q AS q,
+          ceil(P2.i/2)::INTEGER AS i,
+          ceil(P2.j/2)::INTEGER AS j,
+          P2.v AS v
+   FROM P2
+   WHERE mod(P2.i, 2)=0
+     AND mod(P2.j, 2)=0 ),
+     Flatten AS
+  (SELECT (P2stride.q-1)*(4*4)+(P2stride.i-1)*4+P2stride.j AS i,
+          1 AS j,
+          P2stride.v AS v
+   FROM P2stride)
+SELECT *
+FROM Flatten

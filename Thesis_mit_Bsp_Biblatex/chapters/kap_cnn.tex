@@ -311,7 +311,7 @@ Die Parameteranzahl ist damit
     C_p^1(i,j)&=\psi \left(\sum_{u=-2}^2 \sum_{v=-2}^2 X(i+u,j+v) \cdot K_{p,1}^1(u,v) +b_p^1\right)
     \end{split}
 \end{align}
-für $1 \leq p \leq 6$ berechnet. Mit $\mathbf{1} \in \RR^{24 \times 24}$ ist die Matrix gemeint, deren Einträge nur Einsen sind. Die Matrixfaltung $\ast$ wird ohne zero padding genutzt und daher reduziert sich die Raumdimension. Es gilt $C^1_p \in \RR^{24 \times 24 \times 1}$. Anschließend folgen das Mittelwert-Pooling $P^1$ mit
+für $1 \leq p \leq 6$ berechnet. Mit $\mathbf{1} \in \RR^{24 \times 24}$ ist die Matrix gemeint, deren Einträge nur Einsen sind. Die Matrixfaltung $\ast$ wird ohne zero padding genutzt und daher reduziert sich die Raumdimension. Es gilt $C^1 \in \RR^{6 \times 24 \times 24}$. Anschließend folgen das Mittelwert-Pooling $P^1$ mit
 \begin{equation}
     \label{eq:P1_forw}
     P^1_p(i,j) =\frac{1}{4} \sum_{u=0}^1 \sum_{v=0}^1 C_p^1(2i-u, 2j-v), \; i,j \in [12]
@@ -325,12 +325,12 @@ für $1 \leq p \leq 6$ und die zweite Faltungsschicht $C^2$, welche zwölf Merkm
     \end{split}
 \end{align}
 für $1 \leq q \leq 12$ berechnet. Die Matrixfaltung $\ast$ wird wieder ohne zero padding genutzt und daher reduziert sich die Raumdimension.
-Es gilt $C_q^2 \in \RR^{8 \times 8 \times 1}$. Es folgt das Mittelwert-Pooling $P^2$ mit
+Es gilt $C^2 \in \RR^{12 \times 8 \times 8}$. Es folgt das Mittelwert-Pooling $P^2$ mit
 \begin{equation}
     \label{eq:P2_forw}
     P_q^2(i,j)= \frac{1}{4} \sum_{u=0}^1 \sum_{v=0}^1 C_p^1(2i-u, 2j-v), \; i,j \in [4]
 \end{equation}
-für $1 \leq q \leq 12$. Es gilt $P^2\in \RR^{4 \times 4 \times 12}$. Diese zwölf $4 \times 4$- Matrizen werden durch die Flatten-Funktion $T_f$ aus Definition \ref{def:flatten} in einen Vektor $f \in \RR^{4 \cdot 4 \cdot 12}$ umgewandelt. Dies sei durch
+für $1 \leq q \leq 12$. Dann gilt $P^2\in \RR^{12 \times 4 \times 4}$. Diese zwölf $4 \times 4$- Matrizen werden durch die Flatten-Funktion $T_f$ aus Definition \ref{def:flatten} in einen Vektor $f \in \RR^{12 \times 4 \cdot 4}$ umgewandelt. Dies sei durch
 \begin{equation}
     \label{eq:f_forw}
     f=T_f(P^2)
