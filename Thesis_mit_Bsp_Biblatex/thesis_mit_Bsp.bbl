@@ -114,37 +114,6 @@
       \verb 10.1109/INTELCIS.2017.8260032
       \endverb
     \endentry
-    \entry{bishop2006pattern}{book}{}
-      \name{author}{2}{}{%
-        {{hash=9dfd0135a5e80aa6d81cea2c10fb7f73}{%
-           family={Bishop},
-           familyi={B\bibinitperiod},
-           given={Christopher\bibnamedelima M},
-           giveni={C\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
-        {{hash=d8299efb6248f430bb0c465c766ed702}{%
-           family={Nasrabadi},
-           familyi={N\bibinitperiod},
-           given={Nasser\bibnamedelima M},
-           giveni={N\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Springer}%
-      }
-      \strng{namehash}{777504ebb73f750912508fc1b666e109}
-      \strng{fullhash}{777504ebb73f750912508fc1b666e109}
-      \strng{bibnamehash}{777504ebb73f750912508fc1b666e109}
-      \strng{authorbibnamehash}{777504ebb73f750912508fc1b666e109}
-      \strng{authornamehash}{777504ebb73f750912508fc1b666e109}
-      \strng{authorfullhash}{777504ebb73f750912508fc1b666e109}
-      \field{sortinit}{B}
-      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{number}{4}
-      \field{title}{Pattern recognition and machine learning}
-      \field{volume}{4}
-      \field{year}{2006}
-    \endentry
     \entry{blum1992training}{article}{}
       \name{author}{2}{}{%
         {{hash=d8bf570c1aa221715cb19143bfddf914}{%
@@ -682,6 +651,31 @@
       \field{title}{Deep Learning}
       \field{year}{2016}
     \endentry
+    \entry{gruening}{thesis}{}
+      \name{author}{1}{}{%
+        {{hash=5ca5c74c6f5318719c3b422453b68d5d}{%
+           family={Grüning},
+           familyi={G\bibinitperiod},
+           given={Tobias},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {Universität Rostock}%
+      }
+      \strng{namehash}{5ca5c74c6f5318719c3b422453b68d5d}
+      \strng{fullhash}{5ca5c74c6f5318719c3b422453b68d5d}
+      \strng{bibnamehash}{5ca5c74c6f5318719c3b422453b68d5d}
+      \strng{authorbibnamehash}{5ca5c74c6f5318719c3b422453b68d5d}
+      \strng{authornamehash}{5ca5c74c6f5318719c3b422453b68d5d}
+      \strng{authorfullhash}{5ca5c74c6f5318719c3b422453b68d5d}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Neural text line extraction in historical documents : a two-stage clustering approach}
+      \field{type}{phdthesis}
+      \field{year}{2018}
+    \endentry
     \entry{hanin2018neural}{article}{}
       \name{author}{1}{}{%
         {{hash=cf9a954bd1391f7be502bbdd80737355}{%
@@ -803,81 +797,6 @@
       \field{labeltitlesource}{title}
       \field{title}{Datenbanken - Implementierungstechniken, 4. Auflage}
       \field{year}{2019}
-    \endentry
-    \entry{hornik1991approximation}{article}{}
-      \name{author}{1}{}{%
-        {{hash=bec8dd1340457a82c21b54971e4c9417}{%
-           family={Hornik},
-           familyi={H\bibinitperiod},
-           given={Kurt},
-           giveni={K\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Elsevier}%
-      }
-      \strng{namehash}{bec8dd1340457a82c21b54971e4c9417}
-      \strng{fullhash}{bec8dd1340457a82c21b54971e4c9417}
-      \strng{bibnamehash}{bec8dd1340457a82c21b54971e4c9417}
-      \strng{authorbibnamehash}{bec8dd1340457a82c21b54971e4c9417}
-      \strng{authornamehash}{bec8dd1340457a82c21b54971e4c9417}
-      \strng{authorfullhash}{bec8dd1340457a82c21b54971e4c9417}
-      \field{sortinit}{H}
-      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Neural networks}
-      \field{number}{2}
-      \field{title}{Approximation capabilities of multilayer feedforward networks}
-      \field{volume}{4}
-      \field{year}{1991}
-      \field{pages}{251\bibrangedash 257}
-      \range{pages}{7}
-    \endentry
-    \entry{HORNIK1989359}{article}{}
-      \name{author}{3}{}{%
-        {{hash=bec8dd1340457a82c21b54971e4c9417}{%
-           family={Hornik},
-           familyi={H\bibinitperiod},
-           given={Kurt},
-           giveni={K\bibinitperiod}}}%
-        {{hash=17a26ba07299c37a45cc2475a9f3bc8d}{%
-           family={Stinchcombe},
-           familyi={S\bibinitperiod},
-           given={Maxwell},
-           giveni={M\bibinitperiod}}}%
-        {{hash=426e452a5ec8e692f7740ce0d3e3655c}{%
-           family={White},
-           familyi={W\bibinitperiod},
-           given={Halbert},
-           giveni={H\bibinitperiod}}}%
-      }
-      \strng{namehash}{31166c18fa8ee825c1eb4693189f9e2a}
-      \strng{fullhash}{31166c18fa8ee825c1eb4693189f9e2a}
-      \strng{bibnamehash}{31166c18fa8ee825c1eb4693189f9e2a}
-      \strng{authorbibnamehash}{31166c18fa8ee825c1eb4693189f9e2a}
-      \strng{authornamehash}{31166c18fa8ee825c1eb4693189f9e2a}
-      \strng{authorfullhash}{31166c18fa8ee825c1eb4693189f9e2a}
-      \field{sortinit}{H}
-      \field{sortinithash}{23a3aa7c24e56cfa16945d55545109b5}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{issn}{0893-6080}
-      \field{journaltitle}{Neural Networks}
-      \field{number}{5}
-      \field{title}{Multilayer feedforward networks are universal approximators}
-      \field{volume}{2}
-      \field{year}{1989}
-      \field{pages}{359\bibrangedash 366}
-      \range{pages}{8}
-      \verb{doi}
-      \verb https://doi.org/10.1016/0893-6080(89)90020-8
-      \endverb
-      \verb{urlraw}
-      \verb https://www.sciencedirect.com/science/article/pii/0893608089900208
-      \endverb
-      \verb{url}
-      \verb https://www.sciencedirect.com/science/article/pii/0893608089900208
-      \endverb
     \endentry
     \entry{30711}{article}{}
       \field{sortinit}{I}
@@ -1208,34 +1127,6 @@
       \field{pages}{69\bibrangedash 82}
       \range{pages}{14}
     \endentry
-    \entry{li2017convergence}{article}{}
-      \name{author}{2}{}{%
-        {{hash=0d2c91b24f885b22d373a892a768abc8}{%
-           family={Li},
-           familyi={L\bibinitperiod},
-           given={Yuanzhi},
-           giveni={Y\bibinitperiod}}}%
-        {{hash=7f4bdfc46ec1f536d2518b86929790dc}{%
-           family={Yuan},
-           familyi={Y\bibinitperiod},
-           given={Yang},
-           giveni={Y\bibinitperiod}}}%
-      }
-      \strng{namehash}{c5fe718619d47dd220a261d6a32b05c4}
-      \strng{fullhash}{c5fe718619d47dd220a261d6a32b05c4}
-      \strng{bibnamehash}{c5fe718619d47dd220a261d6a32b05c4}
-      \strng{authorbibnamehash}{c5fe718619d47dd220a261d6a32b05c4}
-      \strng{authornamehash}{c5fe718619d47dd220a261d6a32b05c4}
-      \strng{authorfullhash}{c5fe718619d47dd220a261d6a32b05c4}
-      \field{sortinit}{L}
-      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Advances in neural information processing systems}
-      \field{title}{Convergence analysis of two-layer neural networks with relu activation}
-      \field{volume}{30}
-      \field{year}{2017}
-    \endentry
     \entry{martendiss}{thesis}{}
       \name{author}{1}{}{%
         {{hash=a65e2c06f7997da7ce132c7c36b03dbb}{%
@@ -1472,6 +1363,37 @@
       \field{labeltitlesource}{title}
       \field{title}{Perceptrons, Reissue of the 1988 Expanded Edition with a new foreword by Léon Bottou: An Introduction to Computational Geometry}
       \field{year}{2017}
+    \endentry
+    \entry{mitchell1997machine}{book}{}
+      \name{author}{2}{}{%
+        {{hash=d331eeb7f00e650950ccadcb9c47efec}{%
+           family={Mitchell},
+           familyi={M\bibinitperiod},
+           given={Tom\bibnamedelima M},
+           giveni={T\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=d331eeb7f00e650950ccadcb9c47efec}{%
+           family={Mitchell},
+           familyi={M\bibinitperiod},
+           given={Tom\bibnamedelima M},
+           giveni={T\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {McGraw-hill New York}%
+      }
+      \strng{namehash}{981f98ec7dde75a9c32f3d75250a98c1}
+      \strng{fullhash}{981f98ec7dde75a9c32f3d75250a98c1}
+      \strng{bibnamehash}{981f98ec7dde75a9c32f3d75250a98c1}
+      \strng{authorbibnamehash}{981f98ec7dde75a9c32f3d75250a98c1}
+      \strng{authornamehash}{981f98ec7dde75a9c32f3d75250a98c1}
+      \strng{authorfullhash}{981f98ec7dde75a9c32f3d75250a98c1}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{9}
+      \field{title}{Machine learning}
+      \field{volume}{1}
+      \field{year}{1997}
     \endentry
     \entry{momjian2001postgresql}{book}{}
       \name{author}{1}{}{%
@@ -1747,31 +1669,6 @@
       \field{title}{Parallel distributed processing: explorations in the microstructure of cognition. Volume 1. Foundations}
       \field{year}{1986}
     \endentry
-    \entry{ruschendorf2014mathematische}{book}{}
-      \name{author}{1}{}{%
-        {{hash=fcc1f90247ba1384cc786844792e5051}{%
-           family={Rüschendorf},
-           familyi={R\bibinitperiod},
-           given={Ludger},
-           giveni={L\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Springer}%
-      }
-      \strng{namehash}{fcc1f90247ba1384cc786844792e5051}
-      \strng{fullhash}{fcc1f90247ba1384cc786844792e5051}
-      \strng{bibnamehash}{fcc1f90247ba1384cc786844792e5051}
-      \strng{authorbibnamehash}{fcc1f90247ba1384cc786844792e5051}
-      \strng{authornamehash}{fcc1f90247ba1384cc786844792e5051}
-      \strng{authorfullhash}{fcc1f90247ba1384cc786844792e5051}
-      \field{sortinit}{R}
-      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{title}{Mathematische Statistik}
-      \field{volume}{62}
-      \field{year}{2014}
-    \endentry
     \entry{saad1990sparskit}{article}{}
       \name{author}{1}{}{%
         {{hash=2e9e890ef0ef7a6569e8afb4da0fbf7a}{%
@@ -1796,35 +1693,6 @@
       \field{title}{SPARSKIT: A basic tool kit for sparse matrix computations}
       \field{year}{1990}
     \endentry
-    \entry{schmidt2020nonparametric}{article}{}
-      \name{author}{1}{}{%
-        {{hash=881838fc6b9c62b880a171be5e4083be}{%
-           family={Schmidt-Hieber},
-           familyi={S\bibinithyphendelim H\bibinitperiod},
-           given={Johannes},
-           giveni={J\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Institute of Mathematical Statistics}%
-      }
-      \strng{namehash}{881838fc6b9c62b880a171be5e4083be}
-      \strng{fullhash}{881838fc6b9c62b880a171be5e4083be}
-      \strng{bibnamehash}{881838fc6b9c62b880a171be5e4083be}
-      \strng{authorbibnamehash}{881838fc6b9c62b880a171be5e4083be}
-      \strng{authornamehash}{881838fc6b9c62b880a171be5e4083be}
-      \strng{authorfullhash}{881838fc6b9c62b880a171be5e4083be}
-      \field{sortinit}{S}
-      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{The Annals of Statistics}
-      \field{number}{4}
-      \field{title}{Nonparametric regression using deep neural networks with ReLU activation function}
-      \field{volume}{48}
-      \field{year}{2020}
-      \field{pages}{1875\bibrangedash 1897}
-      \range{pages}{23}
-    \endentry
     \entry{smith2007mathematics}{book}{}
       \name{author}{1}{}{%
         {{hash=1badfd642dad955ea19955d5165b2005}{%
@@ -1848,40 +1716,6 @@
       \field{labeltitlesource}{title}
       \field{title}{Mathematics of the discrete Fourier transform (DFT): with audio applications}
       \field{year}{2007}
-    \endentry
-    \entry{sonoda2017neural}{article}{}
-      \name{author}{2}{}{%
-        {{hash=2f21ece4e9535a03503a7186e62aec7f}{%
-           family={Sonoda},
-           familyi={S\bibinitperiod},
-           given={Sho},
-           giveni={S\bibinitperiod}}}%
-        {{hash=1b88ead033e20e6a71e3878c7bf0792b}{%
-           family={Murata},
-           familyi={M\bibinitperiod},
-           given={Noboru},
-           giveni={N\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Elsevier}%
-      }
-      \strng{namehash}{f0fadd4265855681690d6c40f79f0493}
-      \strng{fullhash}{f0fadd4265855681690d6c40f79f0493}
-      \strng{bibnamehash}{f0fadd4265855681690d6c40f79f0493}
-      \strng{authorbibnamehash}{f0fadd4265855681690d6c40f79f0493}
-      \strng{authornamehash}{f0fadd4265855681690d6c40f79f0493}
-      \strng{authorfullhash}{f0fadd4265855681690d6c40f79f0493}
-      \field{sortinit}{S}
-      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Applied and Computational Harmonic Analysis}
-      \field{number}{2}
-      \field{title}{Neural network with unbounded activation functions is universal approximator}
-      \field{volume}{43}
-      \field{year}{2017}
-      \field{pages}{233\bibrangedash 268}
-      \range{pages}{36}
     \endentry
     \entry{sutskever2013importance}{inproceedings}{}
       \name{author}{4}{}{%
@@ -2241,11 +2075,8 @@
     \endentry
   \enddatalist
   \missing{goodfellow}
-  \missing{gruen}
-  \missing{gruening}
   \missing{jain}
   \missing{myprojekt}
-  \missing{strauss}
 \endrefsection
 \endinput
 

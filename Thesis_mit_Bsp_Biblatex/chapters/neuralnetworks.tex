@@ -2,7 +2,7 @@
 \label{kap:NN}
 
 In diesem Kapitel werden Künstliche Neuronale Netze\cite{dayhoff1990neural}, kurz KNN, als Forschungsgegenstand der Informatik eingeführt und deren mathematische Grundlagen präzisiert. 
-Sie stellen informationsverarbeitende Systeme nach dem Vorbild von tierischen beziehungsweise menschlichen Gehirnen dar und bestehen aus Neuronen in gewissen Zuständen und Schichten, die über gewichtete Verbindungen miteinander gekoppelt sind. Jene Gewichte sind als freie Parameter des neuronalen Netzes zu verstehen und können während des Trainingsprozesses so angepasst werden, um eine entsprechende Aufgabe zu lösen.  
+Sie stellen informationsverarbeitende Systeme nach dem Vorbild von tierischen beziehungsweise menschlichen Gehirnen dar und bestehen aus Neuronen in gewissen Zuständen und Schichten, die über gewichtete Verbindungen miteinander gekoppelt sind. Jene Gewichte sind als freie Parameter des neuronalen Netzes zu verstehen und können während eines Trainingsprozesses so angepasst werden, um eine entsprechende Aufgabe zu lösen.  
 Gelingt dies, so können neuronale Netze genutzt werden, um bestimmte Muster in Daten, typischerweise in Bildern, Audio oder Stromdaten, zu erkennen\cite{pandya1995pattern, pao1989adaptive, urbaniak2021quality}.
 Sie eignen sich daher für viele typische Aufgaben des maschinellen Lernens, beispielsweise für die Klassifikation digitalisierter Objekte.
 
@@ -11,7 +11,7 @@ Im folgenden Abschnitt wird das Konzept der Multi-Layer-Perzeptronen\cite{werbos
 
 \section{Das Perzeptron}
 \label{perzeptron_abs}
-Zunächst wird das \textit{Perzeptron} ähnlich wie in Minsky\cite{minsky2017perceptrons} als fundamentaler Baustein eines neuronalen Netzes eingeführt. Das Perzeptron wird oft als Basis moderner KNN angeführt und kann mithilfe des Perzeptron-Lernalgorithmus \ref{alg:pla} trainiert werden, um das Problem der Trennbarkeit von Punktmengen zu lösen.
+Zunächst wird das \textit{Perzeptron} ähnlich wie in Minsky\cite{minsky2017perceptrons} als fundamentaler Baustein eines neuronalen Netzes eingeführt. Das Perzeptron wird oft als Basis moderner KNN angeführt und kann mithilfe des Perzeptron-Lernalgorithmus \ref{alg:pla} trainiert werden, um das Problem der linearen Trennbarkeit von Punktmengen zu lösen.
 \begin{defi}[Perzeptron]
     \label{def_neuron}
     Für eine gegebene Funktion $\phi: \RR \rightarrow \RR$, einen Vektor $w \in \Rnv$ und ein Skalar $\theta \in \RR$ wird die Funktion 
@@ -29,19 +29,19 @@ Die Funktionsweise eines Perzeptrons ist in Abbildung \ref{funktionsweise_neuron
 \end{figure}
 Bei der Wahl der Funktion $\phi$ gibt es mehrere Möglichkeiten. Wird wie in Minsky\cite{minsky2017perceptrons} die Heavyside-Funktion
 \begin{equation*}
-    \psi: \RR \rightarrow \RR, \; \; \;
-    \psi(x)=\begin{cases}
+    \phi: \RR \rightarrow \RR, \; \; \;
+    \phi(x)=\begin{cases}
        1 , \; x \geq 0 \\
        0 , \; \text{sonst}
     \end{cases}
 \end{equation*} 
-genutzt, kann das Perzeptron als binärer Klassifikator wie in \ref{abs:trenn} interpretiert werden. Dabei dient $w^T x-\theta=0$ als trennende Hyperebene. Ist $w^Tx-\theta<0$, so ist $\psi(x)=0$ und $x$ wird der Klasse $K_{0}$ zugeordnet. Gilt jedoch $w^T x-\theta \geq 0$ und damit $\psi(x)=1$, so ist der Vektor $x$ der Klasse $K_1$ zugehörig. 
+genutzt, kann das Perzeptron als binärer Klassifikator wie in Abschnitt \ref{abs:trenn} interpretiert werden. Dabei dient $w^T x-\theta=0$ als trennende Hyperebene. Ist $w^Tx-\theta<0$, so ist $\psi(x)=0$ und $x$ wird der Klasse $K_{0}$ zugeordnet. Gilt jedoch $w^T x-\theta \geq 0$ und damit $\psi(x)=1$, so ist der Vektor $x$ der Klasse $K_1$ zugehörig. 
 
 Für ein Klassifikationsproblem, bei dem die Klassen nicht linear trennbar sind, scheitern diese einfachen Perzeptronen. Hier wird oft das zweidimensionale XOR-Problem angeführt. Um solche Aufgaben zu lösen, ist es notwendig, mehrere Perzeptronen geschickt zu verknüpfen, um komplexe Entscheidungsgrenzen zu erhalten.
 
 \section{Multi-Layer-Perzeptron}
 \label{MLP_abs}
-In dieser Arbeit wird ein Künstliches Neuronales Netz als eine Menge von Perzeptronen, die in gewissen Schichten partitioniert und miteinander verbunden sind, notiert. Diese sogenannten \textit{Multi-Layer-Perzeptronen}, kurz MLP,  gelten als erste tiefe neuronale Netze und sind seit den späten 1980er-Jahren Gegenstand der Forschung\cite{bourlard1990links,bounds1988multilayer,MLPbook}. Zunächst sind einige Definition notwendig, um eine lesbare Notation des MLP zu geben.
+In dieser Arbeit wird ein Künstliches Neuronales Netz als eine Menge von Perzeptronen, die in gewissen Schichten partitioniert und miteinander verbunden sind, notiert. Diese sogenannten \textit{Multi-Layer-Perzeptronen}, kurz MLP,  gelten als erste tiefe neuronale Netze und sind seit den späten 1980er-Jahren Gegenstand der Forschung\cite{bourlard1990links,bounds1988multilayer,MLPbook}. Zunächst sind einige Definition notwendig, vgl. \cite{gruening}, um eine lesbare Notation des MLP zu geben.
 
 \begin{defi}[Übertragungsfunktion]
     \label{def_net}
@@ -117,14 +117,14 @@ Für den späteren Trainingsprozess ist es nützlich, die Ableitung der verwende
     Ist $\Psi^{W,b}$ eine Übertragungsfunktion mit den Parametern $W \in \RR^{n \times m}$ und $b \in \RR^m$ sowie $\psi$ eine Aktivierungsfunktion, so wird das Paar $(\Psi^{W,b}, \psi)$ als Neuronenschicht $\mathcal{S}$ bezeichnet. Für eine Eingabe $x \in \RR^n$ ist die Ausgabe $y \in \RR^m$ der Schicht $\mathcal{S}$ durch
     \[y=\psi \circ \Psi^{W,b}(x)= \psi\left(\Psi^{W,b}(x)\right)
         \] 
-        gegeben. Die Komponenten $y_i$ werden für $1 \leq i \leq m$ Aktivierungen der Neuronen in der Schicht $\mathcal{S}$ genannt und gleichen jeweils der Ausgabe eines einfachen Perzeptrons wie in Definition \ref{def_neuron}. Eine Schicht besteht also aus $m$ Perzeptronen $\tilde{\Psi}_i$ mit der Beziehung $y_i=\Phi(x_i)=\phi(W_{i,:}^T x+b_i)$ für $1 \leq i \leq m$.
+        gegeben. Die Komponenten $y_i$ werden für $1 \leq i \leq m$ Aktivierungen der Neuronen in der Schicht $\mathcal{S}$ genannt und gleichen jeweils der Ausgabe eines einfachen Perzeptrons wie in Definition \ref{def_neuron}. Eine Schicht besteht also aus $m$ Neuronen $\Phi_i$ mit der Beziehung $y_i=\Phi_i(x)=\phi(W_{i,:}^T x+b_i)$ für $1 \leq i \leq m$.
 \end{defi}
 Im Hinblick auf MLPs werden nun mehrere Schichten so verbunden, dass die Ausgabe einer Schicht $\mathcal{S}_k$ als Eingabe einer darüberliegenden Schicht $\mathcal{S}_{k+1}$ für ein $k \in \mathbb{N}$ dient. Die Anzahl der Neuronen kann dabei von Schicht zu Schicht variieren. Dementsprechend werden die Dimensionen der beteiligten Gewichtsmatrizen $W^{(k)}$ und Biasvektoren $b^{(k)}$ passend gewählt. 
 Um die Notation übersichtlich zu halten, bezeichne $\Psi^{W^{(k)},b^{(k)},\psi_{k}}$ die Schicht $\mathcal{S}_k$ mit $\Psi^{W^{(k)},b^{(k)},\psi_{k}}(x):= \psi_{k} \left(\Psi^{W^{(k)},b^{(k)}}(x)\right)$.
 
-\begin{defi}[Multi-Layer-Perzeptron, vgl. gruening]
+\begin{defi}[Multi-Layer-Perzeptron, vgl. \cite{gruening}]
     \label{def:MLP}
-    Für eine gegebene Anzahl $l \in \mathbb{N}, \; l>1$ von Schichten $\Psi^{W^{(1)},b^{(1)},\psi_{1}}, \ldots, \Psi^{W^{(l)},b^{(l)},\psi_{l}}$ bezeichne $s_l \in \mathbb{N}$ die Anzahl der Neuronen in Schicht $l$. Für eine Eingabe $x \in \RR^{s_0}$ lässt sich die Ausgabe $y \in \RR^{s_l}$ eines Multi-Layer-Perzeptron  $\Lambda_l: \RR^{s_0} \rightarrow \RR^{s_l}, \; x \mapsto y$ mit $l$ Schichten durch
+    Für eine gegebene Anzahl $1<l \in \mathbb{N}$ von Schichten $\Psi^{W^{(1)},b^{(1)},\psi_{1}}, \ldots, \Psi^{W^{(l)},b^{(l)},\psi_{l}}$ bezeichne $s_l \in \mathbb{N}$ die Anzahl der Neuronen in Schicht $l$. Für eine Eingabe $x \in \RR^{s_0}$ lässt sich die Ausgabe $y \in \RR^{s_l}$ eines Multi-Layer-Perzeptron  $\Lambda_l: \RR^{s_0} \rightarrow \RR^{s_l}, \; x \mapsto y$ mit $l$ Schichten durch
     \[
         y=\Psi^{W^{(l)},b^{(l)},\psi_{l}} \circ \ldots \circ \Psi^{W^{(1)},b^{(1)},\psi_{1}}(x)
     \]
@@ -150,139 +150,82 @@ Um die Notation übersichtlich zu halten, bezeichne $\Psi^{W^{(k)},b^{(k)},\psi_
     
 
 
-Das MLP-Modell wird im weiteren Verlauf dieser Arbeit repräsentativ als Künstliches Neuronales Netz bezeichnet. Die Begriffe MLP und FFN sind austauschbar. Die Funktionsauswertung eines FNN wird im Algorithmus Vorwärtsrechnung \ref{alg:ff} festgehalten. Das zuvor angesprochene XOR-Problem kann nun beispielsweise mithilfe eines KNN bestehend aus zwei Schichten gelöst werden\cite{Goodfellow-et-al-2016}.
+Das MLP-Modell wird im weiteren Verlauf dieser Arbeit repräsentativ als Künstliches Neuronales Netz bezeichnet. Die Begriffe KNN, MLP und FFN sind austauschbar und meinen dasselbe Modell. Die Funktionsauswertung eines FNN wird im Algorithmus Vorwärtsrechnung \ref{alg:ff} festgehalten. Das zuvor angesprochene XOR-Problem kann nun beispielsweise mithilfe eines FNN bestehend aus zwei Schichten gelöst werden\cite{Goodfellow-et-al-2016}.
 Es lassen sich zwischen Modell- und Hyperparameter von KNN unterscheiden.
 
 \begin{defi}[Hyper- und Modellparameter]
-    Sei für $l \in \mathbb{N}$ ein KNN $\Lambda_l$ gegeben. Dann werden die Eingabe- und Ausgabedimension $s_0, s_l$, die Anzahl $l$ der (verdeckten) Schichten sowie die verwendeten Aktivierungsfunktion $\psi_l$ Hyperparameter des neuronalen Netzes genannt.
+    Sei für $l \in \mathbb{N}$ ein FNN $\Lambda_l$ gegeben. Dann werden die Eingabe- und Ausgabedimension $s_0, s_l$, die Anzahl $l$ der (verdeckten) Schichten sowie die verwendeten Aktivierungsfunktion $\psi_l$ Hyperparameter des neuronalen Netzes genannt.
     Die Gewichtsmatrizen und Biasvektoren mit den entsprechend passenden Abmessungen stellen die Modellparameter $\mathcal{W}:=\{(W^{(i)},b^{(i)}): \; i=1, \ldots, l\}$ des neuronales Netzes dar. 
 \end{defi}
-Die Hyperparameter werden oft anwendungsspezifisch für das jeweilige Problem gewählt, während die Modellparameter dynamisch in einem Trainingsprozes angepasst werden, sodass die gegebene Aufgabe zufriedenstellend gelöst wird. Wie dies geschieht, wird im folgenden Abschnitt \ref{abs:task_training} erläutert.
+Die Hyperparameter werden oft anwendungsspezifisch für das jeweilige Problem gewählt, während die Modellparameter dynamisch in einem Trainingsprozes angepasst werden, sodass die gegebene Aufgabe zufriedenstellend gelöst wird. Wie optimale Modellparameter in einem Trainingsprozes gefunden werden können, wird im folgenden Abschnitt \ref{abs:task_training} erläutert.
 
-\section{Training neuronaler Netze}
+\section{Optimale Parameterwahl bei neuronalen Netzen}
 \label{abs:task_training}
 %Künstliche Neuronale Netze gehören zu den typischen Vertretern von maschinellen Lernalgorithmen, welche hinsichtlich einer bestimmten Aufgabe, engl. \textit{task T}, und einem Leistungsmaß, engl. \textit{perfomance P} an der Erfahrung, engl. \textit{experience E} lernen\cite{Goodfellow-et-al-2016}. Dabei ist mit Lernen gemeint, dass das Computerprogramm bezüglich der Aufgabe $T$ sein Leistungsmaß $P$ mit wachsener Erfahrung $E$ schrittweise steigert. Wie in Kapitel \ref{kap:fund} erläutert, gibt es viele verschiedene Aufgaben, wie die Regression, Klassifikation oder Clusterung bestimmter Objekte. 
 
-In den folgenden Abschnitten wird das Klassifikationsproblem als \textit{task T} im Mittelpunkt stehen. Weiter werden KNNs als Modellschätzer aus der Wahrscheinlichkeitstheorie interpretiert und fundamentale Aussagen wie das \textit{Universal-Approximation-Theroem}\cite{HORNIK1989359} gegeben. Schließlich wird bezüglich der Klassifikationsaufgabe das Training neuronaler Netze erläutert.
-
-
-\subsection{Neuronale Netze als universelle Schätzer}
-\label{NN_estimators_abs}
-Beim Klassifikationsproblem müssen bestimmte bedingte Wahrscheinlichkeiten, die in diesem Abschnitt erklärt werden, ermittelt werden. Oft wird dazu die Ausgabeschicht eines KNN als Wahrscheinlichkeit interpretiert und daher KNN als Schätzer der bedingten Wahrscheinlichkeiten eingesetzt. Zunächst werden Klassifikationsfunktion und -problem definiert.
-\begin{defi}
-    \label{def_classfun}
-    Seien die Mengen $D \subset \RR^n$ und $\mathcal{C}=\{c_1, \ldots, c_m\}$ gegeben. Eine Funktion $f: D \rightarrow \mathcal{C}$, welche ein Element aus $D$ einer Klasse $c_i \in \mathcal{C}$ zuordnet, wird Klassifikationsfunktion genannt. Hier gibt es $m \in \mathbb{N}$ verschiedene Klassenlabels.
-\end{defi}
-
-Das Ziel beim Klassifikationsproblem ist die Approximation einer nicht bekannten Klassifikationsfunktion $f:D \rightarrow \mathcal{C}$ durch ein Modell $\tilde{f}: D \rightarrow \mathcal{C}$. 
-In dieser Arbeit werden dafür KNNs genutzt, welche als probabilistische Modelle auf folgende Weise genutzt werden. Auf der Ergebnismenge $\Omega= D \times \mathcal{C}$ sei die nicht bekannte gemeinsame (Wahrscheinlichkeits-) Verteilung $p_{Daten}(x,c)$, genannt Datenverteilung, gegeben. Ein Modell soll nun konstruiert werden, welches die a posterior-Verteilung $p_{Daten}(\cdot \; | \; x)$ der Klassen schätzt. 
-
-In dieser Arbeit werden KNN so benutzt, dass die Klassenzugehörigkeit direkt anhand der Eingabe $x \in D$ geschätzt wird. Die Funktion $P_{Daten}: D \rightarrow [0,1]^m$ mit
+In diesem Abschnitt steht das Klassifikationsproblem für digitalisierte Objekte im Mittelpunkt. Dazu werden FNN als Modelle $\tilde{f}$ zur Approximation von Klassifikationsfunktionen $f: \mathcal{M} \rightarrow \mathcal{C}$, vgl. Abschnitt \ref{abs:classtask}, eingesetzt. Die Anzahl der Neuronen in der Ausgabeschicht entspricht der Anzahl der verschiedenen Klassen in $\mathcal{C}$, also $s_l=s$. Zur Vereinfachung der Notation sei mit $C:=\{1, \ldots, s\}$ die Menge der Klassen bezeichnet. Wird für eine Eingabe $x$ die Vorwärtsrechnung $\Lambda(x)$ vorgenommen, so bezeichne $\tilde{f}(x)$ die approximierte Klassifikationsfunktion, welche als
+\begin{equation*}
+    \tilde{f}(x):= \underset{k}{\mathrm{argmax}} \Lambda(x)_k
+\end{equation*}
+definiert ist.
+Weiter stehe eine Trainingsmenge 
+\begin{equation*}
+    \mathcal{T}= \{(x_i, f(x_i))\; : \; 1 \leq i \leq m\}  
+\end{equation*}
+zur Verfügung. 
+Sind die Hyperparameter des FFN festgelegt, müssen die Modellparameter optimal $\mathcal{W}$ gewählt werden. In diesem Sinne bedeutet optimal, dass das Minimierungproblem 
 \begin{equation}
-    \label{eq:Pdaten}
-    P_{Daten}(x):=\left(p_{Daten}(c_1 \; | \; x), \ldots, p_{Daten}(c_m \; | \; x)\right)^T \in \RR^m
-\end{equation} soll für alle $x \in D$ approximiert werden. Dazu wird die Funktion $P_{Modell}: D \rightarrow [0,1]^m$ mit 
-\begin{equation}
-    \label{eq:Pmodell}
-    P_{Modell}(x;\mathcal{W}):=\left(p_{Modell}(c_1 \; | \; x; \mathcal{W}), \ldots, p_{Modell}(c_m \; | \; x; \mathcal{W})\right)^T \in \RR^m
-\end{equation}
- für alle $x \in D$  genutzt, welche von den Modellparametern $\mathcal{W}$ abhängig ist. Die Klassifikationsfunktion des Modells ergibt sich als
-\begin{equation}
-    \label{eq:f_modell}
-    f_{Modell}(x):= \underset{c \in \mathcal{C}}{\mathrm{argmax}} \; p_{Modell}(c \; | \; x).
-\end{equation}
+    \label{eq:Emin}
+    \mathcal{E}(\mathcal{T}, \mathcal{W}) \rightarrow \min
+\end{equation} 
+gelöst werden soll. Dabei sei bemerkt, dass dies unabhängig von den Hyperparametern vorgenommen wird. Im Folgenden wird der Backpropagationsalgorithmus als ein Lösungsansatz der Aufgabe (\ref{eq:Emin}) vorgestellt.  
+%Um die Approximationsgüte, also die \textit{perfomance P}, bezüglich des Klassifikationsproblems messbar zu machen, werden Fehlerfunktionen eingeführt. 
+%Mit Trainingsdaten als \textit{experience E} und dem Gradientenverfahren\cite{nocedal1999numerical} sollen optimale Parameter $\mathcal{W}$ gefunden werden, sodass die gewählte Fehlerfunktion minimiert wird. Im folgenden steht ein MLP $\Lambda(\, \cdot \, ; \mathcal{W}): D \rightarrow [0,1]^m$  mit der Softmax-Funktion als Aktivierungsfunktion im Mittlepunkt, welches als parametrisiertes Modell $f_{Modell}$ wie in \ref{eq:f_modell} genutzt wird.
+%Die Trainingsdaten werden in Trainingsmengen und Testmengen aufgeteilt.
 
-Es stellt sich die Frage, inwiefern das MLP als Modell genutzt werden kann, um beliebige Datenverteilungen $P_{Daten}$ zu approximieren. Folgende Resultate liefern die Antwort.
+%\begin{defi}[Trainingsmenge, Testmenge]
+    %Sei $p_{daten}$ eine Datenverteilung auf der Ergebnismenge $\Omega=D \times \mathcal{C}$. Dann heißen für $n_{train}, n_{test} \in \mathbb{N}$ die Mengen
+    %\begin{align*}
+     %   \mathcal{T} &:= \left\{ (x^{(i)},c^{(i)}) \; | \; i \in [n_{train}] \right\} \subset \Omega \\
+     %   \mathcal{T}' &:= \left\{ (x^{(i)},c^{(i)}) \; | \; i \in [n_{test}] \right\} \subset \Omega
+    %\end{align*}
+    %Traingsmenge $\mathcal{T}$ und Testmenge $\mathcal{T}'$, jeweils bestehend aus Datenpaaren, welche unabhängig durch $p_{Daten}$ generiert wurde. Oft werden die Mengen disjunkt gewählt. Die Menge $\mathcal{T}$ wird zum Trainieren und die Menge $\mathcal{T}'$ zur Validierung des Modells $P_{Modell}$ bezüglich $P_{Daten}$ wie in \ref{eq:Pdaten} genutzt.
+%\end{defi}
 
-\begin{satz}[Universal-Approximation-Theroem\cite{gruen}]
-    \label{UAT}
-    Sei $\psi_1$ eine nichtkonstante, beschränkkte Aktivierungsfunktion und $id: \RR \rightarrow \RR$ die Identität sowie $D \subset \RR^n$ kompakt. Dann existieren für alle $\varepsilon >0$ und stetigen Funktionen $f: D \rightarrow \RR$ Parameter $N \in \mathbb{N}, W^{(1)} \in \RR^{n \times N}, b^{(1)} \in \RR^N$ sowie $W^{(2)} \in \RR^{N \times 1}$, sodass
-    \begin{equation}
-        \label{UAP_eq}
-        \left|f(x)-\Psi^{W^{(2)},0,id} \circ \Psi^{W^{(1)},b^{(1)},\psi_1}(x)\right| < \varepsilon, \; \; \forall x \in D
-    \end{equation}
-    gilt.
-\end{satz}
+%Die Approximationsgüte des Modells $f_{Modell}$ wird als Likelihood gegeben einer Trainingsmenge $\mathcal{T}$ gemessen und lässt sich als 
 
-\begin{proof}
-    Ein Beweis kann in Hornik\cite{hornik1991approximation} nachgelesen werden.
-\end{proof}
-
-Das Universal-Approximation-Theroem kann ebenfalls auf unbeschränkte und nichtkonstante Funktion $f:D \rightarrow \RR^m$ erweitert werden. Heutzutage wird oft die ReLU-Funktion als Aktivierungsfunktion verwendet\cite{schmidt2020nonparametric,li2017convergence}.
-
-\begin{kor}
-    Mit den gleichen Vorraussetzungen wie in Satz \ref{UAT} gilt die Abschätzung \ref{UAP_eq} für $\psi_1(x)=\max\{0,x\}$.
-\end{kor}
-
-\begin{proof}
-    Siehe Sonoda et. al.\cite{sonoda2017neural}.
-\end{proof}
-
-Hinsichtlich der Approximation von beliebigen Funktionen $P_{Daten}$ mithilfe eines neuronalen Netzes mit der Softmax-Funktion als Aktivierungsfunktion liefert Strauß\cite{strauss} folgendes Resultat.
-
-\begin{kor}
-    \label{kor_softmax}
-    Ein MLP mit zwei Schichten, wobei $\psi_2$ die Softmax-Funktion ist, kann genutzt werden, um stetige Funktionen $f:K \rightarrow [0,1]^m$, welche von einem Kompaktum $K \subset \RR^n$ in eine (Wahrscheinlichkeits)-Verteilung über die Klassen $\mathcal{C}$ abbilden, beliebig genau zu approximieren.
-\end{kor}
-
-\begin{proof}
-    Siehe \cite{strauss}.
-\end{proof}
-
-Die Aussage kann auf das MLP mit beliebig vielen Schichten erweitert werden.
-In dieser Arbeit umfasst die Menge $D$ aus Definition \ref{def_classfun} digitalisierte Objekte als Vektoren $x \in \RR^n$ und ist endlich und damit kompakt. Daher kann wegen Korollar \ref{kor_softmax} das MLP als Modell genutzt werden, um stetige Funktionen $P_{Daten}$ sinnvoll zu approximieren.
-
-\subsection{Optimale Parameterwahl bei neuronalen Netzen}
-
-Wird ein künstliches neuronales Netz als probabilistisches Modell genutzt und sind die Hyperparameter festgelegt, müssen die Modellparameter $\mathcal{W}$ gewählt werden. Um die Approximationsgüte, also die \textit{perfomance P}, bezüglich des Klassifikationsproblems messbar zu machen, werden Fehlerfunktionen eingeführt. 
-Mit Trainingsdaten als \textit{experience E} und dem Gradientenverfahren\cite{nocedal1999numerical} sollen optimale Parameter $\mathcal{W}$ gefunden werden, sodass die gewählte Fehlerfunktion minimiert wird. Im folgenden steht ein MLP $\Lambda(\, \cdot \, ; \mathcal{W}): D \rightarrow [0,1]^m$  mit der Softmax-Funktion als Aktivierungsfunktion im Mittlepunkt, welches als parametrisiertes Modell $f_{Modell}$ wie in \ref{eq:f_modell} genutzt wird.
-Die Trainingsdaten werden in Trainingsmengen und Testmengen aufgeteilt.
-
-\begin{defi}[Trainingsmenge, Testmenge]
-    Sei $p_{daten}$ eine Datenverteilung auf der Ergebnismenge $\Omega=D \times \mathcal{C}$. Dann heißen für $n_{train}, n_{test} \in \mathbb{N}$ die Mengen
-    \begin{align*}
-        \mathcal{T} &:= \left\{ (x^{(i)},c^{(i)}) \; | \; i \in [n_{train}] \right\} \subset \Omega \\
-        \mathcal{T}' &:= \left\{ (x^{(i)},c^{(i)}) \; | \; i \in [n_{test}] \right\} \subset \Omega
-    \end{align*}
-    Traingsmenge $\mathcal{T}$ und Testmenge $\mathcal{T}'$, jeweils bestehend aus Datenpaaren, welche unabhängig durch $p_{Daten}$ generiert wurde. Oft werden die Mengen disjunkt gewählt. Die Menge $\mathcal{T}$ wird zum Trainieren und die Menge $\mathcal{T}'$ zur Validierung des Modells $P_{Modell}$ bezüglich $P_{Daten}$ wie in \ref{eq:Pdaten} genutzt.
-\end{defi}
-
-Die Approximationsgüte des Modells $f_{Modell}$ wird als Likelihood gegeben einer Trainingsmenge $\mathcal{T}$ gemessen und lässt sich als 
-
-\begin{equation}
-    \label{eq:likelihood}
-    L(\mathcal{T},\mathcal{W}):=\prod_{(x,c) \in \mathcal{T}} p_{Modell}(c \; | \; x; \mathcal{W})
-\end{equation}
-wie in Bishop\cite{bishop2006pattern} berechnen.
-Für eine Trainingsmenge $\mathcal{T}$ soll das Produkt über alle Wahrscheinlichkeiten der korrekten Klassenzugehörigkeiten $c$ gegeben der Eingaben $x$ maximiert werden. Dieser Ansatz wird \textit{Maximum Likelihood-Methode}\cite{ruschendorf2014mathematische} genannt und eine Parameterwahl ist durch eine Lösung des Optimierungsproblems 
-\begin{equation}
-    \label{eq:opt_likelihood}
-     \prod_{(x,c) \in \mathcal{T}} p_{Modell}(c \; | \; x; \mathcal{W}) \rightarrow \max
-\end{equation}
-gegeben. Dabei sei bemerkt, dass die Optimierung unabhängig von den Hyperparametern vorgenommen wird.
-
-Für ein Trainingspaar $(x,c) \in \mathcal{T}$ bezeichne $t(x,c) \in \RR^m$ den Zielvektor der Klasse $c$ mit sogenannter (1 aus m)-Kodierung. Die Komponenten des Zielvektors sind
+%\begin{equation}
+ %   \label{eq:likelihood}
+  %  L(\mathcal{T},\mathcal{W}):=\prod_{(x,c) \in \mathcal{T}} p_{Modell}(c \; | \; x; \mathcal{W})
+%\end{equation}
+%wie in Bishop\cite{bishop2006pattern} berechnen.
+%Für eine Trainingsmenge $\mathcal{T}$ soll das Produkt über alle Wahrscheinlichkeiten der korrekten Klassenzugehörigkeiten $c$ gegeben der Eingaben $x$ maximiert werden. Dieser Ansatz wird \textit{Maximum Likelihood-Methode}\cite{ruschendorf2014mathematische} genannt und eine Parameterwahl ist durch eine Lösung des Optimierungsproblems 
+%\begin{equation}
+    %\label{eq:opt_likelihood}
+    % \prod_{(x,c) \in \mathcal{T}} p_{Modell}(c \; | \; x; \mathcal{W}) \rightarrow \max
+%\end{equation}
+Für ein Trainingspaar $(x,f(x)) \in \mathcal{T}$ bezeichne $t(x,c) \in \RR^m$ den Zielvektor der Klasse $c$ mit sogenannter (1 aus m)-Kodierung. Die Komponenten des Zielvektors sind
 \begin{equation*}
     t_k(x,c):= \begin{cases}
         1 &, \text{wenn} \; k=c \\
         0 &, \text{sonst}
     \end{cases}, \; \; \forall k \in [m].
 \end{equation*} 
-Mit dieser Bezeichnung lässt sich das Optimierungsproblem \ref{eq:opt_likelihood} als Minimierungproblem mithilfe der \textit{negative log likelihood} schreiben.
-\begin{defi}[negative log likelihood]
-    Seien die Mengen $D$ und  $\mathcal{C}=\{c_1, \ldots, c_m\}$ mit einer dazugehörigen Trainingsmenge $\mathcal{T}$ sowie entsprechende Zielvektoren gegeben. Weiter seien die a posterior Wahrscheinlichkeiten $p_{Modell}(c \; | \; x; \mathcal{W})$ wie in Gleichung \ref{eq:Pmodell} gegeben. Die negative log likelihood ist als Funktion 
-    \begin{equation}
-        \label{eq:NLL}
-        L_{NNL}(\mathcal{T},\mathcal{W}):= -\sum_{(x,c) \in \mathcal{T}}  \sum_{i=1}^m t_i(x,c) \log \left(p_{Modell}(c_i \; | \; x; \mathcal{W}) \right) 
-    \end{equation}
-    definiert.
-\end{defi}
+%Mit dieser Bezeichnung lässt sich das Optimierungsproblem \ref{eq:opt_likelihood} als Minimierungproblem mithilfe der \textit{negative log likelihood} schreiben.
+%\begin{defi}[negative log likelihood]
+    %Seien die Mengen $D$ und  $\mathcal{C}=\{c_1, \ldots, c_m\}$ mit einer dazugehörigen Trainingsmenge $\mathcal{T}$ sowie entsprechende Zielvektoren gegeben. Weiter seien die a posterior Wahrscheinlichkeiten $p_{Modell}(c \; | \; x; \mathcal{W})$ wie in Gleichung \ref{eq:Pmodell} gegeben. Die negative log likelihood ist als Funktion 
+    %\begin{equation}
+    %    \label{eq:NLL}
+     %   L_{NNL}(\mathcal{T},\mathcal{W}):= -\sum_{(x,c) \in \mathcal{T}}  \sum_{i=1}^m t_i(x,c) \log \left(p_{Modell}(c_i \; | \; x; \mathcal{W}) \right) 
+    %\end{equation}
+   % definiert.
+%\end{defi}
 
-Das Minimieren der negative log likelihood ist äquivalent zur Maximierung der Likelihood aus \ref{eq:likelihood}, denn es gilt 
-\begin{equation*}
-    \log \left(\prod_{(x,c) \in \mathcal{T}} p_{Modell}(c \; | \; x; \mathcal{W})\right)= \sum_{(x,c) \in \mathcal{T}} \log \left(p_{Modell}(c \; | \; x; \mathcal{W}) \right)
-\end{equation*}
-und der natürliche Logarithmus ist monoton steigend. Wird zusätzlich angenommen, dass die a posterior Verteilung  $p_{Daten}(c \; | \; x)$ einer Normalverteilung mit konstanter Varianz entspricht, so ist das Maximieren von \ref{eq:likelihood} äquivalent zur Minimierung der mittleren quadratischen Abweichung
+%Das Minimieren der negative log likelihood ist äquivalent zur Maximierung der Likelihood aus \ref{eq:likelihood}, denn es gilt 
+%\begin{equation*}
+    %\log \left(\prod_{(x,c) \in \mathcal{T}} p_{Modell}(c \; | \; x; \mathcal{W})\right)= \sum_{(x,c) \in \mathcal{T}} \log \left(p_{Modell}(c \; | \; x; \mathcal{W}) \right)
+%\end{equation*}
+%und der natürliche Logarithmus ist monoton steigend. Wird zusätzlich angenommen, dass die a posterior Verteilung  $p_{Daten}(c \; | \; x)$ einer Normalverteilung mit konstanter Varianz entspricht, so ist das Maximieren von \ref{eq:likelihood} äquivalent zur Minimierung der mittleren quadratischen Abweichung
 \begin{equation*}
     \label{eq:MSE_1}
     L_{MSE}(\mathcal{T},\mathcal{W}):=\frac{1}{2} \sum_{(x,c) \in \mathcal{T}} ||\hat{c}-t(x,c)||_2^2,

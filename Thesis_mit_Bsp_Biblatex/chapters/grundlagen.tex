@@ -3,8 +3,8 @@
 In diesem Kapitel werden grundlegende Begriffe und Definition erläutert, die im weiteren Verlauf dieser Arbeit genutzt werden. Zunächst wird im Abschnitt \ref{abs:mathe_intro} ein kurzer Überklick über das Maschinelle Lernen und dessen mathematische Grundlagen gegeben. Weiter wird die Klassifikationsaufgabe definiert und ein erster Lernalgorithmus vorgestellt, welcher im weiteren Verlauf der Arbeit verfeinert wird. Im Hinblick auf die Transformation von ML-Algorithmen in SQL-Anweisungen werden im Abschnitt \ref{abs:relation_intro} relationale Datenbanksysteme und die Anfragesprache SQL eingeführt.
 \section{Maschinelles Lernen}
 \label{abs:mathe_intro}
-Maschinelle Lernverfahren können genutzt werden, um Muster in digitalisierten Objekte zu erkennen. Hier kommen Algorithmen zum Einsatz, welche hinsichtlich einer bestimmten Aufgabe, engl. \textit{task T}, und einem Leistungsmaß, engl. \textit{perfomance P} an der Erfahrung, engl. \textit{experience E} lernen, vgl.\cite{Goodfellow-et-al-2016}. Dabei ist mit Lernen gemeint, dass das Computerprogramm bezüglich der Aufgabe $T$ sein
-Leistungsmaß $P$ mit wachsener Erfahrung $E$ schrittweise steigert. Diese Begriffe werden im Kontext des überwachten Lernens im Folgenden eingeführt.
+Maschinelle Lernverfahren können genutzt werden, um Muster in digitalisierten Objekte zu erkennen. Hier kommen Algorithmen zum Einsatz, welche hinsichtlich einer bestimmten Aufgabe, engl. \textit{task T}, und einem Leistungsmaß, engl. \textit{perfomance P} an der Erfahrung, engl. \textit{experience E} lernen, vgl. \cite{mitchell1997machine}. Dabei ist mit Lernen gemeint, dass das Computerprogramm bezüglich der Aufgabe $T$ sein
+Leistungsmaß $P$ mit wachsender Erfahrung $E$ schrittweise steigert. Diese Begriffe werden im Kontext des überwachten Lernens im Folgenden eingeführt.
 
 \subsection{Die Klassifikationsaufgabe}
 \label{abs:classtask}
@@ -43,7 +43,7 @@ In der Praxis werden Testdaten, für die die Klassenzugehörigkeiten bekannt sin
     \end{equation}
     eine Testmenge bezeichnet.
 \end{defi}
-Auf Training- bzw. Testmengen lassenn sich Fehlerraten als Gütemaße definieren.
+Auf Training- bzw. Testmengen lassen sich Fehlerraten als Perfomance-Maße definieren.
 
 \begin{defi}[Erkennungsrate, Generalisierungsrate]
     Sei die Approximation $\tilde{f}$ gegeben.
@@ -88,30 +88,16 @@ und \begin{equation*}
     \end{pmatrix} 
 \end{equation*}
 definiert.
-Der sogenannte Perzeptron-Lernalgorithmus\cite{rosenblatt1958perceptron}, kurz PLA, kann genutzt werden, um den Parameter $w$ schrittweise zu bestimmten. Verändert sich in einem Zyklus, also das einmalige Durchlaufen aller Punkte in $\mathcal{M}$, der Parameter $w$ nicht, so wird der PLA, beschrieben in Algorithmus \ref{alg:pla}, abgebrochen.
-
+Der sogenannte Perzeptron-Lernalgorithmus\cite{rosenblatt1958perceptron}, kurz PLA, kann genutzt werden, um den Parameter $w$ schrittweise zu bestimmen. Dieser ist algorithmisch in \ref{alg:pla} darstellt. Verändert sich in einem Zyklus, also das einmalige Durchlaufen aller Punkte in $\mathcal{M}$, der Parameter $w$ nicht, so wird der PLA abgebrochen.
 Rosenblatt\cite{rosenblatt1958perceptron} bewies, dass für linear trennbare Punktmengen der PLA terminiert.
 
 \begin{satz}
     Sind $\mathcal{M}_0$ und $\mathcal{M}_1$ linear trennbar, so bricht der Perzeptron-Lernalgorithmus in endlich vielen Schritten ab.
 \end{satz}
 \begin{proof}
-    Ein Beweis ist von Rosenblatt\cite{rosenblatt1958perceptron} gegeben.
+    Ein Beweis kann in Rosenblatt\cite{rosenblatt1958perceptron} gelesen werden.
 \end{proof}
 
-Es lassen sich jedoch einfache Beispiele anegeben, bei der die Punktmengen nicht auf lineare Art und Weise getrennt werden können. Ein Beispiel ist das zweidimensionale XOR-Problem, bei dem die Punktmengen $P_0=\{(0,0), (1,1)\}$ und $P_1=\{(0,1), (1,0) \}$ getrennt werden sollen. Hier scheitert der Perzeptron-Lernalgorithmus, da diese Punktmengen nicht linear trennbar sind.
-
-\begin{defi}
-    Zwei Punktmengen $\mathcal{M}_0, \mathcal{M}_{1} \subseteq \RR^n$ heißen nichtlinear trennbar, genau dann wenn eine Funktion $f: \RR^n \rightarrow \RR$ existiert, sodass
-    \begin{equation*}
-        f(x) \begin{cases}
-            <0, \; x \in \mathcal{M}_{0} \\
-            \geq 0, \; x \in \mathcal{M}_1
-        \end{cases}
-    \end{equation*}
-    gilt. Oft wird hier $f$ als komplexe Entscheidungsgrenze bezeichnet.
-\end{defi}
-Neuronale Netze, welche im Kapitel \ref{kap:NN} vorgestellt werden, sind in der Lage, solch komplexe Entscheidungsgrenzen auch bei Multiklassenproblemen, also $s \geq 2$, widerzuspiegeln. Für weitere Ausführungen über Verfahren des Maschinellen Lernens sei auf das umfangreiche Buch von Goodfellow\cite{Goodfellow-et-al-2016} verwiesen.
 \begin{algorithm}[h]
     \caption{Der Perzeptron-Lernalgorithmus}\label{alg:pla}
     \begin{algorithmic}
@@ -128,6 +114,47 @@ Neuronale Netze, welche im Kapitel \ref{kap:NN} vorgestellt werden, sind in der 
     \EndWhile
     \end{algorithmic}
 \end{algorithm}
+
+Es lassen sich jedoch einfache Beispiele angeben, bei denen die Punktmengen nicht durch lineare Entscheidungsgrenzen getrennt werden können. Ein Beispiel ist das zweidimensionale XOR-Problem, bei dem die Punktmengen $P_0=\{(0,0), (1,1)\}$ und $P_1=\{(0,1), (1,0) \}$ getrennt werden sollen. Hier scheitert der Perzeptron-Lernalgorithmus, da diese Punktmengen nicht linear trennbar sind. Um solche Aufgaben zu lösen, ist es notwendig, mehrere sogenannter Perzeptronen geschickt zu verknüpfen, um komplexe Entscheidungsgrenzen zu erhalten.
+
+Perzeptronen und neuronale Netze, welche im Kapitel \ref{kap:NN} vorgestellt werden, sind in der Lage, solch komplexe Entscheidungsgrenzen auch bei Multiklassenproblemen, also $s \geq 2$, widerzuspiegeln. Um das Problem (\ref{eq:opt_fund_abs}) zu lösen, wird hier die numerische Minimierung von stetig differenzierbaren Funktionen benötigt. Dazu wird das allgemeine Abstiegs-Verfahren genutzt, welches in der Literatur oft auch Gradientenverfahren genannt wird.
+
+\begin{defi}[Abstiegsrichtung]
+    Sei $f:\RR^n \rightarrow \RR$ stetig differenzierbar. Dann heißt $z \in \RR^n$ Abstiegsrichtung für $f$ im Punkt $x \in \RR^n$, genau dann wenn
+    \begin{equation*}
+        z^T \nabla f(x) <0
+    \end{equation*}
+    gilt. 
+\end{defi}
+Ziel des Verfahrens ist, für eine Funktion $f$ stationäre Punkte $x^*$ mit $\nabla f(x^*)=0$ näherungsweise zu bestimmen.
+Aus folgendem Lemma ergibt sich das Gradientenverfahren, siehe Algorithmus \ref{alg:gradver}. 
+\begin{lem}
+    \label{abst_dir}
+    Sei $f:\RR^n \rightarrow \RR$ stetig differenzierbar und $z$ eine Abstiegsrichtung für $f$ im Punkt $x$. Dann existiert ein $\lambda_0$, sodass 
+    \begin{equation*}
+        f(x+\lambda z) < f(x), \; \; \forall \lambda \in (0, \lambda_0]
+    \end{equation*}
+    gilt. Die reelle Zahl $\lambda$ wird als Schrittweite bezeichnet.
+\end{lem}
+
+\begin{proof}
+    Ein Beweis wird in \cite{nocedal1999numerical} vorgeführt.
+\end{proof}
+
+\begin{algorithm}[h]
+    \caption{Das allgemeine Gradientenverfahren}\label{alg:gradver}
+    \begin{algorithmic}
+    \Require $f$ stetig differenzierbar, Fehlertoleranz $\varepsilon$, Schrittweite $\lambda$ 
+    \Ensure stationärer Punkt $x$
+    \State Wähle Startwert $x$ beliebig
+    \While{$||\nabla f(x)|| > \varepsilon$} 
+        \State Bestimme Abstiegsrichtung $z$ für $f$ in $x$
+        \State Setze $x=x+ \lambda z$
+    \EndWhile
+    \end{algorithmic}
+\end{algorithm}
+
+Für weitere Ausführungen über Verfahren des Maschinellen Lernens sei auf das umfangreiche Buch von Goodfellow\cite{Goodfellow-et-al-2016} verwiesen.
 
 \section{Relationale Datenbanksysteme}
 \label{abs:relation_intro}

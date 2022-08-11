@@ -6,21 +6,23 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {algorithm}{\numberline {1}{\ignorespaces Der Perzeptron-Lernalgorithmus\relax }}{8}{algorithm.1}%
 \defcounter {refsection}{0}\relax 
-\addvspace {10\p@ }
-\defcounter {refsection}{0}\relax 
-\contentsline {algorithm}{\numberline {2}{\ignorespaces Vorwärtsrechnung\relax }}{24}{algorithm.2}%
-\defcounter {refsection}{0}\relax 
-\contentsline {algorithm}{\numberline {3}{\ignorespaces Online-Backpropagation für ein FFN, vgl. \cite {du_diss}\relax }}{31}{algorithm.3}%
+\contentsline {algorithm}{\numberline {2}{\ignorespaces Das allgemeine Gradientenverfahren\relax }}{9}{algorithm.2}%
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
+\contentsline {algorithm}{\numberline {3}{\ignorespaces Vorwärtsrechnung\relax }}{25}{algorithm.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {algorithm}{\numberline {4}{\ignorespaces Online-Backpropagation für ein FFN, vgl. \cite {du_diss}\relax }}{30}{algorithm.4}%
+\defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {algorithm}{\numberline {4}{\ignorespaces Matrixfaltung mit diskreten Fourier-Transformationen\relax }}{54}{algorithm.4}%
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {algorithm}{\numberline {5}{\ignorespaces Matrixfaltung mit diskreten Fourier-Transformationen\relax }}{53}{algorithm.5}%
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {algorithm}{\numberline {5}{\ignorespaces An algorithm with caption\relax }}{63}{algorithm.5}%
+\contentsline {algorithm}{\numberline {6}{\ignorespaces An algorithm with caption\relax }}{62}{algorithm.6}%
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 

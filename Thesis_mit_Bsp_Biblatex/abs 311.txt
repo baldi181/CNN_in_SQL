@@ -1,0 +1,65 @@
+\subsection{Neuronale Netze als universelle Schätzer}
+\label{NN_estimators_abs}
+Beim Klassifikationsproblem müssen bestimmte bedingte Wahrscheinlichkeiten, die in diesem Abschnitt erklärt werden, ermittelt werden. Oft wird dazu die Ausgabeschicht eines KNN als Wahrscheinlichkeit interpretiert und daher KNN als Schätzer der bedingten Wahrscheinlichkeiten eingesetzt. Zunächst werden Klassifikationsfunktion und -problem definiert.
+\begin{defi}
+    \label{def_classfun}
+    Seien die Mengen $D \subset \RR^n$ und $\mathcal{C}=\{c_1, \ldots, c_m\}$ gegeben. Eine Funktion $f: D \rightarrow \mathcal{C}$, welche ein Element aus $D$ einer Klasse $c_i \in \mathcal{C}$ zuordnet, wird Klassifikationsfunktion genannt. Hier gibt es $m \in \mathbb{N}$ verschiedene Klassenlabels.
+\end{defi}
+
+Das Ziel beim Klassifikationsproblem ist die Approximation einer nicht bekannten Klassifikationsfunktion $f:D \rightarrow \mathcal{C}$ durch ein Modell $\tilde{f}: D \rightarrow \mathcal{C}$. 
+In dieser Arbeit werden dafür KNNs genutzt, welche als probabilistische Modelle auf folgende Weise genutzt werden. Auf der Ergebnismenge $\Omega= D \times \mathcal{C}$ sei die nicht bekannte gemeinsame (Wahrscheinlichkeits-) Verteilung $p_{Daten}(x,c)$, genannt Datenverteilung, gegeben. Ein Modell soll nun konstruiert werden, welches die a posterior-Verteilung $p_{Daten}(\cdot \; | \; x)$ der Klassen schätzt. 
+
+In dieser Arbeit werden KNN so benutzt, dass die Klassenzugehörigkeit direkt anhand der Eingabe $x \in D$ geschätzt wird. Die Funktion $P_{Daten}: D \rightarrow [0,1]^m$ mit
+\begin{equation}
+    \label{eq:Pdaten}
+    P_{Daten}(x):=\left(p_{Daten}(c_1 \; | \; x), \ldots, p_{Daten}(c_m \; | \; x)\right)^T \in \RR^m
+\end{equation} soll für alle $x \in D$ approximiert werden. Dazu wird die Funktion $P_{Modell}: D \rightarrow [0,1]^m$ mit 
+\begin{equation}
+    \label{eq:Pmodell}
+    P_{Modell}(x;\mathcal{W}):=\left(p_{Modell}(c_1 \; | \; x; \mathcal{W}), \ldots, p_{Modell}(c_m \; | \; x; \mathcal{W})\right)^T \in \RR^m
+\end{equation}
+ für alle $x \in D$  genutzt, welche von den Modellparametern $\mathcal{W}$ abhängig ist. Die Klassifikationsfunktion des Modells ergibt sich als
+\begin{equation}
+    \label{eq:f_modell}
+    f_{Modell}(x):= \underset{c \in \mathcal{C}}{\mathrm{argmax}} \; p_{Modell}(c \; | \; x).
+\end{equation}
+
+Es stellt sich die Frage, inwiefern das MLP als Modell genutzt werden kann, um beliebige Datenverteilungen $P_{Daten}$ zu approximieren. Folgende Resultate liefern die Antwort.
+
+\begin{satz}[Universal-Approximation-Theroem\cite{gruen}]
+    \label{UAT}
+    Sei $\psi_1$ eine nichtkonstante, beschränkkte Aktivierungsfunktion und $id: \RR \rightarrow \RR$ die Identität sowie $D \subset \RR^n$ kompakt. Dann existieren für alle $\varepsilon >0$ und stetigen Funktionen $f: D \rightarrow \RR$ Parameter $N \in \mathbb{N}, W^{(1)} \in \RR^{n \times N}, b^{(1)} \in \RR^N$ sowie $W^{(2)} \in \RR^{N \times 1}$, sodass
+    \begin{equation}
+        \label{UAP_eq}
+        \left|f(x)-\Psi^{W^{(2)},0,id} \circ \Psi^{W^{(1)},b^{(1)},\psi_1}(x)\right| < \varepsilon, \; \; \forall x \in D
+    \end{equation}
+    gilt.
+\end{satz}
+
+\begin{proof}
+    Ein Beweis kann in Hornik\cite{hornik1991approximation} nachgelesen werden.
+\end{proof}
+
+Das Universal-Approximation-Theroem kann ebenfalls auf unbeschränkte und nichtkonstante Funktion $f:D \rightarrow \RR^m$ erweitert werden. Heutzutage wird oft die ReLU-Funktion als Aktivierungsfunktion verwendet\cite{schmidt2020nonparametric,li2017convergence}.
+
+\begin{kor}
+    Mit den gleichen Vorraussetzungen wie in Satz \ref{UAT} gilt die Abschätzung \ref{UAP_eq} für $\psi_1(x)=\max\{0,x\}$.
+\end{kor}
+
+\begin{proof}
+    Siehe Sonoda et. al.\cite{sonoda2017neural}.
+\end{proof}
+
+Hinsichtlich der Approximation von beliebigen Funktionen $P_{Daten}$ mithilfe eines neuronalen Netzes mit der Softmax-Funktion als Aktivierungsfunktion liefert Strauß\cite{strauss} folgendes Resultat.
+
+\begin{kor}
+    \label{kor_softmax}
+    Ein MLP mit zwei Schichten, wobei $\psi_2$ die Softmax-Funktion ist, kann genutzt werden, um stetige Funktionen $f:K \rightarrow [0,1]^m$, welche von einem Kompaktum $K \subset \RR^n$ in eine (Wahrscheinlichkeits)-Verteilung über die Klassen $\mathcal{C}$ abbilden, beliebig genau zu approximieren.
+\end{kor}
+
+\begin{proof}
+    Siehe \cite{strauss}.
+\end{proof}
+
+Die Aussage kann auf das MLP mit beliebig vielen Schichten erweitert werden.
+In dieser Arbeit umfasst die Menge $D$ aus Definition \ref{def_classfun} digitalisierte Objekte als Vektoren $x \in \RR^n$ und ist endlich und damit kompakt. Daher kann wegen Korollar \ref{kor_softmax} das MLP als Modell genutzt werden, um stetige Funktionen $P_{Daten}$ sinnvoll zu approximieren.
