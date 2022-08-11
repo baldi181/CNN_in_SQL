@@ -27,9 +27,9 @@ Die Güte der Approximation $\tilde{f}$ wird durch Fehlerfunktionen gemessen. Zi
     Seien eine Klassifikationsfunktion $f$, eine Traininsmenge $\mathcal{T}$ und Modellparameter $\mathcal{W}$ gegeben. Für das Modell $\tilde{f}$ soll das Minimierungsproblem 
     \begin{equation}
         \label{eq:opt_fund_abs}
-        \sum_{i=1}^m \; \mathcal{E}(\tilde{f}(x_i),f(x_i)) \rightarrow \min
+        \mathcal{E}(\mathcal{T}, \mathcal{W}):=\sum_{i=1}^m \; \mathcal{E}(\tilde{f}(x_i),f(x_i)) \rightarrow \min
     \end{equation}
-    durch die Anpassung der Modellparameter $\mathcal{W}$ gelöst werden. Dabei wird $\mathcal{E}$ Fehlerfunktion genannt.
+    durch die Anpassung der Modellparameter $\mathcal{W}$ gelöst werden. Dabei wird $\mathcal{E}$ Fehlerfunktion genannt. Diese sei in dieser Arbeit als stetig differenzierbar vorausgesetzt.
 \end{defi}
 Bei neuronalen Netzen wird das Optimierungsproblem (\ref{eq:opt_fund_abs}) mithilfe des Backpropagationsalgorithmus bearbeitet. Jener wird im Hinblick auf Problem \ref{prop:train} in den Kapiteln \ref{kap:NN} und \ref{kap:CNN} für die dort verwendeten Modelle ausführlich vorgestellt. 
 
@@ -117,7 +117,7 @@ Rosenblatt\cite{rosenblatt1958perceptron} bewies, dass für linear trennbare Pun
 
 Es lassen sich jedoch einfache Beispiele angeben, bei denen die Punktmengen nicht durch lineare Entscheidungsgrenzen getrennt werden können. Ein Beispiel ist das zweidimensionale XOR-Problem, bei dem die Punktmengen $P_0=\{(0,0), (1,1)\}$ und $P_1=\{(0,1), (1,0) \}$ getrennt werden sollen. Hier scheitert der Perzeptron-Lernalgorithmus, da diese Punktmengen nicht linear trennbar sind. Um solche Aufgaben zu lösen, ist es notwendig, mehrere sogenannter Perzeptronen geschickt zu verknüpfen, um komplexe Entscheidungsgrenzen zu erhalten.
 
-Perzeptronen und neuronale Netze, welche im Kapitel \ref{kap:NN} vorgestellt werden, sind in der Lage, solch komplexe Entscheidungsgrenzen auch bei Multiklassenproblemen, also $s \geq 2$, widerzuspiegeln. Um das Problem (\ref{eq:opt_fund_abs}) zu lösen, wird hier die numerische Minimierung von stetig differenzierbaren Funktionen benötigt. Dazu wird das allgemeine Abstiegs-Verfahren genutzt, welches in der Literatur oft auch Gradientenverfahren genannt wird.
+Perzeptronen und neuronale Netze, welche im Kapitel \ref{kap:NN} vorgestellt werden, sind in der Lage, solche komplexe Entscheidungsgrenzen auch bei Multiklassenproblemen, also $s \geq 2$, widerzuspiegeln. Um das Problem (\ref{eq:opt_fund_abs}) zu lösen, wird hier die numerische Minimierung von stetig differenzierbaren Funktionen benötigt. Dazu wird das allgemeine Abstiegs-Verfahren genutzt, welches in der Literatur oft auch Gradientenverfahren genannt wird.
 
 \begin{defi}[Abstiegsrichtung]
     Sei $f:\RR^n \rightarrow \RR$ stetig differenzierbar. Dann heißt $z \in \RR^n$ Abstiegsrichtung für $f$ im Punkt $x \in \RR^n$, genau dann wenn
@@ -126,7 +126,7 @@ Perzeptronen und neuronale Netze, welche im Kapitel \ref{kap:NN} vorgestellt wer
     \end{equation*}
     gilt. 
 \end{defi}
-Ziel des Verfahrens ist, für eine Funktion $f$ stationäre Punkte $x^*$ mit $\nabla f(x^*)=0$ näherungsweise zu bestimmen.
+Ziel des Verfahrens ist, für eine Funktion $f$ stationäre Punkte $x^*$ mit $\nabla f(x^*)=0$ näherungsweise zu bestimmen. Es werden also Punkte berechnet, welche die notwendige Bedingung einer lokale Minimalstelle erfüllen.
 Aus folgendem Lemma ergibt sich das Gradientenverfahren, siehe Algorithmus \ref{alg:gradver}. 
 \begin{lem}
     \label{abst_dir}
@@ -154,7 +154,7 @@ Aus folgendem Lemma ergibt sich das Gradientenverfahren, siehe Algorithmus \ref{
     \end{algorithmic}
 \end{algorithm}
 
-Für weitere Ausführungen über Verfahren des Maschinellen Lernens sei auf das umfangreiche Buch von Goodfellow\cite{Goodfellow-et-al-2016} verwiesen.
+Für weitere Ausführungen des Maschinellen Lernens sei auf das umfangreiche Buch von Goodfellow\cite{Goodfellow-et-al-2016} verwiesen.
 
 \section{Relationale Datenbanksysteme}
 \label{abs:relation_intro}

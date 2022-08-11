@@ -165,20 +165,26 @@ Die Hyperparameter werden oft anwendungsspezifisch für das jeweilige Problem ge
 
 In diesem Abschnitt steht das Klassifikationsproblem für digitalisierte Objekte im Mittelpunkt. Dazu werden FNN als Modelle $\tilde{f}$ zur Approximation von Klassifikationsfunktionen $f: \mathcal{M} \rightarrow \mathcal{C}$, vgl. Abschnitt \ref{abs:classtask}, eingesetzt. Die Anzahl der Neuronen in der Ausgabeschicht entspricht der Anzahl der verschiedenen Klassen in $\mathcal{C}$, also $s_l=s$. Zur Vereinfachung der Notation sei mit $C:=\{1, \ldots, s\}$ die Menge der Klassen bezeichnet. Wird für eine Eingabe $x$ die Vorwärtsrechnung $\Lambda(x)$ vorgenommen, so bezeichne $\tilde{f}(x)$ die approximierte Klassifikationsfunktion, welche als
 \begin{equation*}
-    \tilde{f}(x):= \underset{k}{\mathrm{argmax}} \Lambda(x)_k
+    \tilde{f}(x):= \underset{k}{\mathrm{argmax}} \; \left(\Lambda(x)\right)_k
 \end{equation*}
 definiert ist.
 Weiter stehe eine Trainingsmenge 
 \begin{equation*}
     \mathcal{T}= \{(x_i, f(x_i))\; : \; 1 \leq i \leq m\}  
 \end{equation*}
-zur Verfügung. 
-Sind die Hyperparameter des FFN festgelegt, müssen die Modellparameter optimal $\mathcal{W}$ gewählt werden. In diesem Sinne bedeutet optimal, dass das Minimierungproblem 
+zur Verfügung. Für ein Trainingspaar $\left(x,f(x)\right) \in \mathcal{T}$ bezeichne $t(x,c) \in \RR^s$ den Zielvektor der Klasse $c$ mit sogenannter (1 aus s)-Kodierung. Die Komponenten des Zielvektors sind
+\begin{equation*}
+    t_k(x,c):= \begin{cases}
+        1 &, \text{wenn} \; k=c \\
+        0 &, \text{sonst}
+    \end{cases}, \; \; \forall k \in [s].
+\end{equation*} 
+Sind die Hyperparameter des FFN festgelegt, müssen die Modellparameter $\mathcal{W}$ optimal gewählt werden. In diesem Sinne bedeutet optimal, dass das Minimierungproblem 
 \begin{equation}
     \label{eq:Emin}
     \mathcal{E}(\mathcal{T}, \mathcal{W}) \rightarrow \min
 \end{equation} 
-gelöst werden soll. Dabei sei bemerkt, dass dies unabhängig von den Hyperparametern vorgenommen wird. Im Folgenden wird der Backpropagationsalgorithmus als ein Lösungsansatz der Aufgabe (\ref{eq:Emin}) vorgestellt.  
+gelöst werden soll. Dabei sei bemerkt, dass dies unabhängig von den Hyperparametern geschieht. Im Folgenden wird der Backpropagationsalgorithmus als ein Lösungsansatz der Aufgabe (\ref{eq:Emin}) vorgestellt.  
 %Um die Approximationsgüte, also die \textit{perfomance P}, bezüglich des Klassifikationsproblems messbar zu machen, werden Fehlerfunktionen eingeführt. 
 %Mit Trainingsdaten als \textit{experience E} und dem Gradientenverfahren\cite{nocedal1999numerical} sollen optimale Parameter $\mathcal{W}$ gefunden werden, sodass die gewählte Fehlerfunktion minimiert wird. Im folgenden steht ein MLP $\Lambda(\, \cdot \, ; \mathcal{W}): D \rightarrow [0,1]^m$  mit der Softmax-Funktion als Aktivierungsfunktion im Mittlepunkt, welches als parametrisiertes Modell $f_{Modell}$ wie in \ref{eq:f_modell} genutzt wird.
 %Die Trainingsdaten werden in Trainingsmengen und Testmengen aufgeteilt.
@@ -204,13 +210,7 @@ gelöst werden soll. Dabei sei bemerkt, dass dies unabhängig von den Hyperparam
     %\label{eq:opt_likelihood}
     % \prod_{(x,c) \in \mathcal{T}} p_{Modell}(c \; | \; x; \mathcal{W}) \rightarrow \max
 %\end{equation}
-Für ein Trainingspaar $(x,f(x)) \in \mathcal{T}$ bezeichne $t(x,c) \in \RR^m$ den Zielvektor der Klasse $c$ mit sogenannter (1 aus m)-Kodierung. Die Komponenten des Zielvektors sind
-\begin{equation*}
-    t_k(x,c):= \begin{cases}
-        1 &, \text{wenn} \; k=c \\
-        0 &, \text{sonst}
-    \end{cases}, \; \; \forall k \in [m].
-\end{equation*} 
+
 %Mit dieser Bezeichnung lässt sich das Optimierungsproblem \ref{eq:opt_likelihood} als Minimierungproblem mithilfe der \textit{negative log likelihood} schreiben.
 %\begin{defi}[negative log likelihood]
     %Seien die Mengen $D$ und  $\mathcal{C}=\{c_1, \ldots, c_m\}$ mit einer dazugehörigen Trainingsmenge $\mathcal{T}$ sowie entsprechende Zielvektoren gegeben. Weiter seien die a posterior Wahrscheinlichkeiten $p_{Modell}(c \; | \; x; \mathcal{W})$ wie in Gleichung \ref{eq:Pmodell} gegeben. Die negative log likelihood ist als Funktion 
@@ -226,25 +226,12 @@ Für ein Trainingspaar $(x,f(x)) \in \mathcal{T}$ bezeichne $t(x,c) \in \RR^m$ d
     %\log \left(\prod_{(x,c) \in \mathcal{T}} p_{Modell}(c \; | \; x; \mathcal{W})\right)= \sum_{(x,c) \in \mathcal{T}} \log \left(p_{Modell}(c \; | \; x; \mathcal{W}) \right)
 %\end{equation*}
 %und der natürliche Logarithmus ist monoton steigend. Wird zusätzlich angenommen, dass die a posterior Verteilung  $p_{Daten}(c \; | \; x)$ einer Normalverteilung mit konstanter Varianz entspricht, so ist das Maximieren von \ref{eq:likelihood} äquivalent zur Minimierung der mittleren quadratischen Abweichung
-\begin{equation*}
-    \label{eq:MSE_1}
-    L_{MSE}(\mathcal{T},\mathcal{W}):=\frac{1}{2} \sum_{(x,c) \in \mathcal{T}} ||\hat{c}-t(x,c)||_2^2,
-\end{equation*}
-wobei $\hat{c}=f_{Modell}(x)$ und $t(x,c)$ der Zielvektor des Datenpaars $(x,c)$ ist, siehe Goodfellow\cite{Goodfellow-et-al-2016}. 
-Das Problem \ref{eq:opt_likelihood} wird nun allgmemein mit Fehlerfunktionen definiert.
- \begin{defi}[Fehlerfunktion]
-    Seien $\mathcal{T}$ eine Trainingsmenge und $\mathcal{W}$ Modellparameter eines KNN. Es soll das Problem
-    \begin{equation}
-        \label{eq:error_fun_opt}
-        E(\mathcal{T},\mathcal{W}) \rightarrow \min
-    \end{equation}
-    gelöst werden. Dabei wird $\mathcal{E}$ Fehlerfunktion gennant.
- \end{defi}
+
 
  \section*{Backpropagationsalgorithmus}
-Bei FFN wird Backpropagation, etabliert von Rumelhart et. al. \cite{MLPbook}, als Lernalgorithmus genutzt, um eine gewählte Fehlerfunktion $\mathcal{E}$ zu minimieren. Dazu wird das Gradientenverfahren zur numerischen Minimierung von $\mathcal{E}$ im Raum der Modellparameter $\mathcal{W}$ genutzt. Dabei sei bemerkt, dass das Finden von globalen Minima durch den Backpropagationsalgorithmus nicht garantiert ist.
-In dieser Arbeit wird $\mathcal{E}$ immer als stückweise stetig differenzierbare Funktion gewählt, damit das Gradientenverfahren angewendet werden kann. Sowohl die negative log likelihood $L_{NNL}$ als auch die mittlere quadratische Abweichung $L_{MSE}$ sind als Fehlerfunktion geeignet. Weiter sollten auch die Aktivierungsfunktionen aus Definition \ref{def_act_f} als stückweise stetig differenzierbare Funktion vorausgesetzt werden. 
-Die Optimierung der Parameter geschieht iterativ und das Gradientenverfahren besteht jeweils aus zwei Schritten. Zuerst wird eine Abstiegsrichtung 
+Bei FFN wird Backpropagation, etabliert von Rumelhart et. al. \cite{MLPbook}, als Lernalgorithmus genutzt, um eine gewählte Fehlerfunktion $\mathcal{E}$ zu minimieren. Dazu wird das Gradientenverfahren, vgl. Algorithmus \ref{alg:gradver}, zur numerischen Minimierung von $\mathcal{E}$ im Raum der Modellparameter $\mathcal{W}$ genutzt. Dabei sei bemerkt, dass das Finden von globalen Minima durch den Backpropagationsalgorithmus nicht garantiert ist.
+In dieser Arbeit wird $\mathcal{E}$ immer als stetig differenzierbare Funktion vorausgesetzt, damit das Gradientenverfahren angewendet werden kann. Ebenso sollten alle verwendeten Aktivierungsfunktionen aus Definition \ref{def_act_f} als stückweise stetig differenzierbare Funktion vorausgesetzt werden. 
+Die Optimierung der Parameter geschieht iterativ, dargestellt mit dem Index $n$, und das Gradientenverfahren besteht jeweils aus zwei Schritten. Zuerst wird eine Abstiegsrichtung 
 \begin{equation}
     \label{eq:gradE}
     \Delta_n := \nabla_{\mathcal{W}} \mathcal{E}(\mathcal{T},\mathcal{W})
@@ -255,27 +242,41 @@ berechnet und dann werden die Parameter
     \mathcal{W}_{n+1}:=\mathcal{W}_n - \lambda \Delta_n
 \end{equation}
 aktualisiert. Es werden also Gradienten der Fehlerfunktion bezüglich der Gewichtsmatrizen und Biasvektoren ermittelt und anschließend werden jene Parameter mit einer wählbaren Lernrate $\lambda \in \RR$ in (\ref{eq:step}) angepasst. In (\ref{eq:gradE}) wird der Gradient über alle Trainingspaare berechnet. Diese Variante nennt sich \textit{Offline-Version} des Gradientenverfahrens und ist besonders für große Trainingsmengen ineffizient. Die \textit{Online-Version} berechnet den Gradienten lediglich für ein Trainingspaar und passt die Parameter direkt an. Ein Kompromiss aus beiden Verfahren ist das \textit{Mini-Batch-Verfahren} bei dem die Gradienten über kleine Teilmengen $\mathbb{T} \subset \mathcal{T}$ der Trainingsmenge berechnet werden.
-
 Die Abstiegsrichtungen werden mithilfe der mehrdimensionalen Kettenregel  berechnet.
 \begin{satz}[Mehrdimensionale Kettenregel]
     \label{s:chainrule}
     Ist $f=f(x_1(y_1, \ldots, y_m), \ldots, x_n(y_1, \ldots, y_m))$ und sind alle beteiligten Funktionen stetig differenzierbar, so ergeben sich die partiellen Ableitungen mittels Kettenregel zu
 
     \begin{equation*}
-        \frac{\partial f}{\partial y_i}=\sum_{j=1}^n \frac{\partial f}{\partial x_i} \frac{\partial x_j}{\partial y_i} .
+        \frac{\partial f}{\partial y_i}=\sum_{j=1}^n \frac{\partial f}{\partial x_j} \frac{\partial x_j}{\partial y_i} .
     \end{equation*}
 \end{satz}
 
 \begin{proof}
-    Ein Beweis kann in Forster\cite{forster2017analysis} nachgelesen werden.
+    Ein Beweis kann in Forster \cite{forster2017analysis} gelesen werden.
 \end{proof}
-Die effiziente Berechnung dieser Gradienten gehört zu den schwersten Aufgaben\cite{DBLP:series/lncs/LeCunBOM12} im Bereich des Maschinellen Lernens.
-Im Folgenden wird der Online-Backpropagationsalgorithmus, im Englischen auch als \textit{Stochastic Gradient Descent} bezeichnet, erläutert. Grundsätzlich lässt sich das Verfahren in zwei Schritte einteilen.
+Die effiziente Berechnung der Abstiegsrichtungen gehört zu den schwersten Aufgaben des Maschinellen Lernens, siehe \cite{DBLP:series/lncs/LeCunBOM12}.
+Der Online-Backpropagationsalgorithmus, in der Literatur auch als \textit{Stochastic Gradient Descent} bezeichnet, wird im Folgenden erläutert. Grundsätzlich lässt sich das Verfahren in zwei Schritte einteilen.
 
 \begin{itemize}
     \item Bei der Vorwärtsrechnung wird dem FFN $\Lambda$ ein Trainingspaar ($x,c) \in \mathcal{T}$ präsentiert und die Aktivierungen der Schichten schrittweise von der Eingabeschicht über die verdeckten Schichten bis zur Ausgabeschicht berechnet.
     \item Bei der Rückwärtsrechnung wird für jedes Neuronen ein lokaler Gradient bezüglich $E$ berechnet, beginnend in der Ausgabeschicht über die verdeckten Schichten bis zur Eingabeschicht.
 \end{itemize}
+
+\begin{equation*}
+    \label{eq:MSE_1}
+    L_{MSE}(\mathcal{T},\mathcal{W}):=\frac{1}{2} \sum_{(x,c) \in \mathcal{T}} ||\hat{c}-t(x,c)||_2^2,
+\end{equation*}
+wobei $\hat{c}=f_{Modell}(x)$ und $t(x,c)$ der Zielvektor des Datenpaars $(x,c)$ ist.
+Das Problem \ref{eq:opt_likelihood} wird nun allgmemein mit Fehlerfunktionen definiert.
+ \begin{defi}[Fehlerfunktion]
+    Seien $\mathcal{T}$ eine Trainingsmenge und $\mathcal{W}$ Modellparameter eines KNN. Es soll das Problem
+    \begin{equation}
+        \label{eq:error_fun_opt}
+        E(\mathcal{T},\mathcal{W}) \rightarrow \min
+    \end{equation}
+    gelöst werden. Dabei wird $\mathcal{E}$ Fehlerfunktion gennant.
+ \end{defi}
 Als Fehlerfunktion wird im weiteren Verlauf die mittlere quadratische Abweichung 
 \begin{equation}
     \label{eq:MSE}
