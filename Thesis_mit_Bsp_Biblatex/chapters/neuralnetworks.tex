@@ -239,7 +239,7 @@ Die Optimierung der Parameter geschieht iterativ, dargestellt mit dem Index $n$,
 berechnet und dann werden die Parameter 
 \begin{equation}
     \label{eq:step}
-    \mathcal{W}_{n+1}:=\mathcal{W}_n - \lambda \Delta_n
+    \mathcal{W}_{n+1}:=\mathcal{W}_n + \lambda \Delta_n
 \end{equation}
 aktualisiert. Es werden Gradienten der Fehlerfunktion bezüglich der Gewichtsmatrizen und Biasvektoren ermittelt und anschließend werden jene Parameter mit einer wählbaren Lernrate $\lambda \in \RR$ in (\ref{eq:step}) angepasst. In (\ref{eq:gradE}) wird der Gradient über alle Trainingspaare berechnet. Diese Variante nennt sich \textit{Offline-Version} des Gradientenverfahrens und ist besonders für große Trainingsmengen ineffizient. Die \textit{Online-Version} berechnet den Gradienten lediglich für ein Trainingspaar und passt die Parameter direkt an. Ein Kompromiss aus beiden Verfahren ist das \textit{Mini-Batch-Verfahren} bei dem die Gradienten über kleine Teilmengen $\mathbb{T} \subset \mathcal{T}$ der Trainingsmenge berechnet werden.
 Die Abstiegsrichtungen werden mithilfe der mehrdimensionalen Kettenregel  berechnet.
@@ -357,18 +357,18 @@ Für die Schwellwerte gilt wieder
 \subsection*{Backpropagation für mehrere Neuronenschichten}
 Die Verallgemeinerung für beliebig viele verdeckte Schichten lässt sich in Abhängigkeit der lokalen Fehler beschreiben. Zur Vereinfachung der Notation beschreibe $L$ die Anzahl der Neuronenschichten eines FFN $\Lambda_L$. Seien mit $w^{(l)}_{i,j}$ und $b^{(l)}_i$ Parameter einer beliebigen Neuronenschicht $l$ bezeichnet. Dann gilt 
 \begin{align*}
-    \Delta w^{(l)}_{i,j}&= \frac{\partial E_x}{\partial w^{(l)}_{i,j}}= \delta^{(l)}_i z^{(l)}_j \\
+    \Delta w^{(l)}_{i,j}&= \frac{\partial E_x}{\partial w^{(l)}_{i,j}}= \delta^{(l)}_i z^{(l-1)}_j \\
     \Delta b^{(l)}_{i}&= \frac{\partial E_x}{\partial b^{(l)}_{i}}= \delta^{(l)}_i
 \end{align*}
 mit 
 \begin{equation*}
     \delta^{(l)}_i=
     \begin{cases}
-        e_i \psi'(V^{(L)}_i), &\text{wenn $i$ Ausgabeneuron ist}, \\
-        \sum_{k} \delta^{(l+1)}_k w_{k,i}, &\text{wenn $i$ verdecktes Neuron ist}.
+        e_i \psi'(V^{(L)}_i), &\text{wenn $i$ ein Ausgabeneuron ist}, \\
+        \left(\sum_{k} \delta^{(l+1)}_k w^{(l+1)}_{k,i}\right) \psi'(V_i^{(l)}), &\text{wenn $i$ ein verdecktes Neuron ist}.
     \end{cases}
 \end{equation*}
-Dabei ist $z^{(l)}_j$ die Aktivierung des Neurons $j$ der Schicht $l$, $e_i=y_i-t_i$ der Fehler des $i$-ten Ausgabeneurons, $V^{(L)}_i$ die Netzeingabe des $i$-ten Ausgabeneurons, $\delta^{(l+1)}_k= \frac{\partial E_x}{\partial V^{(l+1)}_k}$ der lokale Fehler der Schicht $l+1$ und $w^{(l+1)}_{k,i}$ entsprechende Gewichte. 
+Dabei ist $z^{(l-1)}_j$ die Aktivierung des Neurons $j$ auf der Schicht $l-1$, $e_i=y_i-t_i$ der Fehler des $i$-ten Ausgabeneurons, $V^{(l)}_i$ die Netzeingabe des $i$-ten Neurons der Schicht $l$, $\delta^{(l+1)}_k= \frac{\partial E_x}{\partial V^{(l+1)}_k}$ der lokale Fehler der Schicht $l+1$ und $w^{(l+1)}_{k,i}$ entsprechende Gewichte. 
 Die Online-Backpropagation eines FFN $\Lambda$ wird als komponentenweiser und iterativer Trainingsalgorithmus beschrieben. Daher taucht im Algorithmus \ref{alg:online_backprop} eine Schleife in Abhängigkeit von $n$ auf. Als Abbruchbedingung kann eine maximale Anzahl $N$ von Iterationen vorgegeben werden. Andere Abbruchbedingungen können mit der Norm der Abstiegsrichtungen oder abhängig von der Größe des Traingsfehlers mit einer Fehlertoleranz $\varepsilon >0$ formuliert werden.
 
 \begin{algorithm}[h]
@@ -386,25 +386,24 @@ Die Online-Backpropagation eines FFN $\Lambda$ wird als komponentenweiser und it
         \State Vorwärtsrechnung $y=\Lambda(x)$
         \For{$k=1, \ldots, s_L$}
             \State $\delta_k^{(L)}=(y_k-t_k) \psi'(V^{(L)}_k)$
-            \For{$j=1, \ldots, s_{L-1}$}
-                \State $\Delta w_{k,j}^{(L)}= \delta_k^{(L)} z^{(L)}_j$
-                \State $\Delta b_{k}^{(L)}=  \delta_k^{(L)}$
-            \EndFor
         \EndFor
         \State Backpropagation
         \For{Schichten $l=L-1, \ldots 1$}
-             State
-
-        \EndFor    
-        \State $\delta^{(l)}_k= e_k \psi'(V_k)$
-        \State Backpropagation
-        \For{$j=l-1, \ldots, 1$}
-            \State $\delta_j= \left(\sum_{k=1}^{s_{j+1}} \delta_{j+1} w_{k,j}^l\right) \psi'(V_j)$
-            \State $\Delta w_{j,i}^h(n)= -\lambda \, \delta_j(n) x_i(n)$
-            \State $\Delta b_{j}^h(n)= -\lambda \, \delta_j(n)$
+             \For{$j=1, \ldots, s_l$}
+                \State $\delta^{(l)}_j= \left(\sum_{k=1}^{s_{l+1}} \delta_k^{(l+1)} w^{(l+1)}_{k,j}\right) \psi'(V^{(l)}_j)$
+             \EndFor
+        \EndFor 
+        \State Berechne Gradienten und aktualisiere Gewichte
+        \For{$l=1, \ldots, L$}
+        \For{$i=1, \ldots, s_{l}$}
+        \For{$j=1, \ldots s_{i-1}$}
+        \State $\Delta w_{i,j}^{(l)}= \delta_i^{(l)} z^{(l-1)}_j$
+        \State $w^{(l)}_{i,j}= w^{(l)}_{i,j} + \lambda \Delta w_{i,j}^{(l)}$
         \EndFor
-        \State Aktualisiere Gewichte 
-        \State $\mathcal{W}_{n+1}= \mathcal{W}_n + \Delta \mathcal{W}_n$
+        \State $\Delta b^{(l)}_i=\delta^{(l)}_i$
+        \State $b^{(l)}_i=b^{(l)}_i + \lambda \Delta b^{(l)}_i$
+        \EndFor
+        \EndFor
         \State $n=n+1$
     \EndFor
     \State $E=\frac{1}{2} \sum_{(x,c) \in \mathcal{T}} ||y-t||_2^2$
