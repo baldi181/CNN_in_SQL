@@ -347,7 +347,7 @@ mit $x_i$ als Eingabeneuron und
     \label{eq:delta_hidden}
     \delta_j:= \left(\sum_{k=1}^{s_l} \delta_k w_{k,j}^l\right) \psi'(V_j)=\frac{\partial E_x}{\partial V_j}
 \end{equation*}
-als lokale Fehler der verdeckten Neuronen für $1 \leq j \leq s_j$. Hier werden die lokalen Fehler bezüglich $E_x$ von der darüberliegenden zurück propagiert.
+als lokale Fehler der verdeckten Neuronen für $1 \leq j \leq s_j$. Hier werden die lokalen Fehler bezüglich $E_x$ von der darüberliegenden Schicht zurück propagiert.
 Für die Schwellwerte gilt wieder
 \begin{equation*}
     \Delta b_j^h =  \frac{\partial E_x}{\partial b_{j}^h} 
@@ -355,21 +355,21 @@ Für die Schwellwerte gilt wieder
 \end{equation*}
 
 \subsection*{Backpropagation für mehrere Neuronenschichten}
-Die Verallgemeinerung für beliebig viele verdeckte Schichten lässt sich in Abhängigkeit der lokalen Fehler beschreiben. Seien mit $w^{(l)}_{i,j}$ und $b^{(l)}_i$ Parameter einer beliebigen Neuronenschicht $l$ bezeichnet. Dann gilt 
+Die Verallgemeinerung für beliebig viele verdeckte Schichten lässt sich in Abhängigkeit der lokalen Fehler beschreiben. Zur Vereinfachung der Notation beschreibe $L$ die Anzahl der Neuronenschichten eines FFN $\Lambda_L$. Seien mit $w^{(l)}_{i,j}$ und $b^{(l)}_i$ Parameter einer beliebigen Neuronenschicht $l$ bezeichnet. Dann gilt 
 \begin{align*}
-    \Delta w^{(l)}_{i,j}&= \frac{\partial E_x}{\partial w^{(l)}_{i,j}}= \delta^{(l)}_i z_j \\
+    \Delta w^{(l)}_{i,j}&= \frac{\partial E_x}{\partial w^{(l)}_{i,j}}= \delta^{(l)}_i z^{(l)}_j \\
     \Delta b^{(l)}_{i}&= \frac{\partial E_x}{\partial b^{(l)}_{i}}= \delta^{(l)}_i
 \end{align*}
 mit 
 \begin{equation*}
     \delta^{(l)}_i=
     \begin{cases}
-        e_i \psi'(V_i), &\text{wenn $i$ Ausgabeneuron ist}, \\
+        e_i \psi'(V^{(L)}_i), &\text{wenn $i$ Ausgabeneuron ist}, \\
         \sum_{k} \delta^{(l+1)}_k w_{k,i}, &\text{wenn $i$ verdecktes Neuron ist}.
     \end{cases}
 \end{equation*}
-Dabei ist $z_j$ die Aktivierung des Neurons $j$ der Schicht $l$, $e_i=y_i-t_i$ der Fehler des $i$-ten Ausgabeneurons,  $\delta^{(j+1)}_k= \frac{\partial E_x}{\partial V_k}$ der lokale Fehler der Schicht $l+1$ und $w^{(l+1)}_{k,i}$ entsprechende Gewichte. 
-Die Online-Backpropagation eines FFN $\Lambda_L$ wird als komponentenweiser und iterativer Trainingsalgorithmus beschrieben. Daher taucht im Algorithmus \ref{alg:online_backprop} eine Schleife in Abhängigkeit von $n$ auf. Zur Vereinfachung der Notation beschreibe $L$ die Anzahl der Neuronenschichten. Als Abbruchbedingung kann eine maximale Anzahl $N$ von Iterationen vorgegeben werden. Andere Abbruchbedingungen können mit der Norm der Abstiegsrichtungen oder abhängig von der Größe des Traingsfehlers mit einer Fehlertoleranz $\varepsilon >0$ formuliert werden.
+Dabei ist $z^{(l)}_j$ die Aktivierung des Neurons $j$ der Schicht $l$, $e_i=y_i-t_i$ der Fehler des $i$-ten Ausgabeneurons, $V^{(L)}_i$ die Netzeingabe des $i$-ten Ausgabeneurons, $\delta^{(l+1)}_k= \frac{\partial E_x}{\partial V^{(l+1)}_k}$ der lokale Fehler der Schicht $l+1$ und $w^{(l+1)}_{k,i}$ entsprechende Gewichte. 
+Die Online-Backpropagation eines FFN $\Lambda$ wird als komponentenweiser und iterativer Trainingsalgorithmus beschrieben. Daher taucht im Algorithmus \ref{alg:online_backprop} eine Schleife in Abhängigkeit von $n$ auf. Als Abbruchbedingung kann eine maximale Anzahl $N$ von Iterationen vorgegeben werden. Andere Abbruchbedingungen können mit der Norm der Abstiegsrichtungen oder abhängig von der Größe des Traingsfehlers mit einer Fehlertoleranz $\varepsilon >0$ formuliert werden.
 
 \begin{algorithm}[h]
     \caption{Online-Backpropagation für ein FFN $\Lambda_L$}
@@ -377,19 +377,26 @@ Die Online-Backpropagation eines FFN $\Lambda_L$ wird als komponentenweiser und 
     \begin{algorithmic}
     \Require  Trainingsmenge $\mathcal{T}$, Modellparameter $\mathcal{W}_0$, Fehlerfunktion $E$, Lernrate $\lambda$ 
     \Ensure $\text{optimierte Modellparameter} \; \mathcal{W}$
-    \State Initialisiere zufällig alle Gewichte und Schwellwerte des FFN $\Lambda$ 
+    \State Initialisiere zufällig alle Gewichte und Schwellwerte des FFN $\Lambda_L$ 
+    \State Berechne für die Eingabe $(x,c)$ den Zielvektor $t=t(x,c)$
     \State $n=0$  
     \State $E=\inf$
     \While{$E >\varepsilon$ \textbf{or} $n < N$} \Comment{Abbruchbedingung, siehe Text}
     \For{$(x,c) \in \mathcal{T}$}
-        
         \State Vorwärtsrechnung $y=\Lambda(x)$
-        \For{$l=1, \ldots, s_l$}
-
+        \For{$k=1, \ldots, s_L$}
+            \State $\delta_k^{(L)}=(y_k-t_k) \psi'(V^{(L)}_k)$
+            \For{$j=1, \ldots, s_{L-1}$}
+                \State $\Delta w_{k,j}^{(L)}= \delta_k^{(L)} z^{(L)}_j$
+                \State $\Delta b_{k}^{(L)}=  \delta_k^{(L)}$
+            \EndFor
         \EndFor
+        \State Backpropagation
+        \For{Schichten $l=L-1, \ldots 1$}
+             State
+
+        \EndFor    
         \State $\delta^{(l)}_k= e_k \psi'(V_k)$
-        \State $\Delta w_{k,j}^l= \delta_k z_j$
-        \State $\Delta b_{k}^l=  \delta_k$
         \State Backpropagation
         \For{$j=l-1, \ldots, 1$}
             \State $\delta_j= \left(\sum_{k=1}^{s_{j+1}} \delta_{j+1} w_{k,j}^l\right) \psi'(V_j)$
