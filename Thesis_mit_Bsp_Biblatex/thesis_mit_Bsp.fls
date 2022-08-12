@@ -1678,6 +1678,11 @@ INPUT ./chapters/kap_cnn.tex
 INPUT chapters/kap_cnn.tex
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmri8.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmri7.tfm
+INPUT ./pics/chapters/CCN/backprop_dudiss.png
+INPUT ./pics/chapters/CCN/backprop_dudiss.png
+INPUT pics/chapters/CCN/backprop_dudiss.png
+INPUT ./pics/chapters/CCN/backprop_dudiss.png
+INPUT ./pics/chapters/CCN/backprop_dudiss.png
 INPUT ./pics/chapters/CCN/mnist.png
 INPUT ./pics/chapters/CCN/mnist.png
 INPUT pics/chapters/CCN/mnist.png

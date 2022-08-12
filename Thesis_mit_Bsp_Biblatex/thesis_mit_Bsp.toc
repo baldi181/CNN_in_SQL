@@ -47,15 +47,13 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {4}Gefaltete neuronale Netze}{32}{chapter.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.1}Die Faltungsoperation}{32}{section.4.1}%
+\contentsline {section}{\numberline {4.1}Die Faltungsoperation}{33}{section.4.1}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.2}CNN Architektur}{34}{section.4.2}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.3}Backpropagation bei CNN}{37}{section.4.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.4}Anwendung bei der Ziffernerkennung}{38}{section.4.4}%
-\defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.5}Motivation der Faltung}{44}{section.4.5}%
+\contentsline {section}{\numberline {4.4}Anwendung bei der Ziffernerkennung}{39}{section.4.4}%
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {5}Datenbankgestützte Implementierung von CNN}{46}{chapter.5}%
 \defcounter {refsection}{0}\relax 
@@ -77,7 +75,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {A.1}Weitere Basisoperation in SQL}{63}{section.A.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline Literatur}{64}{chapter*.33}%
+\contentsline {chapter}{\nonumberline Literatur}{64}{chapter*.34}%
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {B}Anhang}{i}{appendix.B}%
 \defcounter {refsection}{0}\relax 

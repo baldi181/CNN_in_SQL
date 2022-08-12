@@ -1,19 +1,15 @@
 \chapter{Gefaltete neuronale Netze}
 \label{kap:CNN}
 
-Feed-Forward-Netze gelten als leistungsstarke maschinelle Lernmethoden, da sie so trainiert werden können, um beliebige komplexe Funktionen abhängig von einer vektorwertigen Eingabe zu approximieren. Ist die Dimension der Eingabeschicht jedoch zu groß, treten bei klassischen FFN Probleme hinsichtlich der Parameteranzahl auf. Die Problemstellung \ref{prob:ffCCN} dieser Arbeit besteht in der Klassifikation digitalisierter Bilder. Wird ein FFN mit $100$ Ausgabeneuronen genutzt und jedes Pixel eines Bildes mit den Abmessungen $1000 \times 1000$ als Merkmal genutzt, so ergeben sich bereits $10^8+100$ freie Parameter. Stehen nur relativ wenige Trainingsdaten zur Verfügung, ist die Struktur des FFN zu komplex und dies kann zur Überanpassung führen\cite{caruana2000overfitting,bilbao2017overfitting}. Die Parameteranzahl muss also deutlich reduziert werden. Konzepte wie \textit{Parameter Sharing} und spärliche Konnektivität, engl. \textit{sparse connectivity}, erlauben diese Reduktion, vgl. Goodfellow\cite{Goodfellow-et-al-2016} und werden in den folgenden Abschnitten erläutert.
+Feed-Forward-Netze gelten als leistungsstarke maschinelle Lernmethoden, da sie so trainiert werden können, um beliebige komplexe Funktionen abhängig von einer vektorwertigen Eingabe zu approximieren. Ist die Dimension der Eingabeschicht jedoch zu groß, treten bei klassischen FFN Probleme hinsichtlich der Parameteranzahl auf. Die Problemstellung \ref{prob:ffCCN} dieser Arbeit besteht in der Klassifikation digitalisierter Bilder. Wird ein FFN mit $10$ Ausgabeneuronen genutzt und jedes Pixel eines Bildes mit den Abmessungen $1000 \times 1000$ als Merkmal genutzt, so ergeben sich bereits $10^7+100$ freie Parameter. Stehen nur relativ wenige Trainingsdaten zur Verfügung, ist die Struktur des FFN zu komplex und dies kann zur Überanpassung führen \cite{caruana2000overfitting,bilbao2017overfitting}. Außerdem steigt der Zeitaufwand der Trainingsphase mit wachsender Parameteranzahl. Diese Anzahl muss also deutlich reduziert werden. 
+Konzepte wie \textit{Parameter Sharing} und spärliche Konnektivität, engl. \textit{sparse connectivity}, erlauben die Reduktion der Parameteranzahl und werden ausführlich in Goodfellow \cite{Goodfellow-et-al-2016} beschrieben.
 
-Ein weiterer Nachteil des FFN ergibt sich dadurch, dass Korrelationen von benachbarten Eingabeneuronen, z.B. Bildsegmente wie Kanten oder Ecken nicht mit einbezogen werden. Es muss also ein Modell entwickelt werden, welches diese lokalen Muster extrahiert und sie miteinander verknüpft. Das Modell sollte zudem äquivariant gegenüber Translationen sein. 
+Ein weiterer Nachteil des FFN ergibt sich dadurch, dass Korrelationen von benachbarten Eingabeneuronen, z.B. Bildsegmente wie Kanten oder Ecken nicht mit einbezogen werden. Es muss also ein Modell entwickelt werden, welches diese lokalen Muster extrahiert und sie miteinander verknüpft. Das Modell sollte zudem äquivariant gegenüber Translationen, vgl. Goodfellow \cite{Goodfellow-et-al-2016} sein.
 
-%Schließlich sind beim FFN die Eingabe- und Ausgabedimension fixiert. Eine flexible Wahl diser Hyperparameter ist bei Problemen der Computergrafik oft erwünscht. 
-
-In diesem Kapitel wird erläutert, wie gefaltete neuronale Netze die erwähnten Nachteile von FFN umgehen. CNN sind in der Lage, lokale Muster zu erkennen, sind äquivariant gegenüber Translationen und realisieren Konzepte wie Parameter Sharing, um die Anzahl der freien Parameter drastisch zu reduzieren. So gelingt es, besonders bei Aufgaben der Computergrafik\cite{DBLP:conf/nips/KrizhevskySH12, DBLP:journals/pieee/LeCunBBH98,DBLP:conf/cvpr/CiresanMS12} die Generalisierungsrate gegenüber klassichen FFN zu erhöhen. 
+In diesem Kapitel wird erläutert, wie gefaltete neuronale Netze die erwähnten Nachteile von FFN umgehen. CNN sind in der Lage, lokale Muster zu erkennen, sind äquivariant gegenüber Translationen und realisieren Konzepte wie Parameter Sharing und spärliche Konnektivität, um die Anzahl der freien Parameter drastisch zu reduzieren. So gelingt es, besonders bei Aufgaben der Computergrafik \cite{DBLP:conf/nips/KrizhevskySH12, DBLP:journals/pieee/LeCunBBH98,DBLP:conf/cvpr/CiresanMS12} die Generalisierungsrate gegenüber klassischen FFN zu erhöhen. An dieser Stelle sei auf Goodfellow \cite{Goodfellow-et-al-2016} verwiesen, um nachzuvollziehen, wie diese Konzepte im Detail von CNN-Modellen umgesetzt werden.
 
 Gefaltete neuronale Netze unterscheiden sich von FFN bei der Berechnung der Übertragungsfunktion. Dazu wird die gefaltete Übertragungsfunktion definiert, welche das Konzept der diskreten Faltung nutzt. Im Abschnitt \ref{abs:conv_theorie} wird zunächst die Faltung als mathematische Operation eingeführt. 
-%und deren Zusammenhang zur Fourier-Transformation\cite{werner2011funktionalanalysis} erläutert. 
-Anschließend wird im Abschnitt \ref{abs:CNN_arch} das CNN-Modell definiert und schließlich im Abschnitt \ref{abs:CNN_train} der Backpropagationsalgorithmus \ref{alg:online_backprop} auf CNN verallgemeinert.
-
-%bei CNNs zu verstehen ist und wie diese Operation bei diesen neuronalen Netzen motiviert wird. In diesem Zusammenhang werden Begriffe wie Merkmalskarten (engl. \textit{feature maps}) und Filter (engl. \textit{kernels}) eingeführt. Des Weiteren wird die Arithmetik der Faltungsoperation für zweidimensionale Eingaben, repräsentiert durch Matrizen, erklärt und das Verfahren \textit{padding} beziehungsweise das Nutzen von \textit{strides} erläutert. Das gesamte Kapitel wird mit konkreten Beispielen begleitet, um die verschiedenen Effekte der Faltungsoperation zu beleuchten.
+Anschließend wird im Abschnitt \ref{abs:CNN_arch} das CNN-Modell definiert und schließlich im Abschnitt \ref{abs:CNN_train} der Backpropagationsalgorithmus \ref{alg:online_backprop} auf CNN verallgemeinert. Im letzten Abschnitt \ref{abs:model_mnist} wird der Backpropagationsalgorithmus für ein konkretes Modell zur Klassifikation von Ziffern angewendet. An dieser Stelle wird der MNIST-Datensatz hinsichtlich Problemstellung \ref{prob:ffCCN} vorgestellt.
 
 \section{Die Faltungsoperation}
 \label{abs:conv_theorie}
@@ -35,13 +31,13 @@ Für die Faltung gelten einige Rechenregeln.
     \begin{align*}
          (i) \; \; &f \ast g = g \ast f \; \; &( \text{Kommutativität}) \\
          (ii) \; \; &f \ast (g \ast h) = (f \ast g) \ast h  \; \;& (\text{Assoziativität}) \\
-         (iii) \; \; &f \ast (g+h) = f \ast h + f\ast g \; \; &(\text{Distributivität}) \\ 
+         (iii) \; \; &f \ast (g+h) = f \ast g + f\ast h \; \; &(\text{Distributivität}) \\ 
          (iv) \; \; &a(f \ast g) = (af) \ast g = f \ast (ag) \; \; &(\text{Assoziativität mit skalarer Multiplikation}) 
     \end{align*}
 \end{lem}
 
 \begin{proof}
-    Eine Beweis dieser Rechenregeln kann in Werner\cite{werner2011funktionalanalysis} gelesen werden.
+    Ein Beweis dieser Rechenregeln kann in Werner\cite{werner2011funktionalanalysis} gelesen werden.
 \end{proof}
 
 %Bei klassischen neuronalen Netzen, siehe Kapitel \ref{classicNN} werden Eingabedaten durch eine Verkettung von affinen Transformationen verarbeitet. Typischerweise wird die Eingabe als Vektor dargestellt und  mit einer Matrix multipliziert, gegebenenfalls mit einem Biasvektor manipuliert und schließlich so die Ausgabe generiert. Bilder-, Audio- oder Videoaufnahmen besitzen jedoch mehrere Merkmale in unterschiedlichen Achsen. Oft sind solche Eingabedaten im Bereich des Machine-Learnings als mehrdimensionale Arrays abgelegt, welche eine oder mehrere Achsen repräsentieren, wobei die Ordnung dieser eine Rolle spielt. Bei digitalisierten Bildern sind das bespielsweise die Höhe und Breite des Bildes, bei Audioaufnahmen gibt es nur eine Achse, und zwar die Zeitachse. Hinzu kommen Kanalachsen als weitere Verfeinerung der Daten, zum Beispiel besitzen RGB-Farbbilder drei Kanäle der Farben rot, grün und blau. 
@@ -57,7 +53,7 @@ In der digitalen Signal- und Bildverarbeitung werden meist diskrete Funktionen a
     definiert. Hier wird über den gesamten Definitionsbereich $D$ summiert. Ist $D$ beschränkt, werden $f$ beziehungsweise $g$ durch Nullen fortgesetzt.  
 \end{defi}
 
-In Hinblick auf die Klassifikation von digitalisierten Bildern, dargestellt als Matrizen, wird die Matrixfaltung mit sogenannten quadratischen Kernen $K \in \RR^{k \times k}$ mit ungeradem $k \in \mathbb{N}$ definiert.
+Im Hinblick auf die Klassifikation von digitalisierten Bildern, dargestellt als Matrizen, wird die Matrixfaltung mit sogenannten quadratischen Kernen $K \in \RR^{k \times k}$ mit ungeradem $k \in \mathbb{N}$ definiert.
  
 %Um die Notation einfach zu halten, sei ein Kern $K$ ebenfalls eine $h \times b$ - Matrix, indem $K$ mit Nullen aufgefüllt wird.
 
@@ -72,7 +68,7 @@ In Hinblick auf die Klassifikation von digitalisierten Bildern, dargestellt als 
 %\end{defi}
 
 \begin{defi}[Matrixfaltung, vgl. \cite{gruening}] \label{def:matrix_faltung}
-    Für gegebene Matrizen $X \in \RR^{h \times b}$ und $K \in \RR^{k \times k}$ sei $l=\lfloor k/2  \rfloor$.
+    Seien die Matrizen $X \in \RR^{h \times b}$ und $K \in \RR^{k \times k}$ gegeben. Sei $l=\lfloor k/2  \rfloor$.
     %\begin{equation*}
     %   h_l=\begin{cases}
     %       \lfloor k_h/2  \rfloor &, k_h \, \text{ungerade} \\
@@ -83,11 +79,11 @@ In Hinblick auf die Klassifikation von digitalisierten Bildern, dargestellt als 
     %        k_w/2 -1 &, \text{sonst}    
     %    \end{cases}.
     %\end{equation*} 
-    Die zweidimensionale Faltung  $Y=X \ast K \in \RR^{h \times w}$ ist als 
+    Die Matrixfaltung  $Y=X \ast K \in \RR^{h \times w}$ ist als 
     \begin{equation}
         \label{eq:matrix_faltung}
         Y_{i,j}:=\sum_{u=-l}^{l} \sum_{v=-l}^{l} X_{i+u,j+v} K_{u+l+1,v+l+1}\; \; \forall i \in [h], j \in [b]
-    \end{equation} mit $X_{i,j}=0$ für $i \notin [h]$ und $j \notin [b]$ definiert. In der Literatur wird dieses Auffüllen mit Nullen am Rand von $X$ mit \textit{zero padding} bezeichnet. In dieser Definition besitzt das Ergebnis $Y$ der Faltung, genauer der Kreuzkorrelation, die gleichen Abmessungen wie $X$. In der Literatur werden die Begriffe Faltung und Kreuzkorrelation oft für dieselbe Operation genutzt. In dieser Arbeit wird (\ref{eq:matrix_faltung}) als Faltung bezeichnet 
+    \end{equation} mit $X_{i,j}=0$ für $i \notin [h]$ und $j \notin [b]$ definiert. In dieser Definition besitzt das Ergebnis $Y$ der Faltung die gleichen Abmessungen wie $X$.
 \end{defi}
 
 \begin{bem}
@@ -95,17 +91,33 @@ In Hinblick auf die Klassifikation von digitalisierten Bildern, dargestellt als 
     Oft wird eine kompakte Schreibweise der Faltung von $X \in \RR^{h \times b}$ und $ K \in \RR^{k \times k}$ mit 
     \begin{equation}
         \label{eq:valid_conv}
+        Y_{i,j}=\sum_{u=-l}^l \sum_{v=-l}^l X_{i-u,j-v}K_{u,v},
+    \end{equation} beziehungsweise der Kreuzkorrelation mit
+    \begin{equation}
+        \label{eq:valid_cross}
         Y_{i,j}=\sum_{u=-l}^l \sum_{v=-l}^l X_{i+u,j+v}K_{u,v}
     \end{equation}
-    und $X_{i,j}=0$ für $i \notin [h]$ und $j \notin [b]$ angegeben. Dabei wird der Kern speziell indiziert. Ist beispielsweise $k=3$, so ist $K \in \RR^{3 \time 3}$ durch
+    und $X_{i,j}=0$ für $i \notin [h]$ und $j \notin [b]$ angegeben. Das Auffüllen mit Nullen am Rand von $X$ wird mit \textit{zero padding} bezeichnet. Die Kreuzkorrelation (\ref{eq:valid_cross}), in der Fachliteratur oft auch als Faltung bezeichnet, stellt die Faltung (\ref{eq:valid_conv}) mit gedrehtem Kern $K^{rot180}$ dar. Dabei ist 
+    \begin{equation*}
+        K^{rot180}_{-u,-v}:=K_{u,v}.
+    \end{equation*}
+    Hier werden die Kerne speziell indiziert. Ist beispielsweise $k=3$, so ist $K \in \RR^{3 \times 3}$ durch
     \begin{equation*}
         K=\begin{pmatrix}
-            &K_{-1,-1} & K_{-1,0} & K_{-1,1} \\
-            &K_{0,-1} & K_{0,0} & K_{0,1}  \\
-            &K_{1,-1} & K_{1,0} & K_{1,1} 
+            K_{-1,-1} &K_{-1,0} &K_{-1,1} \\
+            K_{0,-1} &K_{0,0} &K_{0,1}  \\
+            K_{1,-1} &K_{1,0} &K_{1,1} 
         \end{pmatrix}
-    \end{equation*} 
-    gegeben. 
+    \end{equation*} und $K^{rot180}$ durch
+
+    \begin{equation*}
+        K^{rot180}=\begin{pmatrix}
+            K_{1,1} &K_{1,0} &K_{1,1} \\
+            K_{0,1} &K_{0,0} &K_{0,-1}  \\
+            K_{-1,1} &K_{-1,0} &K_{-1,-1} 
+        \end{pmatrix}
+    \end{equation*}
+    gegeben. In dieser Arbeit wird (\ref{eq:valid_cross}) als Matrixfaltung bezeichnet
 \end{bem}
 
 Bei gefalteten neuronalen Netzen wird oft eine Reduktion der Dimensionen angestrebt. Dafür werden natürliche Zahlen als Schrittweiten, engl. \textit{strides}, genutzt.
@@ -119,19 +131,19 @@ Bei gefalteten neuronalen Netzen wird oft eine Reduktion der Dimensionen angestr
 
 \section{CNN Architektur}
 \label{abs:CNN_arch}
-Beim maschinellen Lernen sind Eingabedaten oft als mehrdimensionale Arrays abgelegt, welche eine oder mehrere Achsen repräsentieren, wobei die Ordnung dieser eine Rolle spielt. Bei digitalisierten Bildern sind das bespielsweise die Höhe und Breite des Bildes, welche als Raumachsen bezeichnet werden. Hinzu kommen Kanalachsen, zum Beispiel besitzen Grauwert-Bilder einen Farbkanal, während RGB-Farbbilder drei Kanäle der Farben Rot usw. besitzen. Dementsprechend werden Grauwert-Bilder wie in Definition \ref{def:image} nun als dreidimensionale Arrays $X \in [0,1]^{h \times b \times 1}$ dargestellt. Dies erlaubt die Definition der gefalteten Übertragungsfunktion, wie in Gruening\cite{gruening}
+Beim maschinellen Lernen sind Eingabedaten oft als mehrdimensionale Arrays abgelegt, welche eine oder mehrere Achsen repräsentieren, wobei die Ordnung dieser eine Rolle spielt. Bei digitalisierten Bildern sind das beispielsweise die Höhe und Breite des Bildes, welche als Raumachsen bezeichnet werden. Hinzu kommen Kanalachsen, zum Beispiel besitzen Grauwert-Bilder einen Farbkanal, während RGB-Farbbilder drei Kanäle der Farben Rot usw. besitzen. Dementsprechend werden Grauwert-Bilder wie in Definition \ref{def:image} nun als dreidimensionale Arrays $X \in [0,1]^{h \times b \times 1}$ dargestellt. Dies erlaubt die Definition der gefalteten Übertragungsfunktion, wie in Gruening\cite{gruening}
 
 \begin{defi}[Gefaltete Übertragungsfunktion]
     \label{eq:convlogit}
-    Sei ein vierdimensionales Array $K \in \RR^{z_{out} \times z_{in} \times k \times k}$ und ein Biasvektor $b \in \RR^{z_{out}}$ gegeben. Die Funktion 
+    Sei ein vierdimensionales Array, in Zukunft oft Kern genannt, $K \in \RR^{z_{out} \times z_{in} \times k \times k}$ und ein Biasvektor $b \in \RR^{z_{out}}$ gegeben. Die Funktion 
     \begin{equation*}
         \Psi_{conv}^{K,b}: \RR^{\cdot \times \cdot \times z_{in}} \rightarrow \RR^{\cdot \times \cdot\times z_{out}}
     \end{equation*}
     mit
     \begin{equation*}
-        \Psi_{conv}^{K,b}(X)_{:,:,q}:= \sum_{p=1}^{z_{in}} \alpha_p\left(K_{q,p,:,:} \ast X_{:,:,p} \right) +b_q \; \forall q \in [z_{out}]
+        \Psi_{conv}^{K,b}(X)_{:,:,q}:= \sum_{p=1}^{z_{in}} \alpha_{qp} \left(K_{q,p,:,:} \ast X_{:,:,p} \right) +b_q \; \forall q \in [z_{out}]
     \end{equation*}
-    wird gefaltete Übertragungsfunktion bezeichnet. Mit $\ast$ ist die Matrixfaltung wie in Definition \ref{def:matrix_faltung} gemeint und mit $\cdot$ werden beliebige Raumachsen bezeichnet. Die Skalare $\alpha_p$ können als lernbare Parameter genutzt werden. In dieser Arbeit gelte $\alpha_p=1$ für alle $p \in [z_{in}]$.
+    wird gefaltete Übertragungsfunktion bezeichnet. Mit $\ast$ ist die Matrixfaltung wie in Definition \ref{def:matrix_faltung} gemeint und mit $\cdot$ werden beliebige Raumachsen bezeichnet. Die Skalare $\alpha_{qp}$ können als lernbare Parameter genutzt werden. In dieser Arbeit gelte $\alpha_{qp}=1$ für alle $q \in [z_{out}]$ und $p \in [z_{in}]$.
 \end{defi}
 
 
@@ -188,7 +200,7 @@ $ gesetzt wird. Pooling-Schichten werden wieder durch Schrittweiten parametrisie
 
 Pooling-Schichten verdichten also Information von Eingabedaten, welche sich lokal in Fenstern der Größe $p_h \times p_b$ befinden und reduzieren so die Raumdimension. In dieser Arbeit wird das Maximum-Pooling oder Mittelwert-Pooling benutzt. Für andere Pooling-Funktion sei auf Yu et. al.\cite{yu2014mixed} verwiesen.
 Die Idee bei CNN besteht nun darin, Faltungsschichten mit Pooling-Schichten zu kombinieren und schließlich ein FFN wie in Definition \ref{def:MLP} anzuknüpfen.
-Dazu wird für allgemeine mehrdimensionale Arrays die Flatten-Schicht definiert.
+Dazu wird für allgemeine mehrdimensionale Arrays die Flatten-Funktion definiert.
 
 \begin{defi}
     \label{def:flatten}
@@ -196,10 +208,10 @@ Dazu wird für allgemeine mehrdimensionale Arrays die Flatten-Schicht definiert.
     \begin{equation*}
         T_f(X)_{(i-1) \cdot (n_2 \cdot n_3)+(j-1) \cdot n_3+k}:= X_{i,j,k}, \; \; \forall i \in [n_1],\; j \in [n_2],\; k \in [n_3]
     \end{equation*}
-    Flatten-Funktion genannt. Die multidimensionale Eingabe wird also in einen Vektor umgewandelt.
+    Flatten-Funktion genannt. Die mehrdimensionale Eingabe wird also in einen Vektor umgewandelt.
 \end{defi}
 
-Dies erlaubt die Definition des CNN-Modells als Kombination aus Faltungsschichten, Pooling-Schichten und Neuronenschichten des MLP aus Kapitel \ref{kap:NN}. 
+Dies erlaubt die Definition des CNN-Modells als Kombination aus Faltungsschichten, Pooling-Schichten und Neuronenschichten des eines FFN.
 \begin{defi}(Gefaltetes Neuronales Netz)
     \label{def_fw_cnn}
     Seien $h, w, z_{in}, z_{out}, l ,c \in \mathbb{N}$ und Schichten $\Psi^{W^{(1)},b^{(1)},\psi_{1}}, \ldots, \Psi^{W^{(l)},b^{(l)},\psi_{l}}$ sowie Faltungsschichten $\Psi_{conv}^{K^{(1)},b^{(1)},\psi_{1}}, \ldots, \Psi_{conv}^{K^{(l)},b^{(l)},\psi_{l}}$ gegeben. Die Vorwärtsrechnung eines CNN lässt sich als Komposition
@@ -217,20 +229,29 @@ Auch CNN bestehen aus Hyper- und Modellparametern.
 \end{defi}
 Die Hyperparameter werden wieder anwendungsspezifisch für das jeweilige Problem gewählt und die Modellparameter während des Trainingsprozesses angepasst. 
 
-
 \section{Backpropagation bei CNN}
 \label{abs:CNN_train}
 Der Backpropagationsalgorithmus \ref{alg:online_backprop} soll nun für das CNN-Modell verallgemeinert werden. 
-Als Fehlerfunktion wird wieder die mittlere quadratische Abweichung (\ref{eq:MSE})
+Als Fehlerfunktion wird wieder die mittlere quadratische Abweichung (\ref{eq:MSE_single})
 genutzt. 
-Die Abstiegsrichtungen für die Schichten des FFN wurden bereits im vorherigen Kapitel \ref{kap:NN} hergeleitet. Es müssen nun Gradienten innerhalb der Faltungsschichten beziehungsweise Pooling-Schichten berechnet werden. Die Einträge der Eingabe- und Merkmalskarten, in Zukunft einfach Karten genannt, können als Neuronenaktivierungen interpretiert werden. Weiter werden zur Vereinfachung die trainierbaren Gewichte der Kerne und Gewichtsmatrizen mit $w_{j,i}^{(l)}$ bezeichnet. Gemeint ist also das Gewicht zwischen Neuron $i$ auf (Faltungs)-Schicht $l-1$ und Neuron $j$ der (Faltungs)-Schicht $l$ bezeichnet. Weiter sei $y_{i}^{(l-1)}$ die Aktivierung des Neurons $i$ der (Faltungs)Schicht $l-1$ und $\delta_j^{(l)}$ sei der lokale Fehler des Neurons $j$ der (Faltungs)Schicht $l$. Die Funktion $\psi$ repräsentiere eine Aktivierungsfunktion, Pooling-Funktion oder Flatten-Funktion, je nachdem auf welcher Schicht sie benutzt wird.
+Die Abstiegsrichtungen für die Schichten des FFN wurden bereits im vorherigen Kapitel \ref{kap:NN} hergeleitet. Es müssen nun Gradienten innerhalb der Faltungsschichten beziehungsweise Pooling-Schichten berechnet werden. Die Einträge der Eingabe- und Merkmalskarten, in Zukunft einfach Karten genannt, können als Neuronenaktivierungen interpretiert werden. 
+
+Zur Vereinfachung werden die trainierbaren Gewichte der Kerne und Gewichtsmatrizen als Gewichte $w_{j,i}^{(l)}$ bezeichnet. Gemeint ist also das Gewicht zwischen Neuron $i$ auf (Faltungs)-Schicht $l-1$ und Neuron $j$ der (Faltungs)-Schicht $l$. Weiter sei $y_{i}^{(l-1)}$ die Aktivierung des Neurons $i$ der (Faltungs)-Schicht $l-1$ und $\delta_j^{(l)}$ sei der lokale Fehler des Neurons $j$ der (Faltungs)-Schicht $l$, welcher im Folgenden verallgemeinert wird. Die Funktion $\psi$ repräsentiere eine Aktivierungsfunktion einer  (Faltungs)-Schicht und Pooling-Funktionen werden mit $T$ sowie Flatten-Funktion mit $T_f$ bezeichnet.
+%\begin{alignat*}{3}
+   % &w_{j,i}^{(l)}  &&\text{Gewicht zwischen Neuron $i$ und Neuron $j$}, \\
+    %&y_{j}^{(l-1)}   &&\text{Aktivierung des Neurons $i$ der Schicht $l-1$}, \\
+    %&V_k^{(l)}=\sum_{j} w_{k,j}^{(l)} y^{(l-1)}_j +b^{(l)}_k \; \; &&\text{Netzeingabe des Neurons $k$ der Schicht $l$}, \\
+    %&y_k &&\text{Aktivierung des Ausgabeneurons $k$},\\
+   % &e_k=y_k-t_k &&\text{Fehler des $k$-ten Ausgabeneurons}, \\
+    %&\delta_k^{(l)}=e_k \psi' (V_k^{(l)})\; \; \;  &&\text{lokaler Fehler des Neurons $k$ auf Schicht $l$}. 
+%\end{alignat*}
 
 Die Gradienten werden wieder komponentenweise berechnet.
-Angenommen, $l$ ist eine Faltungsschicht. Die Aktivierung einer Merkmalskarte $j$ an der Stelle $(x,y)$ lässt sich mit der Matrixfaltung, siehe \ref{def:matrix_faltung}, \ref{eq:convlogit}, als
+Angenommen, $l$ ist eine Faltungsschicht. Die Aktivierung einer Merkmalskarte $j$ an der Stelle $(x,y)$ lässt sich mit der Matrixfaltung, siehe Bemerkung \ref{bem:K_conv_komp}, komponentenweise als
 \begin{equation}
     y_j^{(l)}(x,y) =\psi \left(\sum_{i=1}^{z_{in}} \sum_{(u,v) \in F} y_i^{(l)}(x+u,y+u)\,  w_{j,i}^{(l)}(u,v) +b_j^{(l)}\right)
 \end{equation}   
-schreiben. Es ist zu beachten, dass $(x,y)$ ein Pixel der Karte $j$ meint. Mit $k$ als Dimension des Kerns und $l=\lfloor k/2 \rfloor$ ist $F=\{(u,v): \; -l \leq u,v \leq l\}$.
+schreiben. Es ist zu beachten, dass $(x,y)$ hier ein Pixel der Karte $j$ meint und nicht mit Eingabe- bzw. Ausgabevektoren zu verwechseln ist. Mit $k$ als Dimension des vierdimensionalen Kerns und $l=\lfloor k/2 \rfloor$ ist $F=\{(u,v): \; -l \leq u,v \leq l\}$.
 Das Gewicht des Kerns von der Karte $i$ zur Karte $j$ an der Stelle $(u,v)$ ist mit $w^{(l)}_{j,i}(u,v)$ bezeichnet. Der Gradient ergibt sich als Summe über alle beteiligten Pixel $(x,y)$ der Merkmalskarte $j$, also
 \begin{equation}
     \label{eq:CNN_K_grad}
@@ -241,27 +262,39 @@ Der Zusammenhang in Gleichung (\ref{eq:CNN_K_grad}) ist in Abbildung \ref{abb:er
 \begin{equation*}
     \Delta b_j^{(l)}= -\lambda \, \sum_{(x,y)} \delta_j^{(l)}(x,y).
 \end{equation*}
-Die Berechnung des lokalen Fehlers $\delta_{j}^{(l)}$ der Schicht $l$ ist abhängig von der Schicht $l+1$. Auch hier wird wieder komponentenweise vorgegangen. Ist die Schicht $l+1$ eine Neuronenschicht mit $s_k$ Neuronen, wird Gleichung \ref{eq:delta_hidden} zu
+
+\begin{figure}[h]
+    \includegraphics[width=0.8\textwidth]{pics/chapters/CCN/backprop_dudiss.png}
+    \centering
+    \caption{Es ist die Rückwärtsrechnung bei Faltungsschichten dargestellt. Die Abbildung wurde aus \cite{du_diss} entnommen.}
+    \label{abb:error_conv}
+\end{figure}
+Die Berechnung des lokalen Fehlers $\delta_{j}^{(l)}$ in (\ref{eq:CNN_K_grad}) der Schicht $l$ ist abhängig von der Schicht $l+1$. Auch hier wird wieder komponentenweise vorgegangen. Im Folgenden bezeichne
 \begin{equation*}
-    \delta_j^{(l)}(x,y)=\sum_{k=1}^{s_{k}} \left(\sum_{(x,y)} \delta_k^{(l+1)} w_{k,j}^{(l+1)}(x,y)\right) 
+    V^{(l)}_j=\sum_i w_{j,i}^{(l)} y_i^{(l-1)} 
 \end{equation*}
-verallgemeinert. Ist die nachfolgende Schicht eine Faltungsschicht, so ergibt sich der lokale Fehler der Schicht $l$ zu
+die verallgemeinerte gewichtete Summe aller Eingaben $y_i^{(l-1)}$ des Neurons $j$. Hierbei können die $w_{j,i}^{(l)}$ Parameter einer Gewichtsmatrix oder eines Kerns sein.
+Ist die Schicht $l+1$ eine Neuronenschicht mit $s_k$ Neuronen, wird Gleichung \ref{eq:delta_hidden} zu
+\begin{equation*}
+    \delta_j^{(l)}(x,y)=\sum_{k=1}^{s_{k}} \left(\sum_{(x,y)} \delta_k^{(l+1)} w_{k,j}^{(l+1)}(x,y)\right) \psi'(V_j^{(l)})
+\end{equation*}
+verallgemeinert. 
+Hier ist $\delta_j^{(l+1)}$ der von der Neuronenschicht $l+1$ zurück propagierte Fehler des Neurons $j$ bezüglich der Fehlerfunktion $E$ und $\psi(V^{(l)}_j)$ die entsprechende Aktivierung des Neurons $j$.
+Ist die nachfolgende Schicht eine Faltungsschicht, so ergibt sich der lokale Fehler der Schicht $l$ zu
 \begin{equation*}
     \delta_j^{(l)}(x,y)=\sum_{k=1}^{z_{out}} \left(\sum_{(u,v) \in F} \delta_k^{(l+1)}(x,y) w_{k,j}^{(l+1)}(u,v)\right)
 \end{equation*}
 Ist $l+1$ eine Pooling-Schicht mit Schrittweiten $p_h,p_b$ und einer Pooling-Funktion $T$, so gilt
-\begin{equation*}
-    \delta_j^{(l)}(x,y)=\delta_k^{(l+1)}(\lceil x/p_h \rceil ,\lceil y/p_b \rceil) \nabla T(j)
-\end{equation*}
-Dieses Vorgehen wird auch Upsampling genannt.
-%$V_k=\sum_{j} w_{k,j}^l z_j +b^l_k$ 
-
-!!!!!!!
-
-!!! noch als algorithmus aufschreiben und mit dem folgenden Beispiel vergleichen, ob Indizies/lokale Fehler usw. richtig sind, lokale Fehler einführen, Konsistenz zu Kapitel 3 überprüfen!!!
-
-!!!!!!
-
+\begin{equation}
+    \label{eq:upsample1}
+    \delta_j^{(l)}(x,y)=\delta_j^{(l+1)}(\lceil x/p_h \rceil ,\lceil y/p_b \rceil) \nabla T(j)
+\end{equation}
+Ist $l+1$ eine Flatten-Schicht mit einer Flatten-Funktion $T_f$, so gilt
+\begin{equation}
+    \label{eq:upsample2}
+    \delta_j^{(l)}=T^{-1}_f(\delta_j^{(l+1)})
+\end{equation}
+Die Berechnung in (\ref{eq:upsample1}) und (\ref{eq:upsample2}) wird auch Upsampling genannt.
 
 \section{Anwendung bei der Ziffernerkennung}
 \label{abs:model_mnist}
@@ -481,10 +514,10 @@ Dann gilt schließlich
 
 
 
-\section{Motivation der Faltung}
-Weiter machen! optionaler Abschnitt falls noch Zeit ist(wenn nicht im Einleitungstext des kapitels entfernen!!)
-Sie nutzt wichtige Konzepte zur Optimierung von Machine-Learning-Verfahren wie spärliche Konnektivität (engl. \textit{sparse connectivity}), \textit{Parameter Sharing} und \textit{äquivariante Repräsentation}, vgl. \cite{goodfellow}. Spärliche Konnektivität bedeutet, dass Neuronen auf einer Schicht $\mathcal{s}_{l+1}$ nur durch wenige Neuronen der Schicht $\mathcal{S}_l$ beeinflusst wird. Dies ist bei CNNs typisch, da meist die verwendeten Filter viel kleiner als die Eingabe ist. Noch mehr erklären + Abbildung
+%\section{Motivation der Faltung}
+%Weiter machen! optionaler Abschnitt falls noch Zeit ist(wenn nicht im Einleitungstext des kapitels entfernen!!)
+%Sie nutzt wichtige Konzepte zur Optimierung von Machine-Learning-Verfahren wie spärliche Konnektivität (engl. \textit{sparse connectivity}), \textit{Parameter Sharing} und \textit{äquivariante Repräsentation}, vgl. \cite{goodfellow}. Spärliche Konnektivität bedeutet, dass Neuronen auf einer Schicht $\mathcal{s}_{l+1}$ nur durch wenige Neuronen der Schicht $\mathcal{S}_l$ beeinflusst wird. Dies ist bei CNNs typisch, da meist die verwendeten Filter viel kleiner als die Eingabe ist. Noch mehr erklären + Abbildung
 
-Mit Parameter Sharing ist die Nutzung von gleichen Parametern für mehrere Funktionen im neuronalen Netz gemeint. In herkömmlichen Feed-Forward-Netzen wird jedes Element der Gewichtsmatrizen für die Berechnung der Aktivierungen der jeweiligen Schichten verwendet. Anschließend werden diese Gewichte dann nicht mehr gebraucht. Im Zusammenhang von CNNs bedeutet Parameter Sharing während der Faltungsoperation, dass nur eine bestimmte Menge von Parametern erlernt werden müssen
-Noch mehr erklären + Abbildung
+%Mit Parameter Sharing ist die Nutzung von gleichen Parametern für mehrere Funktionen im neuronalen Netz gemeint. In herkömmlichen Feed-Forward-Netzen wird jedes Element der Gewichtsmatrizen für die Berechnung der Aktivierungen der jeweiligen Schichten verwendet. Anschließend werden diese Gewichte dann nicht mehr gebraucht. Im Zusammenhang von CNNs bedeutet Parameter Sharing während der Faltungsoperation, dass nur eine bestimmte Menge von Parametern erlernt werden müssen
+%Noch mehr erklären + Abbildung
 

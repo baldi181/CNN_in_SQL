@@ -343,10 +343,10 @@ Die lokalen Fehler bzg. $E_x$ für die Parameter der verdeckten Schicht lassen s
                     &=  \delta_j x_i
 \end{align*}
 mit $x_i$ als Eingabeneuron und
-\begin{equation*}
+\begin{equation}
     \label{eq:delta_hidden}
     \delta_j:= \left(\sum_{k=1}^{s_l} \delta_k w_{k,j}^l\right) \psi'(V_j)=\frac{\partial E_x}{\partial V_j}
-\end{equation*}
+\end{equation}
 als lokale Fehler der verdeckten Neuronen für $1 \leq j \leq s_j$. Hier werden die lokalen Fehler bezüglich $E_x$ von der darüberliegenden Schicht zurück propagiert.
 Für die Schwellwerte gilt wieder
 \begin{equation*}
@@ -419,7 +419,7 @@ Für die Problemstellung in dieser Arbeit ist es ausreichend, das Online-Verfahr
 
 \section{Zusammenfassung}
 \label{abs:NN_conc}
-In diesem Kapitel wurden KNN als Feed-Forward-Netze eingeführt. Es stellt sich heraus, dass diese Netze als probabilistische Modelle genutzt werden können, um Klassifikationsaufgaben hinreichend gut zu lösen. Dabei ist es wichtig die Hyper- und Modellparameter je nach Anwendung und Leistungsmaß optimal zu wählen. Dazu werden Trainingsdaten genutzt, um während eines Lernprozesses eine Fehlerfunktion zu Minimieren. Eine Lösung von \ref{eq:error_fun_opt} kann wegen der Komplexität der Fehlerfunktion $E$ bzw. der großen Menge von Parametern $\mathcal{W}$ selten direkt angegeben werden\cite{blum1992training}. Daher wird das Gradientenverfahren als iterativer Ansatz zur numerischen Minimierung der Fehlerfunktion genutzt. Dabei sind partielle Ableitungen der Fehlerfunktion bezüglich der Parameter nötig, welche im Backpropagationsalgorithmus mithilfe der mehrdimensionalen Kettenregel berechnet werden können. 
+In diesem Kapitel wurden Feed-Forward-Netze als Modelle eingeführt, um Klassifikationsaufgaben zu lösen. Dabei ist es wichtig die Hyper- und Modellparameter je nach Anwendung und Leistungsmaß optimal zu wählen. Dazu werden Trainingsdaten genutzt, um während eines Lernprozesses eine Fehlerfunktion zu Minimieren. Eine Lösung von (\ref{eq:Emin}) kann wegen der Komplexität allgmemeiner Fehlerfunktion $\mathcal{E}$ bzw. der großen Menge von Parametern $\mathcal{W}$ selten direkt angegeben werden\cite{blum1992training}. Daher wird das Gradientenverfahren als iterativer Ansatz zur numerischen Minimierung der Fehlerfunktion genutzt. Dabei sind partielle Ableitungen der Fehlerfunktion bezüglich der Parameter der Neuronenschichten nötig, welche im Backpropagationsalgorithmus dirket bzw. indirekt mithilfe der mehrdimensionalen Kettenregel berechnet werden können. 
 
 Bei der Analyse von Zeitreihen oder Bildern eignen sich abgewandelte Architekturen wie gefaltete neuronale Netze (CNN), engl. \textit{Convolutional Neural Networks}, welche im folgenden Kapitel \ref{kap:CNN} näher erläutert werden. Diese Art neuronaler Netze wird im weiteren Verlauf dieser Arbeit im Fokus stehen.
 
