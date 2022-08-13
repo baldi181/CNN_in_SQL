@@ -355,20 +355,20 @@ Für die Schwellwerte gilt wieder
 \end{equation*}
 
 \subsection*{Backpropagation für mehrere Neuronenschichten}
-Die Verallgemeinerung für beliebig viele verdeckte Schichten lässt sich in Abhängigkeit der lokalen Fehler beschreiben. Zur Vereinfachung der Notation beschreibe $L$ die Anzahl der Neuronenschichten eines FFN $\Lambda_L$. Seien mit $w^{(l)}_{i,j}$ und $b^{(l)}_i$ Parameter einer beliebigen Neuronenschicht $l$ bezeichnet. Dann gilt 
+Die Verallgemeinerung für beliebig viele verdeckte Schichten lässt sich in Abhängigkeit der lokalen Fehler beschreiben. Zur Vereinfachung der Notation beschreibe $L$ die Anzahl der Neuronenschichten eines FFN $\Lambda_L$. Seien mit $w^{(l)}_{j,i}$ und $b^{(l)}_j$ Parameter einer beliebigen Neuronenschicht $l$ bezeichnet. Dann gilt 
 \begin{align*}
-    \Delta w^{(l)}_{i,j}&= \frac{\partial E_x}{\partial w^{(l)}_{i,j}}= \delta^{(l)}_i z^{(l-1)}_j \\
-    \Delta b^{(l)}_{i}&= \frac{\partial E_x}{\partial b^{(l)}_{i}}= \delta^{(l)}_i
+    \Delta w^{(l)}_{j,i}&= \frac{\partial E_x}{\partial w^{(l)}_{j,i}}= \delta^{(l)}_j z^{(l-1)}_i \\
+    \Delta b^{(l)}_{j}&= \frac{\partial E_x}{\partial b^{(l)}_{j}}= \delta^{(l)}_j
 \end{align*}
 mit 
 \begin{equation*}
-    \delta^{(l)}_i=
+    \delta^{(l)}_j=
     \begin{cases}
-        e_i \psi'(V^{(L)}_i), &\text{wenn $i$ ein Ausgabeneuron ist}, \\
-        \left(\sum_{k} \delta^{(l+1)}_k w^{(l+1)}_{k,i}\right) \psi'(V_i^{(l)}), &\text{wenn $i$ ein verdecktes Neuron ist}.
+        e_j \psi'(V^{(L)}_j), &\text{wenn $j$ ein Ausgabeneuron ist}, \\
+        \left(\sum_{k} \delta^{(l+1)}_k w^{(l+1)}_{k,j}\right) \psi'(V_j^{(l)}), &\text{wenn $j$ ein verdecktes Neuron ist}.
     \end{cases}
 \end{equation*}
-Dabei ist $z^{(l-1)}_j$ die Aktivierung des Neurons $j$ auf der Schicht $l-1$, $e_i=y_i-t_i$ der Fehler des $i$-ten Ausgabeneurons, $V^{(l)}_i$ die Netzeingabe des $i$-ten Neurons der Schicht $l$, $\delta^{(l+1)}_k= \frac{\partial E_x}{\partial V^{(l+1)}_k}$ der lokale Fehler der Schicht $l+1$ und $w^{(l+1)}_{k,i}$ entsprechende Gewichte. 
+Dabei ist $z^{(l-1)}_i$ die Aktivierung des Neurons $i$ auf der Schicht $l-1$, $e_j=y_j-t_j$ der Fehler des $j$-ten Ausgabeneurons, $V^{(l)}_j$ die Netzeingabe des $j$-ten Neurons der Schicht $l$, $\delta^{(l+1)}_k= \frac{\partial E_x}{\partial V^{(l+1)}_k}$ der lokale Fehler der Schicht $l+1$ und $w^{(l+1)}_{k,j}$ entsprechende Gewichte. 
 Die Online-Backpropagation eines FFN $\Lambda$ wird als komponentenweiser und iterativer Trainingsalgorithmus beschrieben. Daher taucht im Algorithmus \ref{alg:online_backprop} eine Schleife in Abhängigkeit von $n$ auf. Als Abbruchbedingung kann eine maximale Anzahl $N$ von Iterationen vorgegeben werden. Andere Abbruchbedingungen können mit der Norm der Abstiegsrichtungen oder abhängig von der Größe des Traingsfehlers mit einer Fehlertoleranz $\varepsilon >0$ formuliert werden.
 
 \begin{algorithm}[h]
@@ -395,13 +395,13 @@ Die Online-Backpropagation eines FFN $\Lambda$ wird als komponentenweiser und it
         \EndFor 
         \State Berechne Gradienten und aktualisiere Gewichte
         \For{$l=1, \ldots, L$}
-        \For{$i=1, \ldots, s_{l}$}
-        \For{$j=1, \ldots s_{i-1}$}
-        \State $\Delta w_{i,j}^{(l)}= \delta_i^{(l)} z^{(l-1)}_j$
-        \State $w^{(l)}_{i,j}= w^{(l)}_{i,j} + \lambda \Delta w_{i,j}^{(l)}$
+        \For{$j=1, \ldots, s_{l}$}
+        \For{$i=1, \ldots s_{j-1}$}
+        \State $\Delta w_{j,i}^{(l)}= \delta_j^{(l)} z^{(l-1)}_i$
+        \State $w^{(l)}_{j,i}= w^{(l)}_{j,i} + \lambda \Delta w_{j,i}^{(l)}$
         \EndFor
-        \State $\Delta b^{(l)}_i=\delta^{(l)}_i$
-        \State $b^{(l)}_i=b^{(l)}_i + \lambda \Delta b^{(l)}_i$
+        \State $\Delta b^{(l)}_j=\delta^{(l)}_j$
+        \State $b^{(l)}_j=b^{(l)}_j + \lambda \Delta b^{(l)}_j$
         \EndFor
         \EndFor
         \State $n=n+1$

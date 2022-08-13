@@ -143,7 +143,7 @@ Beim maschinellen Lernen sind Eingabedaten oft als mehrdimensionale Arrays abgel
     \begin{equation*}
         \Psi_{conv}^{K,b}(X)_{:,:,q}:= \sum_{p=1}^{z_{in}} \alpha_{qp} \left(K_{q,p,:,:} \ast X_{:,:,p} \right) +b_q \; \forall q \in [z_{out}]
     \end{equation*}
-    wird gefaltete Übertragungsfunktion bezeichnet. Mit $\ast$ ist die Matrixfaltung wie in Definition \ref{def:matrix_faltung} gemeint und mit $\cdot$ werden beliebige Raumachsen bezeichnet. Die Skalare $\alpha_{qp}$ können als lernbare Parameter genutzt werden. In dieser Arbeit gelte $\alpha_{qp}=1$ für alle $q \in [z_{out}]$ und $p \in [z_{in}]$.
+    wird gefaltete Übertragungsfunktion bezeichnet. Mit $\ast$ ist die Matrixfaltung wie in Definition \ref{def:matrix_faltung} gemeint und mit $\cdot$ werden beliebige Raumachsen bezeichnet. Das Ergebnis der Übertragungsfunktion wird Netzeingabe genannt. Die Skalare $\alpha_{qp}$ können als lernbare Parameter genutzt werden. In dieser Arbeit gelte $\alpha_{qp}=1$ für alle $q \in [z_{out}]$ und $p \in [z_{in}]$.
 \end{defi}
 
 
@@ -236,7 +236,7 @@ Als Fehlerfunktion wird wieder die mittlere quadratische Abweichung (\ref{eq:MSE
 genutzt. 
 Die Abstiegsrichtungen für die Schichten des FFN wurden bereits im vorherigen Kapitel \ref{kap:NN} hergeleitet. Es müssen nun Gradienten innerhalb der Faltungsschichten beziehungsweise Pooling-Schichten berechnet werden. Die Einträge der Eingabe- und Merkmalskarten, in Zukunft einfach Karten genannt, können als Neuronenaktivierungen interpretiert werden. 
 
-Zur Vereinfachung werden die trainierbaren Gewichte der Kerne und Gewichtsmatrizen als Gewichte $w_{j,i}^{(l)}$ bezeichnet. Gemeint ist also das Gewicht zwischen Neuron $i$ auf (Faltungs)-Schicht $l-1$ und Neuron $j$ der (Faltungs)-Schicht $l$. Weiter sei $y_{i}^{(l-1)}$ die Aktivierung des Neurons $i$ der (Faltungs)-Schicht $l-1$ und $\delta_j^{(l)}$ sei der lokale Fehler des Neurons $j$ der (Faltungs)-Schicht $l$, welcher im Folgenden verallgemeinert wird. Die Funktion $\psi$ repräsentiere eine Aktivierungsfunktion einer  (Faltungs)-Schicht und Pooling-Funktionen werden mit $T$ sowie Flatten-Funktion mit $T_f$ bezeichnet.
+Zur Vereinfachung werden die trainierbaren Parameter der Kerne und Gewichtsmatrizen als Gewichte $w_{j,i}^{(l)}$ bezeichnet. Gemeint ist also das Gewicht zwischen Neuron $i$  und Neuron $j$ in der (Faltungs)-Schicht $l$. Weiter sei $y_{i}^{(l-1)}$ die Aktivierung des Neurons $i$ der (Faltungs)-Schicht $l-1$ und $\delta_j^{(l)}$ sei der lokale Fehler des Neurons $j$ der (Faltungs)-Schicht $l$, welcher im Folgenden verallgemeinert wird. Die Funktion $\psi$ repräsentiere eine Aktivierungsfunktion einer  (Faltungs)-Schicht und Pooling-Funktionen werden mit $T$ sowie Flatten-Funktion mit $T_f$ bezeichnet.
 %\begin{alignat*}{3}
    % &w_{j,i}^{(l)}  &&\text{Gewicht zwischen Neuron $i$ und Neuron $j$}, \\
     %&y_{j}^{(l-1)}   &&\text{Aktivierung des Neurons $i$ der Schicht $l-1$}, \\
@@ -251,11 +251,11 @@ Angenommen, $l$ ist eine Faltungsschicht. Die Aktivierung einer Merkmalskarte $j
 \begin{equation}
     y_j^{(l)}(x,y) =\psi \left(\sum_{i=1}^{z_{in}} \sum_{(u,v) \in F} y_i^{(l)}(x+u,y+u)\,  w_{j,i}^{(l)}(u,v) +b_j^{(l)}\right)
 \end{equation}   
-schreiben. Es ist zu beachten, dass $(x,y)$ hier ein Pixel der Karte $j$ meint und nicht mit Eingabe- bzw. Ausgabevektoren zu verwechseln ist. Mit $k$ als Dimension des vierdimensionalen Kerns und $l=\lfloor k/2 \rfloor$ ist $F=\{(u,v): \; -l \leq u,v \leq l\}$.
-Das Gewicht des Kerns von der Karte $i$ zur Karte $j$ an der Stelle $(u,v)$ ist mit $w^{(l)}_{j,i}(u,v)$ bezeichnet. Der Gradient ergibt sich als Summe über alle beteiligten Pixel $(x,y)$ der Merkmalskarte $j$, also
+schreiben. Es ist zu beachten, dass $(x,y)$ hier ein Pixel der Karte $j$ meint und nicht mit Eingabe- bzw. Ausgabevektoren zu verwechseln ist. Mit $k$ als Dimension des Kerns und $l=\lfloor k/2 \rfloor$ ist $F=\{(u,v): \; -l \leq u,v \leq l\}$.
+Das Gewicht des Kerns von der Karte $i$ zur Karte $j$ an der Stelle $(u,v)$ ist mit $w^{(l)}_{j,i}(u,v)$ bezeichnet. Der Gradient von $w_{j,i}^{(l)}$ ergibt sich als Summe über alle beteiligten Pixel $(x,y)$ der Merkmalskarte $j$, also
 \begin{equation}
     \label{eq:CNN_K_grad}
-    \Delta w_{j,i}^{(l)}(u,v)= \sum_{(x,y)} \left( y_i^{(l-1)}(x+u,y+v) \delta_j^{(l)}(x,y)\right)
+    \Delta w_{j,i}^{(l)}(u,v)= \sum_{(x,y)} \left( y_i^{(l-1)}(x+u,y+v) \delta_j^{(l)}(x,y)\right).
 \end{equation}
 Der Zusammenhang in Gleichung (\ref{eq:CNN_K_grad}) ist in Abbildung \ref{abb:error_conv} grafisch dargestellt. Analog ergibt sich für den Schwellwert
 
@@ -269,12 +269,8 @@ Der Zusammenhang in Gleichung (\ref{eq:CNN_K_grad}) ist in Abbildung \ref{abb:er
     \caption{Es ist die Rückwärtsrechnung bei Faltungsschichten dargestellt. Die Abbildung wurde aus \cite{du_diss} entnommen.}
     \label{abb:error_conv}
 \end{figure}
-Die Berechnung des lokalen Fehlers $\delta_{j}^{(l)}$ in (\ref{eq:CNN_K_grad}) der Schicht $l$ ist abhängig von der Schicht $l+1$. Auch hier wird wieder komponentenweise vorgegangen. Im Folgenden bezeichne
-\begin{equation*}
-    V^{(l)}_j=\sum_i w_{j,i}^{(l)} y_i^{(l-1)} 
-\end{equation*}
-die verallgemeinerte gewichtete Summe aller Eingaben $y_i^{(l-1)}$ des Neurons $j$. Hierbei können die $w_{j,i}^{(l)}$ Parameter einer Gewichtsmatrix oder eines Kerns sein.
-Ist die Schicht $l+1$ eine Neuronenschicht mit $s_k$ Neuronen, wird Gleichung \ref{eq:delta_hidden} zu
+Die Berechnung des lokalen Fehlers $\delta_{j}^{(l)}$ in (\ref{eq:CNN_K_grad}) der Schicht $l$ ist abhängig von der Schicht $l+1$. Auch hier wird wieder komponentenweise vorgegangen. Im Folgenden bezeichne $V_j^{(l)}$ die Netzeingabe des Neurons $j$ auf der Schicht $l$.
+Ist die Schicht $l+1$ eine Neuronenschicht mit $s_k$ Neuronen, wird der lokale Fehler \ref{eq:delta_hidden} zu
 \begin{equation*}
     \delta_j^{(l)}(x,y)=\sum_{k=1}^{s_{k}} \left(\sum_{(x,y)} \delta_k^{(l+1)} w_{k,j}^{(l+1)}(x,y)\right) \psi'(V_j^{(l)})
 \end{equation*}
@@ -282,19 +278,63 @@ verallgemeinert.
 Hier ist $\delta_j^{(l+1)}$ der von der Neuronenschicht $l+1$ zurück propagierte Fehler des Neurons $j$ bezüglich der Fehlerfunktion $E$ und $\psi(V^{(l)}_j)$ die entsprechende Aktivierung des Neurons $j$.
 Ist die nachfolgende Schicht eine Faltungsschicht, so ergibt sich der lokale Fehler der Schicht $l$ zu
 \begin{equation*}
-    \delta_j^{(l)}(x,y)=\sum_{k=1}^{z_{out}} \left(\sum_{(u,v) \in F} \delta_k^{(l+1)}(x,y) w_{k,j}^{(l+1)}(u,v)\right)
+    \delta_j^{(l)}(x,y)=\sum_{k=1}^{z_{out}} \left(\sum_{(u,v) \in F} \delta_k^{(l+1)}(x,y) w_{k,j}^{(l+1)}(u,v)\right) \psi'(V_j^{(l)}).
 \end{equation*}
 Ist $l+1$ eine Pooling-Schicht mit Schrittweiten $p_h,p_b$ und einer Pooling-Funktion $T$, so gilt
 \begin{equation}
     \label{eq:upsample1}
-    \delta_j^{(l)}(x,y)=\delta_j^{(l+1)}(\lceil x/p_h \rceil ,\lceil y/p_b \rceil) \nabla T(j)
+    \delta_j^{(l)}(x,y)=\delta_j^{(l+1)}(\lceil x/p_h \rceil ,\lceil y/p_b \rceil)\nabla T(j).
 \end{equation}
+Der lokale Fehler wird also je nach Wahl der Pooling-Funktion zurück propagiert. Beim Mittelwert-Pooling wird der Fehler gleichmäßig auf alle beteiligten Pixel aufgeteilt. Beim Maximum-Pooling wird der Fehler lediglich auf die Position des Neurons zurück propagiert, welches die größte Aktivierung besitzt. 
 Ist $l+1$ eine Flatten-Schicht mit einer Flatten-Funktion $T_f$, so gilt
 \begin{equation}
     \label{eq:upsample2}
-    \delta_j^{(l)}=T^{-1}_f(\delta_j^{(l+1)})
+    \delta_j^{(l)}=T^{-1}_f(\delta_j^{(l+1)}).
 \end{equation}
-Die Berechnung in (\ref{eq:upsample1}) und (\ref{eq:upsample2}) wird auch Upsampling genannt.
+Die Berechnung in (\ref{eq:upsample1}) und (\ref{eq:upsample2}) wird auch Upsampling genannt. Die obigen Resultate sind im Algorithmus \ref{alg:cnn_online} zusammengefasst.
+
+\begin{algorithm}[h]
+    \caption{Online-Backpropagation für gefaltete neuronale Netze}
+    \label{alg:cnn_online}
+    \begin{algorithmic}
+    \Require  Trainingsmenge $\mathcal{T}$, Modellparameter $\mathcal{W}$ und $\mathcal{W}_{conv}$, Fehlerfunktion $E$, Lernrate $\lambda$ 
+    \Ensure $\text{optimierte Modellparameter} \; \mathcal{W}, \mathcal{W}_{conv}$
+    \State Initialisiere zufällig alle Gewichte und Schwellwerte des CNN 
+    \State Berechne für die Eingabe $(x,c)$ den Zielvektor $t=t(x,c)$
+    \State $n=0$  
+    \State $E=\inf$
+    \While{$E >\varepsilon$ \textbf{or} $n < N$} \Comment{Abbruchbedingung wie bei Algorithmus \ref{alg:online_backprop}}
+    \For{$(x,c) \in \mathcal{T}$}
+        \State Vorwärtsrechnung $y=\Lambda(x)$
+        \For{$k=1, \ldots, s_L$}
+            \State $\delta_k^{(L)}=(y_k-t_k) \psi'(V^{(L)}_k)$
+        \EndFor
+        \State Backpropagation
+        \For{Schichten $l=L-1, \ldots 1$}
+             \For{Karten $j=1, \ldots, s_l$}
+                \For{\textbf{all} Pixel $(x,y)$}
+                    \State $\delta^{(l)}_i= \left(\sum_{k=1}^{s_{l+1}} \delta_k^{(l+1)} w^{(l+1)}_{k,i}\right) \psi'(V^{(l)}_i)$
+                \EndFor
+             \EndFor
+        \EndFor 
+        \State Berechne Gradienten und aktualisiere Gewichte
+        \For{$l=1, \ldots, L$}
+        \For{$j=1, \ldots, s_{l}$}
+        \For{$i=1, \ldots s_{j-1}$}
+        \State $\Delta w_{j,i}^{(l)}= \delta_j^{(l)} z^{(l-1)}_i$
+        \State $w^{(l)}_{j,i}= w^{(l)}_{j,i} + \lambda \Delta w_{j,i}^{(l)}$
+        \EndFor
+        \State $\Delta b^{(l)}_j=\delta^{(l)}_j$
+        \State $b^{(l)}_j=b^{(l)}_j + \lambda \Delta b^{(l)}_j$
+        \EndFor
+        \EndFor
+        \State $n=n+1$
+    \EndFor
+    \State $E=\frac{1}{2} \sum_{(x,c) \in \mathcal{T}} ||y-t||_2^2$
+    \EndWhile
+    \end{algorithmic}
+\end{algorithm}
+
 
 \section{Anwendung bei der Ziffernerkennung}
 \label{abs:model_mnist}

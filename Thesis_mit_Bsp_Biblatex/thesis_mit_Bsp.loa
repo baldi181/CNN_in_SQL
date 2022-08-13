@@ -16,13 +16,15 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\addvspace {10\p@ }
-\defcounter {refsection}{0}\relax 
-\contentsline {algorithm}{\numberline {5}{\ignorespaces Matrixfaltung mit diskreten Fourier-Transformationen\relax }}{53}{algorithm.5}%
+\contentsline {algorithm}{\numberline {5}{\ignorespaces Online-Backpropagation für gefaltete neuronale Netze\relax }}{46}{algorithm.5}%
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {algorithm}{\numberline {6}{\ignorespaces An algorithm with caption\relax }}{62}{algorithm.6}%
+\contentsline {algorithm}{\numberline {6}{\ignorespaces Matrixfaltung mit diskreten Fourier-Transformationen\relax }}{54}{algorithm.6}%
+\defcounter {refsection}{0}\relax 
+\addvspace {10\p@ }
+\defcounter {refsection}{0}\relax 
+\contentsline {algorithm}{\numberline {7}{\ignorespaces An algorithm with caption\relax }}{63}{algorithm.7}%
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
