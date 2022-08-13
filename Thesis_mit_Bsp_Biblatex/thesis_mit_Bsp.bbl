@@ -616,6 +616,40 @@
       \field{title}{Database systems - the complete book {(2.} ed.)}
       \field{year}{2009}
     \endentry
+    \entry{DBLP:journals/jmlr/GlorotB10}{inproceedings}{}
+      \name{author}{2}{}{%
+        {{hash=0b3943c3bfdbb5867b3760f7c7d488c2}{%
+           family={Glorot},
+           familyi={G\bibinitperiod},
+           given={Xavier},
+           giveni={X\bibinitperiod}}}%
+        {{hash=40a8e4774982146adc2688546f54efb2}{%
+           family={Bengio},
+           familyi={B\bibinitperiod},
+           given={Yoshua},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {JMLR.org}%
+      }
+      \strng{namehash}{02af15243279c938a0a5ca766835bcd4}
+      \strng{fullhash}{02af15243279c938a0a5ca766835bcd4}
+      \strng{bibnamehash}{02af15243279c938a0a5ca766835bcd4}
+      \strng{authorbibnamehash}{02af15243279c938a0a5ca766835bcd4}
+      \strng{authornamehash}{02af15243279c938a0a5ca766835bcd4}
+      \strng{authorfullhash}{02af15243279c938a0a5ca766835bcd4}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{{AISTATS}}
+      \field{series}{{JMLR} Proceedings}
+      \field{title}{Understanding the difficulty of training deep feedforward neural networks}
+      \field{volume}{9}
+      \field{year}{2010}
+      \field{pages}{249\bibrangedash 256}
+      \range{pages}{8}
+    \endentry
     \entry{Goodfellow-et-al-2016}{book}{}
       \name{author}{3}{}{%
         {{hash=5d2585c11210cf1d4512e6e0a03ec315}{%
@@ -1420,6 +1454,28 @@
       \field{volume}{192}
       \field{year}{2001}
     \endentry
+    \entry{gentle}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=b573f64a46c471c5d491c3f787180459}{%
+           family={Nguyen},
+           familyi={N\bibinitperiod},
+           given={Son},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{b573f64a46c471c5d491c3f787180459}
+      \strng{fullhash}{b573f64a46c471c5d491c3f787180459}
+      \strng{bibnamehash}{b573f64a46c471c5d491c3f787180459}
+      \strng{authorbibnamehash}{b573f64a46c471c5d491c3f787180459}
+      \strng{authornamehash}{b573f64a46c471c5d491c3f787180459}
+      \strng{authorfullhash}{b573f64a46c471c5d491c3f787180459}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{\url{https://medium.com/@ngocson2vn/a-gentle-explanation-of-backpropagation-in-convolutional-neural-network-cnn-1a70abff508b}}
+      \field{title}{A gentle explanation of Backpropagation in Convolutional Neural Network (CNN)}
+      \field{year}{2020}
+    \endentry
     \entry{nocedal1999numerical}{book}{}
       \name{author}{2}{}{%
         {{hash=88a342d927bf795b0d92af8a5613da31}{%
@@ -2072,6 +2128,28 @@
       \field{year}{2014}
       \field{pages}{364\bibrangedash 375}
       \range{pages}{12}
+    \endentry
+    \entry{key}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=06b2c7158c4ad039aef5682866dfa1ad}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Zhifei},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \strng{namehash}{06b2c7158c4ad039aef5682866dfa1ad}
+      \strng{fullhash}{06b2c7158c4ad039aef5682866dfa1ad}
+      \strng{bibnamehash}{06b2c7158c4ad039aef5682866dfa1ad}
+      \strng{authorbibnamehash}{06b2c7158c4ad039aef5682866dfa1ad}
+      \strng{authornamehash}{06b2c7158c4ad039aef5682866dfa1ad}
+      \strng{authorfullhash}{06b2c7158c4ad039aef5682866dfa1ad}
+      \field{sortinit}{Z}
+      \field{sortinithash}{96892c0b0a36bb8557c40c49813d48b3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{\url{https://medium.com/@ngocson2vn/a-gentle-explanation-of-backpropagation-in-convolutional-neural-network-cnn-1a70abff508b}}
+      \field{title}{Derivation of Backpropagation in Convolutional Neural Network (CNN)}
+      \field{year}{2016}
     \endentry
   \enddatalist
   \missing{jain}
