@@ -317,7 +317,7 @@ Die Berechnung in (\ref{eq:upsample1}) und (\ref{eq:upsample2}) wird auch Upsamp
                     \State $\delta_j^{(l)}(x,y)=\sum_{k=1}^{s_{l+1}} \left(\sum_{(x,y)} \delta_k^{(l+1)} w_{k,j}^{(l+1)}(x,y)\right) \psi'(V_j^{(l)})$
                     \EndIf
 
-                    \If{Schicht $l+1$ ist Faltungschicht}
+                    \If{Schicht $l+1$ ist Faltungsschicht}
                     \State $\delta_j^{(l)}(x,y)=\sum_{k=1}^{z_{out}} \left(\sum_{(u,v) \in F} \delta_k^{(l+1)}(x,y) w_{k,j}^{(l+1)}(u,v)\right) \psi'(V_j^{(l)})$
                     \EndIf
 
@@ -345,7 +345,7 @@ Die Berechnung in (\ref{eq:upsample1}) und (\ref{eq:upsample2}) wird auch Upsamp
                 \EndFor
             \EndIf
 
-            \If{Schicht $l$ ist Faltungschicht}
+            \If{Schicht $l$ ist Faltungsschicht}
 
                 \For{$j=1, \ldots, z_{out}$}
                     \For{$i=1, \ldots z_{in}$}
@@ -512,7 +512,7 @@ Bezeichne
 \begin{align*}
     \delta^{C^2}_{q,\psi}(i,j):&= \delta^{C^2}_q(i,j) \cdot C_q^2(i,j)\left(1- C_q^2(i,j)\right)\\
     &= \delta^{C^2}_q(i,j) \cdot \psi'(C^2_q(i,j)), \; \; 1 \leq i,j \leq 8, 1 \leq q \leq 12
-\end{align*} den lokalen Fehler $\delta^{C^2}_{q,\psi}$ der Faltungschicht $C^2$. Damit ergibt sich wegen der Ableitung der logistischen Funktion
+\end{align*} den lokalen Fehler $\delta^{C^2}_{q,\psi}$ der Faltungsschicht $C^2$. Damit ergibt sich wegen der Ableitung der logistischen Funktion
 \begin{equation*}
     C_{q,\psi}^2(i,j)=\sum_{p=1}^6 \sum_{u=-2}^2 \sum_{v=-2}^2 P^1_p(i+u,j+v) \cdot K^2_{q,p}(u,v) +b_q^2.
 \end{equation*}
@@ -539,7 +539,7 @@ Um $ \Delta K^1_{p,1}$ zu bestimmen, ist zunächst der lokale Fehler der darübe
 für alle 1 $\leq p \leq 6$. Mit $K^2_{q,p,rot180}(-u,-v):=K^2_{q,p}(u,v)$ ergibt sich
 \begin{align*}
     \delta^{P^1}_{p}(i,j)&=\sum_{q=1}^{12} \sum_{u=-2}^2 \sum_{v=-2}^2 \delta_{q,\psi}^{C^2}(i+(-u),j+(-v)) \cdot K^2_{q,p,rot180}(-u,-v) \\
-    \Rightarrow \delta^{P^1}_{p} &= \sum_{q=1}^{12} \delta_{q, \psi}^{C^2} \ast K_{q,p,rot180}^2, \; \; 1 \leq p \leq 6
+    \Rightarrow \delta^{P^1}_{p} &= \sum_{q=1}^{12} \delta_{q, \psi}^{C^2} \ast K_{q,p,rot180}^2, \; \; 1 \leq p \leq 6.
     \end{align*}
 Es gilt  $\delta^{P^1} \in \RR^{6 \times 12 \times 12}$. Mit dem Upsampling
 \begin{equation*}
@@ -565,7 +565,16 @@ Dann gilt schließlich
 \begin{align*}
     \Delta b_p^1 = \sum_{i=1}^{24} \sum_{j=1}^{24} \delta_{p, \psi}^{C^1}(i,j), \; \; 1 \leq p \leq 6.
 \end{align*}
-TODO Drehung + Update Parameter
+Die Aktualisierung der Parameter mit der Lernrate $\lambda \in \RR$ efolgt durch
+\begin{alignat*}{3}
+    K^{1}_{p,1}&=K^{1}_{p,1} &&+ \lambda \Delta K^1_{p,1} \\
+    b^{1}_{p}&=b^{1}_{p} &&+ \lambda \Delta b^1_{p} \\
+    K^{2}_{q,p}&=K^{2}_{q,p} &&+ \lambda \Delta K^2_{q,p} \\
+    b^{2}_{q}&=b^{2}_{q} &&+ \lambda \Delta b^2_{q} \\
+    W&=W &&+ \lambda \Delta W \\
+    b&=b&&+ \lambda \Delta b.
+\end{alignat*}
+Diese Schritte sind solange zu wiederholen, bis die gewünschte Erkennungsrate bzw. Generalisierungsrate erreicht wird. 
 %Im Folgenden werden konkrete Beispiele für verschiedene zweidimensionale Faltungen, welche in dieser Arbeit im Fokus stehen, gegeben. Dabei sind die Eingabe $X \in \RR^{h \times w}$ und der Filter $K \in \RR^{k_h \times k_w}$ immer als Matrizen zu verstehen. Das Ergebnis der Faltung $S= X \ast K$ wird als Merkmalskarte bezeichnet. Es sei angemerkt, dass oft $k_h=k_w$ sowie $k_h$ ungerade gewählt wird, z.B. $k_h=3$ oder $k_h=5$. Die Größe der Merkmalskarte wird durch die Parameter
 %\begin{itemize}
 %    \item $h,w$: Die Höhe und Breite der Eingabe,

@@ -2,13 +2,13 @@
 \label{kap:CNN_in_SQL}
 In diesem Kapitel werden Ideen zur Umsetzung der datenbankgestützten Mustererkennung durch tranierte gefaltete neuronale Netze vorgestellt. Der Schlüssel liegt dabei in der effektiven Implementierung der Faltungsoperation als SQL-Anfrage. Gelingt dies, so kann die Vorwärtsrechnung eines CNN durch Komposition von Faltungs-, Pooling- und Matrixvektoroperationen umgesetzt werden. Im Abschnitt \ref{abs:conv_in_sql} werden drei Implementierungsmöglichkeiten der Matrixfaltung, siehe \ref{def:matrix_faltung}, in SQL beleuchtet. Dabei stellt sich heraus, dass es sich lohnt, die diskrete Faltung als lineare Operationen mithilfe der in Kapitel \ref{kap:fund} vorgestellten Basisoperationen umzusetzen. So gelingt es, die Problemstellung \ref{prob:conv_in_sql} zu beantworten und auch für relativ große Grauwertbilder akzeptable Laufzeiten zu erreichen. 
 
-Im Abschnitt \ref{abs:FFN_in_sql} wird die Vorwärtsrechnung eines FFN als Komposition von affin linearen Transformationen mit dem SQL-Anfragekern dargestellt. Zusammen mit den Ergebnissen aus dem vorherigen Abschnitt wird hinsichtlich Problem \ref{prob:ffCCN}im Abschnitt \ref{abs_CNN_in_SQL} eine (objekt-) relationale Umsetzung der Vorwärtsrechnung für das tranierte Modell \ref{modell} zur Ziffernerkennung vorgestellt. Dies spiegelt zugleich das Hauptresultat dieser Arbeit wieder, welches schließlich im Abschnitt \ref{abs:CNN_eval} evaluiert wird. 
+Im Abschnitt \ref{abs_CNN_in_SQL} wird hinsichtlich Problem \ref{prob:ffCCN} eine (objekt-) relationale Umsetzung der Vorwärtsrechnung für das Modell \ref{modell} zur Ziffernerkennung vorgestellt. Dieses Modell sei mithilfe des Backpropagationsalgorithmus \ref{alg:cnn_online} bereits traniert, siehe Abschnitt \ref{abs:model_mnist}.
 \section{Die Faltungsoperation in SQL}
 \label{abs:conv_in_sql}
 Die Faltung zweier zeitdiskrete Signale stellt die Kernoperation innerhalb von CNN dar. Sind die entsprechenden Signale zweidimensional wie in Problemstellung \ref{prob:conv_in_sql}, so muss die Matrixfaltung $X \ast K$ für $X \in \RR^{h \times b}$ und $K \in \RR^{k \times k}$ mithilfe des im Abschnitt \ref{abs:relation_intro} vorgestellten SQL-Kerns umgesetzt werden. Dazu werden in diesem Abschnitt drei Varianten vorgestellt, welche das Coordinate-Schema bzw. das Spaltenkompression-Schema zur Darstellung der Matrizen $X$ und $K$ nutzen. 
 \subsection{Faltung mit Nachbarschaften}
 \label{abs:naive_app}
-Der erste Ansatz beruht auf den Nachbarschaftsbeziehungen der Pixel innerhalb der Matrix $X$, die durch die Faltung mit einem Kern $K$ mit den Abmessungen $k \times k$ gegeben sind. Dazu werden einige Bezeichnungen im Folgenden eingeführt. Seien $l=\lfloor k/2 \rfloor$ und die Mengen
+Der erste Ansatz beruht auf den Nachbarschaftsbeziehungen der Pixel innerhalb der Matrix $X$, die durch die Faltung mit einem gedrehten Kern $K$ mit den Abmessungen $k \times k$ gegeben sind. Dazu werden einige Bezeichnungen im Folgenden eingeführt. Seien $l=\lfloor k/2 \rfloor$ und die Mengen
 \begin{align*}
     N:=\{(i,j) \; :\; 1 \leq i \leq b, 1 \leq j \leq h \}
 \end{align*} 
@@ -22,7 +22,7 @@ gegeben, welche die Positionen der Matrizen $X$ und $K$ widerspiegeln. Hier wird
     U(i,j):=\{(i', j') \; : \; (i'-i, j'-j) \in F \}.
 \end{equation}
 Die Menge $U(i,j)$ wird auch als Nachbarschaft des Pixels $(i,j)$ bezeichnet.
-Die Matrixfaltung $Y= X \ast K$ lässt sich mit den Nachbarschaften (\ref{eq:neighborhood}) durch
+Die Matrixfaltung $Y= X \ast K$ lässt sich mit den Umgebungen (\ref{eq:neighborhood}) durch
 \begin{equation}
     \label{eq:naive_approach}
     Y_{i,j}=\sum_{(i',j') \in U(i,j)} X_{i', j'} K_{i'-i, j'-j}, \; \; \forall i \in [h], \forall j \in [b]
@@ -33,11 +33,11 @@ Zur Umsetzung der Faltungsoperation sind also zunächst die Nachbarschaften für
 
 \lstinputlisting[label=sql:naive, caption=SQL-Code zur Umsetzung der Faltung mit Nachbarschaften, language=SQL]{sql_code/neighborhood.sql}
 
-In der Teilanfrage (Zeile 4-14) werden die Nachbarschaften aller Pixel in der temporären $\mathbf{KREUZ}$ Relation berechnet. Dabei wird die \textbf{BETWEEN}-Funktion zur kompakten Darstellung der Konstantenselektion bezüglich $l=\lfloor k/2 \rfloor$ genutzt. In den Zeilen 15-17 werden dann die Nachbarschaften über die entsprechenden Indizies der Filtermatrix verbunden und schließlich die \textbf{SUM}-Funktion genutzt, um das Faltungsergebnis zu berechnen. Dieser naive Ansatz nutzt keine lineare Algebra in Form von Matrixvektor- oder Matrixmatrixmultiplikation und ist hinsichtlich des Problems \ref{prob:conv_in_sql} schon für verhältnismäßig kleine Grauwertbilder ineffizient. Zu Erkennen ist dies in der Abbildung \ref{abb:laufzeit_naive}, bei der die Laufzeiten der SQL-Anfrage \ref{sql:naive} in Abhängigkeit von der Dimension $n$ für allgemeine Matrizen $X \in [0,1]^{n \times n}$ dargestellt ist.
+In der Anfrage (Zeile 4-14) werden die Nachbarschaften aller Pixel in der temporären $\mathbf{KREUZ}$ Relation berechnet. Dabei wird die \textbf{BETWEEN}-Funktion zur kompakten Darstellung der Konstantenselektion bezüglich $l=\lfloor k/2 \rfloor$ genutzt. In den Zeilen 15-17 werden dann die Nachbarschaften über die entsprechenden Indizies der Filtermatrix verbunden und schließlich die \textbf{SUM}-Funktion genutzt, um das Faltungsergebnis zu berechnen. Dieser naive Ansatz nutzt keine lineare Algebra in Form von Matrixvektor- oder Matrixmatrixmultiplikation und ist hinsichtlich des Problems \ref{prob:conv_in_sql} schon für verhältnismäßig kleine Grauwertbilder ineffizient. Zu Erkennen ist dies in der Abbildung \ref{abb:laufzeit_naive}, bei der die Laufzeiten der SQL-Anfrage \ref{sql:naive} in Abhängigkeit von der Dimension $n$ für allgemeine Matrizen $X \in [0,1]^{n \times n}$ dargestellt ist.
 
 TODO Grafik ergebnis erklären.
 
-Eine Verbesserung der Laufzeiten kann mithilfe von Umsetzungstabellen, engl. \textit{Lookup tables}, erreicht werden. Da die Dimensionen aller vorkommenden Merkmalskarten und Kerne eines CNN von Anfang an durch die Wahl der Hyperparameter festgelegt werden, müssen die Nachbarschaften für die Faltung und das Pooling nur einmalig berechnet werden. Dies kann zudem vor der eigentlichen Erkennungsphase durchgeführt werden. So wird zwar der Speicheraufwand erhöht, aber der Zeitaufwand hinsichtlich der Faltungs- und Poolingoperation deutlich vermindert. Dazu werden pro Faltungs- und Poolingschicht jeweils eine Umsetzungstabelle \textbf{U} in der Form 
+Eine Verbesserung der Laufzeiten kann mithilfe von Umsetzungstabellen, engl. \textit{Lookup tables}, erreicht werden. Da die Dimensionen aller vorkommenden Merkmalskarten und Kerne eines CNN von Anfang an durch die Wahl der Hyperparameter festgelegt werden, müssen die Nachbarschaften für die Faltung und das Pooling nur einmalig berechnet werden. Dies kann zudem vor der eigentlichen Vorwärtsrechnung durchgeführt werden. So wird zwar der Speicheraufwand erhöht, aber der Zeitaufwand hinsichtlich der Faltungs- und Poolingoperation deutlich vermindert. Dazu werden pro Faltungs- und Poolingschicht jeweils eine Umsetzungstabelle \textbf{U} in der Form 
 \begin{align*}
     \mathbf{U}( &\underline{i} \; \; \mathrm{int}, \\
     &\underline{j} \; \;\mathrm{int},\\
@@ -45,24 +45,24 @@ Eine Verbesserung der Laufzeiten kann mithilfe von Umsetzungstabellen, engl. \te
     &\text{istrich} \; \; \mathrm{int},\\
     &\text{jstrich}\; \; \mathrm{int})
 \end{align*}
-mit dem zusammengesetzten Schlüssel $(i,j,\text{id})$ benötigt. Hier werden für jeden Pixel $(i,j)$ die Nachbarpixel $(i', j') \in U$ mit einer entsprechenden Nummer $\text{id}$ hinterlegt. So wird die zeitintensive Berechnung der Nachbarschaften mit dem  kartesischen Produkt in der Anfrage \ref{sql:naive} umgangen. Die Laufzeiten dieser Verbesserung sind in Abbildung \ref{abb:laufzeit_naive_verb} dargestellt.
+mit dem zusammengesetzten Schlüssel $(i,j,\text{id})$ benötigt. Hier werden für jeden Pixel $(i,j)$ die Nachbarpixel $(i', j') \in U$ mit einer entsprechenden Nummer $\text{id}$ zur Identifikation  hinterlegt. So wird die zeitintensive Berechnung der Nachbarschaften mit dem  kartesischen Produkt in der Anfrage \ref{sql:naive} umgangen. Die Laufzeiten der verbesserten Anfrage \ref{sql:naive_better} sind in Abbildung \ref{abb:laufzeit_naive_verb} dargestellt.
 
 TODO Grafik ergebnis erklären + Code.
 
 \subsection{Faltung als Matrixvektorprodukt}
 \label{abs:conv_using_sparse}
 Zwei beliebige Funktionen $f,g: D \rightarrow \mathbb{R}$ mit endlichem Definitionsbereich $D$ können als zeitdiskrete Signale $f=(f_0, \ldots, f_{n-1})^T \in \mathbb{R}^{n}$ und $g=(g_0, \ldots, g_{n-1})^T \in \mathbb{R}^{n}$ aufgefasst werden. %Durch das Fortsetzen mit Nullen besitzen die Vektoren $f$ und $g$ die gleiche Länge. 
-Die diskrete Faltung dieser eindimensionalen Signale wird im Folgenden erklärt.
+Die zyklische Faltung dieser eindimensionalen Signale wird im Folgenden erklärt.
 
-\begin{defi}
+\begin{defi}[Zyklische Faltung]
     \label{def:cycconv}
-    Das Faltungsergebnis $y \in \RR^{n}$ zweier zeitdiskreter Signale $f \in \RR^n$ und $g \in \RR^n$ ist durch
+    Die zyklische Faltung $y=f \circledast g \in \RR^{n}$ zweier zeitdiskreter Signale $f \in \RR^n$ und $g \in \RR^n$ ist durch
     \begin{equation}
         y_k:=\sum_{j=0}^{k} f_j g_{k-j}, \; \; 0 \leq k \leq n-1
     \end{equation}
-    definiert.
+    definiert. Dabei werden Indizies außerhalb von $0, \ldots, n-1$ zyklisch durch Modulo-Rechnung ($\mathrm{mod} \; n)$ in den gültigen Indexbereich abgebildet.
 \end{defi}
-In diesem Fall kann die diskrete Faltung von $f$ und $g$ als Matrixvektorprodukt mit Toeplitz-Matrizen formuliert werden. 
+In diesem Fall kann die diskrete Faltung von $f$ und $g$ als Matrixvektorprodukt mit speziellen Toeplitz-Matrizen formuliert werden. 
 
 \begin{defi}[Toeplitz-Matrix, Zyklische Matrix]
     \label{def:toeplitzM}
@@ -78,7 +78,7 @@ In diesem Fall kann die diskrete Faltung von $f$ und $g$ als Matrixvektorprodukt
         a_{n-1} &\ldots &\ldots &a_{2} &a_{1} &a_0
     \end{pmatrix}
 \end{equation*}
-    wird Toeplitz\footnote{Otto Toeplitz 1881-1940}-Matrix genannt. Hierbei gilt $A_{i,j}=A_{i+1,j+1}=a_{i-j}$ für alle Indizies $1 \leq i, j \leq n$. Eine quadratische Toeplitzmatrix ist damit durch ihre erste Zeile und Spalte eindeutig bestimmt. Für den Spezialfall $a_i=a_{-(n-i)}=a_{i-n}$ für alle $1 \leq i \leq n-1$ wird $A$ zyklische Matrix genannt.
+    wird Toeplitz\footnote{Otto Toeplitz 1881-1940}-Matrix genannt. Hierbei gilt $A_{i,j}=A_{i+1,j+1}=a_{i-j}$ für alle Indizies $1 \leq i, j \leq n$. Eine quadratische Toeplitzmatrix ist damit durch ihre erste Zeile und Spalte eindeutig bestimmt. Für den Spezialfall $a_i=a_{-(n-i)}=a_{i-n}$ für alle $1 \leq i \leq n-1$ wird $A$ zyklische Matrix genannt. Zyklische Matrizen sind damit eindeutig durch einen Vektor $a \in \RR^n$ charakterisiert.
 \end{defi}
 
 %\begin{defi}[Zyklische Matrix, vgl. Gray\cite{gray2006toeplitz}]
@@ -97,27 +97,16 @@ In diesem Fall kann die diskrete Faltung von $f$ und $g$ als Matrixvektorprodukt
    % besitzt.
 %\end{defi}    
     
-Für ein zeitdiskrete Signal $g \in \mathbb{R}^{n}$ wird die Toeplitz-Matrix 
-\begin{equation*} 
-    G_n=\begin{pmatrix}
-        g_0 & 0 &0 &\ldots &\ldots &0 \\ 
-        g_1 & g_0 &0 &\ddots & &\vdots \\
-        g_2 & g_1 &\ddots &\ddots &\ddots &\vdots\\
-        \vdots & \ddots &\ddots &\ddots &0 &0\\
-        \vdots & &\ddots &g_1 &g_0 &0 \\
-        g_{n-1} &\ldots &\ldots &g_{2} &g_{1} &g_0
-    \end{pmatrix}
-\end{equation*}
-konstruiert. Sei ein zeitdiskretes Signal $f \in \RR^{n}$ gegeben und der Vektor $y \in \RR^n$ durch
+Für zeitdiskrete Signael $f,g \in \mathbb{R}^{n}$ kann die zyklische Faltung $y=f \circledast g$ als Matrixvektorprodukt mit einer zyklischen Matrix dargestellt werden. Es gilt 
 \begin{equation*}
-    y:=G_n f =\begin{pmatrix}
+    y=\underbrace{\begin{pmatrix}
         g_0 & 0 &0 &\ldots &\ldots &0 \\ 
         g_1 & g_0 &0 &\ddots & &\vdots \\
         g_2 & g_1 &\ddots &\ddots &\ddots &\vdots\\
         \vdots & \ddots &\ddots &\ddots &0 &0\\
         \vdots & &\ddots &g_1 &g_0 &0 \\
         g_{n-1} &\ldots &\ldots &g_{2} &g_{1} &g_0
-    \end{pmatrix}
+    \end{pmatrix}}_{=:\mathrm{zyk}(g)}
     \begin{pmatrix}
         f_0 \\
         f_1 \\
@@ -132,15 +121,10 @@ konstruiert. Sei ein zeitdiskretes Signal $f \in \RR^{n}$ gegeben und der Vektor
         \sum_{j=0}^2 f_j g_{2-j}  \\
         \vdots \\
         \vdots \\
-        \sum_{j=0}^{n-1} f_j g_{n-1-j} 
-    \end{pmatrix}
+        \sum_{j=0}^{n-1} f_j g_{n-1-j}
+    \end{pmatrix}.
 \end{equation*}
-mit den Einträgen 
-\begin{equation*}
-   y_k=\sum_{j=0}^k f_j g_{k-j}, \; \; 0 \leq k \leq n-1
-\end{equation*}
-gegeben.
-Dann spiegelt $y$ das Ergebnis der eindimensionalen diskreten Faltung von $f$ und $g$ wider. Die Faltung zweidimensionaler Signale kann mithilfe von zyklischen Blockmatrizen dargestellt werden.
+Die Faltung zweidimensionaler Signale kann mithilfe von zyklischen Blockmatrizen dargestellt werden.
     %Matrix im Vektor $f$. Sei weiter $g \in \mathbb{R}^{n}$. Dann lässt sich mit
 %\begin{equation*}
  %       (F g)_k=\sum_{j=0}^{n-1}  f_{k-j} g_j,  \; \; k=0, \ldots, n-1
