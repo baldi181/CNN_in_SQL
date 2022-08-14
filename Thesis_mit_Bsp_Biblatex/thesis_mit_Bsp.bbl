@@ -845,6 +845,30 @@
       \verb 10.1109/IEEESTD.1985.82928
       \endverb
     \endentry
+    \entry{jain1989fundamentals}{book}{}
+      \name{author}{1}{}{%
+        {{hash=cd01587a47d1084d2adebe55a57d1c5c}{%
+           family={Jain},
+           familyi={J\bibinitperiod},
+           given={Anil\bibnamedelima K},
+           giveni={A\bibinitperiod\bibinitdelim K\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Prentice-Hall, Inc.}%
+      }
+      \strng{namehash}{cd01587a47d1084d2adebe55a57d1c5c}
+      \strng{fullhash}{cd01587a47d1084d2adebe55a57d1c5c}
+      \strng{bibnamehash}{cd01587a47d1084d2adebe55a57d1c5c}
+      \strng{authorbibnamehash}{cd01587a47d1084d2adebe55a57d1c5c}
+      \strng{authornamehash}{cd01587a47d1084d2adebe55a57d1c5c}
+      \strng{authorfullhash}{cd01587a47d1084d2adebe55a57d1c5c}
+      \field{sortinit}{J}
+      \field{sortinithash}{b2f54a9081ace9966a7cb9413811edb4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Fundamentals of digital image processing}
+      \field{year}{1989}
+    \endentry
     \entry{Kingma2015AdamAM}{article}{}
       \name{author}{2}{}{%
         {{hash=b6fbd171848aad4edf3925543f1f1522}{%
@@ -2152,7 +2176,6 @@
       \field{year}{2016}
     \endentry
   \enddatalist
-  \missing{jain}
   \missing{myprojekt}
 \endrefsection
 \endinput

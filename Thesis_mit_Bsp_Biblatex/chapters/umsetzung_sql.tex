@@ -97,7 +97,7 @@ In diesem Fall kann die diskrete Faltung von $f$ und $g$ als Matrixvektorprodukt
    % besitzt.
 %\end{defi}    
     
-Für zeitdiskrete Signael $f,g \in \mathbb{R}^{n}$ kann die zyklische Faltung $y=f \circledast g$ als Matrixvektorprodukt mit einer zyklischen Matrix dargestellt werden. Es gilt 
+Für zeitdiskrete Signale $f,g \in \mathbb{R}^{n}$ kann die zyklische Faltung $y=f \circledast g$ als Matrixvektorprodukt mit einer zyklischen Matrix dargestellt werden. Es gilt 
 \begin{equation*}
     y=\underbrace{\begin{pmatrix}
         g_0 & 0 &0 &\ldots &\ldots &0 \\ 
@@ -124,22 +124,22 @@ Für zeitdiskrete Signael $f,g \in \mathbb{R}^{n}$ kann die zyklische Faltung $y
         \sum_{j=0}^{n-1} f_j g_{n-1-j}
     \end{pmatrix}.
 \end{equation*}
-Die Faltung zweidimensionaler Signale kann mithilfe von zyklischen Blockmatrizen dargestellt werden.
+Die Faltung zweidimensionaler Signale kann mithilfe von doppelt zyklischen Blockmatrizen dargestellt werden.
     %Matrix im Vektor $f$. Sei weiter $g \in \mathbb{R}^{n}$. Dann lässt sich mit
 %\begin{equation*}
  %       (F g)_k=\sum_{j=0}^{n-1}  f_{k-j} g_j,  \; \; k=0, \ldots, n-1
   %  \end{equation*}
    % die diskrete Faltung von $f$ und $g$ darstellen. Dabei werden Indizies außerhalb von $0, \ldots, n-1$ zyklisch durch Modulo-Rechnung ($\mathrm{mod} \; n)$ in den gültigen Indexbereich abgebildet. Zyklische Matrizen aus Definition \ref{def:zykM} stellen Spezialfälle von Toeplitz-Matrizen dar.
-\begin{defi}
+\begin{defi}[Doppelt zyklische Blockmatrix]
     \label{def:double_circ}
-    Eine Blockmatrix $A \in \RR^{n^2 \times n^2}$ bestehend aus Blockmatrizen $B_{i,j} \in \RR^{n \times n}$ heißt zyklische Blockmatrix, genau dann wenn die Matrizen $B_{i,j}$ für alle $ 1 \leq i, j \leq n$ zyklisch im Sinne von Definietion \ref{def:toeplitzM} sind.
+    Eine Blockmatrix $A \in \RR^{n^2 \times n^2}$ bestehend aus Blockmatrizen $B_{i,j} \in \RR^{n \times n}$ heißt doppelt zyklische Blockmatrix, genau dann wenn die Matrizen $B_{i,j}$ für alle $ 1 \leq i, j \leq n$ zyklisch im Sinne von Definition \ref{def:toeplitzM} sind und $A$ zyklisch ist.
 \end{defi}
 
-Die Konstruktion solcher zyklischen Blockmatrizen soll im Folgenden beleuchtet werden. Dazu  seien für $h=b=n$ die Matrizen $X \in \RR^{n \times n}$ und $K \in \RR^{k \times k}$ einer Faltungschicht gegeben. Zunächst wird der Kern $K$ mithilfe des zero paddings ebenfalls in eine $n \times n$-Matrix eingebettet. Dazu wird der Kern ja nach der gewünschten Größe des Faltungsergebnis von unten und von rechts mit Nullen aufgefüllt, siehe dazu Beispiel \ref{bsp:Kzeropad}.
-Weiter bezeichne $\mathrm{vec}(X)$ die Transformation der Matrix $X$ in einen Vektor der Länge $n^2$, indem die Spalten von $X$ untereinander geschrieben werden, ähnlich wie bei der Flatten-Funktion \ref{def:flatten} aus Kapitel \ref{kap:CNN}. Das folgende Lemma liefert die Darstellung der Faltungsoperation als Matrixvektorprodukt.
+Die Konstruktion solcher zyklischen Blockmatrizen soll im Folgenden beleuchtet werden. Dazu seien die Matrizen $X \in \RR^{n \times n}$ und $K \in \RR^{k \times k}$ gegeben. Zunächst wird der Kern $K$ mithilfe des zero paddings ebenfalls in eine $n \times n$-Matrix eingebettet. Dazu wird der Kern von unten und von rechts mit Nullen aufgefüllt, siehe dazu Beispiel \ref{bsp:Kzeropad}.
+Weiter bezeichne $\mathrm{vec}(X)$ die Transformation der Matrix $X$ in einen Vektor der Länge $n^2$, indem die Spalten von $X$ untereinander geschrieben werden, ähnlich wie bei der Flatten-Funktion \ref{def:flatten} aus Abschnitt \ref{abs:CNN_arch}. Das folgende Lemma liefert die Darstellung der Matrixfaltung \ref{def:matrix_faltung} als Matrixvektorprodukt.
 
-\begin{lem}[vgl. Jain\cite{jain}, Goodfellow\cite{Goodfellow-et-al-2016}]
-    Für $K \in \RR^{n \times n}$ wird die zyklische Blockmatrix $A \in \RR^{n \times n}$ als
+\begin{lem}[vgl. Jain \cite{jain1989fundamentals}, Goodfellow \cite{Goodfellow-et-al-2016}]
+    Für $K \in \RR^{n \times n}$ wird die zyklische Blockmatrix $A \in \RR^{n \times n}$ mit
     \begin{equation*}
         A=\begin{bmatrix}
             \mathrm{zyk}(K_{1,:}) &\mathrm{zyk}(K_{2,:}) &\ldots &\mathrm{zyk}(K_{n,:}) \\
@@ -148,12 +148,33 @@ Weiter bezeichne $\mathrm{vec}(X)$ die Transformation der Matrix $X$ in einen Ve
             \mathrm{zyk}(K_{2,:}) &\mathrm{zyk}(K_{3,:}) &\ldots &\mathrm{zyk}(K_{1,:})
         \end{bmatrix}
     \end{equation*}
-    gegeben. Dann entspricht $Y=A \mathrm{vec}(X)$ dem Ergebnis der Matrixfaltung $X \ast K$. Die Matrix $A$ ist dünnbesetzt. 
+    konstruiert. Sei die zweidimensionale Faltung  von $X$ und $K$ als
+    \begin{equation}
+        Y_{i,j}= \sum_{u=0}^{n-1} \sum _{v=0}^{n-1} X_{i+u,j+v} K_{u,v} 
+    \end{equation}
+    mit $X_{i,j}=0$ für $0 \leq i \leq n-1$ und $0 \leq j \leq n-1$ gegeben. Dann gilt
+    $\mathrm{vec}(Y)=A \mathrm{vec}(X)$. Die Matrix $A$ ist dünnbesetzt. 
 \end{lem}
+
+\begin{proof}
+    Ein Beweis ist von Jain \cite{jain1989fundamentals} gegeben. Das Auffüllen von $K \in \RR^{k \times k}$ zu $K \in \RR^{n \times n}$ mit Nullen führt zur dünnbesetzten Strukturder  Matrix $A$. 
+\end{proof}
 
 \begin{bsp}
     \label{bsp:Kzeropad}
-    TODO
+    Seien die Matrizen
+    \begin{equation}
+        X=\begin{pmatrix}
+            x_1 & x_2 &x_3 \\
+            x_4 & x_5 &x_6 \\
+            x_7 & x_8 &x_9 \\
+        \end{pmatrix}, \; \;
+        K=\begin{pmatrix}
+            k_1 & k_2 \\
+            k_3 &k_4
+        \end{pmatrix}
+    \end{equation}
+    gegeben.
 \end{bsp}
 
 \subsection{Diskrete Fourier-Transformation}
