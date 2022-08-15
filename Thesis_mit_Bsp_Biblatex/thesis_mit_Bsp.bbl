@@ -1773,6 +1773,39 @@
       \field{title}{SPARSKIT: A basic tool kit for sparse matrix computations}
       \field{year}{1990}
     \endentry
+    \entry{DBLP:journals/corr/abs-1805-10408}{article}{}
+      \name{author}{3}{}{%
+        {{hash=64014fd620a917bf267e9e0dd0145d26}{%
+           family={Sedghi},
+           familyi={S\bibinitperiod},
+           given={Hanie},
+           giveni={H\bibinitperiod}}}%
+        {{hash=b96ecfc2de225594d8de94535b878b2f}{%
+           family={Gupta},
+           familyi={G\bibinitperiod},
+           given={Vineet},
+           giveni={V\bibinitperiod}}}%
+        {{hash=f3dcb00987c966c735accd4d34388f3c}{%
+           family={Long},
+           familyi={L\bibinitperiod},
+           given={Philip\bibnamedelima M.},
+           giveni={P\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{504ea8f562a1643ab12213509a29676d}
+      \strng{fullhash}{504ea8f562a1643ab12213509a29676d}
+      \strng{bibnamehash}{504ea8f562a1643ab12213509a29676d}
+      \strng{authorbibnamehash}{504ea8f562a1643ab12213509a29676d}
+      \strng{authornamehash}{504ea8f562a1643ab12213509a29676d}
+      \strng{authorfullhash}{504ea8f562a1643ab12213509a29676d}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{CoRR}
+      \field{title}{The Singular Values of Convolutional Layers}
+      \field{volume}{abs/1805.10408}
+      \field{year}{2018}
+    \endentry
     \entry{smith2007mathematics}{book}{}
       \name{author}{1}{}{%
         {{hash=1badfd642dad955ea19955d5165b2005}{%

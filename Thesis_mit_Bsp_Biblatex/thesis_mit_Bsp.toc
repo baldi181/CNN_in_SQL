@@ -55,27 +55,27 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.4}Anwendung bei der Ziffernerkennung}{41}{section.4.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {5}Datenbankgestützte Implementierung von CNN}{48}{chapter.5}%
+\contentsline {chapter}{\numberline {5}Datenbankgestützte Implementierung von CNN}{49}{chapter.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.1}Die Faltungsoperation in SQL}{48}{section.5.1}%
+\contentsline {section}{\numberline {5.1}Die Faltungsoperation in SQL}{49}{section.5.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1.1}Faltung mit Nachbarschaften}{48}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.1}Faltung mit Nachbarschaften}{49}{subsection.5.1.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1.2}Faltung als Matrixvektorprodukt}{50}{subsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.1.2}Faltung als Matrixvektorprodukt}{51}{subsection.5.1.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1.3}Diskrete Fourier-Transformation}{52}{subsection.5.1.3}%
+\contentsline {subsection}{\numberline {5.1.3}Diskrete Fourier-Transformation}{54}{subsection.5.1.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1.4}Zusammenfassung}{58}{subsection.5.1.4}%
+\contentsline {subsection}{\numberline {5.1.4}Zusammenfassung}{59}{subsection.5.1.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.2}Datenbankgestützte Vorwärtsrechnung für CNN}{58}{section.5.2}%
+\contentsline {section}{\numberline {5.2}Datenbankgestützte Vorwärtsrechnung für CNN}{59}{section.5.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Zusammenfassung und Ausblick}{64}{chapter.6}%
+\contentsline {chapter}{\numberline {6}Zusammenfassung und Ausblick}{65}{chapter.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Anhang}{65}{appendix.A}%
+\contentsline {chapter}{\numberline {A}Anhang}{66}{appendix.A}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.1}Weitere Basisoperation in SQL}{65}{section.A.1}%
+\contentsline {section}{\numberline {A.1}Weitere Basisoperation in SQL}{66}{section.A.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline Literatur}{66}{chapter*.35}%
+\contentsline {chapter}{\nonumberline Literatur}{67}{chapter*.35}%
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {B}Anhang}{i}{appendix.B}%
 \defcounter {refsection}{0}\relax 

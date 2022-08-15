@@ -57,12 +57,12 @@ Die zyklische Faltung dieser eindimensionalen Signale wird im Folgenden erklärt
 \begin{defi}[Zyklische Faltung]
     \label{def:cycconv}
     Die zyklische Faltung $y=f \circledast g \in \RR^{n}$ zweier zeitdiskreter Signale $f \in \RR^n$ und $g \in \RR^n$ ist durch
-    \begin{equation}
-        y_k:=\sum_{j=0}^{k} f_j g_{k-j}, \; \; 0 \leq k \leq n-1
-    \end{equation}
+    \begin{equation*}
+        y_k:=\sum_{j=0}^{n-1} f_j g_{(k-j) \, \mathrm{mod} \; n},  \; \; 0 \leq k \leq n-1
+    \end{equation*}
     definiert. Dabei werden Indizies außerhalb von $0, \ldots, n-1$ zyklisch durch Modulo-Rechnung ($\mathrm{mod} \; n)$ in den gültigen Indexbereich abgebildet.
 \end{defi}
-In diesem Fall kann die diskrete Faltung von $f$ und $g$ als Matrixvektorprodukt mit speziellen Toeplitz-Matrizen formuliert werden. 
+In diesem Fall kann die zyklische Faltung von $f$ und $g$ als Matrixvektorprodukt mit speziellen Toeplitz-Matrizen formuliert werden. 
 
 \begin{defi}[Toeplitz-Matrix, Zyklische Matrix]
     \label{def:toeplitzM}
@@ -78,7 +78,7 @@ In diesem Fall kann die diskrete Faltung von $f$ und $g$ als Matrixvektorprodukt
         a_{n-1} &\ldots &\ldots &a_{2} &a_{1} &a_0
     \end{pmatrix}
 \end{equation*}
-    wird Toeplitz\footnote{Otto Toeplitz 1881-1940}-Matrix genannt. Hierbei gilt $A_{i,j}=A_{i+1,j+1}=a_{i-j}$ für alle Indizies $1 \leq i, j \leq n$. Eine quadratische Toeplitzmatrix ist damit durch ihre erste Zeile und Spalte eindeutig bestimmt. Für den Spezialfall $a_i=a_{-(n-i)}=a_{i-n}$ für alle $1 \leq i \leq n-1$ wird $A$ zyklische Matrix genannt. Zyklische Matrizen sind damit eindeutig durch einen Vektor $a \in \RR^n$ charakterisiert.
+    wird Toeplitz\footnote{Otto Toeplitz 1881-1940}-Matrix genannt. Hierbei gilt $A_{i,j}=A_{i+1,j+1}=a_{i-j}$ für alle Indizies $0 \leq i, j \leq n-1$. Eine quadratische Toeplitzmatrix ist damit durch ihre erste Zeile und Spalte eindeutig bestimmt. Für den Spezialfall $a_i=a_{-(n-i)}=a_{i-n}$ für alle $0 \leq i \leq n-1$ wird $A$ zyklische Matrix genannt. Zyklische Matrizen sind damit eindeutig durch einen Vektor $a \in \RR^n$ charakterisiert.
 \end{defi}
 
 %\begin{defi}[Zyklische Matrix, vgl. Gray\cite{gray2006toeplitz}]
@@ -100,12 +100,11 @@ In diesem Fall kann die diskrete Faltung von $f$ und $g$ als Matrixvektorprodukt
 Für zeitdiskrete Signale $f,g \in \mathbb{R}^{n}$ kann die zyklische Faltung $y=f \circledast g$ als Matrixvektorprodukt mit einer zyklischen Matrix dargestellt werden. Es gilt 
 \begin{equation*}
     y=\underbrace{\begin{pmatrix}
-        g_0 & 0 &0 &\ldots &\ldots &0 \\ 
-        g_1 & g_0 &0 &\ddots & &\vdots \\
-        g_2 & g_1 &\ddots &\ddots &\ddots &\vdots\\
-        \vdots & \ddots &\ddots &\ddots &0 &0\\
-        \vdots & &\ddots &g_1 &g_0 &0 \\
-        g_{n-1} &\ldots &\ldots &g_{2} &g_{1} &g_0
+        g_0 & g_{n-1} &g_{n-2} &\ldots &g_1 \\ 
+        g_1 & g_0 &g_{n-1} &\ldots &g_2 \\
+        g_2 &g_1 &g_0 &\ddots &g_3\\
+        &\ddots &\ddots &\ddots & & \\
+        g_{n-1} &g_{n-2} &g_{n-3} &\ldots &g_0
     \end{pmatrix}}_{=:\mathrm{zyk}(g)}
     \begin{pmatrix}
         f_0 \\
@@ -114,15 +113,7 @@ Für zeitdiskrete Signale $f,g \in \mathbb{R}^{n}$ kann die zyklische Faltung $y
         \vdots \\
         \vdots \\
         f_{n-1}
-    \end{pmatrix} \\
-    = \begin{pmatrix}
-        g_0 f_0 \\
-        g_1 f_0+ g_0 f_1 \\
-        \sum_{j=0}^2 f_j g_{2-j}  \\
-        \vdots \\
-        \vdots \\
-        \sum_{j=0}^{n-1} f_j g_{n-1-j}
-    \end{pmatrix}.
+    \end{pmatrix}
 \end{equation*}
 Die Faltung zweidimensionaler Signale kann mithilfe von doppelt zyklischen Blockmatrizen dargestellt werden.
     %Matrix im Vektor $f$. Sei weiter $g \in \mathbb{R}^{n}$. Dann lässt sich mit
@@ -135,11 +126,11 @@ Die Faltung zweidimensionaler Signale kann mithilfe von doppelt zyklischen Block
     Eine Blockmatrix $A \in \RR^{n^2 \times n^2}$ bestehend aus Blockmatrizen $B_{i,j} \in \RR^{n \times n}$ heißt doppelt zyklische Blockmatrix, genau dann wenn die Matrizen $B_{i,j}$ für alle $ 1 \leq i, j \leq n$ zyklisch im Sinne von Definition \ref{def:toeplitzM} sind und $A$ zyklisch ist.
 \end{defi}
 
-Die Konstruktion solcher zyklischen Blockmatrizen soll im Folgenden beleuchtet werden. Dazu seien die Matrizen $X \in \RR^{n \times n}$ und $K \in \RR^{k \times k}$ gegeben. Zunächst wird der Kern $K$ mithilfe des zero paddings ebenfalls in eine $n \times n$-Matrix eingebettet. Dazu wird der Kern von unten und von rechts mit Nullen aufgefüllt, siehe dazu Beispiel \ref{bsp:Kzeropad}.
-Weiter bezeichne $\mathrm{vec}(X)$ die Transformation der Matrix $X$ in einen Vektor der Länge $n^2$, indem die Spalten von $X$ untereinander geschrieben werden, ähnlich wie bei der Flatten-Funktion \ref{def:flatten} aus Abschnitt \ref{abs:CNN_arch}. Das folgende Lemma liefert die Darstellung der Matrixfaltung \ref{def:matrix_faltung} als Matrixvektorprodukt.
+Die Konstruktion solcher zyklischen Blockmatrizen soll im Folgenden beleuchtet werden. Dazu seien die Matrizen $X \in \RR^{n \times n}$ und $K \in \RR^{k \times k}$ gegeben. Zunächst wird der Kern $K$ in eine $n \times n$-Matrix eingebettet, die wieder mit $K \in \RR^{n \times n}$ bezeichnet wird. Dazu wird der Kern von unten und von rechts mit Nullen aufgefüllt, siehe Beispiel \ref{bsp:Kzeropad}.
+Weiter bezeichne $\mathrm{vec}(X)$ die Transformation der Matrix $X$ in einen Vektor der Länge $n^2$, indem die Spalten von $X$ untereinander geschrieben werden, ähnlich wie bei der Flatten-Funktion \ref{def:flatten} aus Abschnitt \ref{abs:CNN_arch}. Das folgende Lemma liefert die Darstellung der Matrixfaltung, vgl. Bemerkung \ref{bem:K_conv_komp}, als Matrixvektorprodukt.
 
-\begin{lem}[vgl. Jain \cite{jain1989fundamentals}, Goodfellow \cite{Goodfellow-et-al-2016}]
-    Für $K \in \RR^{n \times n}$ wird die zyklische Blockmatrix $A \in \RR^{n \times n}$ mit
+\begin{lem}[vgl. Jain\cite{jain1989fundamentals}, \cite{DBLP:journals/corr/abs-1805-10408}]
+    Für einen bereits gedrehten Kern $K \in \RR^{n \times n}$ wird die zyklische Blockmatrix $A \in \RR^{n \times n}$ als
     \begin{equation*}
         A=\begin{bmatrix}
             \mathrm{zyk}(K_{1,:}) &\mathrm{zyk}(K_{2,:}) &\ldots &\mathrm{zyk}(K_{n,:}) \\
@@ -149,34 +140,61 @@ Weiter bezeichne $\mathrm{vec}(X)$ die Transformation der Matrix $X$ in einen Ve
         \end{bmatrix}
     \end{equation*}
     konstruiert. Sei die zweidimensionale Faltung  von $X$ und $K$ als
-    \begin{equation}
+    \begin{equation*}
         Y_{i,j}= \sum_{u=0}^{n-1} \sum _{v=0}^{n-1} X_{i+u,j+v} K_{u,v} 
-    \end{equation}
-    mit $X_{i,j}=0$ für $0 \leq i \leq n-1$ und $0 \leq j \leq n-1$ gegeben. Dann gilt
-    $\mathrm{vec}(Y)=A \mathrm{vec}(X)$. Die Matrix $A$ ist dünnbesetzt. 
+    \end{equation*}
+    mit $X_{i,j}=0$ für $i \notin\{0,\ldots, n-1\}$ und $j \notin \{0, \ldots, n-1\}$ gegeben. Dann gilt der Zusammenhang
+    $\mathrm{vec}(Y)=A \, \mathrm{vec}(X)$. Die Matrix $A$ ist dünnbesetzt. 
 \end{lem}
 
 \begin{proof}
-    Ein Beweis ist von Jain \cite{jain1989fundamentals} gegeben. Das Auffüllen von $K \in \RR^{k \times k}$ zu $K \in \RR^{n \times n}$ mit Nullen führt zur dünnbesetzten Strukturder  Matrix $A$. 
+    Ein Beweis ist von Jain \cite{jain1989fundamentals} gegeben. Das Auffüllen von $K \in \RR^{k \times k}$ zu $K \in \RR^{n \times n}$ mit Nullen führt zur dünnbesetzten Struktur der Matrix $A$. 
 \end{proof}
-
 \begin{bsp}
     \label{bsp:Kzeropad}
     Seien die Matrizen
-    \begin{equation}
+    \begin{equation*}
         X=\begin{pmatrix}
             x_1 & x_2 &x_3 \\
             x_4 & x_5 &x_6 \\
             x_7 & x_8 &x_9 \\
         \end{pmatrix}, \; \;
         K=\begin{pmatrix}
-            k_1 & k_2 \\
-            k_3 &k_4
+            k_1 & k_2 &0\\
+            k_3 &k_4 &0 \\
+            0 &0 &0
         \end{pmatrix}
-    \end{equation}
-    gegeben.
+    \end{equation*}
+    gegeben. Mit 
+    \begin{align*}
+    A \, \mathrm{vec}(X) &=    
+    \begin{pmatrix}
+        k_1 & k_2 & 0 &k_3 &k_4 &0 &0 &0 &0 \\
+        0 & k_1 & k_2 &0 &k_3 &k_4 &0 &0 &0 \\
+        0 & 0 & 0 &k_1 &k_2 &0 &k_3 &k_4 &0 \\
+        0 & 0 & 0 &0 &k_1 &k_2 &0 &k_3 &k_4 
+    \end{pmatrix}
+    \begin{pmatrix}
+        x_1 \\
+        x_2 \\
+        x_3 \\
+        x_4 \\
+        x_5 \\
+        x_6 \\
+        x_7 \\
+        x_8 \\
+        x_9
+    \end{pmatrix} \\
+    &=\begin{pmatrix}
+        k_1 x_1+ k_2 x_2 +k_3 x_4 +k_4 x_5 \\
+        k_1 x_2+ k_2 x_3 +k_3 x_6 +k_4 x_6 \\
+        k_1 x_4+ k_2 x_5 +k_3 x_7 +k_4 x_8 \\
+        k_1 x_5+ k_2 x_6 +k_3 x_8 +k_4 x_9 
+    \end{pmatrix}=\mathrm{vec} \, (Y),
+\end{align*}
+kann die Matrixfaltung $Y = X \ast K$ ohne zero padding, welche im Modell \ref{modell} benötigt wird, als dünnbesetzte Matrixvektormultiplikation berechnet werden. Bei diesem Besipiel ist zu beachten, dass $A$ keine doppelt zyklische Blockmatrix ist, da sich die Dimension der Ergebnismatrix $ Y \in \RR^{ 4 \times 4}$ verkleinert. Es fehlen also gewisse Zeilen in $A$.
 \end{bsp}
-
+Die genaue Konstruktion doppelt zyklischer Blockmatrizen für die Faltungsoperation mit bzw. ohne zero padding ist ein technisches Detail und wird in dieser Arbeit nicht weiter beleuchtet. Für eine mögliche Implementierung sei auf den MATLAB-Code \ref{mat:code:zyk} im Anhang verwiesen.
 \subsection{Diskrete Fourier-Transformation}
 Die Diskrete Fourier\footnote{Jean Baptiste Joseph Fourier 1786-1830}-Transformation ist eine Methode aus dem Bereich der Fourier-Analysis. Dabei werden zeitdiskrete endliche Signale auf sogenannte diskrete, periodische Frequenzspektren abgebildet. In diesem Kontext wird zwischen Zeitbereich und Frequenzbereich unterschieden.
 
@@ -194,7 +212,7 @@ Mit der inversen Fourier-Transformation kann aus dem Signal im Frequenzbereich d
     \begin{equation*}
         x_j:= \frac{1}{n} \sum_{k=0}^{n-1} \mathrm{e}^{\frac{2 \pi i}{n} j k} \cdot \hat{x}_k, \; \; 0 \leq j \leq n-1
     \end{equation*}
-    lässt sich die inverse diskrete Fourier-Transformation, kurz $x=\mathrm{iDFT}(\hat{x})$, angeben.
+    lässt sich die inverse diskrete Fourier-Transformation, kurz $x=\mathrm{iDFT}(\hat{x})$, angeben. Das Paar $(x ,\hat{x})$ wird Fourier-Paar genannt.
 \end{defi}
 Die diskrete Fourier-Transformation aus Definition \ref{def:dft} lässt sich in ein Matrixvektorprodukt $\hat{x}=Fx$ überführen, wobei $F \in \mathbb{C}^{n \times n}$ eine symmetrische Matrix der Gestalt
 \begin{equation}
@@ -276,7 +294,7 @@ Zwischen der zyklischen Faltung \ref{def:cycconv} und der diskreten Fourier-Tran
         Y_{i,j}=\sum_{u=-l}^l \sum_{v=-l}^l X_{i+u, j+v} K_{u,v}, \; \; 1 \leq i, j \leq n
     \end{equation*}
     erklärt, vgl. Bemerkung \ref{bem:K_conv_komp}.
-    Der Kern $K$ wird in eine $n \times n$-Matrix wie in \ref{lem:circ_extension} eingebettet und diese wird wieder mit $K \in \RR^{n \times n}$ bezeichnet wird. Stehen die zweidimensionalen diskreten Fourier-Transformationen $\hat{X}=\mathrm{2DFT}(X)$ und $\hat{K}=\mathrm{2DFT}(K)$ zur Verfügung, so gilt mit dem Faltungstheorem \ref{satz:conv_theorem} der Zusammenhang
+    Der Kern $K$ wird in eine $n \times n$-Matrix wie in \ref{bem_circ_extension} eingebettet und diese wird wieder mit $K \in \RR^{n \times n}$ bezeichnet wird. Stehen die zweidimensionalen diskreten Fourier-Transformationen $\hat{X}=\mathrm{2DFT}(X)$ und $\hat{K}=\mathrm{2DFT}(K)$ zur Verfügung, so gilt mit dem Faltungstheorem \ref{satz:conv_theorem} der Zusammenhang
     \begin{align*}
         \mathrm{2DFT}(Y)&=\mathrm{2DFT}(X) \odot \mathrm{2DFT}(K). 
         %\Leftrightarrow &=\mathrm{i2DFT}(\hat{X} \odot \hat{K}).

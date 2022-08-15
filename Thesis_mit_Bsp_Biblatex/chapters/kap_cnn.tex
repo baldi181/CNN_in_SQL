@@ -285,13 +285,14 @@ Ist $l+1$ eine Pooling-Schicht mit Schrittweiten $p_h,p_b$ und einer Pooling-Fun
     \label{eq:upsample1}
     \delta_j^{(l)}(x,y)=\delta_j^{(l+1)}(\lceil x/p_h \rceil ,\lceil y/p_b \rceil)\nabla T.
 \end{equation}
-Der lokale Fehler wird also je nach Wahl der Pooling-Funktion zurück propagiert. Beim Mittelwert-Pooling wird der Fehler gleichmäßig auf alle beteiligten Pixel aufgeteilt. Beim Maximum-Pooling wird der Fehler lediglich auf die Position des Neurons zurück propagiert, welches die größte Aktivierung besitzt. 
+Dabei wird der Gradient $\nabla T$ jeweils an der zu $(x,y)$ korrespondierenden Stelle ausgewertet und mit dem Fehler der darüberliegenden Schicht multipliziert.
+Der lokale Fehler wird je nach Wahl der Pooling-Funktion zurück propagiert. Beim Mittelwert-Pooling wird der Fehler gleichmäßig auf alle beteiligten Pixel aufgeteilt. Beim Maximum-Pooling wird der Fehler lediglich auf die Position des Neurons zurück propagiert, welches die größte Aktivierung besitzt.
 Ist $l+1$ eine Flatten-Schicht mit einer Flatten-Funktion $T_f$, so gilt
 \begin{equation}
     \label{eq:upsample2}
     \delta_j^{(l)}=T^{-1}_f(\delta_j^{(l+1)}).
 \end{equation}
-Die Berechnung in (\ref{eq:upsample1}) und (\ref{eq:upsample2}) wird auch Upsampling genannt. Die obigen Resultate sind im Algorithmus \ref{alg:cnn_online} zusammengefasst.
+Die Berechnung in (\ref{eq:upsample1}) und (\ref{eq:upsample2}) wird auch Upsampling genannt. Die obigen Resultate sind im Algorithmus \ref{alg:cnn_online} zusammengefasst. Hier beschreibe $L$ die Anzahl aller Faltungsschichten, Pooling-Schichten und Neuronenschichten zusammen.
 
 \begin{algorithm}[H]
     \scriptsize
@@ -311,7 +312,7 @@ Die Berechnung in (\ref{eq:upsample1}) und (\ref{eq:upsample2}) wird auch Upsamp
             \State $\delta_k^{(L)}=(y_k-t_k) \psi'(V^{(L)}_k)$
         \EndFor
         \For{Schichten $l=L-1, \ldots 1$}
-             \For{Karten $j=1, \ldots, s_l$}
+             \For{\textbf{all} Karten/Neuronen $j$ in Schicht $l$}
                 \For{\textbf{all} Pixel $(x,y)$}
                     \If{Schicht $l+1$ ist Neuronenschicht}
                     \State $\delta_j^{(l)}(x,y)=\sum_{k=1}^{s_{l+1}} \left(\sum_{(x,y)} \delta_k^{(l+1)} w_{k,j}^{(l+1)}(x,y)\right) \psi'(V_j^{(l)})$
@@ -463,16 +464,14 @@ und der mittlere quadratische Fehler lautet
 \end{equation*}
 wobei $t=t(X,c)$ der Zielvektor des Datenpaars $(X,c)$ ist.
 
-%\newpage
 \subsection*{Backpropagation}
+
 Zuerst werden die Gradienten bezüglich der Gewichtsmatrix und Biasvektor der Neuronenschicht des FNN berechnet. Es gilt
 \begin{align*}
-    \begin{split}
         \Delta W(j,k) &=  \frac{\partial E}{\partial W(j,k)}\\
                        &=  \frac{\partial L}{\partial y(k)} \cdot \frac{\partial y(k)}{\partial W(j,k)}\\
                        &= (y(k)-t(k)) \cdot \frac{\partial}{\partial W(j,k)} \psi \left(\sum_{j=1}^{192} W(j,k) f(j)+b(k)\right)\\
                        &= (y(k)-t(k)) \cdot y(k)(1-y(k)) \cdot f(j).
-     \end{split}
 \end{align*}
 Mit $\delta^{\text{FFN}}(k)=(y(k)-t(k)) \cdot y(k)(1-y(k))$ für $1 \leq k \leq 10$ lässt sich $\Delta W$ als dyadisches Produkt  
 \begin{align*}
@@ -484,14 +483,17 @@ darstellen. Analog gilt
 \Delta b= \delta^{\text{FFN}}.
 \end{equation*}
 Um $ \Delta K^2_{q,p}$ zu bestimmen, ist zunächst der lokale Fehler der darüberliegenden Neuronenschicht zu ermitteln. Der lokale Fehler $\delta^f \in \RR^{192}$ wird mithilfe des lokalen Fehlers des FNN berechnet und lautet
-\begin{align*}
+\begin{align}
+    \label{eq:delta_f}
+    \begin{split}
     \delta^f(j) &=  \frac{\partial E}{\partial f} \\
                 &=  \sum_{k=1}^{10} \frac{\partial E}{\partial y(k)} \cdot \frac{\partial y(k)}{\partial f(j)} \\
                 &=  (y(k)-t(k)) \cdot \frac{\partial}{\partial f(j)} \psi \left(\sum_{j=1}^{192} W(k,j) f(j) +b(k)\right) \\
                 &=-  \sum_{k=1}^{10} (y(k)-t(k)) \cdot y(k)(1-y(k)) \cdot W(k,j) \\
                 &=\sum_{k=1}^{10} \delta^{\text{FFN}}(k) \cdot W(k,j) \\
                 \Rightarrow \delta^f &= W \delta^{\text{FFN}}.
-\end{align*}
+    \end{split}            
+\end{align}
 In der Pooling-Schicht $P^2$ sind keine Gradienten zu bestimmen, da diese nicht von den Modellparametern abhängt. Mit
 \begin{equation*}
     \delta^{P^2}=T_f^{-1}(\delta^f) \in \RR^{4 \times 4 \times 12}
@@ -521,11 +523,14 @@ Bezeichne
 %    P^1_{p,rot180}(u-i,v-j):=P^1_p(i-u,j-v).
 %\end{equation*}
 Es gilt
-\begin{align*}
+\begin{align}
+    \label{eq:conv_in_train}
+    \begin{split}
     \Delta K^2_{q,p}(u,v) &=  \sum_{i=1}^8 \sum_{j=1}^8 P^1_{p}(u+i,v+j) \cdot \delta^{C^2}_{q,\psi}(i,j) \\
      \Rightarrow \Delta K_{q,p}^2 &=  P^1_{p} \ast \delta^{C^2}_{q,\psi} , \; \; 1 \leq q \leq 12, 1 \leq p \leq 6.
-\end{align*}
-Dies ist besonders für die effiziente Implementierung der Rückwärtsrechnung nützlich, da Abstiegsrichtungen wieder mithilfe von Faltungsoperationen ausgedrückt werden können. Es muss also besonders die Faltung performant implementiert werden. Analog ergibt sich 
+    \end{split}
+\end{align}
+Dies ist besonders für die effiziente Implementierung der Rückwärtsrechnung nützlich, da Abstiegsrichtungen wieder mithilfe von Faltungsoperationen ausgedrückt werden können. Es muss also besonders die Faltung performant implementiert werden, da sie sowohl bei der Vorwärtsrechnung als auch Rückwärtsrechnung genutzt wird. Analog ergibt sich 
 \begin{equation*}
     \Delta b_q^2=  \sum_{i=1}^8 \sum_{j=1}^8 \delta_{q,\psi}^{C^2}(i,j), \; \; 1 \leq q \leq 12.
 \end{equation*}
@@ -574,7 +579,7 @@ Die Aktualisierung der Parameter mit der Lernrate $\lambda \in \RR$ efolgt durch
     W&=W &&+ \lambda \Delta W \\
     b&=b&&+ \lambda \Delta b.
 \end{alignat*}
-Diese Schritte sind solange zu wiederholen, bis die gewünschte Erkennungsrate bzw. Generalisierungsrate erreicht wird. 
+Diese Schritte sind solange zu wiederholen, bis die gewünschte Erkennungsrate bzw. Generalisierungsrate erreicht wird. Für die effiziente Implementierung des Trainingsprozesses sind die Darstellungen als Matrixvektorprodukte, z.B. in (\ref{eq:delta_f}), bzw. Faltungsoperationen, vgl. (\ref{eq:conv_in_train}), zu nutzen. Diese Operationen sind performant umzusetzen.
 %Im Folgenden werden konkrete Beispiele für verschiedene zweidimensionale Faltungen, welche in dieser Arbeit im Fokus stehen, gegeben. Dabei sind die Eingabe $X \in \RR^{h \times w}$ und der Filter $K \in \RR^{k_h \times k_w}$ immer als Matrizen zu verstehen. Das Ergebnis der Faltung $S= X \ast K$ wird als Merkmalskarte bezeichnet. Es sei angemerkt, dass oft $k_h=k_w$ sowie $k_h$ ungerade gewählt wird, z.B. $k_h=3$ oder $k_h=5$. Die Größe der Merkmalskarte wird durch die Parameter
 %\begin{itemize}
 %    \item $h,w$: Die Höhe und Breite der Eingabe,
