@@ -1,11 +1,11 @@
 # Fdb version 3
-["biber thesis_mit_Bsp"] 1660577746 "thesis_mit_Bsp.bcf" "thesis_mit_Bsp.bbl" "thesis_mit_Bsp" 1660578725
-  "literatur.bib" 1660554137 29664 88368395fd896221c98a7992e7009f8f ""
-  "thesis_mit_Bsp.bcf" 1660578724 113522 818185430d2ba67ce014f0a23b41fef6 "pdflatex"
+["biber thesis_mit_Bsp"] 1660578981 "thesis_mit_Bsp.bcf" "thesis_mit_Bsp.bbl" "thesis_mit_Bsp" 1660579474
+  "literatur.bib" 1660578973 30036 026aa11c4dfe0d4d4c360a88a68f66b4 ""
+  "thesis_mit_Bsp.bcf" 1660579473 113591 8bede9645249a6510baa72097cc071cf "pdflatex"
   (generated)
   "thesis_mit_Bsp.bbl"
   "thesis_mit_Bsp.blg"
-["pdflatex"] 1660578720 "c:/Users/Florian/Desktop/Thesis_mit_Bsp_Biblatex/thesis_mit_Bsp.tex" "thesis_mit_Bsp.pdf" "thesis_mit_Bsp" 1660578725
+["pdflatex"] 1660579469 "c:/Users/Florian/Desktop/Thesis_mit_Bsp_Biblatex/thesis_mit_Bsp.tex" "thesis_mit_Bsp.pdf" "thesis_mit_Bsp" 1660579474
   "c:/Users/Florian/Desktop/Thesis_mit_Bsp_Biblatex/thesis_mit_Bsp.tex" 1660574975 4972 a3e01e7e40ebb3eff0c35492f8719621 ""
   "c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1638374661 2375 baa924870cfb487815765f9094cf3728 ""
   "c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc" 1638374661 3486 c7eadf5dcc57b3b2d11736679f6636ba ""
@@ -352,8 +352,8 @@
   "chapters/grundlagen.tex" 1660241384 43148 cce7b3a58d08f145e09ca8301d8c1ff9 ""
   "chapters/kap_cnn.tex" 1660557925 45908 ba01fdf62f6f55678df340b810e522d2 ""
   "chapters/neuralnetworks.tex" 1660388462 34729 a0e33be370c8144679a468fa46de6974 ""
-  "chapters/summery.tex" 1660578714 4063 f866135b7b07776c5400d5499926ab50 ""
-  "chapters/umsetzung_sql.tex" 1660577741 39451 aea788f058a55c6880c60fb003b2173c ""
+  "chapters/summery.tex" 1660579426 4362 81a7b23ae92c05cc8b2179c657a836dd ""
+  "chapters/umsetzung_sql.tex" 1660579462 39471 0ead9b9f53ad8bb67907609cad410757 ""
   "einleitung.tex" 1660558006 10815 7a69ea17534b316f72797452d80a82ec ""
   "pics/UNI-Logo_Siegel_4c_115mm.pdf" 1464868732 433431 f11db027918b99c08f4d9bb589b1ba84 ""
   "pics/chapter_neuralnetworks/perzeptron.png" 1656683937 10803 ba484102c585ddc4d2501482002c11fd ""
@@ -371,16 +371,16 @@
   "sql_code/recursive_sum_n.txt" 1660169305 122 bd86d0e229c4861d7de796e332830919 ""
   "sql_code/sparsecnn.txt" 1660570880 166 3f3c8ad88aa9db90712e00e018c10d9a ""
   "symbole.tex" 1628779750 82 3e2dfa813347f5d2ddda3e80c81d3464 ""
-  "thesis_mit_Bsp.aux" 1660578724 53368 4748920bf6b400dd155bb53479224687 "pdflatex"
-  "thesis_mit_Bsp.bbl" 1660577749 91516 2f38919bd983a68606920387963344c1 "biber thesis_mit_Bsp"
-  "thesis_mit_Bsp.loa" 1660578724 1538 863f9bb7a289b8ef0875de442b8b3e0d "pdflatex"
-  "thesis_mit_Bsp.lof" 1660578724 1687 e01604bf5e6e5c68a629b5a2cf9232da "pdflatex"
-  "thesis_mit_Bsp.lol" 1660578724 2233 ca3a97cfe6b09296e1f31e8c880a2dc7 "pdflatex"
-  "thesis_mit_Bsp.lot" 1660578724 1393 6dcfaec938ddcdafd7f426cb1bdf8836 "pdflatex"
-  "thesis_mit_Bsp.out" 1660578723 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "thesis_mit_Bsp.run.xml" 1660578724 2404 6121a471ca421295cd701e7b589ac88a "pdflatex"
+  "thesis_mit_Bsp.aux" 1660579473 53543 a3f7d23114e94319c6dd6d1c911756bf "pdflatex"
+  "thesis_mit_Bsp.bbl" 1660578983 93032 5a6f47ecd1180b1239d08b3ff7dc8c64 "biber thesis_mit_Bsp"
+  "thesis_mit_Bsp.loa" 1660579473 1538 863f9bb7a289b8ef0875de442b8b3e0d "pdflatex"
+  "thesis_mit_Bsp.lof" 1660579473 1687 e01604bf5e6e5c68a629b5a2cf9232da "pdflatex"
+  "thesis_mit_Bsp.lol" 1660579473 2233 ca3a97cfe6b09296e1f31e8c880a2dc7 "pdflatex"
+  "thesis_mit_Bsp.lot" 1660579473 1393 6dcfaec938ddcdafd7f426cb1bdf8836 "pdflatex"
+  "thesis_mit_Bsp.out" 1660579472 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "thesis_mit_Bsp.run.xml" 1660579473 2404 6121a471ca421295cd701e7b589ac88a "pdflatex"
   "thesis_mit_Bsp.tex" 1660574975 4972 a3e01e7e40ebb3eff0c35492f8719621 ""
-  "thesis_mit_Bsp.toc" 1660578724 4673 32a0daf42e53ad266c5d3f37b2c0d8fe "pdflatex"
+  "thesis_mit_Bsp.toc" 1660579473 4673 32a0daf42e53ad266c5d3f37b2c0d8fe "pdflatex"
   "thesis_uro.sty" 1656709159 7586 768d1f80ac7becf521360715e0a2cb97 ""
   (generated)
   "thesis_mit_Bsp.aux"

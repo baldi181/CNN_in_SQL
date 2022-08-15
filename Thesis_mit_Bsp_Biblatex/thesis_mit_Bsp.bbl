@@ -82,6 +82,42 @@
       \field{pages}{439\bibrangedash 450}
       \range{pages}{12}
     \endentry
+    \entry{DBLP:journals/tcas/BaiZH18}{article}{}
+      \name{author}{3}{}{%
+        {{hash=ec3ab7bc4aab084445a72cae1e09f9e1}{%
+           family={Bai},
+           familyi={B\bibinitperiod},
+           given={Lin},
+           giveni={L\bibinitperiod}}}%
+        {{hash=0677bf42cec59492510735b7b22ea035}{%
+           family={Zhao},
+           familyi={Z\bibinitperiod},
+           given={Yiming},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=8b7b2893ca528f09d25532db1ee9c232}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={Xinming},
+           giveni={X\bibinitperiod}}}%
+      }
+      \strng{namehash}{06f2d4d13a4ed82befc2bc5eaf240b1d}
+      \strng{fullhash}{06f2d4d13a4ed82befc2bc5eaf240b1d}
+      \strng{bibnamehash}{06f2d4d13a4ed82befc2bc5eaf240b1d}
+      \strng{authorbibnamehash}{06f2d4d13a4ed82befc2bc5eaf240b1d}
+      \strng{authornamehash}{06f2d4d13a4ed82befc2bc5eaf240b1d}
+      \strng{authorfullhash}{06f2d4d13a4ed82befc2bc5eaf240b1d}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{{IEEE} Trans. Circuits Syst. {II} Express Briefs}
+      \field{number}{10}
+      \field{title}{A {CNN} Accelerator on {FPGA} Using Depthwise Separable Convolution}
+      \field{volume}{65-II}
+      \field{year}{2018}
+      \field{pages}{1415\bibrangedash 1419}
+      \range{pages}{5}
+    \endentry
     \entry{bilbao2017overfitting}{inproceedings}{}
       \name{author}{2}{}{%
         {{hash=f6613c5f715b164c90db71344977f492}{%

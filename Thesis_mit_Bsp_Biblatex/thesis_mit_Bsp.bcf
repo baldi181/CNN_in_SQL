@@ -2453,6 +2453,7 @@
     <bcf:citekey order="95">jain1989fundamentals</bcf:citekey>
     <bcf:citekey order="96">myprojekt</bcf:citekey>
     <bcf:citekey order="97">DBLP:conf/adbis/Marten0019</bcf:citekey>
+    <bcf:citekey order="98">DBLP:journals/tcas/BaiZH18</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">

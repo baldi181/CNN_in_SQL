@@ -7,14 +7,14 @@ In der Erkennungsphase werden trainierte Modelle genutzt, um erkannte Muster in 
 
 In dieser Arbeit wird das Modell \ref{modell} genutzt, um handgeschriebene Ziffern aus dem MNIST-Datensatz zu klassifizieren. Die Vorwärts- und Rückwärtsrechnung dieses Modells ist im Abschnitt \ref{abs:model_mnist} ausführlich beschrieben. Zusammen mit den Resultaten aus Kapitel \ref{kap:CNN_in_SQL} gelingt die datenbankgestützte Vorwärtsrechnung für dieses trainierte Modell. Damit wird Problemstellung \ref{prob:ffCCN} gelöst. Schließlich soll noch ein Ausblick auf weitere Forschungsthemen gegeben werden.
 
-\section*{Trainingsphase in SQL}
+\section*{Datenbankgestützte Trainingsphase}
 In den Abschnitten \ref{abs:task_training} und \ref{abs:CNN_train} wird der Online-Backpropagationsalgorithmus erläutert. Dabei müssen bestimmte Abstiegsrichtungen bestimmt werden. Die effiziente Berechnung dieser Abstiegsrichtungen gehört wohl zu den schwersten Aufgaben des Maschinellen Lernens. Die datenbankgestützte Umsetzung der Trainingsphase in (parallelen) Datenbankmanagementsystemen könnte dabei Abhilfe schaffen und ist zu untersuchen. 
 
-\section*{FFT in SQL}
+\section*{Schnelle Fourier-Transformation in SQL}
 Im Abschnitt \ref{abs:conv_in_sql} wird die Faltung mithilfe der diskreten Fourier-Transformation beleuchtet und eine datenbankgestützte Implementierung in SQL vorgestellt. Dabei wird die Transformation als Matrixmatrixprodukt $F X F^T$ berechnet, was insbesondere für große Matrizen zu langsamen Laufzeiten führt. Wird zur Berechnung der DFT die sogenannte schnelle Fourier-Transformation genutzt, können die Zeitkosten von $\mathcal{O}(n^2)$ auf $\mathcal{O}(n \log n)$ vermindert werden. Verschiedene Möglichkeiten, die eindimensionale FFT in SQL zu implementieren, werden in Marten et. al.\cite{DBLP:conf/adbis/Marten0019} präsentiert. Die Verallgemeinerung für die zweidimensionale FFT und deren Nutzung zur Berechnung von Faltungen ist zu diskutieren.
 
 \section*{Darstellung der Kerne}
-Bei CNN werden trainierbare Kerne genutzt, mit denen die Faltungen durchgeführt werden. Im Abschnitt \ref{abs:conv_in_sql} wird ein Ansatz erläutert, bei dem Kerne in Blockmatrizen überführt werden. Diese Matrizen weisen eine gewisse Bandstruktur auf, welche in Relationen zu überführen ist. So sollte es möglich sein, hinsichtlich des Zeit- und Speicheraufwands bessere Resultate zu erzielen. Darüber hinaus sind bestimmte Kerne seperabel \cite{}. Auch diese Eigenschaft ist in zukünftiger Forschung zu diskutieren.
+Bei CNN werden trainierbare Kerne genutzt, mit denen die Faltungen durchgeführt werden. Im Abschnitt \ref{abs:conv_in_sql} wird ein Ansatz erläutert, bei dem Kerne in Blockmatrizen überführt werden. Diese Matrizen weisen eine gewisse Bandstruktur auf, welche in Relationen überführt werden kann. So sollte es möglich sein, hinsichtlich des Zeit- und Speicheraufwands bessere Resultate zu erzielen. Darüber hinaus sind bestimmte Kerne seperabel \cite{DBLP:journals/tcas/BaiZH18}. Auch diese Eigenschaft ist in zukünftiger Forschung zu diskutieren.
 
 \section*{Systemanpassung}
-Während der gesamten Arbeit wurden die Laufzeiten von SQL-Anfragen im Datenbankmanagementsystem PostgreSQL gemessen. Außerdem wurde die Testanfragen auf einem Heimsystem bearbeitet, welches nicht weiter angepasst wurde
+Während der gesamten Arbeit wurden die Laufzeiten von SQL-Anfragen im Datenbankmanagementsystem PostgreSQL gemessen. Die verwendete Parameterkonfiguration von PostgreSQL ist im Abschnitt \ref{abs:conv_in_sql} angegeben. Eine Rekonfiguration kann zu besseren Laufzeiten für die in Kapitel \ref{kap:CNN_in_SQL} vorgeführten SQL-Anfagen führen und ist untersuchen. Schließlich sollten Faltungsoperationen somit schneller berechnet werden können.
