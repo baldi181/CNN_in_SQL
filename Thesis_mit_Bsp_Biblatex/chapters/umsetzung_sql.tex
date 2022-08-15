@@ -29,9 +29,33 @@ Die Matrixfaltung $Y= X \ast K$ lässt sich mit den Umgebungen (\ref{eq:neighbor
 \end{equation}
 berechnen. Dabei wird $X$ außerhalb des Definitionsbereiches mit Nullen aufgefüllt, sodass das Ergebnis $Y$ wieder die gleichen Abmessungen wie $X$ besitzt.
 
-Zur Umsetzung der Faltungsoperation sind also zunächst die Nachbarschaften für jeden Pixel von $X$ zu berechnen. In SQL kann dies mithilfe des kartesischem Produkts implementiert werden. Dazu bezeichnen $\mathbf{X}$ und $\mathbf{K}$ die Relation zur Darstellung der Matrizen $X \in \RR^{h \times b}$ und $K \in \RR^{k \times k}$ im Coordinate-Schema. Eine rein relationale Umsetzung von (\ref{eq:naive_approach}) ist durch die SQL-Anfrage \ref{sql:naive} gegeben. Zur Übersicht sind die SQL-Operationen blau gekennzeichnet. 
+Zur Umsetzung der Faltungsoperation sind also zunächst die Nachbarschaften für jeden Pixel von $X$ zu berechnen. In SQL kann dies mithilfe des kartesischem Produkts implementiert werden. Dazu bezeichnen $\mathbf{X}$ und $\mathbf{K}$ die Relation zur Darstellung der Matrizen $X \in \RR^{h \times b}$ und $K \in \RR^{k \times k}$ im Coordinate-Schema. Eine rein relationale Umsetzung von (\ref{eq:naive_approach}) ist durch die SQL-Anfrage \ref{sql:naive} gegeben. Zur Übersicht sind die SQL-Operationen blau gekennzeichnet. Als Datenbankmanagementsystem wird PostgreSQL mit der voreingestellten Parameterkonfiguration genutzt. Bestimmte Parameter sind der Tabelle \ref{tab:systemspecs} zu entnehmen. Für eine detailliertere Beschreibung dieser Parameter und ihrer Bedeutung sei auf die PostgreSQL-Dokumentation verwiesen.
 
-TODO systemspecs
+\begin{table}[h]
+    \centering
+    \begin{tabular}{|l|r|} \hline
+        Parameter & Value \\
+        \hline
+        shared\_buffers &128MB \\
+        \hline
+        temp\_buffers &8MB \\
+        \hline
+        effective\_cache\_size &4GB \\
+        \hline
+        work\_mem &4MB \\
+        \hline
+        maintenance\_work\_mem &64MB \\
+        \hline
+        min\_wal\_size &80MB \\
+        \hline
+        max\_wal\_size &1GB \\
+        \hline
+        wal\_buffers &4MB \\
+        \hline
+    \end{tabular}
+    \caption[]{Es ist die verwendete Parameterkonfiguration von PostgreSQL 14 dargestellt.}
+    \label{tab:systemspecs}
+\end{table}
 
 \lstinputlisting[label=sql:naive, caption=SQL-Code zur Umsetzung der Faltung mit Nachbarschaften, language=SQL]{sql_code/neighborhood.sql}
 

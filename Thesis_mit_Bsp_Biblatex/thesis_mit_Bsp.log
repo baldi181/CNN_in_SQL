@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.1)  15 AUG 2022 18:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.1)  15 AUG 2022 18:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1485,52 +1485,45 @@ chapter 5.
 
 ] (c:/texlive/2021/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
-) (./sql_code/neighborhood.sql)
+) (./sql_code/neighborhood.sql [50])
 
-LaTeX Warning: Reference `abb:laufzeit_naive' on page 50 undefined on input line 38.
+LaTeX Warning: Reference `abb:laufzeit_naive' on page 51 undefined on input line 62.
 
-[50]
 
-LaTeX Warning: Reference `abb:laufzeit_naive_verb' on page 51 undefined on input line 50.
+LaTeX Warning: Reference `abb:laufzeit_naive_verb' on page 51 undefined on input line 74.
 
-(./sql_code/neigh_verbesster.txt) [51]
+(./sql_code/neigh_verbesster.txt [51])
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 83.
+(Font)              <10> on input line 107.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 83.
- [52]
-Underfull \vbox (badness 10000) has occurred while \output is active []
+(Font)              <7> on input line 107.
+ [52] [53]
 
- [53]
-
-LaTeX Warning: Reference `mat:code:zyk' on page 54 undefined on input line 199.
+LaTeX Warning: Reference `mat:code:zyk' on page 54 undefined on input line 223.
 
 
-LaTeX Warning: Reference `abb:sparseapp' on page 54 undefined on input line 201.
+LaTeX Warning: Reference `abb:sparseapp' on page 54 undefined on input line 225.
 
-(./sql_code/sparsecnn.txt)
-Underfull \vbox (badness 2150) has occurred while \output is active []
+(./sql_code/sparsecnn.txt [54]) [55] [56]
 
- [54] [55] [56]
-
-LaTeX Warning: Reference `matlab:boundary' on page 57 undefined on input line 311.
+LaTeX Warning: Reference `matlab:boundary' on page 57 undefined on input line 335.
 
 [57]
 
-LaTeX Warning: Reference `abb:dft_insql' on page 58 undefined on input line 348.
+LaTeX Warning: Reference `abb:dft_insql' on page 58 undefined on input line 372.
 
 [58]
-Underfull \hbox (badness 2384) in paragraph at lines 351--351
+Underfull \hbox (badness 2384) in paragraph at lines 375--375
 [][][]|\T1/lmr/m/n/12 SQL-Code zur Um-set-zung der zwei-di-men-sio-na-len dis-kre-ten Fourier-
  []
 
-(./sql_code/dft_ansatz_FXFT.txt) (./sql_code/dft_ansatz_elemwise.txt) [59] [60] (./sql_code/recursive_sum_n.txt) (./sql_code/conv_recursive.txt [61])
+(./sql_code/dft_ansatz_FXFT.txt) [59] (./sql_code/dft_ansatz_elemwise.txt) [60] (./sql_code/recursive_sum_n.txt) (./sql_code/conv_recursive.txt [61])
 
-LaTeX Warning: Reference `app:app_2' on page 62 undefined on input line 404.
+LaTeX Warning: Reference `app:app_2' on page 62 undefined on input line 428.
 
 (./sql_code/C1_sql.txt [62]) (./sql_code/pool_flatten.txt [63]) [64] (./sql_code/ffn_in_sql.txt)
 
-LaTeX Warning: Reference `app:app_2' on page 65 undefined on input line 426.
+LaTeX Warning: Reference `app:app_2' on page 65 undefined on input line 450.
 
 ) (./chapters/summery.tex [65]
 chapter 6.
@@ -1578,18 +1571,18 @@ Package logreq Info: Writing requests to 'thesis_mit_Bsp.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 54041 strings out of 478353
- 1214058 string characters out of 5852101
- 2314866 words of memory out of 5000000
- 70762 multiletter control sequences out of 15000+600000
+ 54043 strings out of 478353
+ 1214091 string characters out of 5852101
+ 2282899 words of memory out of 5000000
+ 70763 multiletter control sequences out of 15000+600000
  513951 words of font info for 90 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  125i,17n,120p,10658b,3120s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}<c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi5.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr5.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmro12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss17.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmtt12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis_mit_Bsp.pdf (88 pages, 1291886 bytes).
+Output written on thesis_mit_Bsp.pdf (88 pages, 1293673 bytes).
 PDF statistics:
- 1608 PDF objects out of 1728 (max. 8388607)
- 1421 compressed objects within 15 object streams
- 505 named destinations out of 1000 (max. 500000)
+ 1610 PDF objects out of 1728 (max. 8388607)
+ 1423 compressed objects within 15 object streams
+ 506 named destinations out of 1000 (max. 500000)
  334 words of extra memory for PDF output out of 10000 (max. 10000000)
 
