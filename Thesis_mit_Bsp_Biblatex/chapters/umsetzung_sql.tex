@@ -123,14 +123,14 @@ Die Faltung zweidimensionaler Signale kann mithilfe von doppelt zyklischen Block
    % die diskrete Faltung von $f$ und $g$ darstellen. Dabei werden Indizies außerhalb von $0, \ldots, n-1$ zyklisch durch Modulo-Rechnung ($\mathrm{mod} \; n)$ in den gültigen Indexbereich abgebildet. Zyklische Matrizen aus Definition \ref{def:zykM} stellen Spezialfälle von Toeplitz-Matrizen dar.
 \begin{defi}[Doppelt zyklische Blockmatrix]
     \label{def:double_circ}
-    Eine Blockmatrix $A \in \RR^{n^2 \times n^2}$ bestehend aus Blockmatrizen $B_{i,j} \in \RR^{n \times n}$ heißt doppelt zyklische Blockmatrix, genau dann wenn die Matrizen $B_{i,j}$ für alle $ 1 \leq i, j \leq n$ zyklisch im Sinne von Definition \ref{def:toeplitzM} sind und $A$ zyklisch ist.
+    Eine Blockmatrix $A \in \RR^{n^2 \times n^2}$ bestehend aus Blockmatrizen $B_{i,j} \in \RR^{n \times n}$ heißt zyklische Blockmatrix, genau dann wenn die Matrizen $B_{i,j}$ für alle $ 1 \leq i, j \leq n$ zyklisch im Sinne von Definition \ref{def:toeplitzM} sind. Ist zusätzlich $A$ eine zyklische Matrix, so wird $A$ doppelt zyklischen Blockmatrix genannt.
 \end{defi}
 
 Die Konstruktion solcher zyklischen Blockmatrizen soll im Folgenden beleuchtet werden. Dazu seien die Matrizen $X \in \RR^{n \times n}$ und $K \in \RR^{k \times k}$ gegeben. Zunächst wird der Kern $K$ in eine $n \times n$-Matrix eingebettet, die wieder mit $K \in \RR^{n \times n}$ bezeichnet wird. Dazu wird der Kern von unten und von rechts mit Nullen aufgefüllt, siehe Beispiel \ref{bsp:Kzeropad}.
 Weiter bezeichne $\mathrm{vec}(X)$ die Transformation der Matrix $X$ in einen Vektor der Länge $n^2$, indem die Spalten von $X$ untereinander geschrieben werden, ähnlich wie bei der Flatten-Funktion \ref{def:flatten} aus Abschnitt \ref{abs:CNN_arch}. Das folgende Lemma liefert die Darstellung der Matrixfaltung, vgl. Bemerkung \ref{bem:K_conv_komp}, als Matrixvektorprodukt.
 
 \begin{lem}[vgl. Jain\cite{jain1989fundamentals}, \cite{DBLP:journals/corr/abs-1805-10408}]
-    Für einen bereits gedrehten Kern $K \in \RR^{n \times n}$ wird die zyklische Blockmatrix $A \in \RR^{n \times n}$ als
+    Für einen gedrehten Kern $K \in \RR^{n \times n}$ wird die zyklische Blockmatrix $A \in \RR^{n^2 \times n^2}$ als
     \begin{equation*}
         A=\begin{bmatrix}
             \mathrm{zyk}(K_{1,:}) &\mathrm{zyk}(K_{2,:}) &\ldots &\mathrm{zyk}(K_{n,:}) \\
@@ -187,14 +187,19 @@ Weiter bezeichne $\mathrm{vec}(X)$ die Transformation der Matrix $X$ in einen Ve
     \end{pmatrix} \\
     &=\begin{pmatrix}
         k_1 x_1+ k_2 x_2 +k_3 x_4 +k_4 x_5 \\
-        k_1 x_2+ k_2 x_3 +k_3 x_6 +k_4 x_6 \\
+        k_1 x_2+ k_2 x_3 +k_3 x_5 +k_4 x_6 \\
         k_1 x_4+ k_2 x_5 +k_3 x_7 +k_4 x_8 \\
         k_1 x_5+ k_2 x_6 +k_3 x_8 +k_4 x_9 
     \end{pmatrix}=\mathrm{vec} \, (Y),
 \end{align*}
-kann die Matrixfaltung $Y = X \ast K$ ohne zero padding, welche im Modell \ref{modell} benötigt wird, als dünnbesetzte Matrixvektormultiplikation berechnet werden. Bei diesem Besipiel ist zu beachten, dass $A$ keine doppelt zyklische Blockmatrix ist, da sich die Dimension der Ergebnismatrix $ Y \in \RR^{ 4 \times 4}$ verkleinert. Es fehlen also gewisse Zeilen in $A$.
+kann die Matrixfaltung $Y = X \ast K$ ohne zero padding, welche im Modell \ref{modell} benötigt wird, als dünnbesetzte Matrixvektormultiplikation berechnet werden. Bei diesem Besipiel ist zu beachten, dass $A$ keine doppelt zyklische Blockmatrix ist, da sich die Abmessungen der Ergebnismatrix $ Y \in \RR^{ 4 \times 4}$ verkleinern. Es fehlen also gewisse Zeilen in $A$, sodass $A$ nicht zyklisch ist.
 \end{bsp}
-Die genaue Konstruktion doppelt zyklischer Blockmatrizen für die Faltungsoperation mit bzw. ohne zero padding ist ein technisches Detail und wird in dieser Arbeit nicht weiter beleuchtet. Für eine mögliche Implementierung sei auf den MATLAB-Code \ref{mat:code:zyk} im Anhang verwiesen.
+Die genaue Konstruktion doppelt zyklischer Blockmatrizen für die Faltungsoperation mit bzw. ohne zero padding ist ein technisches Detail und wird in dieser Arbeit nicht weiter beleuchtet. Für eine mögliche Implementierung sei auf den MATLAB-Code \ref{mat:code:zyk} im Anhang verwiesen. 
+
+Die datenbankgestützte Umsetzung der Matrixvektormultiplikation mit dünnbesetzter Matrix wurde bereits im Abschnitt \ref{abs:SQL_linalg} erläutert. Bei CNN lassen sich die dünnbesetzten zyklischen Blockmatrizen für die Kerne bereits vor der Vorwärtsrechnung in Relationen speichern. Seien $X \in \RR^{n \times n}$ und $K \in \RR^{k \times k}$ sowie \textbf{vecX} und \textbf{K} entsprechende Relationen des Vektors $\mathrm{vec}(X)$ bzw. der eingebetteten $n \times n$-Matrix $K$ im Coordinate-Schema. Die Matrixfaltung $Y = X \ast K$ lässt sich mit den obigen Resultaten in der SQL-Anfrage \ref{sql:sparseapp} berechnen. In der Abbildung \ref{abb:sparseapp} sind numerische Resultate hinsichtlich des Speicher- und Zeitaufwands dargestellt. 
+
+\lstinputlisting[label=sql:sparseapp, caption=SQL-Code zur Umsetzung der Matrixfaltung als Matrixvektorprodukt, language=SQL]{sql_code/sparsecnn.txt}
+
 \subsection{Diskrete Fourier-Transformation}
 Die Diskrete Fourier\footnote{Jean Baptiste Joseph Fourier 1786-1830}-Transformation ist eine Methode aus dem Bereich der Fourier-Analysis. Dabei werden zeitdiskrete endliche Signale auf sogenannte diskrete, periodische Frequenzspektren abgebildet. In diesem Kontext wird zwischen Zeitbereich und Frequenzbereich unterschieden.
 
@@ -220,9 +225,9 @@ Die diskrete Fourier-Transformation aus Definition \ref{def:dft} lässt sich in 
     F=\begin{pmatrix}
         &1 &1 &1 &\ldots &1 \\
         &1 &\omega_n &\omega_n^2 &\ldots &\omega_n^{(n-1)} \\
-        &1 &\omega_n^2 &\omega_n^4 &\ldots &\omega_n^{(n-2)} \\
+        &1 &\omega_n^2 &\omega_n^4 &\ldots &\omega_n^{2 (n-1)} \\
         &\vdots &\vdots & &\ddots &\vdots \\
-        &1 &\omega_n^{(n-1)} &\omega_n^{(n-2)}  &\ldots &\omega_n
+        &1 &\omega_n^{(n-1)} &\omega_n^{2(n-1)}  &\ldots &\omega_n^{(n-1)(n-1)}
     \end{pmatrix}
 \end{equation}
 mit 
@@ -268,8 +273,8 @@ Wird ein zweidimensionales diskretes Signal in Form einer Matrix $X \in \RR^{n \
 \begin{defi}
     Die zweidimensionale diskrete Fourier-Transformation für $X \in \RR^{n \times n}$, kurz $\hat{X}=2\mathrm{DFT}(X)$, ist als
     \begin{align*}
-        \hat{X}_{u+1,v+1}:&= \sum_{l=0}^{n-1} \sum_{j=0}^{n-1} X_{l+1,j+1} \cdot \mathrm{e}^{\frac{2 \pi i}{n} -(lu+jv)} \\
-        &=\sum_{l=0}^{n-1} \mathrm{e}^{-\frac{2 \pi i}{n} l u} \left(\sum_{j=0}^{n-1} X_{l+1,j+1} \cdot \mathrm{e}^{-\frac{2 \pi i}{n} j v}\right), \; \; 0 \leq u, v \leq n-1
+        \hat{X}_{u,v}:&= \sum_{l=0}^{n-1} \sum_{j=0}^{n-1} X_{l,j} \cdot \mathrm{e}^{\frac{2 \pi i}{n} -(lu+jv)} \\
+        &=\sum_{l=0}^{n-1} \mathrm{e}^{-\frac{2 \pi i}{n} l u} \left(\sum_{j=0}^{n-1} X_{l,j} \cdot \mathrm{e}^{-\frac{2 \pi i}{n} j v}\right), \; \; 0 \leq u, v \leq n-1
     \end{align*}
     definiert.
 \end{defi}
@@ -279,7 +284,7 @@ Zwischen der zyklischen Faltung \ref{def:cycconv} und der diskreten Fourier-Tran
 
 \begin{satz}[Zyklisches Faltungstheorem]
     \label{satz:conv_theorem}
-    Seien Vektoren $f,g \in \RR^{n}$ gegeben und $y= f \ast g$ das Ergebnis der zyklischen Faltung. Dann gilt
+    Seien Vektoren $f,g \in \RR^{n}$ gegeben und $y= f \circledast g$ das Ergebnis der zyklischen Faltung. Dann gilt
     \begin{equation}
         \mathrm{DFT}(y)=\mathrm{DFT}(f) \odot \mathrm{DFT}(g).
     \end{equation}
@@ -289,26 +294,27 @@ Zwischen der zyklischen Faltung \ref{def:cycconv} und der diskreten Fourier-Tran
     Ein Beweis ist von Smith\cite{smith2007mathematics} gegeben.
 \end{proof}
 \begin{bem}
-    Seien die Matrizen $X \in \RR^{n \times n}$ und $K \in \RR^{k \times k}$ mit ungeradem $k$ gegeben. Weiter sei $l=\lfloor k/2 \rfloor$. Die Matrixfaltung $Y= X \ast K$ ist durch
+    Seien die Matrizen $X \in \RR^{n \times n}$ und $K \in \RR^{k \times k}$ mit ungeradem $k$ gegeben. Weiter sei der Kern $K$ gedreht und $l=\lfloor k/2 \rfloor$. Die Matrixfaltung $Y= X \ast K$ ist durch
     \begin{equation*}
         Y_{i,j}=\sum_{u=-l}^l \sum_{v=-l}^l X_{i+u, j+v} K_{u,v}, \; \; 1 \leq i, j \leq n
     \end{equation*}
     erklärt, vgl. Bemerkung \ref{bem:K_conv_komp}.
-    Der Kern $K$ wird in eine $n \times n$-Matrix wie in \ref{bem_circ_extension} eingebettet und diese wird wieder mit $K \in \RR^{n \times n}$ bezeichnet wird. Stehen die zweidimensionalen diskreten Fourier-Transformationen $\hat{X}=\mathrm{2DFT}(X)$ und $\hat{K}=\mathrm{2DFT}(K)$ zur Verfügung, so gilt mit dem Faltungstheorem \ref{satz:conv_theorem} der Zusammenhang
+    Der Kern $K$ wird in eine $n \times n$-Matrix ähnlich wie in \ref{bsp:Kzeropad} eingebettet und diese wird wieder mit $K \in \RR^{n \times n}$ bezeichnet wird. In der Matrix $K$ werden zusätzlich bestimmte Zeilen zyklisch verschoben, sodass die zyklische Randbedingungen der Faltung im Zeitbereich eingehalten werden. Stehen die zweidimensionalen diskreten Fourier-Transformationen $\hat{X}=\mathrm{2DFT}(X)$ und $\hat{K}=\mathrm{2DFT}(K)$ zur Verfügung, so gilt mit dem Faltungstheorem \ref{satz:conv_theorem} der Zusammenhang
     \begin{align*}
         \mathrm{2DFT}(Y)&=\mathrm{2DFT}(X) \odot \mathrm{2DFT}(K). 
         %\Leftrightarrow &=\mathrm{i2DFT}(\hat{X} \odot \hat{K}).
     \end{align*}
     % bereits um 180 Grad gedreht, vgl. Bemerkung \ref{bem:K_conv_komp}, 
 \end{bem}
+Für eine detailliertere Beschreibung der Konstruktion der eingebetteten Matrizen $K \in \RR^{n \times n}$ sei aufgrund dessen Umfangs auf Jain \cite{jain1989fundamentals} verwiesen. Eine Implementierungsmöglichkeit \ref{matlab:boundary} in MATLAB ist im Anhang zu finden.   
 Die Matrixfaltung innerhalb einer Faltungsschicht eines CNN lässt sich mit den obigen Resultaten in drei Schritten berechnen.
 \begin{itemize}
-    \item[1.] Es sind jeweils die zweidimensionalen diskreten Fourier-Transformationen für die Eingabe $\hat{X}$ und den Kern $\hat{K}$ zu berechnen.
+    \item[1.] Es sind jeweils die zweidimensionalen diskreten Fourier-Transformationen $\hat{X}$ und $\hat{K}$ für die Eingabe $X$ und den gedrehten Kern $K$ zu berechnen.
     \item[2.] Die Matrix $\hat{Y}= \hat{X} \odot \hat{K}$, welche sich aus der elementweisen Multiplikation ergibt, ist zu bestimmen.
     \item[3.] Schließlich stellt $Y=\mathrm{i2DFT}(\hat{Y})$ die Matrixfaltung dar, welche mithilfe der inversen diskreten Fourier-Transformation ermittelt wird.    
 \end{itemize} 
 Für Schritt 1 und Schritt 3 kann wegen Lemma \ref{lem:Finv} und Lemma \ref{lem:inversedftasdft} die Fourier-Matrix $F$ benutzt werden. Die Aufgabe besteht nun darin, die Berechnungen in Algorithmus \ref{alg:conv_as_2dft} datenbankgestützt umzusetzen. 
-\begin{algorithm}[H]
+\begin{algorithm}[h]
     \caption{Matrixfaltung mit diskreten Fourier-Transformationen}
     \label{alg:conv_as_2dft}
     \begin{algorithmic}
@@ -326,7 +332,7 @@ Für Schritt 1 und Schritt 3 kann wegen Lemma \ref{lem:Finv} und Lemma \ref{lem:
     \end{algorithmic}
 \end{algorithm}
 
-Dies gelingt, da ausschließlich Basisoperationen wie die Matrixmatrixmultiplikation sowie das Adjungieren von Matrizen benötigt werden. Die elementweise Multiplikation und die Konjugation können als einfache skalare Funktionen implementiert werden. Die Berechnung der DFT mit der Matrix $F$ benötigt $n(2n-1)$ Fließkomma-Operationen. Da die Matrix $F$ nur von den Dimensionen der beteiligten Matrizen abhängt und diese durch die Hyperparameter des verwendeten CNN festgelegt sind, kann $F$ vor der Vorwärtsrechnung in einer Relation gespeichert werden. 
+Dies gelingt, da ausschließlich Basisoperationen wie die Matrixmatrixmultiplikation sowie das Adjungieren von Matrizen benötigt werden. Die elementweise Multiplikation und die Konjugation können als einfache skalare Funktionen implementiert werden. Die Berechnung der eindimsenionalen DFT mit der Matrix $F$ benötigt $n(2n-1)$ Fließkomma-Operationen. Da die Matrix $F$ nur von den Dimensionen der beteiligten Matrizen abhängt und diese durch die Hyperparameter des verwendeten CNN festgelegt sind, kann $F$ vor der Vorwärtsrechnung in einer Relation gespeichert werden. 
 Die Matrix $F$ besitzt komplexwertige Einträge und daher wird das Attribut \textbf{v} im Coordinate-Schema in die Attribute \textbf{re} und \textbf{im} aufgeteilt, um den Real- und Imaginärteil getrennt zu speichern. Die Multiplikation zweier komplexer Zahlen $z_1$ und $z_2$ ist durch
 \begin{align*}
     z_1 \cdot z_2 &=(\Re(z_1)+ i \Im(z_1))(\Re(z_2)+i \Im(z_2))\\
@@ -339,9 +345,9 @@ Seien $X \in [0,1]^{n \times n}$ und \textbf{X} sowie \textbf{F} die Relation zu
 in den Zeilen 1-6 ermittelt die Matrix $F^T$. In den Zeilen 7-15 wird $X F^T$ und anschließend in den Zeilen 16-24 das Produkt $F X F^T$ in der temporären Relation \textbf{FXFT} berechnet. 
 Schließlich folgt in den letzten Zeilen die Ausgabe der zweidimensionalen diskreten Fourier-Transformation. Numerische Resultate zum Zeit- und Speicheraufwand sind der Abbildung \ref{abb:dft_insql} zu entnehmen.
 
-\noindent \begin{minipage}{\linewidth}
+%\noindent \begin{minipage}{\linewidth}
     \lstinputlisting[label=sql:dft, caption=SQL-Code zur Umsetzung der zweidimensionalen diskreten Fourier-Transformation, language=SQL]{sql_code/dft_ansatz_FXFT.txt}
-\end{minipage}
+%\end{minipage}
 
 Im zweiten Berechnungsschritt ist eine elementweise Multiplikation auszuführen. Angenommenen die Matrizen $\hat{X}$ und $\hat{K}$ sind als Relationen \textbf{X}
 und \textbf{K} im Coordinate-Schema hinterlegt. Dann wird $\hat{X} \odot \hat{K}$ in der SQL-Anfrage \ref{sql:elementweise} implementiert.
@@ -374,15 +380,15 @@ Bei ML-Verfahren wird oft mit mehrdimensionalen Arrays gearbeitet. Diese sind pr
 wobei $q$ und $p$ die neuen Achsen präsentieren. In diesem Kontext wird von einem erweiterten Coordinate-Schema gesprochen.
 
 Zur Berechnung der Merkmalskarten durch die gefaltete Übertragungsfunktion, vgl. Definition \ref{eq:convlogit} sind (gewichtete) Summen über Matrixfaltungen zu bestimmen. Um dies kompakt darzustellen, werden rekursive Anfragen benutzt, welche seit 1999 in SQL standardisiert sind. An dieser Stelle sei bemerkt, dass je nach Wahl des Datenbankmanagementsystems diese Anfragen unterstützt beziehungsweise nicht unterstützt werden. In den meisten kommerziellen und freien Systemen, unter anderem PostgreSQL, sind rekursive Anfragen möglich. Ein Beispiel zur rekursiven Berechnung von
-\begin{equation*}
+\begin{equation}
    \label{eq:sum_n}
 \sum_{n=1}^{100} n    
-\end{equation*} 
+\end{equation} 
 ist in Anfrage \ref{sql:recursive} gegeben. 
 
 \lstinputlisting[label=sql:recursive, caption=Ein Beispiel einer rekursiven SQL-Anfrage, language=SQL]{sql_code/recursive_sum_n.txt}
 
-Eine rekursive Anfrage besteht immer aus einem nicht-rekursiven Term (im Beispiel Zeile 3), der Vereinigung \textbf{UNION} bzw. \textbf{UNION ALL} und einem rekursiven Term (Zeile 4-6), welcher den Selbstverweis auf entsprechende Relation beinhaltet. Der \textbf{UNION ALL}-Operator entfernt im Gegensatz zum \textbf{UNION}-Operator keine Duplikate. Die erste \textbf{SELECT}-Klausel definiert die Rekursionsbasis und darf sich nicht auf die zu definierende Relation, im Beispiel \textbf{t}, beziehen. Durch diese Anweisung werden die Datentypen der Attribute der zu definierenden Relation festgelegt. In den Zeilen 7 und 8 wird die Summe (\ref{eq:sum_n}) über die Partialsummen in der Relation \textbf{t} berechnet. 
+Eine rekursive Anfrage besteht immer aus einem nicht-rekursiven Term (im Beispiel Zeile 3), der Vereinigung \textbf{UNION} bzw. \textbf{UNION ALL} und einem rekursiven Term (Zeile 4-6), welcher den Selbstverweis auf die entsprechende Relation beinhaltet. Der \textbf{UNION ALL}-Operator entfernt im Gegensatz zum \textbf{UNION}-Operator keine Duplikate. Die erste \textbf{SELECT}-Klausel definiert die Rekursionsbasis und darf sich nicht auf die zu definierende Relation, im Beispiel \textbf{t}, beziehen. Durch diese Anweisung werden zudem die Datentypen der Attribute der zu definierenden Relation festgelegt. In den Zeilen 7 und 8 wird die Summe (\ref{eq:sum_n}) über die Partialsummen in der Relation \textbf{t} berechnet. 
 
 Bei der gefalteten Übertragungsfunktion \ref{eq:convlogit} mit einer Aktivierungfunktion $\psi$ ist eine Summe der Form
 \begin{equation}
@@ -398,7 +404,7 @@ Die datenbankgestützte Matrixfaltung ist bereits im vorherigen Abschnitt \ref{a
 \lstinputlisting[label=sql:C1, caption=Die SQL-Anfrage zur Berechnung von $C^1$, language=SQL]{sql_code/C1_sql.txt}
 
 \subsection*{Pooling}
-Die datenbankgestützte Umsetzung von Pooling-Schichten kann direkt durch die Nutzung von Nachbarschaften wie in Abschnitt \ref{abs:naive_app} gelingen. Da die Dimensionen aller vorkommenden Merkmalskarten und Kerne eines CNN durch die Wahl der Hyperparameter festgelegt werden, müssen die Nachbarschaften beim Pooling nur einmalig berechnet werden. Des Weiteren werden Funktionen wie \textbf{MAX} und \textbf{MEAN} im SQL-Standard unterstützt, sodass Mittelwert-Pooling und Maximum-Pooling implementiert werden können.
+Die datenbankgestützte Umsetzung von Pooling-Schichten kann direkt durch die Nutzung von Nachbarschaften wie in Abschnitt \ref{abs:naive_app} gelingen. Da die Dimensionen aller vorkommenden Merkmalskarten und Kerne eines CNN durch die Wahl der Hyperparameter festgelegt werden, müssen die Nachbarschaften beim Pooling nur einmalig berechnet werden. Des Weiteren werden Funktionen wie \textbf{MAX} und \textbf{MEAN} im SQL-Standard unterstützt, sodass Maximum-Pooling und Mittelwert-Pooling implementiert werden können.
 
 Eine weitere Möglichkeit besteht darin, das Mittelwert-Pooling mit den Schrittweiten $p:=p_h=p_b$ als Faltungsoperation mit dem sogenannten Mittelwert-Kern $\frac{1}{p^2} \mathbf{1} \in \RR^{p \times p}$ zu implementieren. An dieser Stelle können Resultate aus dem vorherigen Abschnitt \ref{abs:conv_in_sql} genutzt werden, um abzuschätzen, welcher Ansatz für das Anwendungsszenario besser geeignet ist. Schließlich ist auch die Flatten-Funktion, vgl. Definition \ref{def:flatten}, leicht in SQL umsetzbar. 
 
@@ -409,9 +415,9 @@ Eine Kombination aus Mittelwert-Pooling mit Schrittweite $p=2$ und der Flatten-F
 In den Zeilen 1 bis 11 wird das Mittelwert-Pooling mithilfe der Aggregatfunktion \textbf{AVG} und der Nachbarschaften in der Relation \textbf{U} bestimmt. Dieses Ergebnis wird mit den Schrittweiten $s_h=s_b=2$, vgl. Bemerkung \ref{bem_strides}, in den Zeilen 12 bis 19 in der Dimension verkleinert. Dabei werden Funktionen wie das Aufrunden \textbf{CEIL} und Modulo-Rechnen \textbf{MOD} zur passenden Selektierung der Indizes genutzt. Die Doppelpunkte sorgen dafür, dass die Indizes zu natürlichen Zahlen umgewandelt werden. Im Englischen wird diese Typumwandlung als \textit{type-casting} bezeichnet. Alle verwendeten Operationen werden im SQL-Standard unterstützt. Schließlich wird der Vektor $f=T_f(P^2) \in \RR^{192}$ der Flatten-Funktion in den Zeilen 20 bis 26 berechnet. 
  
 \subsection*{Vorwärtsgerichtete neuronale Netze}
-Die letzte Schicht eines CNN besteht meistens aus einem FFN mit einer oder mehreren verdeckten Neuronenschichten. Die Theorie von FFN wird in Kapitel \ref{kap:NN} vorgestellt. Dabei wird die Ausgabe eines neuronalen Natzes mittels Vorwärtsrechnung, vgl. \ref{alg:ff}, berechnet. Diese lässt sich ausschließlich mit bereits vorgestellten Basisoperationen wie der Matrixvektormultiplikation bzw. Vektoraddition und einfachen Funktionsauswertung darstellen. Wird das Modell \ref{modell} zur Klassifikation von Ziffern genutzt, so ist die Vorwärtsrechnung lediglich für eine Neuronenschicht datenbankgestützt umzusetzen. Die Verallgemeinerung für beliebig viele Schichten wurde bereits in einer Projektarbeit der Universität Rostock untersucht \cite{myprojekt}. 
+Die letzte Schicht eines CNN besteht meistens aus einem FFN mit einer oder mehreren verdeckten Neuronenschichten. Die Theorie von FFN wird in Kapitel \ref{kap:NN} vorgestellt. Dabei wird die Ausgabe eines neuronalen Natzes mittels Vorwärtsrechnung, vgl. Algorithmus \ref{alg:ff}, berechnet. Diese lässt sich ausschließlich mit bereits vorgestellten Basisoperationen wie der Matrixvektormultiplikation bzw. Vektoraddition und einfachen Funktionsauswertung darstellen. Wird das Modell \ref{modell} zur Klassifikation von Ziffern genutzt, so ist die Vorwärtsrechnung lediglich für eine Neuronenschicht datenbankgestützt umzusetzen. Die Verallgemeinerung für beliebig viele Schichten wurde bereits in einer Projektarbeit der Universität Rostock untersucht \cite{myprojekt}. 
 
-Sei die Gewichtsmatrix $W \in \RR^{192 \times 10}$ sowie der Biasvektor $b \in \RR^{10}$ wie in Abschnitt \ref{abs:model_mnist} gegeben. Die entsprechenden Relationen \textbf{W} und \textbf{B} werden gemäß dem Coordinate-Schema erstellt. Weiter sei $T$ eine beliebige Aktivierungsfunktion, im Modell \ref{modell} ist $T$ die logistische Funktion. Schließlich sei in der Relation \textbf{FLATTEN} der Vektor $f=T_f(X)$ der Flatten-Schicht gespeichert, welcher als Eingabe des FFN dient. Die Ausgabe des FFN und damit des gesamten CNN lässt sich durch die SQL-Anfrage \ref{sql:ffn} berechnen. In den Zeilen 1-9 wird das Matrixvektorprodukt $Wf$ berechnet, welches anschließend mit dem Biasvektor $b$ manipuliert wird. Schließlich werden die Aktivierungen der Ausgabeschicht mit der Funktion $T$ ermittelt. In den Zeilen 10-15 wird der Index mit der maximalen Aktivierung selektiert, welcher, vermindert um Eins, die Klassifikation der Ziffer darstellt.
+Sei die Gewichtsmatrix $W \in \RR^{192 \times 10}$ sowie der Biasvektor $b \in \RR^{10}$ wie in Abschnitt \ref{abs:model_mnist} gegeben. Die entsprechenden Relationen \textbf{W} und \textbf{B} werden gemäß dem Coordinate-Schema erstellt. Weiter sei $T$ eine beliebige Aktivierungsfunktion. Beim Modell \ref{modell} ist $T$ die logistische Funktion. Schließlich sei für eine Eingabekarte $X$ in der Relation \textbf{FLATTEN} der Vektor $f=T_f(X)$ der Flatten-Schicht gespeichert, welcher als Eingabe des FFN dient. Die Ausgabe des FFN und damit des gesamten CNN lässt sich durch die SQL-Anfrage \ref{sql:ffn} berechnen. In den Zeilen 1-9 wird das Matrixvektorprodukt $Wf$ berechnet, welches anschließend mit dem Biasvektor $b$ manipuliert wird. Schließlich werden die Aktivierungen der Ausgabeschicht mit der Funktion $T$ ermittelt. In den Zeilen 10-15 wird der Index mit der maximalen Aktivierung selektiert, welcher, vermindert um Eins, die Klassifikation der Ziffer darstellt.
 
 \lstinputlisting[label=sql:ffn, caption=SQL-Code zur Umsetzung der Vorwärtsrechnung eines einschichtigen FFN, language=SQL]{sql_code/ffn_in_sql.txt}
 

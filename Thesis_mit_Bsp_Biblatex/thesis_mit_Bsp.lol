@@ -12,19 +12,21 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {lstlisting}{\numberline {5.1}SQL-Code zur Umsetzung der Faltung mit Nachbarschaften}{50}{lstlisting.5.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {5.2}SQL-Code zur Umsetzung der zweidimensionalen diskreten Fourier-Transformation}{58}{lstlisting.5.2}%
+\contentsline {lstlisting}{\numberline {5.2}SQL-Code zur Umsetzung der Matrixfaltung als Matrixvektorprodukt}{54}{lstlisting.5.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {5.3}SQL-Code zur Umsetzung der elementweisen Multiplikation}{58}{lstlisting.5.3}%
+\contentsline {lstlisting}{\numberline {5.3}SQL-Code zur Umsetzung der zweidimensionalen diskreten Fourier-Transformation}{58}{lstlisting.5.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {5.4}Ein Beispiel einer rekursiven SQL-Anfrage}{60}{lstlisting.5.4}%
+\contentsline {lstlisting}{\numberline {5.4}SQL-Code zur Umsetzung der elementweisen Multiplikation}{59}{lstlisting.5.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {5.5}Die rekursive SQL-Anfrage zur Berechnung der gefalteten Übertragungsfunktion}{60}{lstlisting.5.5}%
+\contentsline {lstlisting}{\numberline {5.5}Ein Beispiel einer rekursiven SQL-Anfrage}{60}{lstlisting.5.5}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {5.6}Die SQL-Anfrage zur Berechnung von $C^1$}{61}{lstlisting.5.6}%
+\contentsline {lstlisting}{\numberline {5.6}Die rekursive SQL-Anfrage zur Berechnung der gefalteten Übertragungsfunktion}{61}{lstlisting.5.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {5.7}SQL-Code zur Umsetzung des Mittelwert-Poolings und anschließender Flatten-Operation}{62}{lstlisting.5.7}%
+\contentsline {lstlisting}{\numberline {5.7}Die SQL-Anfrage zur Berechnung von $C^1$}{62}{lstlisting.5.7}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {5.8}SQL-Code zur Umsetzung der Vorwärtsrechnung eines einschichtigen FFN}{64}{lstlisting.5.8}%
+\contentsline {lstlisting}{\numberline {5.8}SQL-Code zur Umsetzung des Mittelwert-Poolings und anschließender Flatten-Operation}{63}{lstlisting.5.8}%
+\defcounter {refsection}{0}\relax 
+\contentsline {lstlisting}{\numberline {5.9}SQL-Code zur Umsetzung der Vorwärtsrechnung eines einschichtigen FFN}{64}{lstlisting.5.9}%
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 

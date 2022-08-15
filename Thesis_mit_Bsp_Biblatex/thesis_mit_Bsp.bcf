@@ -2450,8 +2450,9 @@
     <bcf:citekey order="92">DBLP:journals/corr/abs-1805-10408</bcf:citekey>
     <bcf:citekey order="93">jain1989fundamentals</bcf:citekey>
     <bcf:citekey order="94">smith2007mathematics</bcf:citekey>
-    <bcf:citekey order="95">DBLP:conf/adbis/Marten0019</bcf:citekey>
-    <bcf:citekey order="96">myprojekt</bcf:citekey>
+    <bcf:citekey order="95">jain1989fundamentals</bcf:citekey>
+    <bcf:citekey order="96">DBLP:conf/adbis/Marten0019</bcf:citekey>
+    <bcf:citekey order="97">myprojekt</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nyt">

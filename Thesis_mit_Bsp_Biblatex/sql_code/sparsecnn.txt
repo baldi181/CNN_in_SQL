@@ -1,0 +1,8 @@
+SELECT temp.i AS i,
+       SUM(v) AS v
+FROM
+  (SELECT UNNEST(K.i) AS i,
+          UNNEST(K.v)*vecX.v AS v
+   FROM K
+   JOIN vecX ON K.j=vecX.i) temp
+GROUP BY i
