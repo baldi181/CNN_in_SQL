@@ -7,17 +7,15 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Arbeitsweise eines Perzeptrons mit entsprechender Notation aus Definition \ref {def_neuron}.\relax }}{22}{figure.caption.24}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Arbeitsweise eines Perzeptrons mit entsprechender Notation aus Definition \ref {def_neuron}.\relax }}{22}{figure.caption.23}%
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Es ist die Rückwärtsrechnung bei Faltungsschichten dargestellt. Die Abbildung wurde aus \cite {du_diss} entnommen.\relax }}{38}{figure.caption.27}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Es ist die Rückwärtsrechnung bei Faltungsschichten dargestellt. Die Abbildung wurde aus \cite {du_diss} entnommen.\relax }}{38}{figure.caption.26}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Beispielbilder, vgl. \cite {DBLP:journals/pieee/LeCunBBH98} aus der öffentlichen MNIST-Datenbank. Zu sehen sind handgeschriebene Ziffern und zugehörige Annotationen.\relax }}{41}{figure.caption.28}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Beispielbilder, vgl. \cite {DBLP:journals/pieee/LeCunBBH98} aus der öffentlichen MNIST-Datenbank. Zu sehen sind handgeschriebene Ziffern und zugehörige Annotationen.\relax }}{41}{figure.caption.27}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Das CNN-Modell zur Klassifikation von handgeschriebenen Ziffern ist dargestellt. Die Abbildung wurde \cite {gentle} entnommenen und angepasst.\relax }}{42}{figure.caption.29}%
-\defcounter {refsection}{0}\relax 
-\addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Das CNN-Modell zur Klassifikation von handgeschriebenen Ziffern ist dargestellt. Die Abbildung wurde \cite {gentle} entnommenen und angepasst.\relax }}{42}{figure.caption.28}%
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 

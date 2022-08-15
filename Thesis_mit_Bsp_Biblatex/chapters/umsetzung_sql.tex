@@ -355,11 +355,11 @@ Der dritte Berechnungsschritt lässt sich analog zum ersten Schritt darstellen. 
 
 \lstinputlisting[label=sql:elementweise, caption=SQL-Code zur Umsetzung der elementweisen Multiplikation, language=SQL]{sql_code/dft_ansatz_elemwise.txt}
 
-Wird zur Berechnung der DFT die sogenannte schnelle Fourier-Transformation (engl. \textit{Fast-Fourier-Transformation}, kurz: FFT) genutzt, können die Zeitkosten von $\mathcal{O}(n^2)$ auf $\mathcal{O}(n \log n)$ vermindert werden. Verschiedene Möglichkeiten, die FFT in SQL zu implementieren, werden in Marten et. al.\cite{DBLP:conf/adbis/Marten0019} präsentiert. In dieser Arbeit wird ausschließlich die diskrete zweidimensionale Fourier-Transformation wie in Algorithmus \ref{alg:conv_as_2dft} behandelt. 
+Wird zur Berechnung der DFT die sogenannte schnelle Fourier-Transformation (engl. \textit{Fast-Fourier-Transformation}, kurz: FFT) genutzt, können die Zeitkosten von $\mathcal{O}(n^2)$ auf $\mathcal{O}(n \log n)$ vermindert werden. In dieser Arbeit wird ausschließlich die diskrete zweidimensionale Fourier-Transformation wie in Algorithmus \ref{alg:conv_as_2dft} behandelt. 
 
 \subsection{Zusammenfassung}
 \label{abs:sum_conc_in_sql}
-
+TODO
 
 \section{Datenbankgestützte Vorwärtsrechnung für CNN}
 \label{abs_CNN_in_SQL}
@@ -419,6 +419,6 @@ Die letzte Schicht eines CNN besteht meistens aus einem FFN mit einer oder mehre
 
 Sei die Gewichtsmatrix $W \in \RR^{192 \times 10}$ sowie der Biasvektor $b \in \RR^{10}$ wie in Abschnitt \ref{abs:model_mnist} gegeben. Die entsprechenden Relationen \textbf{W} und \textbf{B} werden gemäß dem Coordinate-Schema erstellt. Weiter sei $T$ eine beliebige Aktivierungsfunktion. Beim Modell \ref{modell} ist $T$ die logistische Funktion. Schließlich sei für eine Eingabekarte $X$ in der Relation \textbf{FLATTEN} der Vektor $f=T_f(X)$ der Flatten-Schicht gespeichert, welcher als Eingabe des FFN dient. Die Ausgabe des FFN und damit des gesamten CNN lässt sich durch die SQL-Anfrage \ref{sql:ffn} berechnen. In den Zeilen 1-9 wird das Matrixvektorprodukt $Wf$ berechnet, welches anschließend mit dem Biasvektor $b$ manipuliert wird. Schließlich werden die Aktivierungen der Ausgabeschicht mit der Funktion $T$ ermittelt. In den Zeilen 10-15 wird der Index mit der maximalen Aktivierung selektiert, welcher, vermindert um Eins, die Klassifikation der Ziffer darstellt.
 
-\lstinputlisting[label=sql:ffn, caption=SQL-Code zur Umsetzung der Vorwärtsrechnung eines einschichtigen FFN, language=SQL]{sql_code/ffn_in_sql.txt}
+\lstinputlisting[label=sql:ffn, caption=SQL-Code zur Umsetzung der Vorwärtsrechnung des einschichtigen FFN aus Modell \ref{modell}, language=SQL]{sql_code/ffn_in_sql.txt}
 
 Die vollständige datenbankgestützte Vorwärtsrechnung für das tranierte Modell \ref{modell} ist im Anhang \ref{app:app_2} dargestellt. LAUFZEIT eval TODO, TODO full pass im Anhang

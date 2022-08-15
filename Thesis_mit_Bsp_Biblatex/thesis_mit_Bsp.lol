@@ -28,18 +28,12 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {lstlisting}{\numberline {5.9}SQL-Code zur Umsetzung des Mittelwert-Poolings und anschließender Flatten-Operation}{63}{lstlisting.5.9}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {5.10}SQL-Code zur Umsetzung der Vorwärtsrechnung eines einschichtigen FFN}{65}{lstlisting.5.10}%
+\contentsline {lstlisting}{\numberline {5.10}SQL-Code zur Umsetzung der Vorwärtsrechnung des einschichtigen FFN aus Modell \ref {modell}}{65}{lstlisting.5.10}%
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
-\defcounter {refsection}{0}\relax 
-\addvspace {10\p@ }
-\defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {B.1}C Code - direkt eingefügt}{i}{lstlisting.B.1}%
-\defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {B.2}Java Code - über externe Datei eingefügt}{i}{lstlisting.B.2}%
 \defcounter {refsection}{0}\relax 
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

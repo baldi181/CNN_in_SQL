@@ -62,13 +62,14 @@
 % Daten für die Titelseite
 \institut{Institut für Mathematik} %auskommentieren, wenn nicht benötigt
 \arbeit{Masterarbeit} %Bachelorarbeit, Masterarbeit oder Abschlussarbeit (wenn Staatsexamensarbeit geschrieben wird, kann man, z. B. bei Untertitel "Wissenschaftliche Abschlussarbeit\\ im Rahmen  des Ersten Staatsexamens" eintragen)
-\autor{Vorname Nachname}
-\betreuerGutachter{Name des Betreuers und ersten Gutachters\newline Universität Rostock\newline Fakultät} %hier \newline als Zeilenwechsel, da Tabelle mit \parbox im Hintergrund
-\gutachter{Name des zweiten Gutachters\newline Universität Musterstadt\newline Fakultät}				%dto.
-\date{12.08.2021}
-\matrNr{123\,45678}
-\titel{Titel der Arbeit,\\ bei Bedarf auch zweizeilig}
-\untertitel{Untertitel der Arbeit, auch mehrzeilig oder ganz weglassen.} %auskommentieren, wenn nicht benötigt
+\autor{Florian Baldauf}
+\betreuerGutachter{Prof. Dr. Konrad Engel \newline Universität Rostock\newline Institut für Mathematik} %hier \newline als Zeilenwechsel, da Tabelle mit \parbox im Hintergrund
+\gutachter{Prof. Dr. Andreas Heuer\newline Universität Rostock\newline Institut für Informatik}				%dto.
+\date{19.08.2021}
+\matrNr{217\,203729}
+\titel{Datenbankgestützte Erkennung \\ von Mustern in\\
+trainierten gefalteten \\neuronalen Netzen (CNN)\\}
+\untertitel{Database-driven Recognition of Patterns in trained \\Convolutional Neural Networks (CNN)} %auskommentieren, wenn nicht benötigt
 
 \begin{document}
 \hypersetup{pageanchor=false}
@@ -88,9 +89,9 @@
 \lstlistoflistings
 
 % Abkürzungsverzeichnis --------ggfs auskommentieren
-\chapter*{Abkürzungsverzeichnis}
-\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}
-\input{abkuerzungen}
+%\chapter*{Abkürzungsverzeichnis}
+%\addcontentsline{toc}{chapter}{Abkürzungsverzeichnis}
+%\input{abkuerzungen}
 
 % Symbolverzeichnis ------------ggfs auskommentieren
 \chapter*{Symbolverzeichnis}
@@ -114,31 +115,10 @@
 %\section{Umgebungen und Formeln}
 
 
-
-\begin{algorithm}
-\caption{An algorithm with caption}\label{alg:cap}
-\begin{algorithmic}
-\Require $n \geq 0$
-\Ensure $y = x^n$
-\State $y \gets 1$
-\State $X \gets x$
-\State $N \gets n$
-\While{$N \neq 0$}
-\If{$N$ is even}
-    \State $X \gets X \times X$
-    \State $N \gets \frac{N}{2}$  \Comment{This is a comment}
-\ElsIf{$N$ is odd}
-    \State $y \gets y \times X$
-    \State $N \gets N - 1$
-\EndIf
-\EndWhile
-\end{algorithmic}
-\end{algorithm}
+\printbibliography %hier Bibliographie ausgeben lassen
 
 \appendix
 \input{chapters/appendix.tex}
-\printbibliography %hier Bibliographie ausgeben lassen
-
 %Wenn gewünscht Danksagung einfügen
 %\addchap*{Danksagungen}
 
@@ -151,45 +131,5 @@
 \cleardoublepage
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\pagenumbering{roman}
-\chapter{Anhang}
-\section{Listings}
-
-\lstset{language=C}
- \begin{lstlisting}[caption=C Code - direkt eingefügt, label=list:C]
-#include <stdio.h>
-#define N 10
-/* Block
- * comment */
-
-int main()
-{
-    int i;
-
-    // Line comment.
-    puts("Hello world!");
-    
-    for (i = 0; i < N; i++)
-    {
-        puts("LaTeX is also great for programmers!");
-    }
-
-    return 0;
-}
-\end{lstlisting}
-
-
-
-
-\lstset{language=Java}
-
-
-\lstinputlisting[label=list:java,caption=Java Code - über externe Datei eingefügt]{code/HelloWorld.java}
-% \lstinputlisting[caption=Scheduler, language=C]{hello.c}
-
-\section{Biber}
-\label{sec:biber}
-\includepdf[pages={1-2},scale=.9]{AnleitungBibLatexBiber.pdf}
-
 
 \end{document}
