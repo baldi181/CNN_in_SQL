@@ -1,0 +1,16 @@
+SELECT temp.i,
+       temp.j,
+       SUM(temp.v*K.v)
+FROM
+  (SELECT U.i AS i,
+          U.j AS j,
+          I.v AS v,
+          U.istrich AS istrich,
+          U.jstrich AS jstrich
+   FROM X
+   JOIN U ON X.i=U.istrich
+   AND X.j =U.jstrich) temp
+JOIN K ON K.i=temp.istrich-temp.i+(l+1)
+AND F.j=temp.jstrich-temp.j+(l+1)
+GROUP BY temp.i,
+         temp.j

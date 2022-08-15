@@ -38,6 +38,13 @@ Die Transponierte Matrix $A^T \in \RR^{n \times m}$ einer Matrix $A \in \RR^{m \
     & \mathbf{FROM} \; A
 \end{align*}
 berechnet werden.
+
+Sei $A \in \mathbb{C}^{m \times n}$ eine Matrix im erweitertem Coordinate-Schema. Die adjungierte Matrix $A^* \in \mathbb{C}^{n \times m}$ kann durch die SQL-Anfrage
+\begin{align*}
+    & \mathbf{SELECT} \; A.j \; \mathbf{AS} \; i, \; A.i \; \mathbf{AS} \; j, \; A.re \;\mathbf{AS} \; re, \; -(A.im) \; \mathbf{AS} \; im  \\
+    & \mathbf{FROM} \; A
+\end{align*}
+berechnet werden.
 % \tocless
 %\section{Überschrift A2}
 %\label{sec:app_2}

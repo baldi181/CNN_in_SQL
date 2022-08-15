@@ -29,11 +29,11 @@ Die Matrixfaltung $Y= X \ast K$ lässt sich mit den Umgebungen (\ref{eq:neighbor
 \end{equation}
 berechnen. Dabei wird $X$ außerhalb des Definitionsbereiches mit Nullen aufgefüllt, sodass das Ergebnis $Y$ wieder die gleichen Abmessungen wie $X$ besitzt.
 
-Zur Umsetzung der Faltungsoperation sind also zunächst die Nachbarschaften für jeden Pixel von $X$ zu berechnen. In SQL kann dies mithilfe des kartesischem Produkts implementiert werden. Dazu bezeichnen $\mathbf{X}$ und $\mathbf{K}$ die Relation zur Darstellung der Matrizen $X$ und $K$ im Coordinate-Schema. Eine rein relationale Umsetzung von (\ref{eq:naive_approach}) ist durch die SQL-Anfrage \ref{sql:naive} gegeben. Zur Übersicht sind die Attributbezeichnungen groß geschrieben und die SQL-Klausel blau gekennzeichnet. 
+Zur Umsetzung der Faltungsoperation sind also zunächst die Nachbarschaften für jeden Pixel von $X$ zu berechnen. In SQL kann dies mithilfe des kartesischem Produkts implementiert werden. Dazu bezeichnen $\mathbf{X}$ und $\mathbf{K}$ die Relation zur Darstellung der Matrizen $X \in \RR^{h \times b}$ und $K \in \RR^{k \times k}$ im Coordinate-Schema. Eine rein relationale Umsetzung von (\ref{eq:naive_approach}) ist durch die SQL-Anfrage \ref{sql:naive} gegeben. Zur Übersicht sind die SQL-Operationen blau gekennzeichnet. 
 
 \lstinputlisting[label=sql:naive, caption=SQL-Code zur Umsetzung der Faltung mit Nachbarschaften, language=SQL]{sql_code/neighborhood.sql}
 
-In der Anfrage (Zeile 4-14) werden die Nachbarschaften aller Pixel in der temporären $\mathbf{KREUZ}$ Relation berechnet. Dabei wird die \textbf{BETWEEN}-Funktion zur kompakten Darstellung der Konstantenselektion bezüglich $l=\lfloor k/2 \rfloor$ genutzt. In den Zeilen 15-17 werden dann die Nachbarschaften über die entsprechenden Indizies der Filtermatrix verbunden und schließlich die \textbf{SUM}-Funktion genutzt, um das Faltungsergebnis zu berechnen. Dieser naive Ansatz nutzt keine lineare Algebra in Form von Matrixvektor- oder Matrixmatrixmultiplikation und ist hinsichtlich des Problems \ref{prob:conv_in_sql} schon für verhältnismäßig kleine Grauwertbilder ineffizient. Zu Erkennen ist dies in der Abbildung \ref{abb:laufzeit_naive}, bei der die Laufzeiten der SQL-Anfrage \ref{sql:naive} in Abhängigkeit von der Dimension $n$ für allgemeine Matrizen $X \in [0,1]^{n \times n}$ dargestellt ist.
+In der Anfrage (Zeile 4-14) werden die Nachbarschaften aller Pixel in der temporären Relation $\mathbf{kreuz}$ berechnet. Dabei wird die \textbf{BETWEEN}-Funktion zur kompakten Darstellung der Konstantenselektion bezüglich $l=\lfloor k/2 \rfloor$ genutzt. In den Zeilen 15-17 werden dann die Nachbarschaften über die entsprechenden Indizies der Filtermatrix verbunden und schließlich die \textbf{SUM}-Funktion genutzt, um das Faltungsergebnis zu berechnen. Dieser naive Ansatz nutzt keine lineare Algebra in Form von Matrixvektor- oder Matrixmatrixmultiplikation und ist hinsichtlich des Problems \ref{prob:conv_in_sql} schon für verhältnismäßig kleine Grauwertbilder ineffizient. Zu Erkennen ist dies in der Abbildung \ref{abb:laufzeit_naive}, bei der die Laufzeiten der SQL-Anfrage \ref{sql:naive} in Abhängigkeit von der Dimension $n$ für allgemeine Matrizen $X \in \RR^{n \times n}$ dargestellt ist.
 
 TODO Grafik ergebnis erklären.
 
@@ -45,9 +45,9 @@ Eine Verbesserung der Laufzeiten kann mithilfe von Umsetzungstabellen, engl. \te
     &\text{istrich} \; \; \mathrm{int},\\
     &\text{jstrich}\; \; \mathrm{int})
 \end{align*}
-mit dem zusammengesetzten Schlüssel $(i,j,\text{id})$ benötigt. Hier werden für jeden Pixel $(i,j)$ die Nachbarpixel $(i', j') \in U$ mit einer entsprechenden Nummer $\text{id}$ zur Identifikation  hinterlegt. So wird die zeitintensive Berechnung der Nachbarschaften mit dem  kartesischen Produkt in der Anfrage \ref{sql:naive} umgangen. Die Laufzeiten der verbesserten Anfrage \ref{sql:naive_better} sind in Abbildung \ref{abb:laufzeit_naive_verb} dargestellt.
+mit dem zusammengesetzten Schlüssel $(i,j,\text{id})$ benötigt. Hier werden für jeden Pixel $(i,j)$ die Nachbarpixel $(i', j') \in U$ mit einer entsprechenden Nummer $\text{id}$ zur Identifikation  hinterlegt. So wird die zeitintensive Berechnung der Nachbarschaften mit dem  kartesischen Produkt in der Anfrage \ref{sql:naive} umgangen. Die Laufzeiten der verbesserten Anfrage \ref{sql:naive_better} in Abhängigkeit von der Dimension $n$ sind in Abbildung \ref{abb:laufzeit_naive_verb} dargestellt. Dabei ist der erhöhte Speicheraufwand für die Umsetzungstabellen sichtbar.
 
-TODO Grafik ergebnis erklären + Code.
+\lstinputlisting[label=sql:naive_better, caption=SQL-Code zur Umsetzung der Faltung mit Umsetzungstabellen, language=SQL]{sql_code/neigh_verbesster.txt}
 
 \subsection{Faltung als Matrixvektorprodukt}
 \label{abs:conv_using_sparse}
@@ -306,7 +306,7 @@ Zwischen der zyklischen Faltung \ref{def:cycconv} und der diskreten Fourier-Tran
     \end{align*}
     % bereits um 180 Grad gedreht, vgl. Bemerkung \ref{bem:K_conv_komp}, 
 \end{bem}
-Für eine detailliertere Beschreibung der Konstruktion der eingebetteten Matrizen $K \in \RR^{n \times n}$ sei aufgrund dessen Umfangs auf Jain \cite{jain1989fundamentals} verwiesen. Eine Implementierungsmöglichkeit \ref{matlab:boundary} in MATLAB ist im Anhang zu finden.   
+Für eine detailliertere Beschreibung der Konstruktion der eingebetteten Matrizen $K \in \RR^{n \times n}$ sei aufgrund dessen Umfangs auf Jain \cite{jain1989fundamentals} verwiesen. Eine Implementierungsmöglichkeit \ref{matlab:boundary} in MATLAB ist im Anhang gegeben.
 Die Matrixfaltung innerhalb einer Faltungsschicht eines CNN lässt sich mit den obigen Resultaten in drei Schritten berechnen.
 \begin{itemize}
     \item[1.] Es sind jeweils die zweidimensionalen diskreten Fourier-Transformationen $\hat{X}$ und $\hat{K}$ für die Eingabe $X$ und den gedrehten Kern $K$ zu berechnen.
