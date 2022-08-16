@@ -69,7 +69,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {6}Zusammenfassung und Ausblick}{67}{chapter.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline Literatur}{69}{chapter*.40}%
+\contentsline {chapter}{\nonumberline Literatur}{69}{chapter*.41}%
 \defcounter {refsection}{0}\relax 
 \contentsline {chapter}{\numberline {A}Anhang}{74}{appendix.A}%
 \defcounter {refsection}{0}\relax 

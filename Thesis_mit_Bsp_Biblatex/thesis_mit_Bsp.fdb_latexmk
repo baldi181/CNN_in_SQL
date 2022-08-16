@@ -1,11 +1,11 @@
 # Fdb version 3
-["biber thesis_mit_Bsp"] 1660686270 "thesis_mit_Bsp.bcf" "thesis_mit_Bsp.bbl" "thesis_mit_Bsp" 1660686931
+["biber thesis_mit_Bsp"] 1660690757 "thesis_mit_Bsp.bcf" "thesis_mit_Bsp.bbl" "thesis_mit_Bsp" 1660690770
   "literatur.bib" 1660578973 30036 026aa11c4dfe0d4d4c360a88a68f66b4 ""
-  "thesis_mit_Bsp.bcf" 1660686931 113672 40189e56700bef5d64b76d304d5599cb "pdflatex"
+  "thesis_mit_Bsp.bcf" 1660690770 113822 36716404290580be105a48380cf0e031 "pdflatex"
   (generated)
   "thesis_mit_Bsp.bbl"
   "thesis_mit_Bsp.blg"
-["pdflatex"] 1660686926 "c:/Users/Florian/Desktop/Thesis_mit_Bsp_Biblatex/thesis_mit_Bsp.tex" "thesis_mit_Bsp.pdf" "thesis_mit_Bsp" 1660686931
+["pdflatex"] 1660690765 "c:/Users/Florian/Desktop/Thesis_mit_Bsp_Biblatex/thesis_mit_Bsp.tex" "thesis_mit_Bsp.pdf" "thesis_mit_Bsp" 1660690770
   "c:/Users/Florian/Desktop/Thesis_mit_Bsp_Biblatex/thesis_mit_Bsp.tex" 1660574975 4972 a3e01e7e40ebb3eff0c35492f8719621 ""
   "c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc" 1638374661 2375 baa924870cfb487815765f9094cf3728 ""
   "c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc" 1638374661 3486 c7eadf5dcc57b3b2d11736679f6636ba ""
@@ -353,7 +353,7 @@
   "chapters/kap_cnn.tex" 1660685621 45909 bec2cd23b6c7263990ae58b551542c89 ""
   "chapters/neuralnetworks.tex" 1660682518 34684 db1019f33b5831127f907fd2e043740f ""
   "chapters/summery.tex" 1660579426 4362 81a7b23ae92c05cc8b2179c657a836dd ""
-  "chapters/umsetzung_sql.tex" 1660686576 40774 2876f669db1c24de975b579c8e6f6abc ""
+  "chapters/umsetzung_sql.tex" 1660690425 41124 ee744f471dca863b9bffc03abe370b16 ""
   "einleitung.tex" 1660652531 10838 8614999c67f0bdd6ee1aececc93dd877 ""
   "pics/UNI-Logo_Siegel_4c_115mm.pdf" 1464868732 433431 f11db027918b99c08f4d9bb589b1ba84 ""
   "pics/chapter_neuralnetworks/perzeptron.png" 1656683937 10803 ba484102c585ddc4d2501482002c11fd ""
@@ -361,6 +361,7 @@
   "pics/chapters/CCN/mnist.png" 1647448704 46128 4d1289358ad9972c76ba7c142def3663 ""
   "pics/chapters/CCN/modell_arch_anp.png" 1660410029 36162 c99ae0b9a67aaeb840b1e6e9f47576b2 ""
   "pics/chapters/kap5/data_plot_naive_verb.eps" 1660686904 45339 a089bee103e87f5792b76b837473367f ""
+  "pics/chapters/kap5/data_plot_naive_verb_verb.eps" 1660690726 62653 7c562715e73c5e75e726956af1971ab9 ""
   "sql_code/C1_sql.txt" 1660175505 875 4ef3f5182c2da2de1586cd725e56c419 ""
   "sql_code/conv_recursive.txt" 1660174071 607 13bf5178e250652ec6ecae3b96c4346b ""
   "sql_code/dft_ansatz_FXFT.txt" 1660068222 628 01ee9acf80a8c5b3f442992b2769dca8 ""
@@ -372,16 +373,16 @@
   "sql_code/recursive_sum_n.txt" 1660169305 122 bd86d0e229c4861d7de796e332830919 ""
   "sql_code/sparsecnn.txt" 1660570880 166 3f3c8ad88aa9db90712e00e018c10d9a ""
   "symbole.tex" 1628779750 82 3e2dfa813347f5d2ddda3e80c81d3464 ""
-  "thesis_mit_Bsp.aux" 1660686931 54291 1c4501c2b6b39a1783c3d1fb6518ed3c "pdflatex"
-  "thesis_mit_Bsp.bbl" 1660686273 93032 5a6f47ecd1180b1239d08b3ff7dc8c64 "biber thesis_mit_Bsp"
-  "thesis_mit_Bsp.loa" 1660686931 1538 63f513cbd1f816debaf2e693d1db5640 "pdflatex"
-  "thesis_mit_Bsp.lof" 1660686931 1978 4a97edee19033cdc62683a73c08c4d60 "pdflatex"
-  "thesis_mit_Bsp.lol" 1660686931 2233 d8036aca6c373e3270d11c17eb54bf42 "pdflatex"
-  "thesis_mit_Bsp.lot" 1660686931 1393 6dcfaec938ddcdafd7f426cb1bdf8836 "pdflatex"
-  "thesis_mit_Bsp.out" 1660686929 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
-  "thesis_mit_Bsp.run.xml" 1660686931 2404 6121a471ca421295cd701e7b589ac88a "pdflatex"
+  "thesis_mit_Bsp.aux" 1660690770 55066 65f6e7c949202c7e8f1e1243ebb17377 "pdflatex"
+  "thesis_mit_Bsp.bbl" 1660690760 93032 5a6f47ecd1180b1239d08b3ff7dc8c64 "biber thesis_mit_Bsp"
+  "thesis_mit_Bsp.loa" 1660690770 1538 63f513cbd1f816debaf2e693d1db5640 "pdflatex"
+  "thesis_mit_Bsp.lof" 1660690770 2269 372235abb63e7137a5e80ad1e0b6bcb5 "pdflatex"
+  "thesis_mit_Bsp.lol" 1660690770 2233 97aece9727512a3ee5fea46a5f046a0b "pdflatex"
+  "thesis_mit_Bsp.lot" 1660690770 1393 6dcfaec938ddcdafd7f426cb1bdf8836 "pdflatex"
+  "thesis_mit_Bsp.out" 1660690768 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+  "thesis_mit_Bsp.run.xml" 1660690770 2404 6121a471ca421295cd701e7b589ac88a "pdflatex"
   "thesis_mit_Bsp.tex" 1660574975 4972 a3e01e7e40ebb3eff0c35492f8719621 ""
-  "thesis_mit_Bsp.toc" 1660686931 4673 a7e4f6f9a2f58111c0406d19f947d6c0 "pdflatex"
+  "thesis_mit_Bsp.toc" 1660690770 4673 0abf9015792fe501f3e04770e8b3b403 "pdflatex"
   "thesis_uro.sty" 1656709159 7586 768d1f80ac7becf521360715e0a2cb97 ""
   (generated)
   "thesis_mit_Bsp.aux"

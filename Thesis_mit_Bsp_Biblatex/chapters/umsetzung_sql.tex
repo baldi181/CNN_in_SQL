@@ -80,6 +80,13 @@ mit dem zusammengesetzten Schlüssel $(i,j,\text{id})$ benötigt. Hier werden f�
 
 \lstinputlisting[label=sql:naive_better, caption=SQL-Code zur Umsetzung der Faltung mit Umsetzungstabellen, language=SQL]{sql_code/neigh_verbesster.txt}
 
+\begin{figure}[h]
+    \includegraphics[width=0.8\textwidth]{pics/chapters/kap5/data_plot_naive_verb_verb.eps}
+    \centering
+    \caption{Beispielbilder, vgl. \cite{DBLP:journals/pieee/LeCunBBH98} aus der öffentlichen MNIST-Datenbank. Zu sehen sind handgeschriebene Ziffern und zugehörige Annotationen.}
+    \label{mnistpiccc}
+\end{figure}
+
 \subsection{Faltung als Matrixvektorprodukt}
 \label{abs:conv_using_sparse}
 Zwei beliebige Funktionen $f,g: D \rightarrow \mathbb{R}$ mit endlichem Definitionsbereich $D$ können als zeitdiskrete Signale $f=(f_0, \ldots, f_{n-1})^T \in \mathbb{R}^{n}$ und $g=(g_0, \ldots, g_{n-1})^T \in \mathbb{R}^{n}$ aufgefasst werden. %Durch das Fortsetzen mit Nullen besitzen die Vektoren $f$ und $g$ die gleiche Länge. 

@@ -1720,6 +1720,17 @@ INPUT ./sql_code/neigh_verbesster.txt
 INPUT sql_code/neigh_verbesster.txt
 INPUT ./sql_code/neigh_verbesster.txt
 INPUT sql_code/neigh_verbesster.txt
+INPUT ./pics/chapters/kap5/data_plot_naive_verb_verb.eps
+INPUT ./pics/chapters/kap5/data_plot_naive_verb_verb.eps
+INPUT pics/chapters/kap5/data_plot_naive_verb_verb.eps
+INPUT ./pics/chapters/kap5/data_plot_naive_verb_verb.eps
+INPUT ./pics/chapters/kap5/data_plot_naive_verb_verb.eps
+INPUT ./pics/chapters/kap5/data_plot_naive_verb_verb-eps-converted-to.pdf
+INPUT ./pics/chapters/kap5/data_plot_naive_verb_verb-eps-converted-to.pdf
+INPUT ./pics/chapters/kap5/data_plot_naive_verb_verb.eps
+INPUT ./pics/chapters/kap5/data_plot_naive_verb_verb-eps-converted-to.pdf
+INPUT ./pics/chapters/kap5/data_plot_naive_verb_verb-eps-converted-to.pdf
+INPUT ./pics/chapters/kap5/data_plot_naive_verb_verb-eps-converted-to.pdf
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/rm-lmr10.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/rm-lmr7.tfm
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/lmmi10.tfm
