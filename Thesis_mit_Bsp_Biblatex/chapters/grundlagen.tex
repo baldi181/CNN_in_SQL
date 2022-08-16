@@ -1,9 +1,9 @@
 \chapter{Grundlagen}
 \label{kap:fund}
-In diesem Kapitel werden grundlegende Begriffe und Definition erläutert, die im weiteren Verlauf dieser Arbeit genutzt werden. Zunächst wird im Abschnitt \ref{abs:mathe_intro} ein kurzer Überklick über das Maschinelle Lernen und dessen mathematische Grundlagen gegeben. Weiter wird die Klassifikationsaufgabe definiert und ein erster Lernalgorithmus vorgestellt, welcher im weiteren Verlauf der Arbeit verfeinert wird. Im Hinblick auf die Transformation von ML-Algorithmen in SQL-Anweisungen werden im Abschnitt \ref{abs:relation_intro} relationale Datenbanksysteme und die Anfragesprache SQL eingeführt.
+In diesem Kapitel werden grundlegende Begriffe und Definitionen erläutert, die im weiteren Verlauf dieser Arbeit genutzt werden. Zunächst wird im Abschnitt \ref{abs:mathe_intro} ein kurzer Überklick über das Maschinelle Lernen und dessen mathematische Grundlagen gegeben. Weiter wird die Klassifikationsaufgabe definiert und ein erster Lernalgorithmus vorgestellt, welcher im weiteren Verlauf der Arbeit verfeinert wird. Im Hinblick auf die Transformation von ML-Algorithmen in SQL-Anweisungen werden im Abschnitt \ref{abs:relation_intro} relationale Datenbanksysteme und die Anfragesprache SQL eingeführt.
 \section{Maschinelles Lernen}
 \label{abs:mathe_intro}
-Maschinelle Lernverfahren können genutzt werden, um Muster in digitalisierten Objekte zu erkennen. Hier kommen Algorithmen zum Einsatz, welche hinsichtlich einer bestimmten Aufgabe, engl. \textit{task T}, und einem Leistungsmaß, engl. \textit{perfomance P} an der Erfahrung, engl. \textit{experience E} lernen, vgl. \cite{mitchell1997machine}. Dabei ist mit Lernen gemeint, dass das Computerprogramm bezüglich der Aufgabe $T$ sein
+Maschinelle Lernverfahren können genutzt werden, um Muster in digitalisierten Objekten zu erkennen. Hier kommen Algorithmen zum Einsatz, welche hinsichtlich einer bestimmten Aufgabe, engl. \textit{task T}, und einem Leistungsmaß, engl. \textit{perfomance P} an der Erfahrung, engl. \textit{experience E} lernen, vgl. \cite{mitchell1997machine}. Dabei ist mit Lernen gemeint, dass das Computerprogramm bezüglich der Aufgabe $T$ sein
 Leistungsmaß $P$ mit wachsender Erfahrung $E$ schrittweise steigert. Diese Begriffe werden im Kontext des überwachten Lernens im Folgenden eingeführt.
 
 \subsection{Die Klassifikationsaufgabe}
@@ -11,20 +11,20 @@ Leistungsmaß $P$ mit wachsender Erfahrung $E$ schrittweise steigert. Diese Begr
 Seien gewisse Objekte $O_1, \ldots, O_m$ durch Vektoren repräsentiert, welche in der Menge $\mathcal{M}:=\{x_i \; : \; 1 \leq i \leq m \}$ gesammelt werden. Jedes der Objekte lässt sich durch die Funktion $f:\mathcal{M} \rightarrow \{K_1, K_2, \ldots, K_s\}$ zu einer der $s$ Klassen zuordnen. Die Funktion $f$ wird Klassifikationsfunktion genannt. Im Allgemeinen ist diese Funktion jedoch unbekannt und es steht nur eine endliche Menge von Tupeln der Form $(x_i, f(x_i))_{i=1}^m$ zur Verfügung. 
 \begin{defi}[Trainingsmenge]
     \label{deff:trainset}
-    Seien die Mengen $\mathcal{M}$ und $\mathcal{C}:=\{K_1, \ldots, K_s \}$ gegeben. Weiter sei $f: \mathcal{M} \rightarrow \mathcal{C}$ eine (unbekannte)Klassifikationsfunktion. Dann wird die Menge 
+    Seien die Mengen $\mathcal{M}$ und $\mathcal{C}:=\{K_1, \ldots, K_s \}$ gegeben. Weiter sei $f: \mathcal{M} \rightarrow \mathcal{C}$ eine (unbekannte) Klassifikationsfunktion. Dann wird die Menge 
     \begin{equation}
         \label{eq:trainset}
         \mathcal{T}:=\{(x_i, f(x_i))\; : \; 1 \leq i \leq m\}
-    \end{equation} Traininsmenge genannt. 
+    \end{equation} Trainingsmenge genannt. 
 \end{defi}
 Nun kann die Klassifikation als \textit{task T} definiert werden, welche im weiteren Verlauf dieser Arbeit im Fokus steht.
 \begin{defi}[Klassifikationsaufgabe]
-    Seien $\mathcal{M}$ und $\mathcal{C}$ wie in Definition \ref{deff:trainset} gegeben. Die Klassifikationsaufgabe besteht darin, ein Modell $\tilde{f}_{\mathcal{W}}:\mathcal{M} \rightarrow \mathcal{C}$, abhängig von Parametern $\mathcal{W}$, zu entwickeln, welche die Funktion $f$ hinreichend gut approximiert. Zur Vereinfachung der Notation wird das Modell in Zukunft mit $\tilde{f}$ bezeichnet.
+    Seien $\mathcal{M}$ und $\mathcal{C}$ wie in Definition \ref{deff:trainset} gegeben. Die Klassifikationsaufgabe besteht darin, ein Modell $\tilde{f}_{\mathcal{W}}:\mathcal{M} \rightarrow \mathcal{C}$, abhängig von Parametern $\mathcal{W}$, zu entwickeln, welches die Funktion $f$ hinreichend gut approximiert. Zur Vereinfachung der Notation wird das Modell in Zukunft mit $\tilde{f}$ bezeichnet.
 \end{defi}
-Im Zuge des überwachten Lernens wird eine Trainingsphase durchgeführt, bei welcher die Modellparameter $\mathcal{W}$ mithilfe der Traininsmenge $\mathcal{T}$ (\ref{eq:trainset}) in einem iterativen Prozess schrittweise angepasst werden. Die Tupel in $\mathcal{T}$, welche die gewünschten Ausgaben beinhalten, können als \textit{experience E} interpretiert werden.
-Die Güte der Approximation $\tilde{f}$ wird durch Fehlerfunktionen gemessen. Ziel ist es, die \textit{perfomance P} des Modells durch die Minimierung solcher Fehlerfunktionen zu steigern.  
+Im Zuge des überwachten Lernens wird eine Trainingsphase durchgeführt, bei welcher die Modellparameter $\mathcal{W}$ mithilfe der Trainingsmenge $\mathcal{T}$ (\ref{eq:trainset}) in einem iterativen Prozess schrittweise angepasst werden. Die Tupel in $\mathcal{T}$, welche die gewünschten Ausgaben beinhalten, können als \textit{experience E} interpretiert werden.
+Die Güte der Approximation $\tilde{f}$ wird durch Fehlerfunktionen gemessen. Ziel ist es, die \textit{performance P} des Modells durch die Minimierung solcher Fehlerfunktionen zu steigern.  
 \begin{defi}
-    Seien eine Klassifikationsfunktion $f$, eine Traininsmenge $\mathcal{T}$ und Modellparameter $\mathcal{W}$ gegeben. Für das Modell $\tilde{f}$ soll das Minimierungsproblem 
+    Seien eine Klassifikationsfunktion $f$, eine Trainingsmenge $\mathcal{T}$ und Modellparameter $\mathcal{W}$ gegeben. Für das Modell $\tilde{f}$ soll das Minimierungsproblem 
     \begin{equation}
         \label{eq:opt_fund_abs}
         \mathcal{E}(\mathcal{T}, \mathcal{W}):=\sum_{i=1}^m \; \mathcal{E}(\tilde{f}(x_i),f(x_i)) \rightarrow \min
@@ -36,25 +36,25 @@ Bei neuronalen Netzen wird das Optimierungsproblem (\ref{eq:opt_fund_abs}) mithi
 In der Praxis werden Testdaten, für die die Klassenzugehörigkeiten bekannt sind, genutzt, um die Generalisierungsfähigkeit des Modells zu messen. Diese Daten werden während des Trainingsprozesses zur Anpassung der Modellparameter $\mathcal{W}$ nicht benutzt.
 
 \begin{defi}[Testmenge]
-    Seien die Mengen $\mathcal{M}':=\{x_i \; : \; 1 \leq i \leq m'\}$ sowie $\mathcal{C}:=\{K_1, \ldots, K_s \}$ gegeben. Weiter sei $f: \mathcal{M}' \rightarrow \mathcal{C}$ eine bekannte Klassifikationsfunktion. Dann wird mit 
+    Seien die Datenmenge $\mathcal{M}':=\{x_i \; : \; 1 \leq i \leq m'\}$ und die Menge $\mathcal{C}:=\{K_1, \ldots, K_s \}$ der Klassen gegeben. Weiter sei $f: \mathcal{M}' \rightarrow \mathcal{C}$ eine bekannte Klassifikationsfunktion. Dann wird mit 
     \begin{equation}
         \label{eq:testset}
         \mathcal{T}':=\{(x_i, f(x_i))\; : \, 1 \leq i \leq m'\}
     \end{equation}
     eine Testmenge bezeichnet.
 \end{defi}
-Auf Training- bzw. Testmengen lassen sich Fehlerraten als Perfomance-Maße definieren.
+Auf Trainings- bzw. Testmengen lassen sich Fehlerraten als Perfomance-Maße definieren.
 
 \begin{defi}[Erkennungsrate, Generalisierungsrate]
     Sei die Approximation $\tilde{f}$ gegeben.
-    Die Erkennungsrate von $\tilde{f}$ ergibt sich durch den Anteil der richtig klassifizierten Lerndaten in der Traininsmenge. Die Generalisierungsrate von $\tilde{f}$ ist durch den Anteil der richtig klassifizierten Lerndaten in der Testmenge gegeben.
+    Die Erkennungsrate von $\tilde{f}$ ergibt sich durch den Anteil der richtig klassifizierten Lerndaten in der Trainingsmenge. Die Generalisierungsrate von $\tilde{f}$ ist durch den Anteil der richtig klassifizierten Lerndaten in der Testmenge gegeben.
 \end{defi}
 
-Schließlich ist noch das Problem der Überanpassung, engl. \textit{overfitting}, zu erwähnen. Dieses Phänomen tritt auf, wenn die Erkennungsrate eines verwendeten Modells $\tilde{f}$ während der Trainingsphase weiter steigt, gleichzeitig aber die Generalisierungsrate sinkt. In diesem Fall passt sich das Modell an zufälliges Rauschen in den Trainingsdaten an und ist für die Klassifikation allgemeiner Daten meist unbrauchbar. Für eine vertiefende Analyse des Overfittings und anderer Probleme sowie deren Behandlung sei auf Goodfellow\cite{Goodfellow-et-al-2016} verwiesen.
-Fraglich bleibt zudem, unter welchen Vorraussetzungen überhaupt eine sinnvolle Approximation möglich ist. Dazu wird im Folgenden das Problem der linearen Trennbarkeit von Punktmengen behandelt.
+Schließlich ist noch das Problem der Überanpassung, engl. \textit{overfitting}, zu erwähnen. Dieses Phänomen tritt auf, wenn die Erkennungsrate eines verwendeten Modells $\tilde{f}$ während der Trainingsphase weiter steigt, gleichzeitig aber die Generalisierungsrate sinkt. In diesem Fall passt sich das Modell an zufälliges Rauschen in den Trainingsdaten an und ist für die Klassifikation allgemeiner Daten meist unbrauchbar. Für eine vertiefende Analyse des Overfittings und anderer Probleme sowie deren Behandlung sei auf Goodfellow \cite{Goodfellow-et-al-2016} verwiesen.
+Fraglich bleibt zudem, unter welchen Voraussetzungen überhaupt eine sinnvolle Approximation möglich ist. Dazu wird im Folgenden das Problem der linearen Trennbarkeit von Punktmengen behandelt.
 \subsection{Trennbarkeit und ein erster Lernalgorithmus}
 \label{abs:trenn}
-Seien wieder Vektoren $x_1, \ldots, x_m \in \RR^{n}$ von Objekten $O_1, \ldots, O_m$ gegeben. Zunächst wird der einfache Fall betrachtet, bei dem die Punkte $x_i$ jeweils zu genau einer der zwei Klassen $K_0$ und $K_{1}$ zugeordnet sind. Seien dazu die Punktmengen
+Seien wieder Vektoren $x_1, \ldots, x_m \in \RR^{n}$ aus Objekten $O_1, \ldots, O_m$ extrahiert. Zunächst wird der einfache Fall betrachtet, bei dem die Punkte $x_i$ jeweils zu genau einer der zwei Klassen $K_0$ und $K_{1}$ zugeordnet sind. Seien dazu die Punktmengen
 \begin{align*}
     \mathcal{M} & :=\{x_i \; : \; 1 \leq i \leq m\} \subseteq \RR^{n}, \\
     \mathcal{M}_i &:=\{x_l \; : \; O_l \; \text{gehört zur Klasse} \; K_i\}, \; \, i=0,1
@@ -62,7 +62,7 @@ Seien wieder Vektoren $x_1, \ldots, x_m \in \RR^{n}$ von Objekten $O_1, \ldots, 
 definiert.
 
 \begin{defi}
-    Zwei Punktmengen $P_0, P_{1} \subseteq \RR^n$ heißen linear trennbar, genau dann wenn Parameter $w \in \RR^n$ und $\theta \in \RR^n$ existieren, sodass
+    Zwei Punktmengen $P_0, P_{1} \subseteq \RR^n$ heißen linear trennbar genau dann, wenn Parameter $w \in \RR^n$ und $\theta \in \RR^n$ existieren, sodass
     \begin{equation*}
         w^T x - \theta \begin{cases}
             <0, \; x \in \mathcal{M}_{0} \\
@@ -88,14 +88,13 @@ und \begin{equation*}
     \end{pmatrix} 
 \end{equation*}
 definiert.
-Der sogenannte Perzeptron-Lernalgorithmus\cite{rosenblatt1958perceptron}, kurz PLA, kann genutzt werden, um den Parameter $w$ schrittweise zu bestimmen. Dieser ist algorithmisch in \ref{alg:pla} darstellt. Verändert sich in einem Zyklus, also das einmalige Durchlaufen aller Punkte in $\mathcal{M}$, der Parameter $w$ nicht, so wird der PLA abgebrochen.
-Rosenblatt\cite{rosenblatt1958perceptron} bewies, dass für linear trennbare Punktmengen der PLA terminiert.
+Der sogenannte Perzeptron-Lernalgorithmus \cite{rosenblatt1958perceptron}, kurz PLA, kann genutzt werden, um den Parameter $w$ schrittweise zu bestimmen. Dieser ist algorithmisch in \ref{alg:pla} darstellt. Verändert sich in einem Zyklus, also das einmalige Durchlaufen aller Punkte in $\mathcal{M}$, der Parameter $w$ nicht, so wird der PLA abgebrochen.
 
 \begin{satz}
     Sind $\mathcal{M}_0$ und $\mathcal{M}_1$ linear trennbar, so bricht der Perzeptron-Lernalgorithmus in endlich vielen Schritten ab.
 \end{satz}
 \begin{proof}
-    Ein Beweis kann in Rosenblatt\cite{rosenblatt1958perceptron} gelesen werden.
+    Ein Beweis kann in Rosenblatt \cite{rosenblatt1958perceptron} gelesen werden.
 \end{proof}
 
 \begin{algorithm}[h]
@@ -115,18 +114,18 @@ Rosenblatt\cite{rosenblatt1958perceptron} bewies, dass für linear trennbare Pun
     \end{algorithmic}
 \end{algorithm}
 
-Es lassen sich jedoch einfache Beispiele angeben, bei denen die Punktmengen nicht durch lineare Entscheidungsgrenzen getrennt werden können. Ein Beispiel ist das zweidimensionale XOR-Problem, bei dem die Punktmengen $P_0=\{(0,0), (1,1)\}$ und $P_1=\{(0,1), (1,0) \}$ getrennt werden sollen. Hier scheitert der Perzeptron-Lernalgorithmus, da diese Punktmengen nicht linear trennbar sind. Um solche Aufgaben zu lösen, ist es notwendig, mehrere sogenannter Perzeptronen geschickt zu verknüpfen, um komplexe Entscheidungsgrenzen zu erhalten.
+Es lassen sich jedoch einfache Beispiele angeben, bei denen die Punktmengen nicht durch lineare Entscheidungsgrenzen getrennt werden können. Ein Beispiel ist das zweidimensionale XOR-Problem, bei dem die beiden Punktmengen $P_0=\{(0,0), (1,1)\}$ und $P_1=\{(0,1), (1,0) \}$ getrennt werden sollen. Hier scheitert der PLA, da die Punktmengen $P_0$ und $P_1$ nicht linear trennbar sind. Um solche Aufgaben zu lösen, ist es notwendig, komplexe Entscheidungsgrenzen zu ermitteln.
 
-Perzeptronen und neuronale Netze, welche im Kapitel \ref{kap:NN} vorgestellt werden, sind in der Lage, solche komplexe Entscheidungsgrenzen auch bei Multiklassenproblemen, also $s \geq 2$, widerzuspiegeln. Um das Problem (\ref{eq:opt_fund_abs}) zu lösen, wird hier die numerische Minimierung von stetig differenzierbaren Funktionen benötigt. Dazu wird das allgemeine Abstiegs-Verfahren genutzt, welches in der Literatur oft auch Gradientenverfahren genannt wird.
+Perzeptronen und neuronale Netze, welche im Kapitel \ref{kap:NN} vorgestellt werden, sind in der Lage, solche Entscheidungsgrenzen auch bei Multiklassenproblemen, also $s \geq 2$, widerzuspiegeln. Um das Problem (\ref{eq:opt_fund_abs}) zu lösen, wird hier die numerische Minimierung von stetig differenzierbaren Funktionen benötigt. Dazu wird das allgemeine Abstiegs-Verfahren genutzt, welches in der Literatur auch Gradientenverfahren genannt wird.
 
 \begin{defi}[Abstiegsrichtung]
-    Sei $f:\RR^n \rightarrow \RR$ stetig differenzierbar. Dann heißt $z \in \RR^n$ Abstiegsrichtung für $f$ im Punkt $x \in \RR^n$, genau dann wenn
+    Sei $f:\RR^n \rightarrow \RR$ stetig differenzierbar. Dann heißt $z \in \RR^n$ Abstiegsrichtung für $f$ im Punkt $x \in \RR^n$ genau dann, wenn
     \begin{equation*}
         z^T \nabla f(x) <0
     \end{equation*}
     gilt. 
 \end{defi}
-Ziel des Verfahrens ist, für eine Funktion $f$ stationäre Punkte $x^*$ mit $\nabla f(x^*)=0$ näherungsweise zu bestimmen. Es werden also Punkte berechnet, welche die notwendige Bedingung einer lokale Minimalstelle erfüllen.
+Ziel des Verfahrens ist, für eine Funktion $f$ stationäre Punkte $x^*$ mit $\nabla f(x^*)=0$ näherungsweise zu bestimmen. Es werden also Punkte berechnet, welche die notwendige Bedingung einer lokalen Minimalstelle erfüllen.
 Aus folgendem Lemma ergibt sich das Gradientenverfahren, siehe Algorithmus \ref{alg:gradver}. 
 \begin{lem}
     \label{abst_dir}
@@ -154,18 +153,18 @@ Aus folgendem Lemma ergibt sich das Gradientenverfahren, siehe Algorithmus \ref{
     \end{algorithmic}
 \end{algorithm}
 
-Für weitere Ausführungen des Maschinellen Lernens sei auf das umfangreiche Buch von Goodfellow\cite{Goodfellow-et-al-2016} verwiesen.
+Für eine vertiefende Analyse von Architekturen, Funktionalitäten und Implementierungsmöglichkeiten des Maschinellen Lernens sei auf das umfangreiche Buch von Goodfellow \cite{Goodfellow-et-al-2016} verwiesen.
 
 \section{Relationale Datenbanksysteme}
 \label{abs:relation_intro}
-Relationale Datenbanksysteme gehören zu den erfolgreichsten und verbreitetsten Datenbanken, welche zur elektronischen Datenverwaltung in Computersystemen eingesetzt werden. In diesem Abschnitt werden wichtige Grundbegriffe relationaler Datenbanksysteme erläutert und erklärt, wie Daten in Relationen repräsentiert und verarbeitet werden können. Die Notation und Bezeichnungen basieren auf Heuer et al.\cite{DBLP:books/daglib/0044627}. Zum Abfragen von Datenbeständen wird die Datenbanksparche SQL im Abschnitt \ref{abs:SQL_intro} eingeführt und deren theoretische Grundlage im Abschnitt \ref{abs:rela_algebra} beleuchtet. Schließlich werden im Abschnitt \ref{abs:SQL_linalg} Methoden vorgestellt, um Objekte der linearen Algebra als Relationen darzustellen und damit verbundene Operationen, beispielsweise die Matrixvektormultiplikation, datenbankgestützt umzusetzen.
+Relationale Datenbanksysteme gehören zu den erfolgreichsten und verbreitetsten Datenbanken, welche zur elektronischen Datenverwaltung in Computersystemen eingesetzt werden. In diesem Abschnitt werden wichtige Grundbegriffe relationaler Datenbanksysteme erläutert und erklärt, wie Daten in Relationen repräsentiert und verarbeitet werden können. Die Notation und Bezeichnungen basieren auf Heuer et al.\cite{DBLP:books/daglib/0044627}. Zum Abfragen von Datenbeständen wird die Datenbanksprache SQL im Abschnitt \ref{abs:SQL_intro} eingeführt und deren theoretische Grundlagen im Abschnitt \ref{abs:rela_algebra} beleuchtet. Schließlich werden im Abschnitt \ref{abs:SQL_linalg} Methoden vorgestellt, um Objekte der linearen Algebra als Relationen darzustellen und damit verbundene Operationen, beispielsweise die Matrixvektormultiplikation, datenbankgestützt umzusetzen.
 
 \subsection{Das Relationenmodell}
 Der Grundbaustein relationaler Datenbanksysteme bildet die Relation. Sie stellt eine mathematische Beschreibung einer Tabelle, welche aus Attributen und zugehörigen Domänen besteht, dar.
 
 \begin{defi}[Universum, Attribut, Domäne]
     \label{def:universum}
-    Bezeichne die endliche Menge $\mathcal{U} \neq \emptyset$ das Universum. Ein Element $A \in \mathcal{U}$ heißt Attribut. Für $m \in \mathbb{N}$ sei $\mathcal{D}=\{D_1, \ldots, D_m\}$ eine Menge nichtleere Mengen. Ein Element $D_i \in \mathcal{D}$ wird Domäne genannt. Für eine Funktion $\mathrm{dom}: \mathcal{U} \rightarrow \mathcal{D}$ bezeichne $\mathrm{dom}(A)$ den Wertebereich von $A$ und $w \in \mathrm{dom}(A)$ ein Attributwert.
+    Bezeichne die endliche Menge $\mathcal{U} \neq \emptyset$ das Universum. Ein Element $A \in \mathcal{U}$ heißt Attribut. Für $m \in \mathbb{N}$ sei $\mathcal{D}=\{D_1, \ldots, D_m\}$ eine Menge nichtleerer Mengen. Ein Element $D_i \in \mathcal{D}$ wird Domäne genannt. Für eine Funktion $\mathrm{dom}: \mathcal{U} \rightarrow \mathcal{D}$ bezeichne $\mathrm{dom}(A)$ den Wertebereich von $A$ und $w \in \mathrm{dom}(A)$ einen Attributwert.
 \end{defi}
 
 Nun können das Relationenschema und zugehörige Begriffe wie Relation und Tupel definiert werden.
@@ -206,16 +205,16 @@ Mit diesen Begriffen lässt sich das relationale Datenbanksystem definieren.
     Ein relationales Datenbanksystem ist eine Kombination aus Datenbank und Datenbankmanagementsystem, wobei letzteres zur Verwaltung der Daten verwendet wird.
 \end{defi}
 
-Das Managementsystem ist als abgekapseltes Softwaremodul zu interpretieren, welches bestimme Funktionen zur Verwaltung der Datenbank unter gewissen Anforderungen liefert. Typischerwiese sind die von Edgar F. Codd etablierten Anforderungspunkte, siehe \cite{DBLP:books/daglib/0044627}, von einem Datenbankmanagementsystem umzusetzen. Eine der geforderten Funktion bildet die Anfrage an eine Datenbank, um Daten auslesen zu können. Dabei sei bemerkt, dass je nach Datenbanksystem die Anfragebearbeitung unterschiedlich abläuft. Für eine vertiefende Analyse von Architekturen, Funktionalitäten und Implementierungsmöglichkeiten von relationalen Datenbanksystemen sei auf Heuer et. al.\cite{DBLP:books/mitp/HSS19, DBLP:books/daglib/0044627} verwiesen. 
+Das Managementsystem ist als abgekapseltes Softwaremodul zu interpretieren, welches bestimmte Funktionen zur Verwaltung der Datenbank unter gewissen Anforderungen liefert. Typischerwiese sind die von Edgar F. Codd etablierten Anforderungspunkte, siehe \cite{DBLP:books/daglib/0044627}, von einem Datenbankmanagementsystem umzusetzen. Eine der geforderten Funktionen bildet die Anfrage an eine Datenbank, um Daten auslesen zu können. Dabei sei bemerkt, dass je nach Datenbanksystem die Anfragebearbeitung unterschiedlich abläuft. Für eine vertiefende Analyse von Architekturen, Funktionalitäten und Implementierungsmöglichkeiten von relationalen Datenbanksystemen sei auf Heuer et. al.\cite{DBLP:books/mitp/HSS19, DBLP:books/daglib/0044627} verwiesen. 
 
-Im Folgenden wird die Relationenalgebra als Anfragesprache vorgestellt. Sie bildet die theoretische Grundlage der weitverbreiteten Anfragesprache SQL, welche im Folgeabschnitt \ref{abs:SQL_intro} im Fokus steht. Zusammen mit der erweiterten Relationalgebra gelingt im Abschnitt \ref{abs:SQL_linalg} die Umsetzung von Basisoperationen der linearen Algebra in SQL.
+Im Folgenden wird die Relationenalgebra als Anfragesprache vorgestellt. Sie bildet die theoretische Grundlage der weitverbreiteten Anfragesprache SQL, welche im Folgeabschnitt \ref{abs:SQL_intro} im Fokus steht. Zusammen mit der erweiterten Relationenalgebra gelingt im Abschnitt \ref{abs:SQL_linalg} die Umsetzung von Basisoperationen der linearen Algebra in SQL.
 
 \subsection{Die Relationenalgebra}
 \label{abs:rela_algebra}
 In der Relationenalgebra werden Relationen als abstrakte Datentypen mit darauf definierten Operationen definiert. Eine Anfrage ist eine Komposition von Operatoren aus einem gewissen Operatorensystem. Ein geeignetes System ist $\omega= \{ \pi, \sigma, \bowtie, \cup, \setminus, \beta \}$, welches im Folgenden definiert wird.
 
 \begin{itemize}
-    \item Für eine relation $r(R)$ mit Tupeln $t$ wird die Projektion $\pi_X(r)$ auf das Attribut $X \subseteq R$ durch
+    \item Für eine Relation $r(R)$ mit Tupeln $t$ wird die Projektion $\pi_X(r)$ auf das Attribut $X \subseteq R$ durch
     \begin{equation*}
         \pi_X(r):=\{t(X) \; | \; t \in r \}
     \end{equation*}
@@ -237,7 +236,7 @@ In der Relationenalgebra werden Relationen als abstrakte Datentypen mit darauf d
     \end{equation*} Ist $R_1=R_2$ so wird $\bowtie$ zum mengentheoretischen Durchschnitt und für $R_1 \cap R_2=\emptyset$ ergibt sich das kartesische Produkt von $r_1$ und $r_2$.
     \item Die Vereinigung zweier Relationen $r_1(R)$ und $r_2(R)$ über dem Relationenschema $R$ ist durch
     \begin{equation*}
-        r_1 \cup r_2:=\{ t \; | \; t \in r_1 \wedge t \in r_2 \}
+        r_1 \cup r_2:=\{ t \; | \; t \in r_1 \vee t \in r_2 \}
     \end{equation*}
     definiert.
     \item Die Differenz zweier Relationen $r_1(R)$ und $r_2(R)$ über dem Relationenschema $R$ ist als
@@ -255,10 +254,10 @@ Es sei darauf hingewiesen, dass weitere Operatorensysteme existieren, welche zu 
 
 \subsection*{Erweiterung der Relationenalgebra}
 
-Mit dem Operatorensystem $\omega$ von oben sind noch keine arithmetischen Berechnungen über Attribute möglich, welche jedoch zwingend für die Umsetzung linearer Algebra benötigt werden. Daher wird im Folgenden die Relationenalgebra aus Abschnitt \ref{abs:rela_algebra} erweitert. In dieser Arbeit wird oft die Gruppierung von Tupeln bezüglich gleicher Attributwertkombinationen benötigt und daher ein Gruppierungsoperator $\gamma$ eingeführt. Darüber hinaus wird die Projektion $\pi$ erweitert, um tupelweise Funktion, z.B. die Summierung \textbf{SUM}, aus Attributen verwenden zu können.
+Mit dem Operatorensystem $\omega$ von oben sind noch keine arithmetischen Berechnungen über Attribute möglich, welche jedoch zwingend für die Umsetzung linearer Algebra benötigt werden. Daher wird im Folgenden die Relationenalgebra aus Abschnitt \ref{abs:rela_algebra} erweitert. In dieser Arbeit wird oft die Gruppierung von Tupeln bezüglich gleicher Attributwertkombinationen benötigt und daher ein Gruppierungsoperator $\gamma$ eingeführt. Darüber hinaus wird die Projektion $\pi$ erweitert, um tupelweise Funktionen, z.B. die Summierung \textbf{SUM}, aus Attributen verwenden zu können.
 Dazu werden die bisher eingeführten Operatoren leicht modifiziert, indem sie auf Multimengen definiert werden. Dafür sei an dieser Stelle auf \cite{DBLP:books/daglib/0020812} verwiesen, um die angepasste Definition des Operatorensystems $ \omega$ und die zugrunde liegende Theorie nachzuvollziehen.
-\subsubsection*{Der Gruppierungsopeartor $\gamma$}
-Der Operator $\gamma_L(r)$ dient zur Aggregation von Attributwerten in Gruppen für eine gegebene Relation $r$. Die Liste $L$ kann aus Attributen der Relation $r$ oder aus bestimmten Aggregatfunktionen bestehen, welche auf den jeweiligen Attributen berechnet werden. Die Ergebnisrelation besteht aus Tupeln von $r$, welche in Gruppen partitioniert ist. Dabei ergeben sich die jeweiligen Gruppen durch gleiche Attributwertkombinationen der Gruppierungsattribute in $L$. Es wird für jede Gruppe ein Tupel berechnet, welches dann aus den Attributwerten der Attribute aus $L$ oder den Ergebnissen der Aggregatfunktionen aus $L$ besteht. Folgendes Beispiel illustriert die Funktionsweise des Gruppierungsoperator $\gamma$. Dazu sei die Relation A in Tabellenform \ref{tab:bsp_group} gegeben.
+\subsubsection*{Der Gruppierungsoperator $\gamma$}
+Der Operator $\gamma_L(r)$ dient zur Aggregation von Attributwerten in Gruppen für eine gegebene Relation $r$. Die Liste $L$ kann aus Attributen der Relation $r$ oder aus bestimmten Aggregatfunktionen bestehen, welche auf den jeweiligen Attributen berechnet werden. Die Ergebnisrelation besteht aus Tupeln von $r$, welche in Gruppen partitioniert sind. Dabei ergeben sich die jeweiligen Gruppen durch gleiche Attributwertkombinationen der Gruppierungsattribute in $L$. Es wird für jede Gruppe ein Tupel berechnet, welches dann aus den Attributwerten der Attribute aus $L$ oder den Ergebnissen der Aggregatfunktionen aus $L$ besteht. Folgendes Beispiel illustriert die Funktionsweise des Gruppierungsoperator $\gamma$. Dazu sei die Relation \textbf{A} in Tabellenform \ref{tab:bsp_group} gegeben.
 \begin{table}[h]
     \centering
     \begin{tabular}{|c|c|c|} \hline
@@ -275,7 +274,7 @@ Der Operator $\gamma_L(r)$ dient zur Aggregation von Attributwerten in Gruppen f
         2 &2 &1\\
         \hline
     \end{tabular}
-    \caption[]{Zu sehen ist die Beispielrelation bestehend aus den Attributen $i, j$ und $v$.}
+    \caption[]{Zu sehen ist die Beispielrelation \textbf{A} bestehend aus den Attributen $i, j$ und $v$.}
     \label{tab:bsp_group}
 \end{table}
 Die Relation \textbf{A} kann als Matrix 
@@ -285,7 +284,7 @@ Die Relation \textbf{A} kann als Matrix
         4 &1
     \end{pmatrix}
 \end{equation*}
-interpretiert werden. Weitere Ausführungen dazu werden im späteren Abschnitt \ref{abs:SQL_linalg} vorgestellt. Die Spaltensumme von $A$ kann mit der Gruppierungsoperationen
+interpretiert werden. Weitere Ausführungen dazu werden im späteren Abschnitt \ref{abs:SQL_linalg} vorgestellt. Die Spaltensumme von $A$ kann mit der Gruppierungsoperation
 \begin{equation*}
     \gamma_{j, \; \mathbf{SUM}(v) \rightarrow v}(\mathbf{A}) \Rightarrow 
     \begin{tabular}{|c|c|} \hline
@@ -300,10 +299,10 @@ interpretiert werden. Weitere Ausführungen dazu werden im späteren Abschnitt \
 berechnet werden. Mit dem Pfeil ist die Umbenennung $\beta$ gemeint.
 
 \subsubsection*{Der erweiterte Projektionsoperator}
-Desweiteren soll der Projektionsoperator $\pi_F(r)$ auf tupelweise arithmetische Berechnungen bezüglich einer oder mehrer Attribute einer Relation $\mathbf{r}$ erweitert werden. Dazu wird wieder eine Liste $F$ genutzt, welche 
+Des Weiteren soll der Projektionsoperator $\pi_F(r)$ auf tupelweise arithmetische Berechnungen bezüglich einer oder mehrerer Attribute einer Relation $\mathbf{r}$ erweitert werden. Dazu wird wieder eine Liste $F$ genutzt, welche 
 \begin{itemize}
     \item Attribute der Relation $r$,
-    \item Umbenennungen der Form $x \rightarrow y$, wobei $x$ eine Attribut der Relation $r$ ist, oder
+    \item Umbenennungen der Form $x \rightarrow y$, wobei $x$ ein Attribut der Relation $r$ ist, oder
     \item Ausdrücke der Form $E \rightarrow z$, wobei $E$ aus Attributen der Relation $r$, Konstanten oder arithmetischen Operationen besteht,
 \end{itemize}
 beinhalten kann. Die Funktionsweise des erweiterten Projektionsoperators wird an der Beispielrelation \ref{tab:bsp_group} beleuchtet. Die Matrixaddition
@@ -329,10 +328,10 @@ lässt sich durch
         \hline
     \end{tabular}
 \end{equation*}
-berechnen. Für diese Arbeit genügt die erweiterte Relationenalgebra mit der Gruppierung $\gamma_L$ und der erweiterten Projektion $\pi_F$, um fundamentale Operationen der linearen Algebra in der Datenbanksprache SQL darzustellen. Diese wird im Folgenden Abschnitt vorgestellt.
+berechnen. Für diese Arbeit genügt die erweiterte Relationenalgebra mit der Gruppierung $\gamma_L$ und der erweiterten Projektion $\pi_F$, um fundamentale Operationen der linearen Algebra in der Datenbanksprache SQL darzustellen. Diese wird im folgenden Abschnitt vorgestellt.
 \subsection{Die Anfragesprache SQL}
 \label{abs:SQL_intro}
-SQL als Abkürzung für \textit{Structured Query Language} ist eine Datenbanksparche zur Definition von Datenstrukturen in relationalen Datenbanksystemen. Sie wird genutzt, um Datenbestände zu bearbeiten und abzufragen und basiert dabei auf der im vorherigen Abschnitt eingeführten Relationenalgebra. SQL wird als standardisierte Sprache in allen kommerziellen und frei zugänglichen Datenbankmanagementsystemen unterstützt. Da die Sprache unter Mitwirkung von Normungsgremien wie des \textit{American National Standard Institute} (ANSI) und der \textit{International Organization for Standardization} (ISO) seit 1986 standardisiert ist, ist es möglich, über die Grenzen spezieller Systeme hinaus SQL als einheitliche Datenbanksprache zu benutzen. Für eine detailliertere Darstellung der einzelen Standards sei auf die entsprechende Literatur verwiesen. Ein guter Überblick ist in Heuer et. al.\cite{DBLP:books/daglib/0044627} zu finden.
+SQL als Abkürzung für \textit{Structured Query Language} ist eine Datenbanksprache zur Definition von Datenstrukturen in relationalen Datenbanksystemen. Sie wird genutzt, um Datenbestände zu bearbeiten und abzufragen und basiert dabei auf der im vorherigen Abschnitt eingeführten Relationenalgebra. SQL wird als standardisierte Sprache in allen kommerziellen und frei zugänglichen Datenbankmanagementsystemen unterstützt. Da die Sprache unter Mitwirkung von Normungsgremien wie des \textit{American National Standard Institute} (ANSI) und der \textit{International Organization for Standardization} (ISO) seit 1986 standardisiert ist, ist es möglich, über die Grenzen spezieller Systeme hinaus SQL als einheitliche Datenbanksprache zu benutzen. Für eine detailliertere Darstellung der einzelnen Standards sei auf die entsprechende Literatur verwiesen. Ein guter Überblick ist in Heuer et. al.\cite{DBLP:books/daglib/0044627} zu finden.
 
 SQL ist aus mehreren Teilsprachen aufgebaut, welche jeweils unterschiedliche Aufgaben des Datenbankmanagementsystems hinsichtlich der Datendefinition, Dateiorganisation und Anfragebearbeitung übernehmen. Um Methoden der linearen Algebra in Sequenzen von SQL-Anfragen darzustellen, wird der Anfrageteil \textit{Interactive Query Language}, kurz IQL, als deklarative Programmiersprache im Folgenden beleuchtet. Diese bildet das Fundament der Datenselektion und wird zur Analyse von Daten in relationalen Systemen genutzt. Eine Anfrage hat die Form 
 
@@ -344,10 +343,10 @@ SQL ist aus mehreren Teilsprachen aufgebaut, welche jeweils unterschiedliche Auf
     & [\mathbf{WHERE} \; \text{Bedingung}].
 \end{split}
 \end{align}
-Das Resultat einer Anfrage ist wieder eine Relation. Daher ist es möglich, verschachtelte Anfragen zu formulieren. Die \textbf{SELECT}-Anweisung gibt durch die Attribute in der Projektionsliste das Schema der Ergebnistabelle vor. Die \textbf{FROM}-Klausel beinhaltet die Relationenliste, in welcher die Relationen aufgeführt sind, aus denen Attribute selektiert werden sollen. Die Liste kann aus einer oder aus mehreren Unteranfragen bestehen, welche optional durch Operationen wie dem natürlichen Verbund oder dem kartesischem Produkt kombiniert werden können. Ebenfalls optional ist die \textbf{WHERE}-Klausel, welche Selektionsbedingungen bezüglich Konstanten oder Attributen enthält. 
+Das Resultat einer Anfrage ist wieder eine Relation. Daher ist es möglich, verschachtelte Anfragen zu formulieren. Die \textbf{SELECT}-Anweisung gibt durch die Attribute in der Projektionsliste das Schema der Ergebnistabelle vor. Die \textbf{FROM}-Klausel beinhaltet die Relationenliste, in welcher die Relationen aufgeführt sind, aus denen Attribute selektiert werden sollen. Die Liste kann aus einer oder aus mehreren Unteranfragen bestehen, welche optional durch Operationen wie dem natürlichen Verbund oder dem kartesischen Produkt kombiniert werden können. Ebenfalls optional ist die \textbf{WHERE}-Klausel, welche Selektionsbedingungen bezüglich Konstanten oder Attributen enthält. 
 
-Um dden Anfragemechanismus nachzuvollziehen, seien im Folgenden zwei Relationen \textit{Angestellte} und \textit{Projekt} wie in den Tabellen \ref{abb:angestellte} und \ref{abb:projekt} gegeben.
-\begin{table}
+Um den Anfragemechanismus nachzuvollziehen, seien im Folgenden zwei Relationen \textit{Angestellte} und \textit{Projekt} wie in den Tabellen \ref{abb:angestellte} und \ref{abb:projekt} gegeben.
+\begin{table}[h]
     \centering
 \begin{tabular}{|c|c|c|c|c|} \hline
     \multicolumn{5}{|c|}{\textbf{Angestellte}} \\ \hline
@@ -368,7 +367,7 @@ Um dden Anfragemechanismus nachzuvollziehen, seien im Folgenden zwei Relationen 
 \caption{Abgebildet ist die Beispielrelation Angestellte mit den Attributen ID, Name, Spezialisierung, Projektnummer und Gehalt.}
 \label{abb:angestellte}
 \end{table}
-\begin{table}
+\begin{table}[H]
     \centering
 \begin{tabular}{|c|c|c|c|c|} \hline
     \multicolumn{5}{|c|}{\textbf{Projekt}} \\ \hline
@@ -379,12 +378,13 @@ Um dden Anfragemechanismus nachzuvollziehen, seien im Folgenden zwei Relationen 
     \hline
     2 &Verwaltung &25000 &Rostock &offen\\
     \hline
-    3 &Forschungabteilung  &40000 &Schwerin &offen\\ 
+    3 &Forschungsabteilung  &40000 &Schwerin &offen\\ 
     \hline
 \end{tabular}
 \caption{Abgebildet ist die Beispielrelation Projekt mit den Attributen Projektnummer, Projektname, Budget, Ort und Status.}
 \label{abb:projekt}
 \end{table}
+
 Die Anfrage 
 \begin{align}
     \label{anf:bsp}
@@ -394,19 +394,19 @@ Die Anfrage
     &\mathbf{WHERE} \; \text{P.Status}=\text{'offen'}
 \end{split}
 \end{align}
-liefert die Namen der Angestellten von offenden Projekten. Dementsprechend ist die Ergebnisrelation in Tabelle \ref{abb:result_relation} dargestellt.
-\begin{table}[h]
+liefert die Namen der Angestellten von offenen Projekten. Dementsprechend ist die Ergebnisrelation in Tabelle \ref{abb:result_relation} dargestellt.
+\begin{table}[H]
     \centering
 \begin{tabular}{|c|c|} \hline
     \multicolumn{2}{|c|}{\textbf{Ergebnis}} \\ \hline
     \hline
     A.Name & P.Projektname \\ 
     \hline
-    Martin &Forschungabteilung \\ 
+    Martin &Forschungsabteilung \\ 
     \hline
-    Johann &Forschungabteilung\\
+    Johann &Forschungsabteilung\\
     \hline
-    Anna &Forschungabteilung\\ 
+    Anna &Forschungsabteilung\\ 
     \hline
     Antonia &Verwaltung \\
     \hline
@@ -414,7 +414,7 @@ liefert die Namen der Angestellten von offenden Projekten. Dementsprechend ist d
 \caption[]{Zu sehen ist die Ergebnisrelation der zuvor beschriebenen Anfrage (\ref{anf:bsp}).}
 \label{abb:result_relation}
 \end{table}
-Die Aliasnamen \glqq A\grqq{} und \glqq P\grqq{} dienen hier zur Übersicht und sind bei geschalteten SQL-Anfragen zwingend notwendig. Die klassiche Anfrage (\ref{anf:stand}) kann mit arithmetischen Operationen und Aggregatfunktionen sowie Gruppierungsfunktionen erweitert werden. Die Funktion \textbf{SUM} kann zur Summierung numerischer Attributwerte eines Attributs über mehrere Tupel verwendet werden. Die \textbf{GROUP BY}-Klausel dient zur Gruppierung von Tupeln bezüglich gleicher Attributwertkombinationen. Eine Kombination aus der Aggregatfunktion \textbf{SUM} und der Gruppierung wird beispielsweise in der Anfrage
+Die Aliasnamen \glqq A\grqq{} und \glqq P\grqq{} dienen hier zur Übersicht. Die klassische Anfrage (\ref{anf:stand}) kann mit arithmetischen Operationen und Aggregatfunktionen sowie Gruppierungsfunktionen erweitert werden. Die Funktion \textbf{SUM} kann zur Summierung numerischer Attributwerte eines Attributs über mehrere Tupel verwendet werden. Die \textbf{GROUP BY}-Klausel dient zur Gruppierung von Tupeln bezüglich gleicher Attributwertkombinationen. Eine Kombination aus der Aggregatfunktion \textbf{SUM} und der Gruppierung wird beispielsweise in der Anfrage
 \begin{align}
     \label{anf:erw}
     \begin{split}
@@ -441,7 +441,7 @@ verwendet. Diese berechnet die Angestelltenkosten und gruppiert sie nach den jew
 \caption[]{Es ist die Ergebnisrelation der zuvor beschriebenen Anfrage (\ref{anf:erw})
 \label{abb:erg_erw} abgebildet.}
 \end{table}
-Ein Beispiel einer geschalteten Anfrage zur Bestimmung des Angestellten mit dem höchstem Gehalt ist durch
+Ein Beispiel einer geschalteten Anfrage zur Bestimmung des Angestellten mit dem höchsten Gehalt ist durch
 \begin{align}
     \label{anf:schachtel}
     \begin{split}
@@ -452,7 +452,7 @@ Ein Beispiel einer geschalteten Anfrage zur Bestimmung des Angestellten mit dem 
 \end{align}
 gegeben. Dabei wird die Aggregatfunktion \textbf{MAX} verwendet. Die Ergebnisrelation beinhaltet in diesem Beispiel ein Tupel mit Martin als Topverdiener mit einem Gehalt von 2300 Euro.
 
-Weitere Operationen der Relationenalgebra wie die Vereinigung (\textbf{UNION}) und die Mengendifferenz (\textbf{EXCEPT}) können ebenfalls in SQL-Anfragen eingebunden werden. Es sei bemerkt, dass Ergebnisse von SQL-Anfrage immer als Multimengen fungieren. Um eine Duplikateleminierung zur Verfügung zu haben, kann die \textbf{SELECT}-Klausel durch den \textbf{DISTINCT}-Operator erweitert werden. Die Repräsentierung der Operatoren der Relationenalgebra durch SQL-Anfragen wird in Tabelle \ref{table:vgl} dargestellt. In vielen Datenbankmanagementsystemen gibt es weitere Funktionalitäten und Operatoren, welche in dieser Arbeit nicht weiter beleuchtet werden. Für die datenbankgestützte Umsetzung linearer Algebra genügt der SQL-Anfragekern wie in Tabelle \ref{table:vgl}.
+Weitere Operationen der Relationenalgebra wie die Vereinigung (\textbf{UNION}) und die Mengendifferenz (\textbf{EXCEPT}) können ebenfalls in SQL-Anfragen eingebunden werden. Es sei bemerkt, dass Ergebnisse von SQL-Anfragen immer als Multimengen fungieren. Um eine Duplikateliminierung zur Verfügung zu haben, kann die \textbf{SELECT}-Klausel durch den \textbf{DISTINCT}-Operator erweitert werden. Die Repräsentation der Operatoren der Relationenalgebra durch SQL-Anfragen wird in Tabelle \ref{table:vgl} dargestellt. In vielen Datenbankmanagementsystemen gibt es weitere Funktionalitäten und Operatoren, welche in dieser Arbeit nicht weiter beleuchtet werden. Für die datenbankgestützte Umsetzung linearer Algebra genügt der SQL-Anfragekern wie in Tabelle \ref{table:vgl}.
 
 \begin{table}[h]
     \centering
@@ -475,15 +475,15 @@ Weitere Operationen der Relationenalgebra wie die Vereinigung (\textbf{UNION}) u
         Vereinigung $\cup$ &\textbf{UNION}  \\
         \hline        
     \end{tabular}
-    \caption[tt]{Vergleich des Operatorensystems aus Abschnitt \ref{abs:rela_algebra} mit dem SQL-Anfragekern, vgl.\cite{DBLP:books/daglib/0044627}.}
+    \caption[tt]{Vergleich des Operatorensystems aus Abschnitt \ref{abs:rela_algebra} mit dem SQL-Anfragekern, vgl. \cite{DBLP:books/daglib/0044627}.}
     \label{table:vgl}
 \end{table}
 \subsection{Lineare Algebra in SQL}
 \label{abs:SQL_linalg}
-In diesem Abschnitt werden Darstellungsformen für Vektoren und Matrizen als Relationen vorgestellt. Es werden zwei Strategien erläutert, welche jeweils zur Repräsentierung von dicht und dünn besetzten Matrizen genutzt werden. Weiter werden Ideen zur Umsetzung wichtiger Basisoperationen mit Vektoren und Matrizen in SQL beleuchtet, da diese mathematischen Objekte bei zahlreichen statistischen Analysen eingesetzt werden.
+In diesem Abschnitt werden Darstellungsformen für Vektoren und Matrizen als Relationen vorgestellt. Es werden zwei Strategien erläutert, welche jeweils zur Repräsentation von dicht und dünn besetzten Matrizen genutzt werden. Weiter werden Ideen zur Umsetzung wichtiger Basisoperationen mit Vektoren und Matrizen in SQL beleuchtet, da diese mathematischen Objekte bei zahlreichen statistischen Analysen eingesetzt werden.
 \subsection*{Dicht besetzte Matrizen}
-Im Folgenden wird das \textit{Coordinate-Schema}\cite{martendiss} als Schema für die Darstellung dichtbesetzter Matrizen genutzt. Dieses Schema gestaltet sich als einfach und ist daher weit verbreitet \cite{saad1990sparskit}.
-Für eine weiterführende Diskussion anderer Darstellungsmöglichkeiten und deren Vor- und Nachteile, sei auf Marten\cite{martendiss} verwiesen. 
+Im Folgenden wird das \textit{Coordinate-Schema} \cite{martendiss} als Schema für die Darstellung dichtbesetzter Matrizen genutzt. Dieses Schema gestaltet sich als einfach und ist daher weit verbreitet \cite{saad1990sparskit}.
+Für eine weiterführende Diskussion anderer Darstellungsmöglichkeiten und deren Vor- und Nachteile sei auf Marten \cite{martendiss} verwiesen. 
 Das Coordinate-Schema beinhaltet drei Arrays, welche den Zeilenindex, Spaltenindex und den Matrixeintrag angeben. Für $A \in \RR^{m \times n}$ kann das Tupel $(i,j,A_{i,j})$ als Schlüssel-Wert-Paar interpretiert werden. So ergibt sich auf natürliche Weise die Überführung von Matrizen und Vektoren in relationale Schemata.
 \begin{defi}[Coordinate-Schema]
     \label{def:coordinate_sheme}
@@ -497,7 +497,7 @@ Das Coordinate-Schema beinhaltet drei Arrays, welche den Zeilenindex, Spaltenind
         \mathbf{A}( &\underline{i} \; \; \mathrm{int}, \\
         &\underline{j} \; \;\mathrm{int},\\
         &v \; \; \mathrm{double})
-    \end{align*} für die Matrix $A$. Die Indizies $i$ und $j$ sind jeweils als ganzzahlige Datentypen, engl. \textit{integer}, dargestellt. Die Matrixeinträge werden in \textit{double precision}\cite{30711} abgespeichert. Die unterstrichenen Attribute stellen die Schlüsselattribute, vgl. Definition \ref{def:key} dar. Diese Darstellungsform wird Coordinate-Schema genannt und für dichtbesetzte Matrizen im weiteren Verlauf dieser Arbeit genutzt.
+    \end{align*} für die Matrix $A$. Die Indizes $i$ und $j$ sind jeweils als ganzzahlige Datentypen, engl. \textit{integer}, dargestellt. Die Matrixeinträge werden in \textit{double precision} \cite{30711} abgespeichert. Die unterstrichenen Attribute stellen die Schlüsselattribute, vgl. Definition \ref{def:key} dar. Diese Darstellungsform wird Coordinate-Schema genannt und für dichtbesetzte Matrizen im weiteren Verlauf dieser Arbeit genutzt.
 \end{defi}
 
 \begin{bsp}
@@ -541,7 +541,7 @@ Das Coordinate-Schema beinhaltet drei Arrays, welche den Zeilenindex, Spaltenind
 
 \subsection*{Basisoperationen}
 \label{abs_basisoperationen}
-In diesem Abschnitt werden typische Operationen der linearen Algebra beschrieben. Einfache Funktionen wie die Summation und Multiplikation für reelle Zahlen sind bereits im SQL-Standard\cite{DBLP:books/daglib/0067064} enthalten. Seien nun Vektoren $x,y \in \RR^n$ sowie Matrizen $A,B \in \RR^{m \times n}$ und Skalare $r,s \in \RR$ gegeben. Die jeweiligen Relationen werden gemäß dem Coordinate-Schema erstellt. Die SQL-Anweisung für die Vektoraddition $rx+sy$ lautet
+In diesem Abschnitt werden typische Operationen der linearen Algebra beschrieben. Einfache Funktionen wie die Summation und Multiplikation für reelle Zahlen sind bereits im SQL-Standard \cite{DBLP:books/daglib/0067064} enthalten. Seien nun Vektoren $x,y \in \RR^n$ sowie Matrizen $A,B \in \RR^{m \times n}$ und Skalare $r,s \in \RR$ gegeben. Die jeweiligen Relationen werden gemäß dem Coordinate-Schema erstellt. Die SQL-Anweisung für die Vektoraddition $rx+sy$ lautet
 \begin{align*}
     & \mathbf{SELECT} \; x.i \; \mathbf{AS} \; i, \; r*x.v+(s*y.v ) \; \mathbf{AS} \; v \\
     & \mathbf{FROM} \; x \; \mathbf{JOIN} \; y \; \mathbf{ON} \; x.i=y.i
@@ -553,8 +553,8 @@ In diesem Abschnitt werden typische Operationen der linearen Algebra beschrieben
 \end{align*} 
 Mit der Aggregation \textbf{SUM} können zudem Skalarprodukte und damit Längenbegriffe wie Normen formuliert werden. Die entsprechenden SQL-Anfragen sind im Anhang \ref{app:app_1} zu finden. 
 
-Weitere wichtige Oprationenen sind die Matrixvektor- und Matrixmatrixmultiplikation. 
-Durch Kombination vorheriger Basisoperationen ergeben sich die entsprechende Transformation für die Matrixvektormultiplikation $Ax \in \RR^m$ einer Matrix $A \in \RR^{m \times n}$ und Vektors $x \in \RR^n$ zu
+Weitere wichtige Operationen sind die Matrixvektor- und Matrixmatrixmultiplikation. 
+Durch Kombination vorheriger Basisoperationen ergibt sich die entsprechenden Transformationen für die Matrixvektormultiplikation $Ax \in \RR^m$ einer Matrix $A \in \RR^{m \times n}$ und eines Vektors $x \in \RR^n$ zu
 
 \begin{align*}
     & \mathbf{SELECT} \; A.i \; \mathbf{AS} \; i, \; \mathbf{SUM} (A.v*x.v) \; \mathbf{AS} \; v\\
@@ -605,7 +605,7 @@ Eine dünn besetzte Matrix $A \in \RR^{m \times n}$ wird als Relation
                &v \; \mathrm{double} \; \mathrm{ARRAY}
                )
 \end{align*}
-gespeichert. Diese Repräsentierung wird Spaltenkompression genannt und ist insbesondere für die Matrixvektormultiplikation nützlich.
+gespeichert. Diese Repräsentation wird Spaltenkompression genannt und ist insbesondere für die Matrixvektormultiplikation nützlich.
 \end{defi}
 In dem Open-Source-Datenbanksystem PostgreSQL\cite{momjian2001postgresql}, welches in dieser Arbeit genutzt wird, kann für die Matrixvektormultiplikation die \textbf{UNNEST}-Funktion genutzt werden. Diese Funktion wandelt ein Array in eine Menge von Tupeln um. Die Matrixvektormultiplikation $Ax \in \RR^m$ mit dünnbesetzter Matrix $A \in \RR^{m \times n}$ kann dann mithilfe der SQL-Anfage
 
@@ -618,7 +618,7 @@ In dem Open-Source-Datenbanksystem PostgreSQL\cite{momjian2001postgresql}, welch
 \end{align*}
 berechnet werden.
 
-Zusammenfassend stellt sich heraus, dass wesentliche Objekte der linearen Algebra und fundamentale Operationen im SQL-Kern umgesetzt werden können. Für dicht besetzte Matrizen wird das Coordinate-Schema \ref{def:coordinate_sheme} benutzt, während für dünn besetzte Probleme das Spaltenkompression-Schema \ref{def:spaltenkomp} genutzt wird. Beide Darstellungsformen erlauben kompakte SQL-Anfragen für die Matrixmatrix- bzw. Matrixvektormultiplikation. Für eine tiefere Analyse dieser und anderer Darstellungsmöglichkeiten und deren Perfomance hinsichtlich verschiedener Basisoperationen sei auf Marten\cite{martendiss} verwiesen.
+Zusammenfassend stellt sich heraus, dass wesentliche Objekte der linearen Algebra und fundamentale Operationen im SQL-Kern umgesetzt werden können. Für dicht besetzte Matrizen wird das Coordinate-Schema \ref{def:coordinate_sheme} benutzt, während für dünn besetzte Probleme das Spaltenkompression-Schema \ref{def:spaltenkomp} genutzt wird. Beide Darstellungsformen erlauben kompakte SQL-Anfragen für die Matrixmatrix- bzw. Matrixvektormultiplikation. Für eine tiefere Analyse dieser und anderer Darstellungsmöglichkeiten und deren Performance hinsichtlich verschiedener Basisoperationen sei auf Marten\cite{martendiss} verwiesen.
 
 
 %Im folgenden Abschnitt werden diese Resultate genutzt und im Zusammenhang mit einem Machine- Learning-Verfahren eingesetzt.
