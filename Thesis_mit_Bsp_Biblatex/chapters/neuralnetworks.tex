@@ -184,7 +184,7 @@ Sind die Hyperparameter des FFN festgelegt, müssen die Modellparameter $\mathca
     \label{eq:Emin}
     \mathcal{E}(\mathcal{T}, \mathcal{W}) \rightarrow \min
 \end{equation} 
-im Raum der Parameter $\mathcal{W}$ gelöst werden soll. Dabei sei bemerkt, dass dies unabhängig von den Hyperparametern geschieht. Im Folgenden wird der Backpropagationsalgorithmus als ein Lösungsansatz der Aufgabe (\ref{eq:Emin}) vorgestellt.  
+im Raum der Parameter $\mathcal{W}$ gelöst werden soll. Dabei sei bemerkt, dass dies unabhängig von den Hyperparametern geschieht. Im Folgenden wird der Backpropagationsalgorithmus als ein Lösungsansatz für Aufgabe (\ref{eq:Emin}) vorgestellt.  
 %Um die Approximationsgüte, also die \textit{perfomance P}, bezüglich des Klassifikationsproblems messbar zu machen, werden Fehlerfunktionen eingeführt. 
 %Mit Trainingsdaten als \textit{experience E} und dem Gradientenverfahren\cite{nocedal1999numerical} sollen optimale Parameter $\mathcal{W}$ gefunden werden, sodass die gewählte Fehlerfunktion minimiert wird. Im folgenden steht ein MLP $\Lambda(\, \cdot \, ; \mathcal{W}): D \rightarrow [0,1]^m$  mit der Softmax-Funktion als Aktivierungsfunktion im Mittlepunkt, welches als parametrisiertes Modell $f_{Modell}$ wie in \ref{eq:f_modell} genutzt wird.
 %Die Trainingsdaten werden in Trainingsmengen und Testmengen aufgeteilt.
@@ -231,7 +231,7 @@ im Raum der Parameter $\mathcal{W}$ gelöst werden soll. Dabei sei bemerkt, dass
  \section*{Backpropagationsalgorithmus}
 Bei FFN wird Backpropagation, etabliert von Rumelhart et. al. \cite{MLPbook}, als Lernalgorithmus genutzt, um eine gewählte Fehlerfunktion $\mathcal{E}$ zu minimieren. Dabei wird das Gradientenverfahren, vgl. Algorithmus \ref{alg:gradver}, zur numerischen Minimierung von $\mathcal{E}$ im Raum der Modellparameter $\mathcal{W}$ genutzt. Es sei bemerkt, dass das Finden von globalen Minima durch den Backpropagationsalgorithmus keineswegs garantiert ist.
 In dieser Arbeit wird $\mathcal{E}$ immer als stetig differenzierbare Funktion vorausgesetzt, damit das Gradientenverfahren angewendet werden kann. Ebenso sollten alle verwendeten Aktivierungsfunktionen aus Definition \ref{def_act_f} als stückweise stetig differenzierbare Funktion vorausgesetzt werden. 
-Die Optimierung der Parameter geschieht iterativ, dargestellt mit dem Index $n$, und das Gradientenverfahren besteht jeweils aus zwei Schritten. Für festes $n$ wird zuerst eine Abstiegsrichtung 
+Die Optimierung der Parameter geschieht iterativ, dargestellt mit dem Index $n$, und besteht aus zwei Schritten. Für festes $n$ wird zuerst eine Abstiegsrichtung 
 \begin{equation}
     \label{eq:gradE}
     \Delta_n := \nabla_{\mathcal{W}} \mathcal{E}(\mathcal{T},\mathcal{W})
@@ -276,7 +276,7 @@ Der Online-Backpropagationsalgorithmus, in der Literatur auch als \textit{Stocha
     %\end{equation}
     %gelöst werden. Dabei wird $\mathcal{E}$ Fehlerfunktion gennant.
  %\end{defi}
-Als Fehlerfunktion $\mathcal{E}$ wird im weiteren Verlauf die mittlere quadratische Abweichung genutzt.
+Als Fehlerfunktion $\mathcal{E}$ wird im weiteren Verlauf die mittlere quadratische Abweichung verwendet.
 \begin{defi}
     \label{def:MSE}
     Seien eine Trainingsmenge $\mathcal{T}$ und Modellparameter $\mathcal{W}$ eines FFN $\Lambda$ gegeben. Dann wird die mittlere quadratische Abweichung als
@@ -291,13 +291,12 @@ Beim Online-Verfahren wird der Fehler
     \label{eq:MSE_single}
     E_x= \frac{1}{2} ||y-t(x,c)||_2^2= \frac{1}{2} \sum_{k=1}^{s_l} (y_k-t_k)^2
 \end{equation}
-für eine einzige Eingabe $x$ berechnet. Die Ausgabeschicht eines $l$-schichtigen FFN $\Lambda$ besitze $s_l$ Neuronen. Zunächst müssen die Abstiegsrichtungen 
-
+für eine einzige Eingabe $x$ berechnet. Es müssen die Abstiegsrichtungen 
 \begin{align*}
-    \Delta_{W^{(k)}} &= \frac{\partial E_x}{\partial W^{(k)}} \\
-    \Delta_{b^{(k)}} &= \frac{\partial E_x}{\partial b^{(k)}} 
+    \Delta_{W^{(m)}} &= \frac{\partial E_x}{\partial W^{(m)}} \\
+    \Delta_{b^{(m)}} &= \frac{\partial E_x}{\partial b^{(m)}} 
 \end{align*}
-für $1 \leq k \leq l$ ermittelt werden. Dazu wird im Folgenden die Notation wie in \cite{du_diss} mit
+für $1 \leq m \leq l$ ermittelt werden. Die Ausgabeschicht eines $l$-schichtigen FFN $\Lambda$ besitze $s_l$ Neuronen. Im Folgenden wird die Notation wie in \cite{du_diss} mit
 \begin{alignat*}{3}
     &w_{k,j}^l  &&\text{Eintrag der Gewichtsmatrix $W^{(l)}$ der Ausgabeschicht}, \\
     &w_{j,i}^h   &&\text{Eintrag der Gewichtsmatrix $W^{(h)}$ einer verdeckten Schicht}, \\
@@ -309,7 +308,7 @@ für $1 \leq k \leq l$ ermittelt werden. Dazu wird im Folgenden die Notation wie
 \end{alignat*}
 genutzt. Zunächst wird nur eine verdeckte Schicht mit $s_j$ Neuronen betrachtet. 
 %ie Verallgemeinerung für beliebig viele Schichten ist analog. 
-Mit $i$ ist ein Eingabeneuron, $j$ eine verstecktes Neuron und $k$ eine Ausgabeneuron gemeint. Außerdem werden die Gradienten komponentenweise berechnet und daher die Modellparameter komponentenweise aktualisiert. Das mehrmalige Anwenden der Kettenregel \ref{s:chainrule} auf die Fehlerfunktion (\ref{eq:MSE_single}) liefert
+Mit $i$ ist ein Eingabeneuron, $j$ eine verdecktes Neuron und $k$ eine Ausgabeneuron gemeint. Außerdem werden die Gradienten komponentenweise berechnet und daher die Modellparameter komponentenweise aktualisiert. Das mehrmalige Anwenden der Kettenregel \ref{s:chainrule} auf die Fehlerfunktion (\ref{eq:MSE_single}) liefert
 \begin{align*}
     \label{eq:delta_w_out}
 \Delta w_{k,j}^l &= \frac{\partial E_x}{\partial w_{k,j}^l} \\
@@ -412,9 +411,9 @@ Die Online-Backpropagation eines FFN $\Lambda$ wird als komponentenweiser und it
 \end{algorithm}
 
 
-Bei der Wahl der Lernrate werden heutzutage werden oft adaptive Verfahren genutzt, welche vorangegangene Gradienten berücksichtigen und die Lernrate so anpassen. Bekannte Verfahren sind \textit{Nesterov accelerated
-gradient}\cite{sutskever2013importance}, \textit{AdaGrad}\cite{duchi2011adaptive}, \textit{RMSProp}\cite{tieleman2012lecture} sowie \textit{Adam}\cite{Kingma2015AdamAM}. So sollen Probleme wie des \textit{vanishing gradients} oder des \textit{exploding gradients} vermieden werden, siehe dazu\cite{hanin2018neural}.
-Für eine tiefere Analyse des Gradientenverfahrens und dessen Varianten sei auf die jeweilgen Arbeiten beziehungsweise als Zusammenfassung auf Ruder\cite{ruder2016overview,} verwiesen. Darüber hinaus gibt es andere Techniken wie die Regularisierung, um den oben genannten Probleme zu entgehen.
+Bei der Wahl der Lernrate werden heutzutage oft adaptive Verfahren genutzt, welche vorangegangene Gradienten berücksichtigen und die Lernrate so anpassen. Bekannte Verfahren sind \textit{Nesterov accelerated
+gradient} \cite{sutskever2013importance}, \textit{AdaGrad} \cite{duchi2011adaptive}, \textit{RMSProp} \cite{tieleman2012lecture} sowie \textit{Adam} \cite{Kingma2015AdamAM}. So sollen Probleme wie des \textit{vanishing gradients} oder des \textit{exploding gradients} vermieden werden, siehe dazu \cite{hanin2018neural}.
+Für eine tiefere Analyse des Gradientenverfahrens und dessen Varianten sei auf die jeweilgen Arbeiten beziehungsweise als Zusammenfassung auf Ruder \cite{ruder2016overview,} verwiesen. Darüber hinaus gibt es andere Techniken wie die Regularisierung, um den oben genannten Probleme zu entgehen.
 Für die Problemstellung in dieser Arbeit ist es ausreichend, das Online-Verfahren mit konstanter Lernrate zu nutzen. 
 
 \section{Zusammenfassung}

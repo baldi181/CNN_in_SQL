@@ -1,6 +1,6 @@
 \chapter{Datenbankgestützte Implementierung von CNN}
 \label{kap:CNN_in_SQL}
-In diesem Kapitel werden Ideen zur Umsetzung der datenbankgestützten Mustererkennung durch tranierte gefaltete neuronale Netze vorgestellt. Der Schlüssel liegt dabei in der effektiven Implementierung der Faltungsoperation als SQL-Anfrage. Gelingt dies, so kann die Vorwärtsrechnung eines CNN durch Komposition von Faltungs-, Pooling- und Matrixvektoroperationen umgesetzt werden. Im Abschnitt \ref{abs:conv_in_sql} werden drei Implementierungsmöglichkeiten der Matrixfaltung, siehe \ref{def:matrix_faltung}, in SQL beleuchtet. Dabei stellt sich heraus, dass es sich lohnt, die diskrete Faltung als lineare Operationen mithilfe der in Kapitel \ref{kap:fund} vorgestellten Basisoperationen umzusetzen. So gelingt es, die Problemstellung \ref{prob:conv_in_sql} zu beantworten und auch für relativ große Grauwertbilder akzeptable Laufzeiten zu erreichen. 
+In diesem Kapitel werden Ideen zur Umsetzung der datenbankgestützten Mustererkennung durch tranierte gefaltete neuronale Netze vorgestellt. Der Schlüssel liegt dabei in der effektiven Implementierung der Faltungsoperation als SQL-Anfrage. Gelingt dies, so kann die Vorwärtsrechnung eines CNN durch Komposition von Faltungs-, Pooling- und Matrixvektoroperationen umgesetzt werden. Im Abschnitt \ref{abs:conv_in_sql} werden drei Implementierungsmöglichkeiten der Matrixfaltung, siehe \ref{def:matrix_faltung}, in SQL beleuchtet. Dabei stellt sich heraus, dass es sich lohnt, die diskrete Faltung als lineare Operationen mithilfe der in Kapitel \ref{kap:fund} vorgestellten Basisoperationen umzusetzen. So gelingt es, die Problemstellung \ref{prob:conv_in_sql} zu lösen und auch für relativ große Grauwertbilder akzeptable Laufzeiten zu erreichen, die jedoch in Zukunft noch verbessert werden müssen.
 
 Im Abschnitt \ref{abs_CNN_in_SQL} wird hinsichtlich Problem \ref{prob:ffCCN} eine (objekt-) relationale Umsetzung der Vorwärtsrechnung für das Modell \ref{modell} zur Ziffernerkennung vorgestellt. Dieses Modell sei mithilfe des Backpropagationsalgorithmus \ref{alg:cnn_online} bereits traniert, siehe Abschnitt \ref{abs:model_mnist}.
 \section{Die Faltungsoperation in SQL}
@@ -61,7 +61,12 @@ Zur Umsetzung der Faltungsoperation sind also zunächst die Nachbarschaften für
 
 In der Anfrage (Zeile 4-14) werden die Nachbarschaften aller Pixel in der temporären Relation $\mathbf{kreuz}$ berechnet. Dabei wird die \textbf{BETWEEN}-Funktion zur kompakten Darstellung der Konstantenselektion bezüglich $l=\lfloor k/2 \rfloor$ genutzt. In den Zeilen 15-17 werden dann die Nachbarschaften über die entsprechenden Indizies der Filtermatrix verbunden und schließlich die \textbf{SUM}-Funktion genutzt, um das Faltungsergebnis zu berechnen. Dieser naive Ansatz nutzt keine lineare Algebra in Form von Matrixvektor- oder Matrixmatrixmultiplikation und ist hinsichtlich des Problems \ref{prob:conv_in_sql} schon für verhältnismäßig kleine Grauwertbilder ineffizient. Zu Erkennen ist dies in der Abbildung \ref{abb:laufzeit_naive}, bei der die Laufzeiten der SQL-Anfrage \ref{sql:naive} in Abhängigkeit von der Dimension $n$ für allgemeine Matrizen $X \in \RR^{n \times n}$ dargestellt ist.
 
-TODO Grafik ergebnis erklären.
+\begin{figure}[h]
+    \includegraphics[width=0.8\textwidth]{pics/chapters/kap5/data_plot_naive_verb.eps}
+    \centering
+    \caption{Beispielbilder, vgl. \cite{DBLP:journals/pieee/LeCunBBH98} aus der öffentlichen MNIST-Datenbank. Zu sehen sind handgeschriebene Ziffern und zugehörige Annotationen.}
+    \label{mnistpicc}
+\end{figure}
 
 Eine Verbesserung der Laufzeiten kann mithilfe von Umsetzungstabellen, engl. \textit{Lookup tables}, erreicht werden. Da die Dimensionen aller vorkommenden Merkmalskarten und Kerne eines CNN von Anfang an durch die Wahl der Hyperparameter festgelegt werden, müssen die Nachbarschaften für die Faltung und das Pooling nur einmalig berechnet werden. Dies kann zudem vor der eigentlichen Vorwärtsrechnung durchgeführt werden. So wird zwar der Speicheraufwand erhöht, aber der Zeitaufwand hinsichtlich der Faltungs- und Poolingoperation deutlich vermindert. Dazu werden pro Faltungs- und Poolingschicht jeweils eine Umsetzungstabelle \textbf{U} in der Form 
 \begin{align*}

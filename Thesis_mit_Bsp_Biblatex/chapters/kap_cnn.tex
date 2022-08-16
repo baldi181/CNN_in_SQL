@@ -122,16 +122,17 @@ Im Hinblick auf die Klassifikation von digitalisierten Bildern, dargestellt als 
 
 Bei gefalteten neuronalen Netzen wird oft eine Reduktion der Dimensionen angestrebt. Dafür werden natürliche Zahlen als Schrittweiten, engl. \textit{strides}, genutzt.
 \begin{bem}\label{bem_strides}
-    Für Schrittweiten $s_h, s_b \in \mathbb{N}$ ergibt sich die reduzierte zweidimensionale Faltung $Y=X \ast K$ zu
+    Für Schrittweiten $s_h, s_b \in \mathbb{N}$ ist die reduzierte Matrixfaltung $Y=X \ast K$ als
     \begin{equation*}
-        Y_{i,j}:=\sum_{u=-l}^{l} \sum_{v=-l}^{l} X_{i \cdot s_h +u,j \cdot s_b +v} K_{u+l+1, v+l+1}\; \; \forall i \in [\lceil h/s_h \rceil], j \in [\lceil b/s_b \rceil].
+        Y_{i,j}:=\sum_{u=-l}^{l} \sum_{v=-l}^{l} X_{i \cdot s_h +u,j \cdot s_b +v} K_{u+l+1, v+l+1}\; \; \forall i \in [\lceil h/s_h \rceil], j \in [\lceil b/s_b \rceil]
     \end{equation*}
+    definiert.
     Für $s_h=s_b=1$ ergibt sich die Standardvariante wie in \ref{eq:matrix_faltung}.
     \end{bem}
 
 \section{CNN Architektur}
 \label{abs:CNN_arch}
-Beim maschinellen Lernen sind Eingabedaten oft als mehrdimensionale Arrays abgelegt, welche eine oder mehrere Achsen repräsentieren, wobei die Ordnung dieser eine Rolle spielt. Bei digitalisierten Bildern sind das beispielsweise die Höhe und Breite des Bildes, welche als Raumachsen bezeichnet werden. Hinzu kommen Kanalachsen, zum Beispiel besitzen Grauwert-Bilder einen Farbkanal, während RGB-Farbbilder drei Kanäle der Farben Rot usw. besitzen. Dementsprechend werden Grauwert-Bilder wie in Definition \ref{def:image} nun als dreidimensionale Arrays $X \in [0,1]^{h \times b \times 1}$ dargestellt. Dies erlaubt die Definition der gefalteten Übertragungsfunktion, wie in Gruening\cite{gruening}
+Beim maschinellen Lernen sind Eingabedaten oft als mehrdimensionale Arrays dargestellt, welche eine oder mehrere Achsen repräsentieren, wobei die Ordnung dieser eine Rolle spielt. Bei digitalisierten Bildern sind das beispielsweise die Höhe und Breite des Bildes, welche als Raumachsen bezeichnet werden. Hinzu kommen Kanalachsen, zum Beispiel besitzen Grauwert-Bilder einen Farbkanal, während RGB-Farbbilder drei Kanäle der Farben Rot usw. besitzen. Dementsprechend werden Grauwert-Bilder wie in Definition \ref{def:image} nun als dreidimensionale Arrays $X \in [0,1]^{h \times b \times 1}$ dargestellt. Dies erlaubt die Definition der gefalteten Übertragungsfunktion, wie in Gruening \cite{gruening}
 
 \begin{defi}[Gefaltete Übertragungsfunktion]
     \label{eq:convlogit}

@@ -61,18 +61,18 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.1.2}Faltung als Matrixvektorprodukt}{52}{subsection.5.1.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1.3}Diskrete Fourier-Transformation}{55}{subsection.5.1.3}%
+\contentsline {subsection}{\numberline {5.1.3}Diskrete Fourier-Transformation}{56}{subsection.5.1.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1.4}Zusammenfassung}{60}{subsection.5.1.4}%
+\contentsline {subsection}{\numberline {5.1.4}Zusammenfassung}{61}{subsection.5.1.4}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {5.2}Datenbankgestützte Vorwärtsrechnung für CNN}{60}{section.5.2}%
+\contentsline {section}{\numberline {5.2}Datenbankgestützte Vorwärtsrechnung für CNN}{61}{section.5.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {6}Zusammenfassung und Ausblick}{66}{chapter.6}%
+\contentsline {chapter}{\numberline {6}Zusammenfassung und Ausblick}{67}{chapter.6}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\nonumberline Literatur}{68}{chapter*.39}%
+\contentsline {chapter}{\nonumberline Literatur}{69}{chapter*.40}%
 \defcounter {refsection}{0}\relax 
-\contentsline {chapter}{\numberline {A}Anhang}{73}{appendix.A}%
+\contentsline {chapter}{\numberline {A}Anhang}{74}{appendix.A}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.1}Weitere Basisoperation in SQL}{73}{section.A.1}%
+\contentsline {section}{\numberline {A.1}Weitere Basisoperation in SQL}{74}{section.A.1}%
 \defcounter {refsection}{0}\relax 
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
