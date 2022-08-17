@@ -1,54 +1,54 @@
 [0] Config.pm:311> INFO - This is Biber 2.16
 [0] Config.pm:314> INFO - Logfile is 'thesis_mit_Bsp.blg'
 [110] biber-MSWIN32:340> INFO - === 
-[145] Biber.pm:415> INFO - Reading 'thesis_mit_Bsp.bcf'
-[282] Biber.pm:952> INFO - Found 69 citekeys in bib section 0
-[298] Biber.pm:4340> INFO - Processing section 0
-[310] Biber.pm:4531> INFO - Looking for bibtex format file 'literatur.bib' for section 0
-[352] bibtex.pm:1689> INFO - LaTeX decoding ...
-[469] bibtex.pm:1494> INFO - Found BibTeX data source 'literatur.bib'
-[476] Utils.pm:395> WARN - Duplicate entry key: 'dayhoff1990neural' in file 'literatur.bib', skipping ...
-[476] Utils.pm:395> WARN - Duplicate entry key: 'pandya1995pattern' in file 'literatur.bib', skipping ...
-[476] Utils.pm:395> WARN - Duplicate entry key: 'pao1989adaptive' in file 'literatur.bib', skipping ...
-[476] Utils.pm:395> WARN - Duplicate entry key: 'urbaniak2021quality' in file 'literatur.bib', skipping ...
-[754] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 268, warning: 80 characters of junk seen at toplevel
-[754] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 276, warning: 30 characters of junk seen at toplevel
-[754] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 634, warning: 57 characters of junk seen at toplevel
-[754] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 644, warning: 18 characters of junk seen at toplevel
-[754] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 655, warning: 10 characters of junk seen at toplevel
-[754] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 666, warning: 18 characters of junk seen at toplevel
-[755] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 674, warning: 16 characters of junk seen at toplevel
-[755] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 686, warning: 14 characters of junk seen at toplevel
-[755] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 693, warning: 14 characters of junk seen at toplevel
-[755] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 702, warning: 21 characters of junk seen at toplevel
-[755] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 730, warning: 49 characters of junk seen at toplevel
-[755] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 762, warning: 17 characters of junk seen at toplevel
-[755] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 770, warning: 6 characters of junk seen at toplevel
-[755] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 782, warning: 18 characters of junk seen at toplevel
-[755] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 794, warning: 6 characters of junk seen at toplevel
-[755] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 806, warning: 20 characters of junk seen at toplevel
-[755] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 815, warning: 28 characters of junk seen at toplevel
-[755] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 829, warning: 38 characters of junk seen at toplevel
-[755] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 845, warning: 14 characters of junk seen at toplevel
-[755] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 857, warning: 8 characters of junk seen at toplevel
-[755] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 869, warning: 8 characters of junk seen at toplevel
-[755] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 884, warning: 26 characters of junk seen at toplevel
-[755] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 892, warning: 27 characters of junk seen at toplevel
-[755] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 916, warning: 36 characters of junk seen at toplevel
-[755] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 933, warning: 20 characters of junk seen at toplevel
-[755] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 948, warning: 80 characters of junk seen at toplevel
-[756] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 956, warning: 30 characters of junk seen at toplevel
-[756] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 963, warning: 15 characters of junk seen at toplevel
-[756] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 983, warning: 13 characters of junk seen at toplevel
-[756] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 994, warning: 24 characters of junk seen at toplevel
-[756] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 1017, warning: 59 characters of junk seen at toplevel
-[756] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_ooUS\a3880c76f34ea5bee4730f185bf8bebe_17264.utf8, line 1028, warning: 25 characters of junk seen at toplevel
-[756] Utils.pm:395> WARN - BibTeX subsystem: warning: comma(s) at end of name (removing)
-[757] Utils.pm:395> WARN - I didn't find a database entry for 'myprojekt' (section 0)
-[835] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
-[835] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[835] Biber.pm:4168> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'de-DE'
-[835] Biber.pm:4174> INFO - No sort tailoring available for locale 'de-DE'
-[905] bbl.pm:654> INFO - Writing 'thesis_mit_Bsp.bbl' with encoding 'UTF-8'
-[940] bbl.pm:757> INFO - Output to thesis_mit_Bsp.bbl
-[940] Biber.pm:128> INFO - WARNINGS: 38
+[153] Biber.pm:415> INFO - Reading 'thesis_mit_Bsp.bcf'
+[297] Biber.pm:952> INFO - Found 69 citekeys in bib section 0
+[314] Biber.pm:4340> INFO - Processing section 0
+[325] Biber.pm:4531> INFO - Looking for bibtex format file 'literatur.bib' for section 0
+[389] bibtex.pm:1689> INFO - LaTeX decoding ...
+[505] bibtex.pm:1494> INFO - Found BibTeX data source 'literatur.bib'
+[511] Utils.pm:395> WARN - Duplicate entry key: 'dayhoff1990neural' in file 'literatur.bib', skipping ...
+[512] Utils.pm:395> WARN - Duplicate entry key: 'pandya1995pattern' in file 'literatur.bib', skipping ...
+[512] Utils.pm:395> WARN - Duplicate entry key: 'pao1989adaptive' in file 'literatur.bib', skipping ...
+[512] Utils.pm:395> WARN - Duplicate entry key: 'urbaniak2021quality' in file 'literatur.bib', skipping ...
+[787] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 268, warning: 80 characters of junk seen at toplevel
+[787] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 276, warning: 30 characters of junk seen at toplevel
+[787] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 634, warning: 57 characters of junk seen at toplevel
+[787] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 644, warning: 18 characters of junk seen at toplevel
+[787] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 655, warning: 10 characters of junk seen at toplevel
+[787] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 666, warning: 18 characters of junk seen at toplevel
+[787] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 674, warning: 16 characters of junk seen at toplevel
+[788] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 686, warning: 14 characters of junk seen at toplevel
+[788] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 693, warning: 14 characters of junk seen at toplevel
+[788] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 702, warning: 21 characters of junk seen at toplevel
+[788] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 730, warning: 49 characters of junk seen at toplevel
+[788] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 762, warning: 17 characters of junk seen at toplevel
+[788] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 770, warning: 6 characters of junk seen at toplevel
+[788] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 782, warning: 18 characters of junk seen at toplevel
+[788] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 794, warning: 6 characters of junk seen at toplevel
+[788] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 806, warning: 20 characters of junk seen at toplevel
+[788] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 815, warning: 28 characters of junk seen at toplevel
+[788] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 829, warning: 38 characters of junk seen at toplevel
+[788] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 845, warning: 14 characters of junk seen at toplevel
+[788] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 857, warning: 8 characters of junk seen at toplevel
+[788] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 869, warning: 8 characters of junk seen at toplevel
+[788] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 884, warning: 26 characters of junk seen at toplevel
+[788] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 892, warning: 27 characters of junk seen at toplevel
+[788] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 916, warning: 36 characters of junk seen at toplevel
+[788] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 933, warning: 20 characters of junk seen at toplevel
+[788] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 948, warning: 80 characters of junk seen at toplevel
+[788] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 956, warning: 30 characters of junk seen at toplevel
+[789] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 963, warning: 15 characters of junk seen at toplevel
+[789] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 983, warning: 13 characters of junk seen at toplevel
+[789] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 994, warning: 24 characters of junk seen at toplevel
+[789] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 1017, warning: 59 characters of junk seen at toplevel
+[789] Utils.pm:395> WARN - BibTeX subsystem: C:\Users\Florian\AppData\Local\Temp\biber_tmp_RIl8\a3880c76f34ea5bee4730f185bf8bebe_18184.utf8, line 1028, warning: 25 characters of junk seen at toplevel
+[789] Utils.pm:395> WARN - BibTeX subsystem: warning: comma(s) at end of name (removing)
+[790] Utils.pm:395> WARN - I didn't find a database entry for 'myprojekt' (section 0)
+[866] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'variable = shifted' with 'variable = non-ignorable'
+[866] UCollate.pm:68> INFO - Overriding locale 'de-DE' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[866] Biber.pm:4168> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'de-DE'
+[866] Biber.pm:4174> INFO - No sort tailoring available for locale 'de-DE'
+[935] bbl.pm:654> INFO - Writing 'thesis_mit_Bsp.bbl' with encoding 'UTF-8'
+[969] bbl.pm:757> INFO - Output to thesis_mit_Bsp.bbl
+[969] Biber.pm:128> INFO - WARNINGS: 38

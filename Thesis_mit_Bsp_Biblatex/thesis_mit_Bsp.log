@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.1)  17 AUG 2022 00:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.1)  17 AUG 2022 03:23
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1106,6 +1106,10 @@ Document Style - pseudocode environments for use with the `algorithmicx' style
 ) (c:/texlive/2021/texmf-dist/tex/latex/ifsym/ifsym.sty
 Package: ifsym 2000/04/18 I.Kloeckl
 \c@ifsymcnt=\count492
+) (c:/texlive/2021/texmf-dist/tex/latex/chngcntr/chngcntr.sty
+Package: chngcntr 2018/04/09 v1.1a change counter resetting
+Package chngcntr Info: \counterwithout already defined.
+(chngcntr)             Quitting chngcntr on input line 21.
 )
 \c@kor=\count493
 \c@hsatz=\count494
@@ -1119,30 +1123,30 @@ Package: ifsym 2000/04/18 I.Kloeckl
 \c@bsp=\count502
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
-LaTeX Font Info:    Trying to load font information for T1+lmr on input line 74.
+LaTeX Font Info:    Trying to load font information for T1+lmr on input line 77.
  (c:/texlive/2021/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) (./thesis_mit_Bsp.aux)
 \openout1 = `thesis_mit_Bsp.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 74.
-LaTeX Font Info:    ... okay on input line 74.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
 
 
 LaTeX hooks Warning: Generic hook
@@ -1155,7 +1159,7 @@ LaTeX hooks Warning: Generic hook
 (c:/texlive/2021/texmf-dist/tex/latex/translations/translations-basic-dictionary-german.trsl
 File: translations-basic-dictionary-german.trsl (german translation file `translations-basic-dictionary')
 )
-Package translations Info: loading dictionary `translations-basic-dictionary' for `german'. on input line 74.
+Package translations Info: loading dictionary `translations-basic-dictionary' for `german'. on input line 77.
  (c:/texlive/2021/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count503
@@ -1196,7 +1200,7 @@ Package pdflscape Info: Auto-detected driver: pdftex on input line 81.
 )
 Package pgfplots notification 'compat/show suggested version=true': you might benefit from \pgfplotsset{compat=1.18} (current compat level: 1.12).
 
-Package scrhack Info: undefining \float@addtolists on input line 74.
+Package scrhack Info: undefining \float@addtolists on input line 77.
 Package biblatex Info: Trying to load language 'ngerman'...
 Package biblatex Info: ... file 'ngerman.lbx' found.
 (c:/texlive/2021/texmf-dist/tex/latex/biblatex/lbx/ngerman.lbx
@@ -1235,9 +1239,9 @@ Package biblatex Warning: The following entry could not be found
 (biblatex)                LaTeX afterwards.
 
 )
-Package biblatex Info: Reference section=0 on input line 74.
-Package biblatex Info: Reference segment=0 on input line 74.
-Package hyperref Info: Link coloring OFF on input line 74.
+Package biblatex Info: Reference section=0 on input line 77.
+Package biblatex Info: Reference segment=0 on input line 77.
+Package hyperref Info: Link coloring OFF on input line 77.
  (c:/texlive/2021/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2021-04-02 v2.47 Cross-referencing by name of section
  (c:/texlive/2021/texmf-dist/tex/latex/refcount/refcount.sty
@@ -1247,9 +1251,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
 \c@section@level=\count510
 )
-LaTeX Info: Redefining \ref on input line 74.
-LaTeX Info: Redefining \pageref on input line 74.
-LaTeX Info: Redefining \nameref on input line 74.
+LaTeX Info: Redefining \ref on input line 77.
+LaTeX Info: Redefining \pageref on input line 77.
+LaTeX Info: Redefining \nameref on input line 77.
  (./thesis_mit_Bsp.out) (./thesis_mit_Bsp.out)
 \@outlinefile=\write5
 \openout5 = `thesis_mit_Bsp.out'.
@@ -1261,50 +1265,50 @@ Class scrreprt Info: loading recommended package `bookmark'.
 (scrreprt)           `bookmarkpackage=false' before \begin{document} and
 (scrreprt)           you can avoid this message adding:
 (scrreprt)             \usepackage{bookmark}
-(scrreprt)           before \begin{document} on input line 74.
+(scrreprt)           before \begin{document} on input line 77.
  (c:/texlive/2021/texmf-dist/tex/latex/bookmark/bookmark.sty
 Package: bookmark 2020-11-06 v1.29 PDF bookmarks (HO)
  (c:/texlive/2021/texmf-dist/tex/latex/bookmark/bkm-pdftex.def
 File: bkm-pdftex.def 2020-11-06 v1.29 bookmark driver for pdfTeX (HO)
 \BKM@id=\count511
 ))
-Package hyperref Info: Option `pageanchor' set `false' on input line 75.
-LaTeX Font Info:    Trying to load font information for T1+lmss on input line 77.
+Package hyperref Info: Option `pageanchor' set `false' on input line 80.
+LaTeX Font Info:    Trying to load font information for T1+lmss on input line 82.
  (c:/texlive/2021/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 <pics/UNI-Logo_Siegel_4c_115mm.pdf, id=7, 703.62875pt x 144.54pt>
 File: pics/UNI-Logo_Siegel_4c_115mm.pdf Graphic file (type pdf)
 <use pics/UNI-Logo_Siegel_4c_115mm.pdf>
-Package pdftex.def Info: pics/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 77.
+Package pdftex.def Info: pics/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 82.
 (pdftex.def)             Requested size: 341.43306pt x 70.13708pt.
-LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 77.
+LaTeX Font Info:    Trying to load font information for OT1+lmr on input line 82.
  (c:/texlive/2021/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OML+lmm on input line 77.
+LaTeX Font Info:    Trying to load font information for OML+lmm on input line 82.
  (c:/texlive/2021/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 77.
+LaTeX Font Info:    Trying to load font information for OMS+lmsy on input line 82.
  (c:/texlive/2021/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 77.
+LaTeX Font Info:    Trying to load font information for OMX+lmex on input line 82.
  (c:/texlive/2021/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 77.
+(Font)              <12> on input line 82.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 77.
+(Font)              <8> on input line 82.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 77.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 77.
+(Font)              <6> on input line 82.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 82.
  (c:/texlive/2021/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 77.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 82.
  (c:/texlive/2021/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
@@ -1315,7 +1319,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 82--82
+Underfull \hbox (badness 10000) in paragraph at lines 87--87
 
  []
 
@@ -1328,7 +1332,17 @@ Underfull \hbox (badness 10000) in paragraph at lines 82--82
 \tf@toc=\write6
 \openout6 = `thesis_mit_Bsp.toc'.
 
- [2] (./thesis_mit_Bsp.lof)
+ [2] (./thesis_mit_Bsp.lof
+Overfull \hbox (33.47356pt too wide) in paragraph at lines 30--30
+ \T1/lmr/m/n/12 der Di-men-si-on $\OML/lmm/m/it/12 n$ \T1/lmr/m/n/12 ab-ge-bil-det. Die blaue Kur-ve spie-gelt den Matrixvektorprodukt- 
+ []
+
+
+Overfull \hbox (33.47356pt too wide) in paragraph at lines 32--32
+ \T1/lmr/m/n/12 der Di-men-si-on $\OML/lmm/m/it/12 n$ \T1/lmr/m/n/12 ab-ge-bil-det. Die blaue Kur-ve spie-gelt den Matrixvektorprodukt- 
+ []
+
+)
 \tf@lof=\write7
 \openout7 = `thesis_mit_Bsp.lof'.
 
@@ -1363,7 +1377,7 @@ Overfull \hbox (38.66069pt too wide) in paragraph at lines 19--19
 
 
 ]
-Package hyperref Info: Option `pageanchor' set `true' on input line 101.
+Package hyperref Info: Option `pageanchor' set `true' on input line 106.
  (./einleitung.tex
 chapter 1.
 [1
@@ -1399,7 +1413,12 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [15]
-Underfull \vbox (badness 1838) has occurred while \output is active []
+Underfull \hbox (badness 1242) in paragraph at lines 478--478
+[][][]|\T1/lmr/m/n/12 Ver-gleich des Ope-ra-to-ren-sys-tems aus Ab-schnitt []2.2.2[] mit dem SQL-
+ []
+
+
+Underfull \vbox (badness 6825) has occurred while \output is active []
 
  [16]
 Underfull \vbox (badness 2181) has occurred while \output is active []
@@ -1409,7 +1428,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [18] [19]) (./chapters/neuralnetworks.tex [20]
 chapter 3.
-<pics/chapter_neuralnetworks/perzeptron.png, id=508, 329.73187pt x 191.21437pt>
+<pics/chapter_neuralnetworks/perzeptron.png, id=542, 329.73187pt x 191.21437pt>
 File: pics/chapter_neuralnetworks/perzeptron.png Graphic file (type png)
 <use pics/chapter_neuralnetworks/perzeptron.png>
 Package pdftex.def Info: pics/chapter_neuralnetworks/perzeptron.png  used on input line 25.
@@ -1433,7 +1452,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [32
 
 ] [33] [34] [35] [36] [37]
-<pics/chapters/CCN/backprop_dudiss.png, id=715, 451.6875pt x 211.54031pt>
+<pics/chapters/CCN/backprop_dudiss.png, id=749, 451.6875pt x 211.54031pt>
 File: pics/chapters/CCN/backprop_dudiss.png Graphic file (type png)
 <use pics/chapters/CCN/backprop_dudiss.png>
 Package pdftex.def Info: pics/chapters/CCN/backprop_dudiss.png  used on input line 268.
@@ -1445,13 +1464,13 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [40]
-<pics/chapters/CCN/mnist.png, id=748, 803.0pt x 450.68375pt>
+<pics/chapters/CCN/mnist.png, id=782, 803.0pt x 450.68375pt>
 File: pics/chapters/CCN/mnist.png Graphic file (type png)
 <use pics/chapters/CCN/mnist.png>
 Package pdftex.def Info: pics/chapters/CCN/mnist.png  used on input line 377.
 (pdftex.def)             Requested size: 355.09178pt x 199.2986pt.
  [41 <./pics/chapters/CCN/mnist.png (PNG copy)>]
-<pics/chapters/CCN/modell_arch_anp.png, id=757, 569.87906pt x 251.43938pt>
+<pics/chapters/CCN/modell_arch_anp.png, id=791, 569.87906pt x 251.43938pt>
 File: pics/chapters/CCN/modell_arch_anp.png Graphic file (type png)
 <use pics/chapters/CCN/modell_arch_anp.png>
 Package pdftex.def Info: pics/chapters/CCN/modell_arch_anp.png  used on input line 397.
@@ -1488,9 +1507,6 @@ chapter 5.
 ] (c:/texlive/2021/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
 ) (./sql_code/neighborhood.sql [50])
-
-LaTeX Warning: Reference `abb:laufzeit_naive' on page 51 undefined on input line 62.
-
 Package epstopdf Info: Source file: <pics/chapters/kap5/data_plot_naive_verb.eps>
 (epstopdf)                    date: 2022-08-16 23:55:04
 (epstopdf)                    size: 45339 bytes
@@ -1500,16 +1516,12 @@ Package epstopdf Info: Source file: <pics/chapters/kap5/data_plot_naive_verb.eps
 (epstopdf)             Command: <repstopdf --outfile=pics/chapters/kap5/data_plot_naive_verb-eps-converted-to.pdf pics/chapters/kap5/data_plot_naive_verb.eps>
 (epstopdf)             \includegraphics on input line 65.
 Package epstopdf Info: Output file is already uptodate.
-<pics/chapters/kap5/data_plot_naive_verb-eps-converted-to.pdf, id=845, 421.575pt x 316.18124pt>
+<pics/chapters/kap5/data_plot_naive_verb-eps-converted-to.pdf, id=879, 421.575pt x 316.18124pt>
 File: pics/chapters/kap5/data_plot_naive_verb-eps-converted-to.pdf Graphic file (type pdf)
 <use pics/chapters/kap5/data_plot_naive_verb-eps-converted-to.pdf>
 Package pdftex.def Info: pics/chapters/kap5/data_plot_naive_verb-eps-converted-to.pdf  used on input line 65.
 (pdftex.def)             Requested size: 355.09178pt x 266.32376pt.
-[51 <./pics/chapters/kap5/data_plot_naive_verb-eps-converted-to.pdf>]
-
-LaTeX Warning: Reference `abb:laufzeit_naive_verb' on page 52 undefined on input line 79.
-
-(./sql_code/neigh_verbesster.txt)
+ [51 <./pics/chapters/kap5/data_plot_naive_verb-eps-converted-to.pdf>] (./sql_code/neigh_verbesster.txt)
 Package epstopdf Info: Source file: <pics/chapters/kap5/data_plot_naive_verb_verb.eps>
 (epstopdf)                    date: 2022-08-17 00:58:46
 (epstopdf)                    size: 62653 bytes
@@ -1519,7 +1531,7 @@ Package epstopdf Info: Source file: <pics/chapters/kap5/data_plot_naive_verb_ver
 (epstopdf)             Command: <repstopdf --outfile=pics/chapters/kap5/data_plot_naive_verb_verb-eps-converted-to.pdf pics/chapters/kap5/data_plot_naive_verb_verb.eps>
 (epstopdf)             \includegraphics on input line 84.
 Package epstopdf Info: Output file is already uptodate.
-<pics/chapters/kap5/data_plot_naive_verb_verb-eps-converted-to.pdf, id=868, 421.575pt x 316.18124pt>
+<pics/chapters/kap5/data_plot_naive_verb_verb-eps-converted-to.pdf, id=905, 421.575pt x 316.18124pt>
 File: pics/chapters/kap5/data_plot_naive_verb_verb-eps-converted-to.pdf Graphic file (type pdf)
 <use pics/chapters/kap5/data_plot_naive_verb_verb-eps-converted-to.pdf>
 Package pdftex.def Info: pics/chapters/kap5/data_plot_naive_verb_verb-eps-converted-to.pdf  used on input line 84.
@@ -1533,74 +1545,137 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10> on input line 119.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 119.
-
-Underfull \vbox (badness 2359) has occurred while \output is active []
-
  [53 <./pics/chapters/kap5/data_plot_naive_verb_verb-eps-converted-to.pdf>] [54]
 
-LaTeX Warning: Reference `mat:code:zyk' on page 55 undefined on input line 235.
+LaTeX Warning: Reference `mat:code:zyk' on page 55 undefined on input line 236.
+
+Package epstopdf Info: Source file: <pics/chapters/kap5/data_plot_sparse_ver.eps>
+(epstopdf)                    date: 2022-08-17 01:56:43
+(epstopdf)                    size: 62648 bytes
+(epstopdf)             Output file: <pics/chapters/kap5/data_plot_sparse_ver-eps-converted-to.pdf>
+(epstopdf)                    date: 2022-08-17 01:57:27
+(epstopdf)                    size: 22727 bytes
+(epstopdf)             Command: <repstopdf --outfile=pics/chapters/kap5/data_plot_sparse_ver-eps-converted-to.pdf pics/chapters/kap5/data_plot_sparse_ver.eps>
+(epstopdf)             \includegraphics on input line 241.
+Package epstopdf Info: Output file is already uptodate.
+<pics/chapters/kap5/data_plot_sparse_ver-eps-converted-to.pdf, id=968, 421.575pt x 316.18124pt>
+File: pics/chapters/kap5/data_plot_sparse_ver-eps-converted-to.pdf Graphic file (type pdf)
+<use pics/chapters/kap5/data_plot_sparse_ver-eps-converted-to.pdf>
+Package pdftex.def Info: pics/chapters/kap5/data_plot_sparse_ver-eps-converted-to.pdf  used on input line 241.
+(pdftex.def)             Requested size: 355.09178pt x 266.32376pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[55] (./sql_code/sparsecnn.txt) [56 <./pics/chapters/kap5/data_plot_sparse_ver-eps-converted-to.pdf>] [57] [58]
+
+LaTeX Warning: Reference `matlab:boundary' on page 59 undefined on input line 356.
 
 
-LaTeX Warning: Reference `abb:sparseapp' on page 55 undefined on input line 237.
-
-(./sql_code/sparsecnn.txt [55]) [56]
-Underfull \vbox (badness 1210) has occurred while \output is active []
-
- [57] [58]
-
-LaTeX Warning: Reference `matlab:boundary' on page 59 undefined on input line 347.
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 [59]
+Package epstopdf Info: Source file: <pics/chapters/kap5/data_plot_2dft_ver.eps>
+(epstopdf)                    date: 2022-08-17 01:25:51
+(epstopdf)                    size: 65436 bytes
+(epstopdf)             Output file: <pics/chapters/kap5/data_plot_2dft_ver-eps-converted-to.pdf>
+(epstopdf)                    date: 2022-08-17 01:49:43
+(epstopdf)                    size: 22886 bytes
+(epstopdf)             Command: <repstopdf --outfile=pics/chapters/kap5/data_plot_2dft_ver-eps-converted-to.pdf pics/chapters/kap5/data_plot_2dft_ver.eps>
+(epstopdf)             \includegraphics on input line 396.
+Package epstopdf Info: Output file is already uptodate.
+<pics/chapters/kap5/data_plot_2dft_ver-eps-converted-to.pdf, id=1034, 421.575pt x 316.18124pt>
+File: pics/chapters/kap5/data_plot_2dft_ver-eps-converted-to.pdf Graphic file (type pdf)
+<use pics/chapters/kap5/data_plot_2dft_ver-eps-converted-to.pdf>
+Package pdftex.def Info: pics/chapters/kap5/data_plot_2dft_ver-eps-converted-to.pdf  used on input line 396.
+(pdftex.def)             Requested size: 355.09178pt x 266.32376pt.
 
-LaTeX Warning: Reference `abb:dft_insql' on page 60 undefined on input line 384.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Underfull \hbox (badness 2384) in paragraph at lines 387--387
+Underfull \hbox (badness 2384) in paragraph at lines 403--403
 [][][]|\T1/lmr/m/n/12 SQL-Code zur Um-set-zung der zwei-di-men-sio-na-len dis-kre-ten Fourier-
  []
 
-(./sql_code/dft_ansatz_FXFT.txt
-Underfull \vbox (badness 1117) has occurred while \output is active []
+(./sql_code/dft_ansatz_FXFT.txt [60]
+Underfull \vbox (badness 5637) has occurred while \output is active []
 
- [60]) (./sql_code/dft_ansatz_elemwise.txt) [61] (./sql_code/recursive_sum_n.txt) [62] (./sql_code/conv_recursive.txt)
+ [61 <./pics/chapters/kap5/data_plot_2dft_ver-eps-converted-to.pdf>]) (./sql_code/dft_ansatz_elemwise.txt)
+Overfull \hbox (21.69359pt too wide) in paragraph at lines 416--417
+\T1/lmr/m/n/12 zung der Ma-trixfal-tung in SQL be-schrie-ben. Da-bei stellt sich her-aus, dass der Nachbarschaft-
+ []
 
-LaTeX Warning: Reference `app:app_2' on page 63 undefined on input line 440.
+[62]
+Package epstopdf Info: Source file: <pics/chapters/kap5/data_plot_vergleich_t.eps>
+(epstopdf)                    date: 2022-08-17 02:22:06
+(epstopdf)                    size: 42968 bytes
+(epstopdf)             Output file: <pics/chapters/kap5/data_plot_vergleich_t-eps-converted-to.pdf>
+(epstopdf)                    date: 2022-08-17 03:08:40
+(epstopdf)                    size: 15622 bytes
+(epstopdf)             Command: <repstopdf --outfile=pics/chapters/kap5/data_plot_vergleich_t-eps-converted-to.pdf pics/chapters/kap5/data_plot_vergleich_t.eps>
+(epstopdf)             \includegraphics on input line 427.
+Package epstopdf Info: Output file is already uptodate.
+<pics/chapters/kap5/data_plot_vergleich_t-eps-converted-to.pdf, id=1098, 421.575pt x 316.18124pt>
+File: pics/chapters/kap5/data_plot_vergleich_t-eps-converted-to.pdf Graphic file (type pdf)
+<use pics/chapters/kap5/data_plot_vergleich_t-eps-converted-to.pdf>
+Package pdftex.def Info: pics/chapters/kap5/data_plot_vergleich_t-eps-converted-to.pdf  used on input line 427.
+(pdftex.def)             Requested size: 355.09178pt x 266.32376pt.
 
-[63] (./sql_code/C1_sql.txt) [64] (./sql_code/pool_flatten.txt) [65] (./sql_code/ffn_in_sql.txt)
+Underfull \hbox (badness 2057) in paragraph at lines 429--429
+[][][]|\T1/lmr/m/n/12 Es sind die Zeit-kos-ten der vor-ge-stell-ten Ver-fah-ren in Ab-hän-gig-
+ []
 
-LaTeX Warning: Reference `app:app_2' on page 66 undefined on input line 462.
+Package epstopdf Info: Source file: <pics/chapters/kap5/data_plot_vergleich_disk.eps>
+(epstopdf)                    date: 2022-08-17 02:22:06
+(epstopdf)                    size: 50559 bytes
+(epstopdf)             Output file: <pics/chapters/kap5/data_plot_vergleich_disk-eps-converted-to.pdf>
+(epstopdf)                    date: 2022-08-17 03:18:11
+(epstopdf)                    size: 20183 bytes
+(epstopdf)             Command: <repstopdf --outfile=pics/chapters/kap5/data_plot_vergleich_disk-eps-converted-to.pdf pics/chapters/kap5/data_plot_vergleich_disk.eps>
+(epstopdf)             \includegraphics on input line 434.
+Package epstopdf Info: Output file is already uptodate.
+<pics/chapters/kap5/data_plot_vergleich_disk-eps-converted-to.pdf, id=1099, 421.575pt x 316.18124pt>
+File: pics/chapters/kap5/data_plot_vergleich_disk-eps-converted-to.pdf Graphic file (type pdf)
+<use pics/chapters/kap5/data_plot_vergleich_disk-eps-converted-to.pdf>
+Package pdftex.def Info: pics/chapters/kap5/data_plot_vergleich_disk-eps-converted-to.pdf  used on input line 434.
+(pdftex.def)             Requested size: 355.09178pt x 266.32376pt.
 
-) (./chapters/summery.tex [66]
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[63 <./pics/chapters/kap5/data_plot_vergleich_t-eps-converted-to.pdf>] [64 <./pics/chapters/kap5/data_plot_vergleich_disk-eps-converted-to.pdf>] (./sql_code/recursive_sum_n.txt) (./sql_code/conv_recursive.txt [65]) (./sql_code/C1_sql.txt [66]) (./sql_code/pool_flatten.txt [67]) [68] (./sql_code/ffn_in_sql.txt)) (./chapters/summery.tex [69]
 chapter 6.
-[67
+[70
 
-]) [68]
+]) [71]
 chapter without number
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 118.
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 123.
 (c:/texlive/2021/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [69
+) [72
 
 ]
-Overfull \hbox (3.3212pt too wide) in paragraph at lines 119--119
+Overfull \hbox (3.3212pt too wide) in paragraph at lines 124--124
 \T1/lmr/m/n/12 feed-for-ward neural net-works^^P. In: \T1/lmr/m/it/12 AI-STATS\T1/lmr/m/n/12 . Bd. 9. JMLR Pro-cee-dings. JMLR.org,
  []
 
-[70]
-Overfull \hbox (6.65398pt too wide) in paragraph at lines 119--119
+[73]
+Overfull \hbox (6.65398pt too wide) in paragraph at lines 124--124
 \T1/lmtt/m/n/12 of -[] backpropagation -[] in -[] convolutional -[] neural -[] network -[] cnn -[] 1a70abff508b$[]\T1/lmr/m/n/12 .
  []
 
-[71]
-Overfull \hbox (10.22371pt too wide) in paragraph at lines 119--119
+[74]
+Overfull \hbox (10.22371pt too wide) in paragraph at lines 124--124
 []\T1/lmr/m/n/12 J. Park und I. W. Sand-berg. ^^R  Uni-ver-sal Ap-pro-xi-ma-ti-on Using Radial-Basis-Function
  []
 
-[72] (./chapters/appendix.tex [73]
+[75] (./chapters/appendix.tex [76]
 chapter A.
-[74
+[77
 
-]) [75] [76
+]) [78] [79
+
+] [80
+
 
 ] (./thesis_mit_Bsp.aux)
 
@@ -1613,18 +1688,18 @@ Package logreq Info: Writing requests to 'thesis_mit_Bsp.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 54064 strings out of 478353
- 1215025 string characters out of 5852101
- 2285292 words of memory out of 5000000
- 70778 multiletter control sequences out of 15000+600000
+ 54124 strings out of 478353
+ 1217483 string characters out of 5852101
+ 2290200 words of memory out of 5000000
+ 70821 multiletter control sequences out of 15000+600000
  513951 words of font info for 90 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  125i,17n,120p,10658b,3120s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}<c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi5.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr5.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmro12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss17.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmtt12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis_mit_Bsp.pdf (88 pages, 1326967 bytes).
+Output written on thesis_mit_Bsp.pdf (92 pages, 1407251 bytes).
 PDF statistics:
- 1633 PDF objects out of 1728 (max. 8388607)
- 1438 compressed objects within 15 object streams
- 508 named destinations out of 1000 (max. 500000)
- 344 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1731 PDF objects out of 2073 (max. 8388607)
+ 1516 compressed objects within 16 object streams
+ 517 named destinations out of 1000 (max. 500000)
+ 372 words of extra memory for PDF output out of 10000 (max. 10000000)
 

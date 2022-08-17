@@ -11,7 +11,10 @@
 \usepackage{algpseudocode}
 \usepackage{ifsym}
 \addbibresource{literatur.bib} %Bibliographiedateien laden
-
+\usepackage{chngcntr}
+ 
+\counterwithout{figure}{chapter}
+\counterwithout{table}{chapter}
 %Definition von Umgebungen
 \newtheorem{kor}{Korollar}
 \newtheorem{hsatz}{Hilfssatz}
@@ -72,6 +75,8 @@ trainierten gefalteten \\neuronalen Netzen (CNN)\\}
 \untertitel{Database-driven Recognition of Patterns in trained \\Convolutional Neural Networks (CNN)} %auskommentieren, wenn nicht benötigt
 
 \begin{document}
+%\setcounter{table}{1}
+
 \hypersetup{pageanchor=false}
 \begin{titlepage}
 \mytitle   %hier werden Daten für die Titelseite gesetzt

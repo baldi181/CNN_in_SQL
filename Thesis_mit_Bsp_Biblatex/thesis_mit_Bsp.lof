@@ -7,21 +7,29 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {3.1}{\ignorespaces Arbeitsweise eines Perzeptrons mit entsprechender Notation aus Definition \ref {def_neuron}.\relax }}{22}{figure.caption.23}%
+\contentsline {figure}{\numberline {1}{\ignorespaces Arbeitsweise eines Perzeptrons mit entsprechender Notation aus Definition \ref {def_neuron}.\relax }}{22}{figure.caption.23}%
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Es ist die Rückwärtsrechnung bei Faltungsschichten dargestellt. Die Abbildung wurde aus \cite {du_diss} entnommen.\relax }}{38}{figure.caption.26}%
+\contentsline {figure}{\numberline {2}{\ignorespaces Es ist die Rückwärtsrechnung bei Faltungsschichten dargestellt. Die Abbildung wurde aus \cite {du_diss} entnommen.\relax }}{38}{figure.caption.26}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Beispielbilder, vgl. \cite {DBLP:journals/pieee/LeCunBBH98} aus der öffentlichen MNIST-Datenbank. Zu sehen sind handgeschriebene Ziffern und zugehörige Annotationen.\relax }}{41}{figure.caption.27}%
+\contentsline {figure}{\numberline {3}{\ignorespaces Beispielbilder, vgl. \cite {DBLP:journals/pieee/LeCunBBH98} aus der öffentlichen MNIST-Datenbank. Zu sehen sind handgeschriebene Ziffern und zugehörige Annotationen.\relax }}{41}{figure.caption.27}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Das CNN-Modell zur Klassifikation von handgeschriebenen Ziffern ist dargestellt. Die Abbildung wurde \cite {gentle} entnommenen und angepasst.\relax }}{42}{figure.caption.28}%
+\contentsline {figure}{\numberline {4}{\ignorespaces Das CNN-Modell zur Klassifikation von handgeschriebenen Ziffern ist dargestellt. Die Abbildung wurde \cite {gentle} entnommenen und angepasst.\relax }}{42}{figure.caption.28}%
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.1}{\ignorespaces Beispielbilder, vgl. \cite {DBLP:journals/pieee/LeCunBBH98} aus der öffentlichen MNIST-Datenbank. Zu sehen sind handgeschriebene Ziffern und zugehörige Annotationen.\relax }}{51}{figure.caption.32}%
+\contentsline {figure}{\numberline {5}{\ignorespaces Es sind die Laufzeiten der SQL-Anfrage \ref {sql:naive} abhängig von der Größe der Matrix $X \in \ensuremath {\mathbb {R}}^{n \times n}$ in Sekunden dargestellt. Dabei wurde PostgreSQL mit der Konfiguration \ref {tab:systemspecs} genutzt.\relax }}{51}{figure.caption.32}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {5.2}{\ignorespaces Beispielbilder, vgl. \cite {DBLP:journals/pieee/LeCunBBH98} aus der öffentlichen MNIST-Datenbank. Zu sehen sind handgeschriebene Ziffern und zugehörige Annotationen.\relax }}{53}{figure.caption.33}%
+\contentsline {figure}{\numberline {6}{\ignorespaces Es ist der Zeit- und Speicheraufwand der SQL-Anfrage \ref {sql:naive_better} in Abhängigkeit von der Größe der Matrix $X \in \ensuremath {\mathbb {R}}^{n \times n}$ dargestellt. Die blaue Kurve spiegelt die Laufzeiten in Sekunden wider. Außerdem ist der benötigte Speicherbedarf der Umsetzungstabellen für die Nachbarschaften in PostgreSQL für einen Kern $K \in \ensuremath {\mathbb {R}}^{3 \times 3}$ in MB abgebildet.\relax }}{53}{figure.caption.33}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {7}{\ignorespaces Es ist der Zeit- und Speicheraufwand der SQL-Anfrage \ref {sql:sparseapp} in Abhängigkeit von der Größe der Matrix $X \in \ensuremath {\mathbb {R}}^{n \times n}$ dargestellt. Die blaue Kurve spiegelt die Laufzeiten in Sekunden wider. Außerdem ist der benötigte Speicherbedarf der dünnbesetzten Matrizen im Spaltenkompression-Schema für einen Kern $K \in \ensuremath {\mathbb {R}}^{3 \times 3}$ in MB abgebildet.\relax }}{56}{figure.caption.34}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {8}{\ignorespaces Es ist der Zeit- und Speicheraufwand der SQL-Anfrage \ref {sql:dft} in Abhängigkeit von der Größe der Matrix $X \in \ensuremath {\mathbb {R}}^{n \times n}$ dargestellt. Die blaue Kurve spiegelt die Laufzeiten in Sekunden wider. Außerdem ist der benötigte Speicherbedarf der Fourier-Matrizen in PostgreSQL in MB abgebildet.\relax }}{61}{figure.caption.35}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {9}{\ignorespaces Es sind die Zeitkosten der vorgestellten Verfahren in Abhängigkeit von der Dimension $n$ abgebildet. Die blaue Kurve spiegelt den Matrixvektorprodukt-Ansatz mit dünnbesetzter Struktur, engl. \textit {sparse}, wider. Die rote Kurve beschreibt die Laufzeiten für die Matrixfaltung mithilfe der $\mathrm {2DFT}$. Mit Grün sind die Laufzeiten des Nachbarschaftansatzes in Sekunden dargestellt.\relax }}{63}{figure.caption.36}%
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {10}{\ignorespaces Es ist der Speicherbedarf der vorgestellten Verfahren in Abhängigkeit von der Dimension $n$ abgebildet. Die blaue Kurve spiegelt den Matrixvektorprodukt-Ansatz mit dünnbesetzter Struktur wider. Die rote Kurve beschreibt den Speicherbedarf für die Matrixfaltung mithilfe der $\mathrm {2DFT}$. Mit Grün ist der Speicherbedarf des Nachbarschaft-Ansatzes in MB dargestellt.\relax }}{64}{figure.caption.37}%
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 

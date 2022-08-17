@@ -64,11 +64,11 @@ In der Anfrage (Zeile 4-14) werden die Nachbarschaften aller Pixel in der tempor
 \begin{figure}[h]
     \includegraphics[width=0.8\textwidth]{pics/chapters/kap5/data_plot_naive_verb.eps}
     \centering
-    \caption{Beispielbilder, vgl. \cite{DBLP:journals/pieee/LeCunBBH98} aus der öffentlichen MNIST-Datenbank. Zu sehen sind handgeschriebene Ziffern und zugehörige Annotationen.}
-    \label{mnistpicc}
+    \caption{Es sind die Laufzeiten der SQL-Anfrage \ref{sql:naive} abhängig von der Größe der Matrix $X \in \RR^{n \times n}$ in Sekunden dargestellt. Dabei wurde PostgreSQL mit der Konfiguration \ref{tab:systemspecs} genutzt.}
+    \label{abb:laufzeit_naive}
 \end{figure}
 
-Eine Verbesserung der Laufzeiten kann mithilfe von Umsetzungstabellen, engl. \textit{Lookup tables}, erreicht werden. Da die Dimensionen aller vorkommenden Merkmalskarten und Kerne eines CNN von Anfang an durch die Wahl der Hyperparameter festgelegt werden, müssen die Nachbarschaften für die Faltung und das Pooling nur einmalig berechnet werden. Dies kann zudem vor der eigentlichen Vorwärtsrechnung durchgeführt werden. So wird zwar der Speicheraufwand erhöht, aber der Zeitaufwand hinsichtlich der Faltungs- und Poolingoperation deutlich vermindert. Dazu werden pro Faltungs- und Poolingschicht jeweils eine Umsetzungstabelle \textbf{U} in der Form 
+Eine Verminderung der Laufzeiten kann mithilfe von Umsetzungstabellen, engl. \textit{Lookup tables}, erreicht werden. Da die Dimensionen aller vorkommenden Merkmalskarten und Kerne eines CNN von Anfang an durch die Wahl der Hyperparameter festgelegt werden, müssen die Nachbarschaften für die Faltung und das Pooling nur einmalig berechnet werden. Dies kann zudem vor der eigentlichen Vorwärtsrechnung durchgeführt werden. So wird zwar der Speicheraufwand erhöht, aber der Zeitaufwand hinsichtlich der Faltungs- und Poolingoperation deutlich vermindert. Dazu werden pro Faltungs- und Poolingschicht jeweils eine Umsetzungstabelle \textbf{U} in der Form 
 \begin{align*}
     \mathbf{U}( &\underline{i} \; \; \mathrm{int}, \\
     &\underline{j} \; \;\mathrm{int},\\
@@ -76,15 +76,15 @@ Eine Verbesserung der Laufzeiten kann mithilfe von Umsetzungstabellen, engl. \te
     &\text{istrich} \; \; \mathrm{int},\\
     &\text{jstrich}\; \; \mathrm{int})
 \end{align*}
-mit dem zusammengesetzten Schlüssel $(i,j,\text{id})$ benötigt. Hier werden für jeden Pixel $(i,j)$ die Nachbarpixel $(i', j') \in U$ mit einer entsprechenden Nummer $\text{id}$ zur Identifikation  hinterlegt. So wird die zeitintensive Berechnung der Nachbarschaften mit dem  kartesischen Produkt in der Anfrage \ref{sql:naive} umgangen. Die Laufzeiten der verbesserten Anfrage \ref{sql:naive_better} in Abhängigkeit von der Dimension $n$ sind in Abbildung \ref{abb:laufzeit_naive_verb} dargestellt. Dabei ist der erhöhte Speicheraufwand für die Umsetzungstabellen sichtbar.
+mit dem zusammengesetzten Schlüssel $(i,j,\text{id})$ benötigt. Hier werden für jeden Pixel $(i,j)$ die Nachbarpixel $(i', j') \in U$ mit einer entsprechenden Nummer $\text{id}$ zur Identifikation  hinterlegt. So wird die zeitintensive Berechnung der Nachbarschaften mit dem  kartesischen Produkt in der Anfrage \ref{sql:naive} umgangen. Die Laufzeiten der verbesserten Anfrage \ref{sql:naive_better} sind in Abhängigkeit von der Dimension $n$ in Abbildung \ref{abb:laufzeit_naive_verb} dargestellt. Dabei ist der erhöhte Speicheraufwand für die Umsetzungstabellen für einen Kern $K \in \RR^{3 \times 3}$ sichtbar. Kerne mit diesen Abmessungen werden oft in der Praxis verwendet. 
 
 \lstinputlisting[label=sql:naive_better, caption=SQL-Code zur Umsetzung der Faltung mit Umsetzungstabellen, language=SQL]{sql_code/neigh_verbesster.txt}
 
 \begin{figure}[h]
     \includegraphics[width=0.8\textwidth]{pics/chapters/kap5/data_plot_naive_verb_verb.eps}
     \centering
-    \caption{Beispielbilder, vgl. \cite{DBLP:journals/pieee/LeCunBBH98} aus der öffentlichen MNIST-Datenbank. Zu sehen sind handgeschriebene Ziffern und zugehörige Annotationen.}
-    \label{mnistpiccc}
+    \caption{Es ist der Zeit- und Speicheraufwand der SQL-Anfrage \ref{sql:naive_better} in Abhängigkeit von der Größe der Matrix $X \in \RR^{n \times n}$ dargestellt. Die blaue Kurve spiegelt die Laufzeiten in Sekunden wider. Außerdem ist der benötigte Speicherbedarf der Umsetzungstabellen für die Nachbarschaften in PostgreSQL für einen Kern $K \in \RR^{3 \times 3}$ in MB abgebildet.}
+    \label{abb:laufzeit_naive_verb}
 \end{figure}
 
 \subsection{Faltung als Matrixvektorprodukt}
@@ -98,7 +98,7 @@ Die zyklische Faltung dieser eindimensionalen Signale wird im Folgenden erklärt
     \begin{equation*}
         y_k:=\sum_{j=0}^{n-1} f_j g_{(k-j) \, \mathrm{mod} \; n},  \; \; 0 \leq k \leq n-1
     \end{equation*}
-    definiert. Dabei werden Indizies außerhalb von $0, \ldots, n-1$ zyklisch durch Modulo-Rechnung ($\mathrm{mod} \; n)$ in den gültigen Indexbereich abgebildet.
+    definiert. Dabei werden Indizes außerhalb von $0, \ldots, n-1$ durch Modulo-Rechnung ($\mathrm{mod} \; n)$ in den gültigen Indexbereich abgebildet.
 \end{defi}
 In diesem Fall kann die zyklische Faltung von $f$ und $g$ als Matrixvektorprodukt mit speziellen Toeplitz-Matrizen formuliert werden. 
 
@@ -116,7 +116,7 @@ In diesem Fall kann die zyklische Faltung von $f$ und $g$ als Matrixvektorproduk
         a_{n-1} &\ldots &\ldots &a_{2} &a_{1} &a_0
     \end{pmatrix}
 \end{equation*}
-    wird Toeplitz\footnote{Otto Toeplitz 1881-1940}-Matrix genannt. Hierbei gilt $A_{i,j}=A_{i+1,j+1}=a_{i-j}$ für alle Indizies $0 \leq i, j \leq n-1$. Eine quadratische Toeplitzmatrix ist damit durch ihre erste Zeile und Spalte eindeutig bestimmt. Für den Spezialfall $a_i=a_{-(n-i)}=a_{i-n}$ für alle $0 \leq i \leq n-1$ wird $A$ zyklische Matrix genannt. Zyklische Matrizen sind damit eindeutig durch einen Vektor $a \in \RR^n$ charakterisiert.
+    wird Toeplitz\footnote{Otto Toeplitz 1881-1940}-Matrix genannt. Hierbei gilt $A_{i,j}=A_{i+1,j+1}=a_{i-j}$ für alle Indizes $0 \leq i, j \leq n-1$. Eine quadratische Toeplitzmatrix ist damit durch ihre erste Zeile und Spalte eindeutig bestimmt. Für den Spezialfall $a_i=a_{-(n-i)}=a_{i-n}$ für alle $0 \leq i \leq n-1$ wird $A$ zyklische Matrix genannt. Zyklische Matrizen sind damit eindeutig durch einen Vektor $a \in \RR^n$ charakterisiert.
 \end{defi}
 
 %\begin{defi}[Zyklische Matrix, vgl. Gray\cite{gray2006toeplitz}]
@@ -165,7 +165,7 @@ Die Faltung zweidimensionaler Signale kann mithilfe von doppelt zyklischen Block
 \end{defi}
 
 Die Konstruktion solcher zyklischen Blockmatrizen soll im Folgenden beleuchtet werden. Dazu seien die Matrizen $X \in \RR^{n \times n}$ und $K \in \RR^{k \times k}$ gegeben. Zunächst wird der Kern $K$ in eine $n \times n$-Matrix eingebettet, die wieder mit $K \in \RR^{n \times n}$ bezeichnet wird. Dazu wird der Kern von unten und von rechts mit Nullen aufgefüllt, siehe Beispiel \ref{bsp:Kzeropad}.
-Weiter bezeichne $\mathrm{vec}(X)$ die Transformation der Matrix $X$ in einen Vektor der Länge $n^2$, indem die Spalten von $X$ untereinander geschrieben werden, ähnlich wie bei der Flatten-Funktion \ref{def:flatten} aus Abschnitt \ref{abs:CNN_arch}. Das folgende Lemma liefert die Darstellung der Matrixfaltung, vgl. Bemerkung \ref{bem:K_conv_komp}, als Matrixvektorprodukt.
+Weiter bezeichne $\mathrm{vec}(X)$ die Transformation der Matrix $X$ in einen Vektor der Länge $n^2$, indem die Spalten von $X$ untereinander geschrieben werden, ähnlich wie bei der Flatten-Funktion \ref{def:flatten} aus Abschnitt \ref{abs:CNN_arch}. Das folgende Lemma liefert die Darstellung der Matrixfaltung, vgl. Bemerkung \ref{bem:K_conv_komp}, als Matrixvektorprodukt mit dünnbesetzter Matrix.
 
 \begin{lem}[vgl. Jain\cite{jain1989fundamentals}, \cite{DBLP:journals/corr/abs-1805-10408}]
     Für einen gedrehten Kern $K \in \RR^{n \times n}$ wird die zyklische Blockmatrix $A \in \RR^{n^2 \times n^2}$ als
@@ -177,7 +177,7 @@ Weiter bezeichne $\mathrm{vec}(X)$ die Transformation der Matrix $X$ in einen Ve
             \mathrm{zyk}(K_{2,:}) &\mathrm{zyk}(K_{3,:}) &\ldots &\mathrm{zyk}(K_{1,:})
         \end{bmatrix}
     \end{equation*}
-    konstruiert. Sei die zweidimensionale Faltung  von $X$ und $K$ als
+    konstruiert. Sei die zweidimensionale Faltung von $X$ und $K$ als
     \begin{equation*}
         Y_{i,j}= \sum_{u=0}^{n-1} \sum _{v=0}^{n-1} X_{i+u,j+v} K_{u,v} 
     \end{equation*}
@@ -228,17 +228,26 @@ Weiter bezeichne $\mathrm{vec}(X)$ die Transformation der Matrix $X$ in einen Ve
         k_1 x_2+ k_2 x_3 +k_3 x_5 +k_4 x_6 \\
         k_1 x_4+ k_2 x_5 +k_3 x_7 +k_4 x_8 \\
         k_1 x_5+ k_2 x_6 +k_3 x_8 +k_4 x_9 
-    \end{pmatrix}=\mathrm{vec} \, (Y),
+    \end{pmatrix}=\mathrm{vec} \, (Y)
 \end{align*}
-kann die Matrixfaltung $Y = X \ast K$ ohne zero padding, welche im Modell \ref{modell} benötigt wird, als dünnbesetzte Matrixvektormultiplikation berechnet werden. Bei diesem Besipiel ist zu beachten, dass $A$ keine doppelt zyklische Blockmatrix ist, da sich die Abmessungen der Ergebnismatrix $ Y \in \RR^{ 4 \times 4}$ verkleinern. Es fehlen also gewisse Zeilen in $A$, sodass $A$ nicht zyklisch ist.
+kann die Matrixfaltung $Y = X \ast K$ ohne zero padding, welche im Modell \ref{modell} benötigt wird, berechnet werden. Dazu muss lediglich der Vektor $\mathrm{vec}(X)$ in eine entsprechende Matrix transformiert werden.
 \end{bsp}
+Im Beispiel \ref{bsp:Kzeropad} ist zu beachten, dass $A$ keine doppelt zyklische Blockmatrix ist, da sich die Abmessungen der Ergebnismatrix $ Y \in \RR^{2 \times 2}$ mit der gültigen Faltung verkleinern. Es fehlen also gewisse Zeilen in $A$, sodass $A$ nicht zyklisch ist.
 Die genaue Konstruktion doppelt zyklischer Blockmatrizen für die Faltungsoperation mit bzw. ohne zero padding ist ein technisches Detail und wird in dieser Arbeit nicht weiter beleuchtet. Für eine mögliche Implementierung sei auf den MATLAB-Code \ref{mat:code:zyk} im Anhang verwiesen. 
 
-Die datenbankgestützte Umsetzung der Matrixvektormultiplikation mit dünnbesetzter Matrix wurde bereits im Abschnitt \ref{abs:SQL_linalg} erläutert. Bei CNN lassen sich die dünnbesetzten zyklischen Blockmatrizen für die Kerne bereits vor der Vorwärtsrechnung in Relationen speichern. Seien $X \in \RR^{n \times n}$ und $K \in \RR^{k \times k}$ sowie \textbf{vecX} und \textbf{K} entsprechende Relationen des Vektors $\mathrm{vec}(X)$ bzw. der eingebetteten $n \times n$-Matrix $K$ im Coordinate-Schema. Die Matrixfaltung $Y = X \ast K$ lässt sich mit den obigen Resultaten in der SQL-Anfrage \ref{sql:sparseapp} berechnen. In der Abbildung \ref{abb:sparseapp} sind numerische Resultate hinsichtlich des Speicher- und Zeitaufwands dargestellt. 
+Die datenbankgestützte Umsetzung der Matrixvektormultiplikation mit dünnbesetzter Matrix wurde bereits im Abschnitt \ref{abs:SQL_linalg} erläutert. Bei CNN lassen sich die dünnbesetzten zyklischen Blockmatrizen für die Kerne bereits vor der Vorwärtsrechnung in Relationen speichern. Seien $X \in \RR^{n \times n}$ und $K \in \RR^{k \times k}$ sowie \textbf{vecX} und \textbf{K} entsprechende Relationen des Vektors $\mathrm{vec}(X)$ bzw. der eingebetteten $n \times n$-Matrix $K$ im Coordinate-Schema. Die Matrixfaltung $Y = X \ast K$ lässt sich mit den obigen Resultaten in der SQL-Anfrage \ref{sql:sparseapp} berechnen. In der Abbildung \ref{abb:sparseapp} sind numerische Resultate hinsichtlich des Speicher- und Zeitaufwands der SQL-Anfrage \ref{sql:sparseapp} für einen Kern $K \in \RR^{3 \times 3}$ dargestellt.
+
+\begin{figure}[h]
+    \includegraphics[width=0.8\textwidth]{pics/chapters/kap5/data_plot_sparse_ver.eps}
+    \centering
+    \caption{Es ist der Zeit- und Speicheraufwand der SQL-Anfrage \ref{sql:sparseapp} in Abhängigkeit von der Größe der Matrix $X \in \RR^{n \times n}$ dargestellt. Die blaue Kurve spiegelt die Laufzeiten in Sekunden wider. Außerdem ist der benötigte Speicherbedarf der dünnbesetzten Matrizen im Spaltenkompression-Schema für einen Kern $K \in \RR^{3 \times 3}$ in MB abgebildet.}
+    \label{abb:sparseapp}
+\end{figure}
 
 \lstinputlisting[label=sql:sparseapp, caption=SQL-Code zur Umsetzung der Matrixfaltung als Matrixvektorprodukt, language=SQL]{sql_code/sparsecnn.txt}
 
 \subsection{Diskrete Fourier-Transformation}
+\label{abs:dft}
 Die Diskrete Fourier\footnote{Jean Baptiste Joseph Fourier 1786-1830}-Transformation ist eine Methode aus dem Bereich der Fourier-Analysis. Dabei werden zeitdiskrete endliche Signale auf sogenannte diskrete, periodische Frequenzspektren abgebildet. In diesem Kontext wird zwischen Zeitbereich und Frequenzbereich unterschieden.
 
 \begin{defi}[Diskrete Fourier-Transformation]
@@ -344,7 +353,7 @@ Zwischen der zyklischen Faltung \ref{def:cycconv} und der diskreten Fourier-Tran
     \end{align*}
     % bereits um 180 Grad gedreht, vgl. Bemerkung \ref{bem:K_conv_komp}, 
 \end{bem}
-Für eine detailliertere Beschreibung der Konstruktion der eingebetteten Matrizen $K \in \RR^{n \times n}$ sei aufgrund dessen Umfangs auf Jain \cite{jain1989fundamentals} verwiesen. Eine Implementierungsmöglichkeit \ref{matlab:boundary} in MATLAB ist im Anhang gegeben.
+Für eine detailliertere Beschreibung der Konstruktion der eingebetteten Matrizen $K \in \RR^{n \times n}$ sei aufgrund deren Umfangs auf Jain \cite{jain1989fundamentals} verwiesen. Eine Implementierungsmöglichkeit \ref{matlab:boundary} in MATLAB ist im Anhang gegeben.
 Die Matrixfaltung innerhalb einer Faltungsschicht eines CNN lässt sich mit den obigen Resultaten in drei Schritten berechnen.
 \begin{itemize}
     \item[1.] Es sind jeweils die zweidimensionalen diskreten Fourier-Transformationen $\hat{X}$ und $\hat{K}$ für die Eingabe $X$ und den gedrehten Kern $K$ zu berechnen.
@@ -370,7 +379,7 @@ Für Schritt 1 und Schritt 3 kann wegen Lemma \ref{lem:Finv} und Lemma \ref{lem:
     \end{algorithmic}
 \end{algorithm}
 
-Dies gelingt, da ausschließlich Basisoperationen wie die Matrixmatrixmultiplikation sowie das Adjungieren von Matrizen benötigt werden. Die elementweise Multiplikation und die Konjugation können als einfache skalare Funktionen implementiert werden. Die Berechnung der eindimsenionalen DFT mit der Matrix $F$ benötigt $n(2n-1)$ Fließkomma-Operationen. Da die Matrix $F$ nur von den Dimensionen der beteiligten Matrizen abhängt und diese durch die Hyperparameter des verwendeten CNN festgelegt sind, kann $F$ vor der Vorwärtsrechnung in einer Relation gespeichert werden. 
+Dies gelingt, da ausschließlich Basisoperationen wie die Matrixmatrixmultiplikation sowie das Adjungieren von Matrizen benötigt werden. Die elementweise Multiplikation und die Konjugation können als einfache skalare Funktionen implementiert werden. Da die Matrix $F$ nur von den Dimensionen der beteiligten Matrizen abhängt und diese durch die Hyperparameter des verwendeten CNN festgelegt sind, kann $F$ vor der Vorwärtsrechnung in einer Relation gespeichert werden. 
 Die Matrix $F$ besitzt komplexwertige Einträge und daher wird das Attribut \textbf{v} im Coordinate-Schema in die Attribute \textbf{re} und \textbf{im} aufgeteilt, um den Real- und Imaginärteil getrennt zu speichern. Die Multiplikation zweier komplexer Zahlen $z_1$ und $z_2$ ist durch
 \begin{align*}
     z_1 \cdot z_2 &=(\Re(z_1)+ i \Im(z_1))(\Re(z_2)+i \Im(z_2))\\
@@ -379,25 +388,54 @@ Die Matrix $F$ besitzt komplexwertige Einträge und daher wird das Attribut \tex
 erklärt.
 Darüber hinaus können auch die Fourier-Transformierten $\hat{K}$ für alle beteiligten Kerne $K$ bereits vor der Erkennungsphase bestimmt werden. So kann die Berechnungszeit verkürtzt werden.
 
-Seien $X \in [0,1]^{n \times n}$ und \textbf{X} sowie \textbf{F} die Relation zur Darstellung der Matrizen $X$ und $F$ im Coordinate-Schema. Im ersten Berechnungsschritt ist lediglich die Matrix $\mathrm{2DFT}(X)$ zu bestimmen. Die entsprechende SQL-Anfrage \ref{sql:dft} lässt sich formulieren. Dabei werden \textit{Common-Table-Expressions}, zu Erkennen am Schlagwort \textbf{WITH}, welche als temporäre Tabellen zu verstehen sind, verwendet. So ist es möglich, zum einen Zwischenergebnisse übersichtlich darzustellen und zum anderen jene Ergebnisse weiter zu verwenden. Damit gelingt die iterative Berechnung der Matrixmatrixprodukte. Die erste temporäre Tabelle \textbf{FT}
-in den Zeilen 1-6 ermittelt die Matrix $F^T$. In den Zeilen 7-15 wird $X F^T$ und anschließend in den Zeilen 16-24 das Produkt $F X F^T$ in der temporären Relation \textbf{FXFT} berechnet. 
-Schließlich folgt in den letzten Zeilen die Ausgabe der zweidimensionalen diskreten Fourier-Transformation. Numerische Resultate zum Zeit- und Speicheraufwand sind der Abbildung \ref{abb:dft_insql} zu entnehmen.
+Seien $X \in \RR^{n \times n}$ und \textbf{X} sowie \textbf{F} die Relationen zur Darstellung der Matrizen $X$ und $F$ im Coordinate-Schema. Im ersten Berechnungsschritt ist lediglich die Matrix $\mathrm{2DFT}(X)$ zu bestimmen. Die entsprechende SQL-Anfrage \ref{sql:dft} lässt sich formulieren. Dabei werden \textit{Common-Table-Expressions}, zu Erkennen am Schlagwort \textbf{WITH}, welche als temporäre Tabellen zu verstehen sind, verwendet. So ist es möglich, zum einen Zwischenergebnisse übersichtlich darzustellen und zum anderen jene Ergebnisse weiter zu verwenden. Damit gelingt die iterative Berechnung der Matrixmatrixprodukte. Die erste temporäre Tabelle \textbf{FT}
+in den Zeilen 1-6 ermittelt die Matrix $F^T$. In den Zeilen 7-15 wird die Matrix $X F^T$ und anschließend in den Zeilen 16-24 das Produkt $F X F^T$ in der temporären Relation \textbf{FXFT} berechnet. 
+Schließlich folgt in den letzten Zeilen die Ausgabe der zweidimensionalen diskreten Fourier-Transformation. Numerische Resultate zum Zeit- und Speicheraufwand der Anfrage \ref{sql:dft} für einen Kern $K \in \RR^{3 \times 3}$ sind der Abbildung \ref{abb:dft_insql} zu entnehmen.
+
+\begin{figure}[h]
+    \includegraphics[width=0.8\textwidth]{pics/chapters/kap5/data_plot_2dft_ver.eps}
+    \centering
+    \caption{Es ist der Zeit- und Speicheraufwand der SQL-Anfrage \ref{sql:dft} in Abhängigkeit von der Größe der Matrix $X \in \RR^{n \times n}$ dargestellt. Die blaue Kurve spiegelt die Laufzeiten in Sekunden wider. Außerdem ist der benötigte Speicherbedarf der Fourier-Matrizen in PostgreSQL in MB abgebildet.}
+    \label{abb:dft_insql}
+\end{figure}
 
 %\noindent \begin{minipage}{\linewidth}
     \lstinputlisting[label=sql:dft, caption=SQL-Code zur Umsetzung der zweidimensionalen diskreten Fourier-Transformation, language=SQL]{sql_code/dft_ansatz_FXFT.txt}
 %\end{minipage}
 
 Im zweiten Berechnungsschritt ist eine elementweise Multiplikation auszuführen. Angenommenen die Matrizen $\hat{X}$ und $\hat{K}$ sind als Relationen \textbf{X}
-und \textbf{K} im Coordinate-Schema hinterlegt. Dann wird $\hat{X} \odot \hat{K}$ in der SQL-Anfrage \ref{sql:elementweise} implementiert.
+und \textbf{K} im Coordinate-Schema hinterlegt. Dann wird $\hat{X} \odot \hat{K}$ in der SQL-Anfrage \ref{sql:elementweise} implementiert. Diese Berechnung ist im Vergleich zur Faltungsoperation nicht zeitkritisch.
 Der dritte Berechnungsschritt lässt sich analog zum ersten Schritt darstellen. Dabei ist an zwei Stellen lediglich das Adjungieren einer komplexen Matrix, siehe Anhang \ref{app:app_1}, notwendig.
 
 \lstinputlisting[label=sql:elementweise, caption=SQL-Code zur Umsetzung der elementweisen Multiplikation, language=SQL]{sql_code/dft_ansatz_elemwise.txt}
 
-Wird zur Berechnung der DFT die sogenannte schnelle Fourier-Transformation (engl. \textit{Fast-Fourier-Transformation}, kurz: FFT) genutzt, können die Zeitkosten von $\mathcal{O}(n^2)$ auf $\mathcal{O}(n \log n)$ vermindert werden. In dieser Arbeit wird ausschließlich die diskrete zweidimensionale Fourier-Transformation wie in Algorithmus \ref{alg:conv_as_2dft} behandelt. 
+Wird zur Berechnung der DFT die sogenannte schnelle Fourier-Transformation (engl. \textit{Fast-Fourier-Transformation}, kurz: FFT) genutzt, können die Zeitkosten von $\mathcal{O}(n^2)$ auf $\mathcal{O}(n \log n)$ vermindert werden. In dieser Arbeit wird ausschließlich die diskrete zweidimensionale Fourier-Transformation behandelt. 
 
 \subsection{Zusammenfassung}
 \label{abs:sum_conc_in_sql}
-TODO
+In den vorherigen Abschnitten werden drei Ansätze zur datenbankgestützten Umsetzung der Matrixfaltung in SQL beschrieben. Dabei stellt sich heraus, dass der Nachbarschaft-Ansatz nur mit zugehörigen Umsetzungstabellen für die Umgebungen sinnvoll einsetzbar ist. So wird eine Verminderung der Laufzeit erreicht, aber die benötigten Umsetzungstabellen werden für wachsende Dimensionen schnell größer. Für einen Kern $K \in \RR^{3 \times 3}$ und eine Matrix $X \in \RR^{n \times n}$ ergeben sich  
+\begin{equation*}
+    \underbrace{16}_{\text{Eckpunkte}}+\underbrace{(4\cdot(n-2))}_{\text{Randpunkte}} \cdot 6 +\underbrace{((n-2)(n-2))}_{\text{innere Punkte}} \cdot 9
+\end{equation*}
+Tupel in der Umsetzungstabelle.
+
+Der zweite Ansatz nutzt die Darstellung der Faltungsoperation als Matrixvektorprodukt mit dünnbesetzter Matrix. Hinsichtlich der Laufzeiten ist dieser Ansatz am besten geeignet. Jedoch ist auch hier der Speicherbedarf für die Matrizen groß, da die Dimension $n$ bei der Konstruktion der zyklischen Blockmatrizen quadratisch eingeht. 
+
+Im vorherigen Abschnitt \ref{abs:dft} wird die Nutzung der zweidimensionalen diskreten Fourier-Transformation diskutiert. Die datenbankgestützte Umsetzung der zweidimensionalen Fourier-Transformation gelingt mithilfe der Matrixmatrixmultiplikation. Dabei werden Fourier-Matrizen genutzt, die vor der Vorwärtsrechnung in Relationen gespeichert werden können. Mit dem zyklischen Faltungstheorem \ref{satz:conv_theorem} ist die Matrixfaltung mit der $\mathrm{2DFT}$ darstellbar. Hinsichtlich der Laufzeiten schneidet das Verfahren jedoch am schlechtesten ab. Hier könnte die Implementierung der schnellen Fourier-Transformation eine deutliche Verbesserungen bewirken. Der Vergleich der Zeit- und Speicherkosten der drei Verfahren zur Berechnung der Matrixfaltung ist in den Abbildungen \ref{abb:vergleich_t} bzw. \ref{abb:vergleich_disk} dargestellt. Je nach Anwendungsszenario und Rahmenbedingungen ist eine entsprechende Vorgehensweise zu wählen.
+
+\begin{figure}[h]
+    \includegraphics[width=0.8\textwidth]{pics/chapters/kap5/data_plot_vergleich_t.eps}
+    \centering
+    \caption{Es sind die Zeitkosten der vorgestellten Verfahren in Abhängigkeit von der Dimension $n$ abgebildet. Die blaue Kurve spiegelt den Matrixvektorprodukt-Ansatz mit dünnbesetzter Struktur, engl. \textit{sparse}, wider. Die rote Kurve beschreibt die Laufzeiten für die Matrixfaltung mithilfe der $\mathrm{2DFT}$. Mit Grün sind die Laufzeiten des Nachbarschaftansatzes in Sekunden dargestellt.}
+    \label{abb:vergleich_t}
+\end{figure}
+
+\begin{figure}[h]
+    \includegraphics[width=0.8\textwidth]{pics/chapters/kap5/data_plot_vergleich_disk.eps}
+    \centering
+    \caption{Es ist der Speicherbedarf der vorgestellten Verfahren in Abhängigkeit von der Dimension $n$ abgebildet. Die blaue Kurve spiegelt den Matrixvektorprodukt-Ansatz mit dünnbesetzter Struktur wider. Die rote Kurve beschreibt den Speicherbedarf für die Matrixfaltung mithilfe der $\mathrm{2DFT}$. Mit Grün ist der Speicherbedarf des Nachbarschaft-Ansatzes in MB dargestellt.}
+    \label{abb:vergleich_disk}
+\end{figure}
 
 \section{Datenbankgestützte Vorwärtsrechnung für CNN}
 \label{abs_CNN_in_SQL}
@@ -437,7 +475,7 @@ zu berechnen. Dabei sind die Matrizen $A_p$ Ergebnisse von Matrixfaltungen, $\al
 
 \lstinputlisting[label=sql:conv_rec, caption=Die rekursive SQL-Anfrage zur Berechnung der gefalteten Übertragungsfunktion, language=SQL]{sql_code/conv_recursive.txt}
 
-Die datenbankgestützte Matrixfaltung ist bereits im vorherigen Abschnitt \ref{abs:conv_in_sql} beleuchtet worden. Zur Veranschaulichung wird die SQL-Implementierung \ref{sql:C1} zur Berechnung der sechs Merkmalskarten in der Faltungschicht $C^1$ des Modells \ref{modell} dargestellt. Dabei wurde der im Abschnitt \ref{abs:naive_app} diskutierte verbesserte Nachbarschaftsansatz mit Umgebungstabellen und das erweiterte Coordinate-Schema benutzt. Hier ist im Gegensatz zur Schicht $C^2$ keine rekursive Berechnung notwendig. Die rekursiven Anfragen für $C^2$ sind im Anhang \ref{app:app_2} zu finden. Es kommen wieder Common-Table-Expressions zum Einsatz. In den Zeilen 1-19 werden die Matrixfaltungen $X \ast K^{1}_p$ mit zero-padding mithilfe einer Nachbarschaftstabelle \textbf{U} für $1 \leq p \leq 6$ berechnet. In den Zeilen 20 bis 27 wird nur das Teilergebnis behalten, welches ohne zero-padding bestimmt wurde. Schließlich folgt in den Zeilen 28-34 die Manipulation mit den Schwellwerten $b_p$ und die Berechnung der Aktivierung mit der logistischen Funktion.
+Die datenbankgestützte Matrixfaltung ist bereits im vorherigen Abschnitt \ref{abs:conv_in_sql} beleuchtet worden. Zur Veranschaulichung wird die SQL-Implementierung \ref{sql:C1} zur Berechnung der sechs Merkmalskarten in der Faltungschicht $C^1$ des Modells \ref{modell} dargestellt. Dabei wurde der im Abschnitt \ref{abs:naive_app} diskutierte verbesserte Nachbarschafts-Ansatz mit Umgebungstabellen und das erweiterte Coordinate-Schema benutzt. Hier ist im Gegensatz zur Schicht $C^2$ keine rekursive Berechnung notwendig. Die rekursiven Anfragen für $C^2$ sind im Anhang \ref{app:app_2} zu finden. Es kommen wieder Common-Table-Expressions zum Einsatz. In den Zeilen 1-19 werden die Matrixfaltungen $X \ast K^{1}_p$ mit zero-padding mithilfe einer Nachbarschaftstabelle \textbf{U} für $1 \leq p \leq 6$ berechnet. In den Zeilen 20 bis 27 wird nur das Teilergebnis behalten, welches ohne zero-padding bestimmt wurde. Schließlich folgt in den Zeilen 28-34 die Manipulation mit den Schwellwerten $b_p$ und die Berechnung der Aktivierung mit der logistischen Funktion.
 
 \lstinputlisting[label=sql:C1, caption=Die SQL-Anfrage zur Berechnung von $C^1$, language=SQL]{sql_code/C1_sql.txt}
 
@@ -446,7 +484,7 @@ Die datenbankgestützte Umsetzung von Pooling-Schichten kann direkt durch die Nu
 
 Eine weitere Möglichkeit besteht darin, das Mittelwert-Pooling mit den Schrittweiten $p:=p_h=p_b$ als Faltungsoperation mit dem sogenannten Mittelwert-Kern $\frac{1}{p^2} \mathbf{1} \in \RR^{p \times p}$ zu implementieren. An dieser Stelle können Resultate aus dem vorherigen Abschnitt \ref{abs:conv_in_sql} genutzt werden, um abzuschätzen, welcher Ansatz für das Anwendungsszenario besser geeignet ist. Schließlich ist auch die Flatten-Funktion, vgl. Definition \ref{def:flatten}, leicht in SQL umsetzbar. 
 
-Eine Kombination aus Mittelwert-Pooling mit Schrittweite $p=2$ und der Flatten-Funktion $T_f$ ist für das konkrete Modell \ref{modell} in der SQL-Anfrage \ref{sql:pool_flatten} gegeben. Alle beteiligten Relationen liegen entsprechend ihrer Namen im erweitertem Coordinate-Schema vor. Es wird der oben diskutierte Nachbarschaftsansatz gewählt.
+Eine Kombination aus Mittelwert-Pooling mit Schrittweite $p=2$ und der Flatten-Funktion $T_f$ ist für das konkrete Modell \ref{modell} in der SQL-Anfrage \ref{sql:pool_flatten} gegeben. Alle beteiligten Relationen liegen entsprechend ihrer Namen im erweitertem Coordinate-Schema vor. Es wird der oben diskutierte Nachbarschaft-Ansatz gewählt.
 
 \lstinputlisting[label=sql:pool_flatten, caption=SQL-Code zur Umsetzung des Mittelwert-Poolings und anschließender Flatten-Operation, language=SQL]{sql_code/pool_flatten.txt}
 

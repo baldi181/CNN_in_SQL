@@ -422,7 +422,7 @@ Die Parameteranzahl ist damit
     C_p^1(i,j)&=\psi \left(\sum_{u=-2}^2 \sum_{v=-2}^2 X(i+u,j+v) \cdot K_{p,1}^1(u,v) +b_p^1\right)
     \end{split}
 \end{align*}
-für $1 \leq p \leq 6$ berechnet. Mit $\mathbf{1} \in \RR^{24 \times 24}$ ist die Matrix gemeint, deren Einträge nur Einsen sind. Die Matrixfaltung $\ast$ wird ohne zero padding genutzt und daher reduziert sich die Raumdimension. Es gilt $C^1 \in \RR^{6 \times 24 \times 24}$. Anschließend folgen das Mittelwert-Pooling $P^1$ mit
+für $1 \leq p \leq 6$ berechnet. Mit $\mathbf{1} \in \RR^{24 \times 24}$ ist die Matrix gemeint, deren Einträge nur Einsen sind. Die Matrixfaltung $\ast$ wird ohne zero padding genutzt und daher reduziert sich die Raumdimension. Es werden also nur die Teilergebnisse genutzt, bei denen die Filter vollständig in der Eingabekarte liegen. Diese Methode wird gültige Faltung, engl. \textit{valid convolution}, genannt. Dann gilt $C^1 \in \RR^{6 \times 24 \times 24}$. Anschließend folgen das Mittelwert-Pooling $P^1$ mit
 \begin{equation*}
     \label{eq:P1_forw}
     P^1_p(i,j) =\frac{1}{4} \sum_{u=0}^1 \sum_{v=0}^1 C_p^1(2i-u, 2j-v), \; 1 \leq i,j \leq 12
