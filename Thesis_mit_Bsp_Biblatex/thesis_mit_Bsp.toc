@@ -47,7 +47,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.1}Die Faltungsoperation}{33}{section.4.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {4.2}CNN Architektur}{34}{section.4.2}%
+\contentsline {section}{\numberline {4.2}CNN-Architektur}{34}{section.4.2}%
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {4.3}Backpropagation bei CNN}{37}{section.4.3}%
 \defcounter {refsection}{0}\relax 

@@ -1,15 +1,15 @@
 \chapter{Gefaltete neuronale Netze}
 \label{kap:CNN}
 
-Feed-Forward-Netze gelten als leistungsstarke maschinelle Lernmethoden, da sie so trainiert werden können, um beliebige komplexe Funktionen abhängig von einer vektorwertigen Eingabe zu approximieren. Ist die Dimension der Eingabeschicht jedoch zu groß, treten bei klassischen FFN Probleme hinsichtlich der Parameteranzahl auf. Die Problemstellung \ref{prob:ffCCN} dieser Arbeit besteht in der Klassifikation digitalisierter Bilder. Wird ein FFN mit $10$ Ausgabeneuronen genutzt und jedes Pixel eines Bildes mit den Abmessungen $1000 \times 1000$ als Merkmal genutzt, so ergeben sich bereits $10^7+100$ freie Parameter. Stehen nur relativ wenige Trainingsdaten zur Verfügung, ist die Struktur des FFN zu komplex und dies kann zur Überanpassung führen \cite{caruana2000overfitting,bilbao2017overfitting}. Außerdem steigt der Zeitaufwand der Trainingsphase mit wachsender Parameteranzahl. Diese Anzahl muss also deutlich reduziert werden. 
+Feed-Forward-Netze gelten als leistungsstarke maschinelle Lernmethoden, da sie so trainiert werden können, um beliebige komplexe Funktionen abhängig von einer vektorwertigen Eingabe zu approximieren. Ist die Dimension der Eingabeschicht jedoch zu groß, treten bei klassischen FFN Probleme hinsichtlich der Parameteranzahl auf. Die Problemstellung \ref{prob:ffCCN} dieser Arbeit besteht in der Klassifikation digitalisierter Bilder. Wird ein FFN mit $10$ Ausgabeneuronen genutzt und jedes Pixel eines Bildes mit den Abmessungen $1000 \times 1000$ als Merkmal genutzt, so ergeben sich bereits $10^7+10$ freie Parameter. Stehen nur relativ wenige Trainingsdaten zur Verfügung, ist die Struktur des FFN zu komplex und dies kann zur Überanpassung führen \cite{caruana2000overfitting,bilbao2017overfitting}. Außerdem steigt der Zeitaufwand der Trainingsphase mit wachsender Parameteranzahl. Diese Anzahl muss also deutlich reduziert werden. 
 Konzepte wie \textit{Parameter Sharing} und spärliche Konnektivität, engl. \textit{sparse connectivity}, erlauben die Reduktion der Parameteranzahl und werden ausführlich in Goodfellow \cite{Goodfellow-et-al-2016} beschrieben.
 
-Ein weiterer Nachteil des FFN ergibt sich dadurch, dass Korrelationen von benachbarten Eingabeneuronen, z.B. Bildsegmente wie Kanten oder Ecken nicht mit einbezogen werden. Es muss also ein Modell entwickelt werden, welches diese lokalen Muster extrahiert und sie miteinander verknüpft. Das Modell sollte zudem äquivariant gegenüber Translationen, vgl. Goodfellow \cite{Goodfellow-et-al-2016} sein.
+Ein weiterer Nachteil des FFN ergibt sich dadurch, dass Korrelationen von benachbarten Eingabeneuronen, z.B. Bildsegmente wie Kanten oder Ecken, nicht mit einbezogen werden. Es muss also ein Modell entwickelt werden, welches diese lokalen Muster extrahiert und sie miteinander verknüpft. Das Modell sollte zudem äquivariant gegenüber Translationen, vgl. Goodfellow \cite{Goodfellow-et-al-2016}, sein.
 
-In diesem Kapitel wird erläutert, wie gefaltete neuronale Netze die erwähnten Nachteile von FFN umgehen. CNN sind in der Lage, lokale Muster zu erkennen, sind äquivariant gegenüber Translationen und realisieren Konzepte wie Parameter Sharing und spärliche Konnektivität, um die Anzahl der freien Parameter drastisch zu reduzieren. So gelingt es, besonders bei Aufgaben der Computergrafik \cite{DBLP:conf/nips/KrizhevskySH12, DBLP:journals/pieee/LeCunBBH98,DBLP:conf/cvpr/CiresanMS12} die Generalisierungsrate gegenüber klassischen FFN zu erhöhen. An dieser Stelle sei auf Goodfellow \cite{Goodfellow-et-al-2016} verwiesen, um nachzuvollziehen, wie diese Konzepte im Detail von CNN-Modellen umgesetzt werden.
+In diesem Kapitel wird erläutert, wie gefaltete neuronale Netze die erwähnten Nachteile von FFN umgehen. CNN sind in der Lage, lokale Muster zu erkennen, sind äquivariant gegenüber Translationen und realisieren Konzepte wie Parameter Sharing und spärliche Konnektivität, um die Anzahl der freien Parameter drastisch zu reduzieren. So gelingt es besonders bei Aufgaben der Computergrafik \cite{DBLP:conf/nips/KrizhevskySH12, DBLP:journals/pieee/LeCunBBH98,DBLP:conf/cvpr/CiresanMS12} die Generalisierungsrate gegenüber klassischen FFN zu erhöhen. An dieser Stelle sei auf Goodfellow \cite{Goodfellow-et-al-2016} verwiesen, um nachzuvollziehen, wie diese Konzepte im Detail von CNN-Modellen umgesetzt werden.
 
 Gefaltete neuronale Netze unterscheiden sich von FFN bei der Berechnung der Übertragungsfunktion. Dazu wird die gefaltete Übertragungsfunktion definiert, welche das Konzept der diskreten Faltung nutzt. Im Abschnitt \ref{abs:conv_theorie} wird zunächst die Faltung als mathematische Operation eingeführt. 
-Anschließend wird im Abschnitt \ref{abs:CNN_arch} das CNN-Modell definiert und schließlich im Abschnitt \ref{abs:CNN_train} der Backpropagationsalgorithmus \ref{alg:online_backprop} auf CNN verallgemeinert. Im letzten Abschnitt \ref{abs:model_mnist} wird der Backpropagationsalgorithmus für ein konkretes Modell zur Klassifikation von Ziffern angewendet. An dieser Stelle wird der MNIST-Datensatz hinsichtlich Problemstellung \ref{prob:ffCCN} vorgestellt.
+Anschließend wird im Abschnitt \ref{abs:CNN_arch} das CNN-Modell definiert und schließlich im Abschnitt \ref{abs:CNN_train} der Backpropagationsalgorithmus \ref{alg:online_backprop} für CNN verallgemeinert. Im letzten Abschnitt \ref{abs:model_mnist} wird der Backpropagationsalgorithmus für ein konkretes Modell zur Klassifikation von Ziffern angewendet. An dieser Stelle wird der MNIST-Datensatz hinsichtlich Problemstellung \ref{prob:ffCCN} vorgestellt.
 
 \section{Die Faltungsoperation}
 \label{abs:conv_theorie}
@@ -117,7 +117,7 @@ Im Hinblick auf die Klassifikation von digitalisierten Bildern, dargestellt als 
             K_{-1,1} &K_{-1,0} &K_{-1,-1} 
         \end{pmatrix}
     \end{equation*}
-    gegeben. In dieser Arbeit wird (\ref{eq:valid_cross}) als Matrixfaltung bezeichnet
+    gegeben. In dieser Arbeit wird (\ref{eq:valid_cross}) als Matrixfaltung bezeichnet.
 \end{bem}
 
 Bei gefalteten neuronalen Netzen wird oft eine Reduktion der Dimensionen angestrebt. Dafür werden natürliche Zahlen als Schrittweiten, engl. \textit{strides}, genutzt.
@@ -130,9 +130,9 @@ Bei gefalteten neuronalen Netzen wird oft eine Reduktion der Dimensionen angestr
     Für $s_h=s_b=1$ ergibt sich die Standardvariante wie in \ref{eq:matrix_faltung}.
     \end{bem}
 
-\section{CNN Architektur}
+\section{CNN-Architektur}
 \label{abs:CNN_arch}
-Beim maschinellen Lernen sind Eingabedaten oft als mehrdimensionale Arrays dargestellt, welche eine oder mehrere Achsen repräsentieren, wobei die Ordnung dieser eine Rolle spielt. Bei digitalisierten Bildern sind das beispielsweise die Höhe und Breite des Bildes, welche als Raumachsen bezeichnet werden. Hinzu kommen Kanalachsen, zum Beispiel besitzen Grauwert-Bilder einen Farbkanal, während RGB-Farbbilder drei Kanäle der Farben Rot usw. besitzen. Dementsprechend werden Grauwert-Bilder wie in Definition \ref{def:image} nun als dreidimensionale Arrays $X \in [0,1]^{h \times b \times 1}$ dargestellt. Dies erlaubt die Definition der gefalteten Übertragungsfunktion, wie in Gruening \cite{gruening}
+Beim maschinellen Lernen sind Eingabedaten oft als mehrdimensionale Arrays dargestellt, welche eine oder mehrere Achsen repräsentieren, wobei die Ordnung dieser eine Rolle spielt. Bei digitalisierten Bildern sind das beispielsweise die Höhe und Breite des Bildes, welche als Raumachsen bezeichnet werden. Hinzu kommen Kanalachsen, zum Beispiel besitzen Grauwert-Bilder einen Farbkanal, während RGB-Farbbilder drei Kanäle der Farben Rot usw. besitzen. Dementsprechend werden Grauwert-Bilder wie in Definition \ref{def:image} nun als dreidimensionale Arrays $X \in [0,1]^{h \times b \times 1}$ dargestellt. Dies erlaubt die Definition der gefalteten Übertragungsfunktion, wie in Gruening \cite{gruening}.
 
 \begin{defi}[Gefaltete Übertragungsfunktion]
     \label{eq:convlogit}
@@ -199,7 +199,7 @@ $ gesetzt wird. Pooling-Schichten werden wieder durch Schrittweiten parametrisie
     für alle  $i \in [\lceil {}_1 X/p_h \rceil], j \in [\lceil {}_2 X/p_w \rceil]$ und $l \in [z]$ wird Pooling-Schicht genannt. Die Schrittweiten $p_h, p_b \in \mathbb{N}$ werden subsampling-Faktoren genannt.
 \end{defi}
 
-Pooling-Schichten verdichten also Information von Eingabedaten, welche sich lokal in Fenstern der Größe $p_h \times p_b$ befinden und reduzieren so die Raumdimension. In dieser Arbeit wird das Maximum-Pooling oder Mittelwert-Pooling benutzt. Für andere Pooling-Funktion sei auf Yu et. al.\cite{yu2014mixed} verwiesen.
+Pooling-Schichten verdichten also Informationen von Eingabedaten, welche sich lokal in Fenstern der Größe $p_h \times p_b$ befinden und reduzieren so die Raumdimension. In dieser Arbeit wird das Maximum-Pooling oder Mittelwert-Pooling benutzt. Für andere Pooling-Funktionen sei auf Yu et. al.\cite{yu2014mixed} verwiesen.
 Die Idee bei CNN besteht nun darin, Faltungsschichten mit Pooling-Schichten zu kombinieren und schließlich ein FFN wie in Definition \ref{def:MLP} anzuknüpfen.
 Dazu wird für allgemeine mehrdimensionale Arrays die Flatten-Funktion definiert.
 
@@ -212,7 +212,7 @@ Dazu wird für allgemeine mehrdimensionale Arrays die Flatten-Funktion definiert
     Flatten-Funktion genannt. Die mehrdimensionale Eingabe wird also in einen Vektor umgewandelt.
 \end{defi}
 
-Dies erlaubt die Definition des CNN-Modells als Kombination aus Faltungsschichten, Pooling-Schichten und Neuronenschichten des eines FFN.
+Dies erlaubt die Definition des CNN-Modells als Kombination aus Faltungsschichten, Pooling-Schichten und Neuronenschichten eines FFN.
 \begin{defi}(Gefaltetes Neuronales Netz)
     \label{def_fw_cnn}
     Seien $h, w, z_{in}, z_{out}, l ,c \in \mathbb{N}$ und Schichten $\Psi^{W^{(1)},b^{(1)},\psi_{1}}, \ldots, \Psi^{W^{(l)},b^{(l)},\psi_{l}}$ sowie Faltungsschichten $\Psi_{conv}^{K^{(1)},b^{(1)},\psi_{1}}, \ldots, \Psi_{conv}^{K^{(l)},b^{(l)},\psi_{l}}$ gegeben. Die Vorwärtsrechnung eines CNN lässt sich als Komposition
@@ -270,7 +270,7 @@ Der Zusammenhang in Gleichung (\ref{eq:CNN_K_grad}) ist in Abbildung \ref{abb:er
     \caption[Rückwärtsrechnung bei CNN]{Es ist die Rückwärtsrechnung bei Faltungsschichten dargestellt. Die Abbildung wurde aus \cite{du_diss} entnommen.}
     \label{abb:error_conv}
 \end{figure}
-Die Berechnung des lokalen Fehlers $\delta_{j}^{(l)}$ in (\ref{eq:CNN_K_grad}) der Schicht $l$ ist abhängig von der Schicht $l+1$. Auch hier wird wieder komponentenweise vorgegangen. Im Folgenden bezeichne $V_j^{(l)}$ die Netzeingabe des Neurons $j$ auf der Schicht $l$.
+Die Berechnung des lokalen Fehlers $\delta_{j}^{(l)}$ in Gleichung (\ref{eq:CNN_K_grad}) der Schicht $l$ ist abhängig von der Schicht $l+1$. Auch hier wird wieder komponentenweise vorgegangen. Im Folgenden bezeichne $V_j^{(l)}$ die Netzeingabe des Neurons $j$ auf der Schicht $l$.
 Ist die Schicht $l+1$ eine Neuronenschicht mit $s_k$ Neuronen, wird der lokale Fehler \ref{eq:delta_hidden} zu
 \begin{equation*}
     \delta_j^{(l)}(x,y)=\sum_{k=1}^{s_{k}} \left(\sum_{(x,y)} \delta_k^{(l+1)} w_{k,j}^{(l+1)}(x,y)\right) \psi'(V_j^{(l)})
@@ -293,7 +293,7 @@ Ist $l+1$ eine Flatten-Schicht mit einer Flatten-Funktion $T_f$, so gilt
     \label{eq:upsample2}
     \delta_j^{(l)}=T^{-1}_f(\delta_j^{(l+1)}).
 \end{equation}
-Die Berechnung in (\ref{eq:upsample1}) und (\ref{eq:upsample2}) wird auch Upsampling genannt. Die obigen Resultate sind im Algorithmus \ref{alg:cnn_online} zusammengefasst. Hier beschreibe $L$ die Anzahl aller Faltungsschichten, Pooling-Schichten und Neuronenschichten zusammen.
+Die Berechnung in Gleichung (\ref{eq:upsample1}) und Gleichung (\ref{eq:upsample2}) wird Upsampling genannt. Die obigen Resultate sind im Algorithmus \ref{alg:cnn_online} zusammengefasst. Hier beschreibe $L$ die Anzahl aller Faltungsschichten, Pooling-Schichten und Neuronenschichten zusammen.
 
 \begin{algorithm}[H]
     \scriptsize
@@ -580,7 +580,10 @@ Die Aktualisierung der Parameter mit der Lernrate $\lambda \in \RR$ efolgt durch
     W&=W &&+ \lambda \Delta W \\
     b&=b&&+ \lambda \Delta b.
 \end{alignat*}
-Diese Schritte sind solange zu wiederholen, bis die gewünschte Erkennungsrate bzw. Generalisierungsrate erreicht wird. Für die effiziente Implementierung des Trainingsprozesses sind die Darstellungen als Matrixvektorprodukte, z.B. in (\ref{eq:delta_f}), bzw. Faltungsoperationen, vgl. (\ref{eq:conv_in_train}), zu nutzen. Diese Operationen sind performant umzusetzen.
+Diese Schritte sind solange zu wiederholen, bis die gewünschte Erkennungsrate bzw. Generalisierungsrate erreicht wird. Für die effiziente Implementierung des Trainingsprozesses sind die Darstellungen als Matrixvektorprodukte, z.B. in Gleichung (\ref{eq:delta_f}), beziehungsweise Faltungsoperationen, vgl. Gleichung (\ref{eq:conv_in_train}), zu nutzen. Diese Operationen sind performant umzusetzen.
+
+In diesem Kapitel wird die Backpropagation bei gefalteten neuronalen Netzen beschrieben. Bei der Darstellung des Trainingsprozesses wird darauf Wert gelegt, die Algorithmen möglichst allgemein zu beschreiben, um
+die meisten verwendeten Architekturen abzudecken. Es können also beliebig viele Faltungsschichten, Pooling-Schichten und Neuronenschichten untereinander verknüpft werden. Im folgenden Kapitel \ref{kap:CNN_in_SQL} wird ausgehend von optimierten Modellparameter eines CNN-Modells die datenbankgestützte Umsetzung in SQL diskutiert. Die Problemstellungen \ref{prob:conv_in_sql} und \ref{prob:ffCCN} werden bearbeitet. 
 %Im Folgenden werden konkrete Beispiele für verschiedene zweidimensionale Faltungen, welche in dieser Arbeit im Fokus stehen, gegeben. Dabei sind die Eingabe $X \in \RR^{h \times w}$ und der Filter $K \in \RR^{k_h \times k_w}$ immer als Matrizen zu verstehen. Das Ergebnis der Faltung $S= X \ast K$ wird als Merkmalskarte bezeichnet. Es sei angemerkt, dass oft $k_h=k_w$ sowie $k_h$ ungerade gewählt wird, z.B. $k_h=3$ oder $k_h=5$. Die Größe der Merkmalskarte wird durch die Parameter
 %\begin{itemize}
 %    \item $h,w$: Die Höhe und Breite der Eingabe,

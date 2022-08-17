@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.1)  17 AUG 2022 17:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.1)  17 AUG 2022 19:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1417,10 +1417,7 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [21
 
-] [22 <./pics/chapter_neuralnetworks/perzeptron.png>] [23] [24]
-Underfull \vbox (badness 1057) has occurred while \output is active []
-
- [25] [26] [27]
+] [22 <./pics/chapter_neuralnetworks/perzeptron.png>] [23] [24] [25] [26] [27]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [28] [29] [30]) (./chapters/kap_cnn.tex [31]
@@ -1495,7 +1492,7 @@ Package epstopdf Info: Source file: <pics/chapters/kap5/data_plot_naive_verb.eps
 (epstopdf)             Command: <repstopdf --outfile=pics/chapters/kap5/data_plot_naive_verb-eps-converted-to.pdf pics/chapters/kap5/data_plot_naive_verb.eps>
 (epstopdf)             \includegraphics on input line 65.
 Package epstopdf Info: Output file is already uptodate.
-<pics/chapters/kap5/data_plot_naive_verb-eps-converted-to.pdf, id=855, 421.575pt x 316.18124pt>
+<pics/chapters/kap5/data_plot_naive_verb-eps-converted-to.pdf, id=858, 421.575pt x 316.18124pt>
 File: pics/chapters/kap5/data_plot_naive_verb-eps-converted-to.pdf Graphic file (type pdf)
 <use pics/chapters/kap5/data_plot_naive_verb-eps-converted-to.pdf>
 Package pdftex.def Info: pics/chapters/kap5/data_plot_naive_verb-eps-converted-to.pdf  used on input line 65.
@@ -1510,7 +1507,7 @@ Package epstopdf Info: Source file: <pics/chapters/kap5/data_plot_naive_verb_ver
 (epstopdf)             Command: <repstopdf --outfile=pics/chapters/kap5/data_plot_naive_verb_verb-eps-converted-to.pdf pics/chapters/kap5/data_plot_naive_verb_verb.eps>
 (epstopdf)             \includegraphics on input line 84.
 Package epstopdf Info: Output file is already uptodate.
-<pics/chapters/kap5/data_plot_naive_verb_verb-eps-converted-to.pdf, id=881, 421.575pt x 316.18124pt>
+<pics/chapters/kap5/data_plot_naive_verb_verb-eps-converted-to.pdf, id=884, 421.575pt x 316.18124pt>
 File: pics/chapters/kap5/data_plot_naive_verb_verb-eps-converted-to.pdf Graphic file (type pdf)
 <use pics/chapters/kap5/data_plot_naive_verb_verb-eps-converted-to.pdf>
 Package pdftex.def Info: pics/chapters/kap5/data_plot_naive_verb_verb-eps-converted-to.pdf  used on input line 84.
@@ -1534,7 +1531,7 @@ Package epstopdf Info: Source file: <pics/chapters/kap5/data_plot_sparse_ver.eps
 (epstopdf)             Command: <repstopdf --outfile=pics/chapters/kap5/data_plot_sparse_ver-eps-converted-to.pdf pics/chapters/kap5/data_plot_sparse_ver.eps>
 (epstopdf)             \includegraphics on input line 245.
 Package epstopdf Info: Output file is already uptodate.
-<pics/chapters/kap5/data_plot_sparse_ver-eps-converted-to.pdf, id=951, 421.575pt x 316.18124pt>
+<pics/chapters/kap5/data_plot_sparse_ver-eps-converted-to.pdf, id=954, 421.575pt x 316.18124pt>
 File: pics/chapters/kap5/data_plot_sparse_ver-eps-converted-to.pdf Graphic file (type pdf)
 <use pics/chapters/kap5/data_plot_sparse_ver-eps-converted-to.pdf>
 Package pdftex.def Info: pics/chapters/kap5/data_plot_sparse_ver-eps-converted-to.pdf  used on input line 245.
@@ -1552,7 +1549,7 @@ Package epstopdf Info: Source file: <pics/chapters/kap5/data_plot_2dft_ver.eps>
 (epstopdf)             Command: <repstopdf --outfile=pics/chapters/kap5/data_plot_2dft_ver-eps-converted-to.pdf pics/chapters/kap5/data_plot_2dft_ver.eps>
 (epstopdf)             \includegraphics on input line 400.
 Package epstopdf Info: Output file is already uptodate.
-<pics/chapters/kap5/data_plot_2dft_ver-eps-converted-to.pdf, id=1018, 421.575pt x 316.18124pt>
+<pics/chapters/kap5/data_plot_2dft_ver-eps-converted-to.pdf, id=1021, 421.575pt x 316.18124pt>
 File: pics/chapters/kap5/data_plot_2dft_ver-eps-converted-to.pdf Graphic file (type pdf)
 <use pics/chapters/kap5/data_plot_2dft_ver-eps-converted-to.pdf>
 Package pdftex.def Info: pics/chapters/kap5/data_plot_2dft_ver-eps-converted-to.pdf  used on input line 400.
@@ -1567,7 +1564,7 @@ Package epstopdf Info: Source file: <pics/chapters/kap5/data_plot_vergleich_t.ep
 (epstopdf)             Command: <repstopdf --outfile=pics/chapters/kap5/data_plot_vergleich_t-eps-converted-to.pdf pics/chapters/kap5/data_plot_vergleich_t.eps>
 (epstopdf)             \includegraphics on input line 431.
 Package epstopdf Info: Output file is already uptodate.
-<pics/chapters/kap5/data_plot_vergleich_t-eps-converted-to.pdf, id=1078, 421.575pt x 316.18124pt>
+<pics/chapters/kap5/data_plot_vergleich_t-eps-converted-to.pdf, id=1081, 421.575pt x 316.18124pt>
 File: pics/chapters/kap5/data_plot_vergleich_t-eps-converted-to.pdf Graphic file (type pdf)
 <use pics/chapters/kap5/data_plot_vergleich_t-eps-converted-to.pdf>
 Package pdftex.def Info: pics/chapters/kap5/data_plot_vergleich_t-eps-converted-to.pdf  used on input line 431.
@@ -1586,7 +1583,7 @@ Package epstopdf Info: Source file: <pics/chapters/kap5/data_plot_vergleich_disk
 (epstopdf)             Command: <repstopdf --outfile=pics/chapters/kap5/data_plot_vergleich_disk-eps-converted-to.pdf pics/chapters/kap5/data_plot_vergleich_disk.eps>
 (epstopdf)             \includegraphics on input line 438.
 Package epstopdf Info: Output file is already uptodate.
-<pics/chapters/kap5/data_plot_vergleich_disk-eps-converted-to.pdf, id=1079, 421.575pt x 316.18124pt>
+<pics/chapters/kap5/data_plot_vergleich_disk-eps-converted-to.pdf, id=1082, 421.575pt x 316.18124pt>
 File: pics/chapters/kap5/data_plot_vergleich_disk-eps-converted-to.pdf Graphic file (type pdf)
 <use pics/chapters/kap5/data_plot_vergleich_disk-eps-converted-to.pdf>
 Package pdftex.def Info: pics/chapters/kap5/data_plot_vergleich_disk-eps-converted-to.pdf  used on input line 438.
@@ -1648,10 +1645,10 @@ Here is how much of TeX's memory you used:
  1143 hyphenation exceptions out of 8191
  125i,17n,120p,10658b,3118s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}<c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi5.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr5.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmro12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss17.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmtt12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis_mit_Bsp.pdf (94 pages, 1426524 bytes).
+Output written on thesis_mit_Bsp.pdf (94 pages, 1426890 bytes).
 PDF statistics:
- 1877 PDF objects out of 2073 (max. 8388607)
- 1659 compressed objects within 17 object streams
+ 1880 PDF objects out of 2073 (max. 8388607)
+ 1662 compressed objects within 17 object streams
  650 named destinations out of 1000 (max. 500000)
  372 words of extra memory for PDF output out of 10000 (max. 10000000)
 

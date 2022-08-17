@@ -41,7 +41,7 @@ Für ein Klassifikationsproblem, bei dem die Klassen nicht linear trennbar sind,
 
 \section{Multi-Layer-Perzeptron}
 \label{MLP_abs}
-In dieser Arbeit wird ein Künstliches Neuronales Netz als eine Menge von Perzeptronen, die in gewissen Schichten partitioniert und miteinander verbunden sind, notiert. Diese sogenannten \textit{Multi-Layer-Perzeptronen}, kurz MLP,  gelten als erste tiefe neuronale Netze und sind seit den späten 1980er-Jahren Gegenstand der Forschung\cite{bourlard1990links,bounds1988multilayer,MLPbook}. Zunächst sind einige Definition notwendig, vgl. \cite{gruening}, um eine lesbare Notation des MLP zu geben.
+In dieser Arbeit wird ein Künstliches Neuronales Netz als eine Menge von Perzeptronen, die in gewissen Schichten partitioniert und miteinander verbunden sind, notiert. Diese sogenannten \textit{Multi-Layer-Perzeptronen}, kurz MLP,  gelten als erste tiefe neuronale Netze und sind seit den späten 1980er-Jahren Gegenstand der Forschung\cite{bourlard1990links,bounds1988multilayer,MLPbook}. Zunächst sind einige Definitionen notwendig, vgl. \cite{gruening}, um eine lesbare Notation des MLP zu geben.
 
 \begin{defi}[Übertragungsfunktion]
     \label{def_net}
@@ -154,10 +154,10 @@ Das MLP-Modell wird im weiteren Verlauf dieser Arbeit repräsentativ als Künstl
 Es lassen sich zwischen Modell- und Hyperparameter von KNN unterscheiden.
 
 \begin{defi}[Hyper- und Modellparameter]
-    Sei für $l \in \mathbb{N}$ ein FNN $\Lambda_l$ gegeben. Dann werden die Eingabe- und Ausgabedimension $s_0, s_l$, die Anzahl $l$ der (verdeckten) Schichten sowie die verwendeten Aktivierungsfunktion $\psi_l$ Hyperparameter des neuronalen Netzes genannt.
+    Sei für $l \in \mathbb{N}$ ein FNN $\Lambda_l$ gegeben. Dann werden die Eingabe- und Ausgabedimension $s_0, s_l$, die Anzahl $l$ der (verdeckten) Schichten sowie die verwendeten Aktivierungsfunktionen $\psi_l$ Hyperparameter des neuronalen Netzes genannt.
     Die Gewichtsmatrizen und Biasvektoren mit den entsprechend passenden Abmessungen stellen die Modellparameter $\mathcal{W}:=\{(W^{(i)},b^{(i)}): \; i=1, \ldots, l\}$ des neuronales Netzes dar. 
 \end{defi}
-Die Hyperparameter werden oft anwendungsspezifisch für das jeweilige Problem gewählt, während die Modellparameter dynamisch in einem Trainingsprozes angepasst werden, sodass die gegebene Aufgabe zufriedenstellend gelöst wird. Wie optimale Modellparameter in einem Trainingsprozes gefunden werden können, wird im folgenden Abschnitt \ref{abs:task_training} erläutert.
+Die Hyperparameter werden oft anwendungsspezifisch für das jeweilige Problem gewählt, während die Modellparameter dynamisch in einem Trainingsprozess angepasst werden, sodass die gegebene Aufgabe zufriedenstellend gelöst wird. Wie optimale Modellparameter in einem Trainingsprozess gefunden werden können, wird im folgenden Abschnitt \ref{abs:task_training} erläutert.
 
 \section{Optimale Parameterwahl bei neuronalen Netzen}
 \label{abs:task_training}
@@ -184,7 +184,7 @@ Sind die Hyperparameter des FFN festgelegt, müssen die Modellparameter $\mathca
     \label{eq:Emin}
     \mathcal{E}(\mathcal{T}, \mathcal{W}) \rightarrow \min
 \end{equation} 
-im Raum der Parameter $\mathcal{W}$ gelöst werden soll. Dabei sei bemerkt, dass dies unabhängig von den Hyperparametern geschieht. Im Folgenden wird der Backpropagationsalgorithmus als ein Lösungsansatz für Aufgabe (\ref{eq:Emin}) vorgestellt.  
+im Raum der Parameter $\mathcal{W}$ gelöst werden soll. Dabei sei bemerkt, dass dies unabhängig von den Hyperparametern geschieht. Im Folgenden wird der Backpropagationsalgorithmus als ein Lösungsansatz für die Optimierungsaufgabe (\ref{eq:Emin}) vorgestellt.  
 %Um die Approximationsgüte, also die \textit{perfomance P}, bezüglich des Klassifikationsproblems messbar zu machen, werden Fehlerfunktionen eingeführt. 
 %Mit Trainingsdaten als \textit{experience E} und dem Gradientenverfahren\cite{nocedal1999numerical} sollen optimale Parameter $\mathcal{W}$ gefunden werden, sodass die gewählte Fehlerfunktion minimiert wird. Im folgenden steht ein MLP $\Lambda(\, \cdot \, ; \mathcal{W}): D \rightarrow [0,1]^m$  mit der Softmax-Funktion als Aktivierungsfunktion im Mittlepunkt, welches als parametrisiertes Modell $f_{Modell}$ wie in \ref{eq:f_modell} genutzt wird.
 %Die Trainingsdaten werden in Trainingsmengen und Testmengen aufgeteilt.
@@ -241,7 +241,7 @@ berechnet und dann werden die Parameter
     \label{eq:step}
     \mathcal{W}_{n+1}:=\mathcal{W}_n + \lambda \Delta_n
 \end{equation}
-aktualisiert. Es werden Gradienten der Fehlerfunktion bezüglich der Gewichtsmatrizen und Biasvektoren ermittelt und anschließend werden jene Parameter mit einer wählbaren Lernrate $\lambda \in \RR$ in (\ref{eq:step}) angepasst. In (\ref{eq:gradE}) wird der Gradient über alle Trainingspaare berechnet. Diese Variante nennt sich \textit{Offline-Version} des Gradientenverfahrens und ist besonders für große Trainingsmengen ineffizient. Die \textit{Online-Version} berechnet den Gradienten lediglich für ein Trainingspaar und passt die Parameter direkt an. Ein Kompromiss aus beiden Verfahren ist das \textit{Mini-Batch-Verfahren} bei dem die Gradienten über kleine Teilmengen $\mathbb{T} \subset \mathcal{T}$ der Trainingsmenge berechnet werden.
+aktualisiert. Es werden Gradienten der Fehlerfunktion bezüglich der Gewichtsmatrizen und Biasvektoren ermittelt und anschließend werden jene Parameter mit einer wählbaren Lernrate $\lambda \in \RR$ in Gleichung (\ref{eq:step}) angepasst. In Gleichung (\ref{eq:gradE}) wird der Gradient über alle Trainingspaare berechnet. Diese Variante nennt sich \textit{Offline-Version} des Gradientenverfahrens und ist besonders für große Trainingsmengen ineffizient. Die \textit{Online-Version} berechnet den Gradienten lediglich für ein Trainingspaar und passt die Parameter direkt an. Ein Kompromiss aus beiden Verfahren ist das \textit{Mini-Batch-Verfahren} bei dem die Gradienten über kleine Teilmengen $\mathbb{T} \subset \mathcal{T}$ der Trainingsmenge berechnet werden.
 Die Abstiegsrichtungen werden mithilfe der mehrdimensionalen Kettenregel  berechnet.
 \begin{satz}[Mehrdimensionale Kettenregel]
     \label{s:chainrule}
@@ -260,7 +260,7 @@ Der Online-Backpropagationsalgorithmus, in der Literatur auch als \textit{Stocha
 
 \begin{itemize}
     \item Bei der Vorwärtsrechnung wird dem FFN $\Lambda$ ein Trainingspaar ($x,c) \in \mathcal{T}$ präsentiert und die Aktivierungen der Schichten schrittweise von der Eingabeschicht über die verdeckten Schichten bis zur Ausgabeschicht berechnet. Der Fehler in der Ausgabeschicht wird mithilfe einer Fehlerfunktion $\mathcal{E}$ berechnet.
-    \item Bei der Rückwärtsrechnung wird für jedes Neuron ein lokaler Fehler bezüglich $\mathcal{E}$ berechnet, beginnend in der Ausgabeschicht über die verdeckten Schichten bis zur Eingabeschicht. Der Fehler wird über die Ausgabe- zur Eingabeschicht zurück propagiert. Dabei werden die Gewichtungen der Neuronenverbindungen und Schwellwerte abhängig von ihrem Einfluss auf den Fehler dirket bzw. indirekt geändert.
+    \item Bei der Rückwärtsrechnung wird für jedes Neuron ein lokaler Fehler bezüglich $\mathcal{E}$ berechnet, beginnend in der Ausgabeschicht über die verdeckten Schichten bis zur Eingabeschicht. Der Fehler wird über die Ausgabe- zur Eingabeschicht zurück propagiert. Dabei werden die Gewichtungen der Neuronenverbindungen und Schwellwerte abhängig von ihrem Einfluss auf den Fehler direkt bzw. indirekt geändert.
 \end{itemize}
 %\begin{equation*}
 %    \label{eq:MSE_1}
@@ -308,7 +308,7 @@ für $1 \leq m \leq l$ ermittelt werden. Die Ausgabeschicht eines $l$-schichtige
 \end{alignat*}
 genutzt. Zunächst wird nur eine verdeckte Schicht mit $s_j$ Neuronen betrachtet. 
 %ie Verallgemeinerung für beliebig viele Schichten ist analog. 
-Mit $i$ ist ein Eingabeneuron, $j$ eine verdecktes Neuron und $k$ eine Ausgabeneuron gemeint. Außerdem werden die Gradienten komponentenweise berechnet und daher die Modellparameter komponentenweise aktualisiert. Das mehrmalige Anwenden der Kettenregel \ref{s:chainrule} auf die Fehlerfunktion (\ref{eq:MSE_single}) liefert
+Mit $i$ ist ein Eingabeneuron, $j$ ein verdecktes Neuron und $k$ ein Ausgabeneuron gemeint. Außerdem werden die Gradienten komponentenweise berechnet und daher die Modellparameter komponentenweise aktualisiert. Das mehrmalige Anwenden der Kettenregel \ref{s:chainrule} auf die Fehlerfunktion (\ref{eq:MSE_single}) liefert
 \begin{align*}
     \label{eq:delta_w_out}
 \Delta w_{k,j}^l &= \frac{\partial E_x}{\partial w_{k,j}^l} \\
@@ -330,7 +330,7 @@ Für die Schwellwerte gilt analog
     \Delta b_k^l =  \frac{\partial E_x}{\partial b_{k}^l} 
                  =  \delta_k.
 \end{equation*}
-Die lokalen Fehler bzg. $E_x$ für die Parameter der verdeckten Schicht lassen sich indirket mithilfe der lokalen Fehler $\delta_k$ der darüberliegenden Ausgabeschicht berechnen. Es gilt
+Die lokalen Fehler bezüglich $E_x$ für die Parameter der verdeckten Schicht lassen sich indireket mithilfe der lokalen Fehler $\delta_k$ der darüberliegenden Ausgabeschicht berechnen. Es gilt
 \begin{align*}
     \Delta w_{j,i}^h &= \frac{\partial E_x}{\partial w_{j,i}^h} \\
                      &= \frac{\partial E_x}{\partial z_{j}}
@@ -368,7 +368,7 @@ mit
     \end{cases}
 \end{equation*}
 Dabei ist $z^{(l-1)}_i$ die Aktivierung des Neurons $i$ auf der Schicht $l-1$, $e_j=y_j-t_j$ der Fehler des $j$-ten Ausgabeneurons, $V^{(l)}_j$ die Netzeingabe des $j$-ten Neurons der Schicht $l$, $\delta^{(l+1)}_k= \frac{\partial E_x}{\partial V^{(l+1)}_k}$ der lokale Fehler der Schicht $l+1$ und $w^{(l+1)}_{k,j}$ entsprechende Gewichte. 
-Die Online-Backpropagation eines FFN $\Lambda$ wird als komponentenweiser und iterativer Trainingsalgorithmus beschrieben. Daher taucht im Algorithmus \ref{alg:online_backprop} eine Schleife in Abhängigkeit von $n$ auf. Als Abbruchbedingung kann eine maximale Anzahl $N$ von Iterationen vorgegeben werden. Andere Abbruchbedingungen können mit der Norm der Abstiegsrichtungen oder abhängig von der Größe des Traingsfehlers mit einer Fehlertoleranz $\varepsilon >0$ formuliert werden.
+Die Online-Backpropagation eines FFN $\Lambda$ wird als komponentenweiser und iterativer Trainingsalgorithmus beschrieben. Daher taucht im Algorithmus \ref{alg:online_backprop} eine Schleife in Abhängigkeit von $n$ auf. Als Abbruchbedingung kann eine maximale Anzahl $N$ von Iterationen vorgegeben werden. Andere Abbruchbedingungen können mit der Norm der Abstiegsrichtungen oder abhängig von der Größe des Trainingsfehlers mit einer Fehlertoleranz $\varepsilon >0$ formuliert werden.
 
 \begin{algorithm}[h]
     \caption{Online-Backpropagation für ein FFN $\Lambda_L$}
@@ -413,19 +413,11 @@ Die Online-Backpropagation eines FFN $\Lambda$ wird als komponentenweiser und it
 
 Bei der Wahl der Lernrate werden heutzutage oft adaptive Verfahren genutzt, welche vorangegangene Gradienten berücksichtigen und die Lernrate so anpassen. Bekannte Verfahren sind \textit{Nesterov accelerated
 gradient} \cite{sutskever2013importance}, \textit{AdaGrad} \cite{duchi2011adaptive}, \textit{RMSProp} \cite{tieleman2012lecture} sowie \textit{Adam} \cite{Kingma2015AdamAM}. So sollen Probleme wie des \textit{vanishing gradients} oder des \textit{exploding gradients} vermieden werden, siehe dazu \cite{hanin2018neural}.
-Für eine tiefere Analyse des Gradientenverfahrens und dessen Varianten sei auf die jeweilgen Arbeiten beziehungsweise als Zusammenfassung auf Ruder \cite{ruder2016overview,} verwiesen. Darüber hinaus gibt es andere Techniken wie die Regularisierung, um den oben genannten Probleme zu entgehen.
+Für eine tiefere Analyse des Gradientenverfahrens und dessen Varianten sei auf die jeweiligen Arbeiten beziehungsweise als Zusammenfassung auf Ruder \cite{ruder2016overview,} verwiesen. Darüber hinaus gibt es andere Techniken wie die Regularisierung, um den oben genannten Probleme zu entgehen.
 Für die Problemstellung in dieser Arbeit ist es ausreichend, das Online-Verfahren mit konstanter Lernrate zu nutzen. 
 
 \section{Zusammenfassung}
 \label{abs:NN_conc}
-In diesem Kapitel wurden Feed-Forward-Netze als Modelle eingeführt, um Klassifikationsaufgaben zu lösen. Dabei ist es wichtig die Hyper- und Modellparameter je nach Anwendung und Leistungsmaß optimal zu wählen. Dazu werden Trainingsdaten genutzt, um während eines Lernprozesses eine Fehlerfunktion zu Minimieren. Eine Lösung von (\ref{eq:Emin}) kann wegen der Komplexität allgmemeiner Fehlerfunktion $\mathcal{E}$ bzw. der großen Menge von Parametern $\mathcal{W}$ selten direkt angegeben werden\cite{blum1992training}. Daher wird das Gradientenverfahren als iterativer Ansatz zur numerischen Minimierung der Fehlerfunktion genutzt. Dabei sind partielle Ableitungen der Fehlerfunktion bezüglich der Parameter der Neuronenschichten nötig, welche im Backpropagationsalgorithmus dirket bzw. indirekt mithilfe der mehrdimensionalen Kettenregel berechnet werden können. 
+In diesem Kapitel wurden Feed-Forward-Netze als Modelle eingeführt, um Klassifikationsaufgaben zu lösen. Dabei ist es wichtig, die Hyper- und Modellparameter je nach Anwendung und Leistungsmaß optimal zu wählen. Dazu werden Trainingsdaten genutzt, um während eines Lernprozesses eine Fehlerfunktion zu minimieren. Eine Lösung von (\ref{eq:Emin}) kann wegen der Komplexität allgmemeiner Fehlerfunktionen $\mathcal{E}$ bzw. der großen Menge von Parametern $\mathcal{W}$ selten direkt angegeben werden\cite{blum1992training}. Daher wird das Gradientenverfahren als iterativer Ansatz zur numerischen Minimierung der Fehlerfunktion genutzt. Dabei sind partielle Ableitungen der Fehlerfunktion bezüglich der Parameter der Neuronenschichten nötig, welche im Backpropagationsalgorithmus direket bzw. indirekt mithilfe der mehrdimensionalen Kettenregel berechnet werden können. 
 
 Bei der Analyse von Zeitreihen oder Bildern eignen sich abgewandelte Architekturen wie gefaltete neuronale Netze (CNN), engl. \textit{Convolutional Neural Networks}, welche im folgenden Kapitel \ref{kap:CNN} näher erläutert werden. Diese Art neuronaler Netze wird im weiteren Verlauf dieser Arbeit im Fokus stehen.
-
-
-    
-
-
-
-
-
