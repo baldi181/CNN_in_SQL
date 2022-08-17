@@ -274,7 +274,7 @@ Der Operator $\gamma_L(r)$ dient zur Aggregation von Attributwerten in Gruppen f
         2 &2 &1\\
         \hline
     \end{tabular}
-    \caption[]{Zu sehen ist die Beispielrelation \textbf{A} bestehend aus den Attributen $i, j$ und $v$.}
+    \caption[Beispielrelation einer Matrix]{Zu sehen ist die Beispielrelation \textbf{A} bestehend aus den Attributen $i, j$ und $v$.}
     \label{tab:bsp_group}
 \end{table}
 Die Relation \textbf{A} kann als Matrix 
@@ -345,7 +345,7 @@ SQL ist aus mehreren Teilsprachen aufgebaut, welche jeweils unterschiedliche Auf
 \end{align}
 Das Resultat einer Anfrage ist wieder eine Relation. Daher ist es möglich, verschachtelte Anfragen zu formulieren. Die \textbf{SELECT}-Anweisung gibt durch die Attribute in der Projektionsliste das Schema der Ergebnistabelle vor. Die \textbf{FROM}-Klausel beinhaltet die Relationenliste, in welcher die Relationen aufgeführt sind, aus denen Attribute selektiert werden sollen. Die Liste kann aus einer oder aus mehreren Unteranfragen bestehen, welche optional durch Operationen wie dem natürlichen Verbund oder dem kartesischen Produkt kombiniert werden können. Ebenfalls optional ist die \textbf{WHERE}-Klausel, welche Selektionsbedingungen bezüglich Konstanten oder Attributen enthält. 
 
-Um den Anfragemechanismus nachzuvollziehen, seien im Folgenden zwei Relationen \textit{Angestellte} und \textit{Projekt} wie in den Tabellen \ref{abb:angestellte} und \ref{abb:projekt} gegeben.
+Um den Anfragemechanismus nachzuvollziehen, seien im Folgenden zwei Relationen \textbf{Angestellte} und \textbf{Projekt} wie in den Tabellen \ref{abb:angestellte} und \ref{abb:projekt} gegeben.
 \begin{table}[h]
     \centering
 \begin{tabular}{|c|c|c|c|c|} \hline
@@ -364,7 +364,7 @@ Um den Anfragemechanismus nachzuvollziehen, seien im Folgenden zwei Relationen \
     5 &Antonia &Buchhaltung &2 &2000\\ 
     \hline
 \end{tabular}
-\caption{Abgebildet ist die Beispielrelation Angestellte mit den Attributen ID, Name, Spezialisierung, Projektnummer und Gehalt.}
+\caption[Beispielrelation \textbf{Angestellte}]{Abgebildet ist die Beispielrelation Angestellte mit den Attributen ID, Name, Spezialisierung, Projektnummer und Gehalt.}
 \label{abb:angestellte}
 \end{table}
 \begin{table}[H]
@@ -381,7 +381,7 @@ Um den Anfragemechanismus nachzuvollziehen, seien im Folgenden zwei Relationen \
     3 &Forschungsabteilung  &40000 &Schwerin &offen\\ 
     \hline
 \end{tabular}
-\caption{Abgebildet ist die Beispielrelation Projekt mit den Attributen Projektnummer, Projektname, Budget, Ort und Status.}
+\caption[Beispielrelation \textbf{Projekt}]{Abgebildet ist die Beispielrelation Projekt mit den Attributen Projektnummer, Projektname, Budget, Ort und Status.}
 \label{abb:projekt}
 \end{table}
 
@@ -411,7 +411,7 @@ liefert die Namen der Angestellten von offenen Projekten. Dementsprechend ist di
     Antonia &Verwaltung \\
     \hline
 \end{tabular}
-\caption[]{Zu sehen ist die Ergebnisrelation der zuvor beschriebenen Anfrage (\ref{anf:bsp}).}
+\caption[Ergebnisrelation einer SQL-Anfrage ]{Zu sehen ist die Ergebnisrelation der zuvor beschriebenen Anfrage (\ref{anf:bsp}).}
 \label{abb:result_relation}
 \end{table}
 Die Aliasnamen \glqq A\grqq{} und \glqq P\grqq{} dienen hier zur Übersicht. Die klassische Anfrage (\ref{anf:stand}) kann mit arithmetischen Operationen und Aggregatfunktionen sowie Gruppierungsfunktionen erweitert werden. Die Funktion \textbf{SUM} kann zur Summierung numerischer Attributwerte eines Attributs über mehrere Tupel verwendet werden. Die \textbf{GROUP BY}-Klausel dient zur Gruppierung von Tupeln bezüglich gleicher Attributwertkombinationen. Eine Kombination aus der Aggregatfunktion \textbf{SUM} und der Gruppierung wird beispielsweise in der Anfrage
@@ -438,7 +438,7 @@ verwendet. Diese berechnet die Angestelltenkosten und gruppiert sie nach den jew
     Buchhaltung &4000\\ 
     \hline
 \end{tabular}
-\caption[]{Es ist die Ergebnisrelation der zuvor beschriebenen Anfrage (\ref{anf:erw})
+\caption[Ergebnisrelation einer zweiten SQL-Anfrage]{Es ist die Ergebnisrelation der zuvor beschriebenen Anfrage (\ref{anf:erw})
 \label{abb:erg_erw} abgebildet.}
 \end{table}
 Ein Beispiel einer geschalteten Anfrage zur Bestimmung des Angestellten mit dem höchsten Gehalt ist durch
@@ -475,7 +475,7 @@ Weitere Operationen der Relationenalgebra wie die Vereinigung (\textbf{UNION}) u
         Vereinigung $\cup$ &\textbf{UNION}  \\
         \hline        
     \end{tabular}
-    \caption[tt]{Vergleich des Operatorensystems aus Abschnitt \ref{abs:rela_algebra} mit dem SQL-Anfragekern, vgl. \cite{DBLP:books/daglib/0044627}.}
+    \caption[Vergleich der Operatoren mit dem SQL-Kern]{Vergleich des Operatorensystems aus Abschnitt \ref{abs:rela_algebra} mit dem SQL-Anfragekern, vgl. \cite{DBLP:books/daglib/0044627}.}
     \label{table:vgl}
 \end{table}
 \subsection{Lineare Algebra in SQL}
@@ -534,7 +534,7 @@ Das Coordinate-Schema beinhaltet drei Arrays, welche den Zeilenindex, Spaltenind
      3 &2 &7\\
      \hline
     \end{tabular}
-    \caption[coordinate]{Das Coordinate Schema zur Matrix $A$ aus Beispiel \ref{besipiel:_coordinate_sheme}.}
+    \caption[Das Coordinate-Schema]{Das Coordinate Schema zur Matrix $A$ aus Beispiel \ref{besipiel:_coordinate_sheme}.}
     \label{coordinate_scheme_table}
 \end{table}
 \end{bsp}

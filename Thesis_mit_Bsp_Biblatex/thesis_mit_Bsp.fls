@@ -1622,6 +1622,7 @@ OUTPUT thesis_mit_Bsp.lof
 INPUT ./thesis_mit_Bsp.lot
 INPUT thesis_mit_Bsp.lot
 INPUT thesis_mit_Bsp.lot
+INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmbx12.tfm
 OUTPUT thesis_mit_Bsp.lot
 INPUT ./thesis_mit_Bsp.loa
 INPUT thesis_mit_Bsp.loa
@@ -1650,7 +1651,6 @@ INPUT c:/texlive/2021/texmf-dist/tex/latex/lm/ts1lmr.fd
 INPUT c:/texlive/2021/texmf-dist/tex/latex/lm/ts1lmr.fd
 INPUT c:/texlive/2021/texmf-dist/tex/latex/lm/ts1lmr.fd
 INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ts1-lmr12.tfm
-INPUT c:/texlive/2021/texmf-dist/fonts/tfm/public/lm/ec-lmbx12.tfm
 INPUT ./chapters/grundlagen.tex
 INPUT chapters/grundlagen.tex
 INPUT ./chapters/grundlagen.tex

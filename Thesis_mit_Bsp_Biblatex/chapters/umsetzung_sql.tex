@@ -53,7 +53,7 @@ Zur Umsetzung der Faltungsoperation sind also zunächst die Nachbarschaften für
         wal\_buffers &4MB \\
         \hline
     \end{tabular}
-    \caption[]{Es ist die verwendete Parameterkonfiguration von PostgreSQL 14 dargestellt.}
+    \caption[PostgreSQL-Parameterkonfiguration]{Es ist die verwendete Parameterkonfiguration von PostgreSQL 14 dargestellt.}
     \label{tab:systemspecs}
 \end{table}
 
@@ -64,7 +64,7 @@ In der Anfrage (Zeile 4-14) werden die Nachbarschaften aller Pixel in der tempor
 \begin{figure}[h]
     \includegraphics[width=0.8\textwidth]{pics/chapters/kap5/data_plot_naive_verb.eps}
     \centering
-    \caption{Es sind die Laufzeiten der SQL-Anfrage \ref{sql:naive} abhängig von der Größe der Matrix $X \in \RR^{n \times n}$ in Sekunden dargestellt. Dabei wurde PostgreSQL mit der Konfiguration \ref{tab:systemspecs} genutzt.}
+    \caption[Laufzeiten des Nachbarschaft-Ansatzes]{Es sind die Laufzeiten der SQL-Anfrage \ref{sql:naive} abhängig von der Größe der Matrix $X \in \RR^{n \times n}$ in Sekunden dargestellt. Dabei wurde PostgreSQL mit der Konfiguration \ref{tab:systemspecs} genutzt.}
     \label{abb:laufzeit_naive}
 \end{figure}
 
@@ -83,7 +83,7 @@ mit dem zusammengesetzten Schlüssel $(i,j,\text{id})$ benötigt. Hier werden f�
 \begin{figure}[h]
     \includegraphics[width=0.8\textwidth]{pics/chapters/kap5/data_plot_naive_verb_verb.eps}
     \centering
-    \caption{Es ist der Zeit- und Speicheraufwand der SQL-Anfrage \ref{sql:naive_better} in Abhängigkeit von der Größe der Matrix $X \in \RR^{n \times n}$ dargestellt. Die blaue Kurve spiegelt die Laufzeiten in Sekunden wider. Außerdem ist der benötigte Speicherbedarf der Umsetzungstabellen für die Nachbarschaften in PostgreSQL für einen Kern $K \in \RR^{3 \times 3}$ in MB abgebildet.}
+    \caption[Laufzeiten und Speicherbedarf bei verbesserter Nachbarschaft]{Es ist der Zeit- und Speicheraufwand der SQL-Anfrage \ref{sql:naive_better} in Abhängigkeit von der Größe der Matrix $X \in \RR^{n \times n}$ dargestellt. Die blaue Kurve spiegelt die Laufzeiten in Sekunden wider. Außerdem ist der benötigte Speicherbedarf der Umsetzungstabellen für die Nachbarschaften in PostgreSQL für einen Kern $K \in \RR^{3 \times 3}$ in MB abgebildet.}
     \label{abb:laufzeit_naive_verb}
 \end{figure}
 
@@ -240,7 +240,7 @@ Die datenbankgestützte Umsetzung der Matrixvektormultiplikation mit dünnbesetz
 \begin{figure}[h]
     \includegraphics[width=0.8\textwidth]{pics/chapters/kap5/data_plot_sparse_ver.eps}
     \centering
-    \caption{Es ist der Zeit- und Speicheraufwand der SQL-Anfrage \ref{sql:sparseapp} in Abhängigkeit von der Größe der Matrix $X \in \RR^{n \times n}$ dargestellt. Die blaue Kurve spiegelt die Laufzeiten in Sekunden wider. Außerdem ist der benötigte Speicherbedarf der dünnbesetzten Matrizen im Spaltenkompression-Schema für einen Kern $K \in \RR^{3 \times 3}$ in MB abgebildet.}
+    \caption[Laufzeiten und Speicherbedarf der \textit{sparse}-Variante]{Es ist der Zeit- und Speicheraufwand der SQL-Anfrage \ref{sql:sparseapp} in Abhängigkeit von der Größe der Matrix $X \in \RR^{n \times n}$ dargestellt. Die blaue Kurve spiegelt die Laufzeiten in Sekunden wider. Außerdem ist der benötigte Speicherbedarf der dünnbesetzten Matrizen im Spaltenkompression-Schema für einen Kern $K \in \RR^{3 \times 3}$ in MB abgebildet.}
     \label{abb:sparseapp}
 \end{figure}
 
@@ -395,12 +395,12 @@ Schließlich folgt in den letzten Zeilen die Ausgabe der zweidimensionalen diskr
 \begin{figure}[h]
     \includegraphics[width=0.8\textwidth]{pics/chapters/kap5/data_plot_2dft_ver.eps}
     \centering
-    \caption{Es ist der Zeit- und Speicheraufwand der SQL-Anfrage \ref{sql:dft} in Abhängigkeit von der Größe der Matrix $X \in \RR^{n \times n}$ dargestellt. Die blaue Kurve spiegelt die Laufzeiten in Sekunden wider. Außerdem ist der benötigte Speicherbedarf der Fourier-Matrizen in PostgreSQL in MB abgebildet.}
+    \caption[Laufzeiten und Speicherbedarf bei der $\mathrm{2DFT}$][Zeit- und Speicheraufwand des $\mathrm{2DFT}$-Ansatzes]{Es ist der Zeit- und Speicheraufwand der SQL-Anfrage \ref{sql:dft} in Abhängigkeit von der Größe der Matrix $X \in \RR^{n \times n}$ dargestellt. Die blaue Kurve spiegelt die Laufzeiten in Sekunden wider. Außerdem ist der benötigte Speicherbedarf der Fourier-Matrizen in PostgreSQL in MB abgebildet.}
     \label{abb:dft_insql}
 \end{figure}
 
 %\noindent \begin{minipage}{\linewidth}
-    \lstinputlisting[label=sql:dft, caption=SQL-Code zur Umsetzung der zweidimensionalen diskreten Fourier-Transformation, language=SQL]{sql_code/dft_ansatz_FXFT.txt}
+    \lstinputlisting[label=sql:dft, caption=SQL-Code zur Umsetzung der $\mathrm{2DFT}$, language=SQL]{sql_code/dft_ansatz_FXFT.txt}
 %\end{minipage}
 
 Im zweiten Berechnungsschritt ist eine elementweise Multiplikation auszuführen. Angenommenen die Matrizen $\hat{X}$ und $\hat{K}$ sind als Relationen \textbf{X}
@@ -426,14 +426,14 @@ Im vorherigen Abschnitt \ref{abs:dft} wird die Nutzung der zweidimensionalen dis
 \begin{figure}[h]
     \includegraphics[width=0.8\textwidth]{pics/chapters/kap5/data_plot_vergleich_t.eps}
     \centering
-    \caption{Es sind die Zeitkosten der vorgestellten Verfahren in Abhängigkeit von der Dimension $n$ abgebildet. Die blaue Kurve spiegelt den Matrixvektorprodukt-Ansatz mit dünnbesetzter Struktur, engl. \textit{sparse}, wider. Die rote Kurve beschreibt die Laufzeiten für die Matrixfaltung mithilfe der $\mathrm{2DFT}$. Mit Grün sind die Laufzeiten des Nachbarschaftansatzes in Sekunden dargestellt.}
+    \caption[Vergleich der Zeitkosten für die Matrixfaltung]{Es sind die Zeitkosten der vorgestellten Verfahren in Abhängigkeit von der Dimension $n$ abgebildet. Die blaue Kurve spiegelt den Matrixvektorprodukt-Ansatz mit dünnbesetzter Struktur, engl. \textit{sparse}, wider. Die rote Kurve beschreibt die Laufzeiten für die Matrixfaltung mithilfe der $\mathrm{2DFT}$. Mit Grün sind die Laufzeiten des Nachbarschaft-Ansatzes in Sekunden dargestellt.}
     \label{abb:vergleich_t}
 \end{figure}
 
 \begin{figure}[h]
     \includegraphics[width=0.8\textwidth]{pics/chapters/kap5/data_plot_vergleich_disk.eps}
     \centering
-    \caption{Es ist der Speicherbedarf der vorgestellten Verfahren in Abhängigkeit von der Dimension $n$ abgebildet. Die blaue Kurve spiegelt den Matrixvektorprodukt-Ansatz mit dünnbesetzter Struktur wider. Die rote Kurve beschreibt den Speicherbedarf für die Matrixfaltung mithilfe der $\mathrm{2DFT}$. Mit Grün ist der Speicherbedarf des Nachbarschaft-Ansatzes in MB dargestellt.}
+    \caption[Vergleich des zusätzlichen Speicherbedarfs]{Es ist der Speicherbedarf der vorgestellten Verfahren in Abhängigkeit von der Dimension $n$ abgebildet. Die blaue Kurve spiegelt den Matrixvektorprodukt-Ansatz mit dünnbesetzter Struktur wider. Die rote Kurve beschreibt den Speicherbedarf für die Matrixfaltung mithilfe der $\mathrm{2DFT}$. Mit Grün ist der Speicherbedarf des Nachbarschaft-Ansatzes in MB dargestellt.}
     \label{abb:vergleich_disk}
 \end{figure}
 

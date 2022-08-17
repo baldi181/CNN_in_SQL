@@ -16,7 +16,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {lstlisting}{\numberline {5.3}SQL-Code zur Umsetzung der Matrixfaltung als Matrixvektorprodukt}{56}{lstlisting.5.3}%
 \defcounter {refsection}{0}\relax 
-\contentsline {lstlisting}{\numberline {5.4}SQL-Code zur Umsetzung der zweidimensionalen diskreten Fourier-Transformation}{60}{lstlisting.5.4}%
+\contentsline {lstlisting}{\numberline {5.4}SQL-Code zur Umsetzung der $\mathrm {2DFT}$}{60}{lstlisting.5.4}%
 \defcounter {refsection}{0}\relax 
 \contentsline {lstlisting}{\numberline {5.5}SQL-Code zur Umsetzung der elementweisen Multiplikation}{62}{lstlisting.5.5}%
 \defcounter {refsection}{0}\relax 

@@ -267,7 +267,7 @@ Der Zusammenhang in Gleichung (\ref{eq:CNN_K_grad}) ist in Abbildung \ref{abb:er
 \begin{figure}[h]
     \includegraphics[width=0.8\textwidth]{pics/chapters/CCN/backprop_dudiss.png}
     \centering
-    \caption{Es ist die Rückwärtsrechnung bei Faltungsschichten dargestellt. Die Abbildung wurde aus \cite{du_diss} entnommen.}
+    \caption[Rückwärtsrechnung bei CNN]{Es ist die Rückwärtsrechnung bei Faltungsschichten dargestellt. Die Abbildung wurde aus \cite{du_diss} entnommen.}
     \label{abb:error_conv}
 \end{figure}
 Die Berechnung des lokalen Fehlers $\delta_{j}^{(l)}$ in (\ref{eq:CNN_K_grad}) der Schicht $l$ ist abhängig von der Schicht $l+1$. Auch hier wird wieder komponentenweise vorgegangen. Im Folgenden bezeichne $V_j^{(l)}$ die Netzeingabe des Neurons $j$ auf der Schicht $l$.
@@ -376,7 +376,7 @@ In diesem Abschnitt wird ein CNN zur Klassifikation von Grauwert-Bildern aus ein
 \begin{figure}[h]
     \includegraphics[width=0.8\textwidth]{pics/chapters/CCN/mnist.png}
     \centering
-    \caption{Beispielbilder, vgl. \cite{DBLP:journals/pieee/LeCunBBH98} aus der öffentlichen MNIST-Datenbank. Zu sehen sind handgeschriebene Ziffern und zugehörige Annotationen.}
+    \caption[MNIST-Datensatz]{Beispielbilder, vgl. \cite{DBLP:journals/pieee/LeCunBBH98} aus der öffentlichen MNIST-Datenbank. Zu sehen sind handgeschriebene Ziffern und zugehörige Annotationen.}
     \label{mnistpic}
 \end{figure}
 
@@ -396,7 +396,7 @@ Es wird ein CNN mit zwei Faltungsschichten $C^1$ und $C^2$ mit der logistischen 
 \begin{figure}[h]
     \includegraphics[width=1.0\textwidth]{pics/chapters/CCN/modell_arch_anp.png}
     \centering
-    \caption{Das CNN-Modell zur Klassifikation von handgeschriebenen Ziffern ist dargestellt. Die Abbildung wurde \cite{gentle} entnommenen und angepasst.}
+    \caption[Das in dieser Arbeit verwendete CNN-Modell]{Das CNN-Modell zur Klassifikation von handgeschriebenen Ziffern ist dargestellt. Die Abbildung wurde \cite{gentle} entnommenen und angepasst.}
     \label{modell}
 \end{figure}
 
