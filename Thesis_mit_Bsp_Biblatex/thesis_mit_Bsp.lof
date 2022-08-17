@@ -25,7 +25,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {7}{\ignorespaces Laufzeiten und Speicherbedarf der \textit {sparse}-Variante}}{56}{figure.caption.34}%
 \defcounter {refsection}{0}\relax 
-\contentsline {figure}{\numberline {8}{\ignorespaces Laufzeiten und Speicherbedarf bei der $\mathrm {2DFT}$}}{61}{figure.caption.35}%
+\contentsline {figure}{\numberline {8}{\ignorespaces Zeit- und Speicheraufwand des $\mathrm {2DFT}$-Ansatzes}}{61}{figure.caption.35}%
 \defcounter {refsection}{0}\relax 
 \contentsline {figure}{\numberline {9}{\ignorespaces Vergleich der Zeitkosten für die Matrixfaltung}}{63}{figure.caption.36}%
 \defcounter {refsection}{0}\relax 

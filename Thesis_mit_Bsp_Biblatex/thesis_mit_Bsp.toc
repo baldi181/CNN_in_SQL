@@ -61,7 +61,7 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.1.2}Faltung als Matrixvektorprodukt}{52}{subsection.5.1.2}%
 \defcounter {refsection}{0}\relax 
-\contentsline {subsection}{\numberline {5.1.3}Diskrete Fourier-Transformation}{56}{subsection.5.1.3}%
+\contentsline {subsection}{\numberline {5.1.3}Diskrete Fourier-Transformation}{57}{subsection.5.1.3}%
 \defcounter {refsection}{0}\relax 
 \contentsline {subsection}{\numberline {5.1.4}Zusammenfassung}{62}{subsection.5.1.4}%
 \defcounter {refsection}{0}\relax 
