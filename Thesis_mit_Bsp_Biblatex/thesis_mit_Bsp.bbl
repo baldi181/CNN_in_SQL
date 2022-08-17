@@ -118,6 +118,28 @@
       \field{pages}{1415\bibrangedash 1419}
       \range{pages}{5}
     \endentry
+    \entry{myprojekt}{misc}{}
+      \name{author}{1}{}{%
+        {{hash=d12225b39ef29b06ec88f8aac31ae173}{%
+           family={Baldauf},
+           familyi={B\bibinitperiod},
+           given={Florian},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{d12225b39ef29b06ec88f8aac31ae173}
+      \strng{fullhash}{d12225b39ef29b06ec88f8aac31ae173}
+      \strng{bibnamehash}{d12225b39ef29b06ec88f8aac31ae173}
+      \strng{authorbibnamehash}{d12225b39ef29b06ec88f8aac31ae173}
+      \strng{authornamehash}{d12225b39ef29b06ec88f8aac31ae173}
+      \strng{authorfullhash}{d12225b39ef29b06ec88f8aac31ae173}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{note}{Projektarbeit, Universität Rostock}
+      \field{title}{Lineare Algebra in relationalen Datenbanbksystemen: Transformation von Machine-Learning-Methoden in SQL}
+      \field{year}{2016}
+    \endentry
     \entry{bilbao2017overfitting}{inproceedings}{}
       \name{author}{2}{}{%
         {{hash=f6613c5f715b164c90db71344977f492}{%
@@ -2245,7 +2267,6 @@
       \field{year}{2016}
     \endentry
   \enddatalist
-  \missing{myprojekt}
 \endrefsection
 \endinput
 

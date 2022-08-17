@@ -413,7 +413,7 @@ Wird zur Berechnung der DFT die sogenannte schnelle Fourier-Transformation (engl
 
 \subsection{Zusammenfassung}
 \label{abs:sum_conc_in_sql}
-In den vorherigen Abschnitten werden drei Ansätze zur datenbankgestützten Umsetzung der Matrixfaltung in SQL beschrieben. Dabei stellt sich heraus, dass der Nachbarschaft-Ansatz nur mit zugehörigen Umsetzungstabellen für die Umgebungen sinnvoll einsetzbar ist. So wird eine Verminderung der Laufzeit erreicht, aber die benötigten Umsetzungstabellen werden für wachsende Dimensionen schnell größer. Für einen Kern $K \in \RR^{3 \times 3}$ und eine Matrix $X \in \RR^{n \times n}$ ergeben sich  
+In den vorherigen Abschnitten werden drei Ansätze zur datenbankgestützten Umsetzung der Matrixfaltung in SQL beschrieben. Dabei stellt sich heraus, dass der Nachbarschaft Ansatz nur mit zugehörigen Umsetzungstabellen für die Umgebungen sinnvoll einsetzbar ist. So wird eine Verminderung der Laufzeit erreicht, aber die benötigten Umsetzungstabellen werden für wachsende Dimensionen schnell größer. Für einen Kern $K \in \RR^{3 \times 3}$ und eine Matrix $X \in \RR^{n \times n}$ ergeben sich  
 \begin{equation*}
     \underbrace{16}_{\text{Eckpunkte}}+\underbrace{(4\cdot(n-2))}_{\text{Randpunkte}} \cdot 6 +\underbrace{((n-2)(n-2))}_{\text{innere Punkte}} \cdot 9
 \end{equation*}
