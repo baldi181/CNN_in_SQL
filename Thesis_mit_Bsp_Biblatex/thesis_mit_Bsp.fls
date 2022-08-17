@@ -1398,6 +1398,11 @@ INPUT c:/texlive/2021/texmf-dist/tex/latex/chngcntr/chngcntr.sty
 INPUT c:/texlive/2021/texmf-dist/tex/latex/chngcntr/chngcntr.sty
 INPUT c:/texlive/2021/texmf-dist/tex/latex/chngcntr/chngcntr.sty
 INPUT c:/texlive/2021/texmf-dist/tex/latex/chngcntr/chngcntr.sty
+INPUT c:/texlive/2021/texmf-dist/tex/latex/graphics/color.sty
+INPUT c:/texlive/2021/texmf-dist/tex/latex/listings/lstlang1.sty
+INPUT c:/texlive/2021/texmf-dist/tex/latex/listings/lstlang1.sty
+INPUT c:/texlive/2021/texmf-dist/tex/latex/listings/lstlang1.sty
+INPUT c:/texlive/2021/texmf-dist/tex/latex/listings/lstlang1.sty
 INPUT c:/texlive/2021/texmf-dist/tex/latex/lm/t1lmr.fd
 INPUT c:/texlive/2021/texmf-dist/tex/latex/lm/t1lmr.fd
 INPUT c:/texlive/2021/texmf-dist/tex/latex/lm/t1lmr.fd
@@ -1861,6 +1866,30 @@ INPUT ./chapters/appendix.tex
 INPUT chapters/appendix.tex
 INPUT ./chapters/appendix.tex
 INPUT chapters/appendix.tex
+INPUT ./code/matlab files/Create2DKernelConvMtxSparse.m
+INPUT code/matlab files/Create2DKernelConvMtxSparse.m
+INPUT ./code/matlab files/Create2DKernelConvMtxSparse.m
+INPUT code/matlab files/Create2DKernelConvMtxSparse.m
+INPUT ./code/matlab files/Create2DKernelConvMtxSparse.m
+INPUT code/matlab files/Create2DKernelConvMtxSparse.m
+INPUT ./code/matlab files/CreateConvMtxSparse.m
+INPUT code/matlab files/CreateConvMtxSparse.m
+INPUT ./code/matlab files/CreateConvMtxSparse.m
+INPUT code/matlab files/CreateConvMtxSparse.m
+INPUT ./code/matlab files/CreateConvMtxSparse.m
+INPUT code/matlab files/CreateConvMtxSparse.m
+INPUT ./code/matlab files/CircularExtension2D.m
+INPUT code/matlab files/CircularExtension2D.m
+INPUT ./code/matlab files/CircularExtension2D.m
+INPUT code/matlab files/CircularExtension2D.m
+INPUT ./code/matlab files/CircularExtension2D.m
+INPUT code/matlab files/CircularExtension2D.m
+INPUT ./code/matlab files/write_twiddle_data.m
+INPUT code/matlab files/write_twiddle_data.m
+INPUT ./code/matlab files/write_twiddle_data.m
+INPUT code/matlab files/write_twiddle_data.m
+INPUT ./code/matlab files/write_twiddle_data.m
+INPUT code/matlab files/write_twiddle_data.m
 INPUT thesis_mit_Bsp.aux
 INPUT ./thesis_mit_Bsp.out
 INPUT ./thesis_mit_Bsp.out

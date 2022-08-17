@@ -1,27 +1,24 @@
-WITH RECURSIVE Arec(n, q, p, i, j, summe) AS
+WITH RECURSIVE Arec(n, p, i, j, summe) AS
   (SELECT 1,
-          A.q AS q,
           A.p AS p,
           A.i AS i,
           A.j AS j,
           A.v AS v
    FROM A
    UNION ALL SELECT n+1,
-                    Arec.q,
                     Arec.p,
                     Arec.i,
                     Arec.j,
                     summe+A.v
    FROM Arec
-   JOIN A ON Arec.q=A.q
-   AND Arec.p=A.p
+   JOIN A ON Arec.p=A.p
    AND Arec.i=A.i
    AND Arec.j=A.j
    WHERE n<zin )
-SELECT Arec.q AS q,
-       Arec.p AS p,
+SELECT Arec.p AS p,
        Arec.i AS i,
-       Arec.j AS j T(Arec.summe+b.v)
+       Arec.j AS j, 
+       T(Arec.summe+b.v) AS v
 FROM Arec
-JOIN B ON Arec.q=B.q
+JOIN B ON Arec.n=B.q
 WHERE n=zin

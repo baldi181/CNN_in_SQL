@@ -36,4 +36,12 @@
 \defcounter {refsection}{0}\relax 
 \addvspace {10\p@ }
 \defcounter {refsection}{0}\relax 
+\contentsline {lstlisting}{\numberline {A.1}Code 1 zur Konstruktion zyklischer Blockmatrizen}{78}{lstlisting.A.1}%
+\defcounter {refsection}{0}\relax 
+\contentsline {lstlisting}{\numberline {A.2}Code 2 zur Konstruktion zyklischer Blockmatrizen}{78}{lstlisting.A.2}%
+\defcounter {refsection}{0}\relax 
+\contentsline {lstlisting}{\numberline {A.3}Code zur Einbettung der Kerne in $n \times n$-Matrizen}{79}{lstlisting.A.3}%
+\defcounter {refsection}{0}\relax 
+\contentsline {lstlisting}{\numberline {A.4}Code zum Konstruieren und zum Extrahieren des Coordinate-Schemas}{80}{lstlisting.A.4}%
+\defcounter {refsection}{0}\relax 
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

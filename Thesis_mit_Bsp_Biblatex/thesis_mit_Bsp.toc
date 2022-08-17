@@ -75,6 +75,6 @@
 \defcounter {refsection}{0}\relax 
 \contentsline {section}{\numberline {A.1}Weitere Basisoperation in SQL}{77}{section.A.1}%
 \defcounter {refsection}{0}\relax 
-\contentsline {section}{\numberline {A.2}SQL-Code und MATLAB-Implementierungen}{78}{section.A.2}%
+\contentsline {section}{\numberline {A.2}MATLAB-Implementierungen}{78}{section.A.2}%
 \defcounter {refsection}{0}\relax 
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

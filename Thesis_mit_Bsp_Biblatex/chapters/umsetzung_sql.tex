@@ -237,7 +237,7 @@ Weiter bezeichne $\mathrm{vec}(X)$ die Transformation der Matrix $X$ in einen Ve
 kann die Matrixfaltung $Y = X \ast K$ ohne zero padding, welche im Modell \ref{modell} benötigt wird, berechnet werden. Dazu muss lediglich der Vektor $\mathrm{vec}(X)$ in eine entsprechende Matrix transformiert werden.
 \end{bsp}
 Im Beispiel \ref{bsp:Kzeropad} ist zu beachten, dass $A$ keine doppelt zyklische Blockmatrix ist, da sich die Abmessungen der Ergebnismatrix $ Y \in \RR^{2 \times 2}$ mit der gültigen Faltung verkleinern. Es fehlen also gewisse Zeilen in $A$, sodass $A$ nicht zyklisch ist.
-Die genaue Konstruktion doppelt zyklischer Blockmatrizen für die Faltungsoperation mit bzw. ohne zero padding ist ein technisches Detail und wird in dieser Arbeit nicht weiter beleuchtet. Für eine mögliche Implementierung sei auf den MATLAB-Code \ref{mat:code:zyk} im Anhang verwiesen. 
+Die genaue Konstruktion doppelt zyklischer Blockmatrizen für die Faltungsoperation mit bzw. ohne zero padding ist ein technisches Detail und wird in dieser Arbeit nicht weiter beleuchtet. Für eine mögliche Implementierung sei auf den MATLAB-Code \ref{mat:code:zyk} im Anhang \ref{app:app_2}verwiesen. 
 
 Die datenbankgestützte Umsetzung der Matrixvektormultiplikation mit dünnbesetzter Matrix wurde bereits im Abschnitt \ref{abs:SQL_linalg} erläutert. Bei CNN lassen sich die dünnbesetzten zyklischen Blockmatrizen für die Kerne bereits vor der Vorwärtsrechnung in Relationen speichern. Seien $X \in \RR^{n \times n}$ und $K \in \RR^{k \times k}$ sowie \textbf{vecX} und \textbf{K} entsprechende Relationen des Vektors $\mathrm{vec}(X)$ bzw. der eingebetteten $n \times n$-Matrix $K$ im Coordinate-Schema. Die Matrixfaltung $Y = X \ast K$ lässt sich mit den obigen Resultaten in der SQL-Anfrage \ref{sql:sparseapp} berechnen. In der Abbildung \ref{abb:sparseapp} sind numerische Resultate hinsichtlich des Speicher- und Zeitaufwands der SQL-Anfrage \ref{sql:sparseapp} für einen Kern $K \in \RR^{3 \times 3}$ dargestellt.
 
@@ -357,7 +357,7 @@ Zwischen der zyklischen Faltung \ref{def:cycconv} und der diskreten Fourier-Tran
     \end{align*}
     % bereits um 180 Grad gedreht, vgl. Bemerkung \ref{bem:K_conv_komp}, 
 \end{bem}
-Für eine detailliertere Beschreibung der Konstruktion der eingebetteten Matrizen $K \in \RR^{n \times n}$ sei aufgrund deren Umfangs auf Jain \cite{jain1989fundamentals} verwiesen. Eine Implementierungsmöglichkeit \ref{matlab:boundary} in MATLAB ist im Anhang gegeben.
+Für eine detailliertere Beschreibung der Konstruktion der eingebetteten Matrizen $K \in \RR^{n \times n}$ sei aufgrund deren Umfangs auf Jain \cite{jain1989fundamentals} verwiesen. Eine Implementierungsmöglichkeit \ref{matlab:boundary} in MATLAB ist im Anhang \ref{app:app_2} gegeben.
 Die Matrixfaltung innerhalb einer Faltungsschicht eines CNN lässt sich mit den obigen Resultaten in drei Schritten berechnen.
 \begin{itemize}
     \item[1.] Es sind jeweils die zweidimensionalen diskreten Fourier-Transformationen $\hat{X}$ und $\hat{K}$ für die Eingabe $X$ und den gedrehten Kern $K$ zu berechnen.
@@ -444,7 +444,7 @@ Im vorherigen Abschnitt \ref{abs:dft} wird die Nutzung der zweidimensionalen dis
 \section{Datenbankgestützte Vorwärtsrechnung für CNN}
 \label{abs_CNN_in_SQL}
 In diesem Abschnitt steht das Problem \ref{prob:ffCCN} im Vordergrund und es wird eine relationale Umsetzung der Vorwärtsrechnung für ein trainiertes CNN-Modell diskutiert. In Abhängigkeit von den Hyperparameter des verwendeten Modells und dem Anwendungsszenario sind die im Abschnitt \ref{abs:conv_in_sql} vorgestellten Resultate zu nutzen.    
-Die konkreten Implementierungen in SQL beziehen sich auf das im Abschnitt \ref{abs:model_mnist} vorgestellte Modell \ref{modell}, welches als laufende Beispielmodell dienen soll. In diesem Abschnitt tauchen immer wieder Modellparameter auf, welche als trainiert und damit optimal im Sinne der gestellten Klassifikationsaufgabe vorausgesetzt werden. Nur dann ist eine sinnvolle datenbankgestützte Mustererkennung möglich.  
+Die konkreten Implementierungen in SQL beziehen sich auf das im Abschnitt \ref{abs:model_mnist} vorgestellte Modell \ref{modell}, welches als laufendes Beispielmodell dienen soll. In diesem Abschnitt tauchen immer wieder Modellparameter auf, welche als trainiert und damit optimal im Sinne der gestellten Klassifikationsaufgabe vorausgesetzt werden. Nur dann ist eine sinnvolle datenbankgestützte Mustererkennung möglich.  
 
 \subsection*{Gefaltete Übertragungsfunktion}
 Bei ML-Verfahren wird oft mit mehrdimensionalen Arrays gearbeitet. Diese sind problemlos mit dem Relationenmodell vereinbar. Das Coordinate-Schema wird einfach mit entsprechenden Attributen, welche die Achsen darstellen, erweitert. Für einen Kern $K \in \RR^{q \times p \times k \times k}$ ergibt sich die Relation \textbf{K} zu
@@ -479,7 +479,7 @@ zu berechnen. Dabei sind die Matrizen $A_p$ Ergebnisse von Matrixfaltungen, $\al
 
 \lstinputlisting[label=sql:conv_rec, caption=Die rekursive SQL-Anfrage zur Berechnung der gefalteten Übertragungsfunktion, language=SQL]{sql_code/conv_recursive.txt}
 
-Die datenbankgestützte Matrixfaltung ist bereits im vorherigen Abschnitt \ref{abs:conv_in_sql} beleuchtet worden. Zur Veranschaulichung wird die SQL-Implementierung \ref{sql:C1} zur Berechnung der sechs Merkmalskarten in der Faltungschicht $C^1$ des Modells \ref{modell} dargestellt. Dabei wurde der im Abschnitt \ref{abs:naive_app} diskutierte verbesserte Nachbarschafts-Ansatz mit Umgebungstabellen und das erweiterte Coordinate-Schema benutzt. Hier ist im Gegensatz zur Schicht $C^2$ keine rekursive Berechnung notwendig. Die rekursiven Anfragen für $C^2$ sind im Anhang \ref{app:app_2} zu finden. Es kommen wieder Common-Table-Expressions zum Einsatz. In den Zeilen 1-19 werden die Matrixfaltungen $X \ast K^{1}_p$ mit zero-padding mithilfe einer Umgebungstabelle \textbf{U} für $1 \leq p \leq 6$ berechnet. In den Zeilen 20 bis 27 wird nur das Teilergebnis behalten, welches ohne zero-padding bestimmt wurde. Schließlich folgt in den Zeilen 28-34 die Manipulation mit den Schwellwerten $b_p$ und die Berechnung der Aktivierung mit der logistischen Funktion.
+Die datenbankgestützte Matrixfaltung ist bereits im vorherigen Abschnitt \ref{abs:conv_in_sql} beleuchtet worden. Zur Veranschaulichung wird die SQL-Implementierung \ref{sql:C1} zur Berechnung der sechs Merkmalskarten in der Faltungschicht $C^1$ des Modells \ref{modell} dargestellt. Dabei wurde der im Abschnitt \ref{abs:naive_app} diskutierte verbesserte Nachbarschafts-Ansatz mit Umgebungstabellen und das erweiterte Coordinate-Schema benutzt. Hier ist im Gegensatz zur Schicht $C^2$ keine rekursive Berechnung notwendig. Es kommen wieder Common-Table-Expressions zum Einsatz. In den Zeilen 1-19 werden die Matrixfaltungen $X \ast K^{1}_p$ mit zero-padding mithilfe einer Umgebungstabelle \textbf{U} für $1 \leq p \leq 6$ berechnet. In den Zeilen 20 bis 27 wird nur das Teilergebnis behalten, welches ohne zero-padding bestimmt wurde. Schließlich folgt in den Zeilen 28-34 die Manipulation mit den Schwellwerten $b_p$ und die Berechnung der Aktivierung mit der logistischen Funktion.
 
 \lstinputlisting[label=sql:C1, caption=Die SQL-Anfrage zur Berechnung von $C^1$, language=SQL]{sql_code/C1_sql.txt}
 
@@ -501,4 +501,4 @@ Seien die Gewichtsmatrix $W \in \RR^{192 \times 10}$ sowie der Biasvektor $b \in
 
 \lstinputlisting[label=sql:ffn, caption=SQL-Code zur Umsetzung der Vorwärtsrechnung des einschichtigen FFN aus Modell \ref{modell}, language=SQL]{sql_code/ffn_in_sql.txt}
 
-Die vollständige datenbankgestützte Vorwärtsrechnung für das trainierte Modell \ref{modell} ist im Anhang \ref{app:app_2} dargestellt. LAUFZEIT eval TODO, TODO full pass im Anhang
+Die vollständige datenbankgestützte Vorwärtsrechnung für das trainierte Modell \ref{modell} kann durch die Kombination der obigen Resultate durchgeführt werden.
