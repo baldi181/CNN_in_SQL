@@ -21,7 +21,7 @@ Nun kann die Klassifikation als \textit{task T} definiert werden, welche im weit
 \begin{defi}[Klassifikationsaufgabe]
     Seien $\mathcal{M}$ und $\mathcal{C}$ wie in Definition \ref{deff:trainset} gegeben. Die Klassifikationsaufgabe besteht darin, ein Modell $\tilde{f}_{\mathcal{W}}:\mathcal{M} \rightarrow \mathcal{C}$, abhängig von Parametern $\mathcal{W}$, zu entwickeln, welches die Funktion $f$ hinreichend gut approximiert. Zur Vereinfachung der Notation wird das Modell in Zukunft mit $\tilde{f}$ bezeichnet.
 \end{defi}
-Im Zuge des überwachten Lernens wird eine Trainingsphase durchgeführt, bei welcher die Modellparameter $\mathcal{W}$ mithilfe der Trainingsmenge $\mathcal{T}$ (\ref{eq:trainset}) in einem iterativen Prozess schrittweise angepasst werden. Die Tupel in $\mathcal{T}$, welche die gewünschten Ausgaben beinhalten, können als \textit{experience E} interpretiert werden.
+Im Zuge des überwachten Lernens wird eine Trainingsphase durchgeführt, bei welcher die Modellparameter $\mathcal{W}$ mithilfe der Trainingsmenge $\mathcal{T}$ in einem iterativen Prozess schrittweise angepasst werden. Die Tupel in $\mathcal{T}$, welche die gewünschten Ausgaben beinhalten, können als \textit{experience E} interpretiert werden.
 Die Güte der Approximation $\tilde{f}$ wird durch Fehlerfunktionen gemessen. Ziel ist es, die \textit{performance P} des Modells durch die Minimierung solcher Fehlerfunktionen zu steigern.  
 \begin{defi}
     Seien eine Klassifikationsfunktion $f$, eine Trainingsmenge $\mathcal{T}$ und Modellparameter $\mathcal{W}$ gegeben. Für das Modell $\tilde{f}$ soll das Minimierungsproblem 
@@ -88,7 +88,7 @@ und \begin{equation*}
     \end{pmatrix} 
 \end{equation*}
 definiert.
-Der sogenannte Perzeptron-Lernalgorithmus \cite{rosenblatt1958perceptron}, kurz PLA, kann genutzt werden, um den Parameter $w$ schrittweise zu bestimmen. Dieser ist algorithmisch in \ref{alg:pla} darstellt. Verändert sich in einem Zyklus, also das einmalige Durchlaufen aller Punkte in $\mathcal{M}$, der Parameter $w$ nicht, so wird der PLA abgebrochen.
+Der sogenannte Perzeptron-Lernalgorithmus \cite{rosenblatt1958perceptron}, kurz PLA, kann genutzt werden, um den Parameter $w$ schrittweise zu bestimmen. Dieser ist im Algorithmus \ref{alg:pla} dargestellt. Verändert sich in einem Zyklus, also das einmalige Durchlaufen aller Punkte in $\mathcal{M}$, der Parameter $w$ nicht, so wird der PLA abgebrochen.
 
 \begin{satz}
     Sind $\mathcal{M}_0$ und $\mathcal{M}_1$ linear trennbar, so bricht der Perzeptron-Lernalgorithmus in endlich vielen Schritten ab.
@@ -157,7 +157,7 @@ Für eine vertiefende Analyse von Architekturen, Funktionalitäten und Implement
 
 \section{Relationale Datenbanksysteme}
 \label{abs:relation_intro}
-Relationale Datenbanksysteme gehören zu den erfolgreichsten und verbreitetsten Datenbanken, welche zur elektronischen Datenverwaltung in Computersystemen eingesetzt werden. In diesem Abschnitt werden wichtige Grundbegriffe relationaler Datenbanksysteme erläutert und erklärt, wie Daten in Relationen repräsentiert und verarbeitet werden können. Die Notation und Bezeichnungen basieren auf Heuer et al.\cite{DBLP:books/daglib/0044627}. Zum Abfragen von Datenbeständen wird die Datenbanksprache SQL im Abschnitt \ref{abs:SQL_intro} eingeführt und deren theoretische Grundlagen im Abschnitt \ref{abs:rela_algebra} beleuchtet. Schließlich werden im Abschnitt \ref{abs:SQL_linalg} Methoden vorgestellt, um Objekte der linearen Algebra als Relationen darzustellen und damit verbundene Operationen, beispielsweise die Matrixvektormultiplikation, datenbankgestützt umzusetzen.
+Relationale Datenbanksysteme gehören zu den erfolgreichsten und verbreitetsten Datenbanken, welche zur elektronischen Datenverwaltung in Computersystemen eingesetzt werden. In diesem Abschnitt werden wichtige Grundbegriffe relationaler Datenbanksysteme erläutert und erklärt, wie Daten in Relationen repräsentiert und verarbeitet werden können. Die Notation und Bezeichnungen basieren auf Heuer et al. \cite{DBLP:books/daglib/0044627}. Zum Abfragen von Datenbeständen wird die Datenbanksprache SQL im Abschnitt \ref{abs:SQL_intro} eingeführt und deren theoretische Grundlagen im Abschnitt \ref{abs:rela_algebra} beleuchtet. Schließlich werden im Abschnitt \ref{abs:SQL_linalg} Methoden vorgestellt, um Objekte der linearen Algebra als Relationen darzustellen und damit verbundene Operationen, beispielsweise die Matrixvektormultiplikation, datenbankgestützt umzusetzen.
 
 \subsection{Das Relationenmodell}
 Der Grundbaustein relationaler Datenbanksysteme bildet die Relation. Sie stellt eine mathematische Beschreibung einer Tabelle, welche aus Attributen und zugehörigen Domänen besteht, dar.
@@ -180,7 +180,7 @@ Nun können das Relationenschema und zugehörige Begriffe wie Relation und Tupel
 
 Vereinfacht gesagt, setzt sich eine Datenbank als Menge von Relationen und ein Datenbankschema als Menge der zugehörigen Relationenschemata zusammen.
 
-\begin{defi}[Datenbank, Datenbankschema, vgl.\cite{DBLP:books/daglib/0044627}]
+\begin{defi}[Datenbank, Datenbankschema, vgl. \cite{DBLP:books/daglib/0044627}]
     Für $p \in \mathbb{N}$ ist eine Menge von Relationenschemata $S=\{R_1, \ldots, R_p\}$ als Datenbankschema definiert. Eine Datenbank $d$ über dem Schema $S$, kurz $d(S)$, ist eine Menge von Relationen
     \begin{equation*}
         d=\{r_1, \ldots, r_p \}
@@ -205,7 +205,7 @@ Mit diesen Begriffen lässt sich das relationale Datenbanksystem definieren.
     Ein relationales Datenbanksystem ist eine Kombination aus Datenbank und Datenbankmanagementsystem, wobei letzteres zur Verwaltung der Daten verwendet wird.
 \end{defi}
 
-Das Managementsystem ist als abgekapseltes Softwaremodul zu interpretieren, welches bestimmte Funktionen zur Verwaltung der Datenbank unter gewissen Anforderungen liefert. Typischerwiese sind die von Edgar F. Codd etablierten Anforderungspunkte, siehe \cite{DBLP:books/daglib/0044627}, von einem Datenbankmanagementsystem umzusetzen. Eine der geforderten Funktionen bildet die Anfrage an eine Datenbank, um Daten auslesen zu können. Dabei sei bemerkt, dass je nach Datenbanksystem die Anfragebearbeitung unterschiedlich abläuft. Für eine vertiefende Analyse von Architekturen, Funktionalitäten und Implementierungsmöglichkeiten von relationalen Datenbanksystemen sei auf Heuer et. al.\cite{DBLP:books/mitp/HSS19, DBLP:books/daglib/0044627} verwiesen. 
+Das Managementsystem ist als abgekapseltes Softwaremodul zu interpretieren, welches bestimmte Funktionen zur Verwaltung der Datenbank unter gewissen Anforderungen liefert. Typischerwiese sind die von Edgar F. Codd etablierten Anforderungspunkte, siehe \cite{DBLP:books/daglib/0044627}, von einem Datenbankmanagementsystem umzusetzen. Eine der geforderten Funktionen bildet die Anfrage an eine Datenbank, um Daten auslesen zu können. Dabei sei bemerkt, dass je nach Datenbanksystem die Anfragebearbeitung unterschiedlich abläuft. Für eine vertiefende Analyse von Architekturen, Funktionalitäten und Implementierungsmöglichkeiten von relationalen Datenbanksystemen sei auf Heuer et. al. \cite{DBLP:books/mitp/HSS19, DBLP:books/daglib/0044627} verwiesen. 
 
 Im Folgenden wird die Relationenalgebra als Anfragesprache vorgestellt. Sie bildet die theoretische Grundlage der weitverbreiteten Anfragesprache SQL, welche im Folgeabschnitt \ref{abs:SQL_intro} im Fokus steht. Zusammen mit der erweiterten Relationenalgebra gelingt im Abschnitt \ref{abs:SQL_linalg} die Umsetzung von Basisoperationen der linearen Algebra in SQL.
 
@@ -250,7 +250,7 @@ In der Relationenalgebra werden Relationen als abstrakte Datentypen mit darauf d
     \end{equation*}
     erklärt.
 \end{itemize}
-Es sei darauf hingewiesen, dass weitere Operatorensysteme existieren, welche zu $\omega$ äquivalent sind\cite{DBLP:books/daglib/0044627}.
+Es sei darauf hingewiesen, dass weitere Operatorensysteme existieren, welche zu $\omega$ äquivalent sind \cite{DBLP:books/daglib/0044627}.
 
 \subsection*{Erweiterung der Relationenalgebra}
 
@@ -331,7 +331,7 @@ lässt sich durch
 berechnen. Für diese Arbeit genügt die erweiterte Relationenalgebra mit der Gruppierung $\gamma_L$ und der erweiterten Projektion $\pi_F$, um fundamentale Operationen der linearen Algebra in der Datenbanksprache SQL darzustellen. Diese wird im folgenden Abschnitt vorgestellt.
 \subsection{Die Anfragesprache SQL}
 \label{abs:SQL_intro}
-SQL als Abkürzung für \textit{Structured Query Language} ist eine Datenbanksprache zur Definition von Datenstrukturen in relationalen Datenbanksystemen. Sie wird genutzt, um Datenbestände zu bearbeiten und abzufragen und basiert dabei auf der im vorherigen Abschnitt eingeführten Relationenalgebra. SQL wird als standardisierte Sprache in allen kommerziellen und frei zugänglichen Datenbankmanagementsystemen unterstützt. Da die Sprache unter Mitwirkung von Normungsgremien wie des \textit{American National Standard Institute} (ANSI) und der \textit{International Organization for Standardization} (ISO) seit 1986 standardisiert ist, ist es möglich, über die Grenzen spezieller Systeme hinaus SQL als einheitliche Datenbanksprache zu benutzen. Für eine detailliertere Darstellung der einzelnen Standards sei auf die entsprechende Literatur verwiesen. Ein guter Überblick ist in Heuer et. al.\cite{DBLP:books/daglib/0044627} zu finden.
+SQL als Abkürzung für \textit{Structured Query Language} ist eine Datenbanksprache zur Definition von Datenstrukturen in relationalen Datenbanksystemen. Sie wird genutzt, um Datenbestände zu bearbeiten und abzufragen und basiert dabei auf der im vorherigen Abschnitt eingeführten Relationenalgebra. SQL wird als standardisierte Sprache in allen kommerziellen und frei zugänglichen Datenbankmanagementsystemen unterstützt. Da die Sprache unter Mitwirkung von Normungsgremien wie des \textit{American National Standard Institute} (ANSI) und der \textit{International Organization for Standardization} (ISO) seit 1986 standardisiert ist, ist es möglich, über die Grenzen spezieller Systeme hinaus SQL als einheitliche Datenbanksprache zu benutzen. Für eine detailliertere Darstellung der einzelnen Standards sei auf die entsprechende Literatur verwiesen. Ein guter Überblick ist in Heuer et. al. \cite{DBLP:books/daglib/0044627} zu finden.
 
 SQL ist aus mehreren Teilsprachen aufgebaut, welche jeweils unterschiedliche Aufgaben des Datenbankmanagementsystems hinsichtlich der Datendefinition, Dateiorganisation und Anfragebearbeitung übernehmen. Um Methoden der linearen Algebra in Sequenzen von SQL-Anfragen darzustellen, wird der Anfrageteil \textit{Interactive Query Language}, kurz IQL, als deklarative Programmiersprache im Folgenden beleuchtet. Diese bildet das Fundament der Datenselektion und wird zur Analyse von Daten in relationalen Systemen genutzt. Eine Anfrage hat die Form 
 
@@ -359,7 +359,7 @@ Um den Anfragemechanismus nachzuvollziehen, seien im Folgenden zwei Relationen \
     \hline
     3 &Johann &Informatik &3 &1800\\
     \hline
-    4 &Anna &Buchhaltung &3 &2000\\
+    4 &Jana &Maschinenbau &3 &2100\\
     \hline
     5 &Antonia &Buchhaltung &2 &2000\\ 
     \hline
@@ -406,7 +406,7 @@ liefert die Namen der Angestellten von offenen Projekten. Dementsprechend ist di
     \hline
     Johann &Forschungsabteilung\\
     \hline
-    Anna &Forschungsabteilung\\ 
+    Jana &Forschungsabteilung\\ 
     \hline
     Antonia &Verwaltung \\
     \hline
@@ -435,7 +435,9 @@ verwendet. Diese berechnet die Angestelltenkosten und gruppiert sie nach den jew
     \hline
     Informatik &3300\\
     \hline
-    Buchhaltung &4000\\ 
+    Buchhaltung &2000\\ 
+    \hline
+    Maschinenbau & 2100\\
     \hline
 \end{tabular}
 \caption[Ergebnisrelation einer zweiten SQL-Anfrage]{Es ist die Ergebnisrelation der zuvor beschriebenen Anfrage (\ref{anf:erw})
@@ -511,7 +513,7 @@ Das Coordinate-Schema beinhaltet drei Arrays, welche den Zeilenindex, Spaltenind
         \end{pmatrix}
         \in \RR^{3 \times 2}
     \end{equation*}
-    gegeben, so ergibt sich Coordinate Schema wie in Tabelle \ref{coordinate_scheme_table}.
+    gegeben, so ergibt sich Coordinate-Schema wie in Tabelle \ref{coordinate_scheme_table}.
 
 \begin{table}
     \centering
@@ -534,7 +536,7 @@ Das Coordinate-Schema beinhaltet drei Arrays, welche den Zeilenindex, Spaltenind
      3 &2 &7\\
      \hline
     \end{tabular}
-    \caption[Das Coordinate-Schema]{Das Coordinate Schema zur Matrix $A$ aus Beispiel \ref{besipiel:_coordinate_sheme}.}
+    \caption[Das Coordinate-Schema]{Das Coordinate-Schema zur Matrix $A$ aus Beispiel \ref{besipiel:_coordinate_sheme}.}
     \label{coordinate_scheme_table}
 \end{table}
 \end{bsp}
@@ -572,7 +574,7 @@ berechnen.
 Schließlich kann auch die Transponierte $A^T$ einer Matrix $A$ einfach berechnet werden, siehe dazu Anhang \ref{app:app_1}.
 
 \subsection*{Dünn besetzte Matrizen}
-Bei bestimmten Anwendungen werden dünnbesetzte Matrizen benötigt, deren Zeilen- und Spaltenanzahl erheblich größer als bei dicht besetzten Problemen sind. Oft enthalten diese Matrizen dann eine Menge von Nicht-Null-Elementen, welche im Vergleich zu den Null-Elementen verschwindend gering ist. Daher lohnt es sich, nur die Nicht-Null-Elemente sinnvoll zu speichern. In dieser Arbeit wird das \textit{Compressed-Sparse-Column-Schema}\cite{duff1989sparse} verwendet, um dünn besetzte Matrizen zu repräsentieren. Es besteht ähnlich des Coordinate-Schemas wieder aus drei Arrays. Das erste Array gibt das Spaltenmuster \textbf{colPtr}, das zweite den Zeilenindex \textbf{rowInd} und das dritte den Matrixeintrag \textbf{val} an. Der formale Zusammenhang zwischen einer Matrix $A \in \RR^{m \times n}$ und der Darstellung im Compressed-Sparse-Column-Schema ist durch 
+Bei bestimmten Anwendungen werden dünnbesetzte Matrizen benötigt, deren Zeilen- und Spaltenanzahl erheblich größer als bei dicht besetzten Problemen sind. Oft enthalten diese Matrizen dann eine Menge von Nicht-Null-Elementen, welche im Vergleich zu den Null-Elementen verschwindend gering ist. Daher lohnt es sich, nur die Nicht-Null-Elemente sinnvoll zu speichern. In dieser Arbeit wird das \textit{Compressed-Sparse-Column-Schema} \cite{duff1989sparse} verwendet, um dünn besetzte Matrizen zu repräsentieren. Es besteht ähnlich des Coordinate-Schemas wieder aus drei Arrays. Das erste Array gibt das Spaltenmuster \textbf{colPtr}, das zweite den Zeilenindex \textbf{rowInd} und das dritte den Matrixeintrag \textbf{val} an. Der formale Zusammenhang zwischen einer Matrix $A \in \RR^{m \times n}$ und der Darstellung im Compressed-Sparse-Column-Schema ist durch 
 \begin{equation*}
     A_{i,j}=\mathbf{val}[k] \Leftrightarrow (\mathbf{rowInd}[k]=i) \wedge (\mathbf{colPtr}[j] \leq k < \mathbf{colPtr}[j+1])
 \end{equation*} 
@@ -596,7 +598,7 @@ gegeben. Folgendes Beispiel illustriert diese Beziehung.
 \end{bsp}
 Die indirekte Indizierung der Matrixelemente sorgt zwar für eine Verminderung des Speicherbedarfs, erschwert jedoch die rein relationale Umsetzung von Operationen wie die Matrixvektormultiplikation. Hier kann ein objekt-relationaler Ansatz Abhilfe schaffen, bei dem Array-Datentypen genutzt werden, welche jedoch nur in bestimmten relationalen Datenbankmanagementsystemen unterstützt werden. 
 
-\begin{defi}[Spaltenkompression, vgl.\cite{martendiss}]
+\begin{defi}[Spaltenkompression, vgl. \cite{martendiss}]
     \label{def:spaltenkomp}
 Eine dünn besetzte Matrix $A \in \RR^{m \times n}$ wird als Relation
 \begin{align*}
@@ -607,7 +609,7 @@ Eine dünn besetzte Matrix $A \in \RR^{m \times n}$ wird als Relation
 \end{align*}
 gespeichert. Diese Repräsentation wird Spaltenkompression genannt und ist insbesondere für die Matrixvektormultiplikation nützlich.
 \end{defi}
-In dem Open-Source-Datenbanksystem PostgreSQL\cite{momjian2001postgresql}, welches in dieser Arbeit genutzt wird, kann für die Matrixvektormultiplikation die \textbf{UNNEST}-Funktion genutzt werden. Diese Funktion wandelt ein Array in eine Menge von Tupeln um. Die Matrixvektormultiplikation $Ax \in \RR^m$ mit dünnbesetzter Matrix $A \in \RR^{m \times n}$ kann dann mithilfe der SQL-Anfage
+In dem Open-Source-Datenbanksystem PostgreSQL \cite{momjian2001postgresql}, welches in dieser Arbeit genutzt wird, kann für die Matrixvektormultiplikation die \textbf{UNNEST}-Funktion genutzt werden. Diese Funktion wandelt ein Array in eine Menge von Tupeln um. Die Matrixvektormultiplikation $Ax \in \RR^m$ mit dünnbesetzter Matrix $A \in \RR^{m \times n}$ kann dann mithilfe der SQL-Anfage
 
 \begin{align*}
     &\mathbf{SELECT} \; i, \mathbf{SUM}(v)\\
@@ -618,4 +620,4 @@ In dem Open-Source-Datenbanksystem PostgreSQL\cite{momjian2001postgresql}, welch
 \end{align*}
 berechnet werden.
 
-Zusammenfassend stellt sich heraus, dass wesentliche Objekte der linearen Algebra und fundamentale Operationen im SQL-Kern umgesetzt werden können. Für dicht besetzte Matrizen wird das Coordinate-Schema \ref{def:coordinate_sheme} benutzt, während für dünn besetzte Probleme das Spaltenkompression-Schema \ref{def:spaltenkomp} genutzt wird. Beide Darstellungsformen erlauben kompakte SQL-Anfragen für die Matrixmatrix- bzw. Matrixvektormultiplikation. Für eine tiefere Analyse dieser und anderer Darstellungsmöglichkeiten und deren Performance hinsichtlich verschiedener Basisoperationen sei auf Marten \cite{martendiss} verwiesen.
+Zusammenfassend stellt sich heraus, dass wesentliche Objekte der linearen Algebra und fundamentale Operationen im SQL-Kern umgesetzt werden können. Für dicht besetzte Matrizen wird das Coordinate-Schema, siehe Definition \ref{def:coordinate_sheme}, benutzt, während für dünn besetzte Probleme das Spaltenkompression-Schema, vgl. Definition \ref{def:spaltenkomp}, genutzt wird. Beide Darstellungsformen erlauben kompakte SQL-Anfragen für die Matrixmatrix- bzw. Matrixvektormultiplikation. Für eine tiefere Analyse dieser und anderer Darstellungsmöglichkeiten und deren Performance hinsichtlich verschiedenster Basisoperationen sei auf Marten \cite{martendiss} verwiesen.

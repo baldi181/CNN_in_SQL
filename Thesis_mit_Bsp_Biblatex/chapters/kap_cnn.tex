@@ -37,7 +37,7 @@ Für die Faltung gelten einige Rechenregeln.
 \end{lem}
 
 \begin{proof}
-    Ein Beweis dieser Rechenregeln kann in Werner\cite{werner2011funktionalanalysis} gelesen werden.
+    Ein Beweis dieser Rechenregeln kann in Werner \cite{werner2011funktionalanalysis} gelesen werden.
 \end{proof}
 
 %Bei klassischen neuronalen Netzen, siehe Kapitel \ref{classicNN} werden Eingabedaten durch eine Verkettung von affinen Transformationen verarbeitet. Typischerweise wird die Eingabe als Vektor dargestellt und  mit einer Matrix multipliziert, gegebenenfalls mit einem Biasvektor manipuliert und schließlich so die Ausgabe generiert. Bilder-, Audio- oder Videoaufnahmen besitzen jedoch mehrere Merkmale in unterschiedlichen Achsen. Oft sind solche Eingabedaten im Bereich des Machine-Learnings als mehrdimensionale Arrays abgelegt, welche eine oder mehrere Achsen repräsentieren, wobei die Ordnung dieser eine Rolle spielt. Bei digitalisierten Bildern sind das bespielsweise die Höhe und Breite des Bildes, bei Audioaufnahmen gibt es nur eine Achse, und zwar die Zeitachse. Hinzu kommen Kanalachsen als weitere Verfeinerung der Daten, zum Beispiel besitzen RGB-Farbbilder drei Kanäle der Farben rot, grün und blau. 
@@ -97,7 +97,7 @@ Im Hinblick auf die Klassifikation von digitalisierten Bildern, dargestellt als 
         \label{eq:valid_cross}
         Y_{i,j}=\sum_{u=-l}^l \sum_{v=-l}^l X_{i+u,j+v}K_{u,v}
     \end{equation}
-    und $X_{i,j}=0$ für $i \notin [h]$ und $j \notin [b]$ angegeben. Das Auffüllen mit Nullen am Rand von $X$ wird mit \textit{zero padding} bezeichnet. Die Kreuzkorrelation (\ref{eq:valid_cross}), in der Fachliteratur oft auch als Faltung bezeichnet, stellt die Faltung (\ref{eq:valid_conv}) mit gedrehtem Kern $K^{rot180}$ dar. Dabei ist 
+    und $X_{i,j}=0$ für $i \notin [h]$ und $j \notin [b]$ angegeben. Das Auffüllen mit Nullen am Rand von $X$ wird mit \textit{zero padding} bezeichnet. Die Kreuzkorrelation in Gleichung (\ref{eq:valid_cross}), in der Fachliteratur oft auch als Faltung bezeichnet, stellt die Faltung in Gleichung (\ref{eq:valid_conv}) mit gedrehtem Kern $K^{rot180}$ dar. Dabei ist 
     \begin{equation*}
         K^{rot180}_{-u,-v}:=K_{u,v}.
     \end{equation*}
@@ -117,7 +117,7 @@ Im Hinblick auf die Klassifikation von digitalisierten Bildern, dargestellt als 
             K_{-1,1} &K_{-1,0} &K_{-1,-1} 
         \end{pmatrix}
     \end{equation*}
-    gegeben. In dieser Arbeit wird (\ref{eq:valid_cross}) als Matrixfaltung bezeichnet.
+    gegeben. In dieser Arbeit wird die Operation in Gleichung (\ref{eq:valid_cross}) als Matrixfaltung bezeichnet.
 \end{bem}
 
 Bei gefalteten neuronalen Netzen wird oft eine Reduktion der Dimensionen angestrebt. Dafür werden natürliche Zahlen als Schrittweiten, engl. \textit{strides}, genutzt.
@@ -127,7 +127,7 @@ Bei gefalteten neuronalen Netzen wird oft eine Reduktion der Dimensionen angestr
         Y_{i,j}:=\sum_{u=-l}^{l} \sum_{v=-l}^{l} X_{i \cdot s_h +u,j \cdot s_b +v} K_{u+l+1, v+l+1}\; \; \forall i \in [\lceil h/s_h \rceil], j \in [\lceil b/s_b \rceil]
     \end{equation*}
     definiert.
-    Für $s_h=s_b=1$ ergibt sich die Standardvariante wie in \ref{eq:matrix_faltung}.
+    Für $s_h=s_b=1$ ergibt sich die Standardvariante wie in in Gleichung (\ref{eq:matrix_faltung}).
     \end{bem}
 
 \section{CNN-Architektur}
@@ -199,7 +199,7 @@ $ gesetzt wird. Pooling-Schichten werden wieder durch Schrittweiten parametrisie
     für alle  $i \in [\lceil {}_1 X/p_h \rceil], j \in [\lceil {}_2 X/p_w \rceil]$ und $l \in [z]$ wird Pooling-Schicht genannt. Die Schrittweiten $p_h, p_b \in \mathbb{N}$ werden subsampling-Faktoren genannt.
 \end{defi}
 
-Pooling-Schichten verdichten also Informationen von Eingabedaten, welche sich lokal in Fenstern der Größe $p_h \times p_b$ befinden und reduzieren so die Raumdimension. In dieser Arbeit wird das Maximum-Pooling oder Mittelwert-Pooling benutzt. Für andere Pooling-Funktionen sei auf Yu et. al.\cite{yu2014mixed} verwiesen.
+Pooling-Schichten verdichten also Informationen von Eingabedaten, welche sich lokal in Fenstern der Größe $p_h \times p_b$ befinden und reduzieren so die Raumdimension. In dieser Arbeit wird das Maximum-Pooling oder Mittelwert-Pooling benutzt. Für andere Pooling-Funktionen sei auf Yu et. al.  \cite{yu2014mixed} verwiesen.
 Die Idee bei CNN besteht nun darin, Faltungsschichten mit Pooling-Schichten zu kombinieren und schließlich ein FFN wie in Definition \ref{def:MLP} anzuknüpfen.
 Dazu wird für allgemeine mehrdimensionale Arrays die Flatten-Funktion definiert.
 
@@ -220,7 +220,7 @@ Dies erlaubt die Definition des CNN-Modells als Kombination aus Faltungsschichte
         \label{eq:CNN_for}
         y=\Psi^{W^{(l)},b^{(l)},\psi_{l}} \circ \ldots \circ \Psi^{W^{(1)},b^{(1)},\psi_{1}} \circ T_f \circ \Psi_{conv}^{K^{(c)},b^{(c)},\psi_{c}} \circ \ldots \circ \Psi_{conv}^{K^{(1)},b^{(1)},\psi_{l}}(X)
     \end{equation} 
-    darstellen. Dabei seien wieder die Dimensionen der Parameter passend gewählt, sodass die Komposition wohldefiniert ist. In (\ref{eq:CNN_for}) können zwischen den Faltungsschichten Pooling-Schichten $\Psi_{pool,T}^{p_h,p_b}(X)$ geschaltet werden.
+    darstellen. Dabei seien wieder die Dimensionen der Parameter passend gewählt, sodass die Komposition wohldefiniert ist. In Gleichung (\ref{eq:CNN_for}) können zwischen den Faltungsschichten Pooling-Schichten $\Psi_{pool,T}^{p_h,p_b}(X)$ geschaltet werden.
 \end{defi}
 Auch CNN bestehen aus Hyper- und Modellparametern.
 
@@ -233,8 +233,7 @@ Die Hyperparameter werden wieder anwendungsspezifisch für das jeweilige Problem
 \section{Backpropagation bei CNN}
 \label{abs:CNN_train}
 Der Backpropagationsalgorithmus \ref{alg:online_backprop} soll nun für das CNN-Modell verallgemeinert werden. 
-Als Fehlerfunktion wird wieder die mittlere quadratische Abweichung (\ref{eq:MSE_single})
-genutzt. 
+Als Fehlerfunktion wird wieder die mittlere quadratische Abweichung, vgl. Gleichung (\ref{eq:MSE_single}), genutzt. 
 Die Abstiegsrichtungen für die Schichten des FFN wurden bereits im vorherigen Kapitel \ref{kap:NN} hergeleitet. Es müssen nun Gradienten innerhalb der Faltungsschichten beziehungsweise Pooling-Schichten berechnet werden. Die Einträge der Eingabe- und Merkmalskarten, in Zukunft einfach Karten genannt, können als Neuronenaktivierungen interpretiert werden. 
 
 Zur Vereinfachung werden die trainierbaren Parameter der Kerne und Gewichtsmatrizen als Gewichte $w_{j,i}^{(l)}$ bezeichnet. Gemeint ist also das Gewicht zwischen Neuron $i$  und Neuron $j$ in der (Faltungs)-Schicht $l$. Weiter sei $y_{i}^{(l-1)}$ die Aktivierung des Neurons $i$ der (Faltungs)-Schicht $l-1$ und $\delta_j^{(l)}$ sei der lokale Fehler des Neurons $j$ der (Faltungs)-Schicht $l$, welcher im Folgenden verallgemeinert wird. Die Funktion $\psi$ repräsentiere eine Aktivierungsfunktion einer  (Faltungs)-Schicht und Pooling-Funktionen werden mit $T$ sowie Flatten-Funktion mit $T_f$ bezeichnet.
@@ -271,7 +270,7 @@ Der Zusammenhang in Gleichung (\ref{eq:CNN_K_grad}) ist in Abbildung \ref{abb:er
     \label{abb:error_conv}
 \end{figure}
 Die Berechnung des lokalen Fehlers $\delta_{j}^{(l)}$ in Gleichung (\ref{eq:CNN_K_grad}) der Schicht $l$ ist abhängig von der Schicht $l+1$. Auch hier wird wieder komponentenweise vorgegangen. Im Folgenden bezeichne $V_j^{(l)}$ die Netzeingabe des Neurons $j$ auf der Schicht $l$.
-Ist die Schicht $l+1$ eine Neuronenschicht mit $s_k$ Neuronen, wird der lokale Fehler \ref{eq:delta_hidden} zu
+Ist die Schicht $l+1$ eine Neuronenschicht mit $s_k$ Neuronen, wird der lokale Fehler in Gleichung (\ref{eq:delta_hidden}) zu
 \begin{equation*}
     \delta_j^{(l)}(x,y)=\sum_{k=1}^{s_{k}} \left(\sum_{(x,y)} \delta_k^{(l+1)} w_{k,j}^{(l+1)}(x,y)\right) \psi'(V_j^{(l)})
 \end{equation*}
@@ -371,7 +370,7 @@ Die Berechnung in Gleichung (\ref{eq:upsample1}) und Gleichung (\ref{eq:upsample
 
 \section{Anwendung bei der Ziffernerkennung}
 \label{abs:model_mnist}
-In diesem Abschnitt wird ein CNN zur Klassifikation von Grauwert-Bildern aus einem konkreten Datensatz vorgestellt. Der MNIST-Datensatz\cite{DBLP:journals/pieee/LeCunBBH98} bietet $60.000$ Trainingsbilder handgeschriebener Ziffern und $10.000$ Testbilder, welche jeweils durch menschliches Wissen annotiert sind. Dieser Datensatz gilt als typischer Benchmark zur Klassifikation von Ziffern und wird im weiteren Verlauf dieser Arbeit genutzt. Jedes einzelne Bild besteht aus $28 \times 28$ Pixeln, welche jeweils einen Grauwert zwischen 0 und 1 annehmen, vgl. Abbildung \ref{mnistpic}. Ein Bild wird als $X \in [0,1]^{28 \times 28 \times 1}$ und ein Trainingspaar als $(X,c)$ mit $c \in \{0, \ldots, 9\}$ bezeichnet. 
+In diesem Abschnitt wird ein CNN zur Klassifikation von Grauwert-Bildern aus einem konkreten Datensatz vorgestellt. Der MNIST-Datensatz \cite{DBLP:journals/pieee/LeCunBBH98} bietet $60.000$ Trainingsbilder handgeschriebener Ziffern und $10.000$ Testbilder, welche jeweils durch menschliches Wissen annotiert sind. Dieser Datensatz gilt als typischer Benchmark zur Klassifikation von Ziffern und wird im weiteren Verlauf dieser Arbeit genutzt. Jedes einzelne Bild besteht aus $28 \times 28$ Pixeln, welche jeweils einen Grauwert zwischen 0 und 1 annehmen, vgl. Abbildung \ref{mnistpic}. Ein Bild wird als $X \in [0,1]^{28 \times 28 \times 1}$ und ein Trainingspaar als $(X,c)$ mit $c \in \{0, \ldots, 9\}$ bezeichnet. 
 
 \begin{figure}[h]
     \includegraphics[width=0.8\textwidth]{pics/chapters/CCN/mnist.png}
@@ -380,7 +379,7 @@ In diesem Abschnitt wird ein CNN zur Klassifikation von Grauwert-Bildern aus ein
     \label{mnistpic}
 \end{figure}
 
-Es wird ein CNN mit zwei Faltungsschichten $C^1$ und $C^2$ mit der logistischen Aktivierungsfunktion $\psi$, auch \textit{sigmoid} genannt, genutzt. Die Ausgabe der Schicht $C^1$ umfasst sechs Merkmalskarten und die Ausgabe der Schicht $C^2$ zwölf Merkmalskarten. Zur Faltung werden quadratische $5 \times 5$ -Kerne verwendet. Außerdem werden zwei Pooling-Schichten $P^1$ und $P^2$ mit den Schrittweiten $p_h=p_b=2$ und der Mittelwert-Funktion genutzt. Anschließend wird ein FFN mit 10 Ausgabeneuronen angekoppelt, sodass dessen Aktivierung zur Klassifikation der Eingabe genutzt werden kann. Die Architektur, ähnlich dem Le-Net-5-Modell\cite{DBLP:journals/pieee/LeCunBBH98}, ist in Abbildung \ref{modell} dargestellt. Dabei sind
+Es wird ein CNN mit zwei Faltungsschichten $C^1$ und $C^2$ mit der logistischen Aktivierungsfunktion $\psi$, auch \textit{sigmoid} genannt, genutzt. Die Ausgabe der Schicht $C^1$ umfasst sechs Merkmalskarten und die Ausgabe der Schicht $C^2$ zwölf Merkmalskarten. Zur Faltung werden quadratische $5 \times 5$ -Kerne verwendet. Außerdem werden zwei Pooling-Schichten $P^1$ und $P^2$ mit den Schrittweiten $p_h=p_b=2$ und der Mittelwert-Funktion genutzt. Anschließend wird ein FFN mit 10 Ausgabeneuronen angekoppelt, sodass dessen Aktivierung zur Klassifikation der Eingabe genutzt werden kann. Die Architektur, ähnlich dem Le-Net-5-Modell \cite{DBLP:journals/pieee/LeCunBBH98}, ist in Abbildung \ref{modell} dargestellt. Dabei sind
 
 \begin{itemize}
     \item $X$ ein Grauwert-Bild der Größe $h=b=28$,
@@ -422,7 +421,7 @@ Die Parameteranzahl ist damit
     C_p^1(i,j)&=\psi \left(\sum_{u=-2}^2 \sum_{v=-2}^2 X(i+u,j+v) \cdot K_{p,1}^1(u,v) +b_p^1\right)
     \end{split}
 \end{align*}
-für $1 \leq p \leq 6$ berechnet. Mit $\mathbf{1} \in \RR^{24 \times 24}$ ist die Matrix gemeint, deren Einträge nur Einsen sind. Die Matrixfaltung $\ast$ wird ohne zero padding genutzt und daher reduziert sich die Raumdimension. Es werden also nur die Teilergebnisse genutzt, bei denen die Filter vollständig in der Eingabekarte liegen. Diese Methode wird gültige Faltung, engl. \textit{valid convolution}, genannt. Dann gilt $C^1 \in \RR^{6 \times 24 \times 24}$. Anschließend folgen das Mittelwert-Pooling $P^1$ mit
+für $1 \leq p \leq 6$ berechnet. Mit $\mathbf{1} \in \RR^{24 \times 24}$ ist die Matrix gemeint, deren Einträge nur Einsen sind. Die Matrixfaltung $\ast$ wird ohne zero padding genutzt und daher reduziert sich die Raumdimension. Es werden also nur die Teilergebnisse genutzt, bei denen die Kerne vollständig in der Eingabekarte liegen. Diese Methode wird gültige Faltung, engl. \textit{valid convolution}, genannt. Dann gilt $C^1 \in \RR^{6 \times 24 \times 24}$. Anschließend folgen das Mittelwert-Pooling $P^1$ mit
 \begin{equation*}
     \label{eq:P1_forw}
     P^1_p(i,j) =\frac{1}{4} \sum_{u=0}^1 \sum_{v=0}^1 C_p^1(2i-u, 2j-v), \; 1 \leq i,j \leq 12
@@ -583,7 +582,7 @@ Die Aktualisierung der Parameter mit der Lernrate $\lambda \in \RR$ efolgt durch
 Diese Schritte sind solange zu wiederholen, bis die gewünschte Erkennungsrate bzw. Generalisierungsrate erreicht wird. Für die effiziente Implementierung des Trainingsprozesses sind die Darstellungen als Matrixvektorprodukte, z.B. in Gleichung (\ref{eq:delta_f}), beziehungsweise Faltungsoperationen, vgl. Gleichung (\ref{eq:conv_in_train}), zu nutzen. Diese Operationen sind performant umzusetzen.
 
 In diesem Kapitel wird die Backpropagation bei gefalteten neuronalen Netzen beschrieben. Bei der Darstellung des Trainingsprozesses wird darauf Wert gelegt, die Algorithmen möglichst allgemein zu beschreiben, um
-die meisten verwendeten Architekturen abzudecken. Es können also beliebig viele Faltungsschichten, Pooling-Schichten und Neuronenschichten untereinander verknüpft werden. Im folgenden Kapitel \ref{kap:CNN_in_SQL} wird ausgehend von optimierten Modellparameter eines CNN-Modells die datenbankgestützte Umsetzung in SQL diskutiert. Die Problemstellungen \ref{prob:conv_in_sql} und \ref{prob:ffCCN} werden bearbeitet. 
+die meisten verwendeten Architekturen abzudecken. Es können also beliebig viele Faltungsschichten, Pooling-Schichten und Neuronenschichten untereinander verknüpft werden. Im folgenden Kapitel \ref{kap:CNN_in_SQL} wird ausgehend von optimierten Modellparametern eines CNN-Modells die datenbankgestützte Umsetzung in SQL diskutiert. Die Problemstellungen \ref{prob:conv_in_sql} und \ref{prob:ffCCN} werden bearbeitet. 
 %Im Folgenden werden konkrete Beispiele für verschiedene zweidimensionale Faltungen, welche in dieser Arbeit im Fokus stehen, gegeben. Dabei sind die Eingabe $X \in \RR^{h \times w}$ und der Filter $K \in \RR^{k_h \times k_w}$ immer als Matrizen zu verstehen. Das Ergebnis der Faltung $S= X \ast K$ wird als Merkmalskarte bezeichnet. Es sei angemerkt, dass oft $k_h=k_w$ sowie $k_h$ ungerade gewählt wird, z.B. $k_h=3$ oder $k_h=5$. Die Größe der Merkmalskarte wird durch die Parameter
 %\begin{itemize}
 %    \item $h,w$: Die Höhe und Breite der Eingabe,

@@ -1,17 +1,17 @@
 \chapter{Grundlagen neuronaler Netze}
 \label{kap:NN}
 
-In diesem Kapitel werden Künstliche Neuronale Netze\cite{dayhoff1990neural}, kurz KNN, als Forschungsgegenstand der Informatik eingeführt und deren mathematische Grundlagen präzisiert. 
+In diesem Kapitel werden Künstliche Neuronale Netze \cite{dayhoff1990neural}, kurz KNN, als Forschungsgegenstand der Informatik eingeführt und deren mathematische Grundlagen präzisiert. 
 Sie stellen informationsverarbeitende Systeme nach dem Vorbild von tierischen beziehungsweise menschlichen Gehirnen dar und bestehen aus Neuronen in gewissen Zuständen und Schichten, die über gewichtete Verbindungen miteinander gekoppelt sind. Jene Gewichte sind als freie Parameter des neuronalen Netzes zu verstehen und können während eines Trainingsprozesses so angepasst werden, um eine entsprechende Aufgabe zu lösen.  
-Gelingt dies, so können neuronale Netze genutzt werden, um bestimmte Muster in Daten, typischerweise in Bildern, Audio oder Stromdaten, zu erkennen\cite{pandya1995pattern, pao1989adaptive, urbaniak2021quality}.
+Gelingt dies, so können neuronale Netze genutzt werden, um bestimmte Muster in Daten, typischerweise in Bildern, Audio oder Stromdaten, zu erkennen \cite{pandya1995pattern, pao1989adaptive, urbaniak2021quality}.
 Sie eignen sich daher für viele typische Aufgaben des maschinellen Lernens, beispielsweise für die Klassifikation digitalisierter Objekte.
 
-Im ersten Abschnitt wird das Perzeptron\cite{rosenblatt1958perceptron} als Grundeinheit eines neuronalen Netzes eingeführt. 
-Im folgenden Abschnitt wird das Konzept der Multi-Layer-Perzeptronen\cite{werbos1988generalization} durch die Kopplung mehrerer Perzeptronen mit bestimmten Übertragungs- und Aktivierungsfunktion in einem Netz erläutert. Diese Repräsentierung eines KNN wird im weiteren Verlauf dieser Arbeit genutzt. Weiter wird das Training neuronaler Netze hinsichtlich der Klassifikationsaufgabe im Abschnitt \ref{abs:task_training} erläutert und schließlich eine kurze Zusammenfassung im letzten Abschnitt \ref{abs:NN_conc} gegeben.
+Im ersten Abschnitt wird das Perzeptron \cite{rosenblatt1958perceptron} als Grundeinheit eines neuronalen Netzes eingeführt. 
+Im folgenden Abschnitt wird das Konzept der Multi-Layer-Perzeptronen \cite{werbos1988generalization} durch die Kopplung mehrerer Perzeptronen mit bestimmten Übertragungs- und Aktivierungsfunktion in einem Netz erläutert. Diese Repräsentierung eines KNN wird im weiteren Verlauf dieser Arbeit genutzt. Weiter wird das Training neuronaler Netze hinsichtlich der Klassifikationsaufgabe im Abschnitt \ref{abs:task_training} erläutert und schließlich eine kurze Zusammenfassung im letzten Abschnitt \ref{abs:NN_conc} gegeben.
 
 \section{Das Perzeptron}
 \label{perzeptron_abs}
-Zunächst wird das \textit{Perzeptron} ähnlich wie in Minsky\cite{minsky2017perceptrons} als fundamentaler Baustein eines neuronalen Netzes eingeführt. Das Perzeptron wird oft als Basis moderner KNN angeführt und kann mithilfe des Perzeptron-Lernalgorithmus \ref{alg:pla} trainiert werden, um das Problem der linearen Trennbarkeit von Punktmengen zu lösen.
+Zunächst wird das \textit{Perzeptron} ähnlich wie in Minsky \cite{minsky2017perceptrons} als fundamentaler Baustein eines neuronalen Netzes eingeführt. Das Perzeptron wird oft als Basis moderner KNN angeführt und kann mithilfe des Perzeptron-Lernalgorithmus \ref{alg:pla} trainiert werden, um das Problem der linearen Trennbarkeit von Punktmengen zu lösen.
 \begin{defi}[Perzeptron]
     \label{def_neuron}
     Für eine gegebene Funktion $\phi: \RR \rightarrow \RR$, einen Vektor $w \in \Rnv$ und ein Skalar $\theta \in \RR$ wird die Funktion 
@@ -27,7 +27,7 @@ Die Funktionsweise eines Perzeptrons ist in Abbildung \ref{funktionsweise_neuron
     \caption[Arbeitsweise eines Perzeptrons]{Arbeitsweise eines Perzeptrons mit entsprechender Notation aus Definition \ref{def_neuron}.}
     \label{funktionsweise_neuron}
 \end{figure}
-Bei der Wahl der Funktion $\phi$ gibt es mehrere Möglichkeiten. Wird wie in Minsky\cite{minsky2017perceptrons} die Heavyside-Funktion
+Bei der Wahl der Funktion $\phi$ gibt es mehrere Möglichkeiten. Wird wie in Minsky \cite{minsky2017perceptrons} die Heavyside-Funktion
 \begin{equation*}
     \phi: \RR \rightarrow \RR, \; \; \;
     \phi(x)=\begin{cases}
@@ -41,7 +41,7 @@ Für ein Klassifikationsproblem, bei dem die Klassen nicht linear trennbar sind,
 
 \section{Multi-Layer-Perzeptron}
 \label{MLP_abs}
-In dieser Arbeit wird ein Künstliches Neuronales Netz als eine Menge von Perzeptronen, die in gewissen Schichten partitioniert und miteinander verbunden sind, notiert. Diese sogenannten \textit{Multi-Layer-Perzeptronen}, kurz MLP,  gelten als erste tiefe neuronale Netze und sind seit den späten 1980er-Jahren Gegenstand der Forschung\cite{bourlard1990links,bounds1988multilayer,MLPbook}. Zunächst sind einige Definitionen notwendig, vgl. \cite{gruening}, um eine lesbare Notation des MLP zu geben.
+In dieser Arbeit wird ein Künstliches Neuronales Netz als eine Menge von Perzeptronen, die in gewissen Schichten partitioniert und miteinander verbunden sind, notiert. Diese sogenannten \textit{Multi-Layer-Perzeptronen}, kurz MLP,  gelten als erste tiefe neuronale Netze und sind seit den späten 1980er-Jahren Gegenstand der Forschung \cite{bourlard1990links,bounds1988multilayer,MLPbook}. Zunächst sind einige Definitionen notwendig, vgl. \cite{gruening}, um eine lesbare Notation des MLP zu geben.
 
 \begin{defi}[Übertragungsfunktion]
     \label{def_net}
@@ -57,7 +57,7 @@ Hierbei ist $W$ eine Gewichtsmatrix und $b$ ein Biasvektor, welche als freie Par
     \label{def_act_f}
     Eine stetige, monoton steigende und nicht notwendigerweise lineare Funktion $\psi: \RR \rightarrow \RR$ wird als Aktivierungsfunktion bezeichnet.
 \end{defi}
-Es sei erwähnt, dass auch nicht monotone Aktivierungsfunktionen genutzt werden können, beispielsweise radiale Basisfunktionen\cite{radialbasis}, welche jedoch in dieser Arbeit nicht weiter von Interesse sind.
+Es sei erwähnt, dass auch nicht monotone Aktivierungsfunktionen genutzt werden können, beispielsweise radiale Basisfunktionen \cite{radialbasis}, welche jedoch in dieser Arbeit nicht weiter von Interesse sind.
 Typische Aktivierungsfunktionen, welche heutzutage verwendet werden, sind die:
 \begin{align*}
     \text{Identität}: \; \;\psi(x)&=x, \\
@@ -110,7 +110,7 @@ Für den späteren Trainingsprozess ist es nützlich, die Ableitung der verwende
     Einfaches Differenzieren liefert für $(i)$ und $(ii)$ die Resultate. Bei $(iii)$ wird die Darstellung $\tanh(x)=\frac{2}{\mathrm{e}^{2x}+1}$ genutzt und das Differenzieren mittels Quotientenregel führt zur Aussage.
 \end{proof}
 
-Ähnlich der Definition des Perzeptrons \ref{def_neuron} wird nun eine Schicht als Verknüpfung von Übertragungsfunktion und Aktivierungsfunktion definiert.
+Ähnlich wie beim Perzeptron, siehe Definition \ref{def_neuron}, wird nun eine Schicht als Verknüpfung von Übertragungsfunktion und Aktivierungsfunktion definiert.
 
 \begin{defi}[Neuronenschicht]
     \label{def:NNlayer}
@@ -150,7 +150,7 @@ Um die Notation übersichtlich zu halten, bezeichne $\Psi^{W^{(k)},b^{(k)},\psi_
     
 
 
-Das MLP-Modell wird im weiteren Verlauf dieser Arbeit repräsentativ als Künstliches Neuronales Netz bezeichnet. Die Begriffe KNN, MLP und FFN sind austauschbar und meinen dasselbe Modell. Die Funktionsauswertung eines FNN wird im Algorithmus Vorwärtsrechnung \ref{alg:ff} festgehalten. Das zuvor angesprochene XOR-Problem kann nun beispielsweise mithilfe eines FNN bestehend aus zwei Schichten gelöst werden\cite{Goodfellow-et-al-2016}.
+Das MLP-Modell wird im weiteren Verlauf dieser Arbeit repräsentativ als Künstliches Neuronales Netz bezeichnet. Die Begriffe KNN, MLP und FFN sind austauschbar und meinen dasselbe Modell. Die Funktionsauswertung eines FNN wird im Algorithmus Vorwärtsrechnung \ref{alg:ff} festgehalten. Das zuvor angesprochene XOR-Problem kann nun beispielsweise mithilfe eines FNN bestehend aus zwei Schichten gelöst werden \cite{Goodfellow-et-al-2016}.
 Es lassen sich zwischen Modell- und Hyperparameter von KNN unterscheiden.
 
 \begin{defi}[Hyper- und Modellparameter]
@@ -308,7 +308,7 @@ für $1 \leq m \leq l$ ermittelt werden. Die Ausgabeschicht eines $l$-schichtige
 \end{alignat*}
 genutzt. Zunächst wird nur eine verdeckte Schicht mit $s_j$ Neuronen betrachtet. 
 %ie Verallgemeinerung für beliebig viele Schichten ist analog. 
-Mit $i$ ist ein Eingabeneuron, $j$ ein verdecktes Neuron und $k$ ein Ausgabeneuron gemeint. Außerdem werden die Gradienten komponentenweise berechnet und daher die Modellparameter komponentenweise aktualisiert. Das mehrmalige Anwenden der Kettenregel \ref{s:chainrule} auf die Fehlerfunktion (\ref{eq:MSE_single}) liefert
+Mit $i$ ist ein Eingabeneuron, $j$ ein verdecktes Neuron und $k$ ein Ausgabeneuron gemeint. Außerdem werden die Gradienten komponentenweise berechnet und daher die Modellparameter komponentenweise aktualisiert. Das mehrmalige Anwenden der Kettenregel, vgl. Definition \ref{s:chainrule}, auf die Fehlerfunktion in Gleichung (\ref{eq:MSE_single}) liefert
 \begin{align*}
     \label{eq:delta_w_out}
 \Delta w_{k,j}^l &= \frac{\partial E_x}{\partial w_{k,j}^l} \\
@@ -418,6 +418,6 @@ Für die Problemstellung in dieser Arbeit ist es ausreichend, das Online-Verfahr
 
 \section{Zusammenfassung}
 \label{abs:NN_conc}
-In diesem Kapitel wurden Feed-Forward-Netze als Modelle eingeführt, um Klassifikationsaufgaben zu lösen. Dabei ist es wichtig, die Hyper- und Modellparameter je nach Anwendung und Leistungsmaß optimal zu wählen. Dazu werden Trainingsdaten genutzt, um während eines Lernprozesses eine Fehlerfunktion zu minimieren. Eine Lösung von (\ref{eq:Emin}) kann wegen der Komplexität allgmemeiner Fehlerfunktionen $\mathcal{E}$ bzw. der großen Menge von Parametern $\mathcal{W}$ selten direkt angegeben werden\cite{blum1992training}. Daher wird das Gradientenverfahren als iterativer Ansatz zur numerischen Minimierung der Fehlerfunktion genutzt. Dabei sind partielle Ableitungen der Fehlerfunktion bezüglich der Parameter der Neuronenschichten nötig, welche im Backpropagationsalgorithmus direket bzw. indirekt mithilfe der mehrdimensionalen Kettenregel berechnet werden können. 
+In diesem Kapitel wurden Feed-Forward-Netze als Modelle eingeführt, um Klassifikationsaufgaben zu lösen. Dabei ist es wichtig, die Hyper- und Modellparameter je nach Anwendung und Leistungsmaß optimal zu wählen. Dazu werden Trainingsdaten genutzt, um während eines Lernprozesses eine Fehlerfunktion zu minimieren. Eine Lösung des Optimierungsproblems (\ref{eq:Emin}) kann wegen der Komplexität allgmemeiner Fehlerfunktionen $\mathcal{E}$ bzw. der großen Menge von Parametern $\mathcal{W}$ selten direkt angegeben werden \cite{blum1992training}. Daher wird das Gradientenverfahren als iterativer Ansatz zur numerischen Minimierung der Fehlerfunktion genutzt. Dabei sind partielle Ableitungen der Fehlerfunktion bezüglich der Parameter der Neuronenschichten nötig, welche im Backpropagationsalgorithmus direket bzw. indirekt mithilfe der mehrdimensionalen Kettenregel berechnet werden können. 
 
 Bei der Analyse von Zeitreihen oder Bildern eignen sich abgewandelte Architekturen wie gefaltete neuronale Netze (CNN), engl. \textit{Convolutional Neural Networks}, welche im folgenden Kapitel \ref{kap:CNN} näher erläutert werden. Diese Art neuronaler Netze wird im weiteren Verlauf dieser Arbeit im Fokus stehen.
