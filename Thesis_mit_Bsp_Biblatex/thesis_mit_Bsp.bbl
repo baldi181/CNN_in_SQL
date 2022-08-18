@@ -137,7 +137,7 @@
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{note}{Projektarbeit, Universität Rostock}
-      \field{title}{Lineare Algebra in relationalen Datenbanbksystemen: Transformation von Machine-Learning-Methoden in SQL}
+      \field{title}{Lineare Algebra in relationalen Datenbanksystemen: Transformation von Machine-Learning-Methoden in SQL}
       \field{year}{2022}
     \endentry
     \entry{bilbao2017overfitting}{inproceedings}{}

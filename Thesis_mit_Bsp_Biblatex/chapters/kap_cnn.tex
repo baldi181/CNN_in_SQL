@@ -278,7 +278,7 @@ verallgemeinert.
 Hier ist $\delta_j^{(l+1)}$ der von der Neuronenschicht $l+1$ zurück propagierte Fehler des Neurons $j$ bezüglich der Fehlerfunktion $E$ und $\psi(V^{(l)}_j)$ die entsprechende Aktivierung des Neurons $j$.
 Ist die nachfolgende Schicht eine Faltungsschicht, so ergibt sich der lokale Fehler der Schicht $l$ zu
 \begin{equation*}
-    \delta_j^{(l)}(x,y)=\sum_{k=1}^{z_{out}} \left(\sum_{(u,v) \in F} \delta_k^{(l+1)}(x,y) w_{k,j}^{(l+1)}(u,v)\right) \psi'(V_j^{(l)}).
+    \delta_j^{(l)}(x,y)=\sum_{k=1}^{z_{out}} \left(\sum_{(u,v) \in F} \delta_k^{(l+1)}(x-u,y-v) w_{k,j}^{(l+1)}(u,v)\right) \psi'(V_j^{(l)}).
 \end{equation*}
 Ist $l+1$ eine Pooling-Schicht mit Schrittweiten $p_h,p_b$ und einer Pooling-Funktion $T$, so gilt
 \begin{equation}
@@ -319,7 +319,7 @@ Die Berechnung in Gleichung (\ref{eq:upsample1}) und Gleichung (\ref{eq:upsample
                     \EndIf
 
                     \If{Schicht $l+1$ ist Faltungsschicht}
-                    \State $\delta_j^{(l)}(x,y)=\sum_{k=1}^{z_{out}} \left(\sum_{(u,v) \in F} \delta_k^{(l+1)}(x,y) w_{k,j}^{(l+1)}(u,v)\right) \psi'(V_j^{(l)})$
+                    \State $\delta_j^{(l)}(x,y)=\sum_{k=1}^{z_{out}} \left(\sum_{(u,v) \in F} \delta_k^{(l+1)}(x-u,y-v) w_{k,j}^{(l+1)}(u,v)\right) \psi'(V_j^{(l)})$
                     \EndIf
 
                     \If{Schicht $l+1$ ist Pooling-Schicht}

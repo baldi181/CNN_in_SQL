@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.1)  18 AUG 2022 12:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.1)  18 AUG 2022 13:13
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1487,7 +1487,14 @@ chapter 5.
 
 ] (c:/texlive/2021/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2020/03/24 1.8d listings language file
-) (./sql_code/neighborhood.sql [50])
+) (./sql_code/neighborhood.sql)
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [50]
 Package epstopdf Info: Source file: <pics/chapters/kap5/data_plot_naive_verb.eps>
 (epstopdf)                    date: 2022-08-16 23:55:04
 (epstopdf)                    size: 45339 bytes
@@ -1497,12 +1504,16 @@ Package epstopdf Info: Source file: <pics/chapters/kap5/data_plot_naive_verb.eps
 (epstopdf)             Command: <repstopdf --outfile=pics/chapters/kap5/data_plot_naive_verb-eps-converted-to.pdf pics/chapters/kap5/data_plot_naive_verb.eps>
 (epstopdf)             \includegraphics on input line 65.
 Package epstopdf Info: Output file is already uptodate.
-<pics/chapters/kap5/data_plot_naive_verb-eps-converted-to.pdf, id=855, 421.575pt x 316.18124pt>
+<pics/chapters/kap5/data_plot_naive_verb-eps-converted-to.pdf, id=864, 421.575pt x 316.18124pt>
 File: pics/chapters/kap5/data_plot_naive_verb-eps-converted-to.pdf Graphic file (type pdf)
 <use pics/chapters/kap5/data_plot_naive_verb-eps-converted-to.pdf>
 Package pdftex.def Info: pics/chapters/kap5/data_plot_naive_verb-eps-converted-to.pdf  used on input line 65.
 (pdftex.def)             Requested size: 355.09178pt x 266.32376pt.
- [51 <./pics/chapters/kap5/data_plot_naive_verb-eps-converted-to.pdf>] (./sql_code/neigh_verbesster.txt)
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+(./sql_code/neigh_verbesster.txt)
 Package epstopdf Info: Source file: <pics/chapters/kap5/data_plot_naive_verb_verb.eps>
 (epstopdf)                    date: 2022-08-17 00:58:46
 (epstopdf)                    size: 62653 bytes
@@ -1512,21 +1523,27 @@ Package epstopdf Info: Source file: <pics/chapters/kap5/data_plot_naive_verb_ver
 (epstopdf)             Command: <repstopdf --outfile=pics/chapters/kap5/data_plot_naive_verb_verb-eps-converted-to.pdf pics/chapters/kap5/data_plot_naive_verb_verb.eps>
 (epstopdf)             \includegraphics on input line 84.
 Package epstopdf Info: Output file is already uptodate.
-<pics/chapters/kap5/data_plot_naive_verb_verb-eps-converted-to.pdf, id=881, 421.575pt x 316.18124pt>
+<pics/chapters/kap5/data_plot_naive_verb_verb-eps-converted-to.pdf, id=872, 421.575pt x 316.18124pt>
 File: pics/chapters/kap5/data_plot_naive_verb_verb-eps-converted-to.pdf Graphic file (type pdf)
 <use pics/chapters/kap5/data_plot_naive_verb_verb-eps-converted-to.pdf>
 Package pdftex.def Info: pics/chapters/kap5/data_plot_naive_verb_verb-eps-converted-to.pdf  used on input line 84.
 (pdftex.def)             Requested size: 355.09178pt x 266.32376pt.
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [51]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[52]
+[52 <./pics/chapters/kap5/data_plot_naive_verb-eps-converted-to.pdf>]
+Underfull \vbox (badness 6220) has occurred while \output is active []
+
+ [53 <./pics/chapters/kap5/data_plot_naive_verb_verb-eps-converted-to.pdf>]
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <10> on input line 119.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 119.
- [53 <./pics/chapters/kap5/data_plot_naive_verb_verb-eps-converted-to.pdf>] [54] [55]
+ [54] [55]
 Package epstopdf Info: Source file: <pics/chapters/kap5/data_plot_sparse_ver.eps>
 (epstopdf)                    date: 2022-08-17 01:56:43
 (epstopdf)                    size: 62648 bytes
@@ -1544,12 +1561,10 @@ Package pdftex.def Info: pics/chapters/kap5/data_plot_sparse_ver-eps-converted-t
  (./sql_code/sparsecnn.txt)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [56 <./pics/chapters/kap5/data_plot_sparse_ver-eps-converted-to.pdf>] [57] [58]
-Overfull \hbox (30.21143pt too wide) in paragraph at lines 334--335
-[]\T1/lmr/m/n/12 Zwischen der zy-kli-schen Fal-tung aus De-fi-ni-ti-on []32[] und der dis-kre-ten Fourier-Transformation
- []
+ [56 <./pics/chapters/kap5/data_plot_sparse_ver-eps-converted-to.pdf>] [57]
+Underfull \vbox (badness 1210) has occurred while \output is active []
 
-[59] [60]
+ [58] [59] [60]
 Package epstopdf Info: Source file: <pics/chapters/kap5/data_plot_2dft_ver.eps>
 (epstopdf)                    date: 2022-08-17 01:25:51
 (epstopdf)                    size: 65436 bytes
@@ -1557,14 +1572,24 @@ Package epstopdf Info: Source file: <pics/chapters/kap5/data_plot_2dft_ver.eps>
 (epstopdf)                    date: 2022-08-17 01:49:43
 (epstopdf)                    size: 22886 bytes
 (epstopdf)             Command: <repstopdf --outfile=pics/chapters/kap5/data_plot_2dft_ver-eps-converted-to.pdf pics/chapters/kap5/data_plot_2dft_ver.eps>
-(epstopdf)             \includegraphics on input line 400.
+(epstopdf)             \includegraphics on input line 399.
 Package epstopdf Info: Output file is already uptodate.
 <pics/chapters/kap5/data_plot_2dft_ver-eps-converted-to.pdf, id=1017, 421.575pt x 316.18124pt>
 File: pics/chapters/kap5/data_plot_2dft_ver-eps-converted-to.pdf Graphic file (type pdf)
 <use pics/chapters/kap5/data_plot_2dft_ver-eps-converted-to.pdf>
-Package pdftex.def Info: pics/chapters/kap5/data_plot_2dft_ver-eps-converted-to.pdf  used on input line 400.
+Package pdftex.def Info: pics/chapters/kap5/data_plot_2dft_ver-eps-converted-to.pdf  used on input line 399.
 (pdftex.def)             Requested size: 355.09178pt x 266.32376pt.
- (./sql_code/dft_ansatz_FXFT.txt [61 <./pics/chapters/kap5/data_plot_2dft_ver-eps-converted-to.pdf>]) (./sql_code/dft_ansatz_elemwise.txt) [62]
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+(./sql_code/dft_ansatz_FXFT.txt)
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [61]
+Overfull \vbox (78.27368pt too high) has occurred while \output is active []
+
+ [62 <./pics/chapters/kap5/data_plot_2dft_ver-eps-converted-to.pdf>] (./sql_code/dft_ansatz_elemwise.txt) [63]
 Package epstopdf Info: Source file: <pics/chapters/kap5/data_plot_vergleich_t.eps>
 (epstopdf)                    date: 2022-08-17 02:22:06
 (epstopdf)                    size: 42968 bytes
@@ -1572,15 +1597,15 @@ Package epstopdf Info: Source file: <pics/chapters/kap5/data_plot_vergleich_t.ep
 (epstopdf)                    date: 2022-08-17 03:08:40
 (epstopdf)                    size: 15622 bytes
 (epstopdf)             Command: <repstopdf --outfile=pics/chapters/kap5/data_plot_vergleich_t-eps-converted-to.pdf pics/chapters/kap5/data_plot_vergleich_t.eps>
-(epstopdf)             \includegraphics on input line 431.
+(epstopdf)             \includegraphics on input line 430.
 Package epstopdf Info: Output file is already uptodate.
-<pics/chapters/kap5/data_plot_vergleich_t-eps-converted-to.pdf, id=1077, 421.575pt x 316.18124pt>
+<pics/chapters/kap5/data_plot_vergleich_t-eps-converted-to.pdf, id=1081, 421.575pt x 316.18124pt>
 File: pics/chapters/kap5/data_plot_vergleich_t-eps-converted-to.pdf Graphic file (type pdf)
 <use pics/chapters/kap5/data_plot_vergleich_t-eps-converted-to.pdf>
-Package pdftex.def Info: pics/chapters/kap5/data_plot_vergleich_t-eps-converted-to.pdf  used on input line 431.
+Package pdftex.def Info: pics/chapters/kap5/data_plot_vergleich_t-eps-converted-to.pdf  used on input line 430.
 (pdftex.def)             Requested size: 355.09178pt x 266.32376pt.
 
-Underfull \hbox (badness 2057) in paragraph at lines 433--433
+Underfull \hbox (badness 2057) in paragraph at lines 432--432
 [][][]|\T1/lmr/m/n/12 Es sind die Zeit-kos-ten der vor-ge-stell-ten Ver-fah-ren in Ab-hän-gig-
  []
 
@@ -1591,50 +1616,59 @@ Package epstopdf Info: Source file: <pics/chapters/kap5/data_plot_vergleich_disk
 (epstopdf)                    date: 2022-08-17 03:18:11
 (epstopdf)                    size: 20183 bytes
 (epstopdf)             Command: <repstopdf --outfile=pics/chapters/kap5/data_plot_vergleich_disk-eps-converted-to.pdf pics/chapters/kap5/data_plot_vergleich_disk.eps>
-(epstopdf)             \includegraphics on input line 438.
+(epstopdf)             \includegraphics on input line 437.
 Package epstopdf Info: Output file is already uptodate.
-<pics/chapters/kap5/data_plot_vergleich_disk-eps-converted-to.pdf, id=1078, 421.575pt x 316.18124pt>
+<pics/chapters/kap5/data_plot_vergleich_disk-eps-converted-to.pdf, id=1082, 421.575pt x 316.18124pt>
 File: pics/chapters/kap5/data_plot_vergleich_disk-eps-converted-to.pdf Graphic file (type pdf)
 <use pics/chapters/kap5/data_plot_vergleich_disk-eps-converted-to.pdf>
-Package pdftex.def Info: pics/chapters/kap5/data_plot_vergleich_disk-eps-converted-to.pdf  used on input line 438.
+Package pdftex.def Info: pics/chapters/kap5/data_plot_vergleich_disk-eps-converted-to.pdf  used on input line 437.
 (pdftex.def)             Requested size: 355.09178pt x 266.32376pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[63 <./pics/chapters/kap5/data_plot_vergleich_t-eps-converted-to.pdf>]
+
+Underfull \vbox (badness 3492) has occurred while \output is active []
+
+ [64 <./pics/chapters/kap5/data_plot_vergleich_t-eps-converted-to.pdf>] [65 <./pics/chapters/kap5/data_plot_vergleich_disk-eps-converted-to.pdf>] (./sql_code/recursive_sum_n.txt) (./sql_code/conv_recursive.txt) (./sql_code/C1_sql.txt)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [64 <./pics/chapters/kap5/data_plot_vergleich_disk-eps-converted-to.pdf>] (./sql_code/recursive_sum_n.txt) [65] (./sql_code/conv_recursive.txt) [66] (./sql_code/C1_sql.txt) [67] (./sql_code/pool_flatten.txt) [68] (./sql_code/ffn_in_sql.txt)) (./chapters/summery.tex [69]
-chapter 6.
-[70
+ [66]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-]) [71]
+ [67] [68] (./sql_code/pool_flatten.txt) [69] (./sql_code/ffn_in_sql.txt)) (./chapters/summery.tex [70]
+chapter 6.
+[71
+
+]) [72]
 chapter without number
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 144.
 (c:/texlive/2021/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
-) [72
+) [73
 
 ]
 Overfull \hbox (3.3212pt too wide) in paragraph at lines 145--145
 \T1/lmr/m/n/12 feed-for-ward neural net-works^^P. In: \T1/lmr/m/it/12 AI-STATS\T1/lmr/m/n/12 . Bd. 9. JMLR Pro-cee-dings. JMLR.org,
  []
 
-[73]
+[74]
 Overfull \hbox (6.65398pt too wide) in paragraph at lines 145--145
 \T1/lmtt/m/n/12 of -[] backpropagation -[] in -[] convolutional -[] neural -[] network -[] cnn -[] 1a70abff508b$[]\T1/lmr/m/n/12 .
  []
 
-[74]
+[75]
 Overfull \hbox (10.22371pt too wide) in paragraph at lines 145--145
 []\T1/lmr/m/n/12 J. Park und I. W. Sand-berg. ^^R  Uni-ver-sal Ap-pro-xi-ma-ti-on Using Radial-Basis-Function
  []
 
-[75] (./chapters/appendix.tex [76]
+[76] (./chapters/appendix.tex [77]
 chapter A.
-[77
+[78
 
-] (./code/matlab files/Create2DKernelConvMtxSparse.m) (./code/matlab files/CreateConvMtxSparse.m [78]) (./code/matlab files/CircularExtension2D.m [79]) (./code/matlab files/write_twiddle_data.m) [80]) [81] [82
+] (./code/matlab files/Create2DKernelConvMtxSparse.m) (./code/matlab files/CreateConvMtxSparse.m [79]) (./code/matlab files/CircularExtension2D.m [80]) (./code/matlab files/write_twiddle_data.m) [81]) [82] [83
+
+] [84
+
 
 ] (./thesis_mit_Bsp.aux)
 Package rerunfilecheck Info: File `thesis_mit_Bsp.out' has not changed.
@@ -1644,18 +1678,18 @@ Package logreq Info: Writing requests to 'thesis_mit_Bsp.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 55052 strings out of 478353
- 1229131 string characters out of 5852101
+ 55054 strings out of 478353
+ 1229145 string characters out of 5852101
  2462927 words of memory out of 5000000
  71597 multiletter control sequences out of 15000+600000
  513951 words of font info for 90 fonts, out of 8000000 for 9000
  1143 hyphenation exceptions out of 8191
  125i,17n,120p,10658b,3118s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}<c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbx8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmbxi10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmcsc10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi5.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmmi8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr5.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmr8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmri8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmro12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmss17.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmssbx10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy6.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmsy8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/lm/lmtt12.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis_mit_Bsp.pdf (94 pages, 1428259 bytes).
+Output written on thesis_mit_Bsp.pdf (96 pages, 1428977 bytes).
 PDF statistics:
- 1882 PDF objects out of 2073 (max. 8388607)
- 1664 compressed objects within 17 object streams
- 653 named destinations out of 1000 (max. 500000)
+ 1891 PDF objects out of 2073 (max. 8388607)
+ 1671 compressed objects within 17 object streams
+ 655 named destinations out of 1000 (max. 500000)
  372 words of extra memory for PDF output out of 10000 (max. 10000000)
 
