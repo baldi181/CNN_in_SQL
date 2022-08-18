@@ -132,7 +132,7 @@ Bei gefalteten neuronalen Netzen wird oft eine Reduktion der Dimensionen angestr
 
 \section{CNN-Architektur}
 \label{abs:CNN_arch}
-Beim maschinellen Lernen sind Eingabedaten oft als mehrdimensionale Arrays dargestellt, welche eine oder mehrere Achsen repräsentieren, wobei die Ordnung dieser eine Rolle spielt. Bei digitalisierten Bildern sind das beispielsweise die Höhe und Breite des Bildes, welche als Raumachsen bezeichnet werden. Hinzu kommen Kanalachsen, zum Beispiel besitzen Grauwert-Bilder einen Farbkanal, während RGB-Farbbilder drei Kanäle der Farben Rot usw. besitzen. Dementsprechend werden Grauwert-Bilder wie in Definition \ref{def:image} nun als dreidimensionale Arrays $X \in [0,1]^{h \times b \times 1}$ dargestellt. Dies erlaubt die Definition der gefalteten Übertragungsfunktion, wie in Gruening \cite{gruening}.
+Beim Maschinellen Lernen sind Eingabedaten oft als mehrdimensionale Arrays dargestellt, welche eine oder mehrere Achsen repräsentieren, wobei die Ordnung dieser eine Rolle spielt. Bei digitalisierten Bildern sind das beispielsweise die Höhe und Breite des Bildes, welche als Raumachsen bezeichnet werden. Hinzu kommen Kanalachsen, zum Beispiel besitzen Grauwert-Bilder einen Farbkanal, während RGB-Farbbilder drei Kanäle der Farben Rot usw. besitzen. Dementsprechend werden Grauwert-Bilder wie in Definition \ref{def:image} nun als dreidimensionale Arrays $X \in [0,1]^{h \times b \times 1}$ dargestellt. Dies erlaubt die Definition der gefalteten Übertragungsfunktion, wie in Gruening \cite{gruening}.
 
 \begin{defi}[Gefaltete Übertragungsfunktion]
     \label{eq:convlogit}
@@ -225,7 +225,7 @@ Dies erlaubt die Definition des CNN-Modells als Kombination aus Faltungsschichte
 Auch CNN bestehen aus Hyper- und Modellparametern.
 
 \begin{defi}[Hyper- und Modellparameter von CNN]
-    Die Eingabe- und Ausgabedimensionen $h, b, z_{in}, z_{out}$, die Anzahl $c$ der Faltungsschichten, die Anzahl $l$ der Neuronenschichten, die Dimensionen der Kerne, die Schrittweiten bei der Faltung bzw. dem Pooling sowie die verwendeten Aktivierungs- und Poolingfunktionen sind Hyperparameter des CNN.
+    Die Eingabe- und Ausgabedimensionen $h, b, z_{in}, z_{out}$, die Anzahl $c$ der Faltungsschichten, die Anzahl $l$ der Neuronenschichten, die Dimensionen der Kerne, die Schrittweiten bei der Faltung bzw. dem Pooling sowie die verwendeten Aktivierungs- und Pooling-Funktionen sind Hyperparameter des CNN.
     Die Kerne, Gewichtsmatrizen und Biasvektoren mit den entsprechend passenden Abmessungen stellen die Modellparameter $\mathcal{W}:=\{(W^{(i)},b^{(i)}): \; i=1, \ldots, l\}$ und $\mathcal{W}_{conv}:=\{(K^{(i)}, b^{(i)}): \; i=1, \ldots, c\}$ des CNN dar. 
 \end{defi}
 Die Hyperparameter werden wieder anwendungsspezifisch für das jeweilige Problem gewählt und die Modellparameter während des Trainingsprozesses angepasst. 

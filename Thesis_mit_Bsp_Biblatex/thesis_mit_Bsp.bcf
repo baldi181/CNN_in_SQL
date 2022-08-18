@@ -2367,7 +2367,7 @@
     <bcf:citekey order="16">DBLP:conf/nips/KrizhevskySH12</bcf:citekey>
     <bcf:citekey order="16">DBLP:journals/pieee/LeCunBBH98</bcf:citekey>
     <bcf:citekey order="16">DBLP:conf/cvpr/CiresanMS12</bcf:citekey>
-    <bcf:citekey order="17">lecun1998gradient</bcf:citekey>
+    <bcf:citekey order="17">DBLP:journals/pieee/LeCunBBH98</bcf:citekey>
     <bcf:citekey order="18">MLPbook</bcf:citekey>
     <bcf:citekey order="19">mitchell1997machine</bcf:citekey>
     <bcf:citekey order="20">Goodfellow-et-al-2016</bcf:citekey>

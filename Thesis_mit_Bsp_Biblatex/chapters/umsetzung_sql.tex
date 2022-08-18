@@ -68,7 +68,7 @@ In der Anfrage (Zeile 4-14) werden die Nachbarschaften aller Pixel in der tempor
     \label{abb:laufzeit_naive}
 \end{figure}
 
-Eine Verminderung der Laufzeiten kann mithilfe von Umsetzungstabellen, engl. \textit{Lookup tables}, erreicht werden. Da die Dimensionen aller vorkommenden Merkmalskarten und Kerne eines CNN von Anfang an durch die Wahl der Hyperparameter festgelegt werden, müssen die Nachbarschaften für die Faltung und das Pooling nur einmalig berechnet werden. Dies kann zudem vor der eigentlichen Vorwärtsrechnung durchgeführt werden. So wird zwar der Speicheraufwand erhöht, aber der Zeitaufwand hinsichtlich der Faltungs- und Poolingoperation deutlich vermindert. Dazu werden pro Faltungs- und Poolingschicht jeweils eine Umsetzungstabelle \textbf{U} in der Form 
+Eine Verminderung der Laufzeiten kann mithilfe von Umsetzungstabellen, engl. \textit{Lookup tables}, erreicht werden. Da die Dimensionen aller vorkommenden Merkmalskarten und Kerne eines CNN von Anfang an durch die Wahl der Hyperparameter festgelegt werden, müssen die Nachbarschaften für die Faltung und das Pooling nur einmalig berechnet werden. Dies kann zudem vor der eigentlichen Vorwärtsrechnung durchgeführt werden. So wird zwar der Speicheraufwand erhöht, aber der Zeitaufwand hinsichtlich der Faltungs- und Pooling-Pperation deutlich vermindert. Dazu werden pro Faltungs- und Poolingschicht jeweils eine Umsetzungstabelle \textbf{U} in der Form 
 \begin{align*}
     \mathbf{U}( &\underline{i} \; \; \mathrm{int}, \\
     &\underline{j} \; \;\mathrm{int},\\
@@ -288,19 +288,19 @@ mit
 ist. Diese Matrix wird Fourier-Matrix genannt und deren Einträge $\omega_n^{j}$ als $n$-te Einheitswurzeln bezeichnet. Es gilt $\omega_n^n=1$.
 \begin{lem}
     \label{lem:Finv}
-    Es gilt $F^H=\bar{F}$ und die Matrix $\frac{1}{\sqrt{n}} F$ ist unitär. Für $x \in \RR^n$ sei $\hat{x}=Fx$. Dann gilt $F^{-1}=\frac{1}{n} \bar{F}$ und $x= \frac{1}{n}\bar{F} \hat{x}$.
+    Es gilt $F^*=\bar{F}$ und die Matrix $\frac{1}{\sqrt{n}} F$ ist unitär. Für $x \in \RR^n$ sei $\hat{x}=Fx$. Dann gilt $F^{-1}=\frac{1}{n} \bar{F}$ und $x= \frac{1}{n}\bar{F} \hat{x}$.
 \end{lem}
 \begin{proof}
     Wegen $F=F^T$ gilt 
     \begin{equation*}
-        F^H=\bar{{F}}^T=\bar{F}.
+        F^*=\bar{{F}}^T=\bar{F}.
     \end{equation*}
     Mit $W:=F\bar{F}$ gilt $W_{k,j}=\sum_{l=0}^{n-1} \omega_n^{(j-k)l}$. Ist $k=j$ so ergeben sich die Einträge auf der Hauptdiagonalen von $W$ zu $n$. Ist $k \neq j$, so ist $\omega_0:=\omega_n^{j-k} \neq 1$ eine $n$-te Einheitswurzel.
     Mit der geometrischen Summenformel gilt
     \begin{equation*}
         W_{k,j}=\sum_{l=0}^{n-1} \omega_0^l=\frac{1-\omega_0^n}{1-\omega_0}=0.
     \end{equation*} 
-    Also ist $\left(\frac{1}{\sqrt{n}}\right) F\left(\frac{1}{\sqrt{n}}\right) F^H=I$ und damit $\frac{1}{\sqrt{n}} F$ unitär. Schließlich gilt $\frac{1}{n} \bar{F} F=\frac{1}{n} F \bar{F}= I$ und damit $\hat{x}=Fx \Leftrightarrow \frac{1}{n}\bar{F} \hat{x}=x$.
+    Also ist $\left(\frac{1}{\sqrt{n}}\right) F\left(\frac{1}{\sqrt{n}}\right) F^*=I$ und damit $\frac{1}{\sqrt{n}} F$ unitär. Schließlich gilt $\frac{1}{n} \bar{F} F=\frac{1}{n} F \bar{F}= I$ und damit $\hat{x}=Fx \Leftrightarrow \frac{1}{n}\bar{F} \hat{x}=x$.
 \end{proof} 
 Die inverse diskrete Fourier-Transformation lässt sich mithilfe der diskreten Fourier-Transformation berechnen. Dieser Zusammenhang wird insbesondere für die spätere datenbankgestützte Implementierung der Fourier-Transformationen genutzt.
 \begin{lem}
@@ -479,7 +479,7 @@ zu berechnen. Dabei sind die Matrizen $A_p$ Ergebnisse von Matrixfaltungen, $\al
 
 \lstinputlisting[label=sql:conv_rec, caption=Die rekursive SQL-Anfrage zur Berechnung der gefalteten Übertragungsfunktion, language=SQL]{sql_code/conv_recursive.txt}
 
-Die datenbankgestützte Matrixfaltung ist bereits im vorherigen Abschnitt \ref{abs:conv_in_sql} beleuchtet worden. Zur Veranschaulichung wird die SQL-Implementierung \ref{sql:C1} zur Berechnung der sechs Merkmalskarten in der Faltungschicht $C^1$ des Modells \ref{modell} dargestellt. Dabei wurde der im Abschnitt \ref{abs:naive_app} diskutierte verbesserte Nachbarschafts-Ansatz mit Umgebungstabellen und das erweiterte Coordinate-Schema benutzt. Hier ist im Gegensatz zur Schicht $C^2$ keine rekursive Anfrage notwendig. Es kommen wieder Common-Table-Expressions zum Einsatz. In den Zeilen 1-19 werden die Matrixfaltungen $X \ast K^{1}_p$ mit zero-padding mithilfe einer Umgebungstabelle \textbf{U} für $1 \leq p \leq 6$ berechnet. In den Zeilen 20 bis 27 wird nur das Teilergebnis behalten, welches mit der gültigen Faltung bestimmt wurde. Schließlich folgt in den Zeilen 28-34 die Manipulation mit den Schwellwerten $b_p$ und die Berechnung der Aktivierung mit der logistischen Funktion.
+Die datenbankgestützte Matrixfaltung ist bereits im vorherigen Abschnitt \ref{abs:conv_in_sql} beleuchtet worden. Zur Veranschaulichung wird die SQL-Implementierung \ref{sql:C1} zur Berechnung der sechs Merkmalskarten in der Faltungschicht $C^1$ des Modells \ref{modell} dargestellt. Dabei wurde der im Abschnitt \ref{abs:naive_app} diskutierte verbesserte Nachbarschafts-Ansatz mit Umgebungstabellen und das erweiterte Coordinate-Schema benutzt. Hier ist im Gegensatz zur Schicht $C^2$ keine rekursive Anfrage notwendig. Es kommen wieder Common-Table-Expressions zum Einsatz. In den Zeilen 1-19 werden die Matrixfaltungen $X \ast K^{1}_p$ mit zero padding mithilfe einer Umgebungstabelle \textbf{U} für $1 \leq p \leq 6$ berechnet. In den Zeilen 20 bis 27 wird nur das Teilergebnis behalten, welches mit der gültigen Faltung bestimmt wurde. Schließlich folgt in den Zeilen 28-34 die Manipulation mit den Schwellwerten $b_p$ und die Berechnung der Aktivierung mit der logistischen Funktion.
 
 \lstinputlisting[label=sql:C1, caption=Die SQL-Anfrage zur Berechnung von $C^1$, language=SQL]{sql_code/C1_sql.txt}
 

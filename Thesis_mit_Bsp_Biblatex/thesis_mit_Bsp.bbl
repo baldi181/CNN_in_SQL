@@ -138,7 +138,7 @@
       \field{labeltitlesource}{title}
       \field{note}{Projektarbeit, Universität Rostock}
       \field{title}{Lineare Algebra in relationalen Datenbanbksystemen: Transformation von Machine-Learning-Methoden in SQL}
-      \field{year}{2016}
+      \field{year}{2022}
     \endentry
     \entry{bilbao2017overfitting}{inproceedings}{}
       \name{author}{2}{}{%
@@ -637,7 +637,7 @@
       \field{sortinithash}{2638baaa20439f1b5a8f80c6c08a13b4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{title}{Analysis 2: Differentialrechnung im IRn, gewöhnliche Differentialgleichungen}
+      \field{title}{Analysis 2: Differentialrechnung im {$\mathbb{R}^n$}, gewöhnliche Differentialgleichungen}
       \field{year}{2017}
     \endentry
     \entry{DBLP:books/daglib/0020812}{book}{}
@@ -814,7 +814,7 @@
       \field{labeltitlesource}{title}
       \field{booktitle}{{BTW} Workshops}
       \field{series}{{LNI}}
-      \field{title}{{{METIS} in PArADISE Provenance Management bei der Auswertung von Sensordatenmengen für die Entwicklung von Assistenzsystemen}}
+      \field{title}{{{METIS} in PArADISE:Provenance Management bei der Auswertung von Sensordatenmengen für die Entwicklung von Assistenzsystemen}}
       \field{volume}{{P-242}}
       \field{year}{2015}
       \field{pages}{131\bibrangedash 136}
@@ -1114,51 +1114,6 @@
       \field{pages}{2278\bibrangedash 2324}
       \range{pages}{47}
     \endentry
-    \entry{lecun1998gradient}{article}{}
-      \name{author}{4}{}{%
-        {{hash=6a1aa6b7eab12b931ca7c7e3f927231d}{%
-           family={LeCun},
-           familyi={L\bibinitperiod},
-           given={Yann},
-           giveni={Y\bibinitperiod}}}%
-        {{hash=ac762f2592005edf6bad58f566967c6c}{%
-           family={Bottou},
-           familyi={B\bibinitperiod},
-           given={Léon},
-           giveni={L\bibinitperiod}}}%
-        {{hash=40a8e4774982146adc2688546f54efb2}{%
-           family={Bengio},
-           familyi={B\bibinitperiod},
-           given={Yoshua},
-           giveni={Y\bibinitperiod}}}%
-        {{hash=844e183692f08a63f99285330fcf90cc}{%
-           family={Haffner},
-           familyi={H\bibinitperiod},
-           given={Patrick},
-           giveni={P\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Ieee}%
-      }
-      \strng{namehash}{9e4c6012409dc8dd9b2aa198a2059804}
-      \strng{fullhash}{c397b2e6efe8e5c6ca906410fc9e0ff9}
-      \strng{bibnamehash}{9e4c6012409dc8dd9b2aa198a2059804}
-      \strng{authorbibnamehash}{9e4c6012409dc8dd9b2aa198a2059804}
-      \strng{authornamehash}{9e4c6012409dc8dd9b2aa198a2059804}
-      \strng{authorfullhash}{c397b2e6efe8e5c6ca906410fc9e0ff9}
-      \field{extraname}{2}
-      \field{sortinit}{L}
-      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{journaltitle}{Proceedings of the IEEE}
-      \field{number}{11}
-      \field{title}{Gradient-based learning applied to document recognition}
-      \field{volume}{86}
-      \field{year}{1998}
-      \field{pages}{2278\bibrangedash 2324}
-      \range{pages}{47}
-    \endentry
     \entry{DBLP:series/lncs/LeCunBOM12}{incollection}{}
       \name{author}{4}{}{%
         {{hash=6a1aa6b7eab12b931ca7c7e3f927231d}{%
@@ -1191,7 +1146,7 @@
       \strng{authorbibnamehash}{9e4c6012409dc8dd9b2aa198a2059804}
       \strng{authornamehash}{9e4c6012409dc8dd9b2aa198a2059804}
       \strng{authorfullhash}{df8210073325fb7d13d7dad9fa89fc53}
-      \field{extraname}{3}
+      \field{extraname}{2}
       \field{sortinit}{L}
       \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
       \field{labelnamesource}{author}
@@ -1481,34 +1436,28 @@
       \field{year}{2017}
     \endentry
     \entry{mitchell1997machine}{book}{}
-      \name{author}{2}{}{%
+      \name{author}{1}{}{%
         {{hash=d331eeb7f00e650950ccadcb9c47efec}{%
            family={Mitchell},
            familyi={M\bibinitperiod},
-           given={Tom\bibnamedelima M},
-           giveni={T\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
-        {{hash=d331eeb7f00e650950ccadcb9c47efec}{%
-           family={Mitchell},
-           familyi={M\bibinitperiod},
-           given={Tom\bibnamedelima M},
+           given={Tom\bibnamedelima M.},
            giveni={T\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
       }
       \list{publisher}{1}{%
-        {McGraw-hill New York}%
+        {McGraw-Hill}%
       }
-      \strng{namehash}{981f98ec7dde75a9c32f3d75250a98c1}
-      \strng{fullhash}{981f98ec7dde75a9c32f3d75250a98c1}
-      \strng{bibnamehash}{981f98ec7dde75a9c32f3d75250a98c1}
-      \strng{authorbibnamehash}{981f98ec7dde75a9c32f3d75250a98c1}
-      \strng{authornamehash}{981f98ec7dde75a9c32f3d75250a98c1}
-      \strng{authorfullhash}{981f98ec7dde75a9c32f3d75250a98c1}
+      \strng{namehash}{d331eeb7f00e650950ccadcb9c47efec}
+      \strng{fullhash}{d331eeb7f00e650950ccadcb9c47efec}
+      \strng{bibnamehash}{d331eeb7f00e650950ccadcb9c47efec}
+      \strng{authorbibnamehash}{d331eeb7f00e650950ccadcb9c47efec}
+      \strng{authornamehash}{d331eeb7f00e650950ccadcb9c47efec}
+      \strng{authorfullhash}{d331eeb7f00e650950ccadcb9c47efec}
       \field{sortinit}{M}
       \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{number}{9}
-      \field{title}{Machine learning}
-      \field{volume}{1}
+      \field{series}{McGraw-Hill Series in Computer Science}
+      \field{title}{Machine learning, International Edition}
       \field{year}{1997}
     \endentry
     \entry{momjian2001postgresql}{book}{}
@@ -1663,23 +1612,23 @@
       \field{title}{Pattern recognition with neural networks in C++}
       \field{year}{1995}
     \endentry
-    \entry{pao1989adaptive}{article}{}
+    \entry{pao1989adaptive}{book}{}
       \name{author}{1}{}{%
-        {{hash=fc2c4cf2e3311445db784feea8c45d9f}{%
+        {{hash=e8e2834df20115f3b8738ed5b3e697bd}{%
            family={Pao},
            familyi={P\bibinitperiod},
-           given={Yohhan},
+           given={Yoh{-}Han},
            giveni={Y\bibinitperiod}}}%
       }
       \list{publisher}{1}{%
-        {Reading, MA (US); Addison-Wesley Publishing Co., Inc.}%
+        {Addison-Wesley}%
       }
-      \strng{namehash}{fc2c4cf2e3311445db784feea8c45d9f}
-      \strng{fullhash}{fc2c4cf2e3311445db784feea8c45d9f}
-      \strng{bibnamehash}{fc2c4cf2e3311445db784feea8c45d9f}
-      \strng{authorbibnamehash}{fc2c4cf2e3311445db784feea8c45d9f}
-      \strng{authornamehash}{fc2c4cf2e3311445db784feea8c45d9f}
-      \strng{authorfullhash}{fc2c4cf2e3311445db784feea8c45d9f}
+      \strng{namehash}{e8e2834df20115f3b8738ed5b3e697bd}
+      \strng{fullhash}{e8e2834df20115f3b8738ed5b3e697bd}
+      \strng{bibnamehash}{e8e2834df20115f3b8738ed5b3e697bd}
+      \strng{authorbibnamehash}{e8e2834df20115f3b8738ed5b3e697bd}
+      \strng{authornamehash}{e8e2834df20115f3b8738ed5b3e697bd}
+      \strng{authorfullhash}{e8e2834df20115f3b8738ed5b3e697bd}
       \field{sortinit}{P}
       \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
       \field{labelnamesource}{author}
@@ -1807,16 +1756,13 @@
       \field{title}{Parallel distributed processing: explorations in the microstructure of cognition. Volume 1. Foundations}
       \field{year}{1986}
     \endentry
-    \entry{saad1990sparskit}{article}{}
+    \entry{saad1990sparskit}{misc}{}
       \name{author}{1}{}{%
         {{hash=2e9e890ef0ef7a6569e8afb4da0fbf7a}{%
            family={Saad},
            familyi={S\bibinitperiod},
            given={Youcef},
            giveni={Y\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Citeseer}%
       }
       \strng{namehash}{2e9e890ef0ef7a6569e8afb4da0fbf7a}
       \strng{fullhash}{2e9e890ef0ef7a6569e8afb4da0fbf7a}
@@ -1828,8 +1774,8 @@
       \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{title}{SPARSKIT: A basic tool kit for sparse matrix computations}
-      \field{year}{1990}
+      \field{title}{SPARSKIT: a basic tool kit for sparse matrix computations - Version 2}
+      \field{year}{1994}
     \endentry
     \entry{DBLP:journals/corr/abs-1805-10408}{article}{}
       \name{author}{3}{}{%
