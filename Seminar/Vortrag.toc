@@ -1,0 +1,14 @@
+\babel@toc {ngerman}{}\relax 
+\beamer@sectionintoc {1}{Einführung Mathematik und Künstlichen Intelligenz}{5}{0}{1}
+\beamer@subsectionintoc {1}{1}{Neuronale Netze}{13}{0}{1}
+\beamer@subsectionintoc {1}{2}{Klassifikationsaufgabe}{20}{0}{1}
+\beamer@subsectionintoc {1}{3}{Aufz\"ahlungen}{21}{0}{1}
+\beamer@subsectionintoc {1}{4}{Theorem / Beweis / andere Boxen}{22}{0}{1}
+\beamer@sectionintoc {2}{Details zum Uni Rostock Style}{24}{0}{2}
+\beamer@subsectionintoc {2}{1}{Einbindung des Styles}{25}{0}{2}
+\beamer@subsectionintoc {2}{2}{\LaTeX und pdf\LaTeX }{26}{0}{2}
+\beamer@subsectionintoc {2}{3}{Farbschema}{27}{0}{2}
+\beamer@subsectionintoc {2}{4}{Tabellen}{28}{0}{2}
+\beamer@subsectionintoc {2}{5}{Einstellungen f\"ur die Titelseite}{29}{0}{2}
+\beamer@subsectionintoc {2}{6}{Einstellungen f\"ur Kopf- und Fu{\ss }zeile}{31}{0}{2}
+\beamer@sectionintoc {3}{Allgemeines}{32}{0}{3}

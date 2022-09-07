@@ -1,0 +1,15 @@
+\frametitle{Kopf- und Fu{\ss }zeile}
+\begin{itemize}
+      \item Der Institutsname f\"ur die Fu{\ss}zeile wird mit
+      \begin{verbatim}
+ \footinstitute{Fakult\"at, Institut}
+      \end{verbatim}
+            angepasst. Er wird nur angezeigt, wenn bei Paketeinbindung der Parameter \verb+footuni+ angegeben ist.
+
+      \item Der Logobereich oben rechts kann mittels
+      \begin{verbatim}
+\renewcommand{\mylogo}{\includegraphics[
+                     width=18.5mm]{institutslogo}}
+      \end{verbatim}
+      angepasst werden. Dies ist der in diesem Dokument benutzte Beispielcode. Erlaubt sind alle Minipage-vertr\"aglichen \LaTeX-Befehle.
+   \end{itemize}
