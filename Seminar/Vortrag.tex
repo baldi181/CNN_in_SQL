@@ -162,7 +162,7 @@ Ideen von McCulloch und Pitts (1943):
 \end{frame}
 
 \begin{frame}
-   \begin{block}{Neuron}
+   \begin{block}{Definition Neuron}
       \label{def_neuron}
       Für eine gegebene Funktion $\phi: \RR \rightarrow \RR$, einen Vektor $w \in \Rnv$ und ein Skalar $b \in \RR$ wird die Funktion 
       \[ \
@@ -207,38 +207,74 @@ Ideen von McCulloch und Pitts (1943):
 \end{frame}
 
 \begin{frame}
-   \begin{minipage}[c]{0.4\textwidth}
-      \includegraphics[width=\textwidth]{pics/FF_sparse.png}
-      \end{minipage}
-      \begin{minipage}[c]{0.3\textwidth}
-         \begin{align*}
-            W^{(1)} &= \begin{pmatrix}
-               w_11^{(1)} & w_{12}^{(1)} &0 \\
-               0 &0 &w_{23}^{(1)} \\
-               0 &0 &w_{33}^{(1)} \\
-            \end{pmatrix} \\
-            W^{(2)} &= \begin{pmatrix}
-               w_11^{(2)} & w_{12}^{(1)} &0 \\
-               0 &0 &w_{23}^{(2)}
-            \end{pmatrix}
-         \end{align*}  
-      \end{minipage}
-\end{frame}
-%%%%%%%%%%%% Beispielfolie zum Mathemodus %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Klassifikationsaufgabe}
-\begin{frame}{Mathemodus und Fu{\ss}noten}{Funktionieren auch}
-  Ein wenig Text\footnote{eine sinnfreie Fu{\ss}note} und ein wenig Mathematik im Sinne von
-   \begin{align}
-        V_{ab}^s\left(q, i z_\mu\right)
-              &= \frac{V_{ab}(q)}{1-\sum_{c}V_{cc}(q)\Pi_{cc}\left(q, i z_\mu\right)} 
-              \equiv \frac{V_{ab}(q)}{\varepsilon\left(q, i z_\mu\right)}  \\
-          \rule{0pt}{2em}\varepsilon\left(q, iz_\mu\right) 
-              &= 1-\sum_c V_{cc}(q)\Pi_{cc}\left(q, i z_\mu\right)
-   \end{align}
-   heitern diese Folie auf.
+   \frametitle[]{Neuronale Netze}
+   \begin{block}{Definition Vorwärtsgerichtetes neuronales Netz(FNN)}
+      Seien 
+      \begin{itemize}
+         \item $s_0 \in \mathbb{N}$: Dimension der Eingabeschicht,
+         \item $L$: Anzahl der Schichten, 
+         \item $\phi$: eine (nichtlineare) Aktivierungsfunktion,
+         \item Neuronen: $T_{\ell}: \RR^{s_{\ell-1}} \rightarrow \RR^{s_\ell}, \; \ell=1, \ldots L, \; \text{mit} T_{\ell}(x)=W^{(\ell)}x+b^{(\ell)}$
+      \end{itemize}
+      \pause
+      Dann ist $\Phi: \RR^{s_0} \rightarrow \RR^{s_L}$ durch die Komposition 
+      \begin{equation*}
+         \Phi(x)=T_{L} \circ \phi \circ T_{L-1} \circ \phi \circ \ldots \circ \phi \circ T_1(x), \; x \in \RR^{s_0}
+      \end{equation*}
+      erklärt. Der Vektor $y:=\Phi(x)$ wird Ausgabe des (tiefen) FNN genannt.
+   \end{block}
 \end{frame}
 
+\begin{frame}
+   \frametitle[]{Veranschaulichung}
+   \begin{figure}
+      \includegraphics[width=0.8\textwidth]{pics/full_FFN.png}
+      \caption[]{Die Abbildung ist aus Fenske\cite[]{fenske} entnommen.}
+   \end{figure}
+\end{frame}
+
+%%%%%%%%%%%% Beispielfolie zum Mathemodus %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Erkennung von Mustern}
+\begin{frame}{Überwachtes Lernen}{Klassifikation von Objekten mithilfe vonFFN}
+Gegeben: 
+\begin{itemize}
+   \item Menge $\mathcal{M}=\{x_i \in \RR^n \, : \, 1 \leq i \leq m\}$,
+   \item Funktion $f: \mathcal{M} \rightarrow \{1, \ldots k\}$,
+   \item also eine endliche Menge von Tupeln der Form $(x_i, f(x_i))_{i=1}^m$, auch Trainingsmenge $\mathcal{T}$ genannt.
+\end{itemize} 
+\pause
+Gesucht: affin lineare Funktionen $(T_{\ell})_{\ell=1}^L=(W^{(\ell)} \cdot + b^{(\ell)})_{\ell=1}^L$, sodass das Problem
+
+\begin{equation*}
+   \underset{(W^{(\ell)}, b^{(\ell)})_\ell}{\min} \sum_{i=1}^m \mathcal{E}(\Phi(x_i),f(x_i)) +\lambda \mathcal{R}((W^{(\ell)}, b^{(\ell)})_l)
+\end{equation*}
+gelöst wird. Hier ist $\mathcal{E}(\mathcal{T},\mathcal{W})$ eine wählbare Fehlerfunktion.
+\end{frame}
+
+\begin{frame}
+   \frametitle{Training von FFN}
+   Training mithilfe des Gradientenverfahren als iteratives Verfahren mit dem langfristigen Ziel $\Phi(x_i) \approx f(x_i)$ für Testdaten 
+   
+   $\rightarrow$ Backpropagation
+   
+   Sei $\mathcal{W}=\{(W^{(\ell)},b^{(\ell)}) \, : \, 1 \leq \ell \leq L\}$ die Menge der Modellparameter.
+
+   Idee: 
+   \begin{itemize}
+      \pause
+      \item Bestimme Gradient $\Delta_n=\nabla_{\mathcal{W}} \mathcal{E}(\mathcal{T},\mathcal{W})$,
+      \pause
+      \item Aktualisiere Parameter $\mathcal{W}_{n+1}= \mathcal{W}_n+ \lambda \Delta_n$,
+      \pause
+      \item solange ein Abbruchkriterium nicht erfüllt ist.
+   \end{itemize} 
+
+\end{frame}
+
+\begin{frame}
+   TODO Bild Rückwärtsrechnung
+\end{frame}
 
 %%%%%%%%%%%% Beispielfolie zu  Auzaehlungen %%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

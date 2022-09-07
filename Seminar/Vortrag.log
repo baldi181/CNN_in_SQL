@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.1)  7 SEP 2022 17:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.23 (TeX Live 2021/W32TeX) (preloaded format=pdflatex 2021.12.1)  7 SEP 2022 19:24
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -983,7 +983,7 @@ LaTeX Font Warning: Font shape `T1/phv/mc/it' undefined
 (Font)              using `T1/phv/mc/n' instead on input line 180.
 
 
-Overfull \vbox (4.15175pt too high) detected at line 180
+Overfull \vbox (4.4278pt too high) detected at line 180
  []
 
 File: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf Graphic file (type pdf)
@@ -997,7 +997,7 @@ Package pdftex.def Info: institut.jpg  used on input line 180.
 [15
 
 ]
-Overfull \vbox (4.15175pt too high) detected at line 180
+Overfull \vbox (4.4278pt too high) detected at line 180
  []
 
 File: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf Graphic file (type pdf)
@@ -1060,15 +1060,6 @@ Package pdftex.def Info: institut.jpg  used on input line 207.
 [18
 
 ]
-File: pics/FF_sparse.png Graphic file (type png)
-<use pics/FF_sparse.png>
-Package pdftex.def Info: pics/FF_sparse.png  used on input line 226.
-(pdftex.def)             Requested size: 120.72751pt x 131.10056pt.
-
-Overfull \hbox (44.03459pt too wide) detected at line 226
-[]
- []
-
 File: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf Graphic file (type pdf)
 <use ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf>
 Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 226.
@@ -1077,63 +1068,170 @@ File: institut.jpg Graphic file (type jpg)
 <use institut.jpg>
 Package pdftex.def Info: institut.jpg  used on input line 226.
 (pdftex.def)             Requested size: 87.99332pt x 42.67912pt.
-[19
+ [19
 
 ]
 File: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf Graphic file (type pdf)
 <use ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf>
-Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 240.
+Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 226.
 (pdftex.def)             Requested size: 127.61157pt x 26.21236pt.
 File: institut.jpg Graphic file (type jpg)
 <use institut.jpg>
-Package pdftex.def Info: institut.jpg  used on input line 240.
+Package pdftex.def Info: institut.jpg  used on input line 226.
 (pdftex.def)             Requested size: 87.99332pt x 42.67912pt.
  [20
 
 ]
+<pics/full_FFN.png, id=305, 599.23875pt x 384.6872pt>
+File: pics/full_FFN.png Graphic file (type png)
+<use pics/full_FFN.png>
+Package pdftex.def Info: pics/full_FFN.png  used on input line 234.
+(pdftex.def)             Requested size: 241.45964pt x 155.00502pt.
+
+
+LaTeX Warning: Citation `fenske' on page 21 undefined on input line 234.
+
+
+Overfull \vbox (15.54378pt too high) detected at line 234
+ []
+
 File: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf Graphic file (type pdf)
 <use ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf>
-Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 279.
+Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 234.
 (pdftex.def)             Requested size: 127.61157pt x 26.21236pt.
 File: institut.jpg Graphic file (type jpg)
 <use institut.jpg>
-Package pdftex.def Info: institut.jpg  used on input line 279.
+Package pdftex.def Info: institut.jpg  used on input line 234.
 (pdftex.def)             Requested size: 87.99332pt x 42.67912pt.
- [21
+[21
+
+ <./pics/full_FFN.png>]
+Overfull \vbox (11.02806pt too high) detected at line 253
+ []
+
+File: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf Graphic file (type pdf)
+<use ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf>
+Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 253.
+(pdftex.def)             Requested size: 127.61157pt x 26.21236pt.
+File: institut.jpg Graphic file (type jpg)
+<use institut.jpg>
+Package pdftex.def Info: institut.jpg  used on input line 253.
+(pdftex.def)             Requested size: 87.99332pt x 42.67912pt.
+[22
+
+]
+Overfull \vbox (11.02806pt too high) detected at line 253
+ []
+
+File: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf Graphic file (type pdf)
+<use ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf>
+Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 253.
+(pdftex.def)             Requested size: 127.61157pt x 26.21236pt.
+File: institut.jpg Graphic file (type jpg)
+<use institut.jpg>
+Package pdftex.def Info: institut.jpg  used on input line 253.
+(pdftex.def)             Requested size: 87.99332pt x 42.67912pt.
+[23
 
 ]
 File: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf Graphic file (type pdf)
 <use ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf>
-Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 311.
+Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 273.
 (pdftex.def)             Requested size: 127.61157pt x 26.21236pt.
 File: institut.jpg Graphic file (type jpg)
 <use institut.jpg>
-Package pdftex.def Info: institut.jpg  used on input line 311.
+Package pdftex.def Info: institut.jpg  used on input line 273.
 (pdftex.def)             Requested size: 87.99332pt x 42.67912pt.
- [22
+ [24
 
 ]
 File: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf Graphic file (type pdf)
 <use ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf>
-Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 311.
+Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 273.
 (pdftex.def)             Requested size: 127.61157pt x 26.21236pt.
 File: institut.jpg Graphic file (type jpg)
 <use institut.jpg>
-Package pdftex.def Info: institut.jpg  used on input line 311.
+Package pdftex.def Info: institut.jpg  used on input line 273.
 (pdftex.def)             Requested size: 87.99332pt x 42.67912pt.
- [23
+ [25
+
+]
+File: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf Graphic file (type pdf)
+<use ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf>
+Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 273.
+(pdftex.def)             Requested size: 127.61157pt x 26.21236pt.
+File: institut.jpg Graphic file (type jpg)
+<use institut.jpg>
+Package pdftex.def Info: institut.jpg  used on input line 273.
+(pdftex.def)             Requested size: 87.99332pt x 42.67912pt.
+ [26
+
+]
+File: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf Graphic file (type pdf)
+<use ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf>
+Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 273.
+(pdftex.def)             Requested size: 127.61157pt x 26.21236pt.
+File: institut.jpg Graphic file (type jpg)
+<use institut.jpg>
+Package pdftex.def Info: institut.jpg  used on input line 273.
+(pdftex.def)             Requested size: 87.99332pt x 42.67912pt.
+ [27
+
+]
+File: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf Graphic file (type pdf)
+<use ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf>
+Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 277.
+(pdftex.def)             Requested size: 127.61157pt x 26.21236pt.
+File: institut.jpg Graphic file (type jpg)
+<use institut.jpg>
+Package pdftex.def Info: institut.jpg  used on input line 277.
+(pdftex.def)             Requested size: 87.99332pt x 42.67912pt.
+ [28
+
+]
+File: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf Graphic file (type pdf)
+<use ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf>
+Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 315.
+(pdftex.def)             Requested size: 127.61157pt x 26.21236pt.
+File: institut.jpg Graphic file (type jpg)
+<use institut.jpg>
+Package pdftex.def Info: institut.jpg  used on input line 315.
+(pdftex.def)             Requested size: 87.99332pt x 42.67912pt.
+ [29
+
+]
+File: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf Graphic file (type pdf)
+<use ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf>
+Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 347.
+(pdftex.def)             Requested size: 127.61157pt x 26.21236pt.
+File: institut.jpg Graphic file (type jpg)
+<use institut.jpg>
+Package pdftex.def Info: institut.jpg  used on input line 347.
+(pdftex.def)             Requested size: 87.99332pt x 42.67912pt.
+ [30
+
+]
+File: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf Graphic file (type pdf)
+<use ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf>
+Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 347.
+(pdftex.def)             Requested size: 127.61157pt x 26.21236pt.
+File: institut.jpg Graphic file (type jpg)
+<use institut.jpg>
+Package pdftex.def Info: institut.jpg  used on input line 347.
+(pdftex.def)             Requested size: 87.99332pt x 42.67912pt.
+ [31
 
 
 ] (./Vortrag.toc)
 File: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf Graphic file (type pdf)
 <use ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf>
-Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 319.
+Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 355.
 (pdftex.def)             Requested size: 127.61157pt x 26.21236pt.
 File: institut.jpg Graphic file (type jpg)
 <use institut.jpg>
-Package pdftex.def Info: institut.jpg  used on input line 319.
+Package pdftex.def Info: institut.jpg  used on input line 355.
 (pdftex.def)             Requested size: 87.99332pt x 42.67912pt.
- [24
+ [32
 
 ]
 \openout4 = `Vortrag.vrb'.
@@ -1148,59 +1246,59 @@ LaTeX Font Warning: Font shape `T1/cmtt/mc/n' undefined
 (Font)              using `T1/cmtt/m/n' instead on input line 2.
 
 )
-Overfull \hbox (42.367pt too wide) in paragraph at lines 10--338
+Overfull \hbox (42.367pt too wide) in paragraph at lines 10--374
 []  
  []
 
 File: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf Graphic file (type pdf)
 <use ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf>
-Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 338.
+Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 374.
 (pdftex.def)             Requested size: 127.61157pt x 26.21236pt.
 File: institut.jpg Graphic file (type jpg)
 <use institut.jpg>
-Package pdftex.def Info: institut.jpg  used on input line 338.
+Package pdftex.def Info: institut.jpg  used on input line 374.
 (pdftex.def)             Requested size: 87.99332pt x 42.67912pt.
-[25
+[33
 
 ]
 \openout4 = `Vortrag.vrb'.
 
  (./Vortrag.vrb)
-LaTeX Font Info:    Calculating math sizes for size <11.08661> on input line 356.
+LaTeX Font Info:    Calculating math sizes for size <11.08661> on input line 392.
 
 
 LaTeX Font Warning: Font shape `OT1/cmss/m/n' in size <5.5433> not available
-(Font)              size <6> substituted on input line 356.
+(Font)              size <6> substituted on input line 392.
 
 
 LaTeX Font Warning: Font shape `T1/cmr/m/n' in size <5.5433> not available
-(Font)              size <6> substituted on input line 356.
+(Font)              size <6> substituted on input line 392.
 
 
 LaTeX Font Warning: Font shape `OML/cmm/m/it' in size <5.5433> not available
-(Font)              size <6> substituted on input line 356.
+(Font)              size <6> substituted on input line 392.
 
 
 LaTeX Font Warning: Font shape `OMS/cmsy/m/n' in size <5.5433> not available
-(Font)              size <6> substituted on input line 356.
+(Font)              size <6> substituted on input line 392.
 
 
 LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <5.5433> not available
-(Font)              size <6> substituted on input line 356.
+(Font)              size <6> substituted on input line 392.
 
 
-Overfull \vbox (2.15126pt too high) detected at line 356
+Overfull \vbox (2.15126pt too high) detected at line 392
  []
 
 File: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf Graphic file (type pdf)
 <use ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf>
-Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 356.
+Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 392.
 (pdftex.def)             Requested size: 127.61157pt x 26.21236pt.
 File: institut.jpg Graphic file (type jpg)
 <use institut.jpg>
-Package pdftex.def Info: institut.jpg  used on input line 356.
+Package pdftex.def Info: institut.jpg  used on input line 392.
 (pdftex.def)             Requested size: 87.99332pt x 42.67912pt.
-[26
+[34
 
 ]
 \openout4 = `Vortrag.vrb'.
@@ -1208,13 +1306,13 @@ Package pdftex.def Info: institut.jpg  used on input line 356.
  (./Vortrag.vrb)
 File: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf Graphic file (type pdf)
 <use ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf>
-Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 366.
+Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 402.
 (pdftex.def)             Requested size: 127.61157pt x 26.21236pt.
 File: institut.jpg Graphic file (type jpg)
 <use institut.jpg>
-Package pdftex.def Info: institut.jpg  used on input line 366.
+Package pdftex.def Info: institut.jpg  used on input line 402.
 (pdftex.def)             Requested size: 87.99332pt x 42.67912pt.
- [27
+ [35
 
 ]
 \openout4 = `Vortrag.vrb'.
@@ -1222,13 +1320,13 @@ Package pdftex.def Info: institut.jpg  used on input line 366.
  (./Vortrag.vrb)
 File: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf Graphic file (type pdf)
 <use ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf>
-Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 387.
+Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 423.
 (pdftex.def)             Requested size: 127.61157pt x 26.21236pt.
 File: institut.jpg Graphic file (type jpg)
 <use institut.jpg>
-Package pdftex.def Info: institut.jpg  used on input line 387.
+Package pdftex.def Info: institut.jpg  used on input line 423.
 (pdftex.def)             Requested size: 87.99332pt x 42.67912pt.
- [28
+ [36
 
 ]
 \openout4 = `Vortrag.vrb'.
@@ -1244,41 +1342,7 @@ Overfull \hbox (12.10484pt too wide) in paragraph at lines 21--21
  []
 
 )
-Overfull \vbox (17.53629pt too high) detected at line 415
- []
-
-File: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf Graphic file (type pdf)
-<use ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf>
-Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 415.
-(pdftex.def)             Requested size: 127.61157pt x 26.21236pt.
-File: institut.jpg Graphic file (type jpg)
-<use institut.jpg>
-Package pdftex.def Info: institut.jpg  used on input line 415.
-(pdftex.def)             Requested size: 87.99332pt x 42.67912pt.
-[29
-
-]
-\openout4 = `Vortrag.vrb'.
-
- (./Vortrag.vrb)
-Overfull \vbox (31.76126pt too high) detected at line 430
- []
-
-File: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf Graphic file (type pdf)
-<use ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf>
-Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 430.
-(pdftex.def)             Requested size: 127.61157pt x 26.21236pt.
-File: institut.jpg Graphic file (type jpg)
-<use institut.jpg>
-Package pdftex.def Info: institut.jpg  used on input line 430.
-(pdftex.def)             Requested size: 87.99332pt x 42.67912pt.
-[30
-
-]
-\openout4 = `Vortrag.vrb'.
-
- (./Vortrag.vrb)
-Overfull \vbox (8.15126pt too high) detected at line 451
+Overfull \vbox (17.53629pt too high) detected at line 451
  []
 
 File: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf Graphic file (type pdf)
@@ -1289,29 +1353,63 @@ File: institut.jpg Graphic file (type jpg)
 <use institut.jpg>
 Package pdftex.def Info: institut.jpg  used on input line 451.
 (pdftex.def)             Requested size: 87.99332pt x 42.67912pt.
-[31
+[37
+
+]
+\openout4 = `Vortrag.vrb'.
+
+ (./Vortrag.vrb)
+Overfull \vbox (31.76126pt too high) detected at line 466
+ []
+
+File: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf Graphic file (type pdf)
+<use ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf>
+Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 466.
+(pdftex.def)             Requested size: 127.61157pt x 26.21236pt.
+File: institut.jpg Graphic file (type jpg)
+<use institut.jpg>
+Package pdftex.def Info: institut.jpg  used on input line 466.
+(pdftex.def)             Requested size: 87.99332pt x 42.67912pt.
+[38
+
+]
+\openout4 = `Vortrag.vrb'.
+
+ (./Vortrag.vrb)
+Overfull \vbox (8.15126pt too high) detected at line 487
+ []
+
+File: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf Graphic file (type pdf)
+<use ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf>
+Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 487.
+(pdftex.def)             Requested size: 127.61157pt x 26.21236pt.
+File: institut.jpg Graphic file (type jpg)
+<use institut.jpg>
+Package pdftex.def Info: institut.jpg  used on input line 487.
+(pdftex.def)             Requested size: 87.99332pt x 42.67912pt.
+[39
 
 ] (./Vortrag.toc)
 File: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf Graphic file (type pdf)
 <use ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf>
-Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 457.
+Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 493.
 (pdftex.def)             Requested size: 127.61157pt x 26.21236pt.
 File: institut.jpg Graphic file (type jpg)
 <use institut.jpg>
-Package pdftex.def Info: institut.jpg  used on input line 457.
+Package pdftex.def Info: institut.jpg  used on input line 493.
 (pdftex.def)             Requested size: 87.99332pt x 42.67912pt.
- [32
+ [40
 
 ]
 File: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf Graphic file (type pdf)
 <use ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf>
-Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 465.
+Package pdftex.def Info: ./unirostock/UNI-Logo_Siegel_4c_115mm.pdf  used on input line 501.
 (pdftex.def)             Requested size: 127.61157pt x 26.21236pt.
 File: institut.jpg Graphic file (type jpg)
 <use institut.jpg>
-Package pdftex.def Info: institut.jpg  used on input line 465.
+Package pdftex.def Info: institut.jpg  used on input line 501.
 (pdftex.def)             Requested size: 87.99332pt x 42.67912pt.
- [33
+ [41
 
 ]
 \tf@nav=\write6
@@ -1331,22 +1429,25 @@ LaTeX Font Warning: Size substitutions with differences
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
+
+LaTeX Warning: There were undefined references.
+
 Package rerunfilecheck Info: File `Vortrag.out' has not changed.
-(rerunfilecheck)             Checksum: 5AD486DC2B7EA3F84AA624BF30202F69;2268.
+(rerunfilecheck)             Checksum: 15DA60B7E0A1072CF6606C4B7E131A41;2269.
  ) 
 Here is how much of TeX's memory you used:
- 24427 strings out of 478353
- 477069 string characters out of 5852101
+ 24463 strings out of 478353
+ 477845 string characters out of 5852101
  743605 words of memory out of 5000000
- 41892 multiletter control sequences out of 15000+600000
- 486123 words of font info for 131 fonts, out of 8000000 for 9000
+ 41911 multiletter control sequences out of 15000+600000
+ 484937 words of font info for 127 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  128i,24n,122p,582b,784s stack positions out of 5000i,500n,10000p,200000b,80000s
-{c:/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}<c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfss0700.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfss1000.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/avantgar/uagd8a.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/avantgar/uagk8a.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
-Output written on Vortrag.pdf (33 pages, 848323 bytes).
+{c:/texlive/2021/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}{c:/texlive/2021/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmssi8.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfrm1000.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfss0500.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfss0700.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sfss1000.pfb><c:/texlive/2021/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/avantgar/uagd8a.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/avantgar/uagk8a.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/texlive/2021/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb>
+Output written on Vortrag.pdf (41 pages, 998920 bytes).
 PDF statistics:
- 539 PDF objects out of 1000 (max. 8388607)
- 397 compressed objects within 4 object streams
- 81 named destinations out of 1000 (max. 500000)
- 460 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 623 PDF objects out of 1000 (max. 8388607)
+ 454 compressed objects within 5 object streams
+ 97 named destinations out of 1000 (max. 500000)
+ 531 words of extra memory for PDF output out of 10000 (max. 10000000)
 
