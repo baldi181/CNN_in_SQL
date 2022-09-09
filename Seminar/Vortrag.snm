@@ -1,1 +1,11 @@
-\beamer@slide {def_neuron}{15}
+\beamer@slide {def_neuron}{11}
+\beamer@slide {eq:valid_cross}{40}
+\beamer@slide {eq:CNN_K_grad}{59}
+\beamer@slide {eq:CNN_K_grad}{61}
+\beamer@slide {eq:upsample1}{69}
+\beamer@slide {eq:upsample2}{69}
+\beamer@slide {abb:angestellte}{89}
+\beamer@slide {abb:projekt}{90}
+\beamer@slide {anf:bsp}{91}
+\beamer@slide {abb:result_relation}{91}
+\beamer@slide {coordinate_scheme_table}{93}

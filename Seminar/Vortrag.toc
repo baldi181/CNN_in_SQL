@@ -1,14 +1,19 @@
 \babel@toc {ngerman}{}\relax 
-\beamer@sectionintoc {1}{Einführung Mathematik und Künstlichen Intelligenz}{5}{0}{1}
-\beamer@subsectionintoc {1}{1}{Neuronale Netze}{13}{0}{1}
-\beamer@subsectionintoc {1}{2}{Erkennung von Mustern}{22}{0}{1}
-\beamer@subsectionintoc {1}{3}{Aufz\"ahlungen}{29}{0}{1}
-\beamer@subsectionintoc {1}{4}{Theorem / Beweis / andere Boxen}{30}{0}{1}
-\beamer@sectionintoc {2}{Details zum Uni Rostock Style}{32}{0}{2}
-\beamer@subsectionintoc {2}{1}{Einbindung des Styles}{33}{0}{2}
-\beamer@subsectionintoc {2}{2}{\LaTeX und pdf\LaTeX }{34}{0}{2}
-\beamer@subsectionintoc {2}{3}{Farbschema}{35}{0}{2}
-\beamer@subsectionintoc {2}{4}{Tabellen}{36}{0}{2}
-\beamer@subsectionintoc {2}{5}{Einstellungen f\"ur die Titelseite}{37}{0}{2}
-\beamer@subsectionintoc {2}{6}{Einstellungen f\"ur Kopf- und Fu{\ss }zeile}{39}{0}{2}
-\beamer@sectionintoc {3}{Allgemeines}{40}{0}{3}
+\beamer@sectionintoc {1}{Einführung Mathematik und Künstlichen Intelligenz}{7}{0}{1}
+\beamer@subsectionintoc {1}{1}{Neuronale Netze}{9}{0}{1}
+\beamer@subsectionintoc {1}{2}{Erkennung von Mustern}{18}{0}{1}
+\beamer@sectionintoc {2}{Gefaltete neuronale Netze (CNN)}{28}{0}{2}
+\beamer@subsectionintoc {2}{1}{Funktionsweise}{28}{0}{2}
+\beamer@subsectionintoc {2}{2}{Backpropagation}{57}{0}{2}
+\beamer@sectionintoc {3}{Datenbankgestützte Umsetzung}{78}{0}{3}
+\beamer@subsectionintoc {3}{1}{PArADISE-Projekt}{78}{0}{3}
+\beamer@subsectionintoc {3}{2}{Aufz\"ahlungen}{102}{0}{3}
+\beamer@subsectionintoc {3}{3}{Theorem / Beweis / andere Boxen}{103}{0}{3}
+\beamer@sectionintoc {4}{Details zum Uni Rostock Style}{105}{0}{4}
+\beamer@subsectionintoc {4}{1}{Einbindung des Styles}{106}{0}{4}
+\beamer@subsectionintoc {4}{2}{\LaTeX und pdf\LaTeX }{107}{0}{4}
+\beamer@subsectionintoc {4}{3}{Farbschema}{108}{0}{4}
+\beamer@subsectionintoc {4}{4}{Tabellen}{109}{0}{4}
+\beamer@subsectionintoc {4}{5}{Einstellungen f\"ur die Titelseite}{110}{0}{4}
+\beamer@subsectionintoc {4}{6}{Einstellungen f\"ur Kopf- und Fu{\ss }zeile}{112}{0}{4}
+\beamer@sectionintoc {5}{Allgemeines}{113}{0}{5}
